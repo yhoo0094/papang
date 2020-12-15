@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
-	성공!
+<form action="" class="frm" name="frm" id="frm">
+
+
+</form>
 </body>
 </html>

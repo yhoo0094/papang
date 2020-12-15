@@ -13,6 +13,6 @@ public class MemberController {
 
 	@RequestMapping("/member") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("member/joinForm"); //jsp주소
 	}
 }
