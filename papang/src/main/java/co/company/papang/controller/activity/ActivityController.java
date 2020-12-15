@@ -11,8 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ActivityController {
 
-	@RequestMapping("/activity") //url 예전 .do
+	@RequestMapping("/activityHome") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("activity/test"); //jsp주소
+	}
+	
+	@RequestMapping("/activityHAHA") //url 예전 .do
+	public ModelAndView test1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/test"); //jsp주소
 	}
 }
