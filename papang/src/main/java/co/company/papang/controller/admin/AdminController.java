@@ -13,6 +13,6 @@ public class AdminController {
 
 	@RequestMapping("/admin") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("admin/admin"); //jsp주소
 	}
 }
