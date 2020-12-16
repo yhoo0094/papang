@@ -1,27 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Modern Business - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <!-- Navigation -->
-  <header>
+	
+	<header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -64,7 +42,7 @@
 
   <!-- Page Content -->
   <div class="container">
-	<button class="bSamll"></button>
+
     <h1 class="my-4">Welcome to Modern Business</h1>
 
     <!-- Marketing Icons Section -->
@@ -213,15 +191,3 @@
     </div>
 
   </div>
-  <!-- /.container -->
-
-  <!-- Footer -->
-  
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
