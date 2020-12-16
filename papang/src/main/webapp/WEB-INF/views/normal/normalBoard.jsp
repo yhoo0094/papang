@@ -12,6 +12,10 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <style>
+
+a {
+	color: black;
+}
 .pagination, li.active, .pagination li {
 	display: inline-block;
 }
@@ -37,12 +41,17 @@
 	border-bottom-left-radius: 5px;
 }
 
+.pagination ul {
+width: 100%;
+}
+
 .bodybodybody {
 padding : 20%;
 }
 </style>
 </head>
-<body class="bodybodybody">
+<body>
+<div class="bodybodybody">
 	<br>
 	<h3>공지사항</h3>
 	<hr/>
@@ -99,5 +108,6 @@ padding : 20%;
 	<div align="right">
 		<button id="createBtn">글쓰기</button>
 	</div>
+</div>
 </body>
 </html>
