@@ -13,7 +13,7 @@ public class HomeController {
 
 	@RequestMapping(value="/")
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("index");
+		return new ModelAndView("main/main");
 	}
 	
 	@RequestMapping(value="/normalBoard")

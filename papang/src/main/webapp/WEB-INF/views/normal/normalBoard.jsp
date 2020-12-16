@@ -77,6 +77,20 @@ padding : 20%;
 					<td>20-12-16 12:20</td>
 					<td>0</td>
 				</tr>
+				<tr>
+					<td>2</td>
+					<td><a href="#">제목텍스트</a></td>
+					<td>분류텍스트</td>
+					<td>20-12-16 12:20</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td><a href="#">제목텍스트</a></td>
+					<td>분류텍스트</td>
+					<td>20-12-16 12:20</td>
+					<td>0</td>
+				</tr>
 			</tbody>
 		</table>
 		<br>
