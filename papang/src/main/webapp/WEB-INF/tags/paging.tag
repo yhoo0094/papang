@@ -2,7 +2,7 @@
 <%@ attribute name="paging" type="co.company.papang.controller.Paging" %>
 <%@ attribute name="jsfunc" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="pagination">
+<div class="pagination" align="center">
 <ul>
 <c:if test="${paging.startPage>1}">
 	<li><a href="javascript:${jsfunc}(${paging.startPage-1})">이전</a>

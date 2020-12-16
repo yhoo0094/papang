@@ -15,4 +15,9 @@ public class AdminController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/admin"); //jsp주소
 	}
+	
+	@RequestMapping("/admin/nqInsert") //url 예전 .do
+	public ModelAndView test2(HttpServletResponse response) throws IOException{
+		return new ModelAndView("admin/nqInsert"); //jsp주소
+	}
 }

@@ -37,12 +37,17 @@
 	border-bottom-left-radius: 5px;
 }
 
-.bodybodybody {
+.pagination ul {
+width: 100%;
+}
+
+.sizeDiv {
 padding : 20%;
 }
 </style>
 </head>
-<body class="bodybodybody">
+<body>
+<div class="sizeDiv">
 	<br>
 	<h3>공지사항</h3>
 	<hr/>
@@ -99,5 +104,6 @@ padding : 20%;
 	<div align="right">
 		<button id="createBtn">글쓰기</button>
 	</div>
+</div>
 </body>
 </html>
