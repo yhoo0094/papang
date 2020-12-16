@@ -17,13 +17,27 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet">
-
+  <style>
+/* 레이아웃 */
+	.fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
+	 body {background-color: #fff5d2;}
+	.py-5 {background-color: rgb(249, 196, 94);}
+	html {font-family: 'Spoqa Han Sans',sans-serif;}
+/* 버튼css */
+	.btnYellow {background-color: rgb(249, 196, 94);border:none;}
+	.btnRed {background-color: #ff8080; border:none;}
+	.btnGray {background-color: #EDEDED;border:none;}
+	.bSamll {width:70px; height: 30px;}
+	.bMedium {width: 150px; height: 60px; font-weight: bold;}
+	.bBig {width: 200px; height: 120px; font-weight: bold;}
+	.fcolor {color: #444;font-weight: bold;}
+ </style>
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">Start Bootstrap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,12 +92,11 @@
       </div>
     </div>
   </nav>
-
   <tiles:insertAttribute name="body"/> <!-- body -->
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
     </div>
