@@ -12,10 +12,6 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <style>
-
-a {
-	color: black;
-}
 .pagination, li.active, .pagination li {
 	display: inline-block;
 }
@@ -45,13 +41,13 @@ a {
 width: 100%;
 }
 
-.bodybodybody {
+.sizeDiv {
 padding : 20%;
 }
 </style>
 </head>
 <body>
-<div class="bodybodybody">
+<div class="sizeDiv">
 	<br>
 	<h3>공지사항</h3>
 	<hr/>
