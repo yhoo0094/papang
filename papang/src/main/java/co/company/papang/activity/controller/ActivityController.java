@@ -1,4 +1,4 @@
-package co.company.papang.controller.activity;
+package co.company.papang.activity.controller;
 
 import java.io.IOException;
 

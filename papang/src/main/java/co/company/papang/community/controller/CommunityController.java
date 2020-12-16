@@ -1,4 +1,4 @@
-package co.company.papang.controller.admin;
+package co.company.papang.community.controller;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AdminController {
+public class CommunityController {
 
-	@RequestMapping("/admin") //url 예전 .do
+	@RequestMapping("/community") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/admin"); //jsp주소
+		return new ModelAndView("admin/test"); //jsp주소
 	}
 }

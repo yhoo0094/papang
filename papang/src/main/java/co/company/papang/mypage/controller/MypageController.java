@@ -1,4 +1,4 @@
-package co.company.papang.controller.mypage;
+package co.company.papang.mypage.controller;
 
 import java.io.IOException;
 

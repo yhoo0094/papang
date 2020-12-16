@@ -1,4 +1,4 @@
-package co.company.papang.controller.notice;
+package co.company.papang.prevention.controller;
 
 import java.io.IOException;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class NoticeController {
+public class VaccinationController {
 
-	@RequestMapping("/notice") //url 예전 .do
+	@RequestMapping("/prevention") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/test"); //jsp주소
 	}

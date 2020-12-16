@@ -1,4 +1,4 @@
-package co.company.papang.controller.lullaby;
+package co.company.papang.lullaby.controller;
 
 import java.io.IOException;
 

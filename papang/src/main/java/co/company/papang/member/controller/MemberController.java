@@ -1,4 +1,4 @@
-package co.company.papang.controller.sitter;
+package co.company.papang.member.controller;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class SitterController {
+public class MemberController {
 
-	@RequestMapping("/controller") //url 예전 .do
+	@RequestMapping("/member") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("member/joinForm"); //jsp주소
 	}
 }

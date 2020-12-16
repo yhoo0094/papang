@@ -1,4 +1,4 @@
-package co.company.papang.controller.question;
+package co.company.papang.market.controller;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class QuestionController {
+public class MarketController {
 
-	@RequestMapping("/question") //url 예전 .do
+	@RequestMapping("/market") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("market/test"); //jsp주소
 	}
 }
