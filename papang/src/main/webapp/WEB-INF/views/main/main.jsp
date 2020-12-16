@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 
@@ -21,7 +21,6 @@
 <body>
 
   <!-- Navigation -->
-
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
@@ -65,7 +64,7 @@
 
   <!-- Page Content -->
   <div class="container">
-
+	<button class="bSamll"></button>
     <h1 class="my-4">Welcome to Modern Business</h1>
 
     <!-- Marketing Icons Section -->

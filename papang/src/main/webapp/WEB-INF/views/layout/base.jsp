@@ -16,6 +16,14 @@
 body {background-color: #fff5d2;}
 .py-5 {background-color: rgb(249, 196, 94);}
 /* 버튼css */
+.btnYellow {background-color: rgb(249, 196, 94);border:none;}
+.btnRed {background-color: #ff8080; border:none;}
+.btnGray {background-color: #EDEDED;border:none;}
+.bSamll {width:100px; height: 100px;}
+.bMedium {    width: 150px;
+    height: 60px;
+    color: #373a40; font-weight: bold;}
+.bBig {width:300px; height: 300px;}
  </style>
  
 </head>
