@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+body {
+	margin: 120px;
+}
+</style>
 <title>로그인</title>
 <script type="text/javascript">
 	function formCheck() {
