@@ -82,7 +82,7 @@
 					<td class="txt">아이디&nbsp;<span style="color: red;">*</span></td>
 					<td><input type="text" id="mbr_id" name="mbr_id"
 						placeholder="아이디"></td>
-					<td><input type="button" id="idchk" class="btn btn-primary"
+					<td><input type="button" id="idchk" class="btnRed"
 						value="중복확인" onclick="IdCheck()" style="padding: 5px"></td>
 				</tr>
 				<tr>
@@ -120,7 +120,7 @@
 						name="mbr_birth"></td>
 				</tr>
 				<tr>
-					<td class="txt">성별</td>
+					<td class="txt">성별&nbsp;<span style="color: red;">*</span></td>
 					<td colspan="2"><input type="radio" id="mbr_gender"
 						name="mbr_gender" value="남" checked>남성 <input type="radio"
 						id="mbr_gender" name="mbr_gender" value="녀">여성</td>
@@ -139,8 +139,7 @@
 					<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
 					<td><input type="text" id="mbr_post" name="mbr_post"></td>
 					<td><input type="button" id="postSearch"
-						class="btn btn-primary" value="우편번호 검색" onclick=""
-						postSearch"()" style="padding: 5px"></td>
+						class="btnRed" value="우편번호 검색" onclick="postSearch()" style="padding: 5px"></td>
 				</tr>
 				<tr>
 					<td class="txt">주소&nbsp;<span style="color: red;">*</span></td>
@@ -191,9 +190,9 @@
 			</table>
 		</div>
 		<div align="center">
-			<button type="submit" class="btn btn-success"
+			<button type="submit" class="btn"
 				onclick="return formCheck()" style="margin-right: 30px;">회원가입</button>
-			<button type="reset" class="btn btn-danger"
+			<button type="reset" class="btnGray"
 				style="margin-right: 30px;">취소</button>
 		</div>
 	</form>

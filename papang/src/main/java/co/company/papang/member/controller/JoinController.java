@@ -1,4 +1,4 @@
-package co.company.papang.market.controller;
+package co.company.papang.member.controller;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MarketController {
+public class JoinController {
 
-	@RequestMapping("/market") //url 예전 .do
+	@RequestMapping("/join") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("market/iemList"); //jsp주소
+		return new ModelAndView("member/joinFormDiv"); //jsp주소
 	}
 }

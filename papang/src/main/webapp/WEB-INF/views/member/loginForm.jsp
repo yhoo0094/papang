@@ -109,32 +109,25 @@
 <body>
 	<form class="frm" id="frm" name="frm" action="login.do" method="post"
 		style="margin: auto;">
-					<div>
-						<table class="table">
-							<tr>
-								<td class="txt">아이디</td>
-								<td><input type="text" id="mbr_id"
-									name="mbr_id" placeholder="아이디"></td>
-							</tr>
-							<tr>
-								<td class="txt">비밀번호</td>
-								<td><input type="password" id="mbr_pw"
-									name="mbr_pw" placeholder="비밀번호"></td>
-							</tr>
-						</table>
-					</div>
-
-		<div>
-			<button type="submit" class="btn btn-success"
-				onclick="return formCheck()" style="margin-right: 30px;">로그인</button>
-			<button type="button" class="btn btn-dark"
-				style="margin-right: 30px;" id="findBtn" data-toggle="modal"
-				data-target="#findPop">ID/패스워드 찾기</button>
-			<button type="button" class="btn btn-danger"
-				onclick="location.href='memberJoin'">회원가입</button>
+		<div align="center">
+			<div style="margin: 20px">
+				<input type="text" id="mbr_id" name="mbr_id" placeholder="아이디">
+			</div>
+			<div style="margin: 20px">
+				<input type="password" id="mbr_pw" name="mbr_pw" placeholder="비밀번호">
+			</div>
+		</div>
+		<div align="center">
+			<button type="submit" class="btn" onclick="return formCheck()"
+				style="margin-right: 30px;">로그인</button>
+		</div>
+		<div align="center">
+			<a href="">ID 찾기</a>&nbsp;&nbsp;&nbsp;
+			<a href="">비밀번호 찾기</a>&nbsp;&nbsp;&nbsp;
+			<a href="memberJoin">회원가입</a>
 		</div>
 	</form>
-<!-- %
+	<!-- %
 		// id, pw 틀리면 화면에 메세지 출력
 	String msg = request.getParameter("msg");
 	if (msg != null && msg.equals("0")) {
@@ -144,8 +137,8 @@
 		out.println("<br>");
 		out.println("<font color='red' size='5'>아이디를 확인해 주세요.</font>");
 	}
-	% -->	
-<!-- id/비번찾기  -->
+	% -->
+	<!-- id/비번찾기  -->
 	<div class="modal" id="findPop">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
@@ -160,9 +153,9 @@
 				<div class="modal-body" align="center">
 					<form id="frm2" name="frm2">
 						<div id="find" align="center">
-							<button type="button" class="find" id="idBtn" data-toggle="modal"
+							<button type="button" class="btn" id="idBtn" data-toggle="modal"
 								data-target="#idPop">ID 찾기</button>
-							<button type="button" class="find" id="pwBtn" data-toggle="modal"
+							<button type="button" class="btn" id="pwBtn" data-toggle="modal"
 								data-target="#pwPop">비밀번호 찾기</button>
 						</div>
 						<div style="margin-bottom: 40px;"></div>
@@ -173,7 +166,7 @@
 			</div>
 		</div>
 	</div>
-<!--
+	<!--
 	<div class="modal" id="idPop">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
