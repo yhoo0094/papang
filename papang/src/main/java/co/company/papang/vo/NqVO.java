@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class NqVO {
 	private String nq_no;
 	private String nq_title;

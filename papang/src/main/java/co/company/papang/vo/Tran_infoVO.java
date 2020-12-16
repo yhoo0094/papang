@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class Tran_infoVO {
 	private String mbr_id;
 	private String tran_no;

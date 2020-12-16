@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class SitterVO {
 	private String sit_mbr_id;
 	private String sit_payday;

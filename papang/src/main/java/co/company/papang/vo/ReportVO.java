@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class ReportVO {
 	private String repo_no;
 	private String mbr_id;

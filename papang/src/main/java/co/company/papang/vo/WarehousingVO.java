@@ -1,5 +1,10 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class WarehousingVO {
 	private String ware_no;
 	private String pro_no;

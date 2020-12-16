@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class Report_info {
 	private String rinfo_no;
 	private String mbr_id;

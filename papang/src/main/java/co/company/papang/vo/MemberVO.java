@@ -1,5 +1,9 @@
 package co.company.papang.vo;
 
+import lombok.Builder;
+import lombok.Data;
+@Builder
+@Data
 public class MemberVO {
 	private String mbr_id;
 	private String mbr_pw;
