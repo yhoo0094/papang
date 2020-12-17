@@ -9,68 +9,11 @@
 	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 	crossorigin="anonymous">
 <style>
-.pagination, li.active, .pagination li {
-	display: inline-block;
-}
 
-.pagination a, li.active {
-	color: black;
-	padding: 8px 16px;
-	text-decoration: none;
-	border: 1px solid #ddd;
-}
-
-.pagination li.active {
-	background-color: rgb(255, 136, 38);
-	color: black;
-	border: 1px solid #ddd;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-}
-
-.pagination a, li.active {
-	border-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.pagination ul {
-	width: 100%;
-}
-
-.sizeDiv {
-	padding: 4% 10% 2%;
-}
-
-th {
-	text-align: center;
-}
-
-body {
-	background-color: #fff5d2;
-}
-
-.tableTrTh {
-	background-color: rgb(249, 196, 94);
-}
-
-.boardTagA {
-	color: black;
-}
-
-.btnWrite {
- margin-right: 5%
-}
-
-/* 임시 나중에 삭제할 것 */
-a.active {
-	background-color: rgb(249, 196, 94);
-}
 </style>
 </head>
 <body>
-	<div class="sizeDiv">
+	<div class="sizeDiv center_div">
 		<br>
 		<h3>게시판</h3>
 		<hr />

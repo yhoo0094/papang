@@ -1,22 +1,54 @@
-/*!
- * Start Bootstrap - Modern Business (https://startbootstrap.com/template/modern-business)
- * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
- */
-body {
-  padding-top: 56px;
+.pagination, li.active, .pagination li {
+	display: inline-block;
 }
 
-.carousel-item {
-  height: 65vh;
-  min-height: 300px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.pagination a, li.active {
+	color: black;
+	padding: 8px 16px;
+	text-decoration: none;
+	border: 1px solid #ddd;
 }
 
-.portfolio-item {
-  margin-bottom: 30px;
+.pagination li.active {
+	background-color: rgb(255, 136, 38);
+	color: black;
+	border: 1px solid #ddd;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+.pagination a, li.active {
+	border-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.pagination ul {
+	width: 100%;
+}
+
+.sizeDiv {
+	padding: 4% 10% 2%;
+}
+
+th {
+	text-align: center;
+}
+
+.tableTrTh {
+	background-color: rgb(249, 196, 94);
+}
+
+.boardTagA {
+	color: black;
+}
+
+.btnWrite {
+ margin-right: 5%
+}
+
+/* 임시 나중에 삭제할 것 */
+a.active {
+	background-color: rgb(249, 196, 94);
 }
