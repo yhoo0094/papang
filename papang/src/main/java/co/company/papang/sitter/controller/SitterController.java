@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SitterController {
 
-	@RequestMapping("/controller") //url 예전 .do
+	@RequestMapping("/sitterBoard") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+		return new ModelAndView("sitter/sitterBoard"); //jsp주소
 	}
 }

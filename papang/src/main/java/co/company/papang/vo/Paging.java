@@ -1,4 +1,4 @@
-package co.company.papang.controller;
+package co.company.papang.vo;
 
 public class Paging {
 	int pageUnit=10 ; 		//한페이지 출력할 레코드 건수

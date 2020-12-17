@@ -36,11 +36,18 @@
 	.bBig {width: 200px; height: 120px; font-weight: bold;}
 	.fcolor {color: #444;font-weight: bold;}
 	.center_div {margin-top: 50px;min-height:690px;}
+
+/* 공용css */
+	/* 헤더에 있는 진한 주황색 */
+	.strongYellow {background-color: rgb(249, 196, 94);}
+	/* 배경에 연한 노란색 */
+	.background {background-color: #fff5d2;}
  </style>
 </head>
 
 <body>
-
+<div>
+	
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
@@ -97,6 +104,8 @@
       </div>
     </div>
   </nav>
+  
+  </div>
   <tiles:insertAttribute name="body"/> <!-- body -->
   <!-- /.container -->
 

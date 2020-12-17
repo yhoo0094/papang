@@ -11,8 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CommunityController {
 
-	@RequestMapping("/community") //url 예전 .do
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/test"); //jsp주소
+	@RequestMapping("/communityBoard") //url 예전 .do
+	public ModelAndView communityBoard(HttpServletResponse response) throws IOException{
+		return new ModelAndView("community/communityBoard"); //jsp주소
+	}
+	
+	@RequestMapping("/communityForm") //url 예전 .do
+	public ModelAndView communityForm(HttpServletResponse response) throws IOException{
+		return new ModelAndView("community/communityForm"); //jsp주소
 	}
 }
