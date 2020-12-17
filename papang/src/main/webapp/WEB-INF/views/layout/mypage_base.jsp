@@ -55,7 +55,6 @@
 	.w3-margin-top {margin-top: 16px!important;display: inline-block;width: 100%;margin-left: 490px;}
 	.left_div {margin-top: 50px;}
 	.center_div {margin-top: 50px;margin-left: 490px;min-height:690px;}
-	
 </style>
 
 </head>
