@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <style type="text/css">
+body {
+	margin: 120px;
+}
 .row_group {
 	width: 100%;
 }
@@ -86,6 +89,12 @@
 </script>
 </head>
 <body>
+<div class="w3-content w3-container w3-margin-top">
+		<div class="w3-container w3-card-4">
+			<div class="w3-center w3-large w3-margin-top">
+				<h3>회원 가입</h3>
+			</div>
+			<div>
 	<form action="memberJoin" class="frm" name="frm" id="frm" method="post"
 		style="margin: auto;">
 		<div id="container"
@@ -223,5 +232,9 @@
 			</div>
 		</div>
 	</form>
+	</div>
+	</div>
+	</div>
+
 </body>
 </html>

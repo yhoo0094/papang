@@ -14,8 +14,8 @@
 body {margin: 20px auto;}
 li {list-style: none;}
  /* lnb */
-#lnb {position:relative;width:300px;display: inline-block;}
-#lnb h1 {height: 40px;text-align: center;color: #fff;font-size: 20px;line-height: 1.8;letter-spacing: -2px;background: #d71a21;}
+#lnb {position:fixed;width:370px;display: inline-block;float: left; margin-top: 20px;}
+#lnb h1 {height: 40px;text-align: center;font-size: 20px;line-height: 1.8;letter-spacing: -2px;background-color: rgb(249, 196, 94);}
 
 #lnb>ul {
 	
@@ -99,6 +99,7 @@ li {list-style: none;}
     margin-top: 16px!important;
     display: inline-block;
     width: 100%;
+    margin-left: 490px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -225,6 +226,62 @@ li {list-style: none;}
 					<p>
 						<label>New Password</label> <input class="w3-input" id="pw"
 							name="pw" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
+					</p>
+					<p>
+						<label>닉네</label> <input class="w3-input" type="password"
+							id="pw2" type="password" required>
 					</p>
 					<p>
 						<label>닉네</label> <input class="w3-input" type="password"
