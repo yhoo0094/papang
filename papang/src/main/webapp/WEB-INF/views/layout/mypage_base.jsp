@@ -21,7 +21,7 @@
 /* 레이아웃 */
 	.fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
 	 body {background-color: #fff5d2;}
-	.py-5 {background-color: rgb(249, 196, 94);}
+	.py-5 {background-color: rgb(249, 196, 94);position:static;bottom:0;width: 100%;}
 	html {font-family: 'Spoqa Han Sans',sans-serif;}
 /* 버튼css */
 	.btnYellow {background-color: rgb(249, 196, 94);border:none;}
@@ -77,7 +77,7 @@
 	    margin-left: 490px;
 	}
 	.left_div {margin-top: 50px;}
-	.center_div {margin-top: 50px;margin-left: 490px;}
+	.center_div {margin-top: 50px;margin-left: 490px;min-height:690px;}
 	
 </style>
 <script>
@@ -208,18 +208,17 @@
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+  <!-- Footer -->
+ <footer class="py-5">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 
 </html>

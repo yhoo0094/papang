@@ -21,7 +21,7 @@
 /* 레이아웃 */
 	.fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
 	 body {background-color: #fff5d2;}
-	.py-5 {background-color: rgb(249, 196, 94);}
+	.py-5 {background-color: rgb(249, 196, 94);position:static;bottom:0%;width: 100%;}
 	html {font-family: 'Spoqa Han Sans',sans-serif;}
 /* 버튼css */
 	.btnYellow {background-color: rgb(249, 196, 94);border:none;}
