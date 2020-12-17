@@ -9,6 +9,7 @@
 			value="/WEB-INF/views/admin/{1}.jsp" />
 	</definition>
 	
+	
 	<!-- mypage -->
 	<definition name="mypage/*" template="/WEB-INF/views/layout/mypage_base.jsp">
 		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />

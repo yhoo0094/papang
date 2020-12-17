@@ -17,6 +17,10 @@
 
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet">
+  
+  <!-- 게시판 css -->
+  <link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
+  
   <style>
 /* 레이아웃 */
 	.fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
