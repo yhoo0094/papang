@@ -57,65 +57,7 @@
 	.center_div {margin-top: 50px;margin-left: 490px;min-height:690px;}
 	
 </style>
-<script>
-	/* lnb */
-	(function($) {
 
-		var lnbUI = {
-			click : function(target, speed) {
-				var _self = this, $target = $(target);
-				_self.speed = speed || 300;
-
-				$target.each(function() {
-					if (findChildren($(this))) {
-						return;
-					}
-					$(this).addClass('noDepth');
-				});
-
-				function findChildren(obj) {
-					return obj.find('> ul').length > 0;
-				}
-
-				$target
-						.on('click', 'a',
-								function(e) {
-									e.stopPropagation();
-									var $this = $(this), $depthTarget = $this
-											.next(), $siblings = $this.parent()
-											.siblings();
-
-									$this.parent('li').find('ul li')
-											.removeClass('on');
-									$siblings.removeClass('on');
-									$siblings.find('ul').slideUp(250);
-
-									if ($depthTarget.css('display') == 'none') {
-										_self.activeOn($this);
-										$depthTarget.slideDown(_self.speed);
-									} else {
-										$depthTarget.slideUp(_self.speed);
-										_self.activeOff($this);
-									}
-
-								})
-
-			},
-			activeOff : function($target) {
-				$target.parent().removeClass('on');
-			},
-			activeOn : function($target) {
-				$target.parent().addClass('on');
-			}
-		};
-
-		// Call lnbUI
-		$(function() {
-			lnbUI.click('#lnb li', 300)
-		});
-
-	}(jQuery));
-</script>
 </head>
 
 <body>
@@ -188,7 +130,65 @@
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+	/* lnb */
+	(function($) {
 
+		var lnbUI = {
+			click : function(target, speed) {
+				var _self = this, $target = $(target);
+				_self.speed = speed || 300;
+
+				$target.each(function() {
+					if (findChildren($(this))) {
+						return;
+					}
+					$(this).addClass('noDepth');
+				});
+
+				function findChildren(obj) {
+					return obj.find('> ul').length > 0;
+				}
+
+				$target
+						.on('click', 'a',
+								function(e) {
+									e.stopPropagation();
+									var $this = $(this), $depthTarget = $this
+											.next(), $siblings = $this.parent()
+											.siblings();
+
+									$this.parent('li').find('ul li')
+											.removeClass('on');
+									$siblings.removeClass('on');
+									$siblings.find('ul').slideUp(250);
+
+									if ($depthTarget.css('display') == 'none') {
+										_self.activeOn($this);
+										$depthTarget.slideDown(_self.speed);
+									} else {
+										$depthTarget.slideUp(_self.speed);
+										_self.activeOff($this);
+									}
+
+								})
+
+			},
+			activeOff : function($target) {
+				$target.parent().removeClass('on');
+			},
+			activeOn : function($target) {
+				$target.parent().addClass('on');
+			}
+		};
+
+		// Call lnbUI
+		$(function() {
+			lnbUI.click('#lnb li', 300)
+		});
+
+	}(jQuery));
+</script>
 </body>
   <!-- Footer -->
  <footer class="py-5">
