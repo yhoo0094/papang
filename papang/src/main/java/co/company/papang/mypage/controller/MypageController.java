@@ -15,6 +15,7 @@ public class MypageController {
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myhome"); //jsp주소
 	}
+	
 	@RequestMapping("/test3") //url 예전 .do
 	public ModelAndView test2(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/test3"); //jsp주소
