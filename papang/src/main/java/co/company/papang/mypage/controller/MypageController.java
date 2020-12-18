@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MypageController {
 
-	@RequestMapping("/myhome") //url 예전 .do
+	@RequestMapping("mypage/myhome") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myhome"); //jsp주소
 	}
