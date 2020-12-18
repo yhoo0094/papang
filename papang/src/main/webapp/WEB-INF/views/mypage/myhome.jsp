@@ -19,6 +19,13 @@
 .input_middle {}
 .input_big {}
 .divmargin {margin-top: 150px;}
+.big_title {text-align: left;
+font-size:50px;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 </style>
 <title>마이페이지</title>
 </head>
@@ -26,7 +33,7 @@
 	<div class="w3-content w3-container divmargin">
 		<div class="w3-container">
 			<div class="w3-large" align="center">
-				<h3>회원 정보 수정</h3>
+				<h3 class="big_title">회원 정보 수정</h3>
 			</div>
 			<div>
 			 
@@ -64,6 +71,8 @@
 						<label>주소</label>    <input  type="password" class="input_small"
 							id="pw2" type="password" required>  ㅡ   <input  type="password" class="input_small"
 							id="pw2" type="password" required> <button>주소검색</button>
+					</p>
+					<p>
 							<input class="w3-input" type="password"
 							id="pw2" type="password" placeholder="상세정보" required>
 					</p>
