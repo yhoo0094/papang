@@ -18,8 +18,9 @@
 	
 	
 	<!-- base -->
-	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">
+	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">	
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+		<put-attribute name="left" value="" />
 	</definition>
 	
 	

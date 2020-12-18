@@ -45,9 +45,12 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td align="center"><div class="background"
-										style="height: 100%">내용</div></td>
-								<td><textarea rows="20" cols="102" name="comm"
+								<td align="center" height="100%" style="padding: 0px"> 
+									<div class="background" style="padding: 88% 0% 90% 0%"> 
+										<div class="background" style="height: 100%">내용</div>
+									</div> 	
+								</td>
+								<td height="100%"><textarea rows="20" cols="102" name="comm"
 										style="width: 100%"></textarea></td>
 							</tr>
 					</table>

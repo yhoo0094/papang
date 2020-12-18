@@ -42,6 +42,8 @@
 	.strongYellow {background-color: rgb(249, 196, 94);}
 	/* 배경에 연한 노란색 */
 	.background {background-color: #fff5d2;}
+	
+
  </style>
 </head>
 
@@ -106,7 +108,14 @@
   </nav>
   
   </div>
+  
+    <div class="left_div" align="left">
+	  <tiles:insertAttribute name="left"/>
+  </div>
+  
+  <div class="center_div"> 
   <tiles:insertAttribute name="body"/> <!-- body -->
+  </div>
   <!-- /.container -->
 
   <!-- Footer -->

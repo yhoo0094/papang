@@ -1,4 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<head>
+<style type="text/css">
+/* 마이페이지 네비 */
+	/* lnb */
+	#lnb {position:fixed;width:370px;display: inline-block;float: left; margin-top: 20px;}
+	#lnb h1 {height: 40px;text-align: center;font-size: 20px;line-height: 1.8;letter-spacing: -2px;background-color: rgb(249, 196, 94);}
+	#lnb>ul>li {border-bottom: 1px solid #dcdcdc;}
+	#lnb>ul>li>a {display: block;padding: 14px 35px 14px 15px;color: inherit;font-size: 14px;background: #f5f2ec
+			url(https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225) no-repeat
+			95% 15px;}
+	#lnb>ul>li a:hover {color: #d91c1b;background-color: #f5f2ec;}
+	#lnb>ul>li.on>a {color: #d91c1b;background: #f5f2ec url('https://t1.daumcdn.net/cfile/tistory/257B794F570C5C0D1A') no-repeat 95% 14px;}
+	#lnb>ul>li ul {display: none;}
+	#lnb>ul>li>ul>li>a {display: block;padding: 0 25px 14px 14px;color: #inherit;font-size: 12px;background: #f5f2ec url('https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225') no-repeat 95% 1px;}
+	#lnb>ul>li>ul>li>a {color: #d91c1b;background-color: #f5f2ec;}
+	#lnb>ul>li>ul>li.on a {color: #d91c1b;background: #f5f2ec url('https://t1.daumcdn.net/cfile/tistory/257B794F570C5C0D1A') no-repeat 95% 3px;}
+	#lnb>ul>li>ul li ul {display: none;padding-bottom: 8px;background-color: #f5f2ec;}
+	#lnb>ul>li>ul li li a {display: block;padding: 0 25px 10px 22px;color: #666;font-size: 12px;background-color: #f5f2ec;}
+	#lnb>ul>li>ul>li li a:hover {color: #d91c1b;}
+	#lnb>ul li.noDepth a {background-image: none !important;}
+	.w3-margin-top {margin-top: 16px!important;display: inline-block;width: 100%;margin-left: 490px;}
+	.left_div {margin-top: 50px;}
+	.center_div {margin-top: 50px;margin-left: 490px;min-height:690px;}
+</style>
+</head>
 
    	<div id="lnb">
 		<h1>마이페이지</h1>
