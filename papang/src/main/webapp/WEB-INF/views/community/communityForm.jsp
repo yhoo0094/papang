@@ -18,6 +18,11 @@
 .backgroundDiv {
 	padding: 1%;
 }
+
+.communityFormCont{
+	padding: 80% 0% 58% 0%;
+	margin-bottom: 
+}
 </style>
 </head>
 <body>
@@ -45,9 +50,9 @@
 								</select></td>
 							</tr>
 							<tr>
-								<td align="center" height="100%" style="padding: 0px"> 
-									<div class="background" style="padding: 88% 0% 90% 0%"> 
-										<div class="background" style="height: 100%">내용</div>
+								<td align="center" style="padding-bottom: 7px"> 
+									<div class="background communityFormCont"> 
+										<div class="background">내용</div>
 									</div> 	
 								</td>
 								<td height="100%"><textarea rows="20" cols="102" name="comm"
