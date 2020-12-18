@@ -19,7 +19,7 @@
 			
 			<tr>
 				<td align="center">이미지 상태</td>
-				<td><input type="radio"  value="숨김"><input type="radio"  value="표시"></td>
+				<td align="center">숨김<input type="radio" name="status" value="숨김" >  표시<input type="radio" name="status" value="표시"></td>
 			</tr>
 			<tr>
 				<td align="center"><br>
@@ -43,12 +43,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center"><br>
-				<br>
-				<br>
-				<br>
-				<br>내용</td>
-				<td colspan="2"><textarea rows="10" cols="210" style="width:100%"></textarea></td>
+				<tr>
+				<td align="center">링크</td>
+				<td><input type="text" style="width: 100%"></td>
+			</tr>
 			</tr>
 		</tbody>
 	</table>
