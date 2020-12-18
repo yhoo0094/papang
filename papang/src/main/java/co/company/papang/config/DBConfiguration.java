@@ -1,30 +1,35 @@
 package co.company.papang.config;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+import java.sql.SQLException;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import oracle.jdbc.pool.OracleDataSource;
+
 @Configuration
 @EnableTransactionManagement
 public class DBConfiguration {
-	  
+	   final static String DB_URL="jdbc:oracle:thin:@papang_high?TNS_ADMIN=C://Users//test//wallet_dbname";
+	     final static String DB_USER = "admin";
+	     final static String DB_PASSWORD = "Papapng123456";
+
 	//데이터소스 등록
 	@Bean(destroyMethod="close")
-	public BasicDataSource dataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		dataSource.setUsername("hr");
-		dataSource.setPassword("hr");
-		dataSource.setDefaultAutoCommit(false);
+	public OracleDataSource dataSource() throws SQLException {
+		OracleDataSource dataSource = new OracleDataSource();
+		dataSource.setDriverType("oracle.jdbc.OracleDriver");
+		dataSource.setURL(DB_URL);
+		dataSource.setUser(DB_USER);
+		dataSource.setPassword(DB_PASSWORD);
 		return dataSource;
 	}
 
 	// 트랜잭션 매니저 등록	 
     @Bean
-    public DataSourceTransactionManager transactionManager() {
+    public DataSourceTransactionManager transactionManager() throws SQLException {
         return new DataSourceTransactionManager(dataSource());
     }
 }
