@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<style>
-body {
-	margin: 120px;
-}
-</style>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+
 <div class="container center_div">
 
 	<!-- Page Heading/Breadcrumbs -->
@@ -25,13 +21,13 @@ body {
 				alt="">
 		</div>
 		<div class="col-lg-6">
-		<div>
-		<!-- 관리자 아이디가 따로 있으니까 c:if 에서 admin의 id값이 비지 않았을때 보는걸로 하면..될듯..?? -->
-		<c:if test='${!empty ad_id}'>
-		<button type="button" class="btn" id="itemUpdate">수정</button>
-		<button type="button" class="btn" id="itemDelete">삭제</button>
-		</c:if>
-		</div>
+			<div>
+				<!-- 관리자 아이디가 따로 있으니까 c:if 에서 admin의 id값이 비지 않았을때 보는걸로 하면..될듯..?? -->
+				<%-- 		<c:if test='${!empty ad_id}'> --%>
+				<button type="button" class="btnRed" id="itemUpdate">수정</button>
+				<button type="button" class="btnRed" id="itemDelete">삭제</button>
+				<!-- 		</c:if> -->
+			</div>
 			<p />
 			<h2>상품명</h2>
 			<p />
@@ -51,28 +47,42 @@ body {
 							<td><span><strong>파팡</strong></span></td>
 						</tr>
 					</tbody>
-
+					<tfoot>
+						<tr>
+							<td>
+								<button type="button" class="btn" id="buynow">결제</button>
+							</td>
+							<td>
+								<button type="button" class="btn" id="cart">장바구니</button> <!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
+							</td></tr>
+					
+						</tfoot>
 				</table>
 
 			</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed
-				voluptate nihil eum consectetur similique? Consectetur, quod,
-				incidunt, harum nisi dolores delectus reprehenderit voluptatem
-				perferendis dicta dolorem non blanditiis ex fugiat.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-				Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non
-				velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus
-				reprehenderit dolorum!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et,
-				consequuntur, modi mollitia corporis ipsa voluptate corrupti eum
-				ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti
-				necessitatibus perspiciatis quis?</p>
+			<p>뭐 더 쓸 내용없는데</p>
+			<p>이 수많은 빈칸을 우야노</p>
+			<p>흠냐..</p>
+			<p>버튼을 위에 테이블에 같이둘지, 아래에 p태그 밑에 따로 둘지도 고민이야</p>
+<p>		<button type="button" class="btnRed" id="buynow">결제</button>
+			</p>
+<p>		<button type="button" class="btnYellow" id="cart">장바구니</button>
+			</p>
+<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
 		</div>
 	</div>
 	<!-- /.row -->
+<!-- 상세보기 -->
+<div>
+<h2>상세정보</h2>
+<div class="col-lg-10">
+			<img class="img-fluid rounded mb-4"
+				src="http://placehold.it/1200x1000" alt="">
+		</div>
+</div>
 
 	<!-- Team Members -->
-	<h2>Our Team</h2>
+	<h2>이거 필요없ㅇ르거같은디</h2>
 
 	<div class="row">
 		<div class="col-lg-4 mb-4">
@@ -121,29 +131,5 @@ body {
 			</div>
 		</div>
 	</div>
-	<!-- /.row -->
 
-	<!-- Our Customers -->
-	<h2>Our Customers</h2>
-	<div class="row">
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-		<div class="col-lg-2 col-sm-4 mb-4">
-			<img class="img-fluid" src="http://placehold.it/500x300" alt="">
-		</div>
-	</div>
-	<!-- /.row -->
 </div>
