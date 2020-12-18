@@ -12,16 +12,27 @@
 }
 
 .communityFormType {
-	width: 100%
-}
-
-.backgroundDiv {
-	padding: 1%;
+	width: 100%;
+	border: none;
 }
 
 .communityFormCont{
 	padding: 80% 0% 58% 0%;
-	margin-bottom: 
+}
+
+.sirenImg{
+	width: 30px;
+	height: 30px;
+	margin-bottom: 10px
+}
+
+textarea {
+	border: none;
+}
+
+.insertBtn {
+    height: 126px;
+    width: 126px;
 }
 </style>
 </head>
@@ -32,31 +43,33 @@
 			<h3>커뮤니티 글 등록하기</h3>
 		</div>
 		<br>
-		<div class="backgroundDiv strongYellow">
+		<div class="backgroundDiv">
 			<div align="center" class="communityFormDiv">
 				<form id="frm" name="frm" action="#">
 					<table style="width: 100%">
 							<tr>
-								<td align="center" width="20%"><div class="background">제목</div></td>
+								<td align="center" width="20%"><div class="strongYellow">제목</div></td>
 								<td width="80%"><input type="text" name="title"
 									class="communityFormType"></td>
 							</tr>
+							<tr><td></td></tr>
 							<tr>
-								<td align="center"><div class="background">분류</div></td>
+								<td align="center"><div class="strongYellow">분류</div></td>
 								<td><select name="type" class="communityFormType">
 										<option value="정보">정보
 										<option value="일상">일상
 										<option value="질문">질문
 								</select></td>
 							</tr>
+							<tr><td></td></tr>
 							<tr>
 								<td align="center" style="padding-bottom: 7px"> 
-									<div class="background communityFormCont"> 
-										<div class="background">내용</div>
+									<div class="strongYellow communityFormCont"> 
+										<div>내용</div>
 									</div> 	
 								</td>
 								<td height="100%"><textarea rows="20" cols="102" name="comm"
-										style="width: 100%"></textarea></td>
+										style="width: 100%; height: 100%"></textarea></td>
 							</tr>
 					</table>
 					<br>
@@ -74,7 +87,7 @@
 						<tr>
 							<td width="90%"><textarea rows="5" cols="102" name="comm"
 										style="width: 100%"></textarea></td>
-							<td align="center" width="10%"><button class="btnYellow">등록하기</button></td>
+							<td align="center" width="10%"><button class="btnYellow insertBtn">등록하기</button></td>
 						</tr>
 				</table>
 				<br>
@@ -84,12 +97,15 @@
 				<table style="width: 100%">
 						<tr>
 							<td align="center" width="10%"> <div>아이디</div></td>
-							<td width="90%"><div>댓글 내용&nbsp;&nbsp;&nbsp;<img alt="사이렌사진" src="" width="1%" height="1%"> </div></td>
+							<td width="90%">
+								<div>
+									댓글 내용&nbsp;
+									<img class="sirenImg" alt="사이렌사진" src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">
+									<span style="font-size: 8px">신고하기</span> 
+								</div>
+							</td>
 						</tr>
 				</table>
-				<div align="right">
-					<button type="submit" id="submitBtn" class="btnYellow bMedium">제출하기</button>
-				</div>
 			</div>
 		</div>
 	</div>

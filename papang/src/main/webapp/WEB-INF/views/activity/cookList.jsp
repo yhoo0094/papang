@@ -10,9 +10,13 @@
 .Bigtitle{color:rgb(249, 196, 94); font-size: 30px; font-weight: bold;margin-left: 230px;}
 .regi_btn {margin-right: 390px;}
 .table {border: 3px solid black;}
-.tImage {width: 250px; height:250px;border:1px solid black;}
-.boxContent{width: 250px; height:250px;border:1px solid black;}
+.tImage {width: 240px; height:240px;border:1px solid black;}
+.boxContent{width: 240px;border:1px solid black;}
 .box_Scontent{border:1px solid black;text-align: center;margin: 0;}
+.box_time {border : 1px solid black; width:80px;height:20px;display:inline;}
+.box_heart {border : 1px solid black;width:80px;height:20px;display:inline;}
+.box_share {border : 1px solid black;width:80px;height:20px;display:inline;}
+.boxButton{border:1px solid black; width: 240px;height:20px;margin-right: 0px;} 
 </style>
 </head>
 <body>
@@ -36,6 +40,11 @@
 			<p class="box_Scontent">DBVALUE</p>
 			<p class="box_Scontent">DBVALUE</p>
 			<p class="box_Scontent">DBVALUE</p>
+		</div>
+		<div class="boxButton">
+			 	<button class="box_time">공유</button>
+			 	<button class="box_heart">공유</button>
+			 	<button class="box_share">공유</button>
 		</div>
 		</div>
 		

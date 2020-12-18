@@ -32,7 +32,7 @@
 /* 버튼css */
 	.btnYellow {background-color: rgb(249, 196, 94);border:none;}
 	.btnRed {background-color: #ff8080; border:none;}
-	.btnGray {background-color: #EDEDED;border:none;}
+	.btnGray {background-color: #bbbbbb;border:none;}
 	.bSamll {width:70px; height: 30px;}
 	.bMedium {width: 150px; height: 60px; font-weight: bold;}
 	.bBig {width: 200px; height: 120px; font-weight: bold;}
