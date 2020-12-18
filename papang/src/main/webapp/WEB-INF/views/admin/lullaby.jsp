@@ -4,10 +4,15 @@
 
 <div class="card mb-4">
 	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> 자장가 리스트
+		<i class="fas fa-table mr-1"></i> 자장가
 	</div>
 	<div class="card-body">
+		
 		<div class="table-responsive">
+			<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/admin/lullabyInsert'>
+				<div align="right"><input type="submit" id="insertbtn" value='자장가 등록'></div>
+				<br>
+				</form>
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
@@ -488,28 +493,7 @@
 						<td>$112,000</td>
 					</tr>
 				</tbody>
+				
+		
 			</table>
-			<h1>자장가 등록</h1>
-			<table class="table" style="width: 100%">
-				<tbody>
-					
-					<tr>
-						<td align="center">제목</td>
-						<td><input type="text" style="width: 100%"></td>
-					</tr>
-					<tr>
-						<td align="center">링크</td>
-						<td><input type="text" style="width: 100%"></td>
-					</tr>
-					<tr>
-						<td align="center"><br>
-						<br>
-						<br>
-						<br>
-						<br>내용</td>
-						<td colspan="2"><textarea rows="10" cols="150"></textarea></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	

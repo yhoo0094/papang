@@ -21,6 +21,11 @@ public class AdminController {
 		return new ModelAndView("admin/nqInsert"); //jsp주소
 	}
 	
+	@RequestMapping("/admin/nqInsertReg") //url 예전 .do
+	public ModelAndView test2_1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("admin/nqInsertReg"); //jsp주소
+	}
+	
 	@RequestMapping("/admin/sittermember") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/sittermember"); //jsp주소
@@ -36,9 +41,19 @@ public class AdminController {
 		return new ModelAndView("admin/lullaby"); //jsp주소
 	}
 	
+	@RequestMapping("/admin/lullabyInsert") //url 예전 .do
+	public ModelAndView test5_1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("admin/lullabyInsert"); //jsp주소
+	}
+	
 	@RequestMapping("/admin/banner") //url 예전 .do
 	public ModelAndView test6(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/banner"); //jsp주소
+	}
+	
+	@RequestMapping("/admin/bannerInsert") //url 예전 .do
+	public ModelAndView test6_1(HttpServletResponse response) throws IOException{
+		return new ModelAndView("admin/bannerInsert"); //jsp주소
 	}
 	
 	@RequestMapping("/admin/alarm") //url 예전 .do

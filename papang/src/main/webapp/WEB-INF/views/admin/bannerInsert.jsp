@@ -8,18 +8,23 @@
 			<tr>
 				<td align="center">분류</td>
 				<td><select name="nq_category">
-						<option value="공지사항">공지사항</option>
-						<option value="자주묻는 질문" selected>자주묻는 질문</option>
+						<option value="공지사항">사이드 배너</option>
+						<option value="자주묻는 질문" selected>이미지 슬라이드</option>
 				</select></td>
 			</tr>
 			<tr>
 				<td align="center">제목</td>
 				<td><input type="text" style="width: 100%"></td>
 			</tr>
+			
+			<tr>
+				<td align="center">이미지 상태</td>
+				<td><input type="radio"  value="숨김"><input type="radio"  value="표시"></td>
+			</tr>
 			<tr>
 				<td align="center"><br>
 				<br>
-				<br>첨부파일</td>
+				<br>이미지</td>
 				<td>
 					<table style="width: 100%">
 						<tr>
@@ -43,7 +48,7 @@
 				<br>
 				<br>
 				<br>내용</td>
-				<td colspan="2"><textarea rows="10" cols="210"></textarea></td>
+				<td colspan="2"><textarea rows="10" cols="210" style="width:100%"></textarea></td>
 			</tr>
 		</tbody>
 	</table>
