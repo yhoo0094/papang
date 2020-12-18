@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <script type="text/javascript">
 	$(function() {
@@ -13,6 +15,7 @@
 	<h2>전체 상품</h2>
 
 	<div class="row">
+<!-- row 를 고정해주고 얘한테 ajax로 append 혹은 c:forEach -->
 		<div class="col-lg-4 col-sm-6 portfolio-item">
 			<div class="card h-100">
 				<a href="#"><img class="card-img-top"
@@ -25,7 +28,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 	<!-- /.row -->
 </div>
