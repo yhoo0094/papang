@@ -37,7 +37,7 @@
 	.bMedium {width: 150px; height: 60px; font-weight: bold;}
 	.bBig {width: 200px; height: 120px; font-weight: bold;}
 	.fcolor {color: #444;font-weight: bold;}
-	.center_div {margin-top: 50px;min-height:690px;}
+	.center_div {margin-top: 140px;min-height:690px;}
 
 /* 공용css */
 	/* 헤더에 있는 진한 주황색 */
