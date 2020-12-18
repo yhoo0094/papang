@@ -20,22 +20,23 @@
 		</div>
 		<br>
 		<div align="center" class="communityFormTitle strongYellow">
-			<table style="width: 100%">
+			<table style="width: 50%">
 				<tr>
-					<td width="10%" align="center">날짜</td>
-					<td colspan="3" align="left"><input type="date">~<input
-						type="date"></td>
-					<td width="10%" align="center" rowspan="3">
-						<button type="submit">검색</button>
+					<td align="center">날짜</td>
+					<td align="left"><input type="date">~<input
+						type="date">
 					</td>
-					<td width="10%" align="center" rowspan="3">
-						<button type="submit">취소</button>
+					<td align="center">시급</td>
+					<td align="left">
+						<input type="number" step="1000" placeholder="최소금액">
+						 ~ 
+						<input type="number" step="1000" placeholder="최대금액">
 					</td>
-
 				</tr>
+				
 				<tr>
 					<td align="center">별점</td>
-					<td width="30%" align="left">
+					<td align="left">
 					<select>
 							<option value="★★★★★">★★★★★
 							<option value="★★★★">★★★★
@@ -48,14 +49,12 @@
 							<option value="★★★">★★★
 							<option value="★★">★★
 							<option value="★">★
-					</select></td>
-					<td align="center" width="10%">시급</td>
-					<td width="30%" align="left">
-						<input type="number" step="1000" placeholder="최소금액">
-						 ~ 
-						<input type="number" step="1000" placeholder="최대금액">
+					</select>
 					</td>
-
+					<td align="center">제재횟수</td>
+					<td align="left">
+						<input type="number" placeholder="제재횟수">회 이하
+					</td>
 				</tr>
 				<tr>
 					<td align="center">지역</td>
@@ -82,12 +81,15 @@
 							<option value="제주" >제주</option>
 						</select>
 					</td>
-					<td align="center">제재횟수</td>
-					<td align="left">
-						<input type="number" placeholder="제재횟수">회 이하
+					<td align="center">
+						<button type="submit">검색</button>
 					</td>
-					
+					<td align="center">
+						<button type="submit">취소</button>
+					</td>
 				</tr>
+				
+					
 			</table>
 		</div>
 	</div>
