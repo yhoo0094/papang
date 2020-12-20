@@ -1,18 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>papang</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +20,18 @@
   
   <!-- 게시판 css -->
   <link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
+  
+  <!--달력 -->
+    <link rel=" shortcut icon" href="${pageContext.request.contextPath}image/favicon.ico">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/calender/vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/calender/vendor/css/bootstrap-datetimepicker.min.css' />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/css/main.css">
   
   <style>
 /* 레이아웃 */
@@ -44,8 +54,6 @@
 	.strongYellow {background-color: rgb(249, 196, 94);}
 	/* 배경에 연한 노란색 */
 	.background {background-color: #fff5d2;}
-	
-
  </style>
 </head>
 
@@ -131,7 +139,25 @@
   <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  
+  <!-- 페이지네이션 날로먹는 빌드 시작 -->
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
+  <!-- 페이지네이션 날로먹는 빌드 끝 -->
+  
+  <!-- 달력 -->
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/moment.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/fullcalendar.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/ko.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/select2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/js/addEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/js/editEvent.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/js/etcSetting.js"></script>
 </body>
 
 </html>
