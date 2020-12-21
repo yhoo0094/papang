@@ -9,15 +9,20 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <title>papang</title>
 
 <!-- Bootstrap core CSS -->
 <link
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
+	rel="stylesheet">
+
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>	
+
+<link
 	href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Custom styles for this template -->
 <link
 	href="${pageContext.request.contextPath}/resources/main/css/modern-business.css"
@@ -28,6 +33,13 @@
 	href="${pageContext.request.contextPath}/resources/main/css/normal.css"
 	rel="stylesheet">
 
+<!-- 파일업로드 nqInsertReg.jsp -->
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
 <style>
 /* 레이아웃 */
 .fixed-top {
@@ -42,6 +54,7 @@ body {
 .py-5 {
 	background-color: rgb(249, 196, 94);
 	position: static;
+	display: block;
 	bottom: 0%;
 	width: 100%;
 }
@@ -88,9 +101,24 @@ html {
 }
 
 .center_div {
-	margin-top: 240px;
 	min-height: 690px;
+	display: block;
+	margin: 140px 15% 50px 15%;
+	width: 70%;
 }
+
+.bannderImg{
+	float: right;
+	width: 10%;
+	height: 700px;
+	margin-top: 3%;
+	margin-right: 10px;
+}
+
+.left_div{
+	
+}
+
 
 /* .naviClass, .banner_div, .center_div{
 	display: block;
@@ -104,6 +132,11 @@ html {
 /* 배경에 연한 노란색 */
 .background {
 	background-color: #fff5d2;
+}
+
+.custom-select, .form-control {
+	display: inline;
+	width: auto;
 }
 </style>
 </head>
@@ -173,12 +206,11 @@ html {
 	<div class="left_div" align="left">
 		<tiles:insertAttribute name="left" />
 	</div>
+	<tiles:insertAttribute name="banner" />
 	<div class="center_div">
 		<tiles:insertAttribute name="body" />
 	</div>
-	<div class="banner_div">
-		<tiles:insertAttribute name="banner" />
-	</div>
+	
 	<!-- /.container -->
 
 	<!-- Footer -->
@@ -191,11 +223,10 @@ html {
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
-	<script
-		src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/main/vendor/jquery/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	
 	<!-- 페이지네이션 날로먹는 빌드 시작 -->
 	<script
 		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
@@ -206,6 +237,7 @@ html {
 	<script
 		src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
 	<!-- 페이지네이션 날로먹는 빌드 끝 -->
+	
 </body>
 
 </html>
