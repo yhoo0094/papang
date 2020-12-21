@@ -30,55 +30,40 @@ font-size:50px;
 	<div class="w3-content w3-container divmargin">
 		<div class="w3-container">
 			<div class="w3-large" align="center">
-				<h3 class="big_title">아기정보 관리</h3>
+				<h3 class="big_title">구매내역</h3>
 			</div>
 			
 				</br>
-			    <button align="center">추가</button><button>삭제</button></br>
+			    
 			    
 			  
 					   <div>
 					      <table class="table table-bordered table-hovers">
 					         <tr style="background:rgb(249, 196, 94)">
-					            <th width="250">선택</th>
-					            <th width="250">이름</th>
-					            <th width="250" align="center">성별</th>
-					            <th width="500">생년월일</th>
+					            <th width="250">이미지</th>
+					            <th width="250">물품정보</th>
+					            <th width="250" align="center">수량</th>
+					            <th width="500">가격</th>
+					            <th width="500">구매일자</th>
 					         </tr>
 					         <c:forEach var="review" items="${reviews }">
-					            <tr>
+					            <tr> 
 					               <td>1</td>
 					               <td>2</td>
 					               <td>3</td>
-					               <td>4</td>               
+					               <td>4</td>
+					               <td>5</td>                
 					            </tr>
-					            <tr>
-					               <td>1</td>
-					               <td>2</td>
-					               <td>3</td>
-					               <td>4</td>               
-					            </tr>
+					            
 					         </c:forEach>
 					      </table>
 					   </div>  
 					   </br>
 					   </br>
 					   
-			<div style="background:rgb(249, 196, 94)">    					    
-			<label style="font-size:20px;margin:30px">아이 이름　 　 　</label><input class="input_small" type="text" id="id"
-							name="id"></br>
-			<label style="font-size:20px;margin:30px">아이 성별 선택 　</label>
-			<select class="input_small" id="room_address" name="room_address" placeholder="생년월일을 입력해주세요" >
-                        <option>남</option>
-                        <option>여</option>
-                        <option>예정</option>                       
-            </select>		
-           <br>
-			<label style="font-size:20px;margin:30px">아이 출생년도　　</label><input class="input_small" type="date" id="id"
-							name="id"></br>
-			
-
-			</div>		
+					   전체 수량 <input> 전체 가격 <input>
+					   
+				
 		</div>
 	</div>
 	

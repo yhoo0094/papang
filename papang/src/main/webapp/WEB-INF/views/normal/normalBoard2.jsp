@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 
-	<div class="sizeDiv center_div">
-		<br>
 		<h3>날먹게시판</h3>
 		<hr />
 		<div align="right">
@@ -658,5 +656,11 @@
 		<div align="right">
 			<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
 		</div>
-	</div>
+		<script type="text/javascript">
+			$(document).ready( function () {
+			    $('#dataTable').DataTable();
+			} );
+			console.log("안녕");
+		</script>
+		
 

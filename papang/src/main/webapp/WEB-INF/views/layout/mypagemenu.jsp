@@ -7,19 +7,19 @@
 * {margin: 0;padding: 0;}  
 li {list-style: none;} 
 a {}
-#lnb {
+#lnb {  /*마이페이지적힌 노랜 빠*/
 	position: fixed;
-	width: 370px;
+	width: 450px;
 	display: inline-block;
 	float: left;
 	margin-top: 20px;
 }
 
-#lnb h1 {
-	height: 40px;
+#lnb h1 {  /*마이페이지 */
+	height: 70px;
 	text-align: center;
-	font-size: 20px;
-	line-height: 1.8;
+	font-size: 40px;
+	line-height: 1.7;
 	letter-spacing: -2px;
 	background-color: rgb(249, 196, 94);
 }
@@ -32,7 +32,8 @@ a {}
 	display: block;
 	padding: 14px 35px 14px 15px;
 	color: inherit;
-	font-size: 14px;
+	/*부제*/
+	font-size: 30px;
 	background: #f5f2ec
 		url(https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225) no-repeat
 		95% 15px;
@@ -58,14 +59,14 @@ a {}
 	display: block;
 	padding: 0 25px 14px 14px;
 	color: #inherit;
-	font-size: 12px;
+	font-size: 25px;
 	background: #f5f2ec
 		url('https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225')
 		no-repeat 95% 1px;
 }
 
-#lnb>ul>li>ul>li>a {
-	color: #d91c1b;
+#lnb>ul>li>ul>li>a { /*부제 색깔 */
+	color: #55595c;
 	background-color: #f5f2ec;
 }
 
@@ -93,7 +94,7 @@ a {}
 #lnb>ul>li>ul>li li a:hover {
 	color: #d91c1b;
 }
-
+ 
 #lnb>ul li.noDepth a {
 	background-image: none !important;
 }
@@ -174,29 +175,29 @@ a {}
 		<ul>
 			<li><a href="#none">내정보관리</a>
 				<ul>
-					<li><a href="#none">회원정보 수정</a></li>
-					<li><a href="#none">회원 탈퇴</a></li>
-					<li><a href="#none">아이정보 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myhome">회원정보 수정</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/notjoin">회원 탈퇴</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/babyinfo">아이정보 관리</a></li>
 
 				</ul></li>
 			<li><a href="#none">장터이용내역</a>
 				<ul>
 					<li><a href="#none">장바구니</a></li>
-					<li><a href="#none">구매내역</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/market_buyinfo">구매내역</a></li>
 					<li><a href="#none">판매내역</a></li>
-					<li><a href="#none">배송현황조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/market_deli">배송현황조회</a></li>
 				</ul></li>
 			<li><a href="#none">게시물</a>
 				<ul>
-					<li><a href="#none">내 게시물</a></li>
-					<li><a href="#none">댓글</a></li>
-					<li><a href="#none">신고현황</a></li>
-					<li><a href="#none">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">내 게시물</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">댓글</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_police">신고현황</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_qna">Q&A</a></li>
 				</ul></li>
 			<li><a href="#none">시터정보</a>
 				<ul>
-					<li><a href="#none">월급확인</a></li>
-					<li><a href="#none">시터정보조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/sitter_money">월급확인</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/sitter_info">시터정보조회</a></li>
 				</ul></li>
 		</ul>
 	</div>
