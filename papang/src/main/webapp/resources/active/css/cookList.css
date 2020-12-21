@@ -6,18 +6,22 @@
 
 .center_div {
 	margin-top: 140px;
-	min-height: 690px;
+	min-height: 2500px;
 }
 
 .Bigtitle {
 	color: rgb(249, 196, 94);
-	font-size: 30px;
-	font-weight: bold;
-	margin-left: 230px;
+	font-size: 35px;
+    font-weight: bold;
+    margin: 20px 0 0 170px;
 }
 
 .regi_btn {
-	margin-right: 390px;
+    margin-right: 11.5%;
+    width: 90px;
+    height: 40px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 <!--
@@ -39,17 +43,30 @@ body, table, th, td, pre, input, select, textarea, button {
 
 /*box style*/
 .lst_recipe {
-	overflow: hidden;
 	margin-bottom: 56px;
-	width: 1040px;
+	width: 110%;
 	position: relative;
 	left: -16px
 }
 
+.title_div{    height: 70px;
+    background-color: white;
+    width: 77.5%;
+    margin-left: 13.5em;}
+.search_btn {
+    background-color: rgb(249, 196, 94);
+        width: 280px;
+    height: 90px;
+    margin: 13px 8px;
+    border:none;
+    color: rgb(64, 60, 60);
+    font-size: 17px;
+    font-weight: bold;
+}
 /*box 흰 배경*/
 .lst_recipe>li {
-	width: 244px;
-	height: 390px;
+	width: 282px;
+    height: 440px;
 	margin: 0 0 16px 16px;
 	position: relative;
 	border: 1px solid #e1e1e1;
@@ -61,8 +78,8 @@ body, table, th, td, pre, input, select, textarea, button {
 
 /* box 이미지 사이즈*/
 .lst_recipe li .thmb img {
-	width: 234px;
-	height: 234px;
+	width: 279px;
+    height: 274px;
 	display: block
 }
 
@@ -88,16 +105,16 @@ body, table, th, td, pre, input, select, textarea, button {
 
 
 .lst_recipe .option {
-	width: 244px;
+	width: 280px;
 	position: absolute;
 	bottom: 0;
 	height: 27px;
 	border-top: 1px solid #e1e1e1;
-	text-align: right
+	text-align: center;
 }
 
 .lst_recipe .option>div {
-	width: 80px;
+	width: 93px;
 	height: 100%;
 	float: left;
 	border-left: 1px solid #ddd
@@ -111,6 +128,7 @@ body, table, th, td, pre, input, select, textarea, button {
 	padding: 5px 10px
 }
 
+.lst_recipe .option>div:hover {background-color: rgb(249, 196, 94);	text-decoration: none; color:rgb(64, 60, 60);}
 .lst_recipe .option .time a {
 	display: block;
 	overflow: hidden;
@@ -120,8 +138,13 @@ body, table, th, td, pre, input, select, textarea, button {
 	width: 81px;
 	color: #999;
 	padding: 7px 10px 0\0;
-	background-position: 9px 5px\0
+	background-position: 9px 5px\0;
 }
+.center_div{width: 80%;margin-left: 10%;}
+.box_div {width: 80%;margin: 30px 0 0 10em;}
+.search_div {height: 130px;margin: 40px 0 60px 0px;}
+icon_img {display: inline;}
+.lst_recipe .option .time a:hover {text-decoration: none; color:rgb(64, 60, 60);}
 
 .lst_recipe .option .like {
 	position: relative;
@@ -140,14 +163,10 @@ body, table, th, td, pre, input, select, textarea, button {
 	line-height: 25px;
 	line-height: 32px\0
 }
+.lst_recipe .option .like button:hover {color:rgb(64, 60, 60);}
+/* .lst_recipe .option .like button:hover {background-color:rgb(249, 196, 94);color:rgb(64, 60, 60);} */
 
-
-.lst_recipe .option .like.on, .lst_recipe .option .like:hover {
-	background:
-		url(/assets/_img/main/ico_like_on-06737aac0bd60c4f6790ebe15e34a3644f85c723ab81a039db61942a12f3f542.png)
-		9px center no-repeat
-}
-
+.lst_recipe .option .like.on, .lst_recipe .option .like:hover {background-color: rgb(249, 196, 94);color:rgb(64, 60, 60);font-weight: bold;}
 .lst_recipe .option .share a {
 	display: block;
 	overflow: hidden;
@@ -158,7 +177,7 @@ body, table, th, td, pre, input, select, textarea, button {
 	width: 100%;
 	padding: 7px 5px 0 0\0
 }
-
+.lst_recipe .option .share a:hover {text-decoration: none;color:rgb(64, 60, 60);}
 .lst_story.cool_recipes {
 	margin-bottom: 0;
 	padding-bottom: 59px
@@ -166,6 +185,6 @@ body, table, th, td, pre, input, select, textarea, button {
 
 .lst_recipe.cool_recipes {
 	margin-bottom: 0;
-	padding-bottom: 59px
 }
+
 
