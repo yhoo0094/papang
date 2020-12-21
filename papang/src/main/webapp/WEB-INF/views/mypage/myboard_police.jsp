@@ -19,7 +19,7 @@
 .input_middle {}
 .input_big {}
 .divmargin {margin-top: 150px;}
-.big_title {text-align: left;
+.big_title {text-align: center;
 font-size:50px;
 }
 
