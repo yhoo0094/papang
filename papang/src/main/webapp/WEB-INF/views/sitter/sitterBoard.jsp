@@ -10,7 +10,19 @@
 .communityFormTitle {
 	padding: 1%;
 }
+.sitterBoardInputSize{
+	width: 160px;
+}
+
+.fc-month-button, .fc-agendaWeek-button, .fc-agendaDay-button, .fc-listWeek-button, .fc-prevYear-button, .fc-nextYear-button{
+	display: none;
+}
 </style>
+<script type="text/javascript">
+	$(()=>{
+		$('.fc-today-button').trigger("click");
+	})
+</script>
 </head>
 <body>
 	<div class="temt">
@@ -20,47 +32,46 @@
 		</div>
 		<br>
 		<div align="center" class="communityFormTitle strongYellow">
-			<table style="width: 100%">
+			<table style="width: 50%">
 				<tr>
-					<td width="10%" align="center">날짜</td>
-					<td colspan="3" align="left"><input type="date">~<input
-						type="date"></td>
-					<td width="10%" align="center" rowspan="3">
-						<button type="submit">검색</button>
+					<td align="center" width="6%">날짜</td>
+					<td align="left"><input type="date" class="sitterBoardInputSize"> ~ <input
+						type="date" class="sitterBoardInputSize">
 					</td>
-					<td width="10%" align="center" rowspan="3">
-						<button type="submit">취소</button>
+					<td align="center" width="10%">시급</td>
+					<td align="left">
+						<input type="number" class="sitterBoardInputSize" step="1000" placeholder="최소금액">
+						 ~ 
+						<input type="number" class="sitterBoardInputSize" step="1000" placeholder="최대금액">
 					</td>
-
 				</tr>
+				
 				<tr>
 					<td align="center">별점</td>
-					<td width="30%" align="left">
-					<select>
+					<td align="left">
+					<select class="sitterBoardInputSize">
 							<option value="★★★★★">★★★★★
 							<option value="★★★★">★★★★
 							<option value="★★★">★★★
 							<option value="★★">★★
 							<option value="★" selected="selected">★
-					</select> ~ <select>
+					</select> ~ <select class="sitterBoardInputSize">
 							<option value="★★★★★">★★★★★
 							<option value="★★★★">★★★★
 							<option value="★★★">★★★
 							<option value="★★">★★
 							<option value="★">★
-					</select></td>
-					<td align="center" width="10%">시급</td>
-					<td width="30%" align="left">
-						<input type="number" step="1000" placeholder="최소금액">
-						 ~ 
-						<input type="number" step="1000" placeholder="최대금액">
+					</select>
 					</td>
-
+					<td align="center">제재횟수</td>
+					<td align="left">
+						<input type="number" placeholder="제재횟수" class="sitterBoardInputSize"> 회 이하
+					</td>
 				</tr>
 				<tr>
 					<td align="center">지역</td>
 					<td align="left">
-						<select id="location1" name="location1" class="loactionin">
+						<select id="location1" name="location1" class="loactionin sitterBoardInputSize">
 							<option>선택하세요</option>
 							<option value="서울"> 서울</option>
 							<option value="경기" >경기</option>
@@ -82,13 +93,17 @@
 							<option value="제주" >제주</option>
 						</select>
 					</td>
-					<td align="center">제재횟수</td>
-					<td align="left">
-						<input type="number" placeholder="제재횟수">회 이하
+					<td align="center" colspan="2">
+						<button type="submit" class="fc-button fc-state-default bSamll">검색</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="bSamll fc-button fc-state-default">초기화</button>
 					</td>
-					
 				</tr>
 			</table>
+		</div>
+		
+		<div>
+			<div id="calendar"></div>
 		</div>
 	</div>
 </body>
