@@ -64,6 +64,7 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/sittermember">시터/회원 관리</a>
                                     <a class="nav-link" href="${pageContext.request.contextPath}/admin/sitterSchedule">시터 스케줄</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/alarm">알림 관리</a>
                                 </nav>
                             </div>
                             
@@ -77,10 +78,7 @@
                                 	배너 관리
                             </a>
                             
-                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/alarm">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                	알림 관리
-                            </a>
+                           
                             
                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/warehousing">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>

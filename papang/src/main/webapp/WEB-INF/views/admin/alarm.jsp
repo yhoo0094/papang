@@ -16,16 +16,12 @@
                   <td><input type="text" style="width: 100%"></td>
                </tr>
                <tr>
-               <td align="center"><br><br><br>첨부파일</td>
-               <td>
-               <table style="width:100%">
-               <tr><td align="center"><br><br><br>마우스로 파일을 끌어놓으세요.<br><br><br><br></td></tr>
-               <tr><td align="center"><button>내 PC</button><button>WE드라이브</button></td></tr>
-               </table>
-               </td>
+      
+              <td align="center">받는 사람</td>
+                  <td><input type="text" style="width: 100%"></td>
                </tr>
                <tr>
-               <td align="center"><br><br><br><br><br>내용</td><td colspan="2"><textarea rows="10" cols="210"></textarea></td>
+               <td align="center"><br><br><br><br><br>내용</td><td colspan="2"><textarea rows="10" cols="210" style="width:100%"></textarea></td>
                </tr>
             </tbody>
          </table>
