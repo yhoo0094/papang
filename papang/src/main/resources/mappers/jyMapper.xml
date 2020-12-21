@@ -45,21 +45,24 @@
 	</select>
 
 <!--  사원등록    -->
-	<insert id="insertEmp" parameterType="emp">
-		INSERT INTO EMPLOYEES (	employee_id, 
-								first_name, 
-								last_name,
-								email,
-								hire_date,
-								job_id
+	<insert id="insertNq" parameterType="co.company.papang.vo.NqVO">
+		INSERT INTO EMPLOYEES (	
+								NQ_NO,
+								AD_ID, 
+								NQ_TITLE, 
+								NQ_CONTENT,
+								NQ_CATEGORY,
+								NQ_FILE,
+								NQ_DATE
 								)
 	 	                VALUES(
-	 	               			#{employeeId},
-	 	               			#{firstName},
-	 	               			#{lastName},
-	 	               			#{email},
-	 	               			#{hireDate},
-	 	               			#{jobId})
+	 	               			SEQ_NQ_nq_no.nextval,
+	 	               			admin,
+	 	               			#{NQ_TITLE},
+	 	               			#{NQ_CONTENT},
+	 	               			#{NQ_CATEGORY},
+	 	               			#{NQ_FILE},
+	 	               			sysdate)
 	</insert>
 	
 

@@ -4,13 +4,18 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.company.papang.impl.JyMapper;
+import co.company.papang.vo.NqVO;
+
 @Controller
 public class AdminController {
-
+	
+	@Autowired JyMapper jymapper;
 	@RequestMapping("/admin") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/admin"); //jsp주소
@@ -18,12 +23,18 @@ public class AdminController {
 	
 	@RequestMapping("/admin/nqInsert") //url 예전 .do
 	public ModelAndView test2(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/nqInsert"); //jsp주소
+		return new ModelAndView("admin/nqInsert"); //공지사항 리스트
+	}
+	
+	@RequestMapping("/admin/nqInsertRegInsert") //url 예전 .do
+	public ModelAndView test2_2(NqVO nqVO) throws IOException{
+		jymapper.insertNq(nqVO);
+		return new ModelAndView("admin/nqInsert"); //공지사항 등록폼
 	}
 	
 	@RequestMapping("/admin/nqInsertReg") //url 예전 .do
 	public ModelAndView test2_1(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/nqInsertReg"); //jsp주소
+		return new ModelAndView("admin/nqInsertReg"); //공지사항 인설트
 	}
 	
 	@RequestMapping("/admin/sittermember") //url 예전 .do
