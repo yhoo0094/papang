@@ -22,7 +22,7 @@
   <link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
   
   <!--달력 -->
-    <link rel=" shortcut icon" href="${pageContext.request.contextPath}image/favicon.ico">
+<%--     <link rel=" shortcut icon" href="${pageContext.request.contextPath}image/favicon.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/vendor/css/fullcalendar.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href='${pageContext.request.contextPath}/resources/calender/vendor/css/select2.min.css' />
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/calender/css/main.css"> --%>
   
   <style>
 /* 레이아웃 */
@@ -147,7 +147,7 @@
   <!-- 페이지네이션 날로먹는 빌드 끝 -->
   
   <!-- 달력 -->
-    <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/jquery.min.js"></script>
+<%--     <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/moment.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/calender/vendor/js/fullcalendar.min.js"></script>
@@ -157,7 +157,7 @@
     <script src="${pageContext.request.contextPath}/resources/calender/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/resources/calender/js/addEvent.js"></script>
     <script src="${pageContext.request.contextPath}/resources/calender/js/editEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/calender/js/etcSetting.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/calender/js/etcSetting.js"></script> --%>
 </body>
 
 </html>
