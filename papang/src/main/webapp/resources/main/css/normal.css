@@ -24,38 +24,36 @@ th {
 		text-align: center;
 }
 
-.pagination, li.active, .pagination li, .pagination a {
-	display: inline-block;
+.pagination{
+    display: flex;
+    list-style: none;
+    border-radius: .25rem;
+    width: 100%;
+    padding-inline-start: 40%;
 }
 
-.pagination a, li.active {
-	color: black;
-	padding: 8px 16px;
-	text-decoration: none;
-	border: 1px solid #ddd;
-	background-color: #bbbbbb;
+.col-md-5{
+	display: none;
 }
 
-.pagination li.active {
-	background-color: rgb(255, 136, 38);
-	color: black;
-	border: 1px solid #ddd;
+.col-md-7{
+	flex: none;
+    max-width: 100%;
 }
 
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
+.paginate_button{
+	height: 20%;
 }
 
-.pagination a, li.active {
-	border-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.pagination ul {
-	width: 100%;
-} 
-
-/* 임시 나중에 삭제할 것 */
-a.active {
+.page-item.active .page-link{
 	background-color: rgb(249, 196, 94);
+	border-color: #bbbbbb;
+}
+
+.page-link:hover, .page-link {
+	color: black;
+}
+
+.pagination{
+	margin-top: 1rem;
 }

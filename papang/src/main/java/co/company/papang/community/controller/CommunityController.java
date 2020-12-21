@@ -20,4 +20,9 @@ public class CommunityController {
 	public ModelAndView communityForm(HttpServletResponse response) throws IOException{
 		return new ModelAndView("community/communityForm"); //jsp주소
 	}
+	
+	@RequestMapping("/sitterMenu") //url 예전 .do
+	public ModelAndView sitterMenu(HttpServletResponse response) throws IOException{
+		return new ModelAndView("layout/sitterMenu"); //jsp주소
+	}
 }
