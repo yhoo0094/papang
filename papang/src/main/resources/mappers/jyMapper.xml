@@ -46,7 +46,7 @@
 
 <!--  사원등록    -->
 	<insert id="insertNq" parameterType="co.company.papang.vo.NqVO">
-		INSERT INTO EMPLOYEES (	
+		INSERT INTO NQ (	
 								NQ_NO,
 								AD_ID, 
 								NQ_TITLE, 
@@ -57,12 +57,13 @@
 								)
 	 	                VALUES(
 	 	               			SEQ_NQ_nq_no.nextval,
-	 	               			admin,
-	 	               			#{NQ_TITLE},
-	 	               			#{NQ_CONTENT},
-	 	               			#{NQ_CATEGORY},
-	 	               			#{NQ_FILE},
+	 	               			'admin',
+	 	               			#{nq_title},
+	 	               			#{nq_content},
+	 	               			#{nq_category},
+	 	               			#{nq_file},
 	 	               			sysdate)
+	 	
 	</insert>
 	
 

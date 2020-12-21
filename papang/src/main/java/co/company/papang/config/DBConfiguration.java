@@ -14,7 +14,7 @@ import oracle.jdbc.pool.OracleDataSource;
 public class DBConfiguration {
 	   final static String DB_URL="jdbc:oracle:thin:@papang_high?TNS_ADMIN=C://Users//test//wallet_dbname";
 	     final static String DB_USER = "admin";
-	     final static String DB_PASSWORD = "Papapng123456";
+	     final static String DB_PASSWORD = "Papang123456";
 
 	//데이터소스 등록
 	@Bean(destroyMethod="close")

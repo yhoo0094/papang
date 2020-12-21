@@ -26,10 +26,10 @@
 		});
 	});
 </script>
-<form id='frm' name='frm' method='post' action='' enctype="Multipart/form-data">
-	<table class="table">
+<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/admin/nqInsertRegInsert'>
+	<div align="center">
 
-		<div align="center">
+		
 			<table class="table" style="width: 100%">
 				<tbody>
 					<tr>
@@ -46,7 +46,7 @@
 					<tr>
 						<td align="center" style="width: 10%">첨부파일</td>
 						<td>
-							<input type="file" id="nq_file" name="nq_file">
+							<input type="text" id="nq_file" name="nq_file" value="image">
 						</td>
 					</tr>
 				</tbody>
@@ -55,5 +55,5 @@
 			<textarea id="summernote" name="nq_content"></textarea>
 			<input type="submit" value="등록하기"> &nbsp;&nbsp; <input
 				type="reset" value=" 취  소 ">
-			</form>
 		</div>
+		</form>
