@@ -30,4 +30,14 @@ public class MemberController {
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/loginForm"); //jsp주소
 	}
+	// 아이디찾기
+	@RequestMapping("/member/findId") //url 예전 .do
+	public ModelAndView test5(HttpServletResponse response) throws IOException{
+		return new ModelAndView("member/findId"); //jsp주소
+	}
+	// 비번찾기
+	@RequestMapping("/member/findPw") //url 예전 .do
+	public ModelAndView test6(HttpServletResponse response) throws IOException{
+		return new ModelAndView("member/findPw"); //jsp주소
+	}
 }

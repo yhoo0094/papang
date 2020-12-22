@@ -1,13 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원가입</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <style type="text/css">
-body {
-	margin: 120px;
+.input_small {width: 200px; height: 30px; padding: 8px;border: none;border-bottom: 1px solid #ccc;}
+.input_middle {}
+.input_big {}
+.divmargin {margin-top: 150px;}
+.big_title {text-align: center;
+font-size:50px;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 </style>
 <script type="text/javascript">
@@ -79,6 +90,11 @@ body {
 </script>
 </head>
 <body>
+	<div class="w3-content w3-container divmargin">
+		<div class="w3-container">
+			<div class="w3-large" align="center">
+				<h3 class="big_title">회원가입</h3>
+			</div>
 	<form action="memberJoin" class="frm" name="frm" id="frm" method="post"
 		style="margin: auto;">
 		<div>
@@ -201,5 +217,6 @@ body {
 				style="margin-right: 30px;">취소</button>
 		</div>
 	</form>
+</div>
+</div>
 </body>
-</html>

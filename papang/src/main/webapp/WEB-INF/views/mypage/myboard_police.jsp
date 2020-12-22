@@ -30,7 +30,7 @@ font-size:50px;
 	<div class="w3-content w3-container divmargin">
 		<div class="w3-container">
 			<div class="w3-large" align="center">
-				<h3 class="big_title">댓글보기</h3>
+				<h3 class="big_title">신고 현황</h3>
 			</div>
 			
 				</br>

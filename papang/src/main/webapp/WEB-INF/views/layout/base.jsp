@@ -1,72 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
-
 <head>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
 <title>papang</title>
 
 <!-- Bootstrap core CSS -->
-<!-- <link
-	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
-	rel="stylesheet">
-
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->	
-
 <link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	
-	
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Custom styles for this template -->
-<link
-	href="${pageContext.request.contextPath}/resources/main/css/modern-business.css"
-	rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet">
 <!-- 게시판 css -->
-<link
-	href="${pageContext.request.contextPath}/resources/main/css/normal.css"
-	rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
 <!-- 파일업로드 nqInsertReg.jsp -->
-<script
-	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
+<script src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
+<!-- font  -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+
 <style>
 /* 레이아웃 */
-.fixed-top {
-	height: 100px;
-	background-color: rgb(249, 196, 94);
-}
-
-body {
-	background-color: #fff5d2;
-}
-
-.py-5 {
-	background-color: rgb(249, 196, 94);
-	position: static;
-	display: block;
-	bottom: 0%;
-	width: 100%;
-}
-
-html {
-	font-family: 'Spoqa Han Sans', sans-serif;
-}
+.fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
+body {background-color: #fff5d2;}
+.py-5 {background-color: rgb(249, 196, 94);position: static;display: block;bottom: 0%;width: 100%;}
+* {font-family: 'Jua', sans-serif;}
 /* 버튼css */
-.btnYellow {
-	background-color: rgb(249, 196, 94);
-	border: none;
-}
+.btnYellow {background-color: rgb(249, 196, 94);border: none;}
 
 .btnRed {
 	background-color: #ff8080;
@@ -105,6 +71,11 @@ html {
 	display: block;
 	margin: 140px 15% 50px 15%;
 	width: 70%;
+}
+
+.main_div {
+	display: block;
+	margin: 140px 0 50px 0;
 }
 
 .bannderImg{
@@ -199,6 +170,9 @@ html {
 
 	<tiles:insertAttribute name="left" />
 	<tiles:insertAttribute name="banner" />
+	<div class="main_div">
+		<tiles:insertAttribute name="main" />
+	</div>
 	<div class="center_div">
 		<tiles:insertAttribute name="body" />
 	</div>

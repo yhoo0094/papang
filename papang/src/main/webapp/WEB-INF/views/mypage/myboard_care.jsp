@@ -79,17 +79,16 @@ font-size:20px;
 				<br>
 				
 				<div style="background:rgb(249, 196, 94)"> 
-					<label style="font-size:20px;margin:20px">신청현황　</label><input class="input_middle" type="text" id="id"
-
-							name="id" readonly value="승인">
+					<label style="font-size:20px;margin:20px;width:200px">신청현황</label><input class="input_middle" type="text" id="id"
+							name="id" readonly value="${ member.id }">
 			    </br>
-				<label style="font-size:20px;margin:20px">담당자　　</label><input class="input_middle" type="text" id="id"
+				<label style="font-size:20px;margin:20px;width:200px">담당자　　</label><input class="input_middle" type="text" id="id"
 							name="id" readonly value="${ member.id }">
 				</br>
-				<label style="font-size:20px;margin:20px">신청자　　</label><input class="input_middle" type="text" id="id"
+				<label style="font-size:20px;margin:20px;width:200px">신청자　　</label><input class="input_middle" type="text" id="id"
 							name="id"  value="${ member.id }">
 				<br>
-				<label style="font-size:20px;margin:20px">신청자 주소</label><input class="input_small" type="password" id="id"
+				<label style="font-size:20px;margin:20px;width:200px">신청자 주소</label><input class="input_small" type="password" id="id"
 							name="id"  value="${ member.id }">
 				</div>		
 		</div>
