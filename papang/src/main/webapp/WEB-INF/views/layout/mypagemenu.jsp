@@ -193,6 +193,7 @@ a {}
 					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">댓글</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/myboard_police">신고현황</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/myboard_qna">Q&A</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_care">돌봄신청내역</a></li>
 				</ul></li>
 			<li><a href="#none">시터정보</a>
 				<ul>

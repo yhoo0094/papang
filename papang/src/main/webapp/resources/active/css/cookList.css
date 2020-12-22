@@ -36,8 +36,6 @@ ol, ul {
 
 /* 박스 글꼴 */
 body, table, th, td, pre, input, select, textarea, button {
-	font-family: Microsoft YaHei, 'NS', '돋움', Dotum, '굴림', Gulim, Helvetica,
-		sans-serif;
 	font-size: 12px;
 }
 
@@ -49,10 +47,12 @@ body, table, th, td, pre, input, select, textarea, button {
 	left: -16px
 }
 
-.title_div{    height: 70px;
-    background-color: white;
-    width: 77.5%;
-    margin-left: 13.5em;}
+.title_div{ height: 70px;
+    background-color: #fff5d2;
+    width: 59%;
+    margin-left: 13.5em;
+    display: inline-block;
+}
 .search_btn {
     background-color: rgb(249, 196, 94);
         width: 280px;
@@ -60,7 +60,7 @@ body, table, th, td, pre, input, select, textarea, button {
     margin: 13px 8px;
     border:none;
     color: rgb(64, 60, 60);
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
 }
 /*box 흰 배경*/

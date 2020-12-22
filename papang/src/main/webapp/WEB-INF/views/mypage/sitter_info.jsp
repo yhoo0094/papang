@@ -28,44 +28,30 @@ font-size:30px;
 .small_title {text-align: right;
 font-size:20px;
 }
-
-
+table,td {border : 1px solid black;}
+.div{margin-left: 361px;}
+.btn {width: 310px; height: 51px; background-color: red;}
+.theader {height: 50px; width: 50px;border:1px solid black;}
+td {margin : 10px;}
 </style>
 <title>월급확인</title>
 </head>
 <body>
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
-			<div class="w3-large" align="center">
-				<h3 class="big_title">시터정보조회</h3>
-			</div>
-			
-				</br>
-			    
-			    
-			  
-					   <div>
-					      
-					   </div>  
-					   </br>
-					   </br>
-					   </br>
-					   </br>
-					   
-					
-					  
-					   
-<br>
-<br>
-					   <label style="font-size:20px;margin:20px">총금액</label><input class="small_title" type="text" id="id"
-							name="id"  value="${ member.id }">
-				</div>	
-					   
-				        페이징???~~~~~~
-		</div>
+<div class="div">
+<table>
+	<tr>
+		<td class="theader" rowspan="3" colspan="2">
+			<img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="1">
+			<button class="btn">영래바보</button>
+		</td>
+		
+	</tr>
+</table>
 	</div>
-	
-	
 	
 
 
