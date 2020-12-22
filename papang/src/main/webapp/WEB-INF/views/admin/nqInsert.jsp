@@ -1,502 +1,241 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<h1 class="mt-4">공지사항/자주묻는 질문 관리</h1>
+<script src="${pageContext.request.contextPath}/resources/json.min.js"></script>	
+<script type="text/javascript">
+	$(function() {
+		nqList();
 
-<div class="card mb-4">
-	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> 공지사항/자주묻는 질문
-	</div>
-	<div class="card-body">
-		
-		<div class="table-responsive">
-			<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/admin/nqInsertReg'>
-				<div align="right"><input type="submit" id="insertbtn" value='공지사항/자주묻는 질문 등록'></div>
-				<br>
-				</form>
-			<table class="table table-bordered" id="dataTable" width="100%"
-				cellspacing="0">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Position</th>
-						<th>Office</th>
-						<th>Age</th>
-						<th>Start date</th>
-						<th>Salary</th>
-					</tr>
-				</thead>
-				<tfoot>
-					<tr>
-						<th>Name</th>
-						<th>Position</th>
-						<th>Office</th>
-						<th>Age</th>
-						<th>Start date</th>
-						<th>Salary</th>
-					</tr>
-				</tfoot>
-				<tbody>
-					<tr>
-						<td>Tiger Nixon</td>
-						<td>System Architect</td>
-						<td>Edinburgh</td>
-						<td>61</td>
-						<td>2011/04/25</td>
-						<td>$320,800</td>
-					</tr>
-					<tr>
-						<td>Garrett Winters</td>
-						<td>Accountant</td>
-						<td>Tokyo</td>
-						<td>63</td>
-						<td>2011/07/25</td>
-						<td>$170,750</td>
-					</tr>
-					<tr>
-						<td>Ashton Cox</td>
-						<td>Junior Technical Author</td>
-						<td>San Francisco</td>
-						<td>66</td>
-						<td>2009/01/12</td>
-						<td>$86,000</td>
-					</tr>
-					<tr>
-						<td>Cedric Kelly</td>
-						<td>Senior Javascript Developer</td>
-						<td>Edinburgh</td>
-						<td>22</td>
-						<td>2012/03/29</td>
-						<td>$433,060</td>
-					</tr>
-					<tr>
-						<td>Airi Satou</td>
-						<td>Accountant</td>
-						<td>Tokyo</td>
-						<td>33</td>
-						<td>2008/11/28</td>
-						<td>$162,700</td>
-					</tr>
-					<tr>
-						<td>Brielle Williamson</td>
-						<td>Integration Specialist</td>
-						<td>New York</td>
-						<td>61</td>
-						<td>2012/12/02</td>
-						<td>$372,000</td>
-					</tr>
-					<tr>
-						<td>Herrod Chandler</td>
-						<td>Sales Assistant</td>
-						<td>San Francisco</td>
-						<td>59</td>
-						<td>2012/08/06</td>
-						<td>$137,500</td>
-					</tr>
-					<tr>
-						<td>Rhona Davidson</td>
-						<td>Integration Specialist</td>
-						<td>Tokyo</td>
-						<td>55</td>
-						<td>2010/10/14</td>
-						<td>$327,900</td>
-					</tr>
-					<tr>
-						<td>Colleen Hurst</td>
-						<td>Javascript Developer</td>
-						<td>San Francisco</td>
-						<td>39</td>
-						<td>2009/09/15</td>
-						<td>$205,500</td>
-					</tr>
-					<tr>
-						<td>Sonya Frost</td>
-						<td>Software Engineer</td>
-						<td>Edinburgh</td>
-						<td>23</td>
-						<td>2008/12/13</td>
-						<td>$103,600</td>
-					</tr>
-					<tr>
-						<td>Jena Gaines</td>
-						<td>Office Manager</td>
-						<td>London</td>
-						<td>30</td>
-						<td>2008/12/19</td>
-						<td>$90,560</td>
-					</tr>
-					<tr>
-						<td>Quinn Flynn</td>
-						<td>Support Lead</td>
-						<td>Edinburgh</td>
-						<td>22</td>
-						<td>2013/03/03</td>
-						<td>$342,000</td>
-					</tr>
-					<tr>
-						<td>Charde Marshall</td>
-						<td>Regional Director</td>
-						<td>San Francisco</td>
-						<td>36</td>
-						<td>2008/10/16</td>
-						<td>$470,600</td>
-					</tr>
-					<tr>
-						<td>Haley Kennedy</td>
-						<td>Senior Marketing Designer</td>
-						<td>London</td>
-						<td>43</td>
-						<td>2012/12/18</td>
-						<td>$313,500</td>
-					</tr>
-					<tr>
-						<td>Tatyana Fitzpatrick</td>
-						<td>Regional Director</td>
-						<td>London</td>
-						<td>19</td>
-						<td>2010/03/17</td>
-						<td>$385,750</td>
-					</tr>
-					<tr>
-						<td>Michael Silva</td>
-						<td>Marketing Designer</td>
-						<td>London</td>
-						<td>66</td>
-						<td>2012/11/27</td>
-						<td>$198,500</td>
-					</tr>
-					<tr>
-						<td>Paul Byrd</td>
-						<td>Chief Financial Officer (CFO)</td>
-						<td>New York</td>
-						<td>64</td>
-						<td>2010/06/09</td>
-						<td>$725,000</td>
-					</tr>
-					<tr>
-						<td>Gloria Little</td>
-						<td>Systems Administrator</td>
-						<td>New York</td>
-						<td>59</td>
-						<td>2009/04/10</td>
-						<td>$237,500</td>
-					</tr>
-					<tr>
-						<td>Bradley Greer</td>
-						<td>Software Engineer</td>
-						<td>London</td>
-						<td>41</td>
-						<td>2012/10/13</td>
-						<td>$132,000</td>
-					</tr>
-					<tr>
-						<td>Dai Rios</td>
-						<td>Personnel Lead</td>
-						<td>Edinburgh</td>
-						<td>35</td>
-						<td>2012/09/26</td>
-						<td>$217,500</td>
-					</tr>
-					<tr>
-						<td>Jenette Caldwell</td>
-						<td>Development Lead</td>
-						<td>New York</td>
-						<td>30</td>
-						<td>2011/09/03</td>
-						<td>$345,000</td>
-					</tr>
-					<tr>
-						<td>Yuri Berry</td>
-						<td>Chief Marketing Officer (CMO)</td>
-						<td>New York</td>
-						<td>40</td>
-						<td>2009/06/25</td>
-						<td>$675,000</td>
-					</tr>
-					<tr>
-						<td>Caesar Vance</td>
-						<td>Pre-Sales Support</td>
-						<td>New York</td>
-						<td>21</td>
-						<td>2011/12/12</td>
-						<td>$106,450</td>
-					</tr>
-					<tr>
-						<td>Doris Wilder</td>
-						<td>Sales Assistant</td>
-						<td>Sidney</td>
-						<td>23</td>
-						<td>2010/09/20</td>
-						<td>$85,600</td>
-					</tr>
-					<tr>
-						<td>Angelica Ramos</td>
-						<td>Chief Executive Officer (CEO)</td>
-						<td>London</td>
-						<td>47</td>
-						<td>2009/10/09</td>
-						<td>$1,200,000</td>
-					</tr>
-					<tr>
-						<td>Gavin Joyce</td>
-						<td>Developer</td>
-						<td>Edinburgh</td>
-						<td>42</td>
-						<td>2010/12/22</td>
-						<td>$92,575</td>
-					</tr>
-					<tr>
-						<td>Jennifer Chang</td>
-						<td>Regional Director</td>
-						<td>Singapore</td>
-						<td>28</td>
-						<td>2010/11/14</td>
-						<td>$357,650</td>
-					</tr>
-					<tr>
-						<td>Brenden Wagner</td>
-						<td>Software Engineer</td>
-						<td>San Francisco</td>
-						<td>28</td>
-						<td>2011/06/07</td>
-						<td>$206,850</td>
-					</tr>
-					<tr>
-						<td>Fiona Green</td>
-						<td>Chief Operating Officer (COO)</td>
-						<td>San Francisco</td>
-						<td>48</td>
-						<td>2010/03/11</td>
-						<td>$850,000</td>
-					</tr>
-					<tr>
-						<td>Shou Itou</td>
-						<td>Regional Marketing</td>
-						<td>Tokyo</td>
-						<td>20</td>
-						<td>2011/08/14</td>
-						<td>$163,000</td>
-					</tr>
-					<tr>
-						<td>Michelle House</td>
-						<td>Integration Specialist</td>
-						<td>Sidney</td>
-						<td>37</td>
-						<td>2011/06/02</td>
-						<td>$95,400</td>
-					</tr>
-					<tr>
-						<td>Suki Burks</td>
-						<td>Developer</td>
-						<td>London</td>
-						<td>53</td>
-						<td>2009/10/22</td>
-						<td>$114,500</td>
-					</tr>
-					<tr>
-						<td>Prescott Bartlett</td>
-						<td>Technical Author</td>
-						<td>London</td>
-						<td>27</td>
-						<td>2011/05/07</td>
-						<td>$145,000</td>
-					</tr>
-					<tr>
-						<td>Gavin Cortez</td>
-						<td>Team Leader</td>
-						<td>San Francisco</td>
-						<td>22</td>
-						<td>2008/10/26</td>
-						<td>$235,500</td>
-					</tr>
-					<tr>
-						<td>Martena Mccray</td>
-						<td>Post-Sales support</td>
-						<td>Edinburgh</td>
-						<td>46</td>
-						<td>2011/03/09</td>
-						<td>$324,050</td>
-					</tr>
-					<tr>
-						<td>Unity Butler</td>
-						<td>Marketing Designer</td>
-						<td>San Francisco</td>
-						<td>47</td>
-						<td>2009/12/09</td>
-						<td>$85,675</td>
-					</tr>
-					<tr>
-						<td>Howard Hatfield</td>
-						<td>Office Manager</td>
-						<td>San Francisco</td>
-						<td>51</td>
-						<td>2008/12/16</td>
-						<td>$164,500</td>
-					</tr>
-					<tr>
-						<td>Hope Fuentes</td>
-						<td>Secretary</td>
-						<td>San Francisco</td>
-						<td>41</td>
-						<td>2010/02/12</td>
-						<td>$109,850</td>
-					</tr>
-					<tr>
-						<td>Vivian Harrell</td>
-						<td>Financial Controller</td>
-						<td>San Francisco</td>
-						<td>62</td>
-						<td>2009/02/14</td>
-						<td>$452,500</td>
-					</tr>
-					<tr>
-						<td>Timothy Mooney</td>
-						<td>Office Manager</td>
-						<td>London</td>
-						<td>37</td>
-						<td>2008/12/11</td>
-						<td>$136,200</td>
-					</tr>
-					<tr>
-						<td>Jackson Bradshaw</td>
-						<td>Director</td>
-						<td>New York</td>
-						<td>65</td>
-						<td>2008/09/26</td>
-						<td>$645,750</td>
-					</tr>
-					<tr>
-						<td>Olivia Liang</td>
-						<td>Support Engineer</td>
-						<td>Singapore</td>
-						<td>64</td>
-						<td>2011/02/03</td>
-						<td>$234,500</td>
-					</tr>
-					<tr>
-						<td>Bruno Nash</td>
-						<td>Software Engineer</td>
-						<td>London</td>
-						<td>38</td>
-						<td>2011/05/03</td>
-						<td>$163,500</td>
-					</tr>
-					<tr>
-						<td>Sakura Yamamoto</td>
-						<td>Support Engineer</td>
-						<td>Tokyo</td>
-						<td>37</td>
-						<td>2009/08/19</td>
-						<td>$139,575</td>
-					</tr>
-					<tr>
-						<td>Thor Walton</td>
-						<td>Developer</td>
-						<td>New York</td>
-						<td>61</td>
-						<td>2013/08/11</td>
-						<td>$98,540</td>
-					</tr>
-					<tr>
-						<td>Finn Camacho</td>
-						<td>Support Engineer</td>
-						<td>San Francisco</td>
-						<td>47</td>
-						<td>2009/07/07</td>
-						<td>$87,500</td>
-					</tr>
-					<tr>
-						<td>Serge Baldwin</td>
-						<td>Data Coordinator</td>
-						<td>Singapore</td>
-						<td>64</td>
-						<td>2012/04/09</td>
-						<td>$138,575</td>
-					</tr>
-					<tr>
-						<td>Zenaida Frank</td>
-						<td>Software Engineer</td>
-						<td>New York</td>
-						<td>63</td>
-						<td>2010/01/04</td>
-						<td>$125,250</td>
-					</tr>
-					<tr>
-						<td>Zorita Serrano</td>
-						<td>Software Engineer</td>
-						<td>San Francisco</td>
-						<td>56</td>
-						<td>2012/06/01</td>
-						<td>$115,000</td>
-					</tr>
-					<tr>
-						<td>Jennifer Acosta</td>
-						<td>Junior Javascript Developer</td>
-						<td>Edinburgh</td>
-						<td>43</td>
-						<td>2013/02/01</td>
-						<td>$75,650</td>
-					</tr>
-					<tr>
-						<td>Cara Stevens</td>
-						<td>Sales Assistant</td>
-						<td>New York</td>
-						<td>46</td>
-						<td>2011/12/06</td>
-						<td>$145,600</td>
-					</tr>
-					<tr>
-						<td>Hermione Butler</td>
-						<td>Regional Director</td>
-						<td>London</td>
-						<td>47</td>
-						<td>2011/03/21</td>
-						<td>$356,250</td>
-					</tr>
-					<tr>
-						<td>Lael Greer</td>
-						<td>Systems Administrator</td>
-						<td>London</td>
-						<td>21</td>
-						<td>2009/02/27</td>
-						<td>$103,500</td>
-					</tr>
-					<tr>
-						<td>Jonas Alexander</td>
-						<td>Developer</td>
-						<td>San Francisco</td>
-						<td>30</td>
-						<td>2010/07/14</td>
-						<td>$86,500</td>
-					</tr>
-					<tr>
-						<td>Shad Decker</td>
-						<td>Regional Director</td>
-						<td>Edinburgh</td>
-						<td>51</td>
-						<td>2008/11/13</td>
-						<td>$183,000</td>
-					</tr>
-					<tr>
-						<td>Michael Bruce</td>
-						<td>Javascript Developer</td>
-						<td>Singapore</td>
-						<td>29</td>
-						<td>2011/06/27</td>
-						<td>$183,000</td>
-					</tr>
-					<tr>
-						<td>Donna Snider</td>
-						<td>Customer Support</td>
-						<td>New York</td>
-						<td>27</td>
-						<td>2011/01/25</td>
-						<td>$112,000</td>
-					</tr>
-				</tbody>
-				
-		
-			</table>
-			
-			
-		</div>
+		nqSelect();
+
+		//userDelete();
+
+		nqInsert();
+
+		//userUpdate();
+
+		//init();
+	});
+
+	/* 	//초기화
+	 function init() {
+	 //초기화 버튼 클릭
+	 $('#btnInit').on('click',function(){
+	 $('#form1').each(function(){
+	 this.reset();
+	 });
+	 });
+	 }//init
 	
+	 //사용자 삭제 요청
+	 function userDelete() {
+	 //삭제 버튼 클릭
+	 $('body').on('click','#btnDelete',function(){
+	 var userId = $(this).closest('tr').find('#hidden_userId').val();
+	 var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+	 if(result) {
+	 $.ajax({
+	 url:'users/'+userId,  
+	 type:'DELETE',
+	 contentType:'application/json;charset=utf-8',
+	 dataType:'json',
+	 error:function(xhr,status,msg){
+	 console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+	 }, success:function(xhr) {
+	 console.log(xhr.result);
+	 userList();
+	 }
+	 });      }//if
+	 }); //삭제 버튼 클릭
+	 }//userDelete
+	 */
+	 //사용자 조회 요청
+	 function nqSelect() {
+	 //조회 버튼 클릭
+	 $('body').on('click','#btnSelect',function(){
+	 var nq_no = $(this).closest('tr').find('#hidden_nq_no').val();
+	 //특정 사용자 조회
+	 $.ajax({
+	 url:'../nq/'+nq_no,
+	 type:'GET',
+	 contentType:'application/json;charset=utf-8',
+	 dataType:'json',
+	 error:function(xhr,status,msg){
+	 alert("상태값 :" + status + " Http에러메시지 :"+msg);
+	 },
+	 success:nqSelectResult
+	 });
+	 }); //조회 버튼 클릭
+	 }//userSelect
+	
+	 //사용자 조회 응답
+	 function nqSelectResult(nq) {
+		 console.log(nq);
+	 $('select:text[name="nq_category"]').val(nq.nq_category).prop("selected", true);
+	 $('input:text[name="nq_title"]').val(nq.nq_title);
+	 $('input:text[name="nq_file"]').val(nq.nq_file);
+	 $('#summernote').text(nq.nq_content);
+	 }//userSelectResult
+	
+	 /*
+	 //사용자 수정 요청
+	 function userUpdate() {
+	 //수정 버튼 클릭
+	 $('#btnUpdate').on('click',function(){
+	 var id = $('input:text[name="id"]').val();
+	 var name = $('input:text[name="name"]').val();
+	 var password = $('input:text[name="password"]').val();
+	 var role = $('select[name="role"]').val();		
+	 $.ajax({ 
+	 url: "users", 
+	 type: 'PUT', 
+	 dataType: 'json', 
+	 data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+	 contentType: 'application/json',
+	 success: function(data) { 
+	 userList();
+	 },
+	 error:function(xhr, status, message) { 
+	 alert(" status: "+status+" er:"+message);
+	 }
+	 });
+	 });//수정 버튼 클릭
+	 }//userUpdate
+	*/
+	 //사용자 등록 요청
+	 function nqInsert(){
+	 //등록 버튼 클릭
+	 $('#btnInsert').on('click',function(){
+	 $("#form1")
+	
+	 $.ajax({ 
+	 url: "../nq",  
+	 type: 'POST',  
+	 dataType: 'json', 
+	 //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+	 data : JSON.stringify($("#form1").serializeObject()),
+	 contentType: 'application/json', 
+	 success: function(response) {
+	 if(response.result == true) {
+	 nqList();
+	 }
+	 }, 
+	 error:function(xhr, status, message) { 
+	 alert("status: "+status+" er:"+message);
+	 } 
+	 });  
+	 });//등록 버튼 클릭
+	 }//userInsert
+	 
+	//사용자 목록 조회 요청
+	function nqList() {
+		$.ajax({
+			url : '../nq',
+			type : 'GET',
+			//contentType:'application/json;charset=utf-8',
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : nqListResult
+		});
+	}//userList
+
+	//사용자 목록 조회 응답
+	function nqListResult(data) {
+		$("#tb tbody").empty();
+		$.each(data, function(idx, item) {
+			$('<tr>').append($('<td>').html(item.nq_no)).append(
+					$('<td>').html(item.nq_category)).append(
+					$('<td>').html(item.nq_title)).append(
+					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					.append(
+							$('<td>').html(
+									'<button id=\'btnDelete\'>삭제</button>'))
+					.append(
+							$('<input type=\'hidden\' id=\'hidden_nq_no\'>')
+									.val(item.nq_no)).appendTo('#tb tbody');
+		});//each
+	}//userListResult
+</script>
+<h1 class="mt-4">공지사항/자주묻는 질문 관리</h1>
+<br>
+
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
+
+
+
+
+<script>
+	$(document).ready(function() {
+		//여기 아래 부분
+		$('#summernote').summernote({
+			height : 500, // 에디터 높이
+			minHeight : null, // 최소 높이
+			maxHeight : null, // 최대 높이
+			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+			lang : "ko-KR", // 한글 설정
+			placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+
+		});
+	});
+</script>
+<form id="form1" class="form-horizontal">
+	<div align="center">
+
+
+		<table class="table" style="width: 80%">
+			<tbody>
+				<tr>
+					<td align="center" style="width: 10%">분류</td>
+					<td><select name="nq_category">
+							<option value="공지사항">공지사항</option>
+							<option value="자주묻는 질문" selected>자주묻는 질문</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="center" style="width: 10%">제목</td>
+					<td><input name="nq_title" type="text" style="width: 100%"></td>
+				</tr>
+				<tr>
+					<td align="center" style="width: 10%">첨부파일</td>
+					<td><input type="text" id="nq_file" name="nq_file"
+						value="image"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div align="center" style="width: 80%">
+		<textarea id="summernote" name="nq_content"></textarea>
+		<br>
+		<input type="button"  class="btn btn-primary" value="등록"  id="btnInsert" /> 
+				<input type="button"  class="btn btn-primary" value="수정"  id="btnUpdate" />
+				<input type="button"  class="btn btn-primary" value="초기화" id="btnInit" />
+		</div>	
+	</div>
+</form>
+<br>
+<br>
+	<div align="center">
+		
+		<table class="table text-center" style="width: 80%" id="tb">
+			<thead>
+				<tr>
+					<th class="text-center">글번호</th>
+					<th class="text-center">분류</th>
+					<th class="text-center">제목</th>
+					<th class="text-center">조회</th>
+					<th class="text-center">삭제</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+
+
+

@@ -45,7 +45,7 @@
 	src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="./resources/json.min.js"></script>
+
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">

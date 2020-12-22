@@ -26,17 +26,6 @@ public class AdminController {
 		return new ModelAndView("admin/nqInsert"); //공지사항 리스트
 	}
 	
-	@RequestMapping("/admin/nqInsertRegInsert") //url 예전 .do
-	public ModelAndView test2_2(NqVO nqVO) throws IOException{
-		jymapper.insertNq(nqVO);
-		return new ModelAndView("admin/nqInsert"); //공지사항 등록폼
-		
-	}
-	
-	@RequestMapping("/admin/nqInsertReg") //url 예전 .do
-	public ModelAndView test2_1(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/nqInsertReg"); //공지사항 인설트
-	}
 	
 	@RequestMapping("/admin/sittermember") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
