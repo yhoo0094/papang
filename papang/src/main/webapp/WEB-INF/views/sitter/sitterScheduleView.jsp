@@ -1,29 +1,15 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style type="text/css">
-*{
+#calendarForm {
+	width: 100%;
 	font-size: 19px;
 }
-
-#calendarForm {
-	display: inline;
-	width: 48%;
-	float: left;
-}
-
-#sitterForm {
-	display: inline;
-	width: 48%;
-	float: right;
-	padding: 1%;
-	border-radius: 10px;
-}
-
 .custom_calendar_table {
 	width: 100%;
 }
@@ -31,7 +17,7 @@
 .custom_calendar_table td, .custom_calendar_table th {
 	text-align: left;
 	vertical-align: text-top;
-	height: 80px;
+	height: 100px;
 	width: 80px;
 }
 
@@ -45,7 +31,7 @@
 	color: #fff;
 	text-align: center;
 	vertical-align: middle;
-	font-size: 25px;
+	font-size: 40px;
 }
 
 .custom_calendar_table tbody td {
@@ -65,24 +51,9 @@
 	color: #fff;
 }
 
-.sitterProfileImg {
-	width: 30%;
-	display: inline;
-	border-radius: 10px;
-	float: left;
+.calanderTitle{
+	font-size: 25px;
 }
-
-.sitterInfoTable {
-	width: 60%;
-	font-size: 30px;
-}
-
-.btnReserve{
-	width: 100px;
-	height: 35px;
-}
-
-
 </style>
 <script type="text/javascript">
 $(()=>{
@@ -148,9 +119,11 @@ function calendarMaker(target, date) {
 
     function assembly(year, month) {
         var calendar_html_code =
+        	"<div class='calanderTitle'>"+
         	"<button type='button' class='prev'><</button>&nbsp;&nbsp;" +
         	"<span>" + year + "</span>년 <span>" + month + "</span>월"+
         	"&nbsp;&nbsp;<button type='button' class='next'>></button>"+
+        	"</div>"+
             "<table class='custom_calendar_table' border='1'>" +
             "<thead  class='cal_week'>" +
             "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>" +
@@ -182,46 +155,9 @@ function calendarMaker(target, date) {
 </script>
 </head>
 <body>
-	<h3>시터 예약하기</h3>
+	<h3>예약내역 보기<h3>
 	<hr>
 	<br>
-	<div align="right">
-		<input type="checkbox" value="">아기이름1
-		<input type="checkbox" value="">아기이름2
-		<input type="checkbox" value="">아기이름3
-		<button class="btnReserve btnYellow">예약하기</button>
-		<br><br>
-		
-	</div>
-	<div align="center">
-		<div id="calendarForm" align="center"></div>
-		<div id="sitterForm" class="strongYellow" align="center">
-			<img class="sitterProfileImg" alt="시터이미지"
-				src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg">
-			<table class="sitterInfoTable" align="center">
-				<tr align="center">
-					<td align="center">돌봄요일:</td>
-					<td align="left">월, 화, 수, 목, 금</td>
-				</tr>
-				<tr>
-					<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
-					<td align="left">8,000원</td>
-				</tr>
-				<tr>
-					<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점:</td>
-					<td align="left">★★★★☆</td>
-				</tr>
-				<tr>
-					<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
-					<td align="left">대구</td>
-				</tr>
-				<tr>
-					<td align="center">제재횟수:</td>
-					<td align="left">0회</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-	
+	<div id="calendarForm" align="center"></div>
 </body>
 </html>

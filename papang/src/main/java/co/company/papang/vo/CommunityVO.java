@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Community {
+public class CommunityVO {
 	private String com_no;
 	private String mbr_id;
 	private String com_category;

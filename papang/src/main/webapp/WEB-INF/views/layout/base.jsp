@@ -67,7 +67,7 @@ body {background-color: #fff5d2;}
 }
 
 .center_div {
-	min-height: 690px;
+	min-height: 750px;
 	display: block;
 	margin: 140px 15% 50px 15%;
 	width: 70%;
@@ -84,6 +84,12 @@ body {background-color: #fff5d2;}
 	height: 700px;
 	margin-top: 3%;
 	margin-right: 10px;
+}
+
+.papanglogo{
+	width: 90px;
+    height: 90px;
+    border-radius: 10px;
 }
 
 /* .naviClass, .banner_div, .center_div{
@@ -111,7 +117,7 @@ body {background-color: #fff5d2;}
 		<!-- Navigation -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">Start Bootstrap</a>
+				<a class="navbar-brand" href="index.html"> <img class="papanglogo" alt="로고" src="${pageContext.request.contextPath}/resources/images/papang_logo.png"> </a>
 				<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
@@ -208,7 +214,7 @@ body {background-color: #fff5d2;}
 		$(()=>{
 			$("#dataTable_filter").attr("align","right");
 			$("#dataTable_length").attr("align","left");
-/* 			$("#divForEntryNum .custom-select").empty();
+			/*$("#divForEntryNum .custom-select").empty();
 			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
 			$("#divForEntryNum .custom-select").trigger("change"); */
 		})

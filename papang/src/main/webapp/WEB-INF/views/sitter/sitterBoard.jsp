@@ -48,11 +48,14 @@ thead, #dataTable_filter, #dataTable_length {
 	border-radius: 20px;
 	background-color: #ff971d;
 }
+
+.dataTableTr>td {
+    width: 260px;
+}
 </style>
 
 </head>
 <body>
-
 		<h3>시터 리스트</h3>
 	<hr>
 	<br>
@@ -143,15 +146,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -173,15 +176,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -203,15 +206,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -233,15 +236,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -263,15 +266,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -293,15 +296,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -323,15 +326,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -353,15 +356,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -383,15 +386,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -413,15 +416,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -443,15 +446,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -473,15 +476,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -503,15 +506,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>
@@ -533,15 +536,15 @@ thead, #dataTable_filter, #dataTable_length {
 									<td>월, 화, 수, 목, 금</td>
 								</tr>
 								<tr>
-									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+									<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 									<td>8,000원</td>
 								</tr>
 								<tr>
-									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+									<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 									<td>★★★★☆</td>
 								</tr>
 								<tr>
-									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+									<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 									<td>대구</td>
 								</tr>
 								<tr>

@@ -37,6 +37,15 @@ public class CommunityController {
 		return new ModelAndView("sitter/sitterForm"); //jsp주소
 	}
 	
+	@RequestMapping("/sitterScheduleView") //url 예전 .do
+	public ModelAndView sitterScheduleView(HttpServletResponse response) throws IOException{
+		return new ModelAndView("sitter/sitterScheduleView"); //jsp주소
+	}
+	
+	@RequestMapping("/reservationView") //url 예전 .do
+	public ModelAndView reservationView(HttpServletResponse response) throws IOException{
+		return new ModelAndView("sitter/reservationView"); //jsp주소
+	}
 	/*-------------------------- 기타 --------------------------*/
 	@RequestMapping(value="/normalBoard")
 	public String normalBoard() {
