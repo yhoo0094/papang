@@ -34,9 +34,9 @@
 	</definition>
 
 	<!-- market -->
-	<definition name="market/*" template="/WEB-INF/views/layout/base.jsp">	
+	<definition name="marketList/*" template="/WEB-INF/views/layout/base.jsp">	
 		<put-attribute name="main" value="" />
-		<put-attribute name="body" value="/WEB-INF/views/market/{1}.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/marketList/{1}.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/layout/marketMenu.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
 	</definition>

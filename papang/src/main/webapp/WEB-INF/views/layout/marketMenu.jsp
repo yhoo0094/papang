@@ -9,7 +9,7 @@ li {list-style: none;}
 a {}
 #lnb {  /*큰 노란 빠*/
 	position: fixed;
-	width: 450px;
+	width: 10%;
 	display: inline-block;
 	float: left;
 	margin-top: 20px;
@@ -33,7 +33,7 @@ a {}
 	padding: 14px 35px 14px 15px;
 	color: inherit;
 	/*부제*/
-	font-size: 30px;
+	font-size: 20px;
 	background: #f5f2ec
 		url(https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225) no-repeat
 		95% 15px;
@@ -175,16 +175,15 @@ a {}
 		<ul>
 			<li><a href="#none">상품판매</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/market/market">전체목록</a></li>
-					<li><a href="${pageContext.request.contextPath}/market/market/${pro_category}">카테고리1</a></li>
-					<li><a href="${pageContext.request.contextPath}/market/market/${pro_category}">카테고리2</a></li>
-					<li><a href="${pageContext.request.contextPath}/market/cart">장바구니</a></li>
+					<li><a href="${pageContext.request.contextPath}/marketList/itemBoard">전체목록</a></li>
+
+					<li><a href="${pageContext.request.contextPath}/marketList/cart">장바구니</a></li>
 
 				</ul></li>
 			<li><a href="#none">중고장터</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/market/used/${used_category}">판매중</a></li>
-					<li><a href="${pageContext.request.contextPath}/market/used">전체상품</a></li>
+					<li><a href="${pageContext.request.contextPath}/marketList/used/${used_category}">판매중</a></li>
+					<li><a href="${pageContext.request.contextPath}/marketList/usedBoard">전체상품</a></li>
 				</ul></li>
 		</ul>
 	</div>

@@ -9,13 +9,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
 
-<h1 class="mt-4">중고장터 글등록</h1>
+<h1 class="mt-4">판매상품 등록</h1>
 
 
 <script>
 	$(document).ready(function() {
 		//여기 아래 부분
-		$('#summernote').summernote({
+		$('#pro_detail').summernote({
 			height : 300, // 에디터 높이
 			minHeight : null, // 최소 높이
 			maxHeight : null, // 최대 높이
@@ -26,33 +26,32 @@
 		});
 	});
 </script>
-<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/admin/nqInsertRegInsert'>
+<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/market/itemInsert'>
 	<div align="center">
-
-		
 			<table class="table" style="width: 100%">
 				<tbody>
 					<tr>
-						<td align="center" style="width: 10%">분류</td>
-						<td><select name="nq_category">
-								<option value="공지사항">공지사항</option>
-								<option value="자주묻는 질문" selected>자주묻는 질문</option>
-						</select></td>
+						<td align="center" style="width: 10%">상품명</td>
+						<td><input name="pro_name" type="text" style="width: 100%"></td>
 					</tr>
 					<tr>
-						<td align="center" style="width: 10%">제목</td>
-						<td><input name="nq_title" type="text" style="width: 100%"></td>
+						<td align="center" style="width: 10%">가격</td>
+						<td><input name="pro_price" type="text" style="width: 100%"></td>
 					</tr>
 					<tr>
-						<td align="center" style="width: 10%">첨부파일</td>
+						<td align="center" style="width: 10%">기업코드</td>
+						<td><input name="pro_cc" type="text" style="width: 100%"></td>
+					</tr>
+					<tr>
+						<td align="center" style="width: 10%">대표사진</td>
 						<td>
-							<input type="text" id="nq_file" name="nq_file" value="image">
+							<input type="text" id="pro_pic" name="pro_pic" value="image">
 						</td>
 					</tr>
 				</tbody>
 			</table>
 
-			<textarea id="summernote" name="nq_content"></textarea>
+			<textarea id="pro_detail" name="pro_detail"></textarea>
 			<input type="submit" value="등록하기"> &nbsp;&nbsp; <input
 				type="reset" value=" 취  소 ">
 		</div>

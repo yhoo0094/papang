@@ -12,14 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MarketController {
 	// 판매상품 전체 리스트
-	@RequestMapping("market/market") //url 예전 .do
+	@RequestMapping("marketList/itemBoard") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("market/itemList_base"); //jsp주소
+		return new ModelAndView("marketList/itemBoard"); //jsp주소
 	}
 	// 판매상품 전체 리스트
-	@RequestMapping("market/marketTest") //url 예전 .do
+	@RequestMapping("marketList/itemList") //url 예전 .do
 	public ModelAndView markettest(HttpServletResponse response) throws IOException{
-		return new ModelAndView("market/itemList"); //jsp주소
+		return new ModelAndView("marketList/itemList"); //jsp주소
 	}
 	// 판매상품 상세
 	@RequestMapping("market/itemDetail") //url 예전 .do
@@ -42,9 +42,9 @@ public class MarketController {
 		return new ModelAndView("market/itemUpdateForm"); //jsp주소
 	}
 	// 중고게시판 리스트
-	@RequestMapping("market/used") //url 예전 .do
+	@RequestMapping("marketList/usedBoard") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
-		return new ModelAndView("market/usedBoard"); //jsp주소
+		return new ModelAndView("marketList/usedBoard"); //jsp주소
 	}
 	// 중고게시판 상세
 	@RequestMapping("market/usedDetail") //url 예전 .do
@@ -65,5 +65,10 @@ public class MarketController {
 	@RequestMapping("market/usedUpdateForm") //url 예전 .do
 	public ModelAndView test8(HttpServletResponse response) throws IOException{
 		return new ModelAndView("market/usedUpdateForm"); //jsp주소
+	}
+	// 장바구니
+	@RequestMapping("marketList/cart") //url 예전 .do
+	public ModelAndView test11(HttpServletResponse response) throws IOException{
+		return new ModelAndView("marketList/cart"); //jsp주소
 	}
 }
