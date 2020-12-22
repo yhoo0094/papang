@@ -22,8 +22,7 @@
 		$('#btnInit').on('click', function() {
 			$('#form1').each(function() {
 				this.reset();
-				$('#contenttd').html("");
-				$('#summernote').summernote('undo')
+				$('.note-editable').html("");
 			});
 		});
 	}//init
@@ -76,7 +75,7 @@
 				"selected", true);
 		$('input:text[name="nq_title"]').val(nq.nq_title);
 		$('input:text[name="nq_file"]').val(nq.nq_file);
-		$('#contenttd').html(nq.nq_content);
+		$('.note-editable').html(nq.nq_content);
 	}//userSelectResult
 
 	/*
@@ -122,10 +121,8 @@
 						nqList();
 						$('#form1').each(function() {
 							this.reset();
-							$('#contenttd').html("");
-							$('#summernote').summernote('undo')
+							$('.note-editable').html("");
 						});
-						$('#summernote').summernote('undo')
 					}
 				},
 				error : function(xhr, status, message) {
@@ -189,7 +186,7 @@
 			maxHeight : null, // 최대 높이
 			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
-			placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
+			
 
 		});
 	});
@@ -218,16 +215,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<table style="width: 100%" border="1">
-
-			<tr>
-				<td align="center" style="width: 10%">내용</td>
-				<td id="contenttd" style="width: 90%"></td>
-			</tr>
-
-			<tbody></tbody>
-		</table>
-		<br>
+		
 	</div>
 	<div align="center">
 		<textarea id="summernote" name="nq_content"></textarea>
