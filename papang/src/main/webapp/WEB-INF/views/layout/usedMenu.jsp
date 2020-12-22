@@ -7,7 +7,7 @@
 * {margin: 0;padding: 0;}  
 li {list-style: none;} 
 a {}
-#lnb {  /*마이페이지적힌 노랜 빠*/
+#lnb {  /*큰 노란 빠*/
 	position: fixed;
 	width: 450px;
 	display: inline-block;
@@ -15,14 +15,14 @@ a {}
 	margin-top: 20px;
 }
 
-#lnb h1 {  /*마이페이지 */
+/* #lnb h1 {  /*대분류 */
 	height: 70px;
 	text-align: center;
 	font-size: 40px;
 	line-height: 1.7;
 	letter-spacing: -2px;
 	background-color: rgb(249, 196, 94);
-}
+} */
 
 #lnb>ul>li {
 	border-bottom: 1px solid #dcdcdc;
@@ -171,33 +171,20 @@ a {}
 	})	
 </script>
 	<div id="lnb">
-		<h1>마이페이지</h1>
+<!-- h1 -->
 		<ul>
-			<li><a href="#none">내정보관리</a>
+			<li><a href="#none">상품판매</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/mypage/myhome">회원정보 수정</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/notjoin">회원 탈퇴</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/babyinfo">아이정보 관리</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/market">전체목록</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/market/${pro_category}">카테고리1</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/market/${pro_category}">카테고리2</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/cart">장바구니</a></li>
 
 				</ul></li>
-			<li><a href="#none">장터이용내역</a>
+			<li><a href="#none">중고장터</a>
 				<ul>
-					<li><a href="#none">장바구니</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/market_buyinfo">구매내역</a></li>
-					<li><a href="#none">판매내역</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/market_deli">배송현황조회</a></li>
-				</ul></li>
-			<li><a href="#none">게시물</a>
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">내 게시물</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">댓글</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_police">신고현황</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_qna">Q&A</a></li>
-				</ul></li>
-			<li><a href="#none">시터정보</a>
-				<ul>
-					<li><a href="${pageContext.request.contextPath}/mypage/sitter_money">월급확인</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/sitter_info">시터정보조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/used/${used_category}">판매중</a></li>
+					<li><a href="${pageContext.request.contextPath}/market/used">전체상품</a></li>
 				</ul></li>
 		</ul>
 	</div>

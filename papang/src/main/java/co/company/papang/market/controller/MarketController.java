@@ -42,28 +42,28 @@ public class MarketController {
 		return new ModelAndView("market/itemUpdateForm"); //jsp주소
 	}
 	// 중고게시판 리스트
-	@RequestMapping("used/used") //url 예전 .do
+	@RequestMapping("market/used") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
-		return new ModelAndView("usedItem/usedBoard"); //jsp주소
+		return new ModelAndView("market/usedBoard"); //jsp주소
 	}
 	// 중고게시판 상세
-	@RequestMapping("used/usedDetail") //url 예전 .do
+	@RequestMapping("market/usedDetail") //url 예전 .do
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
-		return new ModelAndView("usedItem/usedDetail"); //jsp주소
+		return new ModelAndView("market/usedDetail"); //jsp주소
 	}
 	// 중고게시판 등록
-	@RequestMapping("used/usedInsert") //url 예전 .do
+	@RequestMapping("market/usedInsert") //url 예전 .do
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
-		return new ModelAndView("usedItem/usedInsert"); //jsp주소
+		return new ModelAndView("market/usedInsert"); //jsp주소
 	}
 	// 중고게시판 등록 폼
-	@RequestMapping("used/usedInsertForm") //url 예전 .do
+	@RequestMapping("market/usedInsertForm") //url 예전 .do
 	public ModelAndView test7(HttpServletResponse response) throws IOException{
-		return new ModelAndView("usedItem/usedInsertForm"); //jsp주소
+		return new ModelAndView("market/usedInsertForm"); //jsp주소
 	}
 	// 중고게시판 수정 폼
-	@RequestMapping("used/usedUpdateForm") //url 예전 .do
+	@RequestMapping("market/usedUpdateForm") //url 예전 .do
 	public ModelAndView test8(HttpServletResponse response) throws IOException{
-		return new ModelAndView("usedItem/usedUpdateForm"); //jsp주소
+		return new ModelAndView("market/usedUpdateForm"); //jsp주소
 	}
 }
