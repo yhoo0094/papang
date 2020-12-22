@@ -110,7 +110,7 @@ window.onload = function() {
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
 			<span class="author"> 
 				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/siren.png"></a> 
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
@@ -119,10 +119,58 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+		<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/siren.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+		<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/siren.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
@@ -134,7 +182,7 @@ window.onload = function() {
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
 			<span class="author"> 
 				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/siren.png"></a> 
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
@@ -143,67 +191,16 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
 					</div>
 				</div>
 		</ol>
-			<ol class="lst_recipe cool_recipes">
-			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
-			<span class="author"> 
-				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-			</span>
-				<!-- 시간,좋아요,공유 -->
-				<div class="option">
-					<div class="time">
-						<a href="">조회 100회</a>
-					</div>
-					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
-					</div>
-					<div class="share">
-						<a class="call-share">공유</a>
-					</div>
-				</div>
-		</ol>
-			<ol class="lst_recipe cool_recipes">
-			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
-			<span class="author"> 
-				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-				<a href="#">DBVALUE</a>
-			</span>
-				<!-- 시간,좋아요,공유 -->
-				<div class="option">
-					<div class="time">
-						<a href="">조회 100회</a>
-					</div>
-					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
-					</div>
-					<div class="share">
-						<a class="call-share">공유</a>
-					</div>
-				</div>
-		</ol>
-		
-
-	
 	</div>
 	<!-- box 끝 -->	
 </div>

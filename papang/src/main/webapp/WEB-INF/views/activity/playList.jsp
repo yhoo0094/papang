@@ -80,12 +80,12 @@ window.onload = function() {
 <!-- 전체 div 시작 -->
 <div>
 		
-	<div class="Bigtitle">아빠와 요리해요</div>
+	<div class="Bigtitle">아빠와 함께 놀아요</div>
 	<div class="search_div" align="center">
-		<button class="search_btn" id="search1">이유식 만들기</button>
-		<button class="search_btn" id="search2">아이와 함께 요리해요</button>
-		<button class="search_btn" id="search3">비건아이로 키우기</button>
-		<button class="search_btn" id="search4">육식동물 아이</button>
+		<button class="search_btn" id="search1">예비 파파</button>
+		<button class="search_btn" id="search2">만0 ~ 1세</button>
+		<button class="search_btn" id="search3">만 2세</button>
+		<button class="search_btn" id="search4">만3 ~ 6세</button>
 	</div>
 	
 	<!-- test -->
@@ -93,21 +93,21 @@ window.onload = function() {
 	<div class="header_div">	
 	<div class="title_div">
 		<h1>
-  			<a href="" class="typewrite" data-period="2000" data-type='[ "아이와 함께 하는 즐거운 요리 ", "나만의 요리를 직접 만들어 보세요 !"]'  >
+  			<a href="" class="typewrite" data-period="2000" data-type='[ "아이와 함께 하는 즐거운 놀이 ", "아빠! 아이와 함께 놀아요 !"]'  >
     			<span class="wrap"></span>
  			 </a>
 		</h1>
 	</div>
 	
 	<div class="button_div">
-		<button class="button" style="vertical-align:middle"><span>나만의 새 요리 만들기</span></button>
+		<button class="button" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
 	</div>	
 	</div>
 	<!-- box -->
 	<div class="box_div" >
 		<ol class="lst_recipe cool_recipes">
 			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
 				<a href="#"> 
 					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
@@ -119,19 +119,19 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
 					</div>
 				</div>
 		</ol>
-			<ol class="lst_recipe cool_recipes">
+		<ol class="lst_recipe cool_recipes">
 			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
 				<a href="#"> 
 					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
@@ -143,19 +143,19 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
 					</div>
 				</div>
 		</ol>
-			<ol class="lst_recipe cool_recipes">
+		<ol class="lst_recipe cool_recipes">
 			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
 				<a href="#"> 
 					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
@@ -167,19 +167,19 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
 					</div>
 				</div>
 		</ol>
-			<ol class="lst_recipe cool_recipes">
+		<ol class="lst_recipe cool_recipes">
 			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
 				<a href="#"> 
 					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
@@ -191,19 +191,16 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a href="">조회 100회</a>
+						<a href="">00분</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점 4</button>
+							<button type="submit" class="btn_like">좋아요</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>
 					</div>
 				</div>
 		</ol>
-		
-
-	
 	</div>
 	<!-- box 끝 -->	
 </div>

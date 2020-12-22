@@ -11,13 +11,36 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ActivityController {
 
-	@RequestMapping("/cookList") //url 예전 .do
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("activity/cookList"); //jsp주소
+	@RequestMapping("activity/cookList") 
+	public ModelAndView cookList(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/cookList"); 
 	}
 	
-	@RequestMapping("/activityHAHA") //url 예전 .do
-	public ModelAndView test1(HttpServletResponse response) throws IOException{
-		return new ModelAndView("activity/test"); //jsp주소
+	@RequestMapping("activity/cookForm")
+	public ModelAndView cookForm(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/cookForm"); 
 	}
+	
+	@RequestMapping("activity/cookView") 
+	public ModelAndView cookView(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/cookView"); 
+	}
+	
+	@RequestMapping("activity/playList") 
+	public ModelAndView playList(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/playList"); 
+	}
+	
+	@RequestMapping("activity/playForm") 
+	public ModelAndView playForm(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/playForm"); 
+	}
+	
+	@RequestMapping("activity/playView") 
+	public ModelAndView playView(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/playView");
+	}
+	
+	
+	
 }
