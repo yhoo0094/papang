@@ -33,21 +33,21 @@ font-size:50px;
 			</div>
 			<div>
 				</br>
-			    <h4>회원탈퇴 주의사항</h4>
-			    1. 회원 탈퇴는 즉시 처리되며, 개인정보가 모두 삭제됩니다. </br>
-			   <p style="color:red">2. 단, 게시판 등에 공유하신 게시물은 탈퇴 후에도 삭제되지 않습니다.</p>
+			    <h3>회원탈퇴 주의사항</h3></br>
+			   <h4> 1. 회원 탈퇴는 즉시 처리되며, 개인정보가 모두 삭제됩니다.<h4>
+			   <h4 style="color:red">2. 단, 게시판 등에 공유하신 게시물은 탈퇴 후에도 삭제되지 않습니다.</h4>
 			   	</br>
 			   
 			   
 			   	<form id="myForm" action="../member/update_mypage.do" method="post"> 
-			   	<label style="font-size:20px;margin:50px">아이디　</label><input class="input_small" type="text" id="id"
+			   	<label style="font-size:20px;margin:50px"><b>아이디</b>　</label><input class="input_small" type="text" id="id"
 
 							name="id" readonly value="${ member.id }">
 			    </br>
-				<label style="font-size:20px;margin:50px">이름　　</label><input class="input_small" type="text" id="id"
+				<label style="font-size:20px;margin:50px"><b>이름　</b>　</label><input class="input_small" type="text" id="id"
 							name="id" readonly value="${ member.id }">
 				</br>
-				<label style="font-size:20px;margin:50px">비밀번호</label><input class="input_small" type="password" id="id"
+				<label style="font-size:20px;margin:50px"><b>비밀번호</b></label><input class="input_small" type="password" id="id"
 							name="id"  value="${ member.id }">
 							
 						<p class="w3-center";>

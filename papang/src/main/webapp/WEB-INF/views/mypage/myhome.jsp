@@ -31,7 +31,7 @@ p {
 </head>
 <body>
 	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
+		<div class="w3-container ">
 			<div class="w3-large" align="center">
 				<h3 class="big_title">회원 정보 수정</h3>
 			</div>

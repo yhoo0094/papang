@@ -51,7 +51,7 @@ public class MypageController {
 	public ModelAndView test9(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myboard_police"); 
 	}
-	@RequestMapping("mypage/myboard_care") //내 댓글보기
+	@RequestMapping("mypage/myboard_care") //돌봄신청내역
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myboard_care"); 
 	}

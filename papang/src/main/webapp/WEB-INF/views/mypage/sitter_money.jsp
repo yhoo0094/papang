@@ -99,7 +99,7 @@ font-size:20px;
 <br>
 <br>
 					   <label style="font-size:20px;margin:20px">총금액</label><input class="small_title" type="text" id="id"
-							name="id"  value="${ member.id }">
+							name="id"  value="${ member.id }"><label style="font-size:20px;margin:20px">원</label>
 				</div>	
 					   
 				        페이징???~~~~~~
