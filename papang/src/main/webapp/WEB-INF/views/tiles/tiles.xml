@@ -9,8 +9,17 @@
 			value="/WEB-INF/views/admin/{1}.jsp" />
 	</definition>
 	
+	<!-- home -->
+	<definition name="main/*" template="/WEB-INF/views/layout/base.jsp">
+		<put-attribute name="main" value="/WEB-INF/views/main/{1}.jsp" />	
+		<put-attribute name="body" value="" />
+		<put-attribute name="left" value="" />
+		<put-attribute name="banner" value=""/>
+	</definition>
+	
 	<!-- mypage -->
 	<definition name="mypage/*" template="/WEB-INF/views/layout/base.jsp">
+		<put-attribute name="main" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/mypage/{1}.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/layout/mypagemenu.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
@@ -18,32 +27,34 @@
 	
 	<!-- sitter -->
 	<definition name="sitter/*" template="/WEB-INF/views/layout/base.jsp">
+		<put-attribute name="main" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/sitter/{1}.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/layout/sitterMenu.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
 	</definition>
-	
-	<!-- base -->
-	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">	
-		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
-		<put-attribute name="left" value="" />
-		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
-	</definition>
-	
+
 	<!-- market -->
 	<definition name="market/*" template="/WEB-INF/views/layout/base.jsp">	
+		<put-attribute name="main" value="" />
 		<put-attribute name="body" value="/WEB-INF/views/market/{1}.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/layout/marketMenu.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
 	</definition>
 	
 	<!-- used -->
-	<definition name="used/*" template="/WEB-INF/views/layout/base.jsp">	
+	<definition name="used/*" template="/WEB-INF/views/layout/base.jsp">
+		<put-attribute name="main" value="" />	
 		<put-attribute name="body" value="/WEB-INF/views/usedItem/{1}.jsp" />
 		<put-attribute name="left" value="/WEB-INF/views/layout/usedMenu.jsp" />
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
 	</definition>
-
-
-
+	
+	<!-- base -->
+	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">
+		<put-attribute name="main" value="" />	
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+		<put-attribute name="left" value="" />
+		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
+	</definition>
+	
 </tiles-definitions>

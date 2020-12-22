@@ -107,6 +107,11 @@ html {
 	width: 70%;
 }
 
+.main_div {
+	display: block;
+	margin: 140px 0 50px 0;
+}
+
 .bannderImg{
 	float: right;
 	width: 10%;
@@ -199,6 +204,9 @@ html {
 
 	<tiles:insertAttribute name="left" />
 	<tiles:insertAttribute name="banner" />
+	<div class="main_div">
+		<tiles:insertAttribute name="main" />
+	</div>
 	<div class="center_div">
 		<tiles:insertAttribute name="body" />
 	</div>
