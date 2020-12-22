@@ -2,10 +2,18 @@ package co.company.papang.impl;
 
 import java.util.List;
 
-import co.company.papang.vo.Emp;
+import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.UsedVO;
 
 public interface EsMapper {
-	public List<Emp> getEmpList(Emp emp);
-
+	
+	// 판매상품
+	
+	public ProductVO getItem(ProductVO product);
+	
+	// 중고장터
+	public List<UsedVO> getUsedList(UsedVO used);
+	public UsedVO getUsed(UsedVO used);
+	public int insertUsed(UsedVO used);
 }
 

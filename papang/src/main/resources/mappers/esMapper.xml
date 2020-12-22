@@ -3,23 +3,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.papang.impl.EsMapper">
-
+<!-- 판매상품 -->
 <!-- 단건조회  -->
-	<select id="getEmp" parameterType="emp" resultType="emp">
-		SELECT  
-		        first_name,
-				last_name,
-				email,
-				hire_date,
-				job_id
-		FROM employees
-		WHERE employee_id = #{employeeId}
+	<select id="getItem" parameterType="used" resultType="ProductVO">
+		SELECT *
+		FROM PRODUCT
+		WHERE pro_no = #{pro_no}
+	</select>
+
+
+
+<!-- 중고장터 -->
+<!-- 단건조회  -->
+	<select id="getUsed" parameterType="used" resultType="UsedVO">
+		SELECT *
+		FROM USED
+		WHERE used_no = #{used_no}
 	</select>
 	
 <!-- 전체조회  -->	
-	<select id="getEmpList" resultType="emp">
-		SELECT rownum id, e.* 
-		  FROM employees e
+	<select id="getUsedList" resultType="UsedVO">
+		SELECT * 
+		  FROM USED
+		<!-- 여기부터 존재의의를 잘 몰겠음
 		<where>  
 		  <if test="departmentId != null">
 		       department_id = #{departmentId}
@@ -40,26 +46,33 @@
                     #{id}
                 </foreach>
           </if>      
-        </where>	
-		 ORDER BY first_name 
+        </where> -->	
+		 ORDER BY used_no DESC 
 	</select>
 
-<!--  사원등록    -->
-	<insert id="insertEmp" parameterType="emp">
-		INSERT INTO EMPLOYEES (	employee_id, 
-								first_name, 
-								last_name,
-								email,
-								hire_date,
-								job_id
-								)
-	 	                VALUES(
-	 	               			#{employeeId},
-	 	               			#{firstName},
-	 	               			#{lastName},
-	 	               			#{email},
-	 	               			#{hireDate},
-	 	               			#{jobId})
+<!--  글등록    -->
+	<insert id="insertUsed" parameterType="used">
+		INSERT INTO USED (	
+							used_no,
+							mbr_id, 
+							used_title, 
+							used_date,
+							used_category,
+							used_loc,
+							used_pic,
+							used_price,
+							used_content
+							)
+	 	            VALUES(
+	 	            		seq_used_used_no.nextval,
+	 	               		#{mbr_id},
+	 	               		#{used_title},
+	 	               		sysdate,
+	 	               		#{used_category},
+	 	               		#{used_loc},
+	 	               		#{used_pic},
+	 	               		#{used_price},
+	 	               		#{used_content})
 	</insert>
 	
 

@@ -17,4 +17,6 @@ public class UsedVO {
 	private String used_loc;
 	private String used_pic;
 	private String used_hit;
+	private String used_price;
+	private String used_content;
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%--  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" --%>
+<!--  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" -->
 
 <div class="container center_div">
 
@@ -23,10 +23,10 @@
 		<div class="col-lg-6">
 			<div>
 				<!-- 관리자 아이디가 따로 있으니까 c:if 에서 admin의 id값이 비지 않았을때 보는걸로 하면..될듯..?? -->
-				<%-- 		<c:if test='${!empty ad_id}'> --%>
+				<!-- 		c:if test='${!empty ad_id}' -->
 				<button type="button" class="btnRed" id="itemUpdate">수정</button>
 				<button type="button" class="btnRed" id="itemDelete">삭제</button>
-				<!-- 		</c:if> -->
+				<!-- 		/c:if -->
 			</div>
 			<p />
 			<h2>상품명</h2>
