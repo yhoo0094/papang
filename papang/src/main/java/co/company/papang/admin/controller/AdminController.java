@@ -30,6 +30,7 @@ public class AdminController {
 	public ModelAndView test2_2(NqVO nqVO) throws IOException{
 		jymapper.insertNq(nqVO);
 		return new ModelAndView("admin/nqInsert"); //공지사항 등록폼
+		
 	}
 	
 	@RequestMapping("/admin/nqInsertReg") //url 예전 .do

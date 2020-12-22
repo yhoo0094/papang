@@ -347,7 +347,7 @@ CREATE TABLE NQ
 	-- 제목
 	nq_title varchar2(300),
 	-- 내용
-	nq_content varchar2(4000),
+	nq_content long,
 	-- 분류
 	nq_category varchar2(50),
 	-- 첨부파일

@@ -57,7 +57,7 @@
 								)
 	 	                VALUES(
 	 	               			SEQ_NQ_nq_no.nextval,
-	 	               			'admin',
+	 	               			'ADMIN',
 	 	               			#{nq_title},
 	 	               			#{nq_content},
 	 	               			#{nq_category},

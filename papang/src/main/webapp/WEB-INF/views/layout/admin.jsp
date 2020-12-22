@@ -21,28 +21,31 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
 	crossorigin="anonymous"></script>
-	<script
+<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/demo/chart-area-demo.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/demo/chart-bar-demo.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
-		crossorigin="anonymous"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>	
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin/js/scripts.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin/assets/demo/chart-area-demo.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin/assets/demo/chart-bar-demo.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="./resources/json.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -174,14 +177,12 @@
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid">
-				
-				</div>
+				<div class="container-fluid"></div>
 			</footer>
 		</div>
 	</div>
 
-	
+
 
 </body>
 </html>
