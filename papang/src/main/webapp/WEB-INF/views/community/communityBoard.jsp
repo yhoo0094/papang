@@ -3,17 +3,13 @@
 
 <head>
 <style type="text/css">
-.communityCategory {
-	display: inline;
-	float: right;
-	width: 10%;
-}
+
 </style>
 </head>
 <body>
 	<br>
 	<h3 style="display: inline;">커뮤니티 게시판</h3>
-	<form class="communityCategory" action="goNoticeBoardPage.do"
+	<form class="category" action="#"
 		method="get">
 		<select id="type" name="type" style="width: 100%">
 			<option value="">분류

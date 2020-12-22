@@ -234,11 +234,9 @@ html {
 		$(()=>{
 			$("#dataTable_filter").attr("align","right");
 			$("#dataTable_length").attr("align","left");
-			$("#divForEntryNum .custom-select").empty();
-			$("#divForEntryNum .custom-select").append("<option value='3'>3</option>");
-			$("#divForEntryNum .custom-select").append("<option value='6' selected='selected'>6</option>");
-			$("#divForEntryNum .custom-select").trigger("onchange");
-			$("#divForEntryNum .custom-select").trigger("onclick");
+/* 			$("#divForEntryNum .custom-select").empty();
+			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
+			$("#divForEntryNum .custom-select").trigger("change"); */
 		})
 	</script>
 </body>

@@ -57,3 +57,10 @@ th {
 .pagination{
 	margin-top: 1rem;
 }
+
+/* 카테고리 설렉트 */
+.category {
+	display: inline;
+	float: right;
+	width: 10%;
+}
