@@ -1,140 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
-<html>
+
 <head>
-<title>중고게시판</title>
-<style>
-.pagination, li.active, .pagination li {
-	display: inline-block;
-}
-
-.pagination a, li.active {
-	color: black;
-	padding: 8px 16px;
-	text-decoration: none;
-	border: 1px solid #ddd;
-}
-
-.pagination li.active {
-	background-color: rgb(255, 136, 38);
-	color: black;
-	border: 1px solid #ddd;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-}
-
-.pagination a, li.active {
-	border-radius: 5px;
-	border-bottom-left-radius: 5px;
-}
-
-.pagination ul {
-	width: 100%;
-}
-
-.sizeDiv {
-	padding: 4% 10% 2%;
-}
-
-th {
-	text-align: center;
-}
-
-body {
-	background-color: #fff5d2;
-}
-
-.tableTrTh {
-	background-color: rgb(249, 196, 94);
-}
-
-.boardTagA {
-	color: black;
-}
-
-.btnWrite {
- margin-right: 5%
-}
-
-/* 임시 나중에 삭제할 것 */
-a.active {
-	background-color: rgb(249, 196, 94);
+<style type="text/css">
+.category {
+	display: inline;
+	float: right;
+	width: 10%;
 }
 </style>
 </head>
 <body>
-	<div class="sizeDiv">
+	<br>
+	<h3 style="display: inline;">중고장터 게시판</h3>
+	<form class="category" action="#"
+		method="get">
+		<select id="type" name="used_loc" style="width: 100%">
+			<option value='택배' selected>택배</option>
+			<option value='서울'>서울</option>
+			<option value='부산'>부산</option>
+			<option value='대구'>대구</option>
+			<option value='인천'>인천</option>
+			<option value='광주'>광주</option>
+			<option value='대전'>대전</option>
+			<option value='울산'>울산</option>
+			<option value='강원'>강원</option>
+			<option value='경기'>경기</option>
+			<option value='경남'>경남</option>
+			<option value='경북'>경북</option>
+			<option value='전남'>전남</option>
+			<option value='전북'>전북</option>
+			<option value='제주'>제주</option>
+			<option value='충남'>충남</option>
+			<option value='충북'>충북</option>
+		</select>
+	</form>
+	<hr />
+	<br>
+	<div align="center">
+		<table class="table" id="dataTable">
+			<thead>
+				<tr class="tableTrTh">
+					<th width="5%" class="tableTh">글번호</th>
+					<th width="10%" class="tableTh">분류</th>
+					<th width="25%" class="tableTh">사진</th>
+					<th width="30%" class="tableTh">제목</th>
+					<th width="15%" class="tableTh">작성자</th>
+					<th width="10%" class="tableTh">작성일</th>
+					<th width="5%" class="tableTh">조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td align="center">00001</td>
+					<td align="center">판매중</td>
+					<td align="center">사진</td>
+					<td><a href="#" class="boardTagA">제목텍스트</a></td>
+					<td align="center">홍길동</td>
+					<td align="center">20-12-16 12:20</td>
+					<td align="center">0</td>
+				</tr>
+				<tr>
+					<td align="center">00002</td>
+					<td align="center">판매중</td>
+					<td align="center">사진</td>
+					<td><a href="#" class="boardTagA">제목텍스트</a></td>
+					<td align="center">전우치</td>
+					<td align="center">20-12-16 12:20</td>
+					<td align="center">0</td>
+				</tr>
+				<tr>
+					<td align="center">00003</td>
+					<td align="center">판매완료</td>
+					<td align="center">사진</td>
+					<td><a href="#" class="boardTagA">제목텍스트</a></td>
+					<td align="center">김유신</td>
+					<td align="center">20-12-16 12:20</td>
+					<td align="center">0</td>
+				</tr>
+			</tbody>
+		</table>
 		<br>
-		<h3>게시판</h3>
-		<hr />
-		<div align="right">
-			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
-				method="get">
-				<select id="type" name="type">
-					<option value="">분류
-					<option value="공지사항">공지사항
-					<option value="이벤트">이벤트
-				</select> <input type="hidden" name="p" value="1">
-			</form>
-		</div>
-		<br>
-		<div align="center">
-			<table class="table">
-				<thead>
-					<tr class="tableTrTh">
-						<th width="15%">게시글번호</th>
-						<th width="20%">제목</th>
-						<th width="15%">분류</th>
-						<th width="15%">작성일자</th>
-						<th width="15%">조회수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td align="center">1</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">2</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-				</tbody>
-			</table>
-			<br>
-			<%-- <my:paging paging="${paging}" jsfunc="goPage" /> --%>
-			
-			<!-- 임시! 나중에 삭제할 것 -->
-			<div class="pagination">
-				<a href="#">&laquo;</a> 
-				<a href="#">1</a> 
-				<a class="active" href="#">2</a>
-				<a href="#">3</a> 
-				<a href="#">4</a> <a href="#">5</a> 
-				<a href="#">6</a>
-				<a href="#">&raquo;</a>
-			</div>
-			
-			
-		</div>
-		<div align="right">
-			<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
-		</div>
+	</div>
+	<div align="right">
+		<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
 	</div>
 </body>
-</html>

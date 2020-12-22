@@ -30,7 +30,19 @@
 		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
 	</definition>
 	
+	<!-- market -->
+	<definition name="market/*" template="/WEB-INF/views/layout/base.jsp">	
+		<put-attribute name="body" value="/WEB-INF/views/market/{1}.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/layout/marketMenu.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
+	</definition>
 	
+	<!-- used -->
+	<definition name="used/*" template="/WEB-INF/views/layout/base.jsp">	
+		<put-attribute name="body" value="/WEB-INF/views/usedItem/{1}.jsp" />
+		<put-attribute name="left" value="/WEB-INF/views/layout/usedMenu.jsp" />
+		<put-attribute name="banner" value="/WEB-INF/views/layout/banner.jsp" />
+	</definition>
 
 
 
