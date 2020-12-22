@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> --%>
+<%--  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" --%>
 
 <div class="container center_div">
 
@@ -54,9 +54,10 @@
 							</td>
 							<td>
 								<button type="button" class="btn" id="cart">장바구니</button> <!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
-							</td></tr>
-					
-						</tfoot>
+							</td>
+						</tr>
+
+					</tfoot>
 				</table>
 
 			</div>
@@ -64,22 +65,23 @@
 			<p>이 수많은 빈칸을 우야노</p>
 			<p>흠냐..</p>
 			<p>버튼을 위에 테이블에 같이둘지, 아래에 p태그 밑에 따로 둘지도 고민이야</p>
-<p>		<button type="button" class="btnRed" id="buynow">결제</button>
-			</p>
-<p>		<button type="button" class="btnYellow" id="cart">장바구니</button>
-			</p>
-<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
+			<div>
+				<button type="button" class="btnRed" id="buynow"
+					style="margin-right: 30px">결제</button>
+				<button type="button" class="btnYellow" id="cart">장바구니</button>
+			</div>
+			<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
 		</div>
 	</div>
 	<!-- /.row -->
-<!-- 상세보기 -->
-<div>
-<h2>상세정보</h2>
-<div class="col-lg-10">
+	<!-- 상세보기 -->
+	<div>
+		<h2>상세정보</h2>
+		<div class="col-lg-10">
 			<img class="img-fluid rounded mb-4"
 				src="http://placehold.it/1200x1000" alt="">
 		</div>
-</div>
+	</div>
 
 	<!-- Team Members -->
 	<h2>이거 필요없ㅇ르거같은디</h2>
