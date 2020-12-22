@@ -15,11 +15,7 @@
 			</form>
 		</div>
 		<br>
-		<div>
-		<div class="card-body">
-			<div>
-			<table class="table table-bordered" id="dataTable" width="100%"
-					cellspacing="0">
+			<table class="table" id="dataTable">
 				<thead>
 					<tr class="tableTrTh">
 						<th width="15%" class="tableTh">게시글번호</th>
@@ -649,18 +645,10 @@
 					
 				</tbody>
 			</table>
-			</div>
-			</div>
 			<br>	
-		</div>
 		<div align="right">
 			<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
 		</div>
-		<script type="text/javascript">
-			$(document).ready( function () {
-			    $('#dataTable').DataTable();
-			} );
-			console.log("안녕");
-		</script>
+
 		
 

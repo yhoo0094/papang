@@ -12,15 +12,15 @@
 <title>papang</title>
 
 <!-- Bootstrap core CSS -->
-<link
+<!-- <link
 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"
 	rel="stylesheet">
 
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>	
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->	
 
-<link
-	href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <!-- Custom styles for this template -->
@@ -115,36 +115,30 @@ html {
 	margin-right: 10px;
 }
 
-.left_div{
-	
-}
-
-
 /* .naviClass, .banner_div, .center_div{
 	display: block;
 } */
 
 /* 공용css */
-/* 헤더에 있는 진한 주황색 */
-.strongYellow {
-	background-color: rgb(249, 196, 94);
-}
-/* 배경에 연한 노란색 */
-.background {
-	background-color: #fff5d2;
-}
+	/* 헤더에 있는 진한 주황색 */
+	.strongYellow {background-color: rgb(249, 196, 94);}
+	/* 배경에 연한 노란색 */
+	.background {background-color: #fff5d2;}
+	/* 흰배경 */
+	.whiteBackground{background-color: white;}
 
 .custom-select, .form-control {
 	display: inline;
 	width: auto;
 }
+
 </style>
 </head>
 
 <body>
 	<div class="naviClass">
 		<!-- Navigation -->
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark fixed-top">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">Start Bootstrap</a>
 				<button class="navbar-toggler navbar-toggler-right" type="button"
@@ -203,9 +197,7 @@ html {
 		</nav>
 	</div>
 
-	<div class="left_div" align="left">
-		<tiles:insertAttribute name="left" />
-	</div>
+	<tiles:insertAttribute name="left" />
 	<tiles:insertAttribute name="banner" />
 	<div class="center_div">
 		<tiles:insertAttribute name="body" />
@@ -238,6 +230,17 @@ html {
 		src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
 	<!-- 페이지네이션 날로먹는 빌드 끝 -->
 	
+	<script type="text/javascript">
+		$(()=>{
+			$("#dataTable_filter").attr("align","right");
+			$("#dataTable_length").attr("align","left");
+			$("#divForEntryNum .custom-select").empty();
+			$("#divForEntryNum .custom-select").append("<option value='3'>3</option>");
+			$("#divForEntryNum .custom-select").append("<option value='6' selected='selected'>6</option>");
+			$("#divForEntryNum .custom-select").trigger("onchange");
+			$("#divForEntryNum .custom-select").trigger("onclick");
+		})
+	</script>
 </body>
 
 </html>
