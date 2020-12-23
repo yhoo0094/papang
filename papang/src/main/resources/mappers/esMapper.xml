@@ -5,7 +5,7 @@
 <mapper namespace="co.company.papang.impl.EsMapper">
 <!-- 판매상품 -->
 <!-- 단건조회  -->
-	<select id="getItem" parameterType="used" resultType="ProductVO">
+	<select id="getItem" parameterType="usedvo" resultType="ProductVO">
 		SELECT *
 		FROM PRODUCT
 		WHERE pro_no = #{pro_no}
@@ -15,7 +15,7 @@
 
 <!-- 중고장터 -->
 <!-- 단건조회  -->
-	<select id="getUsed" parameterType="used" resultType="UsedVO">
+	<select id="getUsed" parameterType="usedvo" resultType="UsedVO">
 		SELECT *
 		FROM USED
 		WHERE used_no = #{used_no}
@@ -51,7 +51,7 @@
 	</select>
 
 <!--  글등록    -->
-	<insert id="insertUsed" parameterType="used">
+	<insert id="insertUsed" parameterType="usedvo">
 		INSERT INTO USED (	
 							used_no,
 							mbr_id, 
