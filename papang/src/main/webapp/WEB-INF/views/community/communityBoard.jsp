@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <head>
 <style type="text/css">
-
 </style>
 </head>
 <body>
 	<br>
 	<h3 style="display: inline;">커뮤니티 게시판</h3>
-	<form class="category" action="#"
-		method="get">
+	<form:form class="category" action="#" method="post" modelAttribute="category">
 		<select id="type" name="type" style="width: 100%">
 			<option value="">분류
 			<option value="정보">정보
 			<option value="일상">일상
 			<option value="질문">질문
 		</select>
-	</form>
-	<hr />
+	</form:form>
+	<hr/>
 	<br>
 	<div align="center">
 		<table class="table" id="dataTable">
@@ -60,4 +58,13 @@
 	<div align="right">
 		<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
 	</div>
+	<script type="text/javascript">
+ 		$(()=>{
+			$("#createBtn").on({
+				"click" : function() {
+					location.href="${pageContext.request.contextPath}/communityForm";		
+				}
+			})
+		})
+	</script>
 </body>

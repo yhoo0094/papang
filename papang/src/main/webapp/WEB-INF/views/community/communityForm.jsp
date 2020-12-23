@@ -43,7 +43,6 @@
 	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
-
 </head>
 <body>
 	<div align="center" class="communityFormTitle strongYellow">
@@ -51,28 +50,27 @@
 	</div>
 	<br>
 	<div align="center" class="communityFormDiv">
-		<form:form action="communityFormInsert" method="post" modelAttribute="emp">
-		
-		</form:form>
-		<form id="frm" name="frm" action="#">
+		<form:form action="communityFormInsert" modelAttribute="communityVO">
 			<table class="communityFormTable" border="1">
 				<tr>
 					<td align="center" width="20%" class="strongYellow">제목</td>
-					<td class="whiteBackground" width="80%"><input type="text"
-						name="title" class="communityFormType"></td>
+					<td class="whiteBackground" width="80%">
+						<form:input path="com_title" type="text" class="communityFormType"/>
+					</td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow">분류</td>
-					<td class="whiteBackground"><select name="type"
-						class="communityFormType">
+					<td class="whiteBackground">
+						<form:select path="com_category" class="communityFormType">
 							<option value="정보">정보
 							<option value="일상">일상
 							<option value="질문">질문
-					</select></td>
+						</form:select>
+					</td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
-					<td class="whiteBackground"><textarea
+					<td class="whiteBackground"><textarea id="summernote"
 							class="communityFormTxtarea" rows="20" cols="102" name="comm"></textarea></td>
 				</tr>
 			</table>
@@ -82,12 +80,8 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 			</div>
-		</form>
+		</form:form>
 		
-		<form method="post">
-  			<textarea id="summernote" name="editordata"></textarea>
-		</form>
-
 		<br>
 		<div align="left">
 			<b style="font-size: 20px;">댓글 쓰기</b>

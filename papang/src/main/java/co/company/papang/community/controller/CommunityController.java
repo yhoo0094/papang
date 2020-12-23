@@ -5,8 +5,11 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import co.company.papang.vo.CommunityVO;
 
 @Controller
 public class CommunityController {
@@ -17,8 +20,11 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/communityForm") //커뮤니티 글쓰러 가기
-	public ModelAndView communityForm(HttpServletResponse response) throws IOException{
-		return new ModelAndView("community/communityForm"); //jsp주소
+	public String communityForm(Model model) throws IOException{
+		CommunityVO communityVO = new CommunityVO();
+		communityVO.setCom_title("ggg");
+		model.addAttribute("communityVO", communityVO);
+		return "community/communityForm"; //jsp주소
 	}
 	
 	@RequestMapping("/communityFormInsert") //커뮤니티 글 인서트
@@ -72,4 +78,5 @@ public class CommunityController {
 	public String test() {
 		return "normal/test";
 	}	
+
 }
