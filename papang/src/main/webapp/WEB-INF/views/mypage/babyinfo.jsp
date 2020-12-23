@@ -39,23 +39,34 @@ font-size:25px;
 .table-bordered {text-align: center;}
 .btnYellow {font-size:22px;}
 input[type=checkbox]{width: 20px;height: 20px;}
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.content_div{width: 90%;
+    margin: 0px 0px 0px 200px;}
+    .w3-large {
+    margin: 0 0 60px 230px;
+}
+table tbody tr td {
+  font-size: 24px;
+}
 </style>
 <title>마이페이지</title>
 </head>
 <body>
-
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
+ 
+	<div>
+		<div>
 			<div class="w3-large" align="center">
 				<h3 class="big_title">아기정보 관리</h3>
 			</div>
-			
-				</br>
-			   <button class="btnYellow bSmall">삭제</button>
-			   </br>
+			<div class="content_div">
+				<br>
 			    
 			  
-					   <div>
+					   
+					    <button class="btnYellow bSmall">삭제</button>
 					      <table class="table table-bordered table-hovers">
 					         <tr style="background:rgb(249, 196, 94)">
 					            <th width="250">선택</th>
@@ -80,10 +91,12 @@ input[type=checkbox]{width: 20px;height: 20px;}
 					            </tr>
 					         </c:forEach>
 					      </table>
-					   </div>  
-					   </br>  
-					   </br>
-			<button style="font-size:22px">추가</button>		   
+					     
+					   <br>  
+					   <br>
+			<!-- <button style="font-size:22px">추가</button>	 -->
+			 <button class="btnYellow bSmall">추가</button>
+				   
 			<div style="background:rgb(249, 196, 94)">    					    
 			<label class="label">아이 이름</label>
 			<input class="input_small" type="text" id="id" name="id"></br>
@@ -99,7 +112,7 @@ input[type=checkbox]{width: 20px;height: 20px;}
 			</div>		
 		</div>
 	</div>
-	
+</div>	
 	
 	
 

@@ -26,16 +26,24 @@ p {
     margin-top: 0;
     margin-bottom: 1rem;
 }
+.content_div{width: 90%;
+    margin: 0px 0px 0px 200px;}
+    .w3-large {
+    margin: 0 0 60px 230px;
+}
+table tbody tr td {
+  font-size: 24px;
+}
 </style>
 <title>마이페이지</title>
 </head>
 <body>
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container ">
+	<div>
+		<div>
 			<div class="w3-large" align="center">
 				<h3 class="big_title">회원 정보 수정</h3>
 			</div>
-			<div>
+			<div class="content_div">
 			 
 				<!-- <form id="myForm" action="../member/update_mypage.do" method="post"> -->
 					<p>

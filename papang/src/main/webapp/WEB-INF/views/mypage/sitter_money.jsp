@@ -29,19 +29,30 @@ font-size:30px;
 font-size:20px;
 }
 
-
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.content_div{width: 90%;
+    margin: 0px 0px 0px 200px;}
+    .w3-large {
+    margin: 0 0 60px 230px;
+}
+table tbody tr td {
+  font-size: 24px;
+}
 </style>
 <title>월급확인</title>
 </head>
 <body>
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
+	<div>
+		<div>
 			<div class="w3-large" align="center">
 				<h3 class="big_title">월급확인</h3>
 			</div>
 			
 				</br>
-			    
+		<div class="content_div">	    
 			    <select class="input_small" id="room_address" name="room_address" >
                         <option>어</option>
                         <option>떻</option>
@@ -96,9 +107,9 @@ font-size:20px;
 					      </table>
 					   </div>
 					   
+<br> 
 <br>
-<br>
-					   <label style="font-size:20px;margin:20px">총금액</label><input class="small_title" type="text" id="id"
+					   <label style="font-size:20px;margin:20px">　　　　　　　　　　　　　　　　　　　　　　　　　총금액</label><input class="small_title" type="text" id="id"
 							name="id"  value="${ member.id }"><label style="font-size:20px;margin:20px">원</label>
 				</div>	
 					   
