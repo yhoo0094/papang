@@ -117,7 +117,7 @@ body {background-color: #fff5d2;}
 		<!-- Navigation -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <img class="papanglogo" alt="로고" src="${pageContext.request.contextPath}/resources/images/papang_logo.png"> </a>
+				<a class="navbar-brand" href="index.html"> <img class="papanglogo" alt="로고" src="${pageContext.request.contextPath}/resources/images/new_logo2.png"> </a>
 				<button class="navbar-toggler navbar-toggler-right" type="button"
 					data-toggle="collapse" data-target="#navbarResponsive"
 					aria-controls="navbarResponsive" aria-expanded="false"
