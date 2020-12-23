@@ -10,21 +10,24 @@
 <title>papang</title>
 
 <!-- Bootstrap core CSS -->
-<link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <!-- Custom styles for this template -->
-<link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet">
-<!-- 게시판 css -->
-<link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
-<!-- 파일업로드 nqInsertReg.jsp -->
+<%-- <link href="${pageContext.request.contextPath}/resources/main/css/modern-business.css" rel="stylesheet"> --%>
+<%-- <!-- 파일업로드 nqInsertReg.jsp -->
 <script src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
 <script src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css"> --%>
+
 <!-- font  -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
-
+<!-- 써머노트 -->
+<script src="${pageContext.request.contextPath}/resources/json.min.js"></script>
+<!-- 게시판 css -->
+<link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
 <style>
 /* 레이아웃 */
 .fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
@@ -75,7 +78,7 @@ body {background-color: #fff5d2;}
 
 .main_div {
 	display: block;
-	margin: 140px 0 50px 0;
+	margin: 100px 0 50px 0;
 }
 
 .bannderImg{
@@ -219,6 +222,7 @@ body {background-color: #fff5d2;}
 			$("#divForEntryNum .custom-select").trigger("change"); */
 		})
 	</script>
+	
 </body>
 
 </html>

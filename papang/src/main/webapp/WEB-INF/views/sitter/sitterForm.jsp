@@ -31,8 +31,10 @@
 .custom_calendar_table td, .custom_calendar_table th {
 	text-align: left;
 	vertical-align: text-top;
-	height: 80px;
-	width: 80px;
+	height: 60px;
+	min-width: 50px;
+	max-width: 50px;
+	font-size: 13px;
 }
 
 .prev, .next {

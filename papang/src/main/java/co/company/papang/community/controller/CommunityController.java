@@ -16,8 +16,14 @@ public class CommunityController {
 		return new ModelAndView("community/communityBoard"); //jsp주소
 	}
 	
-	@RequestMapping("/communityForm") //url 예전 .do
+	@RequestMapping("/communityForm") //커뮤니티 글쓰러 가기
 	public ModelAndView communityForm(HttpServletResponse response) throws IOException{
+		return new ModelAndView("community/communityForm"); //jsp주소
+	}
+	
+	@RequestMapping("/communityFormInsert") //커뮤니티 글 인서트
+	public ModelAndView communityFormInsert(HttpServletResponse response) throws IOException{
+		
 		return new ModelAndView("community/communityForm"); //jsp주소
 	}
 	
