@@ -4,59 +4,61 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
 
 @Controller
 public class CommunityController {
+	@Autowired SmMapper dao;
+	
 	/*-------------------------- 커뮤니티 --------------------------*/
 	@RequestMapping("/communityBoard") //url 예전 .do
-	public ModelAndView communityBoard(HttpServletResponse response) throws IOException{
-		return new ModelAndView("community/communityBoard"); //jsp주소
+	public String communityBoard(HttpServletResponse response) throws IOException{
+		return "community/communityBoard"; //jsp주소
 	}
 	
 	@RequestMapping("/communityForm") //커뮤니티 글쓰러 가기
-	public String communityForm(Model model) throws IOException{
-		CommunityVO communityVO = new CommunityVO();
-		communityVO.setCom_title("ggg");
-		model.addAttribute("communityVO", communityVO);
+	public String communityForm(Model model, CommunityVO communityVO) throws IOException{
 		return "community/communityForm"; //jsp주소
 	}
 	
 	@RequestMapping("/communityFormInsert") //커뮤니티 글 인서트
-	public ModelAndView communityFormInsert(HttpServletResponse response) throws IOException{
-		
-		return new ModelAndView("community/communityForm"); //jsp주소
+	public String communityFormInsert(CommunityVO communityVO, Errors errors ) throws IOException{
+		communityVO.setMbr_id("tempt");
+		dao.communityFormInsert(communityVO);
+		return "community/communityBoard"; //jsp주소
 	}
 	
 	/*-------------------------- 시터 --------------------------*/
 	@RequestMapping("/sitterMenu") //url 예전 .do
-	public ModelAndView sitterMenu(HttpServletResponse response) throws IOException{
-		return new ModelAndView("layout/sitterMenu"); //jsp주소
+	public String sitterMenu(HttpServletResponse response) throws IOException{
+		return "layout/sitterMenu"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterBoard") //url 예전 .do
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("sitter/sitterBoard"); //jsp주소
+	public String test(HttpServletResponse response) throws IOException{
+		return "sitter/sitterBoard"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterForm") //url 예전 .do
-	public ModelAndView sitterForm(HttpServletResponse response) throws IOException{
-		return new ModelAndView("sitter/sitterForm"); //jsp주소
+	public String sitterForm(HttpServletResponse response) throws IOException{
+		return "sitter/sitterForm"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterScheduleView") //url 예전 .do
-	public ModelAndView sitterScheduleView(HttpServletResponse response) throws IOException{
-		return new ModelAndView("sitter/sitterScheduleView"); //jsp주소
+	public String sitterScheduleView(HttpServletResponse response) throws IOException{
+		return "sitter/sitterScheduleView"; //jsp주소
 	}
 	
 	@RequestMapping("/reservationView") //url 예전 .do
-	public ModelAndView reservationView(HttpServletResponse response) throws IOException{
-		return new ModelAndView("sitter/reservationView"); //jsp주소
+	public String reservationView(HttpServletResponse response) throws IOException{
+		return "sitter/reservationView"; //jsp주소
 	}
 	/*-------------------------- 기타 --------------------------*/
 	@RequestMapping(value="/normalBoard")

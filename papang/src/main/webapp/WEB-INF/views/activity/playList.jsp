@@ -1,11 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+
+<head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
-<link rel = "preconnect"href = "https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
-<style>
+<style type="text/css">
+.communityFormTitle {
+	padding: 1%;
+}
+
+.sitterBoardInputSize {
+	width: 40%;
+}
+
+.sitterProfileImg {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 10px;
+}
+
+thead, #dataTable_filter, #dataTable_length {
+	display: none;
+}
+
+.dataTableTr {
+	display: inline;
+	width: 50%;
+}
+
+.dataTableDisplayBlock {
+	display: block;
+	width: 20%;
+}
+
+.TableInTheDataTable td {
+	border-top: none;
+	vertical-align: middle;
+	padding: 3px 11px;
+}
+
+.dataTableTr .sitterDiv {
+	padding: 6px;
+	border-radius: 10px;
+}
+
+.communityFormFilter {
+	width: 100%;
+	border-radius: 20px;
+	background-color: #ff971d;
+}
+
+.dataTableTr>td {
+    width: 260px; border: none;
+}
 .button {
  display: inline-block;border-radius: 4px;background-color:#e8505b;border: none;color: #FFFFFF;font-weight:bold;text-align: center;
  			font-size: 23px;padding: 17px;width: 270px;transition: all 0.5s;cursor: pointer;margin: 5px;}
@@ -16,7 +63,11 @@
 .button_div {display: inline;height: 70px;width: 59%;}
 .typewrite {color:rgb(249, 196, 94);margin-left: 260px; }
 .typewrite:hover {text-decoration: none; color:rgb(249, 196, 94);}
-.header_div{margin: 120px 0px 40px 0px;}
+.header_div{margin: 80px -180px 40px 0px;}
+.center_div {min-height: 0px;}
+.cook_div{border: 1px solid black;width: 80%;margin: 0 0 0 10%;}
+.dataTable{border :#fff5d2;}
+.table{margin: 4rem 0 1rem 0;}
 </style>
 <script>
 var TxtType = function(el, toRotate, period) {
@@ -76,10 +127,8 @@ window.onload = function() {
     document.body.appendChild(css);
 };
 </script>
+</head>
 <body>
-<!-- 전체 div 시작 -->
-<div>
-		
 	<div class="Bigtitle">아빠와 함께 놀아요</div>
 	<div class="search_div" align="center">
 		<button class="search_btn" id="search1">예비 파파</button>
@@ -98,14 +147,24 @@ window.onload = function() {
  			 </a>
 		</h1>
 	</div>
-	
+		<!-- box -->
 	<div class="button_div">
 		<button class="button" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
 	</div>	
 	</div>
-	<!-- box -->
-	<div class="box_div" >
-		<ol class="lst_recipe cool_recipes">
+	
+	
+	<div id="cook_div">
+		<table class="table" id="dataTable">
+			<thead>
+				<tr>
+					<th>가</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
 			<li>
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
@@ -129,7 +188,11 @@ window.onload = function() {
 					</div>
 				</div>
 		</ol>
-		<ol class="lst_recipe cool_recipes">
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
 			<li>
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
@@ -153,7 +216,11 @@ window.onload = function() {
 					</div>
 				</div>
 		</ol>
-		<ol class="lst_recipe cool_recipes">
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
 			<li>
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
@@ -177,7 +244,11 @@ window.onload = function() {
 					</div>
 				</div>
 		</ol>
-		<ol class="lst_recipe cool_recipes">
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
 			<li>
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
@@ -201,10 +272,375 @@ window.onload = function() {
 					</div>
 				</div>
 		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+					<tr class="dataTableTr">
+					<td>
+							<ol class="lst_recipe cool_recipes">
+			<li>
+			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<span class="author"> 
+				<a href="#"> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+				<a href="#">DBVALUE</a>
+			</span>
+				<!-- 시간,좋아요,공유 -->
+				<div class="option">
+					<div class="time">
+						<a href="">00분</a>
+					</div>
+					<div class="like">
+							<button type="submit" class="btn_like">좋아요</button>
+					</div>
+					<div class="share">
+						<a class="call-share">공유</a>
+					</div>
+				</div>
+		</ol>
+					</td>
+				</tr>
+				
+				
+			</tbody>
+		</table>
 	</div>
-	<!-- box 끝 -->	
-</div>
-<!--전체 div 끝 --> 
-
 </body>
-</html>

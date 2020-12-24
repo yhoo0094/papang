@@ -29,6 +29,13 @@
 
 <!-- 써머노트 -->
 <script src="${pageContext.request.contextPath}/resources/json.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
+
 <!-- 게시판 css -->
 <link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
 <style>

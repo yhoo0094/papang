@@ -34,15 +34,9 @@
 	border: solid gray 1px;
 	border-collapse: collapse;
 }
+.note-resizebar{display: none;}
 </style>
 
-
-<script
-	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/summernote/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
 </head>
 <body>
 	<div align="center" class="communityFormTitle strongYellow">
@@ -70,8 +64,8 @@
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
-					<td class="whiteBackground"><textarea id="summernote"
-							class="communityFormTxtarea" rows="20" cols="102" name="comm"></textarea></td>
+					<td class="whiteBackground"><form:textarea id="summernote"  path="com_content"
+							class="communityFormTxtarea" rows="20" cols="102" name="comm"></form:textarea></td>
 				</tr>
 			</table>
 			<br>

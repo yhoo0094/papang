@@ -67,6 +67,10 @@ public class MypageController {
 	}
 	
 	
+	@RequestMapping("mypage/test") //시터 정보보기(시터권한)
+	public ModelAndView test13(HttpServletResponse response) throws IOException{
+		return new ModelAndView("mypage/test"); 
+	}
 	
 	
 }
