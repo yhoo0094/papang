@@ -64,3 +64,5 @@ th {
 	float: right;
 	width: 10%;
 }
+
+.next, .previous {width: 70px;text-align: center;}

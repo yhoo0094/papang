@@ -43,12 +43,6 @@
 			<p>글글DBVALUE</p>
 			<p>글글DBVALUE</p>
 			<img class="_image" src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg">
-				<!-- <p class="comm_title">놀이방법</p> -->
-				<!-- <div class="comment">
-				 1. 집에서 커다란 이불을 준비해요
-				 2. 이불이 있나요 ? 나는 극세사가 좋아요
-				 3. 극세사는 좋ㅇ느데 춥네요
-				</div> -->
 		</div>
 		
 	</div>
