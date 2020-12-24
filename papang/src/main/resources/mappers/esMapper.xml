@@ -5,7 +5,7 @@
 <mapper namespace="co.company.papang.impl.EsMapper">
 <!-- 판매상품 -->
 <!-- 단건조회  -->
-	<select id="getItem" parameterType="usedvo" resultType="ProductVO">
+	<select id="getItem" parameterType="ProductVO" resultType="ProductVO">
 		SELECT *
 		FROM PRODUCT
 		WHERE pro_no = #{pro_no}
@@ -15,7 +15,7 @@
 
 <!-- 중고장터 -->
 <!-- 단건조회  -->
-	<select id="getUsed" parameterType="usedvo" resultType="UsedVO">
+	<select id="getUsed" parameterType="UsedVO" resultType="UsedVO">
 		SELECT *
 		FROM USED
 		WHERE used_no = #{used_no}
@@ -24,34 +24,16 @@
 <!-- 전체조회  -->	
 	<select id="getUsedList" resultType="UsedVO">
 		SELECT * 
-		  FROM USED
-		<!-- 여기부터 존재의의를 잘 몰겠음
-		<where>  
-		  <if test="departmentId != null">
-		       department_id = #{departmentId}
-		  </if>  
-	      <if test="employeeId != null">
-            and employee_id = #{employeeId}
-          </if>  
-          <if test="salary != null">
-            <![CDATA[ and salary < #{salary} ]]>
-          </if>    
-          <if test="firstName != null">
-            and upper(first_name) like '%' || upper(#{firstName}) || '%'
-          </if> 
-          <if test="employeeIds != null">
-            and employee_id in  
-                <foreach collection="employeeIds" item="id" 
-                         open="(" close=")" separator=",">
-                    #{id}
-                </foreach>
-          </if>      
-        </where> -->	
-		 ORDER BY used_no DESC 
+		FROM USED	
+		<!-- 판매중조회.. 음 where 들어갈거없으면 그냥 하면되지않을까  -->	
+		<if test="USED_CATEGORY == 'onSale'">
+			WHERE used_category = #{used_category}
+		</if>  
+		ORDER BY used_no DESC 
 	</select>
-
+	
 <!--  글등록    -->
-	<insert id="insertUsed" parameterType="usedvo">
+	<insert id="insertUsed" parameterType="UsedVO">
 		INSERT INTO USED (	
 							used_no,
 							mbr_id, 

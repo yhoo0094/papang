@@ -3,6 +3,10 @@
 <!-- %@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" -->
 
 
+
+<style>
+img { max-width: 300px; height: auto; }
+</style>
 <script type="text/javascript">
 /* 	$(function() {
 		itemList();
@@ -19,7 +23,7 @@
 		<div class="col-lg-4 col-sm-6 portfolio-item">
 			<div class="card h-100">
 				<a href="#"><img class="card-img-top"
-					src="http://placehold.it/300x400" alt=""></a>
+					src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a>
 				<div class="card-body">
 					<h4 class="card-title">
 						<a href="#">상품명</a>
@@ -29,5 +33,5 @@
 			</div>
 		</div>
 	</div>
-	<div align="right"><button type="button" onclick="location.href='../market/itemInsertForm'">등록</button></div>
+	<div align="right"><button type="button" onclick="">등록</button></div>
 </div>

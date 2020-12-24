@@ -28,13 +28,24 @@ font-size:35px;
 .small_title {text-align: left;
 font-size:20px;
 }
-
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.content_div{width: 90%;
+    margin: 0px 0px 0px 200px;}
+    .w3-large {
+    margin: 0 0 60px 230px;
+}
+table tbody tr td {
+  font-size: 24px;
+}
 </style>
 <title></title>
 </head>
 <body>
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
+	<div>
+		<div>
 			<div class="w3-large" align="center">
 				<h3 class="big_title">돌봄 신청 내역</h3>
 			</div>
@@ -43,7 +54,7 @@ font-size:20px;
 			    
 			    
 			  
-					   <div>
+					   <div class="content_div">
 					      <table class="table table-bordered table-hovers">
 					         <tr style="background:rgb(249, 196, 94)">
 					            <th width="200" align="center">번호</th>
@@ -71,7 +82,7 @@ font-size:20px;
 					            
 					         </c:forEach>
 					      </table>
-					   </div>  
+					    
 					   </br>
 					   </br>
 				 	   
@@ -90,7 +101,8 @@ font-size:20px;
 				<br>
 				<label style="font-size:20px;margin:20px;width:200px">신청자 주소</label><input class="input_small" type="password" id="id"
 							name="id"  value="${ member.id }">
-				</div>		
+				</div>	
+				</div> 	
 		</div>
 	</div>
 	

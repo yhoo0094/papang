@@ -22,13 +22,24 @@
 .big_title {text-align: center;
 font-size:50px;
 }
-
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+.content_div{width: 90%;
+    margin: 0px 0px 0px 200px;}
+    .w3-large {
+    margin: 0 0 60px 230px;
+}
+table tbody tr td {
+  font-size: 24px;
+}
 </style>
 <title>마이페이지</title>
 </head>
 <body>
-	<div class="w3-content w3-container divmargin">
-		<div class="w3-container">
+	<div>
+		<div>
 			<div class="w3-large" align="center">
 				<h3 class="big_title">구매내역</h3>
 			</div>
@@ -37,7 +48,7 @@ font-size:50px;
 			    
 			    
 			  
-					   <div>
+					   <div class="content_div">
 					      <table class="table table-bordered table-hovers">
 					         <tr style="background:rgb(249, 196, 94)">
 					            <th width="250">이미지</th>
@@ -57,12 +68,12 @@ font-size:50px;
 					            
 					         </c:forEach>
 					      </table>
-					   </div>  
+					    
 					   </br>
 					   </br>
 					   
 					   전체 수량 <input> 전체 가격 <input>
-					   
+					</div>    
 				
 		</div>
 	</div>

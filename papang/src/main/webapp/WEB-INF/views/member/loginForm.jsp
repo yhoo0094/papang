@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<!DOCTYPE html>
+<style>
+img {
+	max-width: 40px;
+	height: auto;
+}
+/* .social-item {
+  width: 50px;
+  height: 50px;
+} */
+</style>
 
 <head>
 	<title>로그인</title>
@@ -54,7 +64,18 @@
 							Login
 						</button>
 					</div>
-
+					<div align="center" style="margin-top: 10px">
+					<p><a href="#">회원가입</a></p>
+					<p><a href="#">아이디찾기</a>&nbsp;&nbsp;<a href="#">비밀번호찾기</a></p>
+					</div>
+					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
+						<a href="#"><button type="button" class="social-item flex-c-m m-r-5">
+							<img src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png"></button>
+						</a>&nbsp;&nbsp;&nbsp;
+						<a href="#"><button type="button" class="social-item flex-c-m m-r-5">
+							<img src="${pageContext.request.contextPath}/resources/images/icon/naver.png"></button>
+						</a>
+					</div>
 				</form>
 			</div>
 		</div>
