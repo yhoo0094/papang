@@ -15,7 +15,7 @@ import co.company.papang.vo.NqVO;
 @Controller
 public class AdminController {
 	
-//	@Autowired JyMapper jymapper;
+	@Autowired JyMapper jymapper;
 	@RequestMapping("/admin") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/admin"); //jsp주소

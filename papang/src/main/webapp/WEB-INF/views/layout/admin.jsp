@@ -41,8 +41,7 @@
 <script
 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 	crossorigin="anonymous"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
+
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
