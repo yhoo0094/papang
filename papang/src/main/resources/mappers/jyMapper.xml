@@ -39,7 +39,7 @@
 		SELECT * 
 		  FROM NQ
 		<where>  
-		  <if test="nq_category != null">
+		  <if test="nq_category != null and nq_category !=''">
 		       nq_category = #{nq_category}
 		  </if>  
         </where>	

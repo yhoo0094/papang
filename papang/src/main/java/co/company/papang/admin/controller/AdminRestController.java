@@ -30,7 +30,7 @@ public class AdminRestController {
 
 	// 전체조회
 	@RequestMapping(value = "/nq", method = RequestMethod.GET)
-	public List<NqVO> getNqList(Model model, NqVO vo) {
+	public List<NqVO> getNqList(Model model,NqVO vo) {
 		return jyMapper.getListNq(vo);
 	}
 
@@ -81,7 +81,19 @@ public class AdminRestController {
 			, consumes = "application/json" // 요청헤더
 	// ,headers = {"Content-type=application/json" }
 	)
-	public NqVO updateUser(@RequestBody NqVO vo, Model model) {
+	public NqVO updateUser(NqVO vo, Model model, HttpServletResponse response, HttpServletRequest request) throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// 이미지파일
+		// request Multipart로 캐스팅
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+
+		// 첨부파일
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			System.out.println("path=" + path);
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // 오리지널이름 : 업로드된 후의 이름
+			vo.setNq_file(multipartFile.getOriginalFilename());
+		}
 		jyMapper.updateNq(vo);
 		return vo;
 	}
