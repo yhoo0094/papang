@@ -150,30 +150,9 @@ a.item {
 </head>
 
 <body>
-<div class="util">
-<div class="util right" align="right">
-<c:if test='${empty mbr_id}'>
-	<a class="item" href="${pageContext.request.contextPath}/member" onfocus="blur()">
-	회원가입&nbsp;</a>
-</c:if>
-<c:if test='${empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/loginForm" onfocus="blur()">
-	로그인&nbsp;</a>
-</c:if>
-<c:if test='${!empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/mypage/myhome" onfocus="blur()">
-	마이페이지&nbsp;</a>
-</c:if>
-<c:if test='${!empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/marketList/cart" onfocus="blur()">
-	장바구니&nbsp;</a>
-</c:if>
-<c:if test='${!empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/logout" onfocus="blur()">
-	로그아웃&nbsp;</a>
-</c:if>
-</div>
-</div>
+
+
+
 
 	<div class="naviClass">
 
@@ -213,6 +192,28 @@ a.item {
 							</div></li> -->
 					</ul>
 				</div>
+				<div class="util right" align="right" style="margin-bottom: 70px">
+<c:if test='${empty mbr_id}'>
+	<a class="item" href="${pageContext.request.contextPath}/member" onfocus="blur()">
+	회원가입&nbsp;</a>
+</c:if>
+<c:if test='${empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/loginForm" onfocus="blur()">
+	로그인&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/mypage/myhome" onfocus="blur()">
+	마이페이지&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/marketList/cart" onfocus="blur()">
+	장바구니&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/logout" onfocus="blur()">
+	로그아웃&nbsp;</a>
+</c:if>
+</div>
 			</div>
 		</nav>
 	</div>
