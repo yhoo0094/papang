@@ -1,10 +1,8 @@
 package co.company.papang.impl;
 
-import java.util.List;
-import java.util.Map;
+import co.company.papang.vo.CommunityVO;
 
 public interface SmMapper {
-
-
+	public int communityFormInsert(CommunityVO communityVO);
 }
 
