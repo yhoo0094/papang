@@ -3,6 +3,42 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.company.papang.impl.EsMapper">
+<!-- 회원가입 -->
+	<insert id="join" parameterType="MemberVO">
+		INSERT INTO MEMBER (	mbr_id,
+								mbr_pw, 
+								mbr_name, 
+								mbr_nick,
+								mbr_birth,
+								mbr_email,
+								mbr_phone,
+								mbr_post, 
+								mbr_addr1, 
+								mbr_addr2,
+<if test="mbr_bank != null and mbr_bank != ''">mbr_bank,</if>
+<if test="mbr_account != null and mbr_account != ''">mbr_account,</if>
+								mbr_gender )
+	 	            VALUES( #{mbr_id},
+	 	               		#{mbr_pw},
+	 	               		#{mbr_name},
+	 	               		#{mbr_nick},
+	 	               		#{mbr_birth},
+	 	               		#{mbr_email},
+	 	               		#{mbr_phone},
+	 	               		#{mbr_post},
+	 	               		#{mbr_addr1},
+	 	               		#{mbr_addr2},
+<if test="mbr_bank != null and mbr_bank != ''">#{mbr_bank},</if>
+<if test="mbr_account != null and mbr_account != ''">#{mbr_account},</if>
+	 	               		#{mbr_gender} )
+	</insert>
+
+
+<!-- =========================================================== -->
+<!-- 여분 -->
+
+
+<!-- =========================================================== -->
 <!-- 판매상품 -->
 <!-- 단건조회  -->
 	<select id="getItem" parameterType="ProductVO" resultType="ProductVO">
@@ -10,17 +46,45 @@
 		FROM PRODUCT
 		WHERE pro_no = #{pro_no}
 	</select>
-
-
-
-<!-- 중고장터 -->
-<!-- 단건조회  -->
-	<select id="getUsed" parameterType="UsedVO" resultType="UsedVO">
-		SELECT *
-		FROM USED
-		WHERE used_no = #{used_no}
+<!-- 전체조회  -->	
+	<select id="getItemList" resultType="ProductVO">
+		SELECT * 
+		FROM PRODUCT	  
+		ORDER BY pro_no DESC 
 	</select>
 	
+<!--  글등록    -->
+	<insert id="insertItem" parameterType="ProductVO">
+		INSERT INTO PRODUCT (	pro_no,
+								pro_name, 
+								pro_price, 
+								pro_pic,
+								pro_detail,
+								pro_cc )
+	 	            VALUES( seq_product_pro_no.nextval,
+	 	               		#{pro_name},
+	 	               		#{pro_price},
+	 	               		#{pro_pic},
+	 	               		#{pro_detail},
+	 	               		#{pro_cc} )
+	</insert>
+<!--  글수정    -->
+	<update id="updateItem" parameterType="ProductVO">
+		UPDATE PRODUCT SET  pro_name = #{pro_name}, 
+							pro_price = #{pro_price},
+							pro_detail = #{pro_detail},
+							<if test="pro_pic != null and pro_pic != ''">pro_pic = #{pro_pic},</if>
+		WHERE pro_no = #{pro_no}
+					
+	</update>
+<!-- 삭제 -->
+	<delete id="deleteItem" parameterType="ProductVO">
+		DELETE FROM PRODUCT
+		WHERE pro_no = #{pro_no}
+	</delete>
+
+<!-- =========================================================== -->
+<!-- 장터 -->
 <!-- 전체조회  -->	
 	<select id="getUsedList" resultType="UsedVO">
 		SELECT * 
@@ -34,28 +98,69 @@
 	
 <!--  글등록    -->
 	<insert id="insertUsed" parameterType="UsedVO">
-		INSERT INTO USED (	
-							used_no,
+		INSERT INTO USED (	used_no,
 							mbr_id, 
 							used_title, 
 							used_date,
 							used_category,
 							used_loc,
-							used_pic,
+							<if test="used_pic != null and used_pic != ''">used_pic,</if>
 							used_price,
-							used_content
-							)
-	 	            VALUES(
-	 	            		seq_used_used_no.nextval,
+							used_content )
+	 	            VALUES( seq_used_used_no.nextval,
 	 	               		#{mbr_id},
 	 	               		#{used_title},
 	 	               		sysdate,
 	 	               		#{used_category},
 	 	               		#{used_loc},
-	 	               		#{used_pic},
+	 	               		<if test="used_pic != null and used_pic != ''">#{used_pic},</if>
 	 	               		#{used_price},
-	 	               		#{used_content})
+	 	               		#{used_content} )
 	</insert>
-	
+<!--  글수정    -->
+	<update id="updateUsed" parameterType="UsedVO">
+		UPDATE USED SET		used_title = #{used_title}, 
+							used_category = #{used_category},
+							used_loc = #{used_loc},
+							<if test="used_pic != null and used_pic != ''">used_pic = #{used_pic},</if>
+							used_price = #{used_price},
+							used_content = #{used_content}
+		WHERE used_no = #{used_no}
+					
+	</update>
+<!-- 삭제 -->
+	<delete id="deleteUsed" parameterType="UsedVO">
+		DELETE FROM USED
+		WHERE used_no = #{used_no}
+	</delete>
 
+
+<!-- =========================================================== -->
+<!-- 장바구니 -->
+<!-- 전체조회  -->	
+	<select id="getCart" resultType="BagVO">
+		SELECT * 
+		FROM BAG	
+		ORDER BY pro_no 
+	</select>
+	
+<!--  장바구니 추가    -->
+	<insert id="insertCart" parameterType="BagVO">
+		INSERT INTO BAG (	mbr_id,
+							pro_no, 
+							bag_cnt )
+	 	            VALUES( #{mbr_id},
+	 	               		#{pro_no},
+	 	               		#{bag_cnt} )
+	</insert>
+<!--  수량 수정    -->
+	<update id="updateCart" parameterType="BagVO">
+		UPDATE BAG SET bag_cnt = #{bag_cnt}
+		WHERE pro_no = #{pro_no}
+	</update>
+<!-- 삭제 -->
+	<delete id="deleteCart" parameterType="BagVO">
+		DELETE FROM BAG
+		WHERE pro_no = #{pro_no}
+	</delete>
 </mapper>

@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <h1 class="mt-4">배너 관리</h1>
- 
+
 <div class="card mb-4">
 	<div class="card-header">
 		<i class="fas fa-table mr-1"></i> 배너
 	</div>
 	<div class="card-body">
-		
+
 		<div class="table-responsive">
-			<form id='frm' name='frm' method='post' action='${pageContext.request.contextPath}/admin/bannerInsert'>
-				<div align="right"><input type="submit" id="insertbtn" value='배너 등록'></div>
+			<form id='frm' name='frm' method='post'
+				action='${pageContext.request.contextPath}/admin/bannerInsert'>
+				<div align="right">
+					<input type="submit" id="insertbtn" value='배너 등록'>
+				</div>
 				<br>
-				</form>
+			</form>
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
@@ -493,9 +496,11 @@
 						<td>$112,000</td>
 					</tr>
 				</tbody>
-				
-		
+
+
 			</table>
-	
-      
-   
+		</div>
+	</div>
+</div>
+
+

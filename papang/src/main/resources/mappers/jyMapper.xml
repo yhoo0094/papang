@@ -4,41 +4,15 @@
 
 <mapper namespace="co.company.papang.impl.JyMapper">
 
-<!-- 단건조회  -->
+<!-- 공지 단건조회  -->
 	<select id="getNq" parameterType="co.company.papang.vo.NqVO" resultType="co.company.papang.vo.NqVO">
 		SELECT * FROM nq
 		WHERE nq_no = #{nq_no}
 	</select>
 	
-<!-- 전체조회  -->	
-	<select id="getEmpList" resultType="emp">
-		SELECT rownum id, e.* 
-		  FROM employees e
-		<where>  
-		  <if test="departmentId != null">
-		       department_id = #{departmentId}
-		  </if>  
-	      <if test="employeeId != null">
-            and employee_id = #{employeeId}
-          </if>  
-          <if test="salary != null">
-            <![CDATA[ and salary < #{salary} ]]>
-          </if>    
-          <if test="firstName != null">
-            and upper(first_name) like '%' || upper(#{firstName}) || '%'
-          </if> 
-          <if test="employeeIds != null">
-            and employee_id in  
-                <foreach collection="employeeIds" item="id" 
-                         open="(" close=")" separator=",">
-                    #{id}
-                </foreach>
-          </if>      
-        </where>	
-		 ORDER BY first_name 
-	</select>
 
-<!--  사원등록    -->
+
+<!--  공지등록    -->
 	<insert id="insertNq" parameterType="co.company.papang.vo.NqVO">
 		INSERT INTO NQ (	
 								NQ_NO,
@@ -60,7 +34,7 @@
 	 	
 	</insert>
 	
-	<!-- 전체조회  -->	
+	<!-- 공지 전체조회  -->	
 	<select id="getListNq" resultType="co.company.papang.vo.NqVO">
 		SELECT * 
 		  FROM NQ
@@ -69,8 +43,24 @@
 		       nq_category = #{nq_category}
 		  </if>  
         </where>	
-		 ORDER BY nq_no 
+		 ORDER BY nq_no desc
 	</select>
+	
+	<!-- 공지 수정 -->
+	<update id="updateNq" parameterType="co.company.papang.vo.NqVO">
+		update nq set
+		nq_title = #{nq_title},
+		nq_content = #{nq_content},
+		nq_category = #{nq_category},
+		nq_file = #{nq_file}
+		where nq_no = #{nq_no}
+	</update>
+
+	<!--공지  삭제 -->
+	<delete id="deleteNq" parameterType="co.company.papang.vo.NqVO">
+		delete from nq
+		where nq_no = #{nq_no}
+	</delete>
 	
 
 </mapper>

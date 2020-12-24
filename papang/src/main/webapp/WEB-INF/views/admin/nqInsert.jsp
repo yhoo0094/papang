@@ -7,13 +7,14 @@
 
 		nqSelect();
 
-		//userDelete();
+		nqDelete();
 
 		nqInsert();
 
-		//userUpdate();
+		nqUpdate();
 
 		init();
+		
 	});
 
 	//초기화
@@ -26,16 +27,16 @@
 			});
 		});
 	}//init
-	/*
+	
 	//사용자 삭제 요청
-	function userDelete() {
+	function nqDelete() {
 	//삭제 버튼 클릭
 	$('body').on('click','#btnDelete',function(){
-	var userId = $(this).closest('tr').find('#hidden_userId').val();
-	var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+	var nq_no = $(this).closest('tr').find('#hidden_nq_no').val();
+	var result = confirm(nq_no +" 번 글을 정말로 삭제하시겠습니까?");
 	if(result) {
 	$.ajax({
-	url:'users/'+userId,  
+	url:'../nq/'+nq_no,  
 	type:'DELETE',
 	contentType:'application/json;charset=utf-8',
 	dataType:'json',
@@ -43,12 +44,12 @@
 	console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 	}, success:function(xhr) {
 	console.log(xhr.result);
-	userList();
+	nqList();
 	}
 	});      }//if
 	}); //삭제 버튼 클릭
-	}//userDelete
-	 */
+	}//nqDelete
+	
 	//사용자 조회 요청
 	function nqSelect() {
 		//조회 버튼 클릭
@@ -66,7 +67,7 @@
 				success : nqSelectResult
 			});
 		}); //조회 버튼 클릭
-	}//userSelect
+	}//nqSelect
 
 	//사용자 조회 응답
 	function nqSelectResult(nq) {
@@ -75,26 +76,34 @@
 				"selected", true);
 		$('input:text[name="nq_title"]').val(nq.nq_title);
 		$('input:text[name="nq_file"]').val(nq.nq_file);
-		$('.note-editable').html(nq.nq_content);
-	}//userSelectResult
+		$('#nq_no').val(nq.nq_no);
+		$('#summernote').summernote('code',nq.nq_content);
+	}//nqSelectResult
 
-	/*
+	
 	//사용자 수정 요청
-	function userUpdate() {
+	function nqUpdate() {
 	//수정 버튼 클릭
 	$('#btnUpdate').on('click',function(){
-	var id = $('input:text[name="id"]').val();
-	var name = $('input:text[name="name"]').val();
-	var password = $('input:text[name="password"]').val();
-	var role = $('select[name="role"]').val();		
+	var nq_no = $('#nq_no').val();
+	var nq_category = $('select[name="nq_category"]').val();
+	var nq_title = $('input:text[name="nq_title"]').val();
+	var nq_file = $('input:text[name="nq_file"]').val();
+	var nq_content = $('#summernote').summernote('code');
+	console.log(nq_content);
+	
 	$.ajax({ 
-	url: "users", 
+	url: "../nq", 
 	type: 'PUT', 
 	dataType: 'json', 
-	data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+	data: JSON.stringify({ nq_no: nq_no, nq_category: nq_category, nq_title: nq_title, nq_file: nq_file, nq_content: nq_content}),
 	contentType: 'application/json',
 	success: function(data) { 
-	userList();
+	nqList();
+	$('#form1').each(function() {
+		this.reset();
+		$('.note-editable').html("");
+	});
 	},
 	error:function(xhr, status, message) { 
 	alert(" status: "+status+" er:"+message);
@@ -102,20 +111,23 @@
 	});
 	});//수정 버튼 클릭
 	}//userUpdate
-	 */
+	 
 	//사용자 등록 요청
 	function nqInsert() {
 		//등록 버튼 클릭
-		$('#btnInsert').on('click', function() {
-			$("#form1")
+		var form = $('#form1')[0];
+   		var formData = new FormData(form);
 
+		$('#btnInsert').on('click', function() {
+			
 			$.ajax({
 				url : "../nq",
 				type : 'POST',
 				dataType : 'json',
 				//data: JSON.stringify({ id: id, name:name,password: password, role: role }),
-				data : JSON.stringify($("#form1").serializeObject()),
-				contentType : 'application/json',
+				data : formData,
+				contentType : false,
+			    processData : false ,
 				success : function(response) {
 					if (response.result == true) {
 						nqList();
@@ -148,7 +160,7 @@
 
 	//사용자 목록 조회 응답
 	function nqListResult(data) {
-		$("#tb tbody").empty();
+		$("#dataTable tbody").empty();
 		$.each(data, function(idx, item) {
 			$('<tr>').append($('<td>').html(item.nq_no)).append(
 					$('<td>').html(item.nq_category)).append(
@@ -159,8 +171,9 @@
 									'<button id=\'btnDelete\'>삭제</button>'))
 					.append(
 							$('<input type=\'hidden\' id=\'hidden_nq_no\'>')
-									.val(item.nq_no)).appendTo('#tb tbody');
-		});//each
+									.val(item.nq_no)).appendTo('#dataTable tbody');
+		});
+		$('#dataTable').DataTable();
 	}//userListResult
 </script>
 <h1 class="mt-4">공지사항/자주묻는 질문 관리</h1>
@@ -210,8 +223,9 @@
 				</tr>
 				<tr>
 					<td align="center" style="width: 10%">첨부파일</td>
-					<td><input type="text" id="nq_file" name="nq_file"
-						value="image"></td>
+					<td><input type="file" name="uploadFile"/>
+						<input type="hidden" id="nq_no" name="nq_no">
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -230,18 +244,19 @@
 <br>
 <div align="center">
 
-	<table class="table text-center" style="width: 100%" id="tb">
-		<thead>
-			<tr>
-				<th class="text-center">글번호</th>
-				<th class="text-center">분류</th>
-				<th class="text-center">제목</th>
-				<th class="text-center">조회</th>
-				<th class="text-center">삭제</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
+		<table class="table table-bordered" id="dataTable" width="100%"
+				cellspacing="0">
+				<thead>
+					<tr>
+						<th>글번호</th>
+						<th>분류</th>
+						<th>제목</th>
+						<th>조회</th>
+						<th>삭제</th>
+					</tr>
+				</thead>	
+				<tbody></tbody>
+			</table>
 </div>
 
 
