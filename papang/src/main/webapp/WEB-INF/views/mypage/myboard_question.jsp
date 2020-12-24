@@ -1,7 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
-
+<!DOCTYPE html>
+<html>
+<style>
+.center_div {
+    min-height: 750px;
+    display: block;
+    margin: 176px 15% 9px 23%;
+    width: 65%;
+}
+</style>
+<body>
 		<h3>날먹게시판</h3>
 		<hr />
 		<div align="right">
@@ -111,6 +121,6 @@
 		<div align="right">
 			
 		</div>
-
-		
+</body>
+		</html>
 

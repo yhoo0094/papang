@@ -51,6 +51,15 @@ p {
 table tbody tr td {
   font-size: 24px;
 }
+.btnRed {
+    background-color: #ff8080;
+    border: none;
+    font-weight: bold;
+    width: 60px; 
+    height: 40px;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
 </style>
 <title>마이페이지</title>
 </head>
@@ -66,7 +75,7 @@ table tbody tr td {
 			    
 			  
 					   
-					    <button class="btnYellow bSmall">삭제</button>
+					    <button class="btnRed bSmall">삭제</button>
 					      <table class="table table-bordered table-hovers">
 					         <tr style="background:rgb(249, 196, 94)">
 					            <th width="250">선택</th>
@@ -89,13 +98,46 @@ table tbody tr td {
 					               <td class="td_content">3</td>
 					               <td class="td_content">4</td>              
 					            </tr>
+					             <tr>
+					               <td class="td_content">
+					               			<input type="checkbox" name="color">
+					               	</td>
+					               <td class="td_content">2</td>
+					               <td class="td_content">3</td>
+					               <td class="td_content">4</td>              
+					            </tr>
+					             <tr>
+					               <td class="td_content">
+					               			<input type="checkbox" name="color">
+					               	</td>
+					               <td class="td_content">2</td>
+					               <td class="td_content">3</td>
+					               <td class="td_content">4</td>              
+					            </tr>
+					             <tr>
+					               <td class="td_content">
+					               			<input type="checkbox" name="color">
+					               	</td>
+					               <td class="td_content">2</td>
+					               <td class="td_content">3</td>
+					               <td class="td_content">4</td>              
+					            </tr>
+					             <tr>
+					               <td class="td_content">
+					               			<input type="checkbox" name="color">
+					               	</td>
+					               <td class="td_content">2</td>
+					               <td class="td_content">3</td>
+					               <td class="td_content">4</td>              
+					            </tr>
+					            
 					         </c:forEach>
 					      </table>
 					     
 					   <br>  
 					   <br>
 			<!-- <button style="font-size:22px">추가</button>	 -->
-			 <button class="btnYellow bSmall">추가</button>
+			 <button class="btnRed bSmall">추가</button>
 				   
 			<div style="background:rgb(249, 196, 94)">    					    
 			<label class="label">아이 이름</label>
