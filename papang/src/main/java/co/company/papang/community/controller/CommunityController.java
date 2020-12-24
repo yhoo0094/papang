@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
@@ -19,12 +20,18 @@ public class CommunityController {
 	
 	/*-------------------------- 커뮤니티 --------------------------*/
 	@RequestMapping("/communityBoard") //url 예전 .do
-	public String communityBoard(HttpServletResponse response) throws IOException{
-		return "community/communityBoard"; //jsp주소
+	public ModelAndView communityBoard(CommunityVO communityVO) throws IOException{
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("CommunityVOList", dao.getCommunityList(communityVO));
+		mav.setViewName("community/communityBoard");
+		return mav; //jsp주소
 	}
 	
 	@RequestMapping("/communityForm") //커뮤니티 글쓰러 가기
 	public String communityForm(Model model, CommunityVO communityVO) throws IOException{
+		if(communityVO.getCom_no() != null) {
+			model.addAttribute("communityVO",dao.getCommunity(communityVO));
+		}
 		return "community/communityForm"; //jsp주소
 	}
 	
@@ -37,27 +44,27 @@ public class CommunityController {
 	
 	/*-------------------------- 시터 --------------------------*/
 	@RequestMapping("/sitterMenu") //url 예전 .do
-	public String sitterMenu(HttpServletResponse response) throws IOException{
+	public String sitterMenu() throws IOException{
 		return "layout/sitterMenu"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterBoard") //url 예전 .do
-	public String test(HttpServletResponse response) throws IOException{
+	public String sitterBoard() throws IOException{
 		return "sitter/sitterBoard"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterForm") //url 예전 .do
-	public String sitterForm(HttpServletResponse response) throws IOException{
+	public String sitterForm() throws IOException{
 		return "sitter/sitterForm"; //jsp주소
 	}
 	
 	@RequestMapping("/sitterScheduleView") //url 예전 .do
-	public String sitterScheduleView(HttpServletResponse response) throws IOException{
+	public String sitterScheduleView() throws IOException{
 		return "sitter/sitterScheduleView"; //jsp주소
 	}
 	
 	@RequestMapping("/reservationView") //url 예전 .do
-	public String reservationView(HttpServletResponse response) throws IOException{
+	public String reservationView() throws IOException{
 		return "sitter/reservationView"; //jsp주소
 	}
 	/*-------------------------- 기타 --------------------------*/
@@ -75,10 +82,5 @@ public class CommunityController {
 	public String calender() {
 		return "normal/calender";
 	}
-	
-	@RequestMapping(value="/test")
-	public String test() {
-		return "normal/test";
-	}	
 
 }

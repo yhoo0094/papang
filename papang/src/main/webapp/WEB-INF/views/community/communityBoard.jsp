@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <style type="text/css">
 </style>
@@ -8,17 +9,17 @@
 <body>
 	<br>
 	<h3 style="display: inline;">커뮤니티 게시판</h3>
-	<form:form class="category" action="#" method="post" modelAttribute="category">
-		<select id="type" name="type" style="width: 100%">
+	<form:form id="communityBoardCategory" class="category" action="communityBoard" method="post" modelAttribute="communityVO">
+		<form:select path="com_category" style="width: 100%">
 			<option value="">분류
 			<option value="정보">정보
 			<option value="일상">일상
 			<option value="질문">질문
-		</select>
+		</form:select>
 	</form:form>
 	<hr/>
 	<br>
-	<div align="center">
+	<div align="center" id = communityBoardTable>
 		<table class="table" id="dataTable">
 			<thead>
 				<tr class="tableTrTh">
@@ -30,27 +31,15 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${CommunityVOList}" var="v">
 				<tr>
-					<td align="center">정보</td>
-					<td><a href="#" class="boardTagA">제목텍스트</a></td>
-					<td align="center">A씨</td>
-					<td align="center">20-12-16 12:20</td>
-					<td align="center">0</td>
+					<td align="center">${v.com_no}. ${v.com_category}</td>
+					<td><a href="communityForm?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
+					<td align="center">${v.mbr_id}</td>
+					<td align="center">${v.com_date}</td>
+					<td align="center">${v.com_hit}</td>
 				</tr>
-				<tr>
-					<td align="center">일상</td>
-					<td><a href="#" class="boardTagA">제목텍스트</a></td>
-					<td align="center">B씨</td>
-					<td align="center">20-12-16 12:20</td>
-					<td align="center">0</td>
-				</tr>
-				<tr>
-					<td align="center">질문</td>
-					<td><a href="#" class="boardTagA">제목텍스트</a></td>
-					<td align="center">C씨</td>
-					<td align="center">20-12-16 12:20</td>
-					<td align="center">0</td>
-				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 		<br>
@@ -65,6 +54,13 @@
 					location.href="${pageContext.request.contextPath}/communityForm";		
 				}
 			})
+			$("#communityBoardCategory").on({
+				"change" : function() {
+					$("#communityBoardCategory").submit();
+				}
+			})
 		})
+		
 	</script>
+
 </body>

@@ -1,0 +1,15 @@
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test1', '정보', '재영이 멍충이', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test2', '일상', '테스트2', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test3', '질문', '테스트3', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test4', '일상', '테스트4', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test5', '정보', '테스트5', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test6', '질문', '테스트6', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test7', '일상', '테스트7', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test8', '일상', '테스트8', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test9', '정보', '테스트9', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test10', '질문', '테스트10', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test11', '일상', '테스트11', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test12', '정보', '테스트12', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test13', '질문', '테스트13', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test14', '일상', '테스트14', '하하하');
+insert into community(com_no, mbr_id, com_category, com_title, com_content) values (SEQ_COMMUNITY_COM_NO.currval, 'test15', '정보', '테스트15', '하하하');

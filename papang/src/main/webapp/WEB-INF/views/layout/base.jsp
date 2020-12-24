@@ -261,6 +261,8 @@ a.item {
 			/*$("#divForEntryNum .custom-select").empty();
 			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
 			$("#divForEntryNum .custom-select").trigger("change"); */
+			
+			$("#communityBoardTable .tableTh:eq(0)").trigger("click");
 		})
 	</script>
 	
