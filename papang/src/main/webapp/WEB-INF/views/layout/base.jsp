@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -120,12 +122,54 @@ body {background-color: #fff5d2;}
 	display: inline;
 	width: auto;
 }
+.util{
+    display: block;
+
+}
+.util .right{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+a.item {
+	padding: 0 0.6em;
+    border-right: 1px solid #f2efea;
+    height: 1em;
+    line-height: 1em;
+}
 
 </style>
 </head>
 
 <body>
+<div class="util">
+<div class="util right" align="right">
+<c:if test='${empty mbr_id}'>
+	<a class="item" href="${pageContext.request.contextPath}/member" onfocus="blur()">
+	회원가입&nbsp;</a>
+</c:if>
+<c:if test='${empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/loginForm" onfocus="blur()">
+	로그인&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/mypage/myhome" onfocus="blur()">
+	마이페이지&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/marketList/cart" onfocus="blur()">
+	장바구니&nbsp;</a>
+</c:if>
+<c:if test='${!empty mbr_id}'>
+	<a href="${pageContext.request.contextPath}/logout" onfocus="blur()">
+	로그아웃&nbsp;</a>
+</c:if>
+</div>
+</div>
+
 	<div class="naviClass">
+
 		<!-- Navigation -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
 			<div class="container">
@@ -134,7 +178,7 @@ body {background-color: #fff5d2;}
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communityBoard">커뮤니티</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="services.html">장터</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/marketList/itemBoard">장터</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">자장가</a>
 						</li>

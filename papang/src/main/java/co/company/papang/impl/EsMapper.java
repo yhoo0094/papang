@@ -12,7 +12,7 @@ public interface EsMapper {
 	public int insertUser(MemberVO member); // 등록
 	
 	// 로그인
-	
+	public MemberVO login(MemberVO member); //로그인
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);//전체조회

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,10 +45,18 @@ public class MemberController {
 	}
 	// 로그인처리
 	@PostMapping("/login") // post 요청은 로그인 처리
-	public String login(HttpSession session) {
+	public String login(HttpSession session, MemberVO vo) {
 		// 세션에 담기
-		session.setAttribute("mbr_id", "${mbr_id}"); // 젠장 몰겠다
-		return "/"; // 메인으로 이동
+		session.setAttribute("mbr_id", vo.getMbr_id());
+		session.setAttribute("mbr_author", vo.getMbr_author());
+		return "main/main"; // 메인으로 이동
+	}
+	// 로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		// 세션 무효화
+		session.invalidate(); // 로그아웃처리
+		return "main/main";
 	}
 	
 	// 아이디찾기로 이동
