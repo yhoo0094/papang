@@ -24,6 +24,7 @@
     .comm_btn_div{margin-top:20px;}
     .btnRed{font-size: 18px;}
     .comm_how{font-weight: bold;font-size: 20px;margin: 0px 10px 10px 180px;}
+    .cView_image{height: 100%;padding-bottom: 30px;}
 </style>
 </head>
 <body>
@@ -37,15 +38,6 @@
 		<div class="cView_image" align="center">
 			 <img class="_image" src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"> 
 		</div>
-		<p class="comm_how">놀이방법</p> 
-		<div class="cView_comment" align="center">
-				<div class="comment">
-				 1. 집에서 커다란 이불을 준비해요
-				 2. 이불이 있나요 ? 나는 극세사가 좋아요
-				 3. 극세사는 좋ㅇ느데 춥네요
-				</div> 
-		</div>
-		
 	</div>
 	
 	<p class="comm_title">후기</p>

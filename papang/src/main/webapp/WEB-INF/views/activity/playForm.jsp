@@ -23,7 +23,7 @@
 <body>
 <!-- 전체 div 시작 -->
 <div>
-	<div class="Bigtitle">아빠와 요리해요 > 글 등록</div>	
+	<div class="Bigtitle">아빠와 함께 놀아요 > 글 등록</div>	
 		<div class="cook_content">
 		
 		<div class="cView_title">

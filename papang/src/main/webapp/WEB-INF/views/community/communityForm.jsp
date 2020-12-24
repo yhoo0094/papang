@@ -34,6 +34,7 @@
 	border: solid gray 1px;
 	border-collapse: collapse;
 }
+.note-resizebar{display: none;}
 </style>
 
 </head>
