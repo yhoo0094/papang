@@ -129,7 +129,7 @@
 					
 	</update>
 <!-- 삭제 -->
-	<delete id="deleteUsed" parameterType="user">
+	<delete id="deleteUsed" parameterType="UsedVO">
 		DELETE FROM USED
 		WHERE used_no = #{used_no}
 	</delete>
