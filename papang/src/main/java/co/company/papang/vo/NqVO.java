@@ -17,5 +17,6 @@ public class NqVO {
 	private String nq_category;
 	private String nq_file;
 	private String nq_date;
+	private String nq_hit;
 	private String ad_id;
 }

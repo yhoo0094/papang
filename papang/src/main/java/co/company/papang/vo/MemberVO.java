@@ -25,4 +25,5 @@ public class MemberVO {
 	private String mbr_date;
 	private String mbr_status;
 	private String mbr_gender;	
+	private String rcnt;
 }

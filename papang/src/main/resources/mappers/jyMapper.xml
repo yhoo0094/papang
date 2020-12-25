@@ -4,63 +4,79 @@
 
 <mapper namespace="co.company.papang.impl.JyMapper">
 
-<!-- 공지 단건조회  -->
-	<select id="getNq" parameterType="co.company.papang.vo.NqVO" resultType="co.company.papang.vo.NqVO">
+	<!-- 공지 단건조회 -->
+	<select id="getNq" parameterType="co.company.papang.vo.NqVO"
+		resultType="co.company.papang.vo.NqVO">
 		SELECT * FROM nq
 		WHERE nq_no = #{nq_no}
 	</select>
-	
 
 
-<!--  공지등록    -->
+
+	<!-- 공지등록 -->
 	<insert id="insertNq" parameterType="co.company.papang.vo.NqVO">
-		INSERT INTO NQ (	
-								NQ_NO,
-								AD_ID, 
-								NQ_TITLE, 
-								NQ_CONTENT,
-								NQ_CATEGORY,
-								NQ_FILE,
-								NQ_DATE
-								)
-	 	                VALUES(
-	 	               			SEQ_NQ_nq_no.nextval,
-	 	               			'ADMIN',
-	 	               			#{nq_title},
-	 	               			#{nq_content},
-	 	               			#{nq_category},
-	 	               			#{nq_file},
-	 	               			sysdate)
-	 	
+		INSERT INTO NQ (
+		NQ_NO,
+		AD_ID,
+		NQ_TITLE,
+		NQ_CONTENT,
+		NQ_CATEGORY,
+		NQ_FILE,
+		NQ_DATE
+		)
+		VALUES(
+		SEQ_NQ_nq_no.nextval,
+		'ADMIN',
+		#{nq_title},
+		#{nq_content},
+		#{nq_category},
+		#{nq_file},
+		sysdate)
+
 	</insert>
-	
-	<!-- 공지 전체조회  -->	
+
+	<!-- 공지 전체조회 -->
 	<select id="getListNq" resultType="co.company.papang.vo.NqVO">
-		SELECT * 
-		  FROM NQ
-		<where>  
-		  <if test="nq_category != null and nq_category !=''">
-		       nq_category = #{nq_category}
-		  </if>  
-        </where>	
-		 ORDER BY nq_no desc
+		SELECT *
+		FROM NQ
+		<where>
+			<if test="nq_category != null and nq_category !=''">
+				nq_category = #{nq_category}
+			</if>
+		</where>
+		ORDER BY nq_no desc
 	</select>
-	
+
 	<!-- 공지 수정 -->
 	<update id="updateNq" parameterType="co.company.papang.vo.NqVO">
 		update nq set
-		nq_title = #{nq_title},
+		nq_title =
+		#{nq_title},
 		nq_content = #{nq_content},
 		nq_category = #{nq_category},
 		nq_file = #{nq_file}
 		where nq_no = #{nq_no}
 	</update>
 
-	<!--공지  삭제 -->
+	<!--공지 삭제 -->
 	<delete id="deleteNq" parameterType="co.company.papang.vo.NqVO">
 		delete from nq
-		where nq_no = #{nq_no}
+		where nq_no =
+		#{nq_no}
 	</delete>
-	
+
+	<!-- 회원 전체조회 -->
+	<select id="getListMember"
+		resultType="co.company.papang.vo.MemberVO">
+		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name, mbr_nick, NVL((select count(*) from report_info group by mbr_id),0) as rcnt
+		from member
+		<where>
+			<if test="mbr_author != null and mbr_author !=''">
+				mbr_author = #{mbr_author}
+			</if>
+		</where>
+		ORDER BY mbr_id
+	</select>
+
 
 </mapper>

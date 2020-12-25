@@ -1,25 +1,28 @@
 package co.company.papang.impl;
 
 import java.util.List;
-import java.util.Map;
 
+import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 
 
 public interface JyMapper {
-	// 공지등록
+	// 怨듭��벑濡�
 	public int insertNq(NqVO nqVO);
 
-	// 공지 전체 조회
+	// 怨듭� �쟾泥� 議고쉶
 	public List<NqVO> getListNq(NqVO nqVO);
 
-	// 단건조회
+	// �떒嫄댁“�쉶
 	public NqVO getNq(NqVO nqVO);
 
-	// 수정
+	// �닔�젙
 	public int updateNq(NqVO vo);
 
-	// 삭제
+	// �궘�젣
 	public int deleteNq(NqVO vo);
+	
+	//회원 전체 조회
+	public List<MemberVO> getListMember(MemberVO vo);
 
 }

@@ -196,6 +196,7 @@
 			$('<tr>').append($('<td>').html(item.nq_no)).append(
 					$('<td>').html(item.nq_category)).append(
 					$('<td>').html(item.nq_title)).append(
+					$('<td>').html(item.nq_hit)).append(		
 					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
 					.append(
 							$('<td>').html(
@@ -292,6 +293,7 @@
 						<th>글번호</th>
 						<th>분류</th>
 						<th>제목</th>
+						<th>조회수</th>
 						<th>조회</th>
 						<th>삭제</th>
 					</tr>
