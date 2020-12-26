@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	성공!
+	 예방접종스 페이지스
 </body>
 </html>

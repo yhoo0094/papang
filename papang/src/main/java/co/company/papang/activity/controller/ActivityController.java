@@ -46,6 +46,13 @@ public class ActivityController {
 		return new ModelAndView("activity/test");
 	}
 	
+	@RequestMapping("activity/vaccinationList") 
+	public ModelAndView vaccinationList(HttpServletResponse response) throws IOException{
+		return new ModelAndView("vaccination/test");
+	}
+	
+	
+
 	
 	
 }

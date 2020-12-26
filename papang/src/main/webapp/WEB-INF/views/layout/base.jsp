@@ -168,9 +168,9 @@ a.item {
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">자장가</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">활동</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/cookList">활동</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">육아서적</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/vaccinationList">예방접종</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sitterBoard">베이비시터</a>
 						</li>

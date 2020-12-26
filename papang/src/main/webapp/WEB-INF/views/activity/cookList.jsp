@@ -64,7 +64,10 @@ thead, #dataTable_filter, #dataTable_length {
 .typewrite {color:rgb(249, 196, 94);margin-left: 260px; }
 .typewrite:hover {text-decoration: none; color:rgb(249, 196, 94);}
 .header_div{margin: 80px -180px 40px 0px;}
+.search_btn{transition-duration: 0.4s;} 
+.search_btn:hover{background-color:#e8505b;color:white;}
 .table{margin: 4rem 0 1rem 0;}
+
 </style>
 <script>
 var TxtType = function(el, toRotate, period) {
@@ -122,6 +125,7 @@ window.onload = function() {
     css.type = "text/css";
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
+    
 };
 </script>
 </head>
