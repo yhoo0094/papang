@@ -48,11 +48,8 @@ public class ActivityController {
 	
 	@RequestMapping("activity/vaccinationList") 
 	public ModelAndView vaccinationList(HttpServletResponse response) throws IOException{
-		return new ModelAndView("vaccination/test");
+		return new ModelAndView("vaccination/vaccinationList");
 	}
-	
-	
-
 	
 	
 }
