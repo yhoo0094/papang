@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BagVO {
-	private String mbr_id;
-	private String pro_no;
-	private String bag_cnt;
+	private String mbr_id; // 장바구니 담는 회원의 아이디 = 세션아이디
+	private String pro_no; // 상품번호
+	private String bag_cnt; // 수량
 }

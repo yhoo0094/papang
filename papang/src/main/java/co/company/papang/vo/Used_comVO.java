@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Used_comVO {
-	private String used_no;
-	private String uc_no;
-	private String uc_date;
-	private String uc_content;
-	private String mbr_id;
+	private String used_no; // 중고상품 글번호
+	private String uc_no; // 댓글번호
+	private String uc_date; // 작성일 sysdate
+	private String uc_content; // 본문
+	private String mbr_id; // 댓글작성자 아이디 = 세션아이디
 }

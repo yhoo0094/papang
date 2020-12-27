@@ -37,8 +37,9 @@ public class MemberController {
 	}
 	// 회원가입 처리
 	@PostMapping("/join")
-	public String join(HttpServletRequest request, MemberVO member) {
-		return "";
+	public String join(HttpServletRequest request, MemberVO member) throws IOException {
+		dao.insertUser(member);
+		return "main/main";
 	}
 	
 	// 로그인 폼

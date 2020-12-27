@@ -9,14 +9,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsedVO {
-	private String used_no;
-	private String mbr_id;
-	private String used_title;
-	private String used_date;
-	private String used_category;
-	private String used_loc;
-	private String used_pic;
-	private String used_hit;
-	private String used_price;
-	private String used_content;
+	private String used_no; // 글번호
+	private String mbr_id; // 작성자 아이디 = 세션아이디
+	private String used_title; // 글제목
+	private String used_date; // 작성일 디폴트 sysdate
+	private String used_category; // 디폴트 판매중
+	private String used_loc; // 지역 : 택배, 등등
+	private String used_pic; // 사진
+	private String used_hit; // 조회수
+	private String used_price; // 가격
+	private String used_content; // 본문
 }
