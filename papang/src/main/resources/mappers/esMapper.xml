@@ -51,6 +51,7 @@
 		FROM PRODUCT
 		WHERE pro_no = #{pro_no}
 	</select>
+	
 <!-- 전체조회  -->	
 	<select id="getItemList" resultType="ProductVO">
 		SELECT * 

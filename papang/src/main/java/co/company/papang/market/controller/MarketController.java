@@ -4,17 +4,31 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import co.company.papang.impl.EsMapper;
+import co.company.papang.vo.ProductVO;
 
 @Controller
 public class MarketController {
+	@Autowired EsMapper dao;
+
+// 상품판매	
 	// 판매상품 전체 리스트
+	/*
+	 * @RequestMapping("marketList/itemBoard") //url 예전 .do public ModelAndView
+	 * test(HttpServletResponse response) throws IOException{ return new
+	 * ModelAndView("marketList/itemBoard"); //jsp주소 }
+	 */
 	@RequestMapping("marketList/itemBoard") //url 예전 .do
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("marketList/itemBoard"); //jsp주소
+	public ModelAndView test(ProductVO product) throws IOException{
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pro", dao.getItemList(product));
+		mav.setViewName("marketList/itemBoard");
+		return mav; //jsp주소
 	}
 
 	// 판매상품 상세
@@ -23,9 +37,15 @@ public class MarketController {
 		return new ModelAndView("market/itemDetail"); //jsp주소
 	}
 	// 판매상품 등록
+	/*
+	 * @RequestMapping("market/itemInsert") //url 예전 .do public ModelAndView
+	 * test9(HttpServletResponse response) throws IOException{ return new
+	 * ModelAndView("market/itemInsert"); //jsp주소 }
+	 */
 	@RequestMapping("market/itemInsert") //url 예전 .do
-	public ModelAndView test9(HttpServletResponse response) throws IOException{
-		return new ModelAndView("market/itemInsert"); //jsp주소
+	public String test9(ProductVO product) throws IOException{
+		dao.insertItem(product);
+		return "marketList/itemBoard"; //jsp주소
 	}
 	// 판매상품 등록 폼
 	@RequestMapping("market/itemInsertForm") //url 예전 .do
@@ -42,6 +62,14 @@ public class MarketController {
 	public ModelAndView test12(HttpServletResponse response) throws IOException{
 		return new ModelAndView("market/itemUpdateForm"); //jsp주소
 	}
+	// 판매상품 삭제.. 이게 맞을려나...
+	@RequestMapping("market/itemDelete") //url 예전 .do
+	public String test14(ProductVO product) throws IOException{
+		return "marketList/itemBoard"; //jsp주소
+	}
+
+
+//	중고게시판
 	// 중고게시판 리스트
 	@RequestMapping("marketList/usedBoard") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{

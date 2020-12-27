@@ -1,24 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container center_div">
 
 	<!-- Page Heading/Breadcrumbs -->
 	<h1 class="mt-4 mb-3">
-		<small>카테고리명</small> 상품명
+		<small>상품명 </small> ${pro.pro_name}
 	</h1>
-
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-		<li class="breadcrumb-item active">About</li>
-	</ol>
-
+	<!-- 관리자일때만 수정/삭제버튼 모양새를 하이퍼링크로 할지 아니면 버튼으로 할지 골라 -->
+	<!-- c:if test='${!empty ad_id}'-->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="market/itemUpdateForm?pro_no=${pro.pro_no}">수정</a></li>
+			<li class="breadcrumb-item active"><a href="market/itemDelete?pro_no=${pro.pro_no}">삭제</a></li>
+		</ol>
+	<!-- /c:if -->
 	<!-- Intro Content -->
 	<div class="row">
 		<div class="col-lg-6">
-			<img class="img-fluid rounded mb-4" src="http://placehold.it/500x600"
-				alt="">
+			<img class="img-fluid rounded mb-4"
+				src="${pageContext.request.contextPath}/resources/images/${pro.pro_pic}"
+				alt="${pro.pro_name}">
 		</div>
 		<div class="col-lg-6">
 			<div>
@@ -29,22 +31,22 @@
 				<!-- 		/c:if -->
 			</div>
 			<p />
-			<h2>상품명</h2>
+			<h2>${pro.pro_name}</h2>
 			<p />
 			<div>
 				<table>
 					<tbody>
 						<tr>
 							<th scope="row"><span>판매가</span></th>
-							<td><span><strong>0,000원</strong></span></td>
+							<td><span><strong>${pro.pro_price}원</strong></span></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>상품번호</span></th>
-							<td><span><strong>123456</strong></span></td>
+							<td><span><strong>${pro.pro_no}</strong></span></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>기업명</span></th>
-							<td><span><strong>파팡</strong></span></td>
+							<td><span><strong>${pro.pro_cn}</strong></span></td>
 						</tr>
 					</tbody>
 					<tfoot>

@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductVO {
-	private String pro_no;
-	private String pro_name;
-	private String pro_price;
-	private String pro_pic;
-	private String pro_detail;
-	private String pro_cnt;
-	private String pro_cc;
-	private String pro_cn;
+	private String pro_no; // 상품번호
+	private String pro_name; // 상품명
+	private String pro_price; // 가격
+	private String pro_pic; // 메인사진
+	private String pro_detail; // 본문(디테일)
+	private String pro_cnt; // 재고..?
+	private String pro_cc; // 기업코드
+	private String pro_cn; // 기업명
 }

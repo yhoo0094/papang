@@ -9,21 +9,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberVO {
-	private String mbr_id;
-	private String mbr_pw;
+	private String mbr_id; // 중복체크
+	private String mbr_pw; // 비번확인
 	private String mbr_name;
-	private String mbr_nick;
+	private String mbr_nick; // 유니크??!!
 	private String mbr_birth;
-	private String mbr_email;
+	private String mbr_email; // 필수아님
 	private String mbr_phone;
 	private String mbr_post;
 	private String mbr_addr1;
 	private String mbr_addr2;
-	private String mbr_bank;
-	private String mbr_account;
-	private String mbr_author;
-	private String mbr_date;
-	private String mbr_status;
+	private String mbr_bank; // 필수아님
+	private String mbr_account; // 필수아님
+	private String mbr_author; // 디폴트 user
+	private String mbr_date; // 디폴트 sysdate
+	private String mbr_status; // 디폴트 활동중
 	private String mbr_gender;	
-	private String rcnt;
+	private String rcnt; // 재영아..
 }

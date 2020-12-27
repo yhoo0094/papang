@@ -7,6 +7,39 @@ img {
 	max-width: 40px;
 	height: auto;
 }
+a {
+/* 	font-family: Ubuntu-Regular; */
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+}
+
+a:focus {
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+  color: #fff;
+}
+p {
+/* 	font-family: Ubuntu-Regular; */
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+
+ul, li {
+	margin: 0px;
+	list-style-type: none;
+}
+
 /* .social-item {
   width: 50px;
   height: 50px;
@@ -65,8 +98,9 @@ img {
 						</button>
 					</div>
 					<div align="center" style="margin-top: 10px">
-					<p><a href="#">회원가입</a></p>
-					<p><a href="#">아이디찾기</a>&nbsp;&nbsp;<a href="#">비밀번호찾기</a></p>
+					<p><a href="${pageContext.request.contextPath}/member">회원가입</a></p>
+					<p><a href="${pageContext.request.contextPath}/member/findIdForm">아이디찾기</a>&nbsp;&nbsp;
+						<a href="${pageContext.request.contextPath}/member/findPwForm">비밀번호찾기</a></p>
 					</div>
 					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
 						<a href="#"><button type="button" class="social-item flex-c-m m-r-5">
