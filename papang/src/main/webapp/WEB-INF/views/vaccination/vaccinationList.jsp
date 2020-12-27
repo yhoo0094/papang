@@ -50,6 +50,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 </head>
 <body>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<form action="" method="post">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,10 +75,11 @@ $('#exampleModal').on('show.bs.modal', function (event) {
       </div>
     </div>
   </div>
+  </form>
 </div>
 
 <div class="Bigtitle"> 예방접종</div>
-	 
+	 <p>만{DBVALUE}살</p>
 	 <div class="ex_div prev"></div>작성 가능
 	 <div class="ex_div reg"></div>작성 완료
 	 <div class="content">

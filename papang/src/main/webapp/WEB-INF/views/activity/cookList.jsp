@@ -61,7 +61,7 @@ thead, #dataTable_filter, #dataTable_length {
 .button:hover span {padding-right: 25px;}
 .button:hover span:after {opacity: 1;right: 0;}
 .button_div {display: inline;height: 70px;width: 59%;}
-.typewrite {color:rgb(249, 196, 94);margin-left: 260px; }
+.typewrite {color:rgb(249, 196, 94);/* margin-left: 190px; */ }
 .typewrite:hover {text-decoration: none; color:rgb(249, 196, 94);}
 .header_div{margin: 80px -180px 40px 0px;}
 .search_btn{transition-duration: 0.4s;} 

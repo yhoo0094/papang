@@ -61,13 +61,15 @@ thead, #dataTable_filter, #dataTable_length {
 .button:hover span {padding-right: 25px;}
 .button:hover span:after {opacity: 1;right: 0;}
 .button_div {display: inline;height: 70px;width: 59%;}
-.typewrite {color:rgb(249, 196, 94);margin-left: 260px; }
+.typewrite {color:rgb(249, 196, 94);/* margin-left: 190px; */ }
 .typewrite:hover {text-decoration: none; color:rgb(249, 196, 94);}
 .header_div{margin: 80px -180px 40px 0px;}
 .center_div {min-height: 0px;}
 .cook_div{border: 1px solid black;width: 80%;margin: 0 0 0 10%;}
 .dataTable{border :#fff5d2;}
 .table{margin: 4rem 0 1rem 0;}
+.search_btn{transition-duration: 0.4s;} 
+.search_btn:hover{background-color:#e8505b;color:white;}
 </style>
 <script>
 var TxtType = function(el, toRotate, period) {

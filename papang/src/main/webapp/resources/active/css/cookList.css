@@ -47,15 +47,14 @@ body, table, th, td, pre, input, select, textarea, button {
 	left: -16px
 }
 
-.title_div{ height: 70px;
+.title_div{     height: 70px;
     background-color: #fff5d2;
-    width: 59%;
+    width: 49%;
     margin-left: 13.5em;
-    display: inline-block;
-}
+    display: inline-block;}
 .search_btn {
     background-color: rgb(249, 196, 94);
-    width: 330px;
+    width: 270px;
     height: 90px;
     margin: 13px 8px;
     border:none;
