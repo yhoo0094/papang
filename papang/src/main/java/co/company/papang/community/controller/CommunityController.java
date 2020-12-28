@@ -1,6 +1,8 @@
 package co.company.papang.community.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +21,7 @@ public class CommunityController {
 	@Autowired SmMapper dao;
 	
 	/*-------------------------- 커뮤니티 --------------------------*/
-	@RequestMapping("/community/board") //url 예전 .do
+	@RequestMapping("/community/board") //커뮤니티 게시판 보기
 	public ModelAndView communityBoard(CommunityVO communityVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("CommunityVOList", dao.getCommunityList(communityVO));
@@ -41,6 +43,13 @@ public class CommunityController {
 		dao.communityFormInsert(communityVO);
 		return "community/communityBoard"; //jsp주소
 	}
+	
+//	@RequestMapping("/community/commentInsert") //커뮤니티 댓글 달기
+//	public String commentInsert(CommunityVO communityVO, Errors errors ) throws IOException{
+//		communityVO.setMbr_id("tempt");
+//		dao.communityFormInsert(communityVO);
+//		return "redirect:community"; //jsp주소
+//	}
 	
 	/*-------------------------- 시터 --------------------------*/
 	@RequestMapping("/sitter/menu") //url 예전 .do

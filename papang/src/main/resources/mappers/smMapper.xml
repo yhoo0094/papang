@@ -4,21 +4,22 @@
 
 <mapper namespace="co.company.papang.impl.SmMapper">
 	<!-- 단건조회 -->
-	<select id="getCommunity" parameterType="communityVO" resultType="communityVO">
-		SELECT  *
+	<select id="getCommunity" parameterType="communityVO"
+		resultType="communityVO">
+		SELECT *
 		FROM COMMUNITY
 		WHERE COM_NO = #{com_no}
 	</select>
 
 	<!-- 전체조회 -->
 	<select id="getCommunityList" resultType="communityVO">
-		SELECT ROWNUM, C.* 
+		SELECT ROWNUM, C.*
 		FROM COMMUNITY C
 		<where>
 			<![CDATA[
 				ROWNUM <= 1000
 			]]>
-			<if test="com_category != null">
+			<if test="com_category != null and com_category != ''">
 				and com_category = #{com_category}
 			</if>
 		</where>
@@ -27,7 +28,8 @@
 
 	<!-- 커뮤니티 글등록 -->
 	<insert id="communityFormInsert" parameterType="communityVO">
-		<selectKey order="BEFORE" keyProperty="com_no" resultType="string">
+		<selectKey order="BEFORE" keyProperty="com_no"
+			resultType="string">
 			select SEQ_COMMUNITY_COM_NO.currval
 			from dual
 		</selectKey>

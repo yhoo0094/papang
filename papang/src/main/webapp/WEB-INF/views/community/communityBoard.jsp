@@ -9,14 +9,14 @@
 <body>
 	<br>
 	<h3 style="display: inline;">커뮤니티 게시판</h3>
-	<form:form id="communityBoardCategory" class="category" action="communityBoard" method="post" modelAttribute="communityVO">
-		<form:select path="com_category" style="width: 100%">
+	<form id="communityBoardCategory" class="category" action="${pageContext.request.contextPath}/community/board" method="post">
+		<select name="com_category" style="width: 100%">
 			<option value="">분류
-			<option value="정보">정보
-			<option value="일상">일상
-			<option value="질문">질문
-		</form:select>
-	</form:form>
+			<option <c:if test="${communityVO.com_category == '정보'}">selected="selected"</c:if> value="정보">정보
+			<option <c:if test="${communityVO.com_category == '일상'}">selected="selected"</c:if> value="일상">일상
+			<option <c:if test="${communityVO.com_category == '질문'}">selected="selected"</c:if> value="질문">질문
+		</select>
+	</form>
 	<hr/>
 	<br>
 	<div align="center" id = communityBoardTable>
@@ -34,7 +34,7 @@
 			<c:forEach items="${CommunityVOList}" var="v">
 				<tr>
 					<td align="center">${v.com_no}. ${v.com_category}</td>
-					<td><a href="communityForm?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
+					<td><a href="${pageContext.request.contextPath}/community/form?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
 					<td align="center">${v.mbr_id}</td>
 					<td align="center">${v.com_date}</td>
 					<td align="center">${v.com_hit}</td>
@@ -51,7 +51,7 @@
  		$(()=>{
 			$("#createBtn").on({
 				"click" : function() {
-					location.href="${pageContext.request.contextPath}/communityForm";		
+					location.href="${pageContext.request.contextPath}/community/form";		
 				}
 			})
 			$("#communityBoardCategory").on({

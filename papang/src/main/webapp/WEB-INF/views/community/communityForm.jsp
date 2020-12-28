@@ -34,9 +34,20 @@
 	border: solid gray 1px;
 	border-collapse: collapse;
 }
-.note-resizebar{display: none;}
-</style>
 
+.note-resizebar {
+	display: none;
+}
+</style>
+<script type="text/javascript">
+	$(()=>{
+		$("#gobackBtn").on({
+			"click" : function() {
+				location.href="${pageContext.request.contextPath}/community/board";
+			}
+		})
+	})
+</script>
 </head>
 <body>
 	<div align="center" class="communityFormTitle strongYellow">
@@ -44,28 +55,30 @@
 	</div>
 	<br>
 	<div align="center" class="communityFormDiv">
-		<form:form action="communityFormInsert" modelAttribute="communityVO">
+		<form:form
+			action="${pageContext.request.contextPath}/community/formInsert"
+			modelAttribute="communityVO">
 			<table class="communityFormTable" border="1">
 				<tr>
 					<td align="center" width="20%" class="strongYellow">제목</td>
-					<td class="whiteBackground" width="80%">
-						<form:input path="com_title" type="text" class="communityFormType"/>
-					</td>
+					<td class="whiteBackground" width="80%"><form:input
+							path="com_title" type="text" class="communityFormType" /></td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow">분류</td>
-					<td class="whiteBackground">
-						<form:select path="com_category" class="communityFormType">
+					<td class="whiteBackground"><form:select path="com_category"
+							class="communityFormType">
+							<option value="">분류를 선택하세요
 							<option value="정보">정보
 							<option value="일상">일상
 							<option value="질문">질문
-						</form:select>
-					</td>
+						</form:select></td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
-					<td class="whiteBackground"><form:textarea id="summernote"  path="com_content"
-							class="communityFormTxtarea" rows="20" cols="102" name="comm"></form:textarea></td>
+					<td class="whiteBackground"><form:textarea id="summernote"
+							path="com_content" class="communityFormTxtarea" rows="20"
+							cols="102" name="comm"></form:textarea></td>
 				</tr>
 			</table>
 			<br>
@@ -75,17 +88,19 @@
 				<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 			</div>
 		</form:form>
-		
+
 		<br>
 		<div align="left">
 			<b style="font-size: 20px;">댓글 쓰기</b>
 		</div>
 		<table style="width: 100%">
 			<tr>
-				<td width="90%"><textarea rows="5" cols="102" name="comm"
-						style="width: 100%"></textarea></td>
-				<td align="center" width="10%" style="padding: 0 0 5px 0"><button
-						class="btnYellow insertBtn">등록하기</button></td>
+				<form:form action="${pageContext.request.contextPath}/community/commentInsert">
+					<td width="90%"><form:textarea path="cc_content" rows="5" cols="102" name="comm"
+							style="width: 100%"></form:textarea></td>
+					<td align="center" width="10%" style="padding: 0 0 5px 0"><button
+							class="btnYellow insertBtn">등록하기</button></td>
+				</form:form>
 			</tr>
 		</table>
 		<br>
@@ -113,7 +128,7 @@
 			height : 500, // 에디터 높이
 			minHeight : null, // 최소 높이
 			maxHeight : null, // 최대 높이
-			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+			focus : false, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
 		});
 	</script>
