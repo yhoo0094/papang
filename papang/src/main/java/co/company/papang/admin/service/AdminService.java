@@ -1,11 +1,11 @@
-package co.company.papang.impl;
+package co.company.papang.admin.service;
 
 import java.util.List;
 
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 
-public interface JyMapper {
+public interface AdminService {
 	// 怨듭��벑濡�
 	public int insertNq(NqVO nqVO);
 
@@ -26,5 +26,4 @@ public interface JyMapper {
 
 	// 회원 권한 수정
 	public int updateMember(MemberVO vo);
-
 }

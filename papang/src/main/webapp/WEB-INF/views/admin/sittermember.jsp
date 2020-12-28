@@ -7,7 +7,7 @@
 		//nqSelect();
 		//nqDelete();
 		//nqUpdate();
-
+		memberUpdate();
 		$("#filter").on('change', function() {
 			memberList();
 		});
@@ -44,37 +44,6 @@
 		}); //삭제 버튼 클릭
 	}//nqDelete
 
-	//사용자 수정 요청
-	function nqUpdate() {
-		//수정 버튼 클릭
-
-		$('#btnUpdate').on('click', function() {
-			var form = $('#form1')[0];
-			var formData = new FormData(form);
-
-			$.ajax({
-				url : "../nq",
-				type : 'PUT',
-				dataType : 'json',
-				data : formData,
-				contentType : false,
-				processData : false,
-				success : function(data) {
-					nqList();
-					$('#form1').each(function() {
-						this.reset();
-						$('.note-editable').html("");
-						$('#la').html("선택한 파일 없음");
-						alert("수정되었습니다");
-					});
-				},
-				error : function(xhr, status, message) {
-					alert(" status: " + status + " er:" + message);
-				}
-			});
-		});//수정 버튼 클릭
-	}//userUpdate
-
 	//사용자 목록 조회 요청
 	function memberList() {
 		var filter = $("#filter").val()
@@ -107,7 +76,7 @@
 									.append(
 											$('<td>')
 													.html(
-															"<select class='author'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
+															"<select class='author' id='author"+item.mbr_id+"'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
 									.append($('<td>').html(item.mbr_phone))
 									.append($('<td>').html(item.mbr_status))
 									.append($('<td>').html(item.rcnt))
@@ -116,12 +85,36 @@
 													.html(
 															'<button id=\'btnSelect\'>조회</button> <button id=\'btnDelete\'>탈퇴</button>'))
 									.appendTo('#dataTable tbody');
-							$('.author').val(item.mbr_author).prop("selected",
-									true);
+					 $("#author"+item.mbr_id).val(item.mbr_author).prop("selected",
+									true); 
 						});
 
 		$('#dataTable').DataTable();
 	}//userListResult
+
+	function memberUpdate() {
+		//수정 버튼 클릭
+		$("body").on('change', '.author', function() {
+			var author = $(".author").val();
+			var id = $(this).parent().parent().children().eq(0).html();
+			$.ajax({
+				url : "../member",
+				type : 'PUT',
+				dataType : 'json',
+				data : JSON.stringify({
+					mbr_id : id ,mbr_author : author
+				}),
+				contentType : 'application/json',
+				success : function(data) {
+					memberList();
+				},
+				error : function(xhr, status, message) {
+					alert(" status: " + status + " er:" + message);
+				}
+			});
+		});
+
+	}//userUpdate
 </script>
 <h1 class="mt-4">시터/회원 관리</h1>
 <br>
@@ -151,3 +144,7 @@
 		<tbody></tbody>
 	</table>
 </div>
+
+<script>
+	//사용자 수정 요청
+</script>

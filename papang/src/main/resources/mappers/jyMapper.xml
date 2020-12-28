@@ -77,6 +77,14 @@
 		</where>
 		ORDER BY mbr_id
 	</select>
+	
+	<!-- 공지 수정 -->
+	<update id="updateMember" parameterType="co.company.papang.vo.MemberVO">
+		update member set
+		mbr_author =
+		#{mbr_author}
+		where mbr_id = #{mbr_id}
+	</update>
 
 
 </mapper>

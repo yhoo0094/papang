@@ -13,25 +13,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import co.company.papang.admin.service.AdminService;
 import co.company.papang.impl.JyMapper;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 
+
 @RestController
 public class AdminRestController {
 	@Autowired
-	JyMapper jyMapper;
+	AdminService service;
 
 	// �쟾泥댁“�쉶
 	@RequestMapping(value = "/nq", method = RequestMethod.GET)
 	public List<NqVO> getNqList(Model model, NqVO vo) {
-		return jyMapper.getListNq(vo);
+		return service.getListNq(vo);
 	}
 
 	// �벑濡�
@@ -55,7 +58,7 @@ public class AdminRestController {
 																							// �씠由�
 			vo.setNq_file(multipartFile.getOriginalFilename());
 		}
-		jyMapper.insertNq(vo);
+		service.insertNq(vo);
 		return Collections.singletonMap("result", true);
 	}
 
@@ -63,14 +66,14 @@ public class AdminRestController {
 	@RequestMapping(value = "/nq/{nq_no}", method = RequestMethod.GET)
 	public NqVO getNq(@PathVariable String nq_no, NqVO vo, Model model) {
 		vo.setNq_no(nq_no);
-		return jyMapper.getNq(vo);
+		return service.getNq(vo);
 	}
 
 	// �궘�젣
 	@RequestMapping(value = "/nq/{nq_no}", method = RequestMethod.DELETE)
 	public Map getUserList(@PathVariable String nq_no, NqVO vo, Model model) {
 		vo.setNq_no(nq_no);
-		jyMapper.deleteNq(vo);
+		service.deleteNq(vo);
 		Map result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
@@ -97,7 +100,7 @@ public class AdminRestController {
 																							// �씠由�
 			vo.setNq_file(multipartFile.getOriginalFilename());
 		}
-		jyMapper.updateNq(vo);
+		service.updateNq(vo);
 		return vo;
 	}
 
@@ -105,6 +108,17 @@ public class AdminRestController {
 
 	@RequestMapping(value = "/member", method = RequestMethod.GET)
 	public List<MemberVO> getListMember(Model model, MemberVO vo) {
-		return jyMapper.getListMember(vo);
+		return service.getListMember(vo);
+	}
+
+	// 수정
+	@RequestMapping(value = "/member", method = RequestMethod.PUT
+	// ,produces="application/json" //응답헤더
+			, consumes = "application/json" // 요청헤더
+	// ,headers = {"Content-type=application/json" }
+	)
+	public MemberVO updateMember(@RequestBody MemberVO vo, Model model) {
+		service.updateMember(vo);
+		return vo;
 	}
 }
