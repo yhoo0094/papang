@@ -170,7 +170,7 @@ a.item {
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/cookList">활동</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/vaccinationList">예방접종</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vaccination/vaccinationList">예방접종</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sitterBoard">베이비시터</a>
 						</li>
