@@ -162,7 +162,7 @@ a.item {
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img class="papanglogo" alt="로고" src="${pageContext.request.contextPath}/resources/images/new_logo2.png"> </a>
 				<div class="collapse navbar-collapse" id="navbarResponsive" align="center">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/communityBoard">커뮤니티</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/community/board">커뮤니티</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/marketList/itemBoard">장터</a>
 						</li>
@@ -172,7 +172,7 @@ a.item {
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vaccination/vaccinationList">예방접종</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sitterBoard">베이비시터</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sitter/board">베이비시터</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="contact.html">Q&A</a>
 						</li>
@@ -261,6 +261,10 @@ a.item {
 			/*$("#divForEntryNum .custom-select").empty();
 			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
 			$("#divForEntryNum .custom-select").trigger("change"); */
+			
+			$("#cook_div .custom-select").empty();
+			$("#cook_div .custom-select").append("<option value='16'>16</option>");
+			$("#cook_div .custom-select").trigger("change"); 
 			
 			$("#communityBoardTable .tableTh:eq(0)").trigger("click");
 		})

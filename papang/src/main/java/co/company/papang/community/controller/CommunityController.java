@@ -19,7 +19,7 @@ public class CommunityController {
 	@Autowired SmMapper dao;
 	
 	/*-------------------------- 커뮤니티 --------------------------*/
-	@RequestMapping("/communityBoard") //url 예전 .do
+	@RequestMapping("/community/board") //url 예전 .do
 	public ModelAndView communityBoard(CommunityVO communityVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("CommunityVOList", dao.getCommunityList(communityVO));
@@ -27,7 +27,7 @@ public class CommunityController {
 		return mav; //jsp주소
 	}
 	
-	@RequestMapping("/communityForm") //커뮤니티 글쓰러 가기
+	@RequestMapping("/community/form") //커뮤니티 글쓰러 가기
 	public String communityForm(Model model, CommunityVO communityVO) throws IOException{
 		if(communityVO.getCom_no() != null) {
 			model.addAttribute("communityVO",dao.getCommunity(communityVO));
@@ -35,7 +35,7 @@ public class CommunityController {
 		return "community/communityForm"; //jsp주소
 	}
 	
-	@RequestMapping("/communityFormInsert") //커뮤니티 글 인서트
+	@RequestMapping("/community/formInsert") //커뮤니티 글 인서트
 	public String communityFormInsert(CommunityVO communityVO, Errors errors ) throws IOException{
 		communityVO.setMbr_id("tempt");
 		dao.communityFormInsert(communityVO);
@@ -43,27 +43,27 @@ public class CommunityController {
 	}
 	
 	/*-------------------------- 시터 --------------------------*/
-	@RequestMapping("/sitterMenu") //url 예전 .do
+	@RequestMapping("/sitter/menu") //url 예전 .do
 	public String sitterMenu() throws IOException{
 		return "layout/sitterMenu"; //jsp주소
 	}
 	
-	@RequestMapping("/sitterBoard") //url 예전 .do
+	@RequestMapping("/sitter/board") //url 예전 .do
 	public String sitterBoard() throws IOException{
 		return "sitter/sitterBoard"; //jsp주소
 	}
 	
-	@RequestMapping("/sitterForm") //url 예전 .do
+	@RequestMapping("/sitter/form") //url 예전 .do
 	public String sitterForm() throws IOException{
 		return "sitter/sitterForm"; //jsp주소
 	}
 	
-	@RequestMapping("/sitterScheduleView") //url 예전 .do
+	@RequestMapping("/sitter/scheduleView") //url 예전 .do
 	public String sitterScheduleView() throws IOException{
 		return "sitter/sitterScheduleView"; //jsp주소
 	}
 	
-	@RequestMapping("/reservationView") //url 예전 .do
+	@RequestMapping("/sitter/reservationView") //url 예전 .do
 	public String reservationView() throws IOException{
 		return "sitter/reservationView"; //jsp주소
 	}
