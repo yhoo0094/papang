@@ -24,5 +24,24 @@
 	 	               			#{jobId}) -->
 	</insert>
 
+	<select id="selectChild" resultType="ChildVO">
+		SELECT *
+		FROM CHILD
+		<where>
+			<if test="mbr_id != null and mbr_id !=''">
+				mbr_id = #{mbr_id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectPrevent" resultType="PreventionVO">
+		SELECT *
+		FROM PREVENT
+		<where>
+			<if test="mbr_id != null and mbr_id !=''">
+				mbr_id = #{mbr_id}
+			</if>
+		</where>
+	</select>
 
 </mapper>

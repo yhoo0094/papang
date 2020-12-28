@@ -41,6 +41,161 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 }
 .select {border-radius: 8px;border: 3px solid rgb(249, 196, 94);background-color: rgb(249, 196, 94);}
 </style>
+<script src="../resources/json.min.js"></script>
+<script type="text/javascript" >
+	$(function(){
+		childList();
+
+		//userSelect();
+		
+		//userDelete();
+		
+		//userInsert();
+	
+		//userUpdate();
+		
+		init();
+	});
+	
+	//초기화
+	function init() {
+		//초기화 버튼 클릭
+		$('#btnInit').on('click',function(){
+			$('#form1').each(function(){
+				this.reset();
+			});
+		});
+	}//init
+	
+	//사용자 삭제 요청
+	function userDelete() {
+		//삭제 버튼 클릭
+		$('body').on('click','#btnDelete',function(){
+			var userId = $(this).closest('tr').find('#hidden_userId').val();
+			var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
+			if(result) {
+				$.ajax({
+					url:'users/'+userId,  
+					type:'DELETE',
+					contentType:'application/json;charset=utf-8',
+					dataType:'json',
+					error:function(xhr,status,msg){
+						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
+					}, success:function(xhr) {
+						console.log(xhr.result);
+						userList();
+					}
+				});      }//if
+		}); //삭제 버튼 클릭
+	}//userDelete
+	
+	//사용자 조회 요청
+	function userSelect() {
+		//조회 버튼 클릭
+		$('body').on('click','#btnSelect',function(){
+			var userId = $(this).closest('tr').find('#hidden_userId').val();
+			//특정 사용자 조회
+			$.ajax({
+				url:'users/'+userId,
+				type:'GET',
+				contentType:'application/json;charset=utf-8',
+				dataType:'json',
+				error:function(xhr,status,msg){
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:userSelectResult
+			});
+		}); //조회 버튼 클릭
+	}//userSelect
+	
+	//사용자 조회 응답
+	function userSelectResult(user) {
+		$('input:text[name="id"]').val(user.id);
+		$('input:text[name="name"]').val(user.name);
+		$('input:text[name="password"]').val(user.password);
+		$('select[name="role"]').val(user.role).attr("selected", "selected");
+	}//userSelectResult
+	
+	//사용자 수정 요청
+	function userUpdate() {
+		//수정 버튼 클릭
+		$('#btnUpdate').on('click',function(){
+			var id = $('input:text[name="id"]').val();
+			var name = $('input:text[name="name"]').val();
+			var password = $('input:text[name="password"]').val();
+			var role = $('select[name="role"]').val();		
+			$.ajax({ 
+			    url: "users", 
+			    type: 'PUT', 
+			    dataType: 'json', 
+			    data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+			    contentType: 'application/json',
+			    success: function(data) { 
+			        userList();
+			    },
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    }
+			});
+		});//수정 버튼 클릭
+	}//userUpdate
+	
+	//사용자 등록 요청
+	function userInsert(){
+		//등록 버튼 클릭
+		$('#btnInsert').on('click',function(){
+			$("#form1")
+			$.ajax({ 
+			    url: "users",  
+			    type: 'POST',  
+			    dataType: 'json', 
+			    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
+			    //data :$("#form1").serialize(),
+			    data : JSON.stringify($("#form1").serializeObject()),
+			    contentType: 'application/json', 
+			    success: function(response) {
+			    	if(response.result == true) {
+			    		userList();
+			    	}
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			 });  
+		});//등록 버튼 클릭
+	}//userInsert
+	
+	//사용자 목록 조회 요청
+	function childList() {
+		$.ajax({
+			url:'../child',
+			type:'GET',
+			//contentType:'application/json;charset=utf-8',
+			dataType:'json',
+			data: {mbr_id : 'father1'},
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:childListResult
+		});
+	}//userList
+	
+	//사용자 목록 조회 응답
+	function childListResult(data) {
+		
+		$.each(data,function(idx,item){
+			console.log(item);
+			$('#child')
+			.append($("<option class='selectOpt' value= '"+item.chi_no+"'>"+item.chi_name+"</option>"));
+			
+		});//each
+		
+		$('#child').on('change',function(){
+			console.log($('#child').val());
+			}); 
+	}//userListResult
+	
+</script>
 <script>
 $('#exampleModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) 
@@ -50,11 +205,13 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	})
 	
 	
-	$( document ).ready( function() {
+	
+	
+/* 	$( document ).ready( function() {
   $( '.vacc_prev' ).click( function() {
     $( this ).toggleClass( 'reg' );
   } );
-} );
+} ); */
 </script>
 </head>
 <body>
@@ -88,10 +245,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	</div>
 	
 	<div class="Bigtitle"> 예방접종</div>
-	<select class="select">
-		<option>1번마</option>
-		<option>2번마</option>
-		<option>3번마</option>
+	<select class="select" id='child'>
+	
 	</select>
 		 <p class="age">만{DBVALUE}살</p>
 		 <div class="ex">
