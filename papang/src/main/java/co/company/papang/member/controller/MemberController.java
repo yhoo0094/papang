@@ -11,14 +11,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.EsMapper;
+import co.company.papang.member.service.MemberRegService;
 import co.company.papang.vo.MemberVO;
 
 @Controller
 public class MemberController {
 	@Autowired EsMapper dao;
+	@Autowired MemberRegService reg_service; // 나중에 서비스 나누면
 	
 	// 회원가입 폼 버전1.. 일단 여기에 기능 몰빵해둠~~ 몰겠어 디자인적으로.. ㅎㅎ
 	@RequestMapping("/member/joinForm") //url 예전 .do
@@ -35,10 +40,16 @@ public class MemberController {
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/joinFormBoot"); //jsp주소
 	}
+	// 아이디중복체크
+	@RequestMapping(value = "/ajax/idchk", method = RequestMethod.GET) //url 예전 .do
+	@ResponseBody
+	public int idChk(@RequestParam("mbr_id") String mbr_id) throws IOException{
+		return reg_service.mbrIdCheck(mbr_id); //jsp주소
+	}
 	// 회원가입 처리
 	@PostMapping("/member/join")
 	public String join(HttpServletRequest request, MemberVO member) throws IOException {
-		dao.insertUser(member);
+		reg_service.insertUser(member);
 		return "main/main";
 	}
 	
@@ -55,6 +66,7 @@ public class MemberController {
 		session.setAttribute("mbr_author", vo.getMbr_author());
 		return "main/main"; // 메인으로 이동
 	}
+
 	// 로그아웃
 	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {

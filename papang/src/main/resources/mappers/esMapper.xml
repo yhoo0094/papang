@@ -4,7 +4,7 @@
 
 <mapper namespace="co.company.papang.impl.EsMapper">
 <!-- 회원가입 -->
-	<insert id="join" parameterType="MemberVO">
+	<insert id="insertUser" parameterType="MemberVO">
 		INSERT INTO MEMBER (	mbr_id,
 								mbr_pw, 
 								mbr_name, 
@@ -32,6 +32,11 @@
 <if test="mbr_account != null and mbr_account != ''">#{mbr_account},</if>
 	 	               		#{mbr_gender} )
 	</insert>
+<!-- 아이디중복체크 -->
+	<select id="checkId" parameterType="String" resultType="int">
+		SELECT count(*) FROM MEMBER
+		WHERE mbr_id = #{mbr_id}
+	</select>
 
 
 <!-- =========================================================== -->

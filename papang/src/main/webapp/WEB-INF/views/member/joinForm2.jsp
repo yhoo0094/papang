@@ -40,6 +40,7 @@ p {
 }
 </style>
 <script type="text/javascript">
+	var chked = 0;
 	$(function() {
 		// 아이디 중복검사
 		$("#mbr_id").blur(function(){
@@ -53,16 +54,35 @@ p {
 						$("#idchk").css("color", "red");
  						$("joinBtn").attr("disabled", true);
 					} else{
-						$("#idchk").text("사용가능한 아이디입니다");
-						$("#idchk").css("color", "green");
- 						$("joinBtn").attr("disabled", false);
+						if 
 					}
-				}, error : function(){
-					alert("실패");
 				}
 			})
 		})
-
+// 				
+// 				data : {
+// 					mbr_id : mbr_id
+// 				},
+// 				dataType : 'json',
+// 				error : function(error) {
+// 					alert("error :" + error);
+// 				},
+// 				success : function(data) {
+// 					chked = data;
+// 					if (data == 0) {
+// 						$("#chkmsg").text("사용불가");
+// 						$("#chkmsg").css("color", "red");
+// 						$("joinBtn").attr("disabled", true);
+// 						$("#mbr_id").focus();
+// 					} else {
+// 						$("#chkmsg").text("사용가능");
+// 						$("#chkmsg").css("color", "green");
+// 						$("joinBtn").attr("disabled", false);
+// 						$("#mbr_id").focus();
+// 					}
+// 				}
+// 			});
+// 		});
 	});
 	function formCheck() {
 		var f = document.frm;
@@ -119,22 +139,22 @@ p {
 			f.mbr_phone.focus();
 			return false;
 		}
-// 		if (f.mbr_post.value == "") {
-// 			alert("우편번호를 입력하세요");
-// 			f.mbr_post.focus();
-// 			return false;
-// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
-// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-// 		if (f.mbr_addr2.value == "") {
-// 			alert("상세주소를 입력하세요");
-// 			f.mbr_addr2.focus();
-// 			return false;
-// 		}
-// 		if (isNaN(f.mbr_account.value)) {
-// 			alert("계좌번호는 숫자만 입력가능합니다");
-// 			f.mbr_account.focus();
-// 			return false;
-// 		}
+		if (f.mbr_post.value == "") {
+			alert("우편번호를 입력하세요");
+			f.mbr_post.focus();
+			return false;
+		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
+		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
+		if (f.mbr_addr2.value == "") {
+			alert("상세주소를 입력하세요");
+			f.mbr_addr2.focus();
+			return false;
+		}
+		if (isNaN(f.mbr_account.value)) {
+			alert("계좌번호는 숫자만 입력가능합니다");
+			f.mbr_account.focus();
+			return false;
+		}
 		return true;
 	}
 </script>
@@ -145,29 +165,29 @@ p {
 			<div class="w3-large" align="center">
 				<h3 class="big_title">회원가입</h3>
 			</div>
-			<form action="${pageContext.request.contextPath}/member/join" class="frm" name="frm" id="frm"
+			<form action="memberJoin" class="frm" name="frm" id="frm"
 				method="post" style="margin: auto;">
 				<div>
 					<table class="table">
 						<tr>
 							<td class="txt">아이디&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="text" id="mbr_id" name="mbr_id"
-								placeholder="아이디" class="form-control"></td>
-								<td><span id="idchk"></span></td>
-<!-- 								<td><div class="everychk" id="idchk"></div></td> -->
+								placeholder="아이디">
+								<div id="chkmsg"></div></td>
+								<td><div class="idchk" id="idchk"></div></td>
 <!-- 							<td><input type="button" id="idchk" class="btnRed" -->
 <!-- 								value="중복확인" style="padding: 5px"></td> -->
 						</tr>
 						<tr>
 							<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="password" class="form-control pw"
+							<td colspan="2"><input type="password" class="pw"
 								id="mbr_pw" name="mbr_pw" placeholder="비밀번호"></td>
 						</tr>
 						<tr>
 							<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
-							<td ><input type="password" class="form-control pw"
+							<td colspan="2"><input type="password" class="pw"
 								id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
-						
+						</tr>
 						<script>
 							$('.pw').focusout(
 									function() {
@@ -193,7 +213,7 @@ p {
 										}
 									});
 						</script>
-					
+						<tr>
 							<td><span id="alert-success"
 								style="display: none; color: #0B8026; font-weight: bold;">비밀번호가
 									일치합니다.</span> <span id="alert-fail"
@@ -203,17 +223,17 @@ p {
 						<tr>
 							<td class="txt">이름&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_name"
-								name="mbr_name" placeholder="이름" class="form-control"></td>
+								name="mbr_name" placeholder="이름"></td>
 						</tr>
 						<tr>
 							<td class="txt">닉네임&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_nick"
-								name="mbr_nick" placeholder="닉네임" class="form-control"></td>
+								name="mbr_nick" placeholder="닉네임"></td>
 						</tr>
 						<tr>
 							<td class="txt">생년월일&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="date" id="mbr_birth"
-								name="mbr_birth" class="form-control"></td>
+								name="mbr_birth"></td>
 						</tr>
 						<tr>
 							<td class="txt">성별&nbsp;<span style="color: red;">*</span></td>
@@ -224,33 +244,33 @@ p {
 						<tr>
 							<td class="txt">전화번호&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_phone"
-								name="mbr_phone" placeholder="-없이 입력" class="form-control"></td>
+								name="mbr_phone" placeholder="-없이 입력"></td>
 						</tr>
 						<tr>
 							<td class="txt">이메일</td>
 							<td colspan="2"><input type="email" id="mbr_email"
-								name="mbr_email" placeholder="abc@example.com" class="form-control"></td>
+								name="mbr_email" placeholder="abc@example.com"></td>
 						</tr>
 						<tr>
 							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="text" id="mbr_post" name="mbr_post"
-								class="form-control" readonly></td>
+								readonly></td>
 							<td><input type="button" id="postSearch" class="btnRed"
 								value="우편번호 검색" onclick="postSearch()" style="padding: 5px"></td>
 						</tr>
 						<tr>
 							<td class="txt">주소&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_addr1"
-								name="mbr_addr1" class="form-control" readonly ></td>
+								name="mbr_addr1" readonly></td>
 						</tr>
 						<tr>
 							<td class="txt">상세주소&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_addr2" class="form-control"
+							<td colspan="2"><input type="text" id="mbr_addr2"
 								name="mbr_addr2" placeholder="나머지 주소를 입력해주세요"></td>
 						</tr>
 						<tr>
 							<td class="txt">은행</td>
-							<td><select name="mbr_bank" id="mbr_bank" class="form-control">
+							<td><select name="mbr_bank" id="mbr_bank">
 									<option value="">은행명을 선택하세요</option>
 									<option value="35">경남은행</option>
 									<option value="29">광주은행</option>
@@ -281,12 +301,12 @@ p {
 									<option value="21">SC제일은행</option>
 							</select></td>
 							<td><input type="text" id="mbr_account" name="mbr_account"
-								class="form-control" placeholder="계좌번호를 입력해주세요"></td>
+								placeholder="계좌번호를 입력해주세요"></td>
 						</tr>
 					</table>
 				</div>
 				<div align="center">
-					<button type="submit" class="btnRed" id="joinBtn"
+					<button type="submit" class="btn" id="joinBtn"
 						onclick="return formCheck()" style="margin-right: 30px;">회원가입</button>
 					<button type="reset" class="btnGray" style="margin-right: 30px;">취소</button>
 				</div>

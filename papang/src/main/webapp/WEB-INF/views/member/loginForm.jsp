@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<!DOCTYPE html>
 <style>
 img {
@@ -91,7 +91,9 @@ ul, li {
 						<input class="input100" type="password" name="mbr_pw" placeholder="비밀번호">
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
-
+					<div>
+					<small>아이디 기억하기</small>
+					</div>
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn" type="submit">
 							Login

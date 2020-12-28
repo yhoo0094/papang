@@ -13,18 +13,18 @@ public class MemberDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int insertUser(MemberVO member) {
-		int result=0;
-		EsMapper mapper = sqlSession.getMapper(EsMapper.class);
-		
-		try {
-			result = mapper.insertUser(member);
-		} catch(Exception e) {
-			e.printStackTrace();
-			return result;
-		}
-		return result;
-	}
+//	public int insertUser(MemberVO member) {
+//		int result=0;
+//		EsMapper mapper = sqlSession.getMapper(EsMapper.class);
+//		
+//		try {
+//			result = mapper.insertUser(member);
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//			return result;
+//		}
+//		return result;
+//	}
 	
 	public MemberVO login(MemberVO member) {
 		MemberVO result = null;
