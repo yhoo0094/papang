@@ -120,10 +120,10 @@ p {
 			return false;
 		}
 		// 성별 기본체크가 없다면~~!
-/*		if ($("input[name='mbr_gender']:checked").length == 0) {
-			alert("성별을 선택하세요");
-			return false;
-		}*/
+		/*		if ($("input[name='mbr_gender']:checked").length == 0) {
+		 alert("성별을 선택하세요");
+		 return false;
+		 }*/
 		if (f.mbr_phone.value == "") {
 			alert("전화번호를 입력하세요");
 			f.mbr_phone.focus();
@@ -153,23 +153,6 @@ p {
 		return true;
 	}
 
-	$('.pw').focusout(function() {
-		var pw1 = $("#mbr_pw").val();
-		var pw2 = $("#mbr_pw2").val();
-
-		if (pw1 != "" && pw2 == "") {
-			null;
-		} else if (pw1 != "" || pw2 != "") {
-			if (pw1 == pw2) {
-				$("#alert-success").css("display", "inline-block");
-				$("#alert-fail").css("display", "none");
-			} else {
-				//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
-				$("#alert-success").css("display", "none");
-				$("#alert-fail").css("display", "inline-block");
-			}
-		}
-	});
 </script>
 </head>
 <body>
@@ -197,15 +180,32 @@ p {
 						</tr>
 						<tr>
 							<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2" rowspan="2"><input type="password"
-								class="pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"><br>
-								<span id="alert-success"
-								style="display: none; color: #0B8026; font-weight: bold;">비밀번호가
-									일치합니다.</span> <span id="alert-fail"
-								style="display: none; color: #d92742; font-weight: bold;">비밀번호가
-									일치하지 않습니다.</span></td>
+							<td colspan="2"><input type="password"
+								class="pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인">
+							</td>
 						</tr>
-
+						<script>
+						$('.pw').focusout(function(){
+							var pw1 = $("#mbr_pw").val();
+							var pw2 = $("#mbr_pw2").val();
+									
+							if (pw1 != "" && pw2 == ""){
+								null;
+							} else if (pw1 != "" || pw2 != ""){
+								if(pw1 == pw2) {
+									$("#alert-success").css("display","inline-block");
+									$("#alert-fail").css("display","none");
+								} else{
+									//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
+									$("#alert-success").css("display","none");
+									$("#alert-fail").css("display","inline-block");
+								}
+							}
+						});</script>
+						<tr><td>
+							<span id="alert-success" style="display: none; color: #0B8026; font-weight: bold;">비밀번호가 일치합니다.</span>
+    								<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span></td>
+									</tr>
 						<tr>
 							<td class="txt">이름&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_name"
@@ -239,7 +239,8 @@ p {
 						</tr>
 						<tr>
 							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_post" name="mbr_post" readonly></td>
+							<td><input type="text" id="mbr_post" name="mbr_post"
+								readonly></td>
 							<td><input type="button" id="postSearch" class="btnRed"
 								value="우편번호 검색" onclick="postSearch()" style="padding: 5px"></td>
 						</tr>
@@ -255,8 +256,6 @@ p {
 						</tr>
 						<tr>
 							<td class="txt">은행</td>
-							<td><input type="text" id="mbr_account" name="mbr_account"
-								placeholder="계좌번호를 입력해주세요"></td>
 							<td><select name="mbr_bank" id="mbr_bank">
 									<option value="">은행명을 선택하세요</option>
 									<option value="35">경남은행</option>
@@ -287,7 +286,8 @@ p {
 									<option value="45">HSBC은행</option>
 									<option value="21">SC제일은행</option>
 							</select></td>
-
+<td><input type="text" id="mbr_account" name="mbr_account"
+								placeholder="계좌번호를 입력해주세요"></td>
 						</tr>
 					</table>
 				</div>

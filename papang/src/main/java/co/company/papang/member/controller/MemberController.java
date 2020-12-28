@@ -21,34 +21,34 @@ public class MemberController {
 	@Autowired EsMapper dao;
 	
 	// 회원가입 폼 버전1.. 일단 여기에 기능 몰빵해둠~~ 몰겠어 디자인적으로.. ㅎㅎ
-	@RequestMapping("/member") //url 예전 .do
+	@RequestMapping("/member/joinForm") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/joinForm"); //jsp주소
 	}
 	// 회원가입 폼 2
-	@RequestMapping("/joinForm") //url 예전 .do
+	@RequestMapping("/member/DivForm") //url 예전 .do
 	public ModelAndView test2(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/joinFormDiv"); //jsp주소
 	}
 	// 회원가입 폼 3
-	@RequestMapping("/joinBoot") //url 예전 .do
+	@RequestMapping("/member/BootForm") //url 예전 .do
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/joinFormBoot"); //jsp주소
 	}
 	// 회원가입 처리
-	@PostMapping("/join")
+	@PostMapping("/member/join")
 	public String join(HttpServletRequest request, MemberVO member) throws IOException {
 		dao.insertUser(member);
 		return "main/main";
 	}
 	
 	// 로그인 폼
-	@RequestMapping("/loginForm") //url 예전 .do
+	@RequestMapping("/member/loginForm") //url 예전 .do
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("member/loginForm"); //jsp주소
 	}
 	// 로그인처리
-	@PostMapping("/login") // post 요청은 로그인 처리
+	@PostMapping("/member/login") // post 요청은 로그인 처리
 	public String login(HttpSession session, MemberVO vo) {
 		// 세션에 담기
 		session.setAttribute("mbr_id", vo.getMbr_id());
@@ -56,7 +56,7 @@ public class MemberController {
 		return "main/main"; // 메인으로 이동
 	}
 	// 로그아웃
-	@GetMapping("/logout")
+	@GetMapping("/member/logout")
 	public String logout(HttpSession session) {
 		// 세션 무효화
 		session.invalidate(); // 로그아웃처리

@@ -194,11 +194,11 @@ a.item {
 				</div>
 				<div class="util right" align="right" style="margin-bottom: 70px">
 <c:if test='${empty mbr_id}'>
-	<a class="item" href="${pageContext.request.contextPath}/member" onfocus="blur()">
+	<a class="item" href="${pageContext.request.contextPath}/member/joinForm" onfocus="blur()">
 	회원가입&nbsp;</a>
 </c:if>
 <c:if test='${empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/loginForm" onfocus="blur()">
+	<a href="${pageContext.request.contextPath}/member/loginForm" onfocus="blur()">
 	로그인&nbsp;</a>
 </c:if>
 <c:if test='${!empty mbr_id}'>
@@ -210,7 +210,7 @@ a.item {
 	장바구니&nbsp;</a>
 </c:if>
 <c:if test='${!empty mbr_id}'>
-	<a href="${pageContext.request.contextPath}/logout" onfocus="blur()">
+	<a href="${pageContext.request.contextPath}/member/logout" onfocus="blur()">
 	로그아웃&nbsp;</a>
 </c:if>
 </div>
