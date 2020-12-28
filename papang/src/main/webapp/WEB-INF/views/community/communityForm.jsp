@@ -47,6 +47,23 @@
 			}
 		})
 	})
+	
+	//댓글쓰기 버튼 클릭
+		$('#commentInsertBtn').on('click',function(){
+			$.ajax({ 
+			    url: "community/commentInsert",  
+			    type: 'POST',  
+			    dataType: 'json', 
+			    data : $("#commentForm").serialize(),
+			    contentType: 'application/json',
+			    success: function(community_comVO) {
+			    	console.log(community_comVO);
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			 });  
+		});//댓글쓰기 버튼 클릭
 </script>
 </head>
 <body>
@@ -93,16 +110,19 @@
 		<div align="left">
 			<b style="font-size: 20px;">댓글 쓰기</b>
 		</div>
+		<form action="${pageContext.request.contextPath}/community/commentInsert" id="commentForm">
 		<table style="width: 100%">
 			<tr>
-				<form:form action="${pageContext.request.contextPath}/community/commentInsert">
-					<td width="90%"><form:textarea path="cc_content" rows="5" cols="102" name="comm"
-							style="width: 100%"></form:textarea></td>
-					<td align="center" width="10%" style="padding: 0 0 5px 0"><button
+					<td width="90%">
+					<textarea name="cc_content" rows="5" cols="102" name="comm" style="width: 100%"></textarea>
+					<input type="hidden" value="${com_no}" name="com_no">
+					<input type="hidden" value="${communityVO.com_category}" name="cc_category">
+					</td>
+					<td align="center" width="10%" style="padding: 0 0 5px 0"><button id="commentInsertBtn"
 							class="btnYellow insertBtn">등록하기</button></td>
-				</form:form>
 			</tr>
 		</table>
+		</form>
 		<br>
 		<div align="left">
 			<b style="font-size: 20px;">댓글 목록</b>
@@ -113,7 +133,7 @@
 					<div>아이디</div>
 				</td>
 				<td width="90%">
-					<div>
+					<div id="commentDiv">
 						댓글 내용&nbsp; <img class="sirenImg" alt="사이렌사진"
 							src="${pageContext.request.contextPath}/resources/images/siren.png"
 							width="1%" height="1%"> <span style="font-size: 8px">신고하기</span>

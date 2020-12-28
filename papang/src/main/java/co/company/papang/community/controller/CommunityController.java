@@ -41,15 +41,8 @@ public class CommunityController {
 	public String communityFormInsert(CommunityVO communityVO, Errors errors ) throws IOException{
 		communityVO.setMbr_id("tempt");
 		dao.communityFormInsert(communityVO);
-		return "community/communityBoard"; //jsp주소
+		return "redirect:/community/board"; //jsp주소
 	}
-	
-//	@RequestMapping("/community/commentInsert") //커뮤니티 댓글 달기
-//	public String commentInsert(CommunityVO communityVO, Errors errors ) throws IOException{
-//		communityVO.setMbr_id("tempt");
-//		dao.communityFormInsert(communityVO);
-//		return "redirect:community"; //jsp주소
-//	}
 	
 	/*-------------------------- 시터 --------------------------*/
 	@RequestMapping("/sitter/menu") //url 예전 .do

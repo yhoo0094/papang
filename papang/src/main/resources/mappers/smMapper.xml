@@ -30,7 +30,7 @@
 	<insert id="communityFormInsert" parameterType="communityVO">
 		<selectKey order="BEFORE" keyProperty="com_no"
 			resultType="string">
-			select SEQ_COMMUNITY_COM_NO.currval
+			select SEQ_COMMUNITY_COM_NO.nextval
 			from dual
 		</selectKey>
 		INSERT INTO COMMUNITY (
@@ -46,6 +46,29 @@
 		#{com_category},
 		#{com_title},
 		#{com_content}
+		)
+	</insert>
+
+	<!-- 커뮤니티 댓글 등록 -->
+	<insert id="communityCommentInsert" parameterType="community_comVO">
+		<selectKey order="BEFORE" keyProperty="cc_no"
+			resultType="string">
+			select SEQ_COMMUNITY_COM_CC_NO.nextval
+			FROM DUAL
+		</selectKey>
+		INSERT INTO COMMUNITY_COM (
+	    CC_NO,
+    	MBR_ID,
+    	CC_CONTENT,
+    	COM_NO,
+    	CC_CATEGORY
+		)
+		VALUES(
+		#{cc_no},
+		#{mbr_id},
+		#{cc_content},
+		#{com_no},
+		#{cc_category}
 		)
 	</insert>
 

@@ -23,20 +23,22 @@
 		<table class="table" id="dataTable">
 			<thead>
 				<tr class="tableTrTh">
-					<th width="15%" class="tableTh">분류</th>
+					<th width="5%" class="tableTh">No.</th>
 					<th width="20%" class="tableTh">제목</th>
 					<th width="15%" class="tableTh">작성자</th>
 					<th width="15%" class="tableTh">작성일</th>
-					<th width="15%" class="tableTh">조회수</th>
+					<th width="15%" class="tableTh">분류</th>
+					<th width="10%" class="tableTh">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 			<c:forEach items="${CommunityVOList}" var="v">
 				<tr>
-					<td align="center">${v.com_no}. ${v.com_category}</td>
+					<td align="center">${v.com_no}</td>
 					<td><a href="${pageContext.request.contextPath}/community/form?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
 					<td align="center">${v.mbr_id}</td>
 					<td align="center">${v.com_date}</td>
+					<td align="center">${v.com_category}</td>
 					<td align="center">${v.com_hit}</td>
 				</tr>
 			</c:forEach>
