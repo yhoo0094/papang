@@ -13,7 +13,7 @@
 	color: rgb(249, 196, 94);
 	font-size: 35px;
     font-weight: bold;
-   margin: 20px 0 0 168px;
+ margin: 20px 0 0 98px;
 }
 
 .regi_btn {
@@ -139,7 +139,7 @@ body, table, th, td, pre, input, select, textarea, button {
 	padding: 7px 10px 0\0;
 	background-position: 9px 5px\0;
 }
-.center_div{width: 80%;margin-left: 10%;}
+.center_div {width: 70%;margin: 140px 15% 50px 15%;}
 .box_div {width: 80%;margin: 30px 0 0 10em;}
 .search_div {height: 130px;margin: 40px 0 60px 0px;}
 icon_img {display: inline;}

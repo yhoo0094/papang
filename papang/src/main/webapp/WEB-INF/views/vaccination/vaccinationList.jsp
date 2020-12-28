@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
 <style>
-td{width:75px; height:70px; border:1px solid black;text-align: center;font-size: 12px;}
+td{    width: 90px; height:70px; border:1px solid black;text-align: center;font-size: 12px;}
 .vacc_table{display: inline;}
 .content{margin: 10px 0 0 0;}
 th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
