@@ -18,19 +18,18 @@ import co.company.papang.vo.PreventionVO;
 public class VaccinationController {
 	@Autowired SaMapper dao;
 	
-	@RequestMapping("activity/vaccinationList") 
+	@RequestMapping("vaccination/vaccinationList") 
 	public ModelAndView vaccinationList(HttpServletResponse response) throws IOException{
 		return new ModelAndView("vaccination/vaccinationList");
 	}
 	
-	@RequestMapping("activity/vaccNotice") 
+	@RequestMapping("vaccination/vaccNotice") 
 	public ModelAndView vaccinationNOtice(HttpServletResponse response) throws IOException{
 		return new ModelAndView("vaccination/vaccination_notice");
 	}
 	
-
-	@RequestMapping("activity/vaccReg") 
+	@RequestMapping("vaccination/test") 
 	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("vaccination/vaccination_reg");
+		return new ModelAndView("vaccination/test");
 	}
 }
