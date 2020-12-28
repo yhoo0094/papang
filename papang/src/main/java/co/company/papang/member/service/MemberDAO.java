@@ -25,17 +25,17 @@ public class MemberDAO {
 //		}
 //		return result;
 //	}
-	
-	public MemberVO login(MemberVO member) {
-		MemberVO result = null;
-		EsMapper mapper = sqlSession.getMapper(EsMapper.class);
-		
-		try {
-			result = mapper.login(member);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return result;
-		}
-	return result;
-	}
+//	
+//	public MemberVO login(MemberVO member) {
+//		MemberVO result = null;
+//		EsMapper mapper = sqlSession.getMapper(EsMapper.class);
+//		
+//		try {
+//			result = mapper.login(member);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return result;
+//		}
+//	return result;
+//	}
 }

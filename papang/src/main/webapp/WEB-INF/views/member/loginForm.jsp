@@ -45,7 +45,31 @@ ul, li {
   height: 50px;
 } */
 </style>
+<script type="text/javascript">
+$("#loginBtn").click(function() {
+	var mbr_id = $("#mbr_id").val();
+	var mbr_pw = $("#mbr_pw").val();
+	var remember = $("#remember").is(":checked");
+		$.ajax({
+			type : "post",
+			url : "${pageContext.request.contextPath}/ajax/login",
+			data : {
+				mbr_id : mbr_id,
+				mbr_pw : mbr_pw,
+				remember : remember
+			}, success : function(data){
+				if(data == 0){ // 데이터없음 = 로그인X
+					alert("회원이 아닙니다");
+				} else{
+					location.href = "main/main";
+				}
+			}
+		
+		
+		})
+})
 
+</script>
 <head>
 	<title>로그인</title>
 	<meta charset="UTF-8">
@@ -74,16 +98,20 @@ ul, li {
 <!--===============================================================================================-->
 </head>
 <body>
+<c:if test="${!empty cookie.remember }">
+	<c:set value="checked" var="checked"/>
+</c:if>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
 					로그인
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5" id="frm" name="frm" action="login" method="post" >
+				<form class="login100-form validate-form p-b-33 p-t-5" id="frm" name="frm" method="post" >
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="mbr_id" placeholder="아이디">
+						<input class="input100" type="text" name="mbr_id" placeholder="아이디"
+						value="${cookie.remember.value}">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
@@ -92,18 +120,19 @@ ul, li {
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 					<div>
-					<small>아이디 기억하기</small>
+					<input type="checkbox" id="remember" name="remember" ${checked}> <small> 아이디 기억하기</small>
 					</div>
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="submit">
+						<button class="login100-form-btn" id="loginBtn" type="button">
 							Login
 						</button>
 					</div>
 					<div align="center" style="margin-top: 10px">
-					<p><a href="${pageContext.request.contextPath}/member">회원가입</a></p>
+					<p><a href="${pageContext.request.contextPath}/member/joinForm">회원가입</a></p>
 					<p><a href="${pageContext.request.contextPath}/member/findIdForm">아이디찾기</a>&nbsp;&nbsp;
 						<a href="${pageContext.request.contextPath}/member/findPwForm">비밀번호찾기</a></p>
 					</div>
+<!-- 소셜로그인 -->
 					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
 						<a href="#"><button type="button" class="social-item flex-c-m m-r-5">
 							<img src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png"></button>

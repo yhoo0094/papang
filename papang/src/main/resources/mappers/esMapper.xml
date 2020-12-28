@@ -37,6 +37,11 @@
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 	</select>
+<!-- 닉네임중복체크 -->
+	<select id="checkNk" parameterType="String" resultType="int">
+		SELECT count(*) FROM MEMBER
+		WHERE mbr_nick = #{mbr_nick}
+	</select>
 
 
 <!-- =========================================================== -->

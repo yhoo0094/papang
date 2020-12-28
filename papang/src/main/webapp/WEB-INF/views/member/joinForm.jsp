@@ -62,7 +62,27 @@ p {
 				}
 			})
 		})
-
+		// 닉네임 중복검사
+		$("#mbr_nick").blur(function(){
+			var mbr_nick = $("#mbr_nick").val();
+			$.ajax({
+				url : "${pageContext.request.contextPath}/ajax/nkchk?mbr_nick="+mbr_nick,
+				type : 'get',
+				success : function(data){
+					if(data == 1){ // 중복
+						$("#nkchk").text("사용중인 닉네임입니다");
+						$("#nkchk").css("color", "red");
+ 						$("joinBtn").attr("disabled", true);
+					} else{
+						$("#nkchk").text("사용가능한 닉네임입니다");
+						$("#nkchk").css("color", "green");
+ 						$("joinBtn").attr("disabled", false);
+					}
+				}, error : function(){
+					alert("실패");
+				}
+			})
+		})
 	});
 	function formCheck() {
 		var f = document.frm;
@@ -154,9 +174,6 @@ p {
 							<td><input type="text" id="mbr_id" name="mbr_id"
 								placeholder="아이디" class="form-control"></td>
 								<td><span id="idchk"></span></td>
-<!-- 								<td><div class="everychk" id="idchk"></div></td> -->
-<!-- 							<td><input type="button" id="idchk" class="btnRed" -->
-<!-- 								value="중복확인" style="padding: 5px"></td> -->
 						</tr>
 						<tr>
 							<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
@@ -207,8 +224,9 @@ p {
 						</tr>
 						<tr>
 							<td class="txt">닉네임&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_nick"
+							<td ><input type="text" id="mbr_nick"
 								name="mbr_nick" placeholder="닉네임" class="form-control"></td>
+								<td><span id="nkchk"></span></td>
 						</tr>
 						<tr>
 							<td class="txt">생년월일&nbsp;<span style="color: red;">*</span></td>

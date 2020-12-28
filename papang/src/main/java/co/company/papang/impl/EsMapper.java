@@ -1,10 +1,8 @@
 package co.company.papang.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.annotations.Param;
 
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
@@ -16,13 +14,14 @@ public interface EsMapper {
 	// 회원가입
 	public int insertUser(MemberVO member); // 등록
 	
-	// 아이디 중복체크
-	public int checkId(String mbr_id);
+	// 중복체크
+	public int checkId(String mbr_id); // 아이디
+	public int checkNk(String mbr_nick); // 닉네임
 	
 	// 회원탈퇴
 	
 	// 로그인
-	public MemberVO login(MemberVO member); //로그인
+	public MemberVO login(@Param("mbr_id") String mbr_id); //로그인
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);//전체조회
