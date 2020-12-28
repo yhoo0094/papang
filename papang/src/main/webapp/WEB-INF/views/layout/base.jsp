@@ -251,7 +251,7 @@ a.item {
 		src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 		crossorigin="anonymous"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/admin/assets/demo/datatables-demo.js"></script>
+		src="${pageContext.request.contextPath}/resources/main/js/datatables-demo.js"></script>
 	<!-- 페이지네이션 날로먹는 빌드 끝 -->
 	
 	<script type="text/javascript">
