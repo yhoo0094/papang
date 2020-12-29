@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <style type="text/css">
 .communityFormTitle {
@@ -46,7 +47,25 @@
 				location.href="${pageContext.request.contextPath}/community/board";
 			}
 		})
+		
+		//댓글쓰기 버튼 클릭
+		$('#commentInsertBtn').on('click',function(){
+			$.ajax({ 
+			    url: "${pageContext.request.contextPath}/community/commentInsert",  
+			    type: 'POST',  
+			    dataType: 'json', 
+			    data : $("#commentForm").serialize(),
+			    success: function(community_comVO) {
+			    	console.log(community_comVO);
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			 });  
+		});//댓글쓰기 버튼 클릭
 	})
+	
+	
 </script>
 </head>
 <body>
@@ -66,13 +85,19 @@
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow">분류</td>
-					<td class="whiteBackground"><form:select path="com_category"
-							class="communityFormType">
+					<td class="whiteBackground"><select name="com_category"
+						class="communityFormType">
 							<option value="">분류를 선택하세요
-							<option value="정보">정보
-							<option value="일상">일상
-							<option value="질문">질문
-						</form:select></td>
+							<option
+								<c:if test="${communityVO.com_category == '정보'}">selected="selected"</c:if>
+								value="정보">정보
+							<option
+								<c:if test="${communityVO.com_category == '일상'}">selected="selected"</c:if>
+								value="일상">일상
+							<option
+								<c:if test="${communityVO.com_category == '질문'}">selected="selected"</c:if>
+								value="질문">질문
+					</select></td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
@@ -88,40 +113,47 @@
 				<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 			</div>
 		</form:form>
-
-		<br>
-		<div align="left">
-			<b style="font-size: 20px;">댓글 쓰기</b>
-		</div>
-		<table style="width: 100%">
-			<tr>
-				<form:form action="${pageContext.request.contextPath}/community/commentInsert">
-					<td width="90%"><form:textarea path="cc_content" rows="5" cols="102" name="comm"
-							style="width: 100%"></form:textarea></td>
-					<td align="center" width="10%" style="padding: 0 0 5px 0"><button
-							class="btnYellow insertBtn">등록하기</button></td>
-				</form:form>
-			</tr>
-		</table>
-		<br>
-		<div align="left">
-			<b style="font-size: 20px;">댓글 목록</b>
-		</div>
-		<table style="width: 100%">
-			<tr>
-				<td align="center" width="10%">
-					<div>아이디</div>
-				</td>
-				<td width="90%">
-					<div>
-						댓글 내용&nbsp; <img class="sirenImg" alt="사이렌사진"
-							src="${pageContext.request.contextPath}/resources/images/siren.png"
-							width="1%" height="1%"> <span style="font-size: 8px">신고하기</span>
-					</div>
-				</td>
-			</tr>
-		</table>
+		<c:if test="${not empty communityVO.com_no}">
+			<br>
+			<div align="left">
+				<b style="font-size: 20px;">댓글 쓰기</b>
+			</div>
+			<form
+				action="${pageContext.request.contextPath}/community/commentInsert"
+				id="commentForm" method="post">
+				<table style="width: 100%">
+					<tr>
+						<td width="90%"><textarea name="cc_content" rows="5"
+								cols="102" name="comm" style="width: 100%"></textarea> <input
+							type="hidden" value="${communityVO.com_no}" name="com_no">
+							<input type="hidden" value="${communityVO.com_category}"
+							name="cc_category"></td>
+						<td align="center" width="10%" style="padding: 0 0 5px 0"><button
+								type="button" id="commentInsertBtn" class="btnYellow insertBtn">등록하기</button></td>
+					</tr>
+				</table>
+			</form>
+			<br>
+			<div align="left">
+				<b style="font-size: 20px;">댓글 목록</b>
+			</div>
+			<table style="width: 100%">
+				<tr>
+					<td align="center" width="10%">
+						<div>아이디</div>
+					</td>
+					<td width="90%">
+						<div id="commentDiv">
+							댓글 내용&nbsp; <img class="sirenImg" alt="사이렌사진"
+								src="${pageContext.request.contextPath}/resources/images/siren.png"
+								width="1%" height="1%"> <span style="font-size: 8px">신고하기</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</c:if>
 	</div>
+
 	<script>
 		//여기 아래 부분
 		$('#summernote').summernote({

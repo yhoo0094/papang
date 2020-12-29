@@ -19,19 +19,19 @@
          <tbody>
             <tr>
                <td align="center" style="width: 10%">상품명</td>
-               <td><input name="pro_name" type="text" style="width: 100%"></td>
+               <td><input class="form-control" name="pro_name" type="text" style="width: 100%"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">가격</td>
-               <td><input name="pro_price" type="text" style="width: 100%"></td>
+               <td><input class="form-control" name="pro_price" type="text" style="width: 100%"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">기업코드</td>
-               <td><input name="pro_cc" type="text" style="width: 100%"></td>
+               <td><input class="form-control" name="pro_cc" type="text" style="width: 100%"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">대표사진</td>
-               <td><input type="text" id="pro_pic" name="pro_pic"
+               <td><input type="text" id="pro_pic" name="pro_pic" class="form-control"
                   style="width: 80%; margin-right: 20px"><input type="button" value="찾기">
                   <input type="hidden" id="pro_no" name="pro_no">
                </td>

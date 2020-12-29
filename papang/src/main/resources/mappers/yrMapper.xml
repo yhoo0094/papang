@@ -4,16 +4,63 @@
 
 <mapper namespace="co.company.papang.impl.YrMapper">
 
-<!-- 단건조회  -->
-	<select id="getEmp" parameterType="emp" resultType="emp">
+<!-- 수정 전  조회-->
+	<select id="getMemberVO" parameterType="memberVO" resultType="memberVO">
 		SELECT  
-		        first_name,
-				last_name,
-				email,
-				hire_date,
-				job_id
-		FROM employees
-		WHERE employee_id = #{employeeId}
+		     
+	    MBR_ID,
+	    MBR_PW,
+	    MBR_NAME,
+	    MBR_NICK,
+	    MBR_BIRTH,
+	    MBR_PHONE,
+	    MBR_POST,
+	    MBR_ADDR1,
+	    MBR_ADDR2,
+	    MBR_BANK,MBR_ACCOUNT,
+	    MBR_AUTHOR,
+	    MBR_DATE,
+	    MBR_STATUS,
+	    MBR_GENDER,
+	    MBR_EMAIL
+	    
+	    FROM MEMBER
+	     
+		WHERE MBR_ID = #{mbr_id}
+	</select>
+	
+<!-- 회원정보수정 -->
+<select id="updateMemberVO" parameterType="memberVO" resultType="memberVO">
+		UPDATE
+		
+		MEMBER
+		
+		SET
+		
+	    MBR_ACCOUNT= #{mbr_account}
+	    
+	    
+		WHERE MBR_ID = #{mbr_id}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+<select id="notjoinMemberVO" parameterType="memberVO" resultType="memberVO">
+		UPDATE
+		
+		MEMBER
+		
+		SET
+		
+	    MBR_STATUS= #{mbr_status}
+	    
+	    
+		WHERE MBR_ID = #{mbr_id}
+	</select>
+<!-- 내 게시물  -->	
+	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
+		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT
+		  FROM COMMUNITY
+		  WHERE MBR_ID = #{mbr_id}
 	</select>
 	
 <!-- 전체조회  -->	

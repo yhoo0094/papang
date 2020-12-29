@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <style>
@@ -12,7 +13,7 @@
 }
 </style>
 <body>
-		<h3>날먹게시판</h3>
+		<h3>질문게시판</h3>
 		<hr />
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
@@ -36,83 +37,15 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach var="co" items="${cos}">
 					<tr>
-						<td align="center">1</td>
-						<td><a href="#" class="boardTagA">제목텍스트333</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
+						<td align="center">${co.com_no}</td>
+						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
+						<td align="center">${co.mbr_id}</td>
+						<td align="center">${co.com_date}</td>
+						<td align="center">${co.com_hit}</td>
 					</tr>
-					<tr>
-						<td align="center">2</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
+				</c:forEach>	
 					
 					
 				</tbody>
