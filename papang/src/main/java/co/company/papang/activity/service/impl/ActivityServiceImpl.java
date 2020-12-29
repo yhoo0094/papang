@@ -1,0 +1,36 @@
+package co.company.papang.activity.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import co.company.papang.activity.service.ActivityService;
+import co.company.papang.impl.SaMapper;
+import co.company.papang.vo.Act_comVO;
+import co.company.papang.vo.ChildVO;
+import co.company.papang.vo.PlayVO;
+
+@Service
+public class ActivityServiceImpl implements ActivityService {
+	@Autowired SaMapper dao;
+
+	@Override//리스트 전체 조회
+	public List<PlayVO> getPlayList(PlayVO playVO) {
+		return dao.getPlayList(playVO);
+	}
+
+	@Override//내자녀 조회
+	public List<ChildVO> selectChild(ChildVO childVO) {
+		return dao.selectChild(childVO);
+	}
+
+	@Override//리스트 단건 조회
+	public PlayVO getPlay(PlayVO playVO) {
+		return dao.getPlay(playVO);
+	}
+
+	@Override//요리후기 전제조회
+	public List<Act_comVO> getActComm(Act_comVO actcomVO) {
+		return dao.getActComm(actcomVO);
+	}
+}

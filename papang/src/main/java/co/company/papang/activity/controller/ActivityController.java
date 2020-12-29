@@ -4,13 +4,19 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.company.papang.activity.service.ActivityService;
+import co.company.papang.vo.Act_comVO;
+import co.company.papang.vo.PlayVO;
+
 @Controller
 public class ActivityController {
-
+	@Autowired ActivityService service;
+	
 	@RequestMapping("activity/cookList") 
 	public ModelAndView cookList(HttpServletResponse response) throws IOException{
 		return new ModelAndView("activity/cookList"); 
@@ -26,20 +32,36 @@ public class ActivityController {
 		return new ModelAndView("activity/cookView"); 
 	}
 	
+	
+	//놀이
+	//1. 놀이 리스트 전체 조회
 	@RequestMapping("activity/playList") 
-	public ModelAndView playList(HttpServletResponse response) throws IOException{
-		return new ModelAndView("activity/playList"); 
+	public ModelAndView playList(HttpServletResponse response,PlayVO playVO) throws IOException{
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("playlist",service.getPlayList(playVO));
+		mav.setViewName("activity/playList");
+		return mav; 
 	}
 	
+	//놀이 단건 조회
+	@RequestMapping("activity/playView") 
+	public ModelAndView playView(HttpServletResponse response,PlayVO playVO,Act_comVO actcomVO) throws IOException{
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(service.getPlay(playVO));
+		//System.out.println(playVO.getPlay_no());
+		//actcomVO.setAc_no(playVO.getPlay_no());
+		//mav.addObject("actcommList", service.getActComm(actcomVO));
+		mav.setViewName("activity/playView");
+		return mav;
+//		return "activity/playView";
+	}
+	
+	//놀이 리스트 글 등록폼 가기
 	@RequestMapping("activity/playForm") 
 	public ModelAndView playForm(HttpServletResponse response) throws IOException{
 		return new ModelAndView("activity/playForm"); 
 	}
-	
-	@RequestMapping("activity/playView") 
-	public ModelAndView playView(HttpServletResponse response) throws IOException{
-		return new ModelAndView("activity/playView");
-	}
+
 	
 	@RequestMapping("activity/playtest") 
 	public ModelAndView playtest(HttpServletResponse response) throws IOException{

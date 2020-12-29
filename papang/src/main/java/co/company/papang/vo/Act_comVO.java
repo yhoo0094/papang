@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Act_comVO {
-	private String play_no;
-	private String play_title;
-	private String play_content;
-	private String play_pic;
 	private String mbr_id;
-	private String play_hit;
-	private String play_category;
+	private String ac_no;
+	private String ac_content;
+	private String ac_rate;
+	private String ac_category;
+	private String pc_no;
+	private String ac_pic;
 }
