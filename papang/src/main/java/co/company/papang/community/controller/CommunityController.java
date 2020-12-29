@@ -33,6 +33,7 @@ public class CommunityController {
 	public String communityForm(Model model, CommunityVO communityVO) throws IOException{
 		if(communityVO.getCom_no() != null) {
 			model.addAttribute("communityVO",dao.getCommunity(communityVO));
+			
 		}
 		return "community/communityForm"; //jsp주소
 	}

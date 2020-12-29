@@ -18,7 +18,7 @@ public class CommunityRestController {
 	@RequestMapping("/community/commentInsert")
 	public Community_comVO communityCommentInsert(Community_comVO community_comVO){
 		community_comVO.setMbr_id("test");
-		dao.communityCommentInsert(community_comVO);
+		int r = dao.communityCommentInsert(community_comVO);
 		return community_comVO;
 	}
 }
