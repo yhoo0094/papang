@@ -80,23 +80,35 @@
 			<table class="communityFormTable" border="1">
 				<tr>
 					<td align="center" width="20%" class="strongYellow">제목</td>
-					<td class="whiteBackground" width="80%"><form:input
-							path="com_title" type="text" class="communityFormType" /></td>
+					
+					<td class="whiteBackground" width="80%">
+						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != 'test'}">
+							<form:input path="com_title" type="text" class="communityFormType"/>
+						</c:if>
+						<c:if test="${not empty communityVO.com_no and communityVO.mbr_id == 'test'}"> 
+							<form:input path="com_title" type="text" class="communityFormType" readonly="true"/>
+						</c:if>	
+					</td>
 				</tr>
 				<tr>
+				
 					<td align="center" class="strongYellow">분류</td>
-					<td class="whiteBackground"><select name="com_category"
-						class="communityFormType">
-							<option value="">분류를 선택하세요
-							<option
-								<c:if test="${communityVO.com_category == '정보'}">selected="selected"</c:if>
-								value="정보">정보
-							<option
-								<c:if test="${communityVO.com_category == '일상'}">selected="selected"</c:if>
-								value="일상">일상
-							<option
-								<c:if test="${communityVO.com_category == '질문'}">selected="selected"</c:if>
-								value="질문">질문
+					<td class="whiteBackground">
+					<select name="com_category" class="communityFormType"
+						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != 'test'}">
+							disabled
+						</c:if>  
+					>
+						<option value="">분류를 선택하세요
+						<option
+							<c:if test="${communityVO.com_category == '정보'}">selected="selected"</c:if>
+							value="정보">정보
+						<option
+							<c:if test="${communityVO.com_category == '일상'}">selected="selected"</c:if>
+							value="일상">일상
+						<option
+							<c:if test="${communityVO.com_category == '질문'}">selected="selected"</c:if>
+							value="질문">질문
 					</select></td>
 				</tr>
 				<tr>

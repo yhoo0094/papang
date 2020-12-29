@@ -53,6 +53,7 @@
 				ROWNUM <= 100
 			]]>
 				and C.COM_NO = #{com_no}
+				and C.CC_CATEGORY = '커뮤니티'
 		</where>
 		ORDER BY C.CC_NO DESC
 	</select>
@@ -76,7 +77,7 @@
 		#{mbr_id},
 		#{cc_content},
 		#{com_no},
-		#{cc_category}
+		'커뮤니티'
 		)
 	</insert>
 
