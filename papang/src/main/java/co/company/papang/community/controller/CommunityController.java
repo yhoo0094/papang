@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
+import co.company.papang.vo.Community_comVO;
 
 @Controller
 public class CommunityController {
@@ -30,10 +31,10 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/community/form") //커뮤니티 글쓰러 가기
-	public String communityForm(Model model, CommunityVO communityVO) throws IOException{
+	public String communityForm(Model model, CommunityVO communityVO, Community_comVO community_comVO) throws IOException{
 		if(communityVO.getCom_no() != null) {
 			model.addAttribute("communityVO",dao.getCommunity(communityVO));
-			
+			model.addAttribute("community_comVOList",dao.getCommunityComList(community_comVO));
 		}
 		return "community/communityForm"; //jsp주소
 	}

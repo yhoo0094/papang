@@ -52,11 +52,9 @@
 			<![CDATA[
 				ROWNUM <= 100
 			]]>
-			<if test="cc_category != null and com_category != ''">
-				and com_category = #{com_category}
-			</if>
+				and C.COM_NO = #{com_no}
 		</where>
-		ORDER BY C.COM_NO DESC
+		ORDER BY C.CC_NO DESC
 	</select>
 	
 	<!-- 커뮤니티 댓글 등록 -->
