@@ -34,5 +34,5 @@ img { max-width: 300px; height: auto; }
 		</div>
 	</c:forEach>
 	</div>
-	<div align="right"><button type="button" onclick="">등록</button></div>
+	<div align="right"><button type="button" onclick="location.href='/papang/market/itemInsertForm'">등록</button></div>
 </div>

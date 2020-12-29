@@ -133,7 +133,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		// 세션 무효화
 		session.invalidate(); // 로그아웃처리
-		return "main/main";
+		return "redirect:/";
 	}
 
 	// 아이디찾기로 이동

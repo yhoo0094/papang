@@ -45,7 +45,7 @@ public class MarketController {
 	@RequestMapping("market/itemInsert") //url 예전 .do
 	public String test9(ProductVO product) throws IOException{
 		dao.insertItem(product);
-		return "marketList/itemBoard"; //jsp주소
+		return "redirect:/marketList/itemBoard"; //jsp주소
 	}
 	// 판매상품 등록 폼
 	@RequestMapping("market/itemInsertForm") //url 예전 .do
