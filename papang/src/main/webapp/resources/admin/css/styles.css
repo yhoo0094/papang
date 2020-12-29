@@ -4576,6 +4576,9 @@ input[type=button].btn-block {
   list-style: none;
   border-radius: 0.25rem;
 }
+.dataTables_paginate {
+     float: left !important;
+}
 
 .page-link {
   position: relative;

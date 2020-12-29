@@ -37,7 +37,7 @@ table tbody tr td {
 </style>
 <title>마이페이지</title>
 </head>
-<body>
+<body> 
 	<div>
 		<div>
 			<div class="w3-large" align="center">
@@ -45,61 +45,62 @@ table tbody tr td {
 			</div>
 			<div class="content_div">
 			 
-				<!-- <form id="myForm" action="../member/update_mypage.do" method="post"> -->
+				 <form id="fim" name="fim" action="update" method="post"> 
 					<p>
-						<label>이름</label> <input class="w3-input" type="text" id="id"
-							name="id" readonly value="${ member.id }">
+						<label>이름</label> <input class="w3-input" type="text" id="mbr_name"
+							name="mbr_name" readonly value="${ memberVO.mbr_name}">
 					</p>
 					<p>
-						<label>아이디</label> <input class="w3-input" type="text" id="id"
-							name="id" readonly value="${ member.id }">
+						<label>아이디</label> <input class="w3-input" type="text" id="mbr_id"
+							name="mbr_id" readonly value="${ memberVO.mbr_id }">
 					</p>
 					<p>
-						<label>생년월일</label> <input class="w3-input" type="date"
-							id="email" name="email" value="${ member.email }" required>
+						<label>생년월일</label> <input class="w3-input" type="text"
+							id="mbr_birth" name="mbr_birth" value="${ memberVO.mbr_birth }">
 					</p>
 					<p class="w3-center"></p>
-					<input type="hidden" name="id" value="${ member.id }">
+					<input type="hidden" name="id" value="${ memberVO.mbr_pw }">
 					<p>
-						<label>Password</label> <input class="w3-input" id="old_pw"
-							name="old_pw" type="password" required>
+						<label>Password</label> <input class="w3-input" id="mbr_pw"
+							name="mbr_pw" type="password" value="${ memberVO.mbr_pw }">
 					</p>
 					<p>
-						<label>New Password</label> <input class="w3-input" id="pw"
-							name="pw" type="password" required>
+						<label>New Password</label> <input class="w3-input" id="mbr_pw"
+							name="mbr_pw" type="password" value="${ memberVO.mbr_pw }">
 					</p>
 					<p>
-						<label>닉네임</label> <input class="w3-input" id="pw2"  required>
+						<label>닉네임</label> <input class="w3-input" id="mbr_nick" name="mbr_nick"  value="${ memberVO.mbr_nick }">
+					</p>
+					<p>4
+						<label>핸드폰</label> <input class="w3-input" type="text"
+							id="mbr_phone" name="mbr_phone" type="text" value="${ memberVO.mbr_phone }">
 					</p>
 					<p>
-						<label>핸드폰</label> <input class="w3-input" type="password"
-							id="pw2" type="password" required>
+						<label>주소</label>    <input  type="text" class="input_small"
+							id="mbr_addr1" name="mbr_addr1" value="${ memberVO.mbr_addr1 }" >  ㅡ   <input  type="text" class="input_small"
+							id="mbr_addr1" name="mbr_addr1" type="text" value="${ memberVO.mbr_addr1 }"> <button>주소검색</button>
 					</p>
 					<p>
-						<label>주소</label>    <input  type="password" class="input_small"
-							id="pw2" type="password" required>  ㅡ   <input  type="password" class="input_small"
-							id="pw2" type="password" required> <button>주소검색</button>
+							<input class="w3-input"
+							id="pw2" type="text" placeholder="상세정보" value="${ memberVO.mbr_addr2 }">
 					</p>
 					<p>
-							<input class="w3-input" type="password"
-							id="pw2" type="password" placeholder="상세정보" required>
+						<label>계좌번호</label> <input class="w3-input" 
+							id="mbr_account" name="mbr_account"  value="${ memberVO.mbr_account }">
 					</p>
 					<p>
-						<label>계좌번호</label> <input class="w3-input" type="password"
-							id="pw2" type="password" required>
-					</p>
-					<p>
-						<label>이메일</label> <input class="w3-input" type="password"
-							id="pw2" type="password" required>
+						<label>이메일</label> <input class="w3-input"
+							id="mbr_email" name="mbr_email" type="text"  value="${ memberVO.mbr_email }">
 					</p>
 					
 					<p class="w3-center">
-						<button type="submit" id="joinBtn"
+						<button type="submit" id="myhomechange"
 							class="btnYellow bMedium">변경</button>
-						<button type="submit" id="joinBtn2"
+						<button type="reset"
 							class="btnGray bMedium">취소</button>
 					</p>
-				<!--</form>-->
+					
+				</form>
 			</div>
 		</div>
 	</div>

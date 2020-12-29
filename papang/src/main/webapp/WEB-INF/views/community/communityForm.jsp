@@ -56,7 +56,7 @@
 			    dataType: 'json', 
 			    data : $("#commentForm").serialize(),
 			    success: function(community_comVO) {
-			    	console.log(community_comVO);
+			    	location.reload();
 			    }, 
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
@@ -138,18 +138,20 @@
 				<b style="font-size: 20px;">댓글 목록</b>
 			</div>
 			<table style="width: 100%">
+			<c:forEach items="${community_comVOList}" var="v">
 				<tr>
 					<td align="center" width="10%">
-						<div>아이디</div>
+						<div>${v.mbr_id}</div>
 					</td>
 					<td width="90%">
 						<div id="commentDiv">
-							댓글 내용&nbsp; <img class="sirenImg" alt="사이렌사진"
-								src="${pageContext.request.contextPath}/resources/images/siren.png"
-								width="1%" height="1%"> <span style="font-size: 8px">신고하기</span>
+							${v.cc_content}&nbsp;
+							<img class="sirenImg" alt="사이렌사진" src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%"> 
+							<span style="font-size: 8px"> 신고하기 </span>
 						</div>
 					</td>
 				</tr>
+			</c:forEach>
 			</table>
 		</c:if>
 	</div>

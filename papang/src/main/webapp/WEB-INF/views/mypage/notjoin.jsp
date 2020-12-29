@@ -51,24 +51,25 @@ table tbody tr td {
 			   	</br>
 			   
 			   
-			   	<form id="myForm" action="../member/update_mypage.do" method="post"> 
+			   	<form id="myForm" action="notjoin2" method="post"> 
 			   	<label style="font-size:20px;margin:50px"><b>아이디</b>　</label><input class="input_small" type="text" id="id"
 
-							name="id" readonly value="${ member.id }">
+							name="id" readonly value="${ memberVO.mbr_id }">
 			    </br>
 				<label style="font-size:20px;margin:50px"><b>이름　</b>　</label><input class="input_small" type="text" id="id"
-							name="id" readonly value="${ member.id }">
+							name="id" readonly value="${ memberVO.mbr_name}">
 				</br>
 				<label style="font-size:20px;margin:50px"><b>비밀 번호</b></label><input class="input_small" type="password" id="id"
-							name="id"  value="${ member.id }">
+							name="id"  value="${ memberVO.mbr_pw }">
 							
-						<p class="w3-center";>
+						<p class="w3-center">
 						<button type="submit" id="joinBtn" 
 							class="btnYellow bMedium">변경</button>
-						<button type="submit" id="joinBtn2"
+						<button type="reset" id="joinBtn2"
 							class="btnGray bMedium">취소</button>
 					</p>	
 			    </form>
+			
 			
 			</div>
 		</div>
