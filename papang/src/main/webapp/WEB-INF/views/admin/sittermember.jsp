@@ -195,6 +195,25 @@
 					alert(" status: " + status + " er:" + message);
 				}
 			});
+			
+			$.ajax({ 
+	             url: "../sitter",  
+	             type: 'POST',  
+	             dataType: 'json', 
+	             data: JSON.stringify({
+						sit_mbr_id : id,
+					}),
+	             contentType: 'application/json', 
+	             success: function(response) {
+	                if(response.result == true) {
+	                	 alert("시터로 전환 되었습니다");
+	                }
+	             }, 
+	             error:function(xhr, status, message) { 
+	                 alert(" status: "+status+" er:"+message);
+	             } 
+	          });  
+
 		});
 
 	}//userUpdate

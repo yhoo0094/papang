@@ -21,10 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.papang.admin.service.AdminService;
-import co.company.papang.impl.JyMapper;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
-
+import co.company.papang.vo.SitterVO;
 
 @RestController
 public class AdminRestController {
@@ -71,10 +70,10 @@ public class AdminRestController {
 
 	// �궘�젣
 	@RequestMapping(value = "/nq/{nq_no}", method = RequestMethod.DELETE)
-	public Map getUserList(@PathVariable String nq_no, NqVO vo, Model model) {
+	public Map<String, Object> getUserList(@PathVariable String nq_no, NqVO vo, Model model) {
 		vo.setNq_no(nq_no);
 		service.deleteNq(vo);
-		Map result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", Boolean.TRUE);
 		return result;
 	}
@@ -120,5 +119,19 @@ public class AdminRestController {
 	public MemberVO updateMember(@RequestBody MemberVO vo, Model model) {
 		service.updateMember(vo);
 		return vo;
+	}
+	
+	
+	//시터추가? 왜안됨?
+	@RequestMapping(value = "/sitter", method = RequestMethod.POST
+	// ,produces="application/json"
+     ,consumes="application/json"
+	// ,headers = {"Content-type=application/json" }
+	)
+	public Map<String, Boolean> insertsitter(@RequestBody SitterVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+
+		service.insertSitter(vo);
+		return Collections.singletonMap("result", true);
 	}
 }

@@ -85,6 +85,11 @@
 		#{mbr_author}
 		where mbr_id = #{mbr_id}
 	</update>
+	
+	<!-- 시터 등록 -->
+	<insert id="insertSitter" parameterType="co.company.papang.vo.SitterVO">
+		INSERT INTO SITTER(SIT_MBR_ID) VALUES(#{sit_mbr_id})
+	</insert>
 
 
 </mapper>

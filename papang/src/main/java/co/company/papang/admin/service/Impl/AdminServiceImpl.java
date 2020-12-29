@@ -9,6 +9,7 @@ import co.company.papang.admin.service.AdminService;
 import co.company.papang.impl.JyMapper;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.SitterVO;
 @Service
 public class AdminServiceImpl implements AdminService{
 	@Autowired
@@ -54,6 +55,12 @@ public class AdminServiceImpl implements AdminService{
 	public int updateMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.updateMember(vo);
+	}
+
+	@Override
+	public int insertSitter(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
