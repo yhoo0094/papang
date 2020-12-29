@@ -4,14 +4,14 @@
 
 <mapper namespace="co.company.papang.impl.SaMapper">
 
-<!-- 1.활동 -->
+<!-- #################################################################1.활동################################################################# -->
 <!-- (1).요리 --> 
 
 
 
 
 <!-- (2).놀이  -->
-<!-- 놀이 전체조회 -->
+<!-- 놀이 전체조회 --> 
 <select id="getPlayList" resultType="PlayVO">
 	SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY, PLAY_HIT,PLAY_CONTENT 
 	FROM PLAY
@@ -32,16 +32,16 @@
 
 
 <!--놀이후기 전체 조회 -->
-<!--  	 <select id="getActComm" resultType="Act_commVO">
-		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT
-		FROM PLAY
-		where AC_CATEGORY='놀이' AND PC_NO=#{pc_no};
-	</select>   -->
+  	 <select id="getActComm" resultType="Act_comVO">
+		SELECT *
+		FROM ACT_COM
+		where AC_CATEGORY='놀이' AND PC_NO=10
+	</select>   
 
 
 
 
-<!-- (2).예방접종 -->
+<!-- #################################################################2.예방접종 #################################################################-->
 
 <!--  사원등록    -->
 	<insert id="insertPreven" parameterType="preventionVO">

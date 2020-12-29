@@ -61,10 +61,10 @@
 	<div class="comm_div">
 		<div class="comment">
 			<img src="${pageContext.request.contextPath}/resources/images/active/${actcommList.ac_pic}">
+		<%-- 	<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
 			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
 			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
-			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
-			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
+			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"> --%>
 		</div> 
 	</div>
 	

@@ -262,13 +262,10 @@ a.item {
 			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
 			$("#divForEntryNum .custom-select").trigger("change"); */
 			
-			$("#cook_div .custom-select").empty();
-			$("#cook_div .custom-select").append("<option value='16'>16</option>");
-			$("#cook_div .custom-select").trigger("change"); 
-			
 			$("#communityBoardTable .tableTh:eq(0)").trigger("click");
 		})
 	</script>
+	<script src="${pageContext.request.contextPath}/js/play.js"></script>
 	
 </body>
 

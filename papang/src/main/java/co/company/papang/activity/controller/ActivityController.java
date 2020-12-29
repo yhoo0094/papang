@@ -48,9 +48,11 @@ public class ActivityController {
 	public ModelAndView playView(HttpServletResponse response,PlayVO playVO,Act_comVO actcomVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
-		//System.out.println(playVO.getPlay_no());
+		
+		System.out.println(playVO.getPlay_no());
 		//actcomVO.setAc_no(playVO.getPlay_no());
-		//mav.addObject("actcommList", service.getActComm(actcomVO));
+		actcomVO.setAc_no("10");
+		mav.addObject("actcommList", service.getActComm(actcomVO));
 		mav.setViewName("activity/playView");
 		return mav;
 //		return "activity/playView";
