@@ -11,7 +11,8 @@ public interface SmMapper {
 	public List<CommunityVO> getCommunityList(CommunityVO CommunityVO);
 	public CommunityVO getCommunity(CommunityVO CommunityVO);
 	
-	
-	public Community_comVO communityCommentInsert(Community_comVO community_comVO);
+	//커뮤니티 댓글
+	public List<Community_comVO> getCommunityComList(Community_comVO community_comVO);
+	public int communityCommentInsert(Community_comVO community_comVO);
 }
 
