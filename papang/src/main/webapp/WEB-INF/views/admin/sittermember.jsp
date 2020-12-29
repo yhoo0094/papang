@@ -12,8 +12,90 @@
 			memberList();
 		});
 
-	});
+		$("#uf").on(
+				'change',
+				function(e) {
+					if (window.FileReader) {
+						console.log($($(this)[0].files[0].name));
+						var filename = $(this)[0].files[0].name;
 
+					} else {
+						
+						var filename = $(this).val().split('/').pop().split(
+								'\\').pop();
+						console.log($(this).val().split('/').pop().split(
+						'\\').pop());
+
+					}
+
+					$('#la').text(filename);
+					
+					var files = e.target.files;
+				      var arr =Array.prototype.slice.call(files);
+				      for(var i=0;i<files.length;i++){
+				          if(!checkExtension(files[i].name,files[i].size)){
+				            return false;
+				          }
+				        }
+				        
+				        preview(arr);
+
+				});
+		
+		 function checkExtension(fileName,fileSize){
+
+		      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		      var maxSize = 20971520;  //20MB
+		      
+		      if(fileSize >= maxSize){
+		        alert('파일 사이즈 초과');
+		        $("input[type='file']").val("");  //파일 초기화
+		        return false;
+		      }
+		      
+		      if(regex.test(fileName)){
+		        alert('업로드 불가능한 파일이 있습니다.');
+		        $("input[type='file']").val("");  //파일 초기화
+		        return false;
+		      }
+		      return true;
+		    }
+		    
+		    function preview(arr){
+		      arr.forEach(function(f){
+		        
+		        //파일명이 길면 파일명...으로 처리
+		        var fileName = f.name;
+		        if(fileName.length > 10){
+		          fileName = fileName.substring(0,7)+"...";
+		        }
+		        
+		        //div에 이미지 추가
+		        var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+		        str += '<span>'+fileName+'</span><br>';
+		        
+		        //이미지 파일 미리보기
+		        if(f.type.match('image.*')){
+		          var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+		          reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+		            //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+		         
+		           $('#img').attr('src',e.target.result).attr('style','width:50%');
+		            
+		          } 
+		          reader.readAsDataURL(f);
+		        }else{
+		        	$('#img').attr('src',e.target.result);
+		        }
+		      });//arr.forEach
+		    }
+		
+
+	});
+	
+	
+	
+	
 	//사용자 삭제 요청
 	function nqDelete() {
 		//삭제 버튼 클릭
@@ -83,10 +165,10 @@
 									.append(
 											$('<td>')
 													.html(
-															'<button id=\'btnSelect\'>조회</button> <button id=\'btnDelete\'>탈퇴</button>'))
+															'<button id=\'btnSelect\'>수정</button> <button id=\'btnDelete\'>탈퇴</button>'))
 									.appendTo('#dataTable tbody');
-					 $("#author"+item.mbr_id).val(item.mbr_author).prop("selected",
-									true); 
+							$("#author" + item.mbr_id).val(item.mbr_author)
+									.prop("selected", true);
 						});
 
 		$('#dataTable').DataTable();
@@ -102,7 +184,8 @@
 				type : 'PUT',
 				dataType : 'json',
 				data : JSON.stringify({
-					mbr_id : id ,mbr_author : author
+					mbr_id : id,
+					mbr_author : author
 				}),
 				contentType : 'application/json',
 				success : function(data) {
@@ -118,6 +201,78 @@
 </script>
 <h1 class="mt-4">시터/회원 관리</h1>
 <br>
+<div id="sitterForm" class="strongYellow" align="center">
+	<table>
+		<tr>
+			<td>
+				<table>
+					<tr>
+						<td><img id="img" class="sitterProfileImg" alt="시터이미지"
+							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg"></td>
+					</tr>
+					<tr>
+						<td><input type="file" name="uploadFile" id="uf" />
+							<div
+								style="display: inline-block; position: relative; width: 300px; left: -210px; background: white;">
+								<label id="la">선택한 파일 없음</label>
+							</div></td>
+				</table>
+			</td>
+			<td><table class="sitterInfoTable" align="center">
+					<tr align="center">
+						<td align="center">아&nbsp;이&nbsp;디:</td>
+						<td align="left"><input type ='text' name='sit_mbr_id' id='sit_mbr_id' readonly></td>
+					</tr>
+					<tr>
+						<td align="center">월&nbsp;급&nbsp;일</td>
+						<td align="left"><input type ='text' name='sit_pay' id='sit_payday'></td>
+					</tr>
+					
+					<tr>
+						<td align="center">휴&nbsp;무&nbsp;일</td>
+						<td align="left"><input type ='text' name='sit_pay' id='sit_pay'></td>
+					</tr>
+					<tr>
+						<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
+						<td align="left"><input type ='text' name='sit_pay' id='sit_pay'></td>
+					</tr>
+					
+					<tr>
+						<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
+						<td align="left">
+						<select id="sit_loc" name="sit_loc" style="width : 100%">
+						<option value='서울'>서울</option>
+						<option value='부산'>부산</option>
+						<option value='대구'>대구</option>
+						<option value='인천'>인천</option>
+						<option value='광주'>광주</option>
+						<option value='대전'>대전</option>
+						<option value='울산'>울산</option>
+						<option value='강원'>강원</option>
+						<option value='경기'>경기</option>
+						<option value='경남'>경남</option>
+						<option value='경북'>경북</option>
+						<option value='전남'>전남</option>
+						<option value='전북'>전북</option>
+						<option value='제주'>제주</option>
+						<option value='충남'>충남</option>
+						<option value='충북'>충북</option>
+						</select></td>
+					</tr>
+					<tr>
+					<td>특이사항</td>
+					<td>
+					<textarea rows="20" cols="20" style="width: 100%; height: 50px"></textarea>
+					</td>
+					</tr>
+					
+				</table></td>
+		</tr>
+	</table>
+
+
+</div>
+</div>
 <div align="left">
 	분류 <select id='filter'>
 		<option selected value=''>전체</option>
