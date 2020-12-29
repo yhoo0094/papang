@@ -18,13 +18,12 @@ public interface EsMapper {
 	public int checkId(String mbr_id); // 아이디
 	public int checkNk(String mbr_nick); // 닉네임
 	
-	// 회원탈퇴
-	
 	// 로그인
-	public MemberVO login(@Param("mbr_id") String mbr_id); //로그인
+	public MemberVO login(MemberVO member); // 로그인
+	public String loginCheck(MemberVO member); // 로그인 체크
 	
 	// 판매상품
-	public List<ProductVO> getItemList(ProductVO product);//전체조회
+	public List<ProductVO> getItemList(ProductVO product);// 전체조회
 	public ProductVO getItem(ProductVO product); // 단건조회
 	public int insertItem(ProductVO product); // 등록
 	public int updateItem(ProductVO product); // 수정
