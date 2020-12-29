@@ -2,24 +2,80 @@ package co.company.papang.mypage.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import co.company.papang.impl.YrMapper;
+import co.company.papang.vo.CommunityVO;
+import co.company.papang.vo.MemberVO;
+
 @Controller
 public class MypageController {
-
+	
+	@Autowired 
+	YrMapper dao;
+	
 	@RequestMapping("mypage/myhome") //회원정보수정 (마이페이지 메인홈)
-	public ModelAndView test(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/myhome"); //jsp주소
+	public ModelAndView test(HttpServletResponse response,MemberVO memberVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+		memberVO.setMbr_id("father1");
+		System.out.println(memberVO);
+	
+
+		mav.addObject(dao.getMemberVO(memberVO));
+		mav.setViewName("mypage/myhome");
+		return mav; 
+	}
+	@RequestMapping("mypage/update") //회원정보수정 (마이페이지 메인홈)
+	public ModelAndView test22(HttpServletResponse response,MemberVO memberVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+
+		System.out.println(memberVO);
+	
+		dao.updateMemberVO(memberVO);
+		mav.setViewName("mypage/myhome");
+		return mav; 
 	}
 	
+	
+	
 	@RequestMapping("mypage/notjoin") //회원탈퇴
-	public ModelAndView test2(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/notjoin"); 
+	public ModelAndView test2(HttpServletResponse response,MemberVO memberVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		memberVO.setMbr_id("father1");
+		System.out.println(memberVO);
+	
+
+		mav.addObject(dao.getMemberVO(memberVO));
+		mav.setViewName("mypage/notjoin");
+		return mav; 
 	}
+	
+	@RequestMapping("mypage/notjoin2") 
+	public ModelAndView test23(HttpServletResponse response,MemberVO memberVO) throws IOException{
+		
+		
+
+		System.out.println(memberVO);
+		//href="${pageContext.request.contextPath} 
+		//dao.notjoinMemberVO(memberVO);
+		//mav.setViewName();
+		memberVO.setMbr_id("father1");
+		memberVO.setMbr_status("탈퇴");
+		dao.notjoinMemberVO(memberVO);
+		
+		return new ModelAndView("main/main"); 
+	}
+	
 	
 	@RequestMapping("mypage/babyinfo") //아이관리
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
@@ -34,8 +90,14 @@ public class MypageController {
 		return new ModelAndView("mypage/market_deli"); 
 	}
 	@RequestMapping("mypage/myboard_question") //내 질문보기
-	public ModelAndView test6(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/myboard_question"); 
+	public ModelAndView test6(HttpServletResponse response,CommunityVO communityVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+		communityVO.setMbr_id("test");
+		mav.addObject("cos",dao.myboard_questionCommunityVO(communityVO));
+		//System.out.println(communityVO);
+		mav.setViewName("mypage/myboard_question");
+		return mav;
 	}
 	
 	@RequestMapping("mypage/myboard_answer") //내 답글
@@ -54,7 +116,7 @@ public class MypageController {
 	@RequestMapping("mypage/myboard_care") //돌봄신청내역
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myboard_care"); 
-	}
+	} 
 	
 	@RequestMapping("mypage/sitter_money") //시터 월급보기(시터권한)
 	public ModelAndView test11(HttpServletResponse response) throws IOException{
