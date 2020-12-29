@@ -26,13 +26,9 @@ import co.company.papang.vo.MemberVO;
 
 @Controller
 public class MemberController {
-	@Autowired
-	EsMapper dao;
-	// 나중에 서비스 나누면,,
-	@Autowired
-	MemberRegService reg_service;
-	@Autowired
-	LoginService log_service;
+	@Autowired EsMapper dao;
+	@Autowired MemberRegService reg_service;
+	@Autowired LoginService log_service;
 
 	// 회원가입 폼 버전1.. 일단 여기에 기능 몰빵해둠~~ 몰겠어 디자인적으로.. ㅎㅎ
 	@RequestMapping("/member/joinForm") // url 예전 .do
@@ -133,6 +129,7 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		// 세션 무효화
 		session.invalidate(); // 로그아웃처리
+		//return "main/main";
 		return "redirect:/";
 	}
 

@@ -23,13 +23,6 @@
 				alt="${pro.pro_name}">
 		</div>
 		<div class="col-lg-6">
-			<div>
-				<!-- 관리자 아이디가 따로 있으니까 c:if 에서 admin의 id값이 비지 않았을때 보는걸로 하면..될듯..?? -->
-				<!-- 		c:if test='${!empty ad_id}' -->
-				<button type="button" class="btnRed" id="itemUpdate">수정</button>
-				<button type="button" class="btnRed" id="itemDelete">삭제</button>
-				<!-- 		/c:if -->
-			</div>
 			<p />
 			<h2>${pro.pro_name}</h2>
 			<p />
@@ -50,29 +43,28 @@
 						</tr>
 					</tbody>
 					<tfoot>
-						<tr>
+						<tr><!-- ${empty ad_id} &&  -->
 							<td>
+							<c:if test="${!empty user.mbr_id}">
 								<button type="button" class="btn" id="buynow">결제</button>
+							</c:if>
+							<c:if test="${empty user.mbr_id}">
+								<button type="button" class="btn" id="itemUpdate">수정</button>
+							</c:if>
 							</td>
 							<td>
+							<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
+							<c:if test="${!empty user.mbr_id}">
 								<button type="button" class="btn" id="cart">장바구니</button> <!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
+							</c:if>
+							<c:if test="${empty user.mbr_id}">
+								<button type="button" class="btnRed" id="itemDelete">삭제</button>
+							</c:if>
 							</td>
 						</tr>
-
 					</tfoot>
 				</table>
-
 			</div>
-			<p>뭐 더 쓸 내용없는데</p>
-			<p>이 수많은 빈칸을 우야노</p>
-			<p>흠냐..</p>
-			<p>버튼을 위에 테이블에 같이둘지, 아래에 p태그 밑에 따로 둘지도 고민이야</p>
-			<div>
-				<button type="button" class="btnRed" id="buynow"
-					style="margin-right: 30px">결제</button>
-				<button type="button" class="btnYellow" id="cart">장바구니</button>
-			</div>
-			<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
 		</div>
 	</div>
 	<!-- /.row -->
@@ -82,6 +74,7 @@
 		<div class="col-lg-10">
 			<img class="img-fluid rounded mb-4"
 				src="http://placehold.it/1200x1000" alt="">
+				<p>${pro.pro_detail }</p>
 		</div>
 	</div>
 

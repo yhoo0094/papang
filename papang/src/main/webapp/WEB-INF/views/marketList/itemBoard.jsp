@@ -22,11 +22,11 @@ img { max-width: 300px; height: auto; }
 	<c:forEach var="pro" items="${ pro }">
 		<div class="col-lg-4 col-sm-6 portfolio-item">
 			<div class="card h-100">
-				<a href="market/itemDetail?pro_no=${pro.pro_no}"><img class="card-img-top"
+				<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img class="card-img-top"
 					src="${pageContext.request.contextPath}/resources/images/${pro.pro_pic}"></a>
 				<div class="card-body">
 					<h4 class="card-title">
-						<a href="market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
+						<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 					</h4>
 					<p class="card-text">${pro.pro_price}</p>
 				</div>
