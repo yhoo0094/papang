@@ -15,4 +15,9 @@ public class MarketServiceImpl implements MarketService {
 		return dao.getItem(product);
 	}
 
+	@Override
+	public int insertItem(ProductVO product) {
+		return dao.insertItem(product);
+	}
+
 }

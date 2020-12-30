@@ -15,11 +15,11 @@
 			<li class="breadcrumb-item active"><a href="market/itemDelete?pro_no=${pro.pro_no}">삭제</a></li>
 		</ol>
 	<!-- /c:if -->
-	<!-- Intro Content -->
+	<!-- Intro Content ${pageContext.request.contextPath} -->
 	<div class="row">
 		<div class="col-lg-6">
 			<img class="img-fluid rounded mb-4"
-				src="${pageContext.request.contextPath}/resources/images/${pro.pro_pic}"
+				src="images/${pro.pro_pic}"
 				alt="${pro.pro_name}">
 		</div>
 		<div class="col-lg-6">
