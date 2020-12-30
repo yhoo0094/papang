@@ -32,6 +32,11 @@ public class ActivityController {
 		return new ModelAndView("activity/cookView"); 
 	}
 	
+	@RequestMapping("activity/test") 
+	public ModelAndView test(HttpServletResponse response) throws IOException{
+		return new ModelAndView("activity/test"); 
+	}
+	
 	
 	//놀이
 	//1. 놀이 리스트 전체 조회/ 놀이 리스트 검색
