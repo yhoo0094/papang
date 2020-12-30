@@ -266,7 +266,7 @@ a.item {
 		})
 	</script>
 	<script src="${pageContext.request.contextPath}/js/play.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/js/market.js"></script>
 </body>
 
 </html>

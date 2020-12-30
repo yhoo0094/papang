@@ -4,8 +4,13 @@
 
 
 <style>
+#lnb {
+	margin-left: 50px;
+	width: 20%;
+}
 .card-img-top {
 	width: 100%;
+	min-height: 300px;
 	height: auto;
 	display: block;
 	border-radius: 10px;
@@ -25,38 +30,28 @@ thead, .dataTable_filter, .dataTables_length{
 }
 
 </style>
-<script type="text/javascript">
 
-</script>
 <div class="container center_div">
 	<h2>전체 상품</h2>
 	
-	<div id="divForEntryNum">
-<!-- 	<div class="col-sm-12 col-md-12"> -->
-<!-- 	<div id="dataTable_filter" class="dataTables_filter" align="right"> -->
-<!-- 	<label for="search"> -->
-<!-- 	검색:  -->
-<!-- 	<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"> -->
-<!-- 	</label> -->
-<!-- 	</div> -->
-<!-- 	</div> -->
+	<div id="marketListBoard">
 		<table class="table" id="dataTable">
-		
 			<thead>
 				<tr>
-					<th>가</th>
+					<th class="tableTh">r</th>
+					<th class="tableTh">r</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="pro" items="${ pro }">
 					<tr class="dataTableTr">
-						<td>
-
+					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
+						<td><p style="display: none">${pro.pro_no}</p>
 							<div class="portfolio-item">
 								<div class="card h-100 strongYellow">
 									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img
 										class="card-img-top"
-										src="${pageContext.request.contextPath}/resources/images/${pro.pro_pic}"></a>
+										src="${pageContext.request.contextPath}/images/${pro.pro_pic}"></a>
 									<div class="card-body">
 										<h4 class="card-title">
 											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
