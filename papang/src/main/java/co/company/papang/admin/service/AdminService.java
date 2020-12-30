@@ -30,4 +30,10 @@ public interface AdminService {
 
 	// 시터 등록
 	public int insertSitter(SitterVO vo);
+
+	// 시터 삭제
+	public int deleteSitter(SitterVO vo);
+
+	// 시터 단건 조회
+	public SitterVO getSitter(SitterVO vo);
 }

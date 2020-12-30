@@ -25,6 +25,7 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVO;
 
+
 @RestController
 public class AdminRestController {
 	@Autowired
@@ -121,17 +122,32 @@ public class AdminRestController {
 		return vo;
 	}
 	
-	
-	//시터추가? 왜안됨?
-	@RequestMapping(value = "/sitter", method = RequestMethod.POST
-	// ,produces="application/json"
-     ,consumes="application/json"
-	// ,headers = {"Content-type=application/json" }
+	@RequestMapping(value="/sitter"
+			,method=RequestMethod.POST
+	//		,produces="application/json"     
+	// 		,consumes="application/json"
+    //       ,headers = {"Content-type=application/json" }
 	)
-	public Map<String, Boolean> insertsitter(@RequestBody SitterVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
-			throws IllegalStateException, IOException {
-
+	public Map insertsitter(@RequestBody SitterVO vo, Model model,HttpServletResponse response) {
 		service.insertSitter(vo);
-		return Collections.singletonMap("result", true);
+		return  Collections.singletonMap("result", true);
 	}
+	
+	@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.DELETE)
+	public Map<String, Object> getSitterList(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
+		vo.setSit_mbr_id(sit_mbr_id);
+		service.deleteSitter(vo);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+	
+	// 시터 단건조회
+		@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.GET)
+		public SitterVO getSitter(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
+			vo.setSit_mbr_id(sit_mbr_id);
+			return service.getSitter(vo);
+		}
+	
+	
 }

@@ -90,6 +90,20 @@
 	<insert id="insertSitter" parameterType="co.company.papang.vo.SitterVO">
 		INSERT INTO SITTER(SIT_MBR_ID) VALUES(#{sit_mbr_id})
 	</insert>
+	
+	<!-- 시터 삭제 -->
+	<delete id="deleteSitter" parameterType="co.company.papang.vo.SitterVO">
+		delete from SITTER
+		where sit_mbr_id =
+		#{sit_mbr_id}
+	</delete>
+	
+	<!-- 시터 단건조회 -->
+	<select id="getSitter" parameterType="co.company.papang.vo.SitterVO"
+		resultType="co.company.papang.vo.SitterVO">
+		SELECT * FROM SITTER
+		WHERE sit_mbr_id = #{sit_mbr_id}
+	</select>
 
 
 </mapper>

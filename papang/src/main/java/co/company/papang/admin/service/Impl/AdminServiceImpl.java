@@ -60,7 +60,19 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int insertSitter(SitterVO vo) {
 		// TODO Auto-generated method stub
-		return 0;
+		return jyMapper.insertSitter(vo);
+	}
+
+	@Override
+	public int deleteSitter(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.deleteSitter(vo);
+	}
+
+	@Override
+	public SitterVO getSitter(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.getSitter(vo);
 	}
 
 
