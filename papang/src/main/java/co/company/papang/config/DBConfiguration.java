@@ -11,6 +11,7 @@ import oracle.jdbc.pool.OracleDataSource;
 
 @Configuration
 @EnableTransactionManagement
+
 public class DBConfiguration {
 	   final static String DB_URL="jdbc:oracle:thin:@papang_high?TNS_ADMIN=C://Users//test//wallet_dbname";
 	     final static String DB_USER = "admin";

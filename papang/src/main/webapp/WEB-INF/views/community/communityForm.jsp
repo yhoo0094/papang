@@ -82,11 +82,11 @@
 					<td align="center" width="20%" class="strongYellow">제목</td>
 					
 					<td class="whiteBackground" width="80%">
-						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != 'test'}">
-							<form:input path="com_title" type="text" class="communityFormType"/>
-						</c:if>
-						<c:if test="${not empty communityVO.com_no and communityVO.mbr_id == 'test'}"> 
+						<c:if test="${communityVO.mbr_id ne sessionScope.user.mbr_id}">
 							<form:input path="com_title" type="text" class="communityFormType" readonly="true"/>
+						</c:if>
+						<c:if test="${empty communityVO.com_no or communityVO.mbr_id eq sessionScope.user.mbr_id}"> 
+							<form:input path="com_title" type="text" class="communityFormType" />
 						</c:if>	
 					</td>
 				</tr>
@@ -95,7 +95,7 @@
 					<td align="center" class="strongYellow">분류</td>
 					<td class="whiteBackground">
 					<select name="com_category" class="communityFormType"
-						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != 'test'}">
+						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != sessionScope.user.mbr_id}">
 							disabled
 						</c:if>  
 					>

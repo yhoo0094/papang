@@ -43,6 +43,14 @@
 		)
 	</insert>
 	
+	<!-- 조회수 증가 -->
+	<update id="hitPlus" parameterType="communityVO">
+		UPDATE COMMUNITY SET
+		COM_HIT = COM_HIT + 1
+		WHERE COM_NO = #{com_no}
+	</update>
+	
+	
 	<!-- ##################################커뮤니티 댓글########################################### -->
 	<!-- 커뮤니티 댓글 전체조회 -->
 	<select id="getCommunityComList" resultType="community_comVO" parameterType="community_comVO">

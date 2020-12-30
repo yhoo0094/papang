@@ -10,6 +10,7 @@ public interface SmMapper {
 	public int communityFormInsert(CommunityVO communityVO);
 	public List<CommunityVO> getCommunityList(CommunityVO CommunityVO);
 	public CommunityVO getCommunity(CommunityVO CommunityVO);
+	public int hitPlus(CommunityVO CommunityVO);
 	
 	//커뮤니티 댓글
 	public List<Community_comVO> getCommunityComList(Community_comVO community_comVO);
