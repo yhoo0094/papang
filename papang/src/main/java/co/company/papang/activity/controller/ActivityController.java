@@ -34,7 +34,7 @@ public class ActivityController {
 	
 	
 	//놀이
-	//1. 놀이 리스트 전체 조회
+	//1. 놀이 리스트 전체 조회/ 놀이 리스트 검색
 	@RequestMapping("activity/playList") 
 	public ModelAndView playList(HttpServletResponse response,PlayVO playVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
@@ -43,19 +43,17 @@ public class ActivityController {
 		return mav; 
 	}
 	
+	
 	//놀이 단건 조회
 	@RequestMapping("activity/playView") 
-	public ModelAndView playView(HttpServletResponse response,PlayVO playVO,Act_comVO actcomVO) throws IOException{
+	public ModelAndView playView(HttpServletResponse response,PlayVO playVO,Act_comVO act_comVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
-		
-		System.out.println(playVO.getPlay_no());
-		//actcomVO.setAc_no(playVO.getPlay_no());
-		actcomVO.setAc_no("10");
-		mav.addObject("actcommList", service.getActComm(actcomVO));
+		act_comVO.setPc_no(playVO.getPlay_no());
+		mav.addObject("actcommList", service.getActComm(act_comVO));
+		mav.addObject("acrate",service.getStar(act_comVO));
 		mav.setViewName("activity/playView");
 		return mav;
-//		return "activity/playView";
 	}
 	
 	//놀이 리스트 글 등록폼 가기

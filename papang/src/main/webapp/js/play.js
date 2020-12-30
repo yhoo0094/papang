@@ -11,6 +11,26 @@
 			$("#cook_div .custom-select").append("<option value='16'>16</option>");
 			$("#cook_div .custom-select").trigger("change"); 
 			
+	// 놀이 - 검색버튼
+		$('#search1').on('click',function() {
+			var play_category ='예비아빠';
+			location.href='playList?play_category='+play_category;
+		})
+		
+			$('#search2').on('click',function() {
+			var play_category ='만0~1세';
+			location.href='playList?play_category='+play_category;
+		})
+		
+			$('#search3').on('click',function() {
+			var play_category ='만2세';
+			location.href='playList?play_category='+play_category;
+		})
+		
+			$('#search4').on('click',function() {
+			var play_category ='만3~6세';
+			location.href='playList?play_category='+play_category;
+		})
 	})(jQuery);
 	
 	

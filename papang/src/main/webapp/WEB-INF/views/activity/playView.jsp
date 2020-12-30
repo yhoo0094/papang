@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 	.cView_title{height: 120px;padding:20px;}
 	/* .cView_image{height: 430px;} */
 	.cView_comment{height:220px;padding: 0 0 20px 0px;margin: 0px 10px 10px 0px;border-radius: 10px;font-size: 20px;height: 100%;}
-	.comment{height: 30px;font-size: 18px;height: 100%;}
+	.comment{height: 30px;font-size: 18px;height: 100%;display: inline-block;}
 	.c_title{display: inline-block;font-size: 30px;}
 	.c_star{display:inline-block;font-size: 25px;}
 	._image{width: 410px;height: 420px;border-radius: 10px;}
@@ -49,24 +50,23 @@
 	<div class="cook_content">
 		<div class="cView_title">
 			<p class="c_title">꼭꼭숨어라 머리카락보인다 ${playVO.play_title}</p>
-			<p class="c_star">	&#128512;&#128512;&#128512;&#128512;&#128512; DBVALUE</p>
+			<p class="c_star">: ${acrate.ROUNDRATE}</p>
 		</div>
 		<div class="cView_image" align="center">
 		     ${playVO.play_content}
-			 <%-- <img class="_image" src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"> --%> 
 		</div>
 	</div>
 	
 	<p class="comm_title">후기</p>
+	
 	<div class="comm_div">
-		<div class="comment">
-			<img src="${pageContext.request.contextPath}/resources/images/active/${actcommList.ac_pic}">
-		<%-- 	<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
-			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
-			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG">
-			<img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"> --%>
+	<c:forEach items="${actcommList}" var="actcomm">
+		 <div class="comment">
+			<img src="${pageContext.request.contextPath}/resources/images/active/${actcomm.ac_pic}">
 		</div> 
+		</c:forEach> 
 	</div>
+	
 	
 	<p class="comm_title">후기작성</p>
 	<div class="comm_content">

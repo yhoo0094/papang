@@ -24,13 +24,15 @@ public interface SaMapper {
 	
 	//2.[놀이]
 	public List<PlayVO> getPlayList(PlayVO playVO); //리스트 전체 조회
-	
 	public PlayVO getPlay(PlayVO playVO); //리스트 단건 조회
 	
 	
 	//3.[활동후기]
-	//3-1.요리후기
-	public List<Act_comVO> getActComm(Act_comVO actcomVO);//요리후기 전제조회
+	//3-1.놀이후기
+	public List<Act_comVO> getActComm(Act_comVO act_comVO);//놀이후기 전체조회
+	public Act_comVO getStar(Act_comVO act_comVO);//놀이 단건글 평점조회
+	
+	
 	
 }
 

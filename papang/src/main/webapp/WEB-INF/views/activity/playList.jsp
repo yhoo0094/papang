@@ -177,11 +177,10 @@ window.onload = function() {
 			<li>
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
 			<span class="author"> 
-				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
-				<p>1번글</p> <p class="play_no">${play.play_no}</p>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+				<p>글번호 :</p><p class="play_no">${play.play_no}</p>
 				<p>제목 : ${play.play_title}</p>
-				<p>카테고리:${play.play_category}</p>
+				<p>카테고리: </p><p class="play_category">${play.play_category}</p>
 			</span>
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">

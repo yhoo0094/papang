@@ -11,7 +11,7 @@
 
 
 <!-- (2).놀이  -->
-<!-- 놀이 전체조회 --> 
+<!-- 놀이 전체조회, 놀이검색 --> 
 <select id="getPlayList" resultType="PlayVO">
 	SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY, PLAY_HIT,PLAY_CONTENT 
 	FROM PLAY
@@ -22,8 +22,8 @@
 	</where>
 </select>
 
-<!-- 놀이 단건조회 -->
 
+<!-- 놀이 단건조회 -->
 <select id="getPlay" resultType="PlayVO">
 		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT
 		FROM PLAY
@@ -31,12 +31,35 @@
 </select>
 
 
-<!--놀이후기 전체 조회 -->
-  	 <select id="getActComm" resultType="Act_comVO">
-		SELECT *
-		FROM ACT_COM
-		where AC_CATEGORY='놀이' AND PC_NO=10
+<!--후기  전체 조회 -->
+  	 <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">
+		SELECT ROWNUM,A.*
+		FROM ACT_COM A
+		WHERE A.AC_CATEGORY='놀이' AND A.PC_NO=#{pc_no}
+		<![CDATA[AND ROWNUM <= 6]]>
 	</select>   
+
+<!-- 후기 : 평점조회 -->
+ <select id="getStar" resultType="Act_comVO" parameterType="act_comVO">
+		SELECT ROUND(AVG(AC_RATE)) AS ROUNDRATE FROM ACT_COM WHERE AC_CATEGORY='놀이' AND PC_NO=#{pc_no}
+	</select>   
+
+
+<!-- 후기 : 후기등록 -->
+<!-- 	<insert id="insertUser" parameterType="user">
+		insert into users (
+				 id,
+				 password, 
+				 name,
+				 <if test="profile != null and profile!= ''">profile,</if>
+				  role)
+		values ( #{id},
+				 #{password},
+				 #{name},
+				 <if test="profile != null and profile!= ''">#{profile},</if>
+				 #{role})
+	</insert>
+		 -->
 
 
 

@@ -16,4 +16,5 @@ public class Act_comVO {
 	private String ac_category;
 	private String pc_no;
 	private String ac_pic;
+	private String ROUNDRATE;
 }

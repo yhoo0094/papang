@@ -30,7 +30,12 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override//요리후기 전제조회
-	public List<Act_comVO> getActComm(Act_comVO actcomVO) {
-		return dao.getActComm(actcomVO);
+	public List<Act_comVO> getActComm(Act_comVO act_comVO) {
+		return dao.getActComm(act_comVO);
+	}
+
+	@Override//요리단건 평점조회
+	public Act_comVO getStar(Act_comVO act_comVO) {
+		return dao.getStar(act_comVO);
 	}
 }
