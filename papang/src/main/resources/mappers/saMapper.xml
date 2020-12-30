@@ -47,7 +47,7 @@
 
 <!-- 후기 : 후기등록 -->
 <!-- 	<insert id="insertUser" parameterType="user">
-		insert into users (
+		insert into act_com (
 				 id,
 				 password, 
 				 name,
