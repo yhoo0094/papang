@@ -20,13 +20,13 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public List<CommunityVO> getCommunityList(CommunityVO CommunityVO) {
-		return dao.getCommunityList(CommunityVO);
+	public List<CommunityVO> getCommunityList(CommunityVO communityVO) {
+		return dao.getCommunityList(communityVO);
 	}
 
 	@Override
-	public CommunityVO getCommunity(CommunityVO CommunityVO) {
-		return dao.getCommunity(CommunityVO);
+	public CommunityVO getCommunity(CommunityVO communityVO) {
+		return dao.getCommunity(communityVO);
 	}
 
 	@Override
@@ -37,6 +37,11 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public int communityCommentInsert(Community_comVO community_comVO) {
 		return dao.communityCommentInsert(community_comVO);
+	}
+
+	@Override
+	public int hitPlus(CommunityVO communityVO) {
+		return dao.hitPlus(communityVO);
 	}
 	
 	

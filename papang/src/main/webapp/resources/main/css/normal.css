@@ -65,4 +65,7 @@ th {
 	width: 10%;
 }
 
-.next, .previous {width: 70px;text-align: center;}
+.next, .previous {
+	width: 80px;
+	text-align: center;
+}
