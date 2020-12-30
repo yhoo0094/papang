@@ -23,10 +23,18 @@ public class MypageController {
 	YrMapper dao;
 	
 	@RequestMapping("mypage/myhome") //회원정보수정 (마이페이지 메인홈)
-	public ModelAndView test(HttpServletResponse response,MemberVO memberVO) throws IOException{
+	public ModelAndView test(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
 		
 		ModelAndView mav=new ModelAndView();
-		memberVO.setMbr_id("father1");
+		
+		System.out.println("===================");
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		System.out.println("===================");
+		
+		
+		System.out.println(mbr_id);
+		memberVO.setMbr_id(mbr_id);
 		System.out.println(memberVO);
 	
 
@@ -49,10 +57,13 @@ public class MypageController {
 	
 	
 	@RequestMapping("mypage/notjoin") //회원탈퇴
-	public ModelAndView test2(HttpServletResponse response,MemberVO memberVO) throws IOException{
+	public ModelAndView test2(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
 		ModelAndView mav=new ModelAndView();
-		memberVO.setMbr_id("father1");
-		System.out.println(memberVO);
+		
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		memberVO.setMbr_id(mbr_id);
+		
 	
 
 		mav.addObject(dao.getMemberVO(memberVO));
@@ -61,15 +72,15 @@ public class MypageController {
 	}
 	
 	@RequestMapping("mypage/notjoin2") 
-	public ModelAndView test23(HttpServletResponse response,MemberVO memberVO) throws IOException{
+	public ModelAndView test23(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
 		
-		
-
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
 		System.out.println(memberVO);
 		//href="${pageContext.request.contextPath} 
 		//dao.notjoinMemberVO(memberVO);
 		//mav.setViewName();
-		memberVO.setMbr_id("father1");
+		memberVO.setMbr_id(mbr_id);
 		memberVO.setMbr_status("탈퇴");
 		dao.notjoinMemberVO(memberVO);
 		
@@ -90,21 +101,24 @@ public class MypageController {
 		return new ModelAndView("mypage/market_deli"); 
 	}
 	@RequestMapping("mypage/myboard_question") //내 질문보기
-	public ModelAndView test6(HttpServletResponse response,CommunityVO communityVO) throws IOException{
-		
+	public ModelAndView test6(HttpSession session,HttpServletResponse response,CommunityVO communityVO) throws IOException{
 		ModelAndView mav=new ModelAndView();
-		communityVO.setMbr_id("test");
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		
+		communityVO.setMbr_id(mbr_id);
 		mav.addObject("cos",dao.myboard_questionCommunityVO(communityVO));
 		//System.out.println(communityVO);
 		mav.setViewName("mypage/myboard_question");
 		return mav;
 	}
 	
-	@RequestMapping("mypage/myboard_answer") //내 답글
+	@RequestMapping("mypage/myboard_answer") //내 댓글보기
 	public ModelAndView test7(HttpServletResponse response) throws IOException{
+		
 		return new ModelAndView("mypage/myboard_answer"); 
 	}
-	@RequestMapping("mypage/myboard_qna") //내 댓글보기
+	@RequestMapping("mypage/myboard_qna") //질문??
 	public ModelAndView test8(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myboard_qna"); 
 	}
