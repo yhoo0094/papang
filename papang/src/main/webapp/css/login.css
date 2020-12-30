@@ -39,34 +39,16 @@ input {
 	border: none;
 }
 
-textarea {
-  outline: none;
-  border: none;
-}
-
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
-
 input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
 input:focus::-moz-placeholder { color:transparent; }
 input:focus:-ms-input-placeholder { color:transparent; }
-
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
 
 input::-webkit-input-placeholder { color: #555555;}
 input:-moz-placeholder { color: #555555;}
 input::-moz-placeholder { color: #555555;}
 input:-ms-input-placeholder { color: #555555;}
 
-textarea::-webkit-input-placeholder { color: #555555;}
-textarea:-moz-placeholder { color: #555555;}
-textarea::-moz-placeholder { color: #555555;}
-textarea:-ms-input-placeholder { color: #555555;}
 
 label {
   margin: 0;
@@ -435,7 +417,7 @@ iframe {
   }
 }
 /*---------------------------------------------*/
-a {
+a.loginpage {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
@@ -447,11 +429,11 @@ a {
   -moz-transition: all 0.4s;
 }
 
-a:focus {
+a.loginpage :focus {
 	outline: none !important;
 }
 
-a:hover {
+a.loginpage :hover {
 	text-decoration: none;
   color: #6675df;
 }

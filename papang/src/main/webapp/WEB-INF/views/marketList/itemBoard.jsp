@@ -1,38 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <style>
-img { max-width: 300px; height: auto; }
-</style>
-<script type="text/javascript">
-/* 	$(function() {
-		itemList();
-	})
-	function itemList() {
+#lnb {
+	margin-left: 50px;
+	width: 20%;
+}
+.card-img-top {
+	width: 100%;
+	min-height: 300px;
+	height: auto;
+	display: block;
+	border-radius: 10px;
+}
+thead, .dataTable_filter, .dataTables_length{
+	display: none;
+}
 
-	} */
-</script>
+.dataTableTr {
+	display: inline;
+	width: 50%;
+	padding: 6px;
+	border-radius: 10px;
+}
+.dataTableTr>td {
+    width: 260px;
+}
+
+</style>
+
 <div class="container center_div">
 	<h2>전체 상품</h2>
-
-	<div class="row">
-<!-- row 를 고정해주고 얘한테 ajax로 append 혹은 c:forEach -->
-	<c:forEach var="pro" items="${ pro }">
-		<div class="col-lg-4 col-sm-6 portfolio-item">
-			<div class="card h-100">
-				<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img class="card-img-top"
-					src="${pageContext.request.contextPath}/resources/images/${pro.pro_pic}"></a>
-				<div class="card-body">
-					<h4 class="card-title">
-						<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
-					</h4>
-					<p class="card-text">${pro.pro_price}</p>
-				</div>
-			</div>
-		</div>
-	</c:forEach>
+	
+	<div id="marketListBoard">
+		<table class="table" id="dataTable">
+			<thead>
+				<tr>
+					<th class="tableTh">r</th>
+					<th class="tableTh">r</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="pro" items="${ pro }">
+					<tr class="dataTableTr">
+					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
+						<td><p style="display: none">${pro.pro_no}</p>
+							<div class="portfolio-item">
+								<div class="card h-100 strongYellow">
+									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img
+										class="card-img-top"
+										src="${pageContext.request.contextPath}/images/${pro.pro_pic}"></a>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
+										</h4>
+										<p class="card-text">${pro.pro_price}</p>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
-	<div align="right"><button type="button" onclick="location.href='/papang/market/itemInsertForm'">등록</button></div>
+	<div align="right">
+		<button type="button"
+			onclick="location.href='/papang/market/itemInsertForm'">등록</button>
+	</div>
 </div>

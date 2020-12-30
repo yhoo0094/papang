@@ -13,19 +13,20 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.company.papang.community.service.CommunityService;
 import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 
 @Controller
 public class CommunityController {
-	@Autowired SmMapper dao;
+	@Autowired CommunityService service;
 	
 	/*-------------------------- 커뮤니티 --------------------------*/
 	@RequestMapping("/community/board") //커뮤니티 게시판 보기
 	public ModelAndView communityBoard(CommunityVO communityVO) throws IOException{
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("CommunityVOList", dao.getCommunityList(communityVO));
+		mav.addObject("CommunityVOList", service.getCommunityList(communityVO));
 		mav.setViewName("community/communityBoard");
 		return mav; //jsp주소
 	}
@@ -33,8 +34,8 @@ public class CommunityController {
 	@RequestMapping("/community/form") //커뮤니티 글쓰러 가기
 	public String communityForm(Model model, CommunityVO communityVO, Community_comVO community_comVO) throws IOException{
 		if(communityVO.getCom_no() != null) {
-			model.addAttribute("communityVO",dao.getCommunity(communityVO));
-			model.addAttribute("community_comVOList",dao.getCommunityComList(community_comVO));
+			model.addAttribute("communityVO",service.getCommunity(communityVO));
+			model.addAttribute("community_comVOList",service.getCommunityComList(community_comVO));
 		}
 		return "community/communityForm"; //jsp주소
 	}
@@ -42,7 +43,7 @@ public class CommunityController {
 	@RequestMapping("/community/formInsert") //커뮤니티 글 인서트
 	public String communityFormInsert(CommunityVO communityVO, Errors errors ) throws IOException{
 		communityVO.setMbr_id("tempt");
-		dao.communityFormInsert(communityVO);
+		service.communityFormInsert(communityVO);
 		return "redirect:/community/board"; //jsp주소
 	}
 	

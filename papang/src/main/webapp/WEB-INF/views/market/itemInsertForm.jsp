@@ -13,7 +13,7 @@
 
 <h1 class="mt-4">판매상품 등록</h1>
 	
-<form id="frm" class="form-horizontal" name="frm" method="post" action="${pageContext.request.contextPath}/market/itemInsert">
+<form id="frm" class="form-horizontal" name="frm" method="post" encType="multipart/form-data" action="${pageContext.request.contextPath}/market/itemInsert">
    <div align="center">
       <table class="table" style="width: 100%">
          <tbody>
@@ -31,8 +31,7 @@
             </tr>
             <tr>
                <td align="center" style="width: 10%">대표사진</td>
-               <td><input type="text" id="pro_pic" name="pro_pic" class="form-control"
-                  style="width: 80%; margin-right: 20px"><input type="button" value="찾기">
+               <td><input type="file" id="pro_pic" name="uploadFile" class="form-control" style="width: 100%">
                   <input type="hidden" id="pro_no" name="pro_no">
                </td>
             </tr>
