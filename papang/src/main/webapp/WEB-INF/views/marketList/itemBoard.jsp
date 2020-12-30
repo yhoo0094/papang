@@ -8,6 +8,9 @@
 	margin-left: 50px;
 	width: 20%;
 }
+.noDepth>a {
+	align 
+}
 .card-img-top {
 	width: 100%;
 	min-height: 300px;
