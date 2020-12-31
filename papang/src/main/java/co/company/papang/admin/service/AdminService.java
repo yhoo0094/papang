@@ -36,4 +36,7 @@ public interface AdminService {
 
 	// 시터 단건 조회
 	public SitterVO getSitter(SitterVO vo);
+
+	// 시터 수정
+	public int updateSitter(SitterVO vo);
 }

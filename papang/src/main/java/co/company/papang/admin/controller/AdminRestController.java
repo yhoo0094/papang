@@ -25,7 +25,6 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVO;
 
-
 @RestController
 public class AdminRestController {
 	@Autowired
@@ -121,18 +120,17 @@ public class AdminRestController {
 		service.updateMember(vo);
 		return vo;
 	}
-	
-	@RequestMapping(value="/sitter"
-			,method=RequestMethod.POST
-	//		,produces="application/json"     
-	// 		,consumes="application/json"
-    //       ,headers = {"Content-type=application/json" }
+
+	@RequestMapping(value = "/sitter", method = RequestMethod.POST
+	// ,produces="application/json"
+	// ,consumes="application/json"
+	// ,headers = {"Content-type=application/json" }
 	)
-	public Map insertsitter(@RequestBody SitterVO vo, Model model,HttpServletResponse response) {
+	public Map insertsitter(@RequestBody SitterVO vo, Model model, HttpServletResponse response) {
 		service.insertSitter(vo);
-		return  Collections.singletonMap("result", true);
+		return Collections.singletonMap("result", true);
 	}
-	
+
 	@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.DELETE)
 	public Map<String, Object> getSitterList(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
 		vo.setSit_mbr_id(sit_mbr_id);
@@ -141,13 +139,37 @@ public class AdminRestController {
 		result.put("result", Boolean.TRUE);
 		return result;
 	}
-	
+
 	// 시터 단건조회
-		@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.GET)
-		public SitterVO getSitter(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
-			vo.setSit_mbr_id(sit_mbr_id);
-			return service.getSitter(vo);
+	@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.GET)
+	public SitterVO getSitter(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
+		vo.setSit_mbr_id(sit_mbr_id);
+		return service.getSitter(vo);
+	}
+
+	// �닔�젙
+	@RequestMapping(value = "/sitter", method = RequestMethod.PUT
+	// ,produces="application/json" //�쓳�떟�뿤�뜑
+			, consumes = "application/json" // �슂泥��뿤�뜑
+	// ,headers = {"Content-type=application/json" }
+	)
+	public SitterVO updateSitter(SitterVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		// �씠誘몄��뙆�씪
+		// request Multipart濡� 罹먯뒪�똿
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+
+		// 泥⑤��뙆�씪
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			System.out.println("path=" + path);
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
+																							// �씠由�
+			vo.setSit_pic(multipartFile.getOriginalFilename());
 		}
-	
-	
+		service.updateSitter(vo);
+		return vo;
+	}
+
 }

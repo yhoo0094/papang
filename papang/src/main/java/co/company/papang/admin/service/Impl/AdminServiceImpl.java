@@ -75,6 +75,12 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.getSitter(vo);
 	}
 
+	@Override
+	public int updateSitter(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updateSitter(vo);
+	}
+
 
 	
 }

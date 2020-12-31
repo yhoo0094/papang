@@ -78,7 +78,7 @@
 		ORDER BY mbr_id
 	</select>
 	
-	<!-- 공지 수정 -->
+	<!-- 맴버 권한 수정 -->
 	<update id="updateMember" parameterType="co.company.papang.vo.MemberVO">
 		update member set
 		mbr_author =
@@ -104,6 +104,17 @@
 		SELECT * FROM SITTER
 		WHERE sit_mbr_id = #{sit_mbr_id}
 	</select>
+	
+	<!-- 시터 정보 수정 -->
+	<update id="updateSitter" parameterType="co.company.papang.vo.SitterVO">
+		update sitter set
+		sit_payday = #{sit_payday},
+		sit_off = #{sit_off},
+		sit_pay = #{sit_pay},
+		sit_loc = #{sit_loc},
+		sit_note = #{sit_note}
+		WHERE sit_mbr_id = #{sit_mbr_id}
+	</update>
 
 
 </mapper>

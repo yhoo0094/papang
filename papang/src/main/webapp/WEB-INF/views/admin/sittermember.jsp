@@ -7,7 +7,8 @@
 		memberList();
 		memberSelect();
 		//nqDelete();
-		//nqUpdate();
+		//SitterDelete();
+		sitterUpdate();
 		memberUpdate();
 		$("#filter").on('change', function() {
 			memberList();
@@ -82,14 +83,13 @@
 							reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
 								//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
 
-								$('#img').attr('src', e.target.result).attr(
-										'style', 'width:50%');
-
+								$('#img').attr('src', e.target.result);
+								$('#img').attr('style','style="width:50%; height: 80%"');
 							}
 							reader.readAsDataURL(f);
 						} else {
-							$('#img').attr('src', e.target.result).attr(
-									'style', 'width:50%');
+							$('#img').attr('src', e.target.result);
+							$('#img').attr('style','style="width:50%; height: 80%"');
 						}
 					});//arr.forEach
 		}
@@ -100,7 +100,8 @@
 	function memberSelect() {
 		//조회 버튼 클릭
 		$('body').on('click', '#btnSelect', function() {
-			var id = $(this).parent().parent().children().eq(0).html();;
+			var id = $(this).parent().parent().children().eq(0).html();
+			;
 			console.log(id);
 			//특정 사용자 조회
 			$.ajax({
@@ -116,22 +117,24 @@
 		}); //조회 버튼 클릭
 	}//nqSelect
 	function SitterSelectResult(sitter) {
-		console.log(sitter);
-		$('#img').attr('src','${pageContext.request.contextPath}/images/'+sitter.sit_pic);
+		console.log(sitter.sit_loc);
+		$('#img').attr('src',
+				'${pageContext.request.contextPath}/images/' + sitter.sit_pic).attr('style','style="width:50%; height: 90%"');
 		$('#sit_mbr_id').val(sitter.sit_mbr_id);
-	    $('#la').html(sitter.sit_pic);sit_off
+		$('#la').html(sitter.sit_pic);
 		$('#sit_payday').val(sitter.sit_payday);
-	    $('#sit_off').val(sitter.sit_off);
+		$('#sit_off').val(sitter.sit_off);
 		$('#sit_pay').val(sitter.sit_pay);
-		$('select:text[name="sit_loc"]').val(sitter.sit_loc).prop(
-				"selected", true);
+		$('#sit_loc').val(sitter.sit_loc).prop("selected", true);
 		$('#sit_note').val(sitter.sit_note);
-	
+
 	}
 	//사용자 삭제 요청
-	function nqDelete() {
+	function SitterDelete() {
+		var id;
 		//삭제 버튼 클릭
 		$('body').on('click', '#btnDelete', function() {
+			id = $(this).parent().parent().children().eq(0).html();
 			var nq_no = $(this).closest('tr').find('#hidden_nq_no').val();
 			var result = confirm(nq_no + " 번 글을 정말로 삭제하시겠습니까?");
 			if (result) {
@@ -199,7 +202,7 @@
 										.append(
 												$("<td>")
 														.html(
-																'<button id=\'btnSelect\'>수정</button> <button id=\'btnDelete\'>탈퇴</button>'))
+																'<button id=\'btnSelect\'>조회</button> <button id=\'btnDelete\'>탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							} else {
 								$('<tr>')
@@ -230,7 +233,7 @@
 		//수정 버튼 클릭
 		var id;
 		$("body").on('change', '.author', function() {
-			var author = $(".author").val();
+			var author = $(this).val();
 			id = $(this).parent().parent().children().eq(0).html();
 			$.ajax({
 				url : "../member",
@@ -248,7 +251,7 @@
 					alert(" status: " + status + " er:" + message);
 				}
 			});
-			console.log(author);
+			console.log($(this).val());
 			if (author == '시터') {
 
 				$.ajax({
@@ -289,24 +292,66 @@
 		});
 
 	}//userUpdate
+	
+	//사용자 수정 요청
+	function sitterUpdate() {
+	//수정 버튼 클릭
+	
+	$('#btnUpdate').on('click',function(){
+	var form = $('#form1')[0];
+	var formData = new FormData(form);
+
+	$.ajax({ 
+	url: "../sitter", 
+	type: 'PUT', 
+	dataType: 'json', 
+	data: formData,
+	contentType : false,
+    processData : false,
+	success: function(data) { 
+	memberList();
+	$('#form1').each(function() {
+		this.reset();
+		$('#la').html("선택한 파일 없음");
+		alert("수정되었습니다");
+	});
+	},
+	error:function(xhr, status, message) { 
+	alert(" status: "+status+" er:"+message);
+	}
+	});
+	});//수정 버튼 클릭
+	}//userUpdate
+	
 </script>
 <h1 class="mt-4">시터/회원 관리</h1>
 <br>
+<form id="form1" class="form-horizontal">
 <div id="sitterForm" class="strongYellow" align="center">
-	<table>
+<div class='card-header' align="left" style= 'width:50%'>
+		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true"
+			focusable="false" data-prefix="fas" data-icon="table" role="img"
+			xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+			data-fa-i2svg="">
+			<path fill="currentColor"
+				d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path></svg>
+	베이비시터 정보
+	</div>
+	<table border = '1px' style= 'width:50%'>
 		<tr>
-			<td>
-				<table>
-					<tr>
+			<td width="50%">
+				<table width="100%">
+					<tr align="center">
 						<td><img id="img" class="sitterProfileImg" alt="시터이미지"
-							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg"></td>
+							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg" style="width:300px; height: 300px;"></td>
 					</tr>
-					<tr>
+					<tr align="center">
 						<td><input type="file" name="uploadFile" id="uf" />
 							<div
-								style="display: inline-block; position: relative; width: 300px; left: -210px; background: white;">
+								style="display: inline-block; position: relative; width: 200px; left:40px; top:-24px; background: white;">
 								<label id="la">선택한 파일 없음</label>
 							</div></td>
+							</tr>
 				</table>
 			</td>
 			<td><table class="sitterInfoTable" align="center">
@@ -356,26 +401,41 @@
 					</tr>
 					<tr>
 						<td>특이사항</td>
-						<td><textarea id='sit_note' name= 'sit_note' rows="20" cols="20"
-								style="width: 100%; height: 50px"></textarea></td>
+						<td><textarea id='sit_note' name='sit_note' rows="20"
+								cols="20" style="width: 100%; height: 50px"></textarea></td>
 					</tr>
-
+					
 				</table></td>
 		</tr>
+		<tr>
+		<td colspan="2" align="center">
+		 <input type="button" class="btn btn-primary"
+			value="수정" id="btnUpdate" /> <input type="button"
+			class="btn btn-primary" value="초기화" id="btnInit" />
+		</td>
+		</tr>
 	</table>
-
+	</form>
 	<br> <br>
 </div>
 </div>
-<div align="left">
+
+<div align="center">
+	<div class='card-header' align="left">
+		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true"
+			focusable="false" data-prefix="fas" data-icon="table" role="img"
+			xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+			data-fa-i2svg="">
+			<path fill="currentColor"
+				d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path></svg>
 	분류 <select id='filter'>
 		<option selected value=''>전체</option>
 		<option value="시터">시터</option>
 		<option value="회원">회원</option>
 	</select>
-</div>
-<div align="center">
-
+	</div>
+	<div class="card-body">
+	<div class="table-responsive" border ='1px'>
 	<table class="table table-bordered" id="dataTable" cellspacing="0">
 		<thead>
 			<tr>
@@ -391,6 +451,8 @@
 		</thead>
 		<tbody></tbody>
 	</table>
+	</div>
+	</div>
 </div>
 
 <script>
