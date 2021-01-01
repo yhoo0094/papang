@@ -39,4 +39,7 @@ public interface AdminService {
 
 	// 시터 수정
 	public int updateSitter(SitterVO vo);
+	
+	// 맴버 탈퇴
+	public int deleteMember(MemberVO vo);
 }

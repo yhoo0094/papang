@@ -81,6 +81,12 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.updateSitter(vo);
 	}
 
+	@Override
+	public int deleteMember(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.deleteMember(vo);
+	}
+
 
 	
 }

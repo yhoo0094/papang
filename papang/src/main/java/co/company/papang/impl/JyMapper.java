@@ -27,17 +27,20 @@ public interface JyMapper {
 
 	// 회원 권한 수정
 	public int updateMember(MemberVO vo);
-	
-	//시터 등록
+
+	// 맴버 탈퇴
+	public int deleteMember(MemberVO vo);
+
+	// 시터 등록
 	public int insertSitter(SitterVO vo);
-	
-	//시터 삭제
+
+	// 시터 삭제
 	public int deleteSitter(SitterVO vo);
-	
-	//시터 단건 조회
+
+	// 시터 단건 조회
 	public SitterVO getSitter(SitterVO vo);
-	
-	//시터 수정
+
+	// 시터 수정
 	public int updateSitter(SitterVO vo);
 
 }

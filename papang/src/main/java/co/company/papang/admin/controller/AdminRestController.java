@@ -171,5 +171,17 @@ public class AdminRestController {
 		service.updateSitter(vo);
 		return vo;
 	}
+	
+	
+	// 수정
+	@RequestMapping(value = "/memberdelete", method = RequestMethod.PUT
+	// ,produces="application/json" //응답헤더
+			, consumes = "application/json" // 요청헤더
+	// ,headers = {"Content-type=application/json" }
+	)
+	public MemberVO deleteMember(@RequestBody MemberVO vo, Model model) {
+		service.deleteMember(vo);
+		return vo;
+	}
 
 }

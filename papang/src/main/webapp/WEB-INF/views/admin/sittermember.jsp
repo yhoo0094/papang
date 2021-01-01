@@ -7,7 +7,7 @@
 		memberList();
 		memberSelect();
 		//nqDelete();
-		//SitterDelete();
+		SitterDelete();
 		sitterUpdate();
 		memberUpdate();
 		$("#filter").on('change', function() {
@@ -127,6 +127,7 @@
 		$('#sit_pay').val(sitter.sit_pay);
 		$('#sit_loc').val(sitter.sit_loc).prop("selected", true);
 		$('#sit_note').val(sitter.sit_note);
+		$('#sit_age').val(sitter.sit_age);
 
 	}
 	//사용자 삭제 요청
@@ -135,28 +136,25 @@
 		//삭제 버튼 클릭
 		$('body').on('click', '#btnDelete', function() {
 			id = $(this).parent().parent().children().eq(0).html();
-			var nq_no = $(this).closest('tr').find('#hidden_nq_no').val();
-			var result = confirm(nq_no + " 번 글을 정말로 삭제하시겠습니까?");
+			var result = confirm(id + "  정말로 탈퇴 하시겠습니까?");
 			if (result) {
 				$.ajax({
-					url : '../nq/' + nq_no,
-					type : 'DELETE',
-					contentType : 'application/json;charset=utf-8',
+					url : "../memberdelete",
+					type : 'PUT',
 					dataType : 'json',
-					error : function(xhr, status, msg) {
-						console.log("상태값 :" + status + " Http에러메시지 :" + msg);
+					data : JSON.stringify({
+						mbr_id : id,
+					}),
+					contentType : 'application/json',
+					success : function(data) {
+						alert('탈퇴 되었습니다');
+						memberList();
 					},
-					success : function(xhr) {
-						console.log(xhr.result);
-						nqList();
-						$('#form1').each(function() {
-							alert("삭제되었습니다");
-							this.reset();
-							$('.note-editable').html("");
-							$('#la').html("선택한 파일 없음");
-						});
+					error : function(xhr, status, message) {
+						alert(" status: " + status + " er:" + message);
 					}
 				});
+				
 			}//if
 		}); //삭제 버튼 클릭
 	}//nqDelete
@@ -359,6 +357,11 @@
 						<td align="center">아&nbsp;이&nbsp;디:</td>
 						<td align="left"><input type='text' name='sit_mbr_id'
 							id='sit_mbr_id' readonly></td>
+					</tr>
+					<tr align="center">
+						<td align="center">나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이:</td>
+						<td align="left"><input type='text'
+							id='sit_age' readonly></td>
 					</tr>
 					<tr>
 						<td align="center">월&nbsp;급&nbsp;일</td>

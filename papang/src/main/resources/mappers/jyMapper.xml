@@ -86,9 +86,18 @@
 		where mbr_id = #{mbr_id}
 	</update>
 	
+	<!-- 맴버 탈퇴 기능 -->
+	<update id="deleteMember" parameterType="co.company.papang.vo.MemberVO">
+		update member set
+		mbr_status =
+		'탈퇴'
+		where mbr_id = #{mbr_id}
+	</update>
+	
+	
 	<!-- 시터 등록 -->
 	<insert id="insertSitter" parameterType="co.company.papang.vo.SitterVO">
-		INSERT INTO SITTER(SIT_MBR_ID) VALUES(#{sit_mbr_id})
+		INSERT INTO SITTER(SIT_MBR_ID,SIT_AGE) VALUES(#{sit_mbr_id},(select NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, mbr_birth)/12), 0) AS AGE from member where mbr_id=#{sit_mbr_id}))
 	</insert>
 	
 	<!-- 시터 삭제 -->
