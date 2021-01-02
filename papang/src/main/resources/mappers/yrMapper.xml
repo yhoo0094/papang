@@ -56,13 +56,24 @@
 	    
 		WHERE MBR_ID = #{mbr_id}
 	</select>
-<!-- 내 게시물  -->	
+<!-- 내 게시물 질문 -->	
 	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
 		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT
 		  FROM COMMUNITY
 		  WHERE MBR_ID = #{mbr_id}
 	</select>
-	
+<!-- 게시물 답변  -->	
+	<select id="myboard_answerCommunity_comVO" parameterType="community_comVO" resultType="community_comVO">
+		SELECT CC_NO,MBR_ID,CC_CONTENT,CC_DATE,CC_CATEGORY 
+		FROM COMMUNITY_COM 
+		WHERE MBR_ID=#{mbr_id}
+		</select>
+<!-- 시터정보조회-->
+	<select id="sitter_infoSitterVO" parameterType="sitterVO" resultType="sitterVO">
+		select SIT_MBR_ID,SIT_PAYDAY,SIT_OFF,SIT_LOC,SIT_PAY,SIT_AGE,SIT_NOTE,SIT_PIC 
+		FROM SITTER 
+		WHERE SIT_MBR_ID=#{sit_mbr_id}
+	</select>
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 

@@ -60,20 +60,33 @@ table tbody tr td {
 			<img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg">
 		</td>
 		<td width="400" align="center" height="70">지역</td>
-		<td width="400" align="center" height="70"><select class="input_middle">
-                        <option>대구</option>
-                        <option>서울</option>
-                        <option>부산</option>                       
+		<td width="400" align="center" height="70">
+		    <select id="location1" name="location1" class="input_middle">
+                        <option value="${ sitterVO.sit_loc}">${ sitterVO.sit_loc}</option>
+							<option value="서울">서울</option>
+							<option value="경기">경기</option>
+							<option value="인천">인천</option>
+							<option value="대전">대전</option>
+							<option value="대구">대구</option>
+							<option value="부산">부산</option>
+							<option value="울산">울산</option>
+							<option value="광주">광주</option>
+							<option value="강원">강원</option>
+							<option value="세종">세종</option>
+							<option value="충북">충북</option>
+							<option value="충남">충남</option>
+							<option value="경북">경북</option>
+							<option value="경남">경남</option>
+							<option value="전북">전북</option>
+							<option value="경남">경남</option>
+							<option value="전남">전남</option>
+							<option value="제주">제주</option>                       
             </select></td>
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
 		<td>희망연봉</td>
-		<td><select class="input_middle">
-                        <option>100</option>
-                        <option>200</option>
-                        <option>300</option>                       
-            </select></td>	
+		<td> <input type="text" value="${ sitterVO.sit_pay}"/></td>	
             
 	</tr>
 	
@@ -83,11 +96,13 @@ table tbody tr td {
 		<td><button type="submit" id="joinBtn"
 							class="btnYellow bMedium">사진 변경</button></td>
 		<td>희망연령대 </td>
-		<td colspan="2"><select class="input_middle" >
-                        <option>10개월</option>
-                        <option>11개월</option>
-                        <option>12개월</option>                       
-            </select>개월</td>	
+		<td colspan="2"><select id="location1" name="location1" class="input_middle">
+                        <option value="${ sitterVO.sit_age}">${ sitterVO.sit_age}</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							                    
+        </select></td>	
             
 	</tr>
 	
@@ -99,7 +114,7 @@ table tbody tr td {
 		</td>
 		
 		<td class="theader" colspan="2">
-			<input type="date"/>
+			<input type="date" value="${sitterVO.sit_payday}"/>
 		</td>
 	
 	</tr>
@@ -108,15 +123,19 @@ table tbody tr td {
 			휴무일
 		</td>
 		
-		<td class="theader" colspan="2">
-		<label><input type="checkbox" name="color" value="blue"> 월</label>
-      <label><input type="checkbox" name="color" value="blue"> 회</label>
-      <label><input type="checkbox" name="color" value="blue"> 수</label>
-      <label><input type="checkbox" name="color" value="blue"> 목</label>
-      <label><input type="checkbox" name="color" value="blue"> 금</label>
-      <label><input type="checkbox" name="color" value="blue"> 토</label>
-      <label><input type="checkbox" name="color" value="blue"> 일</label>
-	</td>
+
+	
+	<form name = "form1">
+	<td class="theader" colspan="2">
+       <input type = "checkbox" name = "writer" value = "월" > <label>월</label></input>
+       <input type = "checkbox" name = "writer" value = "화" > <label>화</label></input>
+       <input type = "checkbox" name = "writer" value = "수" > <label>수</label></input>
+       <input type = "checkbox" name = "writer" value = "목" > <label>목</label></input>
+       <input type = "checkbox" name = "writer" value = "금" > <label>금</label></input>
+       <input type = "checkbox" name = "writer" value = "토" > <label>토</label></input>
+       <input type = "checkbox" name = "writer" value = "일" > <label>일</label></input>
+</td>
+</form>
 	</tr>	
 	
 	<tr  width="400" align="center" height="70">
@@ -125,7 +144,7 @@ table tbody tr td {
 		</td>
 		
 		<td class="theader" colspan="2">
-		열심히 할게요
+		<input type="text" value="${ sitterVO.sit_note}"/>
 		</td>
 	
 	</tr>
@@ -135,13 +154,38 @@ table tbody tr td {
 			계좌번호
 		</td>
 		
-		<td class="theader" colspan="2">
-		<select class="input_middle">
-                        <option>대구은행</option>
-                        <option>신한은행</option>
-                        <option>부산은행</option>                       
-            </select>
-        <input type="text"/>
+		
+		<td class="theader" colspan="2"><select name="mbr_bank" id="mbr_bank">
+		 							<option value="${ memberVO.mbr_bank}">${ memberVO.mbr_bank}</option>
+									<option value="경남은행">경남은행</option>
+									<option value="광주은행">광주은행</option>
+									<option value="국민은행">국민은행</option>
+									<option value="기업은행">기업은행</option>
+									<option value="농협중앙회">농협중앙회</option>
+									<option value="농협회원조합">농협회원조합</option>
+									<option value="대구은행">대구은행</option>
+									<option value="도이치은행">도이치은행</option>
+									<option value="부산은행">부산은행</option>
+									<option value="산업은행">산업은행</option>
+									<option value="상호저축은행">상호저축은행</option>
+									<option value="새마을금고">새마을금고</option>
+									<option value="수협중앙회">수협중앙회</option>
+									<option value="신한금융투자">신한금융투자</option>
+									<option value="신한은행">신한은행</option>
+									<option value="신협중앙회">신협중앙회</option>
+									<option value="외환은행">외환은행</option>
+									<option value="우리은행">우리은행</option>
+									<option value="우체국">우체국</option>
+									<option value="전북은행">전북은행</option>
+									<option value="제주은행">제주은행</option>
+									<option value="카카오뱅크">카카오뱅크</option>
+									<option value="케이뱅크">케이뱅크</option>
+									<option value="하나은행">하나은행</option>
+									<option value="한국씨티은행">한국씨티은행</option>
+									<option value="HSBC은행">HSBC은행</option>
+									<option value="SC제일은행">SC제일은행</option>
+							</select>
+        <input type="text" value="${ memberVO.mbr_account}" />
 		</td>
 	
 	</tr>

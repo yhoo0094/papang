@@ -18,11 +18,7 @@
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
 				method="get">
-				<select id="type" name="type">
-					<option value="">분류
-					<option value="공지사항">공지사항
-					<option value="이벤트">이벤트
-				</select> <input type="hidden" name="p" value="1">
+				
 			</form>
 		</div>
 		<br>
@@ -33,6 +29,7 @@
 						<th width="20%" class="tableTh">제목</th>
 						<th width="15%" class="tableTh">작성자</th>
 						<th width="15%" class="tableTh">작성일</th>
+						<th width="15%" class="tableTh">분류</th>
 						<th width="15%" class="tableTh">조회수</th>
 					</tr>
 				</thead>
@@ -43,6 +40,7 @@
 						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
 						<td align="center">${co.mbr_id}</td>
 						<td align="center">${co.com_date}</td>
+						<td align="center">${co.com_category}</td>
 						<td align="center">${co.com_hit}</td>
 					</tr>
 				</c:forEach>	

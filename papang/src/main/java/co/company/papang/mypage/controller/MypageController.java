@@ -14,7 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.YrMapper;
 import co.company.papang.vo.CommunityVO;
+import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
+import co.company.papang.vo.SitterVO;
 
 @Controller
 public class MypageController {
@@ -114,9 +116,18 @@ public class MypageController {
 	}
 	
 	@RequestMapping("mypage/myboard_answer") //내 댓글보기
-	public ModelAndView test7(HttpServletResponse response) throws IOException{
-		
-		return new ModelAndView("mypage/myboard_answer"); 
+	public ModelAndView test7(HttpSession session,HttpServletResponse response,Community_comVO community_comVO) throws IOException{
+		System.out.println("===================2");
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		System.out.println("===================2");
+		community_comVO.setMbr_id(mbr_id);
+		mav.addObject("cos2",dao.myboard_answerCommunity_comVO(community_comVO));
+		System.out.println(community_comVO);
+		System.out.println("===================2");
+		mav.setViewName("mypage/myboard_answer");
+		return mav;
 	}
 	@RequestMapping("mypage/myboard_qna") //질문??
 	public ModelAndView test8(HttpServletResponse response) throws IOException{
@@ -138,8 +149,31 @@ public class MypageController {
 	}
 	
 	@RequestMapping("mypage/sitter_info") //시터 정보보기(시터권한)
-	public ModelAndView test12(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/sitter_info"); 
+	public ModelAndView test12(HttpSession session,HttpServletResponse response,SitterVO  sitterVo,MemberVO memberVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+		
+		
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		
+		
+		sitterVo.setSit_mbr_id(mbr_id);
+		memberVO.setMbr_id(mbr_id);
+		
+		
+	
+		
+		mav.addObject(dao.sitter_infoSitterVO(sitterVo));
+		mav.addObject(dao.getMemberVO(memberVO));
+		System.out.println(sitterVo.getSit_payday()); 
+		
+		mav.setViewName("mypage/sitter_info");
+		
+		
+		return mav; 
+		
+		
 	}
 	
 	
