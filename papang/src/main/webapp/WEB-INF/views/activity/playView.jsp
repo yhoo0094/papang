@@ -115,19 +115,18 @@ padding
 	border-radius: 10px;
 	margin: 10px 10px 10px 170px;
 	height: 100%;
-	padding: 20px 20px 20px 20px;
-	border: 1px solid black;
+	padding: 30px;
 }
 
 .comm_img {
-	width: 270px;
-	height: 270px;
+	    width: auto;
+    height: auto;
 	display: inline-block;
 }
 
 .commtext {
-	height: 270px;
-	width: 620px;
+	height: 300px;
+	width: 630px;
 	border-radius: 0 8px 8px 0;
 	border: none;
 }
@@ -141,6 +140,7 @@ padding
 	margin: 20px 0 0 0;
 }
 
+.img{width: auto;height: auto;}
 .star {
 	width: 30px;
 	height: 30px;
@@ -204,8 +204,20 @@ $(()=>{
 		addDiv.append('<img class="star" src="${pageContext.request.contextPath}/resources/images/active/star.png">')
     }
 	acInsert();
-	
+	//후기 사진 바로 띄우기
+
+	$("#uf").on('change',function(e) {
+		var files = e.target.files;
+		var arr = Array.prototype.slice.call(files);
+			for (var i = 0; i < files.length; i++) {
+				if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+				}
+			}
+		preview(arr);
+
 	});
+});
 //후기 등록 요청
 function acInsert() {
 	//등록 버튼 클릭
@@ -238,6 +250,49 @@ function acInsert() {
 	});//등록 버튼 클릭
 }//후기Insert
 
+//후기 사진 바로 띄우기
+function checkExtension(fileName, fileSize) {
+			var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+			var maxSize = 20971520; //20MB
+
+			if (fileSize >= maxSize) {
+				alert('파일 사이즈 초과');
+				$("input[type='file']").val(""); //파일 초기화
+				return false;
+			}
+
+			if (regex.test(fileName)) {
+				alert('업로드 불가능한 파일이 있습니다.');
+				$("input[type='file']").val(""); //파일 초기화
+				return false;
+			}
+			return true;
+		}
+
+		function preview(arr) {arr.forEach(function(f) {
+						//파일명이 길면 파일명...으로 처리
+						var fileName = f.name;
+						if (fileName.length > 10) {
+							fileName = fileName.substring(0, 7) + "...";
+						}
+						//div에 이미지 추가
+						var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+						str += '<span>' + fileName + '</span><br>';
+						//이미지 파일 미리보기
+						if (f.type.match('image.*')) {
+							var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+							reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+								//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+								$('#img').attr('src', e.target.result);
+								$('#img').attr('style','width:300px; height: 300px');
+							}
+							reader.readAsDataURL(f);
+						} else {
+							$('#img').attr('src', e.target.result);
+							$('#img').attr('style','width:300px; height:300px');
+						}
+					});//arr.forEach
+		}
 
 </script>
 </head>
@@ -273,12 +328,11 @@ function acInsert() {
 		<div class="comm_content">
 		<input id="pc_no" name="pc_no" type="hidden" value="${playVO.play_no}">
 			<div class="comm_imgdiv">
-				<input class="comm_img" type="file" name="uploadFile">
-				<input type="hidden" value="${user.mbr_id}" name="mbr_id">
+				<img id="img" class="sitterProfileImg" style="width:300px; height: 300px;">
 			</div>
-			<textarea class="commtext" name="ac_content">
-		</textarea>
-		
+			<input type="hidden" value="${user.mbr_id}" name="mbr_id">
+			<textarea class="commtext" name="ac_content"></textarea>
+		<input class="comm_img"  type="file" name="uploadFile" id="uf">
 				<div class="container" id="starDiv">
 			<div
 				class="starrating risingstar d-flex justify-content-center flex-row-reverse">

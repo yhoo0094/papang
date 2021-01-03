@@ -36,7 +36,7 @@
 		SELECT ROWNUM,A.*
 		FROM ACT_COM A
 		WHERE A.AC_CATEGORY='놀이' AND A.PC_NO=#{pc_no}
-		<![CDATA[AND ROWNUM <= 6]]>
+		<![CDATA[AND ROWNUM <= 5]]>
 	</select>   
 
 <!-- 후기 : 평점조회 -->
