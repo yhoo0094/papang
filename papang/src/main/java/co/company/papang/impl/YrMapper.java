@@ -16,8 +16,8 @@ public interface YrMapper {
 
 	//내정보관리 회원수정	
 	public MemberVO getMemberVO(MemberVO member); //수정 전 조회
-	public void updateMemberVO(MemberVO member); //회웑어보 수정
-	public void notjoinMemberVO(MemberVO member);  //회원탈퇴                                          //회원탈퇴
+	public void updateMemberVO(MemberVO member); //회원정보 수정
+	public void notjoinMemberVO(MemberVO member);  //회원탈퇴                                          
 	
 	
 	
@@ -28,6 +28,7 @@ public interface YrMapper {
 
 	//시터정보부터 한다
 	public SitterVO sitter_infoSitterVO(SitterVO sitter); //시터 정보조회
+	public void updateSitterVO(SitterVO sitter); //시터정보수정
 	
 	
 }

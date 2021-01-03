@@ -1,5 +1,6 @@
 package co.company.papang.mypage.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,7 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -17,6 +21,7 @@ import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.SitterVO;
+
 
 @Controller
 public class MypageController {
@@ -175,7 +180,47 @@ public class MypageController {
 		
 		
 	}
+//	@RequestMapping("mypage/sitterupdate") //회원정보수정 (마이페이지 메인홈)
+//	public ModelAndView test23(HttpSession session,HttpServletResponse response,SitterVO sitterVO,MemberVO memberVO) throws IOException{
+//		
+//		MemberVO vo = (MemberVO) session.getAttribute("user");
+//		String mbr_id = vo.getMbr_id();
+//		
+//		
+//		sitterVO.setSit_mbr_id(mbr_id);
+//		
+//		dao.updateSitterVO(sitterVO);
+//		
+//		return new ModelAndView("main/main"); 
+//	}
 	
+	//등록처리
+		@PostMapping("/mypage/sitterupdate")
+		public String userInsert(HttpServletRequest request,HttpSession session,HttpServletResponse response,SitterVO sitterVO,MemberVO memberVO) throws IllegalStateException, IOException {
+			
+			MemberVO vo = (MemberVO) session.getAttribute("user");
+			String mbr_id = vo.getMbr_id();
+			
+			
+			sitterVO.setSit_mbr_id(mbr_id);
+			
+			MultipartHttpServletRequest multipartRequest =
+					(MultipartHttpServletRequest)request;
+					//이미지파일
+					MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+					//첨부파일
+					if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
+						
+						String path = request.getSession().getServletContext().getRealPath("/resources/images/active/");
+						System.out.println("path="+path);
+						
+					multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
+					sitterVO.setSit_pic(multipartFile.getOriginalFilename());
+					}
+					
+					dao.updateSitterVO(sitterVO);
+			return "main/main";
+		}
 	
 	@RequestMapping("mypage/test") //시터 정보보기(시터권한)
 	public ModelAndView test13(HttpServletResponse response) throws IOException{

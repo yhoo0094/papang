@@ -74,6 +74,31 @@
 		FROM SITTER 
 		WHERE SIT_MBR_ID=#{sit_mbr_id}
 	</select>
+<!-- 시터정보조회 후 수정 -->
+<select id="updateSitterVO" parameterType="sitterVO" resultType="sitterVO">
+		UPDATE
+		
+		SITTER
+		
+		SET
+		
+		
+		
+	  
+	    sit_note=#{sit_note},
+	    sit_pay=#{sit_pay},
+	    sit_pic=#{sit_pic}
+	
+	   
+	    
+	   
+	    
+	    
+		WHERE sit_mbr_id = #{sit_mbr_id}
+	</select>	
+	
+	
+	
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 

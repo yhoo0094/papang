@@ -48,17 +48,106 @@ table tbody tr td {
 
 </style>
 <title>월급확인</title>
+<script>
+$(function() {
+
+
+	$("#uploadFile").on(
+			'change',
+			function(e) {
+				if (window.FileReader) {
+					console.log($($(this)[0].files[0].name));
+					var filename = $(this)[0].files[0].name;
+
+				} else {
+
+					var filename = $(this).val().split('/').pop().split(
+							'\\').pop();
+					console.log($(this).val().split('/').pop().split('\\')
+							.pop());
+
+				}
+
+				$('#la').text(filename);
+
+				var files = e.target.files;
+				var arr = Array.prototype.slice.call(files);
+				for (var i = 0; i < files.length; i++) {
+					if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+					}
+				}
+
+				preview(arr);
+
+			});
+
+	function checkExtension(fileName, fileSize) {
+
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 20971520; //20MB
+
+		if (fileSize >= maxSize) {
+			alert('파일 사이즈 초과');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+
+		if (regex.test(fileName)) {
+			alert('업로드 불가능한 파일이 있습니다.');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+		return true;
+	}
+
+	function preview(arr) {
+		arr
+				.forEach(function(f) {
+
+					//파일명이 길면 파일명...으로 처리
+					var fileName = f.name;
+					if (fileName.length > 10) {
+						fileName = fileName.substring(0, 7) + "...";
+					}
+
+					//div에 이미지 추가
+					var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+					str += '<span>' + fileName + '</span><br>';
+
+					//이미지 파일 미리보기
+					if (f.type.match('image.*')) {
+						var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+						reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+							//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+
+							$('#sit_pic').attr('src', e.target.result);
+							$('#sit_pic').attr('style',"width:300px; height: 400px");
+						}
+						reader.readAsDataURL(f);
+					} else {
+						$('#sit_pic').attr('src', e.target.result);
+						$('#sit_pic').attr('style',"width:300px; height: 400px");
+					}
+				});//arr.forEach
+	}
+
+});
+
+</script>
 </head>
 <body>
 <div class="w3-large" align="center">
 <h3 class="big_title">시터정보조회</h3>
-</div>
+</div> 
+ 
+ <form id="fim" name="fim" action="sitterupdate" method="post"  enctype="multipart/form-data"> 
 <div class="content_div">
 <table >
 	<tr  width="400" align="center">
 		<td class="theader" rowspan="2" height="140"  >
-			<img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg">
-		</td>
+			<img id = "sit_pic" name="sit_pic" src="${pageContext.request.contextPath}/resources/images/active/${ sitterVO.sit_pic}">
+		</td> 
 		<td width="400" align="center" height="70">지역</td>
 		<td width="400" align="center" height="70">
 		    <select id="location1" name="location1" class="input_middle">
@@ -85,16 +174,16 @@ table tbody tr td {
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
-		<td>희망연봉</td>
-		<td> <input type="text" value="${ sitterVO.sit_pay}"/></td>	
+		<td>희망시급</td>
+		<td> <input type="text" id = "sit_pay" name="sit_pay" value="${sitterVO.sit_pay}"/></td>	
             
 	</tr>
 	
-	
+	 
 	
 	<tr  width="400" align="center" height="70">
-		<td><button type="submit" id="joinBtn"
-							class="btnYellow bMedium">사진 변경</button></td>
+		<td align="left"><input type="file" id="uploadFile"  name="uploadFile"/></td>
+							
 		<td>희망연령대 </td>
 		<td colspan="2"><select id="location1" name="location1" class="input_middle">
                         <option value="${ sitterVO.sit_age}">${ sitterVO.sit_age}</option>
@@ -106,7 +195,7 @@ table tbody tr td {
             
 	</tr>
 	
-	
+	 
 	
 	<tr  width="400" align="center" height="70">
 		<td>
@@ -125,7 +214,7 @@ table tbody tr td {
 		
 
 	
-	<form name = "form1">
+
 	<td class="theader" colspan="2">
        <input type = "checkbox" name = "writer" value = "월" > <label>월</label></input>
        <input type = "checkbox" name = "writer" value = "화" > <label>화</label></input>
@@ -134,8 +223,8 @@ table tbody tr td {
        <input type = "checkbox" name = "writer" value = "금" > <label>금</label></input>
        <input type = "checkbox" name = "writer" value = "토" > <label>토</label></input>
        <input type = "checkbox" name = "writer" value = "일" > <label>일</label></input>
-</td>
-</form>
+   </td>
+
 	</tr>	
 	
 	<tr  width="400" align="center" height="70">
@@ -144,7 +233,7 @@ table tbody tr td {
 		</td>
 		
 		<td class="theader" colspan="2">
-		<input type="text" value="${ sitterVO.sit_note}"/>
+		<input type="text" id="sit_note" name="sit_note" value="${ sitterVO.sit_note}"/>
 		</td>
 	
 	</tr>
@@ -195,11 +284,11 @@ table tbody tr td {
 	<p class="w3-center">
 						<button type="submit" id="joinBtn"
 							class="btnYellow bMedium">변경</button>
-						<button type="submit" id="joinBtn2"
+						<button type="reset"
 							class="btnGray bMedium">취소</button>
 					</p>
 </div>
-
+</form>
 
 </body>
 
