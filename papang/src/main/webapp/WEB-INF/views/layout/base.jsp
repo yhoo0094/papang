@@ -43,7 +43,9 @@
 .fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
 body {background-color: #fff5d2;}
 .py-5 {background-color: rgb(249, 196, 94);position: static;display: block;bottom: 0%;width: 100%;}
-* {font-family: 'Jua', sans-serif;}
+*{font-family: 'Jua', sans-serif;}
+
+
 /* 버튼css */
 .btnYellow {background-color: rgb(249, 196, 94);border: none;}
 

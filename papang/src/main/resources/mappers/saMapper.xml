@@ -46,23 +46,13 @@
 
 
 <!-- 후기 : 후기등록 -->
-<!-- 	<insert id="insertUser" parameterType="user">
-		insert into act_com (
-				 id,
-				 password, 
-				 name,
-				 <if test="profile != null and profile!= ''">profile,</if>
-				  role)
-		values ( #{id},
-				 #{password},
-				 #{name},
-				 <if test="profile != null and profile!= ''">#{profile},</if>
-				 #{role})
-	</insert>
-		 -->
 
+<insert id="insertActComm" parameterType="act_comVO">
+INSERT INTO ACT_COM
+(MBR_ID,AC_NO,AC_CONTENT,AC_RATE,AC_CATEGORY,PC_NO,AC_PIC) VALUES 
+(#{mbr_id},SEQ_ACT_COM_AC_NO.NEXTVAL,#{ac_content},#{ac_rate},'놀이',#{pc_no},#{ac_pic})
 
-
+</insert>
 
 <!-- #################################################################2.예방접종 #################################################################-->
 

@@ -38,4 +38,9 @@ public class ActivityServiceImpl implements ActivityService {
 	public Act_comVO getStar(Act_comVO act_comVO) {
 		return dao.getStar(act_comVO);
 	}
+
+	@Override//놀이 후기글 등록
+	public int insertActComm(Act_comVO act_comVO) {
+		return dao.insertActComm(act_comVO);
+	}
 }

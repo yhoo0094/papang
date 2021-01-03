@@ -26,7 +26,6 @@ public class MvcConfiguration implements WebMvcConfigurer{
 	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		// TODO Auto-generated method stub
 	   	configurer.enable();
 		}	
 

@@ -27,4 +27,5 @@ public interface ActivityService {
 		//3-1.놀이후기
 		public List<Act_comVO> getActComm(Act_comVO act_comVO);//놀이후기 전체조회
 		public Act_comVO getStar(Act_comVO act_comVO);//요리단건 평점조회
+		public int insertActComm(Act_comVO act_comVO);//놀이 후기글 등록
 }

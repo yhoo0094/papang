@@ -1,16 +1,27 @@
 package co.company.papang.activity.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.activity.service.ActivityService;
 import co.company.papang.vo.Act_comVO;
+import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
 @Controller
@@ -55,7 +66,7 @@ public class ActivityController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
 		act_comVO.setPc_no(playVO.getPlay_no());
-		mav.addObject("actcommList", service.getActComm(act_comVO));
+		mav.addObject("actcommList", service.getActComm(act_comVO)); 
 		mav.addObject("acrate",service.getStar(act_comVO));
 		mav.setViewName("activity/playView");
 		return mav;
@@ -66,7 +77,29 @@ public class ActivityController {
 	public ModelAndView playForm(HttpServletResponse response) throws IOException{
 		return new ModelAndView("activity/playForm"); 
 	}
-
+	
+	//놀이 후기등록
+	//등록처리
+	@RequestMapping(value = "/acInsert", method = RequestMethod.POST)
+	@ResponseBody
+			public Map insertAC(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+					throws IllegalStateException, IOException {
+		       //파일업로드
+				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+				MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+				if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+					String path = request.getSession().getServletContext().getRealPath("/images/actCom");
+					System.out.println("path=" + path);
+					multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); 
+																									
+					vo.setAc_pic(multipartFile.getOriginalFilename());
+				}
+				
+				service.insertActComm(vo);
+				return Collections.singletonMap("result", true);
+			}
+		
+	
 	
 	@RequestMapping("activity/playtest") 
 	public ModelAndView playtest(HttpServletResponse response) throws IOException{
