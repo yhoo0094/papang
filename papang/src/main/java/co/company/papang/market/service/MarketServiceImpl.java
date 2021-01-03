@@ -1,9 +1,12 @@
 package co.company.papang.market.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.company.papang.impl.EsMapper;
+import co.company.papang.vo.BagVO;
 import co.company.papang.vo.ProductVO;
 
 @Service
@@ -18,6 +21,21 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public int insertItem(ProductVO product) {
 		return dao.insertItem(product);
+	}
+
+	@Override
+	public int insertCart(BagVO bag) {
+		return dao.insertCart(bag);
+	}
+
+	@Override
+	public List<BagVO> getCartList(String mbr_id) {
+		return dao.getCartList(mbr_id);
+	}
+
+	@Override
+	public int deleteCart(BagVO bag) {
+		return dao.deleteCart(bag);
 	}
 
 }

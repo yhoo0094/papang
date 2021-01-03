@@ -37,7 +37,7 @@ public interface EsMapper {
 	public int deleteUsed(UsedVO used); // 삭제
 	
 	// 장바구니
-	public List<BagVO> getCart(BagVO bag);//전체조회
+	public List<BagVO> getCartList(String mbr_id);//전체조회
 	public int insertCart(BagVO bag); // 등록
 	public int updateCart(BagVO bag); // 수정
 	public int deleteCart(BagVO bag); // 삭제

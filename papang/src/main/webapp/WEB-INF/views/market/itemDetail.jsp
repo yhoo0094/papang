@@ -1,33 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 th {
 	min-width: 100px;
 	text-align: right;
 }
+
 th>span {
 	margin-right: 50px;
 	font-size: 20px;
 }
+
 td>span {
 	font-size: 30px;
 }
 
+#plusBtn #minusBtn {
+	border: none;
+	background: none;
+}
 </style>
+
 <div class="container center_div">
 
 	<!-- Page Heading/Breadcrumbs -->
-	<h1 class="mt-4 mb-3">
-		${pro.pro_name}
-	</h1>
+	<h1 class="mt-4 mb-3">${pro.pro_name}</h1>
 	<!-- 관리자일때만 수정/삭제버튼 모양새를 하이퍼링크로 할지 아니면 버튼으로 할지 골라 -->
 	<!-- c:if test='${!empty ad_id}'-->
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="market/itemUpdateForm?pro_no=${pro.pro_no}">수정</a></li>
-			<li class="breadcrumb-item active"><a href="market/itemDelete?pro_no=${pro.pro_no}">삭제</a></li>
-		</ol>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a
+			href="market/itemUpdateForm?pro_no=${pro.pro_no}">수정</a></li>
+		<li class="breadcrumb-item active"><a
+			href="market/itemDelete?pro_no=${pro.pro_no}">삭제</a></li>
+	</ol>
 	<!-- /c:if -->
 	<!-- Intro Content ${pageContext.request.contextPath} -->
 	<div class="row">
@@ -38,7 +47,7 @@ td>span {
 		</div>
 		<div class="col-lg-6">
 			<p />
-			
+
 			<p />
 			<div>
 				<table>
@@ -49,7 +58,8 @@ td>span {
 						</tr>
 						<tr>
 							<th scope="row"><span>판매가</span></th>
-							<td><span><strong>${pro.pro_price}원</strong></span></td>
+							<td><span><strong><fmt:formatNumber
+											pattern="###,###,###" value="${pro.pro_price}" />원</strong></span></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>상품번호</span></th>
@@ -61,23 +71,70 @@ td>span {
 						</tr>
 					</tbody>
 					<tfoot>
-						<tr><!-- ${empty ad_id} &&  -->
+						<tr>
+							<!-- ${empty ad_id} &&  -->
+							<td><c:if test="${!empty user.mbr_id}">
+									<button type="button" class="btn" id="buynow">결제</button>
+								</c:if> <c:if test="${empty user.mbr_id}">
+									<button type="button" class="btn" id="itemUpdate">수정</button>
+								</c:if></td>
 							<td>
-							<c:if test="${!empty user.mbr_id}">
-								<button type="button" class="btn" id="buynow">결제</button>
-							</c:if>
-							<c:if test="${empty user.mbr_id}">
-								<button type="button" class="btn" id="itemUpdate">수정</button>
-							</c:if>
-							</td>
-							<td>
-							<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
-							<c:if test="${!empty user.mbr_id}">
-								<button type="button" class="btn" id="cart">장바구니</button> <!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 -->
-							</c:if>
-							<c:if test="${empty user.mbr_id}">
-								<button type="button" class="btnRed" id="itemDelete">삭제</button>
-							</c:if>
+								<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 --> <c:if
+									test="${!empty user.mbr_id}">
+									<input type="hidden" name="pro_no" id="pro_no"
+										value="${pro.pro_no}">
+								구입수량
+								<button type="button" id="plusBtn">+</button>
+									<input type="number" class="numBox" min="1" value="1" readonly>
+									<!-- 이때 max 값을 상품수량.. 입출고를 통해 결정된 총수량.. 글구 input type hidden 으로해서도 한개 정하고 -->
+									<button type="button" id="minusBtn">-</button>
+									<!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
+									<button type="submit" class="btn" id="addCartBtn">장바구니</button>
+									<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 button onclick="" -->
+									<script type="text/javascript">
+								// 수량 설정
+								$("#plusBtn").click(function(){
+									var num = $(".numBox").val();
+									var plusNum = Number(num)+1;
+									$(".numBox").val(plusNum);
+								});
+								$("#minusBtn").click(function(){
+									var num = $(".numBox").val();
+									var minusNum = Number(num)-1;
+									if(minusNum <= 0){
+										$(".numBox").val(num);
+									} else{
+										$(".numBox").val(minusNum);
+									}
+								});
+								// 장바구니 담기 버튼 클릭
+								$("#addCartBtn").click(function(){
+									var pro_no = $("#pro_no").val();
+									var bag_cnt = $(".numBox").val();
+									var data = {
+											pro_no : pro_no,
+											bag_cnt : bag_cnt
+									};
+									$.ajax({
+										url : "${pageContext.request.contextPath}/market/cartInsert",
+										type : "post",
+										data : data,
+										success : function(result){
+											if (result==1){
+												alert("카드에 담겼습니다");
+												$(".numBox").val("1");
+											}
+										}, error : function(){
+											alert("실패");
+										}
+									})
+								})
+								
+								</script>
+
+								</c:if> <c:if test="${empty user.mbr_id}">
+									<button type="button" class="btnRed" id="itemDelete">삭제</button>
+								</c:if>
 							</td>
 						</tr>
 					</tfoot>
@@ -90,8 +147,8 @@ td>span {
 	<div>
 		<h2>상세정보</h2>
 		<div class="col-lg-10">
-			
-				<p>${pro.pro_detail }</p>
+
+			<p>${pro.pro_detail }</p>
 		</div>
 	</div>
 

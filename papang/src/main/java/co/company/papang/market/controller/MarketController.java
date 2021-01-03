@@ -2,20 +2,27 @@ package co.company.papang.market.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.EsMapper;
 import co.company.papang.market.service.MarketService;
+import co.company.papang.vo.BagVO;
+import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.ProductVO;
 
 @Controller
@@ -124,9 +131,52 @@ public class MarketController {
 	public ModelAndView test13(HttpServletResponse response) throws IOException{
 		return new ModelAndView("market/usedUpdateForm"); //jsp주소
 	}
-	// 장바구니
+	
+// 장바구니
+	// 장바구니 목록
 	@RequestMapping("marketList/cart") //url 예전 .do
-	public ModelAndView test11(HttpServletResponse response) throws IOException{
-		return new ModelAndView("marketList/cart"); //jsp주소
+	public void test11(HttpSession session, Model model) throws IOException{
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		List<BagVO> cartList = mk_service.getCartList(mbr_id);
+		model.addAttribute("cart", cartList);
+		//return new ModelAndView("marketList/cart"); //jsp주소
+	}
+	
+	// 장바구니 등록
+	@RequestMapping("market/cartInsert") //url 예전 .do
+	public int test14(HttpSession session, BagVO bag) throws IOException{
+		int result = 0;
+		
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		bag.setMbr_id(mbr_id);
+		mk_service.insertCart(bag);
+		if (mbr_id != null) {
+		// 회원아이디만 담아주고, 상품번호나 수량은 아작스로, 장바구니번호는 시퀀스로 담음
+			result = 1;
+		}
+		return result;
+	}
+	// 장바구니 삭제
+	@ResponseBody
+	@RequestMapping(value="/market/cartDelete", method=RequestMethod.POST) //url 예전 .do
+	public int test15(HttpSession session, @RequestParam(value="chbox[]") List<String> chArr, BagVO bag) throws IOException{
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		int result = 0;
+		int bag_no = 0;
+		if(mbr_id != null) {
+			bag.setMbr_id(mbr_id);
+			System.out.println("chArr>>>>" + chArr);
+			for(String i : chArr) {
+				bag_no = Integer.parseInt(i);
+				bag.setBag_no(bag_no);
+				mk_service.deleteCart(bag);
+			}
+			result = 1;
+		}
+		
+		return result; //jsp주소
 	}
 }
