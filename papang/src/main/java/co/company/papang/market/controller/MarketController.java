@@ -145,6 +145,7 @@ public class MarketController {
 	
 	// 장바구니 등록
 	@RequestMapping("market/cartInsert") //url 예전 .do
+	@ResponseBody
 	public int test14(HttpSession session, BagVO bag) throws IOException{
 		int result = 0;
 		
@@ -159,9 +160,9 @@ public class MarketController {
 		return result;
 	}
 	// 장바구니 삭제
-	@ResponseBody
 	@RequestMapping(value="/market/cartDelete", method=RequestMethod.POST) //url 예전 .do
-	public int test15(HttpSession session, @RequestParam(value="chbox[]") List<String> chArr, BagVO bag) throws IOException{
+	@ResponseBody
+	public int test15(HttpSession session, @RequestParam(value="chBox[]") List<String> chArr, BagVO bag) throws IOException{
 		MemberVO memberVo = (MemberVO)session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		int result = 0;

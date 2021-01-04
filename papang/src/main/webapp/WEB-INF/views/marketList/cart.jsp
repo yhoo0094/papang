@@ -75,9 +75,9 @@ $("#deleteBtn").click(function(){
 		$.ajax({
 			url : "${pageContext.request.contextPath}/market/cartDelete",
 			type : "post",
-			data : {chbox : checkArr},
+			data : {chBox : checkArr},
 			success : function(result){
-				console.log("이게뭐다냐" + chbox + 이건또뭐고 + "checkArr")
+				console.log("이게뭐다냐" + checkArr)
 				if (result == 1){
 					location.href = "${pageContext.request.contextPath}/marketList/cart"
 				} else { alert("삭제 실패"); }
