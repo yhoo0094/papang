@@ -18,5 +18,6 @@ public interface MarketService {
 	
 	// 주문
 	public void orderInfo(Tran_infoVO tran); // 주문하기
+	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
 }
 

@@ -42,6 +42,7 @@ public interface EsMapper {
 	public int deleteCart(BagVO bag); // 삭제
 
 	// 주문
-	public void orderInfo(Tran_infoVO tran); // 주문하기 -> 목록생성
+	public void orderInfo(Tran_infoVO tran); // 주문정보..흠
+	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
 }
 

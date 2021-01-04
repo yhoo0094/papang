@@ -182,11 +182,48 @@ public class MarketController {
 	}
 	
 // 주문
+	// 주문하기
+	@RequestMapping(value="/market/order", method=RequestMethod.POST)
+	public String test16(HttpSession session, Tran_infoVO tran, @RequestParam(value="chBox[]") List<String> chArr) throws IOException{
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		return "";
+	}
+	
+/*	@RequestMapping(value="/market/order", method=RequestMethod.POST) //url 예전 .do
+	@ResponseBody
+	public int test16(HttpSession session, @RequestParam(value="chBox[]") List<String> chArr, Tran_infoVO tran) throws IOException{
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		int result = 0;
+		int bag_no = 0;
+		if(mbr_id != null) {
+			for(String i : chArr) {
+				bag_no = i;
+				tran.setBag_no(bag_no);
+				mk_service.orderInfo(tran);
+			}
+			result = 1;
+		}
+		return result; //jsp주소
+	}
+
 	// 주문하기 -> 목록생성
 	@RequestMapping("market/order")
-	public void test16(HttpSession session, Tran_infoVO tran) throws IOException {
+	public String test16(HttpSession session, Tran_infoVO tran, HttpServletRequest request) throws IOException {
+// 선택상품주문 어렵네..
+//		tran = new Tran_infoVO();
+//		tran.setBag_no(request.getParameter("bag_no"));
+//		tran = (Tran_infoVO) dao.orderInfo(tran);
+//		request.setAttribute("tran", tran);
+		// 전체상품 주문
 		MemberVO memberVo = (MemberVO)session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		mk_service.orderInfo(tran);
-	}
+		
+		// 주문 후 장바구니 비우기
+		mk_service.deleteAllCart(mbr_id);
+		return "";// "redirect:/marketList/orderList";
+	}*/
 }
+
