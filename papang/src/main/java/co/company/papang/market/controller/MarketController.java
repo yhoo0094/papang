@@ -24,6 +24,7 @@ import co.company.papang.market.service.MarketService;
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.Tran_infoVO;
 
 @Controller
 public class MarketController {
@@ -177,7 +178,15 @@ public class MarketController {
 			}
 			result = 1;
 		}
-		
 		return result; //jsp주소
+	}
+	
+// 주문
+	// 주문하기 -> 목록생성
+	@RequestMapping("market/order")
+	public void test16(HttpSession session, Tran_infoVO tran) throws IOException {
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		mk_service.orderInfo(tran);
 	}
 }

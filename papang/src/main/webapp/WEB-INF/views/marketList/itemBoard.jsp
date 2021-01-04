@@ -11,14 +11,15 @@
 .noDepth>a {
 	align 
 }
-.h-100>a {
+/*.h-100>a {
 	min-height: 300px;
-/* 	max-height: 300px; */
+ 	max-height: 300px;
 	overflow: hidden;
-}
+} */
 .card-img-top {
 	width: 100%;
- 	height: auto;
+ 	min-height: 300px;
+	height: auto;
 	display: block;
 /* 	border-radius: 10px; */
 /* 	-webkit-transform: translate(50%, 50%); */

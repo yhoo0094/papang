@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import co.company.papang.impl.EsMapper;
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.Tran_infoVO;
 
 @Service
 public class MarketServiceImpl implements MarketService {
@@ -36,6 +37,11 @@ public class MarketServiceImpl implements MarketService {
 	@Override
 	public int deleteCart(BagVO bag) {
 		return dao.deleteCart(bag);
+	}
+
+	@Override
+	public void orderInfo(Tran_infoVO tran) {
+		dao.orderInfo(tran);
 	}
 
 }

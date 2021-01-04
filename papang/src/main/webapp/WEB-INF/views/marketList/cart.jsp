@@ -15,7 +15,7 @@
 	background-color: white;
 }
 .sum { float: left; }
-
+.userInfo { float: right; }
 </style>
 
 </head>
@@ -57,7 +57,7 @@
 		<br>
 	</div>
 	<div align="right">
-		<button id="purchaseBtn" class="btnYellow btnWrite">선택상품 구매</button>
+		<button id="selectOrderBtn" class="btnYellow btnWrite">선택상품 구매</button>
 		<button id="deleteBtn" class="btnGray btnWrite">선택상품 삭제</button>
 	</div>
 	<script type="text/javascript">
@@ -85,7 +85,6 @@ $("#deleteBtn").click(function(){
 			type : "post",
 			data : {chBox : checkArr},
 			success : function(result){
-				console.log("이게뭐다냐" + checkArr)
 				if (result == 1){
 					location.href = "${pageContext.request.contextPath}/marketList/cart"
 				} else { alert("삭제 실패"); }
@@ -99,8 +98,8 @@ $("#deleteBtn").click(function(){
 	<div class="sum">
 		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
 	</div>
-	<div class="userInfo">
-		<button type="button" class="userInfoBtn">주문 정보</button>
+	<div class="order">
+		<button type="button" class="orderBtn btnRed">주문하기</button>
 	</div>
 </div>
 </body>

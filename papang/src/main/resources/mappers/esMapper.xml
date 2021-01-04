@@ -194,4 +194,12 @@
 		WHERE bag_no = #{bag_no}
 		AND mbr_id = #{mbr_id}
 	</delete>
+<!-- =========================================================== -->
+<!-- 주문 -->
+	<insert id="orderInfo">
+		INSERT INTO TRAN_INFO (tran_no, mbr_id, tran_sum) <!-- 운송장번호 아직 -->
+					VALUES ( seq_tran_info_tran_no.nextval,
+							#{mbr_id},
+							#{tran_sum} )
+	</insert>
 </mapper>

@@ -101,9 +101,11 @@ public class MemberController {
 			HttpServletResponse response) {
 		String rs = "";
 		String chkPw = log_service.loginCheck(member);
+		response.setContentType("text/html; charset=UTF-8");
 		if (chkPw.equals(member.getMbr_pw())) {
 			session.setAttribute("user", member); // 회원가입 한 회원의 정보들은 user 라는 이름으로 세션에 담는다
 			try {
+				
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인되었습니다');</script>");
 				out.println("<script>location.href='/papang/';</script>");
@@ -143,5 +145,11 @@ public class MemberController {
 	@RequestMapping("/member/findPwForm") // url 예전 .do
 	public ModelAndView test6(HttpServletResponse response) throws IOException {
 		return new ModelAndView("member/findPw"); // jsp주소
+	}
+	
+// 소셜로그인
+	@RequestMapping("/loginCallback")
+	public String callback() {
+		return "";
 	}
 }
