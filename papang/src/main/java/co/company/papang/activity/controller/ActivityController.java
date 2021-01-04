@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,7 +65,25 @@ public class ActivityController {
 	
 	//놀이 단건 조회
 	@RequestMapping("activity/playView") 
-	public ModelAndView playView(HttpServletResponse response,PlayVO playVO,Act_comVO act_comVO) throws IOException{
+	public ModelAndView playView(HttpServletResponse response,HttpServletRequest request,PlayVO playVO,Act_comVO act_comVO) throws IOException{
+		//조회수 작업
+		boolean existCookie = false;
+		Cookie[] cookieList = request.getCookies();
+		for(Cookie co : cookieList) {
+			if(co.getValue().equals(playVO.getPlay_no())) {
+				existCookie = true;
+			}
+		}
+		//쿠키생성
+		if(!existCookie) {
+			//쿠키가 없는 경우
+			System.out.println("쿠키생성");
+			Cookie cookie = new Cookie("cookieCode", playVO.getPlay_no());
+			cookie.setMaxAge(60*60*24);
+			response.addCookie(cookie);
+			service.hitPlus(playVO);
+		}
+		//조회수 작업 끝
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
 		act_comVO.setPc_no(playVO.getPlay_no());
@@ -74,10 +95,20 @@ public class ActivityController {
 	
 	//놀이 리스트 글 등록폼 가기
 	@RequestMapping("activity/playForm") 
-	public ModelAndView playForm(HttpServletResponse response) throws IOException{
+	public ModelAndView playForm(HttpServletResponse response, HttpSession session,MemberVO member) throws IOException{
 		return new ModelAndView("activity/playForm"); 
 	}
 	
+	
+   //놀이 글 등록
+	//사원등록
+		@PostMapping("activity/insertPlay")
+		public String insertPlay(Model model, PlayVO playVO) {
+			service.insertPlay(playVO);
+			return  "redirect:playList";
+		}
+	
+		
 	//놀이 후기등록
 	//등록처리
 	@RequestMapping(value = "/acInsert", method = RequestMethod.POST)

@@ -126,7 +126,17 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
     
+    $('#regbtn').on('click',function() {
+    	location.href="cookForm"
+	})
+    
 };
+
+
+	
+
+
+
 </script>
 </head>
 <body>
@@ -142,7 +152,7 @@ window.onload = function() {
 
 	<div class="header_div">	
 	<div class="title_div">
-		<h1>
+		<h1 class="moveTitle">
   			<a href="" class="typewrite" data-period="2000" data-type='[ "아이와 함께 하는 즐거운 요리 ", "나만의 요리를 직접 만들어 보세요 !"]'  >
     			<span class="wrap"></span>
  			 </a>
@@ -150,7 +160,7 @@ window.onload = function() {
 	</div>
 	
 	<div class="button_div">
-		<button class="button" style="vertical-align:middle"><span>나만의 새 요리 만들기</span></button>
+		<button class="button" id="regbtn" style="vertical-align:middle"><span>나만의 새 요리 만들기</span></button>
 	</div>	
 	</div>
 	<div id="cook_div">
