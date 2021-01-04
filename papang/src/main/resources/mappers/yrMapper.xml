@@ -9,9 +9,9 @@
 		SELECT  
 		     
 	    MBR_ID,
-	    MBR_PW,
 	    MBR_NAME,
 	    MBR_NICK,
+	    MBR_PW,
 	    MBR_BIRTH,
 	    MBR_PHONE,
 	    MBR_POST,
@@ -36,8 +36,14 @@
 		MEMBER
 		
 		SET
-		
-	    MBR_ACCOUNT= #{mbr_account}
+		 
+	    MBR_NICK= #{mbr_nick},
+	    MBR_PHONE= #{mbr_phone},
+	    MBR_EMAIL= #{mbr_email},
+	    MBR_BANK= #{mbr_bank},	
+	    MBR_ADDR2= #{mbr_addr2},	   
+	    MBR_ACCOUNT= #{mbr_account},
+	    MBR_PW=#{mbr_pw}
 	    
 	    
 		WHERE MBR_ID = #{mbr_id}

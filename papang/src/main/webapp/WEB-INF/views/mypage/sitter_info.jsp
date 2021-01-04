@@ -195,7 +195,7 @@ $(function() {
             
 	</tr>
 	
-	 
+	  
 	
 	<tr  width="400" align="center" height="70">
 		<td>
@@ -216,15 +216,20 @@ $(function() {
 	
 
 	<td class="theader" colspan="2">
-       <input type = "checkbox" name = "writer" value = "월" > <label>월</label></input>
-       <input type = "checkbox" name = "writer" value = "화" > <label>화</label></input>
-       <input type = "checkbox" name = "writer" value = "수" > <label>수</label></input>
-       <input type = "checkbox" name = "writer" value = "목" > <label>목</label></input>
-       <input type = "checkbox" name = "writer" value = "금" > <label>금</label></input>
-       <input type = "checkbox" name = "writer" value = "토" > <label>토</label></input>
-       <input type = "checkbox" name = "writer" value = "일" > <label>일</label></input>
+       <input type = "checkbox" name = "array" value = "월" > <label>월</label></input>
+       <input type = "checkbox" name = "array" value = "화" > <label>화</label></input>
+       <input type = "checkbox" name = "array" value = "수" > <label>수</label></input>
+       <input type = "checkbox" name = "array" value = "목" > <label>목</label></input>
+       <input type = "checkbox" name = "array" value = "금" > <label>금</label></input>
    </td>
+<script>
 
+var sitoff= ${sitterVO.sit_off};
+sitoff=sitoff.split(' ');
+$('[name="array"]').val(sitoff);
+
+
+</script>
 	</tr>	
 	
 	<tr  width="400" align="center" height="70">
