@@ -38,7 +38,7 @@
 	<hr />
 	<br>
 	<div align="center">
-		<table class="table" id="dataTable">
+		<table class="table" id="marketTable">
 			<thead>
 				<tr class="tableTrTh">
 					<th width="5%" class="tableTh">글번호</th>

@@ -10,6 +10,12 @@
 	float: right;
 	width: 10%;
 }
+.cartResult {
+	padding: 20px;
+	background-color: white;
+}
+.sum { float: left; }
+
 </style>
 
 </head>
@@ -34,6 +40,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:set var="sum" value="0" />
 			<c:forEach items="${cart}" var="cart">
 				<tr>
 					<td align="center"><input type="checkbox" name="chBox" class="chBox" data-bag_no="${cart.bag_no}"></td>
@@ -43,6 +50,7 @@
 					<td align="center">${cart.bag_cnt}</td>
 					<td align="center">${cart.pro_price * cart.bag_cnt}원</td>
 				</tr>
+				<c:set var="sum" value="${sum + (cart.pro_price * cart.bag_cnt)}" />
 			</c:forEach>
 			</tbody>
 		</table>
@@ -87,4 +95,12 @@ $("#deleteBtn").click(function(){
 })
 
 </script>
+<div class="cartResult">
+	<div class="sum">
+		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+	</div>
+	<div class="userInfo">
+		<button type="button" class="userInfoBtn">주문 정보</button>
+	</div>
+</div>
 </body>

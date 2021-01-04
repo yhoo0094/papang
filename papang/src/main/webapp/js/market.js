@@ -5,7 +5,7 @@
 			$("#marketListBoard .custom-select").append("<option value='9'>9</option>");
 			$("#marketListBoard .custom-select").trigger("change"); 
 					
-		$("#dataTable .tableTh:eq(0)").trigger("click");
+		$("#marketTable .tableTh:eq(0)").trigger("click");
 		
 	// 결제
 //	 var IMP = window.IMP; // 생략가능
