@@ -77,17 +77,17 @@ thead, #dataTable_filter, #dataTable_length {
 				<tr>
 					<td align="center" height="40px">별점</td>
 					<td align="left"><select class="sitterBoardInputSize">
-							<option value="★★★★★">★★★★★
-							<option value="★★★★">★★★★
-							<option value="★★★">★★★
-							<option value="★★">★★
-							<option value="★" selected="selected">★
+							<option value="5">★★★★★
+							<option value="4">★★★★
+							<option value="3">★★★
+							<option value="2">★★
+							<option value="1" selected="selected">★
 					</select> ~ <select class="sitterBoardInputSize">
-							<option value="★★★★★">★★★★★
-							<option value="★★★★">★★★★
-							<option value="★★★">★★★
-							<option value="★★">★★
-							<option value="★">★
+							<option value="5">★★★★★
+							<option value="4">★★★★
+							<option value="3">★★★
+							<option value="2">★★
+							<option value="1">★
 					</select></td>
 					<td align="center">제재횟수</td>
 					<td align="left"><input type="number" placeholder="제재횟수"
