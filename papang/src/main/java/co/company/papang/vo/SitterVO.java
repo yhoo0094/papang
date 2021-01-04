@@ -1,5 +1,7 @@
 package co.company.papang.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +19,5 @@ public class SitterVO {
 	private String sit_age;
 	private String sit_note;
 	private String sit_pic;
+	private String[] array;
 }

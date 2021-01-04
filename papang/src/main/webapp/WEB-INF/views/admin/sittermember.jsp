@@ -10,6 +10,7 @@
 		SitterDelete();
 		sitterUpdate();
 		memberUpdate();
+		var sitoff;
 		$("#filter").on('change', function() {
 			memberList();
 		});
@@ -84,12 +85,12 @@
 								//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
 
 								$('#img').attr('src', e.target.result);
-								$('#img').attr('style','style="width:50%; height: 80%"');
+								$('#img').attr('style',"width:300px; height: 350px");
 							}
 							reader.readAsDataURL(f);
 						} else {
 							$('#img').attr('src', e.target.result);
-							$('#img').attr('style','style="width:50%; height: 80%"');
+							$('#img').attr('style',"width:300px; height: 350px");
 						}
 					});//arr.forEach
 		}
@@ -117,17 +118,24 @@
 		}); //조회 버튼 클릭
 	}//nqSelect
 	function SitterSelectResult(sitter) {
+		
 		console.log(sitter.sit_loc);
 		$('#img').attr('src',
-				'${pageContext.request.contextPath}/images/' + sitter.sit_pic).attr('style','style="width:50%; height: 90%"');
+				'${pageContext.request.contextPath}/images/' + sitter.sit_pic);
 		$('#sit_mbr_id').val(sitter.sit_mbr_id);
 		$('#la').html(sitter.sit_pic);
 		$('#sit_payday').val(sitter.sit_payday);
-		$('#sit_off').val(sitter.sit_off);
+		console.log(sitter.sit_off);
+		if(sitter.sit_off != null && sitter.sit_off !=''){
+			sitoff = sitter.sit_off;
+			sitoff = sitoff.split(' ');
+			$('[name="array"]').val(sitoff);
+		}
 		$('#sit_pay').val(sitter.sit_pay);
 		$('#sit_loc').val(sitter.sit_loc).prop("selected", true);
 		$('#sit_note').val(sitter.sit_note);
 		$('#sit_age').val(sitter.sit_age);
+		$('#img').attr('style',"width:300px; height: 350px");
 
 	}
 	//사용자 삭제 요청
@@ -300,10 +308,10 @@
 	var formData = new FormData(form);
 
 	$.ajax({ 
-	url: "../sitter", 
-	type: 'PUT', 
+	url: "../sitterUpdate", 
 	dataType: 'json', 
 	data: formData,
+	method : 'post',
 	contentType : false,
     processData : false,
 	success: function(data) { 
@@ -312,6 +320,7 @@
 		this.reset();
 		$('#la').html("선택한 파일 없음");
 		alert("수정되었습니다");
+		$('#img').attr('src','${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg');
 	});
 	},
 	error:function(xhr, status, message) { 
@@ -326,25 +335,17 @@
 <br>
 <form id="form1" class="form-horizontal">
 <div id="sitterForm" class="strongYellow" align="center">
-<div class='card-header' align="left" style= 'width:50%'>
-		<svg class="svg-inline--fa fa-table fa-w-16 mr-1" aria-hidden="true"
-			focusable="false" data-prefix="fas" data-icon="table" role="img"
-			xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-			data-fa-i2svg="">
-			<path fill="currentColor"
-				d="M464 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM224 416H64v-96h160v96zm0-160H64v-96h160v96zm224 160H288v-96h160v96zm0-160H288v-96h160v96z"></path></svg>
-	베이비시터 정보
-	</div>
+	
 	<table border = '1px' style= 'width:50%'>
 		<tr>
 			<td width="50%">
 				<table width="100%">
 					<tr align="center">
 						<td><img id="img" class="sitterProfileImg" alt="시터이미지"
-							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg" style="width:300px; height: 300px;"></td>
+							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg" style="width:300px; height: 350px"></td>
 					</tr>
 					<tr align="center">
-						<td><input type="file" name="uploadFile" id="uf" />
+						<td><input type="file" name="uploadFile2" id="uf" />
 							<div
 								style="display: inline-block; position: relative; width: 200px; left:40px; top:-24px; background: white;">
 								<label id="la">선택한 파일 없음</label>
@@ -352,7 +353,7 @@
 							</tr>
 				</table>
 			</td>
-			<td><table class="sitterInfoTable" align="center">
+			<td><table class="sitterInfoTable" align="center" border = 1px>
 					<tr align="center">
 						<td align="center">아&nbsp;이&nbsp;디:</td>
 						<td align="left"><input type='text' name='sit_mbr_id'
@@ -371,8 +372,13 @@
 
 					<tr>
 						<td align="center">휴&nbsp;무&nbsp;일</td>
-						<td align="left"><input type='text' name='sit_off'
-							id='sit_off'></td>
+						<td align="center">
+						<input type="checkbox" class="payday" name="array" value="월">월   
+						<input type="checkbox" class="payday" name="array" value="화">화   
+						<input type="checkbox" class="payday" name="array" value="수">수   
+						<input type="checkbox" class="payday" name="array" value="목">목   
+						<input type="checkbox" class="payday" name="array" value="금">금   
+						</td>
 					</tr>
 					<tr>
 						<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>

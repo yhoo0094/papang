@@ -2,6 +2,47 @@
     pageEncoding="UTF-8"%>
   <h1 class="mt-4">배너 관리</h1>
 
+<div align="center">
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td align="center">분류</td>
+				<td><select name="nq_category">
+						<option value="공지사항">사이드 배너</option>
+						<option value="자주묻는 질문" selected>이미지 슬라이드</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td align="center">제목</td>
+				<td><input type="text" style="width: 100%"></td>
+			</tr>
+			
+			<tr>
+				<td align="center">이미지 상태</td>
+				<td align="center">숨김<input type="radio" name="status" value="숨김" >  표시<input type="radio" name="status" value="표시"></td>
+			</tr>
+			<tr>
+				<td align="center"><br>
+				<br>
+				<br>이미지</td>
+				<td>
+					<table style="width: 100%">
+						<tr>
+							
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<tr>
+				<td align="center">링크</td>
+				<td><input type="text" style="width: 100%"></td>
+			</tr>
+			</tr>
+		</tbody>
+	</table>
+
 <div class="card mb-4">
 	<div class="card-header">
 		<i class="fas fa-table mr-1"></i> 배너
@@ -9,13 +50,7 @@
 	<div class="card-body">
 
 		<div class="table-responsive">
-			<form id='frm' name='frm' method='post'
-				action='${pageContext.request.contextPath}/admin/bannerInsert'>
-				<div align="right">
-					<input type="submit" id="insertbtn" value='배너 등록'>
-				</div>
-				<br>
-			</form>
+			
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>

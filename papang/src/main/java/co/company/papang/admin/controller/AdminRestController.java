@@ -148,9 +148,9 @@ public class AdminRestController {
 	}
 
 	// �닔�젙
-	@RequestMapping(value = "/sitter", method = RequestMethod.PUT
+	@RequestMapping(value = "/sitterUpdate"
 	// ,produces="application/json" //�쓳�떟�뿤�뜑
-			, consumes = "application/json" // �슂泥��뿤�뜑
+			
 	// ,headers = {"Content-type=application/json" }
 	)
 	public SitterVO updateSitter(SitterVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
@@ -158,7 +158,7 @@ public class AdminRestController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// �씠誘몄��뙆�씪
 		// request Multipart濡� 罹먯뒪�똿
-		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile2");
 
 		// 泥⑤��뙆�씪
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
@@ -167,7 +167,14 @@ public class AdminRestController {
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
 																							// �씠由�
 			vo.setSit_pic(multipartFile.getOriginalFilename());
+			System.out.println(vo.getSit_pic());
 		}
+		String result3 = "";
+
+		for(String str : vo.getArray()) {
+			result3 += str+' ';
+		}
+		vo.setSit_off(result3);
 		service.updateSitter(vo);
 		return vo;
 	}

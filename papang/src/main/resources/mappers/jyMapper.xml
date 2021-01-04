@@ -118,10 +118,13 @@
 	<update id="updateSitter" parameterType="co.company.papang.vo.SitterVO">
 		update sitter set
 		sit_payday = #{sit_payday},
-		sit_off = #{sit_off},
-		sit_pay = #{sit_pay},
+		sit_off =  #{sit_off},
+		sit_pay =  #{sit_pay},
 		sit_loc = #{sit_loc},
 		sit_note = #{sit_note}
+		<if test="sit_pic != null and sit_pic !=''">
+		, sit_pic = #{sit_pic}
+		</if>
 		WHERE sit_mbr_id = #{sit_mbr_id}
 	</update>
 
