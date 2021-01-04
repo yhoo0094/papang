@@ -82,7 +82,7 @@ public class ActivityController {
 	//등록처리
 	@RequestMapping(value = "/acInsert", method = RequestMethod.POST)
 	@ResponseBody
-			public Map insertAC(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+			public Act_comVO insertAC(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 					throws IllegalStateException, IOException {
 		       //파일업로드
 				MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -96,7 +96,8 @@ public class ActivityController {
 				}
 				
 				service.insertActComm(vo);
-				return Collections.singletonMap("result", true);
+				// return Collections.singletonMap("result", true);
+				return vo;
 			}
 		
 	

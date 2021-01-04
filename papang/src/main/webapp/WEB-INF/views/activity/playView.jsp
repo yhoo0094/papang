@@ -78,18 +78,7 @@
 	height: 180px;
 }
 
-padding
-:
- 
-20px
- 
-20px
- 
-20px
- 
-20px
-;
-}
+
 .comm_btn_div {
 	margin-top: 20px;
 }
@@ -124,12 +113,7 @@ padding
 	display: inline-block;
 }
 
-.commtext {
-	height: 300px;
-	width: 630px;
-	border-radius: 0 8px 8px 0;
-	border: none;
-}
+.commtext {height: 300px;width: 570px;border-radius: 0 8px 8px 0;border: none;}
 
 .comm_imgdiv {
 	display: inline-block;
@@ -203,7 +187,11 @@ $(()=>{
 	for(var i=0;i<starNum;i++){
 		addDiv.append('<img class="star" src="${pageContext.request.contextPath}/resources/images/active/star.png">')
     }
+	
+	
+	
 	acInsert();
+	
 	//후기 사진 바로 띄우기
 
 	$("#uf").on('change',function(e) {
@@ -231,17 +219,9 @@ function acInsert() {
 			data : formData,
 			contentType : false,
 		    processData : false ,
-			success : function(response) {
-				if (response.result == true) {
-					window.history.back();
-					//nqList();
-					//location.reload();
-					$('#form1').each(function() {
-						this.reset();
-						//$('#la').html("선택한 파일 없음");
-						alert("등록되었습니다");
-					});
-				}
+			success :function(vo) {
+				/* console.log(vo) */		
+				location.reload();
 			},
 			error : function(xhr, status, message) {
 				alert("status: " + status + " er:" + message);
@@ -249,6 +229,8 @@ function acInsert() {
 		});
 	});//등록 버튼 클릭
 }//후기Insert
+
+
 
 //후기 사진 바로 띄우기
 function checkExtension(fileName, fileSize) {
@@ -298,7 +280,7 @@ function checkExtension(fileName, fileSize) {
 </head>
 <body>
 	<div>
-		<h3>아이디: ${user.mbr_id}</h3>
+		<%-- <h3>아이디: ${user.mbr_id}</h3> --%>
 		<div class="Bigtitle">아빠와 놀아요 > 따라해보세요</div>
 		<div class="cook_content">
 			<div class="cView_title">
@@ -325,33 +307,35 @@ function checkExtension(fileName, fileSize) {
 		<p class="comm_title">후기작성</p>
 		
 		<form id="form1">
-		<div class="comm_content">
-		<input id="pc_no" name="pc_no" type="hidden" value="${playVO.play_no}">
-			<div class="comm_imgdiv">
-				<img id="img" class="sitterProfileImg" style="width:300px; height: 300px;">
+			<div class="comm_content">
+			<input id="pc_no" name="pc_no" type="hidden" value="${playVO.play_no}">
+				<div class="comm_imgdiv">
+					<img id="img" class="sitterProfileImg" style="width:300px; height: 300px;">
+				</div>
+				<input type="hidden" value="${user.mbr_id}" name="mbr_id">
+				<input type="hidden" value="${playVO.play_no}" name="ac_no">
+				<input type="hidden" value="${playVO.play_category}" name="ac_category">
+				<textarea class="commtext" name="ac_content"></textarea>
+			<input class="comm_img"  type="file" name="uploadFile" id="uf">
+					<div class="container" id="starDiv">
+				<div
+					class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+					<input type="radio" id="star5" name="ac_rate" value="5" />
+					<label for="star5" title="5 star"></label>
+					<input type="radio" id="star4" name="ac_rate" value="4" />
+					<label for="star4" title="4 star"></label>
+					<input type="radio" id="star3" name="ac_rate" value="3" />
+					<label for="star3" title="3 star"></label>
+					<input type="radio" id="star2" name="ac_rate" value="2" />
+					<label for="star2" title="2 star"></label>
+					<input type="radio" id="star1" name="ac_rate" value="1" />
+					<label for="star1" title="1 star"></label>
+				</div>
 			</div>
-			<input type="hidden" value="${user.mbr_id}" name="mbr_id">
-			<textarea class="commtext" name="ac_content"></textarea>
-		<input class="comm_img"  type="file" name="uploadFile" id="uf">
-				<div class="container" id="starDiv">
-			<div
-				class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-				<input type="radio" id="star5" name="ac_rate" value="5" />
-				<label for="star5" title="5 star"></label>
-				<input type="radio" id="star4" name="ac_rate" value="4" />
-				<label for="star4" title="4 star"></label>
-				<input type="radio" id="star3" name="ac_rate" value="3" />
-				<label for="star3" title="3 star"></label>
-				<input type="radio" id="star2" name="ac_rate" value="2" />
-				<label for="star2" title="2 star"></label>
-				<input type="radio" id="star1" name="ac_rate" value="1" />
-				<label for="star1" title="1 star"></label>
+				<div class="comm_btn_div" align="center">
+					<button type="button" class="btnRed bMedium" id="btnInsert">후기등록</button>
+				</div>
 			</div>
-		</div>
-			<div class="comm_btn_div" align="center">
-				<button type="submit" class="btnRed bMedium" id="btnInsert">후기등록</button>
-			</div>
-		</div>
 		</form>
 		<!-- 화면 끝 -->
 	</div>
