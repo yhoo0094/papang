@@ -11,34 +11,24 @@ th {
 }
 
 th>span {
-	margin-right: 50px;
+	margin-right: 20px;
 	font-size: 20px;
+	margin: 30px;
 }
 
 td>span {
 	font-size: 30px;
+	margin: 30px;
 }
 
-#plusBtn #minusBtn {
+#plusBtn, #minusBtn {
 	border: none;
 	background: none;
 }
 </style>
 
 <div class="container center_div">
-
-	<!-- Page Heading/Breadcrumbs -->
 	<h1 class="mt-4 mb-3">${pro.pro_name}</h1>
-	<!-- 관리자일때만 수정/삭제버튼 모양새를 하이퍼링크로 할지 아니면 버튼으로 할지 골라 -->
-	<!-- c:if test='${!empty ad_id}'-->
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a
-			href="market/itemUpdateForm?pro_no=${pro.pro_no}">수정</a></li>
-		<li class="breadcrumb-item active"><a
-			href="market/itemDelete?pro_no=${pro.pro_no}">삭제</a></li>
-	</ol>
-	<!-- /c:if -->
-	<!-- Intro Content ${pageContext.request.contextPath} -->
 	<div class="row">
 		<div class="col-lg-6">
 			<img class="img-fluid rounded mb-4"
@@ -72,70 +62,57 @@ td>span {
 					</tbody>
 					<tfoot>
 						<tr>
-							<!-- ${empty ad_id} &&  -->
-							<td><c:if test="${!empty user.mbr_id}">
-									<button type="button" class="btn" id="buynow">결제</button>
-								</c:if> <c:if test="${empty user.mbr_id}">
-									<button type="button" class="btn" id="itemUpdate">수정</button>
-								</c:if></td>
-							<td>
-								<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 --> <c:if
-									test="${!empty user.mbr_id}">
-									<input type="hidden" name="pro_no" id="pro_no"
-										value="${pro.pro_no}">
-								구입수량
-								<button type="button" id="plusBtn">+</button>
-									<input type="number" class="numBox" min="1" value="1" readonly>
+							<c:if test="${empty user.mbr_id}">
+								<td><button type="button" class="btnYellow" id="itemUpdate">수정</button></td>
+								<td><button type="button" class="btnRed" id="itemDelete">삭제</button></td>
+							</c:if>
+							<c:if test="${!empty user.mbr_id}">
+								<td colspan="2"><input type="hidden" name="pro_no"
+									id="pro_no" value="${pro.pro_no}"> 구입수량
+									<button type="button" id="plusBtn">+</button> <input
+									type="number" class="numBox" min="1" value="1" readonly>
 									<!-- 이때 max 값을 상품수량.. 입출고를 통해 결정된 총수량.. 글구 input type hidden 으로해서도 한개 정하고 -->
-									<button type="button" id="minusBtn">-</button>
-									<!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
-									<button type="submit" class="btn" id="addCartBtn">장바구니</button>
-									<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 button onclick="" -->
+									<button type="button" id="minusBtn">-</button> <!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
+									<button type="submit" class="btnRed" id="addCartBtn">장바구니</button>
+									<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 button onclick="" --> 
 									<script type="text/javascript">
-								// 수량 설정
-								$("#plusBtn").click(function(){
-									var num = $(".numBox").val();
-									var plusNum = Number(num)+1;
-									$(".numBox").val(plusNum);
-								});
-								$("#minusBtn").click(function(){
-									var num = $(".numBox").val();
-									var minusNum = Number(num)-1;
-									if(minusNum <= 0){
-										$(".numBox").val(num);
-									} else{
-										$(".numBox").val(minusNum);
-									}
-								});
-								// 장바구니 담기 버튼 클릭
-								$("#addCartBtn").click(function(){
-									var pro_no = $("#pro_no").val();
-									var bag_cnt = $(".numBox").val();
-									var data = {
-											pro_no : pro_no,
-											bag_cnt : bag_cnt
-									};
-									$.ajax({
-										url : "${pageContext.request.contextPath}/market/cartInsert",
-										type : "post",
-										data : data,
-										success : function(result){
-											if (result==1){
-												alert("카드에 담겼습니다");
-												$(".numBox").val("1");
+										// 수량 설정
+										$("#plusBtn").click(function() {
+											var num = $(".numBox").val();
+											var plusNum = Number(num) + 1;
+											$(".numBox").val(plusNum);
+										});
+										$("#minusBtn").click(function() {
+											var num = $(".numBox").val();
+											var minusNum = Number(num) - 1;
+											if (minusNum <= 0) {
+												$(".numBox").val(num);
+											} else {
+												$(".numBox").val(minusNum);
 											}
-										}, error : function(){
-											alert("실패");
-										}
-									})
-								})
-								
-								</script>
-
-								</c:if> <c:if test="${empty user.mbr_id}">
-									<button type="button" class="btnRed" id="itemDelete">삭제</button>
-								</c:if>
-							</td>
+										});
+										// 장바구니 담기 버튼 클릭
+										$("#addCartBtn").click(function() {
+											var pro_no = $("#pro_no").val();
+											var bag_cnt = $(".numBox").val();
+											var data = {pro_no : pro_no,
+														bag_cnt : bag_cnt};
+											$.ajax({
+													url : "${pageContext.request.contextPath}/market/cartInsert",
+													type : "post",
+													data : data,
+													success : function(result) {
+														if (result == 1) {
+															alert("카드에 담겼습니다");
+															$(".numBox").val("1");
+														}
+													}, error : function() {
+														alert("실패");
+													}
+											})
+										})
+									</script></td>
+							</c:if>
 						</tr>
 					</tfoot>
 				</table>
@@ -151,56 +128,4 @@ td>span {
 			<p>${pro.pro_detail }</p>
 		</div>
 	</div>
-
-	<!-- Team Members
-	<h2>이거 필요없ㅇ르거같은디</h2>
-
-	<div class="row">
-		<div class="col-lg-4 mb-4">
-			<div class="card h-100 text-center">
-				<img class="card-img-top" src="http://placehold.it/750x450" alt="">
-				<div class="card-body">
-					<h4 class="card-title">Team Member</h4>
-					<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio
-						officiis odit.</p>
-				</div>
-				<div class="card-footer">
-					<a href="#">name@example.com</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-4 mb-4">
-			<div class="card h-100 text-center">
-				<img class="card-img-top" src="http://placehold.it/750x450" alt="">
-				<div class="card-body">
-					<h4 class="card-title">Team Member</h4>
-					<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio
-						officiis odit.</p>
-				</div>
-				<div class="card-footer">
-					<a href="#">name@example.com</a>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-4 mb-4">
-			<div class="card h-100 text-center">
-				<img class="card-img-top" src="http://placehold.it/750x450" alt="">
-				<div class="card-body">
-					<h4 class="card-title">Team Member</h4>
-					<h6 class="card-subtitle mb-2 text-muted">Position</h6>
-					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio
-						officiis odit.</p>
-				</div>
-				<div class="card-footer">
-					<a href="#">name@example.com</a>
-				</div>
-			</div>
-		</div>
-	</div>
- -->
 </div>

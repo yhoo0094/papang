@@ -10,6 +10,12 @@
 	float: right;
 	width: 10%;
 }
+.cartResult {
+	padding: 20px;
+	background-color: white;
+}
+.sum { float: left; }
+.userInfo { float: right; }
 </style>
 
 </head>
@@ -34,6 +40,7 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:set var="sum" value="0" />
 			<c:forEach items="${cart}" var="cart">
 				<tr>
 					<td align="center"><input type="checkbox" name="chBox" class="chBox" data-bag_no="${cart.bag_no}"></td>
@@ -43,13 +50,14 @@
 					<td align="center">${cart.bag_cnt}</td>
 					<td align="center">${cart.pro_price * cart.bag_cnt}원</td>
 				</tr>
+				<c:set var="sum" value="${sum + (cart.pro_price * cart.bag_cnt)}" />
 			</c:forEach>
 			</tbody>
 		</table>
 		<br>
 	</div>
 	<div align="right">
-		<button id="purchaseBtn" class="btnYellow btnWrite">선택상품 구매</button>
+		<button id="selectOrderBtn" class="btnYellow btnWrite">선택상품 구매</button>
 		<button id="deleteBtn" class="btnGray btnWrite">선택상품 삭제</button>
 	</div>
 	<script type="text/javascript">
@@ -75,9 +83,8 @@ $("#deleteBtn").click(function(){
 		$.ajax({
 			url : "${pageContext.request.contextPath}/market/cartDelete",
 			type : "post",
-			data : {chbox : checkArr},
+			data : {chBox : checkArr},
 			success : function(result){
-				console.log("이게뭐다냐" + chbox + 이건또뭐고 + "checkArr")
 				if (result == 1){
 					location.href = "${pageContext.request.contextPath}/marketList/cart"
 				} else { alert("삭제 실패"); }
@@ -87,4 +94,12 @@ $("#deleteBtn").click(function(){
 })
 
 </script>
+<div class="cartResult">
+	<div class="sum">
+		총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+	</div>
+	<div class="order">
+		<button type="button" class="orderBtn btnRed">주문하기</button>
+	</div>
+</div>
 </body>

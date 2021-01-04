@@ -24,6 +24,7 @@ import co.company.papang.market.service.MarketService;
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.Tran_infoVO;
 
 @Controller
 public class MarketController {
@@ -145,6 +146,7 @@ public class MarketController {
 	
 	// 장바구니 등록
 	@RequestMapping("market/cartInsert") //url 예전 .do
+	@ResponseBody
 	public int test14(HttpSession session, BagVO bag) throws IOException{
 		int result = 0;
 		
@@ -159,9 +161,9 @@ public class MarketController {
 		return result;
 	}
 	// 장바구니 삭제
-	@ResponseBody
 	@RequestMapping(value="/market/cartDelete", method=RequestMethod.POST) //url 예전 .do
-	public int test15(HttpSession session, @RequestParam(value="chbox[]") List<String> chArr, BagVO bag) throws IOException{
+	@ResponseBody
+	public int test15(HttpSession session, @RequestParam(value="chBox[]") List<String> chArr, BagVO bag) throws IOException{
 		MemberVO memberVo = (MemberVO)session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		int result = 0;
@@ -176,7 +178,15 @@ public class MarketController {
 			}
 			result = 1;
 		}
-		
 		return result; //jsp주소
+	}
+	
+// 주문
+	// 주문하기 -> 목록생성
+	@RequestMapping("market/order")
+	public void test16(HttpSession session, Tran_infoVO tran) throws IOException {
+		MemberVO memberVo = (MemberVO)session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		mk_service.orderInfo(tran);
 	}
 }

@@ -37,6 +37,7 @@
 		FROM ACT_COM A
 		WHERE A.AC_CATEGORY='놀이' AND A.PC_NO=#{pc_no}
 		<![CDATA[AND ROWNUM <= 5]]>
+		ORDER BY A.AC_NO DESC
 	</select>   
 
 <!-- 후기 : 평점조회 -->

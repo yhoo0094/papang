@@ -2,11 +2,10 @@ package co.company.papang.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.Tran_infoVO;
 import co.company.papang.vo.UsedVO;
 
 public interface EsMapper {
@@ -41,5 +40,8 @@ public interface EsMapper {
 	public int insertCart(BagVO bag); // 등록
 	public int updateCart(BagVO bag); // 수정
 	public int deleteCart(BagVO bag); // 삭제
+
+	// 주문
+	public void orderInfo(Tran_infoVO tran); // 주문하기 -> 목록생성
 }
 
