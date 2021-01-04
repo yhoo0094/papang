@@ -37,27 +37,26 @@ public class CommunityController {
 	
 	@RequestMapping("/community/form") //커뮤니티 글쓰러 가기
 	public String communityForm(Model model, HttpServletRequest request, HttpServletResponse response, CommunityVO communityVO, Community_comVO community_comVO) throws IOException{
-		
-		//조회수 작업
-		boolean existCookie = false;
-		Cookie[] cookieList = request.getCookies();
-		for(Cookie co : cookieList) {
-			if(co.getValue().equals(communityVO.getCom_no())) {
-				existCookie = true;
-			}
-		}
-		//쿠키생성
-		if(!existCookie) {
-			//쿠키가 없는 경우
-			System.out.println("쿠키생성");
-			Cookie cookie = new Cookie("cookieCode", communityVO.getCom_no());
-			cookie.setMaxAge(60*60*24);
-			response.addCookie(cookie);
-			service.hitPlus(communityVO);
-		}
-		//조회수 작업 끝
-		
 		if(communityVO.getCom_no() != null) {
+			//조회수 작업
+			boolean existCookie = false;
+			Cookie[] cookieList = request.getCookies();
+			for(Cookie co : cookieList) {
+				if(co.getValue().equals(communityVO.getCom_no())) {
+					existCookie = true;
+				}
+			}
+			//쿠키생성
+			if(!existCookie) {
+				//쿠키가 없는 경우
+				System.out.println("쿠키생성");
+				Cookie cookie = new Cookie("cookieCode", communityVO.getCom_no());
+				cookie.setMaxAge(60*60*24);
+				response.addCookie(cookie);
+				service.hitPlus(communityVO);
+			}
+			//조회수 작업 끝
+			
 			model.addAttribute("communityVO",service.getCommunity(communityVO));
 			model.addAttribute("community_comVOList",service.getCommunityComList(community_comVO));
 		}

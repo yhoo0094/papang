@@ -258,15 +258,17 @@ a.item {
 	
 	<script type="text/javascript">
 		$(()=>{
-			$("#dataTable_filter").attr("align","right");
+ 			$("#dataTable_filter").attr("align","right");
 			$("#dataTable_length").attr("align","left");
-			/*$("#divForEntryNum .custom-select").empty();
-			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
-			$("#divForEntryNum .custom-select").trigger("change"); */
 			
-			$("#communityBoardTable .tableTh:eq(0)").trigger("click");
+/*			$("#divForEntryNum .custom-select").empty();
+			$("#divForEntryNum .custom-select").append("<option value='10'>10</option>");
+			$("#divForEntryNum .custom-select").trigger("change");
+			
+			$("#communityBoardTable .tableTh:eq(0)").trigger("click"); */
 		})
 	</script>
+	<script src="${pageContext.request.contextPath}/js/sangmin.js"></script>
 	<script src="${pageContext.request.contextPath}/js/play.js"></script>
 	<script src="${pageContext.request.contextPath}/js/market.js"></script>
 </body>

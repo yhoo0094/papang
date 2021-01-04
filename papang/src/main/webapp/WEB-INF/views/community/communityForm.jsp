@@ -95,7 +95,7 @@
 					<td align="center" class="strongYellow">분류</td>
 					<td class="whiteBackground">
 					<select name="com_category" class="communityFormType"
-						<c:if test="${empty communityVO.com_no or communityVO.mbr_id != sessionScope.user.mbr_id}">
+						<c:if test="${not empty communityVO.com_no and communityVO.mbr_id != sessionScope.user.mbr_id}">
 							disabled
 						</c:if>  
 					>
