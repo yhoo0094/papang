@@ -1,3 +1,3 @@
 $(function(){
-		$("#communityBoardTable .tableTh:eq(0)").trigger("click");
+	$("#communityBoardTable .tableTh:eq(0)").trigger("click");
 });

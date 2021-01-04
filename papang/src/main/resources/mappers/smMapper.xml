@@ -43,6 +43,20 @@
 		)
 	</insert>
 	
+	<!-- 수정 -->
+	<update id="communityFormUpdate" parameterType="communityVO">
+		UPDATE COMMUNITY SET 
+		COM_CATEGORY = #{com_category}, 
+		COM_TITLE = #{com_title},
+		COM_CONTENT = #{com_content}
+		WHERE COM_NO = #{com_no}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="communityFormDelete" parameterType="communityVO">
+		DELETE COMMUNITY WHERE COM_NO = #{com_no} 
+	</delete>
+	
 	<!-- 조회수 증가 -->
 	<update id="hitPlus" parameterType="communityVO">
 		UPDATE COMMUNITY SET
