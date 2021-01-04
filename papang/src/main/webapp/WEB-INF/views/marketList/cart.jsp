@@ -49,7 +49,7 @@ td{
 			<c:set var="sum" value="0" />
 			<c:forEach items="${cart}" var="cart">
 				<tr>
-					<td align="center"><input type="checkbox" name="chBox" class="chBox" data-bag_no="${cart.bag_no}" onClick="itemSum()">
+					<td align="center"><input type="checkbox" name="chBox" class="chBox" data-bag_no="${cart.bag_no}" onClick="itemSum()" value="${cart.pro_price * cart.bag_cnt}">
 					<input type="hidden" name="bag_no" value="${cart.bag_no}"></td>
 					<td align="center"><img style="max-width: 100%; height: auto" src="${pageContext.request.contextPath}/images/${cart.pro_pic}"></td>
 					<td><a href="../market/itemDetail?pro_no=${cart.pro_no}" class="boardTagA">${cart.pro_name}</a></td>
@@ -62,20 +62,21 @@ td{
 			</tbody>
 		</table>
 		<script type="text/javascript">
-// 		function itemSum(){
-// 			var str = "";
-// 			var sum = 0;
-// 			var cnt = $(".chBox").length;
-// 			for(var i=0; i<cnt; i++){
-// 				if($(".chBox")[i].checked == true){
-// 					console.log("d>>>"+ $(".chBox")[i].parent().parent().children());
-// 					sum += parseInt($(".chBox")[i].val);
-// 				}
-// 			}
-// 			$("#selSum").val(sum+" 원"); // 선택상품 가격
-// 			console.log("sum>>>" + sum);
-// 			$("#amount").val(sum); // 주문할때 넘길 돈
-// 		}
+		function itemSum(){
+////////////////////////////////////////////외않되 ?? ㅠ ??
+			var str = "";
+			var sum = 0;
+			var cnt = $(".chBox").length;
+			for(var i=0; i<cnt; i++){
+				if($(".chBox")[i].checked == true){
+					console.log("d>>>"+ $(".chBox"));
+					sum += parseInt($(".chBox")[i].val());
+				}
+			}
+			$("#selSum").val(sum+" 원"); // 선택상품 가격
+			console.log("sum>>>" + sum);
+			$("#amount").val(sum); // 주문할때 넘길 돈
+		}
 		</script>
 		<br>
 	</div>
