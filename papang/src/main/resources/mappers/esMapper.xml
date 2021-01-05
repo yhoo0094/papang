@@ -195,17 +195,24 @@
 		AND mbr_id = #{mbr_id}
 	</delete>
 <!-- =========================================================== -->
-<!-- 주문 -->
-<!-- 주문정보 -->
+<!-- 전체 주문 -->
+<!-- 주문정보 입력 -->
 	<insert id="orderInfo">
-		INSERT INTO TRAN_INFO (tran_no, bag_no, tran_sum) <!-- 운송장번호 아직 -->
-					VALUES ( seq_tran_info_tran_no.nextval,
-							#{bag_no},
-							#{tran_sum} )
+		INSERT INTO ORDER_INFO (order_no, mbr_id, order_sum) <!-- 운송장번호 아직 -->
+					VALUES ( #{order_no},
+							 #{mbr_id},
+							 #{order_sum} )
 	</insert>
+<!-- 주문상세정보 입력 -->
+	<insert id="orderDetail">
+		INSERT INTO ORDER_DETAIL (od_detail_no, order_no, pro_no, bag_cnt)
+			SELECT seq_order_detail_od_detail_no.nextval, ${order_no}, pro_no, bag_cnt
+		FROM BAG
+	</insert>
+	
 <!-- 주문후 장바구니 비우기 -->
 	<delete id="deleteAllCart">
-		DELETE TRAN_INFO
+		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
 	</delete>
 </mapper>

@@ -85,9 +85,16 @@ td{
 		총 합계 : <strong><fmt:formatNumber pattern="###,###,###" value="${sum}" />원</strong>
 		선택 상품 합계 : <strong id="selSum" style="margin-right: 30%;"></strong>
 	</div>
-	<div class="order">
+	<div class="orderAll">
 		<form id="orderForm" action="${pageContext.request.contextPath}/market/order" method="post">
-		<input type="hidden" name="amount" id="amount" value="">
+		<input type="hidden" name="order_sum" id="amount" value="${sum}">
+		<input type="hidden" name="chk[]" id="chk" value="">
+		<button id="OrderBtn" class="btnRed btnWrite">전체상품 구매</button>
+	</form>
+	</div>
+	<div class="order">
+		<form id="selectOrderForm" method="post">
+		<input type="hidden" name="select_sum" id="amount" value="">
 		<input type="hidden" name="chk[]" id="chk" value="">
 		<button id="selectOrderBtn" class="btnYellow btnWrite">선택상품 구매</button>
 	</form>
@@ -107,7 +114,13 @@ $("#allCheck").click(function(){
 $(".chBox").click(function(){
 	$("#allCheck").prop("checked", false);
 // 	itemSum();
-})
+});
+$("#OrderBtn").click(function(){
+	if(confirm("전체상품을 주문하시겠습니까?")){
+		alert("감사합니다");
+		$("#orderForm").submit();
+	}
+});
 $("#selectOrderBtn").click(function(){
 	var checkArr = new Array();
 	$("input[class='chBox']:checked").each(function(){
@@ -116,7 +129,7 @@ $("#selectOrderBtn").click(function(){
 	$("#chk").val(checkArr);
 	if(confirm("선택상품을 주문하시겠습니까?")){
 		alert("감사합니다");
-		$("#orderForm").submit();
+		$("#selectOrderForm").submit();
 // 		$.ajax({
 // 			url : "${pageContext.request.contextPath}/market/order",
 // 			type : "post",

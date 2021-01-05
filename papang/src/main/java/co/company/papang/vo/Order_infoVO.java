@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tran_infoVO {
-	private String tran_no;
-	private String bag_no;
+public class Order_infoVO {
+	private String order_no;
+	private String mbr_id;
 	private String waybill;
-	private String tran_date;
-	private String tran_status;
-	private String tran_sum;
+	private String order_date;
+	private String order_status;
+	private String order_sum;
 }
