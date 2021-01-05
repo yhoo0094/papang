@@ -24,6 +24,8 @@
     font-weight: bold;
 }
 
+.moveTitle{text-align: center;}
+
 <!--
 -->
 
@@ -49,7 +51,7 @@ body, table, th, td, pre, input, select, textarea, button {
 
 .title_div{     height: 70px;
     background-color: #fff5d2;
-    width: 49%;
+   width: 53%;
     margin-left: 13.5em;
     display: inline-block;}
 .search_btn {
@@ -64,8 +66,8 @@ body, table, th, td, pre, input, select, textarea, button {
 }
 /*box 흰 배경*/
 .lst_recipe>li {
-	width: 282px;
-    height: 440px;
+	width: 348px;
+    height: 550px;
 	margin: 0 0 16px 16px;
 	position: relative;
 	border: 1px solid #e1e1e1;
@@ -77,8 +79,8 @@ body, table, th, td, pre, input, select, textarea, button {
 
 /* box 이미지 사이즈*/
 .lst_recipe li .thmb img {
-	width: 279px;
-    height: 274px;
+	width: 348px;
+    height: 348px;
 	display: block
 }
 
@@ -104,7 +106,7 @@ body, table, th, td, pre, input, select, textarea, button {
 
 
 .lst_recipe .option {
-	width: 280px;
+	width: 321px;
 	position: absolute;
 	bottom: 0;
 	height: 27px;
@@ -113,7 +115,7 @@ body, table, th, td, pre, input, select, textarea, button {
 }
 
 .lst_recipe .option>div {
-	width: 93px;
+	width: 107px;
 	height: 100%;
 	float: left;
 	border-left: 1px solid #ddd

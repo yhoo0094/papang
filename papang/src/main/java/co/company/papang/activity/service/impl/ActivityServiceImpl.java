@@ -43,4 +43,14 @@ public class ActivityServiceImpl implements ActivityService {
 	public int insertActComm(Act_comVO act_comVO) {
 		return dao.insertActComm(act_comVO);
 	}
+
+	@Override//놀이 조회수
+	public int hitPlus(PlayVO playVO) {
+		return dao.hitPlus(playVO);
+	}
+
+	@Override//놀이 글등록
+	public int insertPlay(PlayVO playVO) {
+		return dao.insertPlay(playVO);
+	}
 }

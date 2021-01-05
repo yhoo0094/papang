@@ -14,12 +14,13 @@
 <!-- 놀이 전체조회, 놀이검색 --> 
 <select id="getPlayList" resultType="PlayVO">
 	SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY, PLAY_HIT,PLAY_CONTENT 
-	FROM PLAY
+	FROM PLAY 
 	<where>
 			<if test="play_category != null and play_category !=''">
 				PLAY_CATEGORY = #{play_category}
 			</if>
 	</where>
+	<!-- ORDER BY PLAY_NO DESC -->
 </select>
 
 
@@ -30,6 +31,19 @@
 		WHERE PLAY_NO=#{play_no}
 </select>
 
+
+<!-- 조회수 증가 -->
+	<update id="hitPlus" parameterType="PlayVO">
+		UPDATE PLAY SET
+		PLAY_HIT = PLAY_HIT + 1
+		WHERE PLAY_NO = #{play_no}
+	</update>
+	
+	<!-- 놀이 글 등록 -->
+	<insert id="insertPlay" parameterType="PlayVO">
+		INSERT INTO PLAY (PLAY_NO,PLAY_TITLE,MBR_ID,PLAY_CATEGORY,PLAY_CONTENT) 
+		VALUES (SEQ_PLAY_PLAY_NO.NEXTVAL,#{play_title},#{mbr_id},#{play_category},#{play_content})
+	</insert>
 
 <!--후기  전체 조회 -->
   	 <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">

@@ -103,5 +103,20 @@
 		)
 	</insert>
 
+	<!-- ##################################시터########################################### -->
+	
+	<!-- 전체조회 -->
+	<select id="getSitterList" resultType="sitterVO">
+		SELECT ROWNUM, S.*
+		FROM SITTER S
+		<where>
+			<![CDATA[
+				ROWNUM <= 100
+			]]>
+				and C.COM_NO = #{com_no}
+				and C.CC_CATEGORY = '커뮤니티'
+		</where>
+		ORDER BY C.CC_NO DESC
+	</select>
 
 </mapper>

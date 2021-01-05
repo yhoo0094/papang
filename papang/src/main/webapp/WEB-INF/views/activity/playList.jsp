@@ -70,6 +70,9 @@ thead, #dataTable_filter, #dataTable_length {
 .table{margin: 4rem 0 1rem 0;}
 .search_btn{transition-duration: 0.4s;} 
 .search_btn:hover{background-color:#e8505b;color:white;}
+.playno_hidden{display: none;}
+
+/* .title_div {width: 53%;} */
 </style>
 <script>
 
@@ -129,7 +132,16 @@ window.onload = function() {
     css.type = "text/css";
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
+    
+    
+	$('#regbtn').on('click',function() {
+		location.href="playForm"
+	})
 };
+
+
+
+
 </script>
 <script>
 
@@ -148,7 +160,7 @@ window.onload = function() {
 
 	<div class="header_div">	
 	<div class="title_div">
-		<h1>
+		<h1 class="moveTitle">
   			<a href="" class="typewrite" data-period="2000" data-type='[ "아이와 함께 하는 즐거운 놀이 ", "아빠! 아이와 함께 놀아요 !"]'  >
     			<span class="wrap"></span>
  			 </a>
@@ -156,7 +168,7 @@ window.onload = function() {
 	</div>
 		<!-- box -->
 	<div class="button_div">
-		<button class="button" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
+		<button class="button" id="regbtn" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
 	</div>	
 	</div>
 	
@@ -166,12 +178,15 @@ window.onload = function() {
 			<thead>
 				<tr>
 					<th>가</th>
+					<th>나</th>
 				</tr>
+				
 			</thead>
 			<tbody>
 			<!-- foreach돌기 -->
 			<c:forEach items="${playlist}" var="play">
 				<tr class="dataTableTr" > 
+					<td class="playno_hidden">${play.play_no}</td>
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >
 			<li>
