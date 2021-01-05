@@ -119,5 +119,20 @@
 			
 		</where>
 	</select>
-
+	
+	<!-- 단건조회 -->
+	<select id="getSitter" resultType="SitterVOChk">
+		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, replace(S.SIT_OFF, ' ', ', ') SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
+		FROM SITTER S
+		where S.SIT_MBR_ID = #{sit_mbr_id}
+	</select>
+	
+	<!-- ##################################아기########################################### -->
+	
+	<!-- 단건조회 -->
+	<select id="getChildList" resultType="ChildVO">
+		SELECT *
+		FROM CHILD
+		where mbr_id = #{mbr_id}
+	</select>
 </mapper>

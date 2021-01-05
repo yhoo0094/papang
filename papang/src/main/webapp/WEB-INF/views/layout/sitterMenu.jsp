@@ -25,8 +25,8 @@
 <body>
 	<div class="menuBar strongYellow" align="center">
 		<div class="menuTitleDiv"><b class="menuTitle">베이비시터</b></div>
-		<div class="sidebarMenuDiv"><a class="sidebarMenu" href="#">시터 리스트</a></div>
-		<div class="sidebarMenuDiv"><a class="sidebarMenu" href="#">예약정보</a></div>
+		<div class="sidebarMenuDiv"><a class="sidebarMenu" href="${pageContext.request.contextPath}/sitter/board">시터 리스트</a></div>
+		<div class="sidebarMenuDiv"><a class="sidebarMenu" href="${pageContext.request.contextPath}/sitter/reservationView">예약정보</a></div>
 	</div>
 </body>
 </html>

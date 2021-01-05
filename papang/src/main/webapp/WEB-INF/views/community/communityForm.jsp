@@ -70,14 +70,14 @@
 				$('#communityFormMainForm').attr("action","${pageContext.request.contextPath}/community/update?com_no="+${param.com_no});
 				$('#communityFormMainForm').submit();
 			}
-		})
+		});
 		
 		//삭제 버튼 클릭
 		$('#deleteBtn').on({
 			"click" : function() {
 				location.href = "${pageContext.request.contextPath}/community/delete?com_no="+${param.com_no}
 			}
-		})
+		});
 	})
 </script>
 </head>

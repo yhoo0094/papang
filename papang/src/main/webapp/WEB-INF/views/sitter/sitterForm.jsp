@@ -1,12 +1,12 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
-*{
+.center_div{
 	font-size: 19px;
 }
 
@@ -34,7 +34,7 @@
 	height: 60px;
 	min-width: 50px;
 	max-width: 50px;
-	font-size: 13px;
+	font-size: 20px;
 }
 
 .prev, .next {
@@ -83,8 +83,6 @@
 	width: 100px;
 	height: 35px;
 }
-
-
 </style>
 <script type="text/javascript">
 $(()=>{
@@ -188,9 +186,9 @@ function calendarMaker(target, date) {
 	<hr>
 	<br>
 	<div align="right">
-		<input type="checkbox" value="">아기이름1
-		<input type="checkbox" value="">아기이름2
-		<input type="checkbox" value="">아기이름3
+		<c:forEach items="${childVOList}" var="v">
+			<input type="checkbox" value="${v.chi_name}">${v.chi_name}
+		</c:forEach>
 		<button class="btnReserve btnYellow">예약하기</button>
 		<br><br>
 		
@@ -199,15 +197,15 @@ function calendarMaker(target, date) {
 		<div id="calendarForm" align="center"></div>
 		<div id="sitterForm" class="strongYellow" align="center">
 			<img class="sitterProfileImg" alt="시터이미지"
-				src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg">
+				src="${pageContext.request.contextPath}/resources/images/sitterProfile/${sitterVOChk.sit_pic}">
 			<table class="sitterInfoTable" align="center">
 				<tr align="center">
-					<td align="center">돌봄요일:</td>
-					<td align="left">월, 화, 수, 목, 금</td>
+					<td align="center">휴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;무:</td>
+					<td align="left">${sitterVOChk.sit_off}</td>
 				</tr>
 				<tr>
 					<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
-					<td align="left">8,000원</td>
+					<td align="left">${sitterVOChk.sit_pay}</td>
 				</tr>
 				<tr>
 					<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점:</td>
@@ -215,7 +213,7 @@ function calendarMaker(target, date) {
 				</tr>
 				<tr>
 					<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
-					<td align="left">대구</td>
+					<td align="left">${sitterVOChk.sit_loc}</td>
 				</tr>
 				<tr>
 					<td align="center">제재횟수:</td>
