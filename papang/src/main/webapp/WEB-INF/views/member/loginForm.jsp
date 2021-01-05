@@ -95,11 +95,10 @@ function formCheck() {
 	href="${pageContext.request.contextPath}/css/login.css">
 <!--===============================================================================================-->
 </head>
-<body>
+<body style="background-color: #fff5d2;">
 
 	<div class="limiter">
-		<div class="container-login100"
-			style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41"> 로그인 </span>
 				<form class="login100-form validate-form p-b-33 p-t-5" id="frm"
