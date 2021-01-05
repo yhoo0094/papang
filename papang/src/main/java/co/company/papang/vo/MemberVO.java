@@ -19,6 +19,7 @@ public class MemberVO {
 	private String mbr_post;
 	private String mbr_addr1;
 	private String mbr_addr2;
+	private String mbr_addr3;
 	private String mbr_bank; // 필수아님
 	private String mbr_account; // 필수아님
 	private String mbr_author; // 디폴트 user
@@ -26,4 +27,5 @@ public class MemberVO {
 	private String mbr_status; // 디폴트 활동중
 	private String mbr_gender;	
 	private String rcnt; // 재영아..
+	private String mbr_pic;
 }

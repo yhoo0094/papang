@@ -1,5 +1,6 @@
 package co.company.papang.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.EsMapper;
@@ -65,6 +68,16 @@ public class MemberController {
 	// 회원가입 처리
 	@PostMapping("/member/join")
 	public String join(HttpServletRequest request, MemberVO member) throws IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		// 이미지파일(첨부파일 읽어내기)
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			// 파일 경로 webapp 바로 밑이 최상위
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+			member.setMbr_pic(multipartFile.getOriginalFilename());
+		}
 		reg_service.insertUser(member);
 		return "main/main";
 	}

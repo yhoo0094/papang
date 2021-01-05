@@ -17,6 +17,7 @@
 								mbr_addr2,
 <if test="mbr_bank != null and mbr_bank != ''">mbr_bank,</if>
 <if test="mbr_account != null and mbr_account != ''">mbr_account,</if>
+<if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
 								mbr_gender )
 	 	            VALUES( #{mbr_id},
 	 	               		#{mbr_pw},
@@ -28,8 +29,10 @@
 	 	               		#{mbr_post},
 	 	               		#{mbr_addr1},
 	 	               		#{mbr_addr2},
+	 	               		#{mbr_addr3},
 <if test="mbr_bank != null and mbr_bank != ''">#{mbr_bank},</if>
 <if test="mbr_account != null and mbr_account != ''">#{mbr_account},</if>
+<if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
 	 	               		#{mbr_gender} )
 	</insert>
 <!-- 아이디중복체크 -->

@@ -197,13 +197,16 @@ public class MarketController {
 	}
 
 // 주문
+	
 	// 전체 주문하기
 	@RequestMapping(value = "/market/order", method = RequestMethod.POST)
-	public String test16(HttpSession session, Order_infoVO order, Od_detailVO detail) throws IOException {
+	public void test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request) throws IOException {
+		String order_sum = request.getParameter("order_sum");
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		order.setMbr_id(mbr_id);
-
+		order.setOrder_sum(order_sum);
+		
 		// 주문번호 무작위 생성
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -223,10 +226,11 @@ public class MarketController {
 		mk_service.orderDetail(detail);
 		
 		mk_service.deleteAllCart(mbr_id); // 전체주문이니까 주문끝나면 카트 완전히 비우기
-		return "redirect:/mypage/market_buyinfo";
+		//return "redirect:/mypage/market_buyinfo";
 	}
+	// 선택 주문하기
 //	@RequestMapping(value="/market/order", method=RequestMethod.POST)
-//	public String test16(HttpSession session, Order_infoVO tran, @RequestParam(value="chBox[]") List<String> chArr) throws IOException{
+//	public String test17(HttpSession session, Order_infoVO tran, @RequestParam(value="chBox[]") List<String> chArr) throws IOException{
 //		MemberVO memberVo = (MemberVO)session.getAttribute("user");
 //		String mbr_id = memberVo.getMbr_id();
 //		return "";
@@ -243,18 +247,5 @@ public class MarketController {
 	 * int result = 0; int bag_no = 0; if(mbr_id != null) { for(String i : chArr) {
 	 * bag_no = i; tran.setBag_no(bag_no); mk_service.orderInfo(tran); } result = 1;
 	 * } return result; //jsp주소 }
-	 * 
-	 * // 주문하기 -> 목록생성
-	 * 
-	 * @RequestMapping("market/order") public String test16(HttpSession session,
-	 * Tran_infoVO tran, HttpServletRequest request) throws IOException { // 선택상품주문
-	 * 어렵네.. // tran = new Tran_infoVO(); //
-	 * tran.setBag_no(request.getParameter("bag_no")); // tran = (Tran_infoVO)
-	 * dao.orderInfo(tran); // request.setAttribute("tran", tran); // 전체상품 주문
-	 * MemberVO memberVo = (MemberVO)session.getAttribute("user"); String mbr_id =
-	 * memberVo.getMbr_id(); mk_service.orderInfo(tran);
-	 * 
-	 * // 주문 후 장바구니 비우기 mk_service.deleteAllCart(mbr_id); return "";//
-	 * "redirect:/marketList/orderList"; }
 	 */
 }

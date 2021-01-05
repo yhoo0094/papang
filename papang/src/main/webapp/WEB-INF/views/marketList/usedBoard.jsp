@@ -83,6 +83,6 @@
 		<br>
 	</div>
 	<div align="right">
-		<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
+		<button id="createBtn" class="btnYellow bMedium">글쓰기</button>
 	</div>
 </body>
