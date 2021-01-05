@@ -49,19 +49,34 @@
 
 <!-- =========================================================== -->
 <!-- 로그인 -->
+<!-- 일반회원 -->
 	<select id="login" resultType="MemberVO">
 		SELECT *
 		FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 		  AND mbr_pw = #{mbr_pw}
 	</select>
+<!-- 관리자 -->
+<select id="adminLogin" resultType="AdminVO">
+		SELECT *
+		FROM ADMIN
+		WHERE ad_id = #{ad_id}
+		  AND ad_pw = #{ad_pw}
+	</select>
+	
 <!-- 로그인 정보체크 -->
+<!-- 일반회원 -->
 	<select id="loginCheck" resultType="string">
 		SELECT mbr_pw
 		FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 	</select>
-
+<!-- 관리자 -->
+	<select id="adminLoginCheck" resultType="string">
+		SELECT ad_pw
+		FROM ADMIN
+		WHERE ad_id = #{ad_id}
+	</select>
 <!-- =========================================================== -->
 <!-- 판매상품 -->
 <!-- 단건조회  -->

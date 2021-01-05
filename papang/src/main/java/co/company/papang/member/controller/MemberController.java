@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import co.company.papang.impl.EsMapper;
 import co.company.papang.member.service.LoginService;
 import co.company.papang.member.service.MemberRegService;
+import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.MemberVO;
 
 @Controller
@@ -37,18 +38,6 @@ public class MemberController {
 	@RequestMapping("/member/joinForm") // url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 		return new ModelAndView("member/joinForm"); // jsp주소
-	}
-
-	// 회원가입 폼 2
-	@RequestMapping("/member/DivForm") // url 예전 .do
-	public ModelAndView test2(HttpServletResponse response) throws IOException {
-		return new ModelAndView("member/joinFormDiv"); // jsp주소
-	}
-
-	// 회원가입 폼 3
-	@RequestMapping("/member/BootForm") // url 예전 .do
-	public ModelAndView test3(HttpServletResponse response) throws IOException {
-		return new ModelAndView("member/joinFormBoot"); // jsp주소
 	}
 
 	// 아이디중복체크
@@ -88,35 +77,15 @@ public class MemberController {
 		return new ModelAndView("member/loginForm"); // jsp주소
 	}
 
-//	// 로그인처리
-//	@PostMapping("/member/login") // post 요청은 로그인 처리
-//	public String login(HttpSession session, MemberVO vo) {
-//		String rs = "";
-//		// 기존 세션값 삭제
-//		if (session.getAttribute("login") != null) {
-//			session.removeAttribute("login");
-//		}
-//		// 로그인 성공시 반환하는 객체
-//		MemberVO mvo = log_service.getMember(MemberVO);
-//		
-//		if (mvo != null) {
-//			session.setAttribute("login", mvo);
-//			 rs = "main/main"; // 메인으로 이동
-//		} else { // 로그인실패
-//			
-//			rs = "redirect:/member/login";
-//		}
-//		return rs;
-//	}
 	// 로그인처리
 	@PostMapping("/member/login") // post 요청은 로그인 처리
-	public String login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
+	public void login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
 			HttpServletResponse response) {
 		String rs = "";
 		String chkPw = log_service.loginCheck(member);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkPw.equals(member.getMbr_pw())) {
-			session.setAttribute("user", member); // 회원가입 한 회원의 정보들은 user 라는 이름으로 세션에 담는다
+			session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
 			try {
 				
 				PrintWriter out = response.getWriter();
@@ -136,7 +105,39 @@ public class MemberController {
 			}
 			rs = "/member/loginForm";
 		}
-		return null;//"redirect:"+rs;
+	}
+
+	// 관리자 로그인 폼
+	@RequestMapping("/member/adminLoginForm") // url 예전 .do
+	public ModelAndView test2(HttpServletResponse response) throws IOException {
+		return new ModelAndView("member/adminLoginForm"); // jsp주소
+	}
+
+	// 관리자 로그인 처리
+	@PostMapping("/member/adminLogin") // url 예전 .do
+	public void adminlogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
+			HttpServletResponse response) {
+		String chkPw = log_service.adminLoginCheck(admin);
+		response.setContentType("text/html; charset=UTF-8");
+		if (chkPw.equals(admin.getAd_pw())) {
+			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
+			try {
+				
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인되었습니다');</script>");
+				out.println("<script>location.href='/papang/';</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인 실패');</script>");
+				out.println("<script>location.href='/papang/member/adminLoginForm';</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	// 로그아웃
