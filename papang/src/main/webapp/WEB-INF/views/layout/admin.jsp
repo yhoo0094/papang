@@ -57,10 +57,11 @@ margin: 0 0 0 10%;
 				class="nav-link dropdown-toggle" id="userDropdown" href="#"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-				<div class="dropdown-menu dropdown-menu-right"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="${pageContext.request.contextPath}/">papang
-						페이지</a> <a class="dropdown-item" href="#">시터/회원 관리 페이지</a>
+				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/">papang 페이지</a> 
+					<a class="dropdown-item" href="#">시터/회원 관리 페이지</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="login.html">1대1 문의 게시판</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="login.html">Logout</a>
 				</div></li>
@@ -85,7 +86,9 @@ margin: 0 0 0 10%;
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 공지사항 등록
-						</a> <a class="nav-link collapsed" href="" data-toggle="collapse"
+						</a>
+						
+						 <a class="nav-link collapsed" href="" data-toggle="collapse"
 							data-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
@@ -102,8 +105,7 @@ margin: 0 0 0 10%;
 									href="${pageContext.request.contextPath}/admin/sittermember">시터/회원
 									관리</a> <a class="nav-link"
 									href="${pageContext.request.contextPath}/admin/sitterSchedule">시터
-									스케줄</a> <a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/alarm">알림 관리</a>
+									스케줄</a>
 							</nav>
 						</div>
 

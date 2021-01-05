@@ -2,6 +2,7 @@ package co.company.papang.admin.service;
 
 import java.util.List;
 
+import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVO;
@@ -39,7 +40,28 @@ public interface AdminService {
 
 	// 시터 수정
 	public int updateSitter(SitterVO vo);
-	
+
 	// 맴버 탈퇴
 	public int deleteMember(MemberVO vo);
+
+	// 시터권한 알림
+	public int insertSitterAlarm(MemberVO vo);
+
+	// 배너등록
+	public int insertBanner(BannerVO vo);
+
+	// 배너조회
+	public List<BannerVO> getbannerlist(BannerVO vo);
+
+	// 배너 단건
+	public BannerVO getBanner(BannerVO vo);
+
+	// 배너 수정
+	public int updateBanner(BannerVO vo);
+
+	// 배너 삭제
+	public int deleteBanner(BannerVO vo);
+
+	// 배너 상태 수정
+	public int updateBannerstatus(BannerVO vo);
 }

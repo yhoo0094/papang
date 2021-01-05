@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Banner {
+public class BannerVO {
 
 	private String ban_no;
 	private String ban_category;

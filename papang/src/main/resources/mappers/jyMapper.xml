@@ -85,6 +85,16 @@
 		#{mbr_author}
 		where mbr_id = #{mbr_id}
 	</update>
+	<!-- 시터 알림 기능 -->
+	<insert id="insertSitterAlarm" parameterType="co.company.papang.vo.MemberVO">
+		<if test="mbr_author == '시터'">
+			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'베이비시터로 권한 변경 되었습니다.',sysdate)
+		</if>
+		<if test="mbr_author == '회원'">
+			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'회원으로 권한 변경 되었습니다.',sysdate)
+		</if>
+	</insert>
+	
 	
 	<!-- 맴버 탈퇴 기능 -->
 	<update id="deleteMember" parameterType="co.company.papang.vo.MemberVO">
@@ -127,6 +137,75 @@
 		</if>
 		WHERE sit_mbr_id = #{sit_mbr_id}
 	</update>
+	
+	
+	<!-- 공지등록 -->
+	<insert id="insertBanner" parameterType="co.company.papang.vo.BannerVO">
+		INSERT INTO BANNER (
+		BAN_NO,
+		AD_ID,
+		BAN_CATEGORY,
+		BAN_PIC_NAME,
+		BAN_PIC_STATUS,
+		BAN_PIC,
+		BAN_LINK
+		)
+		VALUES(
+		SEQ_BANNER_BAN_NO.nextval,
+		'ADMIN',
+		#{ban_category},
+		#{ban_pic_name},
+		#{ban_pic_status},
+		#{ban_pic},
+		#{ban_link})
 
-
+	</insert>
+	
+	<!-- 배너 전체조회 -->
+	<select id="getbannerlist"
+		resultType="co.company.papang.vo.BannerVO">
+		SELECT * FROM BANNER
+		<where>
+			<if test="ban_category != null and ban_category !=''">
+				ban_category = #{ban_category}
+			</if>
+		</where>
+		ORDER BY ban_no         
+	</select>
+	
+	<!-- 배너 단건조회 -->
+	<select id="getBanner" parameterType="co.company.papang.vo.BannerVO"
+		resultType="co.company.papang.vo.BannerVO">
+		SELECT * FROM BANNER
+		WHERE ban_no = #{ban_no}
+	</select>
+	
+	<!-- 배너 정보 수정 -->
+	<update id="updateBanner" parameterType="co.company.papang.vo.BannerVO">
+		update Banner set
+		ban_category = #{ban_category},
+		ban_pic_name =  #{ban_pic_name},
+		ban_pic_status =  #{ban_pic_status},
+		ban_link = #{ban_link}
+		<if test="ban_pic != null and ban_pic !=''">
+		, ban_pic = #{ban_pic}
+		</if>
+		WHERE ban_no = #{ban_no}
+	</update>
+	
+	<!-- 배너 삭제 -->
+	<delete id="deleteBanner" parameterType="co.company.papang.vo.BannerVO">
+		delete from BANNER
+		where ban_no =
+		#{ban_no}
+	</delete>
+	
+	<!-- 배너 상태 수정 -->
+	<update id="updateBannerstatus" parameterType="co.company.papang.vo.BannerVO">
+		update banner set
+		ban_pic_status =
+		#{ban_pic_status}
+		where ban_no = #{ban_no}
+	</update>
+	
 </mapper>

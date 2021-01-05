@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import co.company.papang.admin.service.AdminService;
 import co.company.papang.impl.JyMapper;
+import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVO;
@@ -87,6 +88,49 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.deleteMember(vo);
 	}
 
+	@Override
+	public int insertSitterAlarm(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertSitterAlarm(vo);
+	}
+
+	@Override
+	public int insertBanner(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertBanner(vo);
+	}
+
+	@Override
+	public List<BannerVO> getbannerlist(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.getbannerlist(vo);
+	}
+
+	@Override
+	public BannerVO getBanner(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.getBanner(vo);
+	}
+
+	@Override
+	public int updateBanner(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updateBanner(vo);
+	}
+
+	@Override
+	public int deleteBanner(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.deleteBanner(vo);
+	}
+
+	@Override
+	public int updateBannerstatus(BannerVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updateBannerstatus(vo);
+	}
+
+	
 
 	
 }

@@ -10,6 +10,7 @@
 		SitterDelete();
 		sitterUpdate();
 		memberUpdate();
+		init();
 		var sitoff;
 		$("#filter").on('change', function() {
 			memberList();
@@ -136,6 +137,7 @@
 		$('#sit_note').val(sitter.sit_note);
 		$('#sit_age').val(sitter.sit_age);
 		$('#img').attr('style',"width:300px; height: 350px");
+		
 
 	}
 	//사용자 삭제 요청
@@ -166,7 +168,7 @@
 			}//if
 		}); //삭제 버튼 클릭
 	}//nqDelete
-
+	
 	//사용자 목록 조회 요청
 	function memberList() {
 		var filter = $("#filter").val()
@@ -320,7 +322,7 @@
 		this.reset();
 		$('#la').html("선택한 파일 없음");
 		alert("수정되었습니다");
-		$('#img').attr('src','${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg');
+		$('#img').attr('src','');
 	});
 	},
 	error:function(xhr, status, message) { 
@@ -329,6 +331,19 @@
 	});
 	});//수정 버튼 클릭
 	}//userUpdate
+	
+	//초기화
+	function init() {
+		//초기화 버튼 클릭
+		$('#btnInit').on('click', function() {
+			$('#form1').each(function() {
+				this.reset();
+				$('#la').html("선택한 파일 없음");
+				alert("초기화되었습니다");
+				$('#img').attr('src','');
+			});
+		});
+	}//init
 	
 </script>
 <h1 class="mt-4">시터/회원 관리</h1>
@@ -341,8 +356,9 @@
 			<td width="50%">
 				<table width="100%">
 					<tr align="center">
-						<td><img id="img" class="sitterProfileImg" alt="시터이미지"
-							src="${pageContext.request.contextPath}/resources/images/sitterProfile/profile1.jpg" style="width:300px; height: 350px"></td>
+						<td>
+						<img id="img" class="sitterProfileImg" alt="시터이미지"
+							src="" style="width:300px; height: 350px"></td>
 					</tr>
 					<tr align="center">
 						<td><input type="file" name="uploadFile2" id="uf" />

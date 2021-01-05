@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.papang.admin.service.AdminService;
+import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVO;
@@ -30,13 +31,13 @@ public class AdminRestController {
 	@Autowired
 	AdminService service;
 
-	// �쟾泥댁“�쉶
+	// 공지사항 전체조회
 	@RequestMapping(value = "/nq", method = RequestMethod.GET)
 	public List<NqVO> getNqList(Model model, NqVO vo) {
 		return service.getListNq(vo);
 	}
 
-	// �벑濡�
+	// 공지사항 등록
 	@RequestMapping(value = "/nq", method = RequestMethod.POST
 	// ,produces="application/json"
 	// ,consumes="application/json"
@@ -45,30 +46,28 @@ public class AdminRestController {
 	public Map insertNQ(NqVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		// �씠誘몄��뙆�씪
-		// request Multipart濡� 罹먯뒪�똿
+
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 
-		// 泥⑤��뙆�씪
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			String path = request.getSession().getServletContext().getRealPath("/images");
 			System.out.println("path=" + path);
-			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
-																							// �씠由�
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+
 			vo.setNq_file(multipartFile.getOriginalFilename());
 		}
 		service.insertNq(vo);
 		return Collections.singletonMap("result", true);
 	}
 
-	// �떒嫄댁“�쉶
+	// 공지사항 단건조회
 	@RequestMapping(value = "/nq/{nq_no}", method = RequestMethod.GET)
 	public NqVO getNq(@PathVariable String nq_no, NqVO vo, Model model) {
 		vo.setNq_no(nq_no);
 		return service.getNq(vo);
 	}
 
-	// �궘�젣
+	// 공지사항 삭제
 	@RequestMapping(value = "/nq/{nq_no}", method = RequestMethod.DELETE)
 	public Map<String, Object> getUserList(@PathVariable String nq_no, NqVO vo, Model model) {
 		vo.setNq_no(nq_no);
@@ -78,7 +77,7 @@ public class AdminRestController {
 		return result;
 	}
 
-	// �닔�젙
+	// 공지사항 수정
 	@RequestMapping(value = "/nq", method = RequestMethod.PUT
 	// ,produces="application/json" //�쓳�떟�뿤�뜑
 			, consumes = "application/json" // �슂泥��뿤�뜑
@@ -87,11 +86,9 @@ public class AdminRestController {
 	public NqVO updateNq(NqVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		// �씠誘몄��뙆�씪
-		// request Multipart濡� 罹먯뒪�똿
+
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 
-		// 泥⑤��뙆�씪
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			String path = request.getSession().getServletContext().getRealPath("/images");
 			System.out.println("path=" + path);
@@ -104,13 +101,12 @@ public class AdminRestController {
 	}
 
 	// 멤버리스트 조회
-
 	@RequestMapping(value = "/member", method = RequestMethod.GET)
 	public List<MemberVO> getListMember(Model model, MemberVO vo) {
 		return service.getListMember(vo);
 	}
 
-	// 수정
+	// 셀렉트 옵션으로 권한 수정 + 알림
 	@RequestMapping(value = "/member", method = RequestMethod.PUT
 	// ,produces="application/json" //응답헤더
 			, consumes = "application/json" // 요청헤더
@@ -118,9 +114,11 @@ public class AdminRestController {
 	)
 	public MemberVO updateMember(@RequestBody MemberVO vo, Model model) {
 		service.updateMember(vo);
+		service.insertSitterAlarm(vo);
 		return vo;
 	}
 
+	// 시터 정보 등록 (아이디,나이 구해서 넣기)
 	@RequestMapping(value = "/sitter", method = RequestMethod.POST
 	// ,produces="application/json"
 	// ,consumes="application/json"
@@ -131,6 +129,7 @@ public class AdminRestController {
 		return Collections.singletonMap("result", true);
 	}
 
+	// 시터 -> 회원 변경
 	@RequestMapping(value = "/sitter/{sit_mbr_id}", method = RequestMethod.DELETE)
 	public Map<String, Object> getSitterList(@PathVariable String sit_mbr_id, SitterVO vo, Model model) {
 		vo.setSit_mbr_id(sit_mbr_id);
@@ -147,13 +146,54 @@ public class AdminRestController {
 		return service.getSitter(vo);
 	}
 
-	// �닔�젙
+	// 시터 정보 추가 등록 , 수정
 	@RequestMapping(value = "/sitterUpdate"
 	// ,produces="application/json" //�쓳�떟�뿤�뜑
-			
+
 	// ,headers = {"Content-type=application/json" }
 	)
 	public SitterVO updateSitter(SitterVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile2");
+
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			System.out.println("path=" + path);
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+
+			vo.setSit_pic(multipartFile.getOriginalFilename());
+			System.out.println(vo.getSit_pic());
+		}
+		String result3 = "";
+
+		for (String str : vo.getArray()) {
+			result3 += str + ' ';
+		}
+		vo.setSit_off(result3);
+		service.updateSitter(vo);
+		return vo;
+	}
+
+	// 회원탈퇴 => 회원 상태를 탈퇴로 바꾸는것
+	@RequestMapping(value = "/memberdelete", method = RequestMethod.PUT
+	// ,produces="application/json" //응답헤더
+			, consumes = "application/json" // 요청헤더
+	// ,headers = {"Content-type=application/json" }
+	)
+	public MemberVO deleteMember(@RequestBody MemberVO vo, Model model) {
+		service.deleteMember(vo);
+		return vo;
+	}
+
+	// 배너 등록
+	@RequestMapping(value = "/banner", method = RequestMethod.POST
+	// ,produces="application/json"
+	// ,consumes="application/json"
+	// ,headers = {"Content-type=application/json" }
+	)
+	public Map insertBanner(BannerVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// �씠誘몄��뙆�씪
@@ -162,32 +202,66 @@ public class AdminRestController {
 
 		// 泥⑤��뙆�씪
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("resources/images/Banner");
 			System.out.println("path=" + path);
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
 																							// �씠由�
-			vo.setSit_pic(multipartFile.getOriginalFilename());
-			System.out.println(vo.getSit_pic());
+			vo.setBan_pic(multipartFile.getOriginalFilename());
 		}
-		String result3 = "";
+		service.insertBanner(vo);
+		return Collections.singletonMap("result", true);
+	}
 
-		for(String str : vo.getArray()) {
-			result3 += str+' ';
+	// 배너 조회
+	@RequestMapping(value = "/banner", method = RequestMethod.GET)
+	public List<BannerVO> getbannerList(Model model, BannerVO vo) {
+		return service.getbannerlist(vo);
+	}
+
+	// 배너 단건조회
+	@RequestMapping(value = "/banner/{ban_no}", method = RequestMethod.GET)
+	public BannerVO getBanner(@PathVariable String ban_no, BannerVO vo, Model model) {
+		vo.setBan_no(ban_no);
+		return service.getBanner(vo);
+	}
+
+	// 공지사항 수정
+	@RequestMapping(value = "/bannerUpdate")
+	public BannerVO updateBanner(BannerVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile2");
+
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			String path = request.getSession().getServletContext().getRealPath("resources/images/Banner");
+			System.out.println("path=" + path);
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
+																							// �씠由�
+			vo.setBan_pic(multipartFile.getOriginalFilename());
 		}
-		vo.setSit_off(result3);
-		service.updateSitter(vo);
+		service.updateBanner(vo);
 		return vo;
 	}
-	
-	
-	// 수정
-	@RequestMapping(value = "/memberdelete", method = RequestMethod.PUT
+
+	// 배너 삭제
+	@RequestMapping(value = "/banner/{ban_no}", method = RequestMethod.DELETE)
+	public Map<String, Object> deletebanner(@PathVariable String ban_no, BannerVO vo, Model model) {
+		vo.setBan_no(ban_no);
+		service.deleteBanner(vo);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", Boolean.TRUE);
+		return result;
+	}
+
+	// 배너 상태 수정
+	@RequestMapping(value = "/banner", method = RequestMethod.PUT
 	// ,produces="application/json" //응답헤더
 			, consumes = "application/json" // 요청헤더
 	// ,headers = {"Content-type=application/json" }
 	)
-	public MemberVO deleteMember(@RequestBody MemberVO vo, Model model) {
-		service.deleteMember(vo);
+	public BannerVO bannerstatus(@RequestBody BannerVO vo, Model model) {
+		service.updateBannerstatus(vo);
 		return vo;
 	}
 
