@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,20 +55,30 @@ table tbody tr td {
 			   	</br>
 			   
 			   
-			   	<form id="myForm" action="notjoin2" method="post"> 
-			   	<label style="font-size:20px;margin:50px"><b>아이디</b>　</label><input class="input_small" type="text" id="id"
+			   	<form id="myForm" action="notjoin2" method="post" onsubmit="return submitCheck();"> 
+			   	<label style="font-size:20px;margin:50px">아이디　　　</label><input class="input_small" type="text" id="id"
 
 							name="id" readonly value="${ memberVO.mbr_id }">
 			    </br>
-				<label style="font-size:20px;margin:50px"><b>이름　</b>　</label><input class="input_small" type="text" id="id"
+				<label style="font-size:20px;margin:50px">이름　　　　</label><input class="input_small" type="text" id="id"
 							name="id" readonly value="${ memberVO.mbr_name}">
-				</br>
-				<label style="font-size:20px;margin:50px"><b>비밀 번호</b></label><input class="input_small" type="password" id="id"
-							name="id"  value="${ memberVO.mbr_pw }">
-							
+				</br> 
+				<label style="font-size:20px;margin:50px; style=color: red">비밀 번호　　
+				</label>
+				<input class="input_small pw" type="password" id="mbr_pw"
+							name="mbr_pw">
+				</br>			
+				<label style="font-size:20px;margin:50px;style=color: red">비밀 번호 확인</label>  
+				
+				<input class="input_small pw" type="password" id="mbr_pw2"
+							name="mbr_pw2">
+							<span id="alert-success" style="display: none; color: #84FF33; font-weight: bold;">비밀번호가 일치합니다.</span>
+    						<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+				
+				<input type="hidden" name="hintpw" id="hintpw" value="${ memberVO.mbr_pw }">				 
 						<p class="w3-center">
-						<button type="submit" id="joinBtn" 
-							class="btnYellow bMedium">변경</button>
+						<button type="submit a" id="joinBtn" 
+							class="btnYellow bMedium">탈퇴</button>
 						<button type="reset" id="joinBtn2"
 							class="btnGray bMedium">취소</button>
 					</p>	
@@ -79,4 +93,42 @@ table tbody tr td {
 
 </body>
 
+<script>
+    $('.pw').focusout(function () {
+        var pwd1 = $("#mbr_pw").val();
+        var pwd2 = $("#mbr_pw2").val();
+ 
+        if ( pwd1 != '' && pwd2 == '' ) {
+            null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+            } else {
+                alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        } 
+    });
+    
+    function submitCheck() {
+    	var pwd1 = $("#mbr_pw").val();
+        var pwd2 = $("#mbr_pw2").val();
+        var pwd3 = $("#hintpw").val();
+        
+    	   if(pwd1 == pwd2 && pwd2== pwd3 ) {
+    	   return true;
+
+    	 }
+    	   else {
+    		   alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+    	  return false
+    	   }
+    	}
+    
+    
+  
+   
+</script>
 </html>

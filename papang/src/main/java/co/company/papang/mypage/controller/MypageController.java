@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import co.company.papang.impl.YrMapper;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
@@ -50,14 +49,15 @@ public class MypageController {
 		return mav; 
 	}
 	@RequestMapping("mypage/update") //회원정보수정 (마이페이지 메인홈)
-	public ModelAndView test22(HttpServletResponse response,MemberVO memberVO) throws IOException{
+	public ModelAndView test22(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
 		
 		ModelAndView mav=new ModelAndView();
 
 		System.out.println(memberVO);
 	
 		dao.updateMemberVO(memberVO);
-		mav.setViewName("mypage/myhome");
+		mav.setViewName("main/main");
+		session.invalidate();
 		return mav; 
 	}
 	
@@ -70,7 +70,7 @@ public class MypageController {
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
 		memberVO.setMbr_id(mbr_id);
-		
+		 
 	
 
 		mav.addObject(dao.getMemberVO(memberVO));
@@ -211,13 +211,19 @@ public class MypageController {
 					//첨부파일
 					if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
 						
-						String path = request.getSession().getServletContext().getRealPath("/resources/images/active/");
+						String path = request.getSession().getServletContext().getRealPath("/images");
 						System.out.println("path="+path);
 						
 					multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
 					sitterVO.setSit_pic(multipartFile.getOriginalFilename());
 					}
-					
+					 String result3 = "";
+
+				      for(String str : sitterVO.getArray()) {
+				         result3 += str+' ';
+				      }
+				      sitterVO.setSit_off(result3);
+
 					dao.updateSitterVO(sitterVO);
 			return "main/main";
 		}

@@ -4,15 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Tran_infoVO {
-	private String tran_no;
-	private String bag_no;
-	private String waybill;
-	private String tran_date;
-	private String tran_status;
-	private String tran_sum;
+public class Od_detailVO {
+	private String od_detail_no;
+	private String order_no;
+	private String pro_no;
+	private String bag_cnt;
 }

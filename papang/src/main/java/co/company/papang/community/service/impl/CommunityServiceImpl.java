@@ -43,6 +43,16 @@ public class CommunityServiceImpl implements CommunityService {
 	public int hitPlus(CommunityVO communityVO) {
 		return dao.hitPlus(communityVO);
 	}
+
+	@Override
+	public int communityFormUpdate(CommunityVO communityVO) {
+		return dao.communityFormUpdate(communityVO);
+	}
+
+	@Override
+	public int communityFormDelete(CommunityVO communityVO) {
+		return dao.communityFormDelete(communityVO);
+	}
 	
 	
 }

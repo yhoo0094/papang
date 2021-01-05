@@ -4,8 +4,9 @@ import java.util.List;
 
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
+import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.ProductVO;
-import co.company.papang.vo.Tran_infoVO;
+import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.UsedVO;
 
 public interface EsMapper {
@@ -42,6 +43,8 @@ public interface EsMapper {
 	public int deleteCart(BagVO bag); // 삭제
 
 	// 주문
-	public void orderInfo(Tran_infoVO tran); // 주문하기 -> 목록생성
+	public void orderInfo(Order_infoVO order); // 주문내역 생성
+	public void orderDetail(Od_detailVO detail); // 주문 상세정보
+	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
 }
 

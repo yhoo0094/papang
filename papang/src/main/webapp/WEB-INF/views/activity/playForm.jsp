@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
@@ -19,7 +20,7 @@
  	.note-editor .note-toolbar {padding: 15px 0 15px 5px;}
  	.btn_div{margin:30px 0 0 0;}
  	.bMedium{font-size: 18px;margin: 10px;}
- 	/* #summernote {width:100%; height: 50%;} */
+ 	.note-editable{font-size: 23px;} 
 </style>
 
 <body>
@@ -27,27 +28,30 @@
 <div>
 	<div class="Bigtitle">아빠와 함께 놀아요 > 글 등록</div>	
 		<div class="cook_content">
-		
-		<div class="cView_title">
-			<input class="in_title" placeholder="제목을 입력하세요">
-		</div>
-		<div class="cView_category">
-			<select class="in_category">
-				<option selected>-- 카테고리 선택 --</option>
-				<option value="예비아빠">예비아빠</option>
-				<option value="만0~1세">만0~1세</option>
-				<option value="만2세">만2세</option>
-				<option value="만3~6세">만3~6세</option>
-			</select>
-		</div>
-		<div align="center">
-			<textarea id="summernote"
-							class="communityFormTxtarea" rows="20" cols="102" name="comm" ></textarea>
-		</div>
-		<div class="btn_div" align="center">
-			<button class="btnRed bMedium">등록</button>
-			<button class="btnGray bMedium">취소</button>
-		</div>
+		<form action="${pageContext.request.contextPath}/activity/insertPlay" method="post">
+			<div class="cView_title">
+				<input class="in_title" name="play_title" placeholder="제목을 입력하세요">
+				<%-- <input type="hidden" name="play_no" value="${}"> --%>
+				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
+			</div>
+			<div class="cView_category">
+				<select class="in_category" name="play_category">
+					<option selected>-- 카테고리 선택 --</option>
+					<option value="예비아빠">예비아빠</option>
+					<option value="만0~1세">만0~1세</option>
+					<option value="만2세">만2세</option>
+					<option value="만3~6세">만3~6세</option>
+				</select>
+			</div>
+			<div align="center">
+				<textarea name="play_content" id="summernote"
+								class="communityFormTxtarea" rows="20" cols="102" name="comm" ></textarea>
+			</div>
+			<div class="btn_div" align="center">
+				<button class="btnRed bMedium" type="submit">등록</button>
+				<button class="btnGray bMedium" id="cancleBtn" type="reset">취소</button>
+			</div>
+		</form>
 	</div>
 </div>
 <!--전체 div 끝 --> 

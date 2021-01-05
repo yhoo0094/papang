@@ -1,5 +1,7 @@
 package co.company.papang.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,10 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Sitter_comVO {
-	private String sit_mbr_id;
+public class Order_infoVO {
+	private String order_no;
 	private String mbr_id;
-	private String sc_no;
-	private String sc_content;
-	private String sc_rate;
+	private String waybill;
+	private String order_date;
+	private String order_status;
+	private String order_sum;
 }

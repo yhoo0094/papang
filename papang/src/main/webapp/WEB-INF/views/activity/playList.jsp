@@ -4,58 +4,18 @@
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
 <style type="text/css">
-.communityFormTitle {
-	padding: 1%;
-}
-
-.sitterBoardInputSize {
-	width: 40%;
-}
-
-.sitterProfileImg {
-	width: 100%;
-	height: 100%;
-	display: block;
-	border-radius: 10px;
-}
-
-thead, #dataTable_filter, #dataTable_length {
-	display: none;
-}
-
-.dataTableTr {
-	display: inline;
-	width: 50%;
-}
-
-.dataTableDisplayBlock {
-	display: block;
-	width: 20%;
-}
-
-.TableInTheDataTable td {
-	border-top: none;
-	vertical-align: middle;
-	padding: 3px 11px;
-}
-
-.dataTableTr .sitterDiv {
-	padding: 6px;
-	border-radius: 10px;
-}
-
-.communityFormFilter {
-	width: 100%;
-	border-radius: 20px;
-	background-color: #ff971d;
-}
-
-.dataTableTr>td {
-    width: 260px; border: none;
-}
-.button {
- display: inline-block;border-radius: 4px;background-color:#e8505b;border: none;color: #FFFFFF;font-weight:bold;text-align: center;
- 			font-size: 23px;padding: 17px;width: 270px;transition: all 0.5s;cursor: pointer;margin: 5px;}
+.communityFormTitle {padding: 1%;}
+.sitterBoardInputSize {width: 40%;}
+.sitterProfileImg {width: 100%;height: 100%;display: block;border-radius: 10px;}
+thead, #dataTable_filter, #dataTable_length {display: none;}
+.dataTableTr {display: inline;width: 50%;}
+.dataTableDisplayBlock {display: block;width: 20%;}
+.TableInTheDataTable td {border-top: none;vertical-align: middle;padding: 3px 11px;}
+.dataTableTr .sitterDiv {padding: 6px;border-radius: 10px;}
+.communityFormFilter {width: 100%;border-radius: 20px;background-color: #ff971d;}
+.dataTableTr>td {width: 260px; border: none;}
+.button {display: inline-block;border-radius: 4px;background-color:#e8505b;border: none;color: #FFFFFF;font-weight:bold;text-align: center;
+		font-size: 23px;padding: 17px;width: 270px;transition: all 0.5s;cursor: pointer;margin: 5px;}
 .button span {cursor: pointer;display: inline-block;position: relative;transition: 0.5s;}
 .button span:after {content: '\00bb';position: absolute;opacity: 0;top: 0;right: -20px;transition: 0.5s;}
 .button:hover span {padding-right: 25px;}
@@ -70,6 +30,7 @@ thead, #dataTable_filter, #dataTable_length {
 .table{margin: 4rem 0 1rem 0;}
 .search_btn{transition-duration: 0.4s;} 
 .search_btn:hover{background-color:#e8505b;color:white;}
+.playno_hidden{display: none;}
 </style>
 <script>
 
@@ -129,14 +90,37 @@ window.onload = function() {
     css.type = "text/css";
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
+    
+    
+	$('#regbtn').on('click',function() {
+		var mbr_id = '${user.mbr_id}';
+		
+		console.log(mbr_id);
+		
+		if(mbr_id == null || mbr_id == "") {
+			alert('로그인 후 사용가능합니다');
+			location.href="${pageContext.request.contextPath}/member/loginForm"
+		} else {
+		location.href="playForm"
+		}
+	})
+	
+	$('#Bigtitle').on('click',function() {
+		location.href="playList"
+	})
+	
+
 };
+
+
+
 </script>
 <script>
 
 </script>
 </head>
 <body>
-	<div class="Bigtitle">아빠와 함께 놀아요</div>
+	<div class="Bigtitle" id="Bigtitle">아빠와 함께 놀아요</div>
 	<div class="search_div" align="center">
 		<button class="search_btn" id="search1">예비 파파</button>
 		<button class="search_btn" id="search2">만0 ~ 1세</button>
@@ -148,7 +132,7 @@ window.onload = function() {
 
 	<div class="header_div">	
 	<div class="title_div">
-		<h1>
+		<h1 class="moveTitle">
   			<a href="" class="typewrite" data-period="2000" data-type='[ "아이와 함께 하는 즐거운 놀이 ", "아빠! 아이와 함께 놀아요 !"]'  >
     			<span class="wrap"></span>
  			 </a>
@@ -156,7 +140,7 @@ window.onload = function() {
 	</div>
 		<!-- box -->
 	<div class="button_div">
-		<button class="button" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
+		<button class="button" id="regbtn" style="vertical-align:middle"><span>나만의 새 놀이 만들기</span></button>
 	</div>	
 	</div>
 	
@@ -166,12 +150,25 @@ window.onload = function() {
 			<thead>
 				<tr>
 					<th>가</th>
+					<th>나</th>
 				</tr>
+				
 			</thead>
 			<tbody>
 			<!-- foreach돌기 -->
 			<c:forEach items="${playlist}" var="play">
+			<script>
+			
+			beforeStr = '123.456.789.000';
+			afterStr = beforeStr.split('.');
+			var beforeStr = "${play.play_content}";
+			imgsrc = imgsrc.split('src=\"')
+			console.log(imgsrc);
+			
+			</script>
+			<%-- ${play.play_content} --%>
 				<tr class="dataTableTr" > 
+					<td class="playno_hidden">${play.play_no}</td>
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >
 			<li>

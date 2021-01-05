@@ -35,6 +35,10 @@ table tbody tr td {
   font-size: 24px;
 }
 </style>
+
+
+
+
 <title>마이페이지</title>
 </head>
 <body> 
@@ -45,7 +49,7 @@ table tbody tr td {
 			</div>
 			<div class="content_div">
 			 
-				 <form id="fim" name="fim" action="update" method="post"> 
+				 <form id="fim" name="fim" action="update" method="post" onsubmit="return submitCheck();"> 
 					<p>
 						<label>이름</label> <input class="w3-input" type="text" id="mbr_name"
 							name="mbr_name" readonly value="${ memberVO.mbr_name}">
@@ -56,17 +60,24 @@ table tbody tr td {
 					</p>
 					<p>
 						<label>생년월일</label> <input class="w3-input" type="text"
-							id="mbr_birth" name="mbr_birth" value="${ memberVO.mbr_birth }">
+							id="mbr_birth" readonly name="mbr_birth" value="${ memberVO.mbr_birth }">
 					</p>
 					<p class="w3-center"></p>
 					<input type="hidden" name="id" value="${ memberVO.mbr_pw }">
-					<p>
-						<label>Password</label> <input class="w3-input" id="mbr_pw"
-							name="mbr_pw" type="password" value="${ memberVO.mbr_pw }">
+					<p> 
+						<label style="color: red">비밀번호</label> 
+							<div class="content_content">
+   								 <input type="password" id="mbr_pw" name ="mbr_pw" class="pw w3-input" placeholder="비밀번호" >
+   								 <span>8~15자리의 영문, 숫자, 특수문자의 입력이 가능합니다.</span>
+							</div>  
 					</p>
-					<p>
-						<label>New Password</label> <input class="w3-input" id="mbr_pw"
-							name="mbr_pw" type="password" value="${ memberVO.mbr_pw }">
+					<p> 
+						<label style="color: red">비밀번호 확인</label> 
+						<div class="content_content">
+   								 <input type="password" id="mbr_pw2" name ="mbr_pw2" class="pw w3-input"  placeholder="비밀번호 확인">
+    							<span id="alert-success" style="display: none; color: #84FF33; font-weight: bold;">비밀번호가 일치합니다.</span>
+    							<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+						</div>
 					</p>
 					<p>
 						<label>닉네임</label> <input class="w3-input" id="mbr_nick" name="mbr_nick"  value="${ memberVO.mbr_nick }">
@@ -75,17 +86,46 @@ table tbody tr td {
 						<label>핸드폰</label> <input class="w3-input" type="text"
 							id="mbr_phone" name="mbr_phone" type="text" value="${ memberVO.mbr_phone }">
 					</p>
-					<p>
+					<p> 
 						<label>주소</label>    <input  type="text" class="input_small"
 							id="mbr_addr1" name="mbr_addr1" value="${ memberVO.mbr_addr1 }" >  ㅡ   <input  type="text" class="input_small"
 							id="mbr_addr1" name="mbr_addr1" type="text" value="${ memberVO.mbr_addr1 }"> <button>주소검색</button>
 					</p>
 					<p>
 							<input class="w3-input"
-							id="pw2" type="text" placeholder="상세정보" value="${ memberVO.mbr_addr2 }">
+							id="mbr_addr2"  name="mbr_addr2" type="text" value="${ memberVO.mbr_addr2 }">
 					</p>
 					<p>
-						<label>계좌번호</label> <input class="w3-input" 
+						<label>계좌번호</label><select  class="input_small" name="mbr_bank" id="mbr_bank">
+		 							<option value="${ memberVO.mbr_bank}">${ memberVO.mbr_bank}</option>
+									<option value="경남은행">경남은행</option>
+									<option value="광주은행">광주은행</option>
+									<option value="국민은행">국민은행</option>
+									<option value="기업은행">기업은행</option>
+									<option value="농협중앙회">농협중앙회</option>
+									<option value="농협회원조합">농협회원조합</option>
+									<option value="대구은행">대구은행</option>
+									<option value="도이치은행">도이치은행</option>
+									<option value="부산은행">부산은행</option>
+									<option value="산업은행">산업은행</option>
+									<option value="상호저축은행">상호저축은행</option>
+									<option value="새마을금고">새마을금고</option>
+									<option value="수협중앙회">수협중앙회</option>
+									<option value="신한금융투자">신한금융투자</option>
+									<option value="신한은행">신한은행</option>
+									<option value="신협중앙회">신협중앙회</option>
+									<option value="외환은행">외환은행</option>
+									<option value="우리은행">우리은행</option>
+									<option value="우체국">우체국</option>
+									<option value="전북은행">전북은행</option>
+									<option value="제주은행">제주은행</option>
+									<option value="카카오뱅크">카카오뱅크</option>
+									<option value="케이뱅크">케이뱅크</option>
+									<option value="하나은행">하나은행</option>
+									<option value="한국씨티은행">한국씨티은행</option>
+									<option value="HSBC은행">HSBC은행</option>
+									<option value="SC제일은행">SC제일은행</option>
+							</select> <input class="w3-input" 
 							id="mbr_account" name="mbr_account"  value="${ memberVO.mbr_account }">
 					</p>
 					<p>
@@ -95,7 +135,7 @@ table tbody tr td {
 					
 					<p class="w3-center">
 						<button type="submit" id="myhomechange"
-							class="btnYellow bMedium">변경</button>
+							class="btnYellow bMedium aa">변경</button>
 						<button type="reset"
 							class="btnGray bMedium">취소</button>
 					</p>
@@ -108,5 +148,40 @@ table tbody tr td {
 
 
 </body>
+<script>
+    $('.pw').focusout(function () {
+        var pwd1 = $("#mbr_pw").val();
+        var pwd2 = $("#mbr_pw2").val();
+ 
+        if ( pwd1 != '' && pwd2 == '' ) {
+            null;
+        } else if (pwd1 != "" || pwd2 != "") {
+            if (pwd1 == pwd2) {
+                $("#alert-success").css('display', 'inline-block');
+                $("#alert-danger").css('display', 'none');
+            } else {
+                alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+                $("#alert-success").css('display', 'none');
+                $("#alert-danger").css('display', 'inline-block');
+            }
+        } 
+    });
+    
+    
 
+    function submitCheck() {
+    	var pwd1 = $("#mbr_pw").val();
+        var pwd2 = $("#mbr_pw2").val();
+    	 
+    	   if(pwd1 == pwd2 ) {
+    		   alert("다시 로그인해 주시기 바랍니다");
+    	   return true;
+
+    	 }
+    	   else {
+    		   alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
+    	  return false
+    	   }
+    	}
+</script>
 </html>
