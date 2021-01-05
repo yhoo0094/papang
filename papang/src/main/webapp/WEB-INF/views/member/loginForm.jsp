@@ -45,14 +45,14 @@ p.loginpage {
 <!-- script type="text/javascript">
 function formCheck() {
 	var frm = document.frm;
-	if (frm.mbr_id.value == "") {
+	if (frm.ad_id.value == "") {
 		alert("사용자 아이디를 입력하세요");
-		frm.mbr_id.focus();
+		frm.ad_id.focus();
 		return false;
 	}
-	if (frm.mbr_pw.value == "") {
+	if (frm.ad_pw.value == "") {
 		alert("비밀번호를 입력하세요");
-		frm.mbr_pw.focus();
+		frm.ad_pw.focus();
 		return false;
 	}
 	return true;
@@ -66,7 +66,8 @@ function formCheck() {
 <link rel="icon" type="image/png"
 	href="${pageContext.request.contextPath}/resources/images/login/favicon.ico" />
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -101,19 +102,23 @@ function formCheck() {
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41"> 로그인 </span>
+				<p class="loginpage" align="right">
+					<a class="loginpage"
+						href="${pageContext.request.contextPath}/member/adminLoginForm">관리자로그인</a>
+				</p>
 				<form class="login100-form validate-form p-b-33 p-t-5" id="frm"
-					name="frm" method="post" action="${pageContext.request.contextPath}/member/login">
+					name="frm" method="post"
+					action="${pageContext.request.contextPath}/member/adminLogin">
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Enter username">
-						<input class="input100" type="text" name="mbr_id"
-							placeholder="아이디"> <span
-							class="focus-input100" data-placeholder="&#xe82a;"></span>
+						<input class="input100" type="text" name="ad_id" placeholder="아이디">
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Enter password">
-						<input class="input100" type="password" name="mbr_pw"
+						<input class="input100" type="password" name="ad_pw"
 							placeholder="비밀번호"> <span class="focus-input100"
 							data-placeholder="&#xe80f;"></span>
 					</div>
@@ -122,29 +127,8 @@ function formCheck() {
 						<small> 아이디 기억하기</small>
 					</div -->
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" id="loginBtn" type="submit" onclick="return formCheck()">
-							Login</button>
-					</div>
-					<div align="center" style="margin-top: 10px">
-						<p class="loginpage">
-							<a class="loginpage" href="${pageContext.request.contextPath}/member/joinForm">회원가입</a>
-						</p>
-						<p class="loginpage">
-							<a class="loginpage" href="${pageContext.request.contextPath}/member/findIdForm">아이디찾기</a>&nbsp;&nbsp;
-							<a class="loginpage" href="${pageContext.request.contextPath}/member/findPwForm">비밀번호찾기</a>
-						</p>
-					</div>
-					<!-- 소셜로그인 -->
-					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
-						<a class="loginpage" href="#"><button type="button"
-								class="social-item flex-c-m m-r-5">
-								<img  class="loginpage"
-									src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png">
-							</button> </a>&nbsp;&nbsp;&nbsp; <a href="#"><button type="button"
-								class="social-item flex-c-m m-r-5">
-								<img  class="loginpage"
-									src="${pageContext.request.contextPath}/resources/images/icon/naver.png">
-							</button> </a>
+						<button class="login100-form-btn" id="loginBtn" type="submit"
+							onclick="return formCheck()">Login</button>
 					</div>
 				</form>
 			</div>
