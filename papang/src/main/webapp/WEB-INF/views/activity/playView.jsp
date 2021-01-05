@@ -141,7 +141,7 @@
 @import
 	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-h1[alt="Simple"] {
+/* h1[alt="Simple"] {
 	color: white;
 }
 
@@ -149,7 +149,7 @@ a[href], a[href]:hover {
 	color: grey;
 	font-size: 0.5em;
 	text-decoration: none
-}
+} */
 
 .starrating>input {
 	display: none;
@@ -179,6 +179,14 @@ a[href], a[href]:hover {
 .container {
 	font-family: FontAwesome;
 }
+.back{color: rgb(249, 196, 94);font-size: 35px;font-weight: bold;}
+.back:focus, .back:hover {
+    color:  rgb(238, 140, 140);
+    text-decoration: none;
+}
+.btnDiv{margin: 30px 0 0 0;}
+.btnUpdate{margin-left: 10px;}
+body {background-color: #fff5d2;}
 </style>
 <script>
 $(()=>{
@@ -188,10 +196,7 @@ $(()=>{
 		addDiv.append('<img class="star" src="${pageContext.request.contextPath}/resources/images/active/star.png">')
     }
 	
-	
-	
 	acInsert();
-	
 	//후기 사진 바로 띄우기
 
 	$("#uf").on('change',function(e) {
@@ -205,6 +210,11 @@ $(()=>{
 		preview(arr);
 
 	});
+	var a = ${actcommList}
+	if(a.length ==0) {
+		$('#test').css('display','none');
+	}
+	
 });
 //후기 등록 요청
 function acInsert() {
@@ -274,14 +284,18 @@ function checkExtension(fileName, fileSize) {
 							$('#img').attr('style','width:300px; height:300px');
 						}
 					});//arr.forEach
-		}
+					
+					
+		}		
+			
+	
 
 </script>
 </head>
 <body>
 	<div>
 		<%-- <h3>아이디: ${user.mbr_id}</h3> --%>
-		<div class="Bigtitle">아빠와 놀아요 > 따라해보세요</div>
+		<div class="Bigtitle"><a class="back" href="${pageContext.request.contextPath}/activity/playList">아빠와 놀아요</a> > 따라해보세요</div>
 		<div class="cook_content">
 			<div class="cView_title">
 				<div class="c_title" id="c_title">${playVO.play_title}</div>
@@ -292,8 +306,15 @@ function checkExtension(fileName, fileSize) {
 			</div>
 		</div>
 
+		<div class="btnDiv" align="center">
+			<c:if test="${user.mbr_id eq playVO.mbr_id}">
+						<button type="button" class="btnGray bMedium btnDelide" id="btnInsert">삭제</button>
+						<button type="button" class="btnRed bMedium btnUpdate" id="btnInsert">수정</button>
+			</c:if>
+		</div>
+		
+		<div id="test">
 		<p class="comm_title">후기</p>
-
 		<div class="comm_div">
 			<c:forEach items="${actcommList}" var="actcomm">
 				<div class="comment">
@@ -301,8 +322,8 @@ function checkExtension(fileName, fileSize) {
 						src="${pageContext.request.contextPath}/images/actCom/${actcomm.ac_pic}">
 				</div>
 			</c:forEach>
+			</div>
 		</div>
-
 
 		<p class="comm_title">후기작성</p>
 		

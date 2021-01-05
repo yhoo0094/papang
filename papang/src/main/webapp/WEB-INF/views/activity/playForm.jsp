@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
@@ -48,7 +49,7 @@
 			</div>
 			<div class="btn_div" align="center">
 				<button class="btnRed bMedium" type="submit">등록</button>
-				<button class="btnGray bMedium" type="reset">취소</button>
+				<button class="btnGray bMedium" id="cancleBtn" type="reset">취소</button>
 			</div>
 		</form>
 	</div>
