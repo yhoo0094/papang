@@ -19,6 +19,7 @@ public class SitterVOChk {
 	private String sit_age;
 	private String sit_note;
 	private String sit_pic;
+	private String off_days;
 	private String maxPay;
 	private String minPay;
 }

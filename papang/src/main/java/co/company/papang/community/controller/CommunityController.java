@@ -24,6 +24,7 @@ import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.SitterVOChk;
 
 @Controller
 public class CommunityController {
@@ -66,8 +67,8 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/community/formInsert") //커뮤니티 글 인서트
-	public String communityFormInsert(CommunityVO communityVO, Errors errors, HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String communityFormInsert(CommunityVO communityVO, Errors errors, HttpServletRequest request, HttpSession session) {
+//		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
 		communityVO.setMbr_id(mbr_id);
@@ -90,14 +91,19 @@ public class CommunityController {
 	
 	/*-------------------------- 시터 --------------------------*/
 	@RequestMapping("/sitter/menu") //url 예전 .do
-	public String sitterMenu(SitterVO sitterVO) {
-		
+	public String sitterMenu() {
+
 		return "layout/sitterMenu"; //jsp주소
 	}
 	
 	@RequestMapping("/sitter/board") //url 예전 .do
-	public String sitterBoard() {
-		
+	public String sitterBoard(Model model, SitterVOChk sitterVOChk) {
+		if(sitterVOChk.getOff_days() != null) {
+			String off_days =  sitterVOChk.getOff_days().replace(',', '|');
+			sitterVOChk.setOff_days(off_days);
+			System.out.println(sitterVOChk.getOff_days());
+		}
+		model.addAttribute("sitterVOChkList",service.getSitterList(sitterVOChk));
 		return "sitter/sitterBoard"; //jsp주소
 	}
 	

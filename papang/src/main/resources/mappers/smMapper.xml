@@ -106,17 +106,18 @@
 	<!-- ##################################시터########################################### -->
 	
 	<!-- 전체조회 -->
-	<select id="getSitterList" resultType="sitterVO">
-		SELECT ROWNUM, S.*
+	<select id="getSitterList" resultType="SitterVOChk">
+		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, S.SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
 		FROM SITTER S
 		<where>
 			<![CDATA[
 				ROWNUM <= 100
 			]]>
-				and C.COM_NO = #{com_no}
-				and C.CC_CATEGORY = '커뮤니티'
+			<if test="off_days != null and off_days != ''">
+				AND NOT REGEXP_LIKE(S.SIT_OFF,#{off_days})
+			</if>
+			
 		</where>
-		ORDER BY C.CC_NO DESC
 	</select>
 
 </mapper>
