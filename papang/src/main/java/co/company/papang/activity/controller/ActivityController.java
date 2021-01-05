@@ -55,8 +55,12 @@ public class ActivityController {
 	//놀이
 	//1. 놀이 리스트 전체 조회/ 놀이 리스트 검색
 	@RequestMapping("activity/playList") 
-	public ModelAndView playList(HttpServletResponse response,PlayVO playVO) throws IOException{
+	public ModelAndView playList(HttpServletResponse response,PlayVO playVO,MemberVO memberVO,HttpSession session) throws IOException{
 		ModelAndView mav = new ModelAndView();
+		System.out.println("----");
+		//memberVO =(MemberVO)session.getAttribute("user");
+		//mav.addObject("member",service.getMember(memberVO));
+		System.out.println(memberVO.getMbr_id());
 		mav.addObject("playlist",service.getPlayList(playVO));
 		mav.setViewName("activity/playList");
 		return mav; 
@@ -96,6 +100,7 @@ public class ActivityController {
 	//놀이 리스트 글 등록폼 가기
 	@RequestMapping("activity/playForm") 
 	public ModelAndView playForm(HttpServletResponse response, HttpSession session,MemberVO member) throws IOException{
+	
 		return new ModelAndView("activity/playForm"); 
 	}
 	

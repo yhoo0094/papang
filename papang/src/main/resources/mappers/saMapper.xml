@@ -12,9 +12,10 @@
 
 <!-- (2).놀이  -->
 <!-- 놀이 전체조회, 놀이검색 --> 
-<select id="getPlayList" resultType="PlayVO">
-	SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY, PLAY_HIT,PLAY_CONTENT 
-	FROM PLAY 
+<select id="getPlayList" resultType="map">
+	SELECT A.PLAY_NO, A.PLAY_TITLE, A.PLAY_CATEGORY, A.PLAY_HIT, A.PLAY_CONTENT, B.MBR_ID, B.MBR_PIC 
+	FROM PLAY A, MEMBER B
+	WHERE A.MBR_ID = B.MBR_ID
 	<where>
 			<if test="play_category != null and play_category !=''">
 				PLAY_CATEGORY = #{play_category}
@@ -24,6 +25,7 @@
 </select>
 
 
+
 <!-- 놀이 단건조회 -->
 <select id="getPlay" resultType="PlayVO">
 		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT
@@ -31,6 +33,10 @@
 		WHERE PLAY_NO=#{play_no}
 </select>
 
+<!-- 멤버 사진 전체 조회 -->
+<!-- <select id="getMember" resultType="MemberVO">
+	
+</select> -->
 
 <!-- 조회수 증가 -->
 	<update id="hitPlus" parameterType="PlayVO">

@@ -1,10 +1,12 @@
 package co.company.papang.activity.service;
 
 import java.util.List;
+import java.util.Map;
 
 import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
+import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
 public interface ActivityService {
@@ -20,14 +22,15 @@ public interface ActivityService {
 	
 	
 	//2.[놀이]
-	public List<PlayVO> getPlayList(PlayVO playVO); //리스트 전체 조회
+	public List<Map<String,Object>> getPlayList(PlayVO playVO); //리스트 전체 조회
 	public PlayVO getPlay(PlayVO playVO); //리스트 단건 조회
 	public int hitPlus(PlayVO playVO);//조회수
+	public int insertPlay(PlayVO playVO);//놀이 글 등록
+	public MemberVO getMember(MemberVO memberVO);//멤버 조회(멤버 사진 조회용)
 	
 	//3.[활동후기]
 		//3-1.놀이후기
 		public List<Act_comVO> getActComm(Act_comVO act_comVO);//놀이후기 전체조회
 		public Act_comVO getStar(Act_comVO act_comVO);//요리단건 평점조회
 		public int insertActComm(Act_comVO act_comVO);//놀이 후기글 등록
-		public int insertPlay(PlayVO playVO);//놀이 글 등록
 }

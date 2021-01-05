@@ -156,28 +156,21 @@ window.onload = function() {
 			</thead>
 			<tbody>
 			<!-- foreach돌기 -->
-			<c:forEach items="${playlist}" var="play">
-			<script>
+			<c:forEach items="${playlist}" var="play" varStatus="status">
 			
-			beforeStr = '123.456.789.000';
-			afterStr = beforeStr.split('.');
-			var beforeStr = "${play.play_content}";
-			imgsrc = imgsrc.split('src=\"')
-			console.log(imgsrc);
+		
 			
-			</script>
-			<%-- ${play.play_content} --%>
 				<tr class="dataTableTr" > 
 					<td class="playno_hidden">${play.play_no}</td>
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >
 			<li>
-			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/playexam.JPG"></a> 
+			<a class="call_recipe thmb" href="#"> <img class="badimg"  id='${play.play_no}' src=""></a> 
 			<span class="author"> 
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
-				<p>글번호 :</p><p class="play_no">${play.play_no}</p>
+				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/active/${MBR_ID}"></a> 
+				<p>글번호 :</p><p class="play_no">${PLAY_NO}</p>
 				<p>제목 : ${play.play_title}</p>
-				<p>카테고리: </p><p class="play_category">${play.play_category}</p>
+				<p>카테고리: </p><p class="play_category">${PLAY_CATEGORY}</p>
 			</span>
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
@@ -194,6 +187,14 @@ window.onload = function() {
 		</ol>
 					</td>
 				</tr>
+					<script>
+			var sentence = '${play.play_content}';
+			var start = sentence.indexOf('src="');
+			var end = sentence.indexOf('"', start+5);
+			var list = sentence.substring(start+5, end);
+			console.log(list);
+			$('#${play.play_no}').attr('src',list);
+			</script>
 				</c:forEach>
 				
 			</tbody>

@@ -178,7 +178,7 @@ window.onload = function() {
 			<a class="call_recipe thmb" href="#"> <img src="${pageContext.request.contextPath}/resources/images/active/pic01.jpg"></a> 
 			<span class="author"> 
 				<a href="#"> 
-					<img src="${pageContext.request.contextPath}/resources/images/active/boyfriend.png"></a> 
+					<img src="${pageContext.request.contextPath}/resources/images/active/${member.mbr_pic}"></a> 
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
 				<a href="#">DBVALUE</a>
