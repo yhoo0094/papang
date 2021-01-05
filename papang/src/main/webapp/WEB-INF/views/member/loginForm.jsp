@@ -42,36 +42,58 @@ p.loginpage {
   height: 50px;
 } */
 </style>
-<script type="text/javascript">
-// 	$(function() {
-// 		$("#loginBtn").click(function() {
-// 			var mbr_id = $("#mbr_id").val();
-// 			var mbr_pw = $("#mbr_pw").val();
-// 			//var remember = $("#remember").is(":checked");
-// 			$.ajax({
-// 				type : "post",
-// 				url : "${pageContext.request.contextPath}/member/login",
-// 				data : {
-// 					mbr_id : mbr_id,
-// 					mbr_pw : mbr_pw,
-// 					//remember : remember
-// 				},
-// 				success : function(data) {
-// 					if (data == 0) { // 데이터없음 = 로그인X
-// 						alert("회원이 아닙니다");
-// 					} else {
-// 						location.href = "main/main";
-// 					}
-// 				}
-
-// 			})
-// 		})
-// 	})
-</script>
+<!-- script type="text/javascript">
+function formCheck() {
+	var frm = document.frm;
+	if (frm.mbr_id.value == "") {
+		alert("사용자 아이디를 입력하세요");
+		frm.mbr_id.focus();
+		return false;
+	}
+	if (frm.mbr_pw.value == "") {
+		alert("비밀번호를 입력하세요");
+		frm.mbr_pw.focus();
+		return false;
+	}
+	return true;
+}
+</script -->
 <head>
 <title>로그인</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png"
+	href="${pageContext.request.contextPath}/resources/images/login/favicon.ico" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/login.css">
+<!--===============================================================================================-->
 </head>
 <body>
 
@@ -101,7 +123,7 @@ p.loginpage {
 						<small> 아이디 기억하기</small>
 					</div -->
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" id="loginBtn" type="submit">
+						<button class="login100-form-btn" id="loginBtn" type="submit" onclick="return formCheck()">
 							Login</button>
 					</div>
 					<div align="center" style="margin-top: 10px">
@@ -129,4 +151,33 @@ p.loginpage {
 			</div>
 		</div>
 	</div>
+
+
+	<div id="dropDownSelect1"></div>
+
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/bootstrap/js/popper.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/daterangepicker/moment.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+
 </body>
