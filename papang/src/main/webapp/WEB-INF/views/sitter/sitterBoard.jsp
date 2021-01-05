@@ -56,9 +56,14 @@ thead, #dataTable_filter, #dataTable_length {
 }
 </style>
 <script type="text/javascript">
-/* 	$(()=>{
-		$(#'sitterDiv').onclick()
-	}) */
+ 	$(()=>{
+		$('.sitterDiv').on({
+			"click" : function() {
+				var sit_mbr_id = $(this).find('.sitterIdInput').val();
+				location.href="${pageContext.request.contextPath}/sitter/form?sit_mbr_id=" + sit_mbr_id; 		
+			}
+		})
+	}) 
 </script>
 </head>
 <body>
@@ -150,6 +155,7 @@ thead, #dataTable_filter, #dataTable_length {
 					<tr class="dataTableTr">
 						<td>
 							<div class="sitterDiv strongYellow">
+								<input class="sitterIdInput" type="hidden" value="${v.sit_mbr_id}"> 
 								<img class="sitterProfileImg" alt="시터이미지"
 									src="${pageContext.request.contextPath}/resources/images/sitterProfile/${v.sit_pic}">
 								<table class="TableInTheDataTable" align="center">

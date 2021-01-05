@@ -1,30 +1,21 @@
 package co.company.papang.community.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tiles.request.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.community.service.CommunityService;
-import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
-import co.company.papang.vo.SitterVO;
-import co.company.papang.vo.SitterVOChk;
 
 @Controller
 public class CommunityController {
@@ -68,7 +59,6 @@ public class CommunityController {
 	
 	@RequestMapping("/community/formInsert") //커뮤니티 글 인서트
 	public String communityFormInsert(CommunityVO communityVO, Errors errors, HttpServletRequest request, HttpSession session) {
-//		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
 		communityVO.setMbr_id(mbr_id);
@@ -89,38 +79,7 @@ public class CommunityController {
 	}
 	
 	
-	/*-------------------------- 시터 --------------------------*/
-	@RequestMapping("/sitter/menu") //url 예전 .do
-	public String sitterMenu() {
-
-		return "layout/sitterMenu"; //jsp주소
-	}
 	
-	@RequestMapping("/sitter/board") //url 예전 .do
-	public String sitterBoard(Model model, SitterVOChk sitterVOChk) {
-		if(sitterVOChk.getOff_days() != null) {
-			String off_days =  sitterVOChk.getOff_days().replace(',', '|');
-			sitterVOChk.setOff_days(off_days);
-			System.out.println(sitterVOChk.getOff_days());
-		}
-		model.addAttribute("sitterVOChkList",service.getSitterList(sitterVOChk));
-		return "sitter/sitterBoard"; //jsp주소
-	}
-	
-	@RequestMapping("/sitter/form") //url 예전 .do
-	public String sitterForm() {
-		return "sitter/sitterForm"; //jsp주소
-	}
-	
-	@RequestMapping("/sitter/scheduleView") //url 예전 .do
-	public String sitterScheduleView() {
-		return "sitter/sitterScheduleView"; //jsp주소
-	}
-	
-	@RequestMapping("/sitter/reservationView") //url 예전 .do
-	public String reservationView() {
-		return "sitter/reservationView"; //jsp주소
-	}
 	/*-------------------------- 기타 --------------------------*/
 	@RequestMapping(value="/normalBoard")
 	public String normalBoard() {
