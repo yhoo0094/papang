@@ -22,6 +22,7 @@ public interface EsMapper {
 	// 로그인
 	public MemberVO login(MemberVO member); // 로그인
 	public String loginCheck(MemberVO member); // 로그인 체크
+	public AdminVO adminLogin(AdminVO admin); // 관리자로그인
 	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	
 	// 판매상품

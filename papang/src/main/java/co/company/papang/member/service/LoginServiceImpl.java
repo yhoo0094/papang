@@ -19,6 +19,7 @@ public class LoginServiceImpl implements LoginService{
 
 	@Override
 	public String adminLoginCheck(AdminVO admin) {
+		System.out.println("로그인서비스impl");
 		return dao.adminLoginCheck(admin);
 	}
 
