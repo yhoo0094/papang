@@ -54,13 +54,24 @@ public class ActivityController {
 		return new ModelAndView("activity/cookForm");
 	}
 	
-	//요리 글 상세보기
+	//요리 글 단건조회
 	@RequestMapping("activity/cookView")
-	public ModelAndView cookView(HttpServletResponse response,CookVO cookVO) throws IOException {
+	public ModelAndView cookView(HttpServletResponse response,HttpServletRequest request,CookVO cookVO,Act_comVO act_comVO) throws IOException {
+		// 조회수 작업
+		/*
+		 * boolean existCookie = false; Cookie[] cookieList = request.getCookies(); for
+		 * (Cookie co : cookieList) { if (co.getValue().equals(cookVO.getCook_no())) {
+		 * existCookie = true; } } // 쿠키생성 if (!existCookie) { // 쿠키가 없는 경우
+		 * System.out.println("쿠키생성"); Cookie cookie = new Cookie("cookieCode",
+		 * cookVO.getCook_no()); cookie.setMaxAge(60 * 60 * 24);
+		 * response.addCookie(cookie); service.hitPlus(cookVO); } // 조회수 작업 끝
+		 */		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getCook(cookVO));
+		act_comVO.setPc_no(cookVO.getCook_no());
+		mav.addObject("actcommList",service.getCActComm(act_comVO));
 		mav.setViewName("activity/cookView");
-		System.out.println(service.getCook(cookVO));
+		/* System.out.println(service.getCook(cookVO)); */
 		return mav ;
 	}
 	
@@ -85,6 +96,7 @@ public class ActivityController {
 			return vo;
 		}
 
+
 		
 
 	@RequestMapping("activity/test")
@@ -92,6 +104,8 @@ public class ActivityController {
 		return new ModelAndView("activity/test");
 	}
 
+	
+	
 	// ###################################놀이###################################
 	// 1. 놀이 리스트 전체 조회/ 놀이 리스트 검색
 	@RequestMapping("activity/playList")

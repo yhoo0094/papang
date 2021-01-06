@@ -79,4 +79,9 @@ public class ActivityServiceImpl implements ActivityService {
 	public int insertCookActComm(Act_comVO act_comVO) {
 		return dao.insertCookActComm(act_comVO);
 	}
+
+	@Override//요리 후기 전체 조회
+	public List<Act_comVO> getCActComm(Act_comVO act_comVO) {
+		return dao.getCActComm(act_comVO);
+	}
 }

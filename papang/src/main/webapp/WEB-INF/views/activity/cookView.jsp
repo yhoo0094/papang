@@ -217,12 +217,14 @@ $(()=>{
 		preview(arr);
 
 	});
-	/* var a = ${actcommList}
-	if(a.length ==0) {
-		$('#test').css('display','none'); */
-	//}
 	
-
+	 var a = ${actcommList}
+	 console.log("==="+a)
+	if(a.length ==0) {
+		$('#test').css('display','none'); 
+	}
+	
+});
 
 //후기 사진 바로 띄우기
 function checkExtension(fileName, fileSize) {
@@ -267,7 +269,7 @@ function checkExtension(fileName, fileSize) {
 						}
 					});//arr.forEach
 					}		
-		});	
+	
 			
 	
 //후기 등록 요청
@@ -314,7 +316,7 @@ function cacInsert() {
 		</div>
 		
 		
-		<%-- <div id="test">
+	<div id="test">
 		<p class="comm_title">후기</p>
 		<div class="comm_div">
 			<c:forEach items="${actcommList}" var="actcomm">
@@ -323,8 +325,8 @@ function cacInsert() {
 						src="${pageContext.request.contextPath}/images/actCom/${actcomm.ac_pic}">
 				</div>
 			</c:forEach>
-			</div>
-		</div>--%>
+		</div>
+	</div>
 	
 	<p class="comm_title">후기작성</p>
 		

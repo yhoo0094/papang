@@ -37,13 +37,13 @@
 </select>
 
 <!-- 요리 후기 전체조회 -->
- <!-- <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">
+  <select id="getCActComm" resultType="Act_comVO" parameterType="act_comVO">
 		SELECT ROWNUM,A.*
 		FROM ACT_COM A
 		WHERE A.AC_CATEGORY='요리' AND A.PC_NO=#{pc_no}
 		<![CDATA[AND ROWNUM <= 5]]>
 		ORDER BY A.AC_NO DESC
-	</select>    -->
+	</select>  
 	
 <!-- 요리 후기 등록 -->
 <insert id="insertCookActComm" parameterType="act_comVO">

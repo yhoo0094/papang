@@ -40,6 +40,7 @@ public interface SaMapper {
 	public Act_comVO getStar(Act_comVO act_comVO);//놀이 단건글 평점조회
 	public int insertActComm(Act_comVO act_comVO);//놀이 후기글 등록
 	//3-2.요리후기
+	public List<Act_comVO> getCActComm(Act_comVO act_comVO);//요리후기 전제 조회
 	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
 	
 	
