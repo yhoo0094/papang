@@ -80,7 +80,7 @@ h1 {
 </head>
 <body>
 	<!-- 첫번째 슬라이드 -->
-<div>
+
 	<div align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<c:forEach items="${bannerlist}" var="banner" varStatus='i'>
