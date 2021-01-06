@@ -45,14 +45,14 @@ p.loginpage {
 <!-- script type="text/javascript">
 function formCheck() {
 	var frm = document.frm;
-	if (frm.ad_id.value == "") {
+	if (frm.mbr_id.value == "") {
 		alert("사용자 아이디를 입력하세요");
-		frm.ad_id.focus();
+		frm.mbr_id.focus();
 		return false;
 	}
-	if (frm.ad_pw.value == "") {
+	if (frm.mbr_pw.value == "") {
 		alert("비밀번호를 입력하세요");
-		frm.ad_pw.focus();
+		frm.mbr_pw.focus();
 		return false;
 	}
 	return true;
@@ -108,17 +108,18 @@ function formCheck() {
 				</p>
 				<form class="login100-form validate-form p-b-33 p-t-5" id="frm"
 					name="frm" method="post"
-					action="${pageContext.request.contextPath}/member/adminLogin">
+					action="${pageContext.request.contextPath}/member/login">
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Enter username">
-						<input class="input100" type="text" name="ad_id" placeholder="아이디">
-						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						<input class="input100" type="text" name="mbr_id"
+							placeholder="아이디"> <span class="focus-input100"
+							data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input"
 						data-validate="Enter password">
-						<input class="input100" type="password" name="ad_pw"
+						<input class="input100" type="password" name="mbr_pw"
 							placeholder="비밀번호"> <span class="focus-input100"
 							data-placeholder="&#xe80f;"></span>
 					</div>
@@ -129,6 +130,30 @@ function formCheck() {
 					<div class="container-login100-form-btn m-t-32">
 						<button class="login100-form-btn" id="loginBtn" type="submit"
 							onclick="return formCheck()">Login</button>
+					</div>
+					<div align="center" style="margin-top: 10px">
+						<p class="loginpage">
+							<a class="loginpage"
+								href="${pageContext.request.contextPath}/member/joinForm">회원가입</a>
+						</p>
+						<p class="loginpage">
+							<a class="loginpage"
+								href="${pageContext.request.contextPath}/member/findIdForm">아이디찾기</a>&nbsp;&nbsp;
+							<a class="loginpage"
+								href="${pageContext.request.contextPath}/member/findPwForm">비밀번호찾기</a>
+						</p>
+					</div>
+					<!-- 소셜로그인 -->
+					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
+						<a class="loginpage" href="#"><button type="button"
+								class="social-item flex-c-m m-r-5">
+								<img class="loginpage"
+									src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png">
+							</button> </a>&nbsp;&nbsp;&nbsp; <a href="#"><button type="button"
+								class="social-item flex-c-m m-r-5">
+								<img class="loginpage"
+									src="${pageContext.request.contextPath}/resources/images/icon/naver.png">
+							</button> </a>
 					</div>
 				</form>
 			</div>
