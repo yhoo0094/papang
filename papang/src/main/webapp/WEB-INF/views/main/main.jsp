@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +17,11 @@
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <c:forEach  var="banner" items="${bannerlist}" varStatus='i'>
+ 		<c:if test="${banner.ban_category eq '이미지슬라이드'}">
+        <li data-target="#carouselExampleIndicators" data-slide-to="${i.index+1}"></li>
+        </c:if>
+        </c:forEach>
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
@@ -28,20 +32,16 @@
             <p>This is a description for the first slide.</p>
           </div>
         </div>
+    	<c:forEach  var="banner" items="${bannerlist}">
+    	<c:if test="${banner.ban_category eq '이미지슬라이드'}">
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/wintermountain.jpg')">
+        <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
+            <h3>${banner.ban_pic_name}</h3>
           </div>
         </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/whitefox.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
-          </div>
-        </div>
+        </c:if>
+        </c:forEach>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

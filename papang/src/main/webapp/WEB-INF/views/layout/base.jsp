@@ -38,6 +38,7 @@
 
 <!-- 게시판 css -->
 <link href="${pageContext.request.contextPath}/resources/main/css/normal.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <style>
 /* 레이아웃 */
 .fixed-top {height: 100px;background-color: rgb(249, 196, 94);}
@@ -113,6 +114,10 @@ body {background-color: #fff5d2;}
 
 .navbar-dark .navbar-nav .nav-link {
     color: #fff5d2;
+}
+
+.side_div{
+
 }
 
 /* .naviClass, .banner_div, .center_div{
@@ -221,7 +226,9 @@ a.item {
 	</div>
 
 	<tiles:insertAttribute name="left" />
-	<tiles:insertAttribute name="banner" />
+<!-- 	<div class="side_div" align="right"> -->
+		<tiles:insertAttribute name="banner" />
+<!-- 	</div> -->
 	<div class="main_div">
 		<tiles:insertAttribute name="main" />
 	</div>

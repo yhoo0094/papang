@@ -169,6 +169,10 @@
 			<if test="ban_category != null and ban_category !=''">
 				ban_category = #{ban_category}
 			</if>
+				<if test="ban_pic_status != null and ban_pic_status !=''">
+				ban_pic_status = '표시'
+			</if>
+			
 		</where>
 		ORDER BY ban_no         
 	</select>
