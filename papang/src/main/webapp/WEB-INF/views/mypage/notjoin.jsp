@@ -118,6 +118,7 @@ table tbody tr td {
         var pwd3 = $("#hintpw").val();
         
     	   if(pwd1 == pwd2 && pwd2== pwd3 ) {
+    		   alert("회원 탈퇴되었습니다.");
     	   return true;
 
     	 }

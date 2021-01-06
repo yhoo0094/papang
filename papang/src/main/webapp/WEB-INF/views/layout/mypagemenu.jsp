@@ -182,7 +182,7 @@ a {}
 				</ul></li>
 			<li><a href="#none">장터이용내역</a>
 				<ul>
-					<li><a href="#none">장바구니</a></li>
+					<li><a href="${pageContext.request.contextPath}/marketList/cart">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/market_buyinfo">구매내역</a></li>
 					<li><a href="#none">판매내역</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/market_deli">배송현황조회</a></li>

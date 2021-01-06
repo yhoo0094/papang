@@ -177,7 +177,11 @@ table tbody tr td {
     		   alert("다시 로그인해 주시기 바랍니다");
     	   return true;
 
-    	 }
+    	 } 
+    	   else if(pwd1 ==''|| pwd2==''){
+    		   alert("비밀번호를 제대로 입력해주세요");
+    		   return false
+    	   }
     	   else {
     		   alert("비밀번호가 일치하지 않습니다. 비밀번호를 재확인해주세요.");
     	  return false

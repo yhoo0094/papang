@@ -58,10 +58,7 @@
 		<div align="right">
 			
 		</div>
-		<div class="col-lg-12" id="ex1_Result1" ></div> 
-		<div class="col-lg-12" id="ex1_Result2" ></div> 
-		<div class="col-lg-12" id="ex1_Result3" ></div> 
-		<div class="col-lg-12" id="ex1_Result4" ></div> 
+		
 		
 
 

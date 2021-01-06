@@ -81,6 +81,21 @@
 		(mbr_id,chi_birth,chi_name,chi_gender,chi_sns,chi_pic)
 		VALUES(#{mbr_id},#{chi_birth},#{chi_name},#{chi_gender},#{chi_sns},'ㅇ')
 </select>
+		<!-- 구매내역1 -->
+<select id="market_buyinfoOrder_infoVO" parameterType="order_infoVO" resultType="order_infoVO">
+		SELECT 
+		ORDER_NO,WAYBILL,ORDER_DATE,ORDER_STATUS,ORDER_SUM 
+		FROM ORDER_INFO 
+		WHERE MBR_ID = #{mbr_id}
+</select>
+		<!-- 구매내역2 -->
+<select id="market_buyinfoOrder_info2VO" parameterType="od_detailVO" resultType="od_detailVO">
+		SELECT
+		OD_DETAIL_NO,PRO_NO,BAG_CNT,ORDER_NO 
+		FROM ORDER_DETAIL 
+	    WHERE ORDER_NO = #{order_no}
+</select>
+
 <!-- 내 게시물 질문 -->	
 	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
 		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT
