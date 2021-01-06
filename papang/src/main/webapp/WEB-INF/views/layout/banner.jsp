@@ -11,10 +11,10 @@ img{
 margin:10px 30px 0px 0px; }
 .w-100 {
 	height: 700px;
-    width: 10%!important;
-	
+    width: 90%!important;
+
 	<!-- 슬라이드 사진크기 -->
-	display: block;
+	display: inline;
 }
 .w-101 {
 	height: 30%;
@@ -22,7 +22,7 @@ margin:10px 30px 0px 0px; }
     float: left;
 	
 	<!-- 슬라이드 사진크기 -->
-	display: block;
+	display: inline;
 }
 .carousel-control-prev1 {
     left: 0;
@@ -37,10 +37,10 @@ margin:10px 30px 0px 0px; }
     z-index: 1;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    -ms-flex-align: right;
+    align-items: right;
+    -ms-flex-pack: right;
+    justify-content: right;
     width: 25%;
     color: #fff;
     text-align: center;
@@ -49,9 +49,15 @@ margin:10px 30px 0px 0px; }
 }
 .carousel-inner1 {
 	position: relative;
-    width: 100%;
+    width: 10%;
     overflow: hidden;
     left: 190px;
+}
+
+.carousel-inner{
+float: right;
+width: 10%;
+height: 100%;
 }
 .a {
 	width:30%; 
@@ -68,6 +74,7 @@ h1 {
 	font-family: "Trebuchet MS", Dotum, Arial;
 }
 
+
 	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
@@ -75,9 +82,9 @@ h1 {
 </head>
 <body>
 	<!-- 첫번째 슬라이드 -->
-<div id='side_div'>
-	<div align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-		<div class="carousel-inner">
+
+	<div  align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
+		<div class="carousel-inner" style="display:inline-block;">
 			<c:forEach items="${bannerlist}" var="banner" varStatus='i'>
 				<c:if test="${i.index eq 0 }">
 					<div class="carousel-item active">
@@ -93,7 +100,7 @@ h1 {
 		
 	</div>
 
-	</div>
+	
 	
 </body>
 </html>
