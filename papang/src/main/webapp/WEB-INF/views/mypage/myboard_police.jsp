@@ -1,148 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-.w3-input{}
-</style>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-
-<style>
-.input_small {width: 400px; height: 40px; padding: 8px;border: none;border-bottom: 1px solid #ccc;}
-.input_middle {}
-.input_big {}
-.divmargin {margin-top: 150px;}
-.big_title {text-align: center;
-font-size:50px;
-}
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-.content_div{width: 90%;
-    margin: 0px 0px 0px 200px;}
-    .w3-large {
-    margin: 0 0 60px 230px;
-}
-
 .center_div {
     min-height: 750px;
     display: block;
     margin: 176px 15% 9px 23%;
     width: 65%;
 }
+.qwe{
+	text-overflow: ellipsis;
+	display: block;
+	 white-space: nowrap;
+    overflow: hidden; 
+}
 </style>
-<title></title>
-</head>
 <body>
-		<h3>날먹게시판</h3>
+		<h3>신고현황</h3>
 		<hr />
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
 				method="get">
-				<select id="type" name="type">
-					<option value="">분류
-					<option value="공지사항">공지사항
-					<option value="이벤트">이벤트
-				</select> <input type="hidden" name="p" value="1">
+				
 			</form>
 		</div>
 		<br>
-			<table class="table" id="dataTable">
+			<table class="table" id="dataTable" style="table-layout: fixed">
 				<thead>
 					<tr class="tableTrTh">
-						<th width="15%" class="tableTh">번호</th>
-						<th width="20%" class="tableTh">신고사유</th>
-						<th width="15%" class="tableTh">처리결과</th>
-						<th width="15%" class="tableTh">처리된 날짜</th>
-						<th width="15%" class="tableTh">신고ID</th>
+						<th width="15%" class="tableTh">게시글번호</th>			
+						<th width="15%" class="tableTh">신고 제목</th>
+						<th width="30%" class="tableTh">신고 사유</th> 
+						<th width="15%" class="tableTh">답변</th>
+						<th width="15%" class="tableTh">처리상태</th>
+						<th width="10%" class="tableTh">카테고리</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody> 
+				<c:forEach var="co" items="${cos3}">
 					<tr>
-						<td align="center">1</td>
-						<td><a href="#" class="boardTagA">제목텍스트333</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
+						<td align="center">${co.repo_no}</td>
+						<td align="center">${co.repo_title}</td>
+						<td class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" align="center"  style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${co.repo_content}</td>
+						<td align="center">${co.repo_ans}</td>
+						<td align="center">${co.repo_status}</td>
+						<td align="center">${co.repo_category}</td>
 					</tr>
-					<tr>
-						<td align="center">2</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
-					<tr>
-						<td align="center">3</td>
-						<td><a href="#" class="boardTagA">제목텍스트</a></td>
-						<td align="center">분류텍스트</td>
-						<td align="center">20-12-16 12:20</td>
-						<td align="center">0</td>
-					</tr>
+				</c:forEach>	
 					
 					
 				</tbody>
@@ -151,5 +58,90 @@ p {
 		<div align="right">
 			
 		</div>
+		<div class="col-lg-12" id="ex1_Result1" ></div> 
+		<div class="col-lg-12" id="ex1_Result2" ></div> 
+		<div class="col-lg-12" id="ex1_Result3" ></div> 
+		<div class="col-lg-12" id="ex1_Result4" ></div> 
+		
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">신고현황</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">신고제목　</label>
+            <input type="text" class="form-control" id="recipient-name1" value="1">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">신고사유　</label>
+            <input type="text" class="form-control" id="recipient-name2" value="2">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">답변</label>
+            <textarea class="form-control" id="recipient-name3">3</textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
 </body>
-</html>
+
+<script>
+//테이블의 Row 클릭시 값 가져오기
+$("#dataTable tr").click(function(){ 	
+
+	var str = ""
+	var tdArr = new Array();	// 배열 선언 
+	
+	// 현재 클릭된 Row(<tr>)
+	var tr = $(this);
+	var td = tr.children();
+	
+	// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+	
+	// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	td.each(function(i){
+		tdArr.push(td.eq(i).text());
+	});
+	
+	console.log("배열에 담긴 값 : "+tdArr);
+	
+	// td.eq(index)를 통해 값을 가져올 수도 있다.
+	
+	var title = td.eq(1).text();
+	var content = td.eq(2).text();
+	var ans = td.eq(3).text();
+	
+	$("#recipient-name1").val(title)
+	$("#recipient-name2").val(content)
+	$("#recipient-name3").val(ans)
+	
+	str +=	" 신고제목 <font color='red'>" + title + "</font>" +
+			",신고내용: <font color='red'>" + content + "</font>" +
+			",답변 : <font color='red'>" + ans + "</font>";	
+			
+			
+	$("#ex1_Result1").html(str);
+	
+	$("#ex1_Result2").html(title);	
+	$("#ex1_Result3").html(content);	
+	$("#ex1_Result4").html(ans);	
+	
+});	
+
+</script>
+		</html>
+

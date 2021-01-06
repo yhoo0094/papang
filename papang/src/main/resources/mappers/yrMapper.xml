@@ -62,6 +62,25 @@
 	    
 		WHERE MBR_ID = #{mbr_id}
 	</select>
+		<!-- 아기정보조회 -->
+<select id="babyinfoChildVO" parameterType="childVO" resultType="childVO">
+		SELECT CHI_NO,MBR_ID,CHI_BIRTH,CHI_NAME,CHI_GENDER,CHI_SNS,CHI_PIC 
+		FROM CHILD 
+		 WHERE MBR_ID = #{mbr_id}
+</select>
+		<!-- 아기정보삭제 -->
+<select id="babyinfodeleteChildVO" parameterType="childVO" resultType="childVO">
+		DELETE 
+		FROM CHILD
+		WHERE CHI_NO = #{chi_no} 
+</select>
+		<!-- 아기정보등록 -->
+<select id="babyinfoinsertChildVO" parameterType="childVO" resultType="childVO">
+		INSERT 
+		INTO child 
+		(mbr_id,chi_birth,chi_name,chi_gender,chi_sns,chi_pic)
+		VALUES(#{mbr_id},#{chi_birth},#{chi_name},#{chi_gender},#{chi_sns},'ㅇ')
+</select>
 <!-- 내 게시물 질문 -->	
 	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
 		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT
@@ -70,10 +89,17 @@
 	</select>
 <!-- 게시물 답변  -->	
 	<select id="myboard_answerCommunity_comVO" parameterType="community_comVO" resultType="community_comVO">
-		SELECT CC_NO,MBR_ID,CC_CONTENT,CC_DATE,CC_CATEGORY 
+		SELECT CC_NO,MBR_ID,CC_CONTENT,COM_NO,CC_DATE,CC_CATEGORY 
 		FROM COMMUNITY_COM 
 		WHERE MBR_ID=#{mbr_id}
 		</select>
+<!-- 신고현황보기  -->	
+	<select id="myboard_policeReportVO" parameterType="reportVO" resultType="reportVO">
+		SELECT repo_no,mbr_id,repo_category,repo_category_no,repo_title,repo_content,repo_status,repo_ans
+		FROM  REPORT 
+		WHERE MBR_ID=#{mbr_id}
+		</select>		
+		
 <!-- 시터정보조회-->
 	<select id="sitter_infoSitterVO" parameterType="sitterVO" resultType="sitterVO">
 		select SIT_MBR_ID,SIT_PAYDAY,SIT_OFF,SIT_LOC,SIT_PAY,SIT_AGE,SIT_NOTE,SIT_PIC 
