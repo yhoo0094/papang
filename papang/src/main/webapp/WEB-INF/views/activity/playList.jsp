@@ -109,6 +109,8 @@ window.onload = function() {
 		location.href="playList"
 	})
 	
+	
+	
 
 };
 
@@ -161,21 +163,21 @@ window.onload = function() {
 		
 			
 				<tr class="dataTableTr" > 
-					<td class="playno_hidden">${play.play_no}</td>
+					<td class="playno_hidden">${play.PLAY_NO}</td>
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >
 			<li>
-			<a class="call_recipe thmb" href="#"> <img class="badimg"  id='${play.play_no}' src=""></a> 
+			<a class="call_recipe thmb" href="#"> <img class="badimg"  id='${play.PLAY_NO}' src=""></a> 
 			<span class="author"> 
-				<a href="#"><img src="${pageContext.request.contextPath}/resources/images/active/${MBR_ID}"></a> 
-				<p>글번호 :</p><p class="play_no">${PLAY_NO}</p>
-				<p>제목 : ${play.play_title}</p>
-				<p>카테고리: </p><p class="play_category">${PLAY_CATEGORY}</p>
+				<a href="#"><img src="${pageContext.request.contextPath}/images/memberimage/${play.MBR_PIC}"></a> 
+				<p>글번호 :</p><p class="play_no">${play.PLAY_NO}</p>
+				<p>제목 : ${play.PLAY_TITLE}</p>
+				<p>카테고리: </p><p class="play_category">${play.PLAY_CATEGORY}</p>
 			</span>
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a>조회수: ${play.play_hit}</a>
+						<a>조회수: ${play.PLAY_HIT}</a>
 					</div>
 					<div class="like">
 							<button type="submit" class="btn_like">좋아요</button>
@@ -188,12 +190,14 @@ window.onload = function() {
 					</td>
 				</tr>
 					<script>
-			var sentence = '${play.play_content}';
+			var sentence = '${play.PLAY_CONTENT}';
+			console.log('======');
+			console.log(sentence);
 			var start = sentence.indexOf('src="');
 			var end = sentence.indexOf('"', start+5);
 			var list = sentence.substring(start+5, end);
 			console.log(list);
-			$('#${play.play_no}').attr('src',list);
+			$('#${play.PLAY_NO}').attr('src',list);
 			</script>
 				</c:forEach>
 				
