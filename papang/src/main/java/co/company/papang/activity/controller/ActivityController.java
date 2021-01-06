@@ -53,11 +53,39 @@ public class ActivityController {
 	public ModelAndView cookForm(HttpServletResponse response) throws IOException {
 		return new ModelAndView("activity/cookForm");
 	}
-
+	
+	//요리 글 상세보기
 	@RequestMapping("activity/cookView")
-	public ModelAndView cookView(HttpServletResponse response) throws IOException {
-		return new ModelAndView("activity/cookView");
+	public ModelAndView cookView(HttpServletResponse response,CookVO cookVO) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(service.getCook(cookVO));
+		mav.setViewName("activity/cookView");
+		System.out.println(service.getCook(cookVO));
+		return mav ;
 	}
+	
+	
+	// 요리 후기등록
+		@RequestMapping(value = "/cacInsert", method = RequestMethod.POST)
+		@ResponseBody
+		public Act_comVO insertCookActComm(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request) throws IllegalStateException, IOException {
+			// 파일업로드
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+			if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+				String path = request.getSession().getServletContext().getRealPath("/images/actCom");
+				System.out.println("path=" + path);
+				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+
+				vo.setAc_pic(multipartFile.getOriginalFilename());
+			}
+
+			System.out.println("==============");
+			System.out.println(service.insertCookActComm(vo));
+			return vo;
+		}
+
+		
 
 	@RequestMapping("activity/test")
 	public ModelAndView test(HttpServletResponse response) throws IOException {
@@ -134,7 +162,6 @@ public class ActivityController {
 
 			vo.setAc_pic(multipartFile.getOriginalFilename());
 		}
-
 		service.insertActComm(vo);
 		return vo;
 	}

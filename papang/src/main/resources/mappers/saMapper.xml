@@ -15,10 +15,10 @@
 <select id="getCookList" resultType="map" resultMap="cookMemberPic">
 	SELECT A.COOK_NO, A.COOK_TITLE, B.MBR_ID, B.MBR_PIC, A.COOK_HIT, A.COOK_CATEGORY, A.COOK_CONTENT
 	FROM COOK A, MEMBER B
-	WHERE  A.MBR_ID = B.MBR_ID
 	<where>
+			 A.MBR_ID = B.MBR_ID
 		<if test="cook_category != null and cook_category!=''">
-			COOK_CATEGORY = #{cook_category}
+			AND A.COOK_CATEGORY = #{cook_category}
 		</if>
 	</where>
 </select>
@@ -27,6 +27,29 @@
 <insert id="insertCook" parameterType="CookVO" >
 	INSERT INTO COOK (COOK_TITLE,MBR_ID, COOK_CATEGORY,COOK_CONTENT) 
 	VALUES (#{cook_title},#{mbr_id},#{cook_category},#{cook_content})
+</insert>
+
+<!-- 요리 단건 조회 -->
+<select id="getCook" resultType="CookVO">
+	SELECT COOK_NO, COOK_TITLE, COOK_CATEGORY,COOK_CONTENT ,MBR_ID
+	FROM COOK 
+	WHERE COOK_NO=#{cook_no}
+</select>
+
+<!-- 요리 후기 전체조회 -->
+ <!-- <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">
+		SELECT ROWNUM,A.*
+		FROM ACT_COM A
+		WHERE A.AC_CATEGORY='요리' AND A.PC_NO=#{pc_no}
+		<![CDATA[AND ROWNUM <= 5]]>
+		ORDER BY A.AC_NO DESC
+	</select>    -->
+	
+<!-- 요리 후기 등록 -->
+<insert id="insertCookActComm" parameterType="act_comVO">
+	INSERT INTO ACT_COM
+	(MBR_ID,AC_NO,AC_CONTENT,AC_RATE,AC_CATEGORY,PC_NO,AC_PIC) VALUES 
+	(#{mbr_id},SEQ_ACT_COM_AC_NO.NEXTVAL,#{ac_content},#{ac_rate},'요리',#{pc_no},#{ac_pic})
 </insert>
 
 <!-- (2).놀이  -->
@@ -40,10 +63,10 @@
 <select id="getPlayList" resultType="map" resultMap="memberPicresult">
 	SELECT A.PLAY_NO, A.PLAY_TITLE, A.PLAY_CATEGORY, A.PLAY_HIT, A.PLAY_CONTENT, B.MBR_ID, B.MBR_PIC 
 	FROM PLAY A, MEMBER B
-	WHERE A.MBR_ID = B.MBR_ID
 	<where>
+	A.MBR_ID = B.MBR_ID
 			<if test="play_category != null and play_category !=''">
-				PLAY_CATEGORY = #{play_category}
+				AND A.PLAY_CATEGORY = #{play_category}
 			</if>
 	</where>
 </select>
@@ -71,7 +94,7 @@
 		VALUES (SEQ_PLAY_PLAY_NO.NEXTVAL,#{play_title},#{mbr_id},#{play_category},#{play_content})
 	</insert>
 
-<!--후기  전체 조회 -->
+<!--놀이 후기  전체 조회 -->
   	 <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">
 		SELECT ROWNUM,A.*
 		FROM ACT_COM A

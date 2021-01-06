@@ -220,6 +220,7 @@ $(()=>{
 function acInsert() {
 	//등록 버튼 클릭
 	$('#btnInsert').on('click', function() {
+		alert('dd');
 		var form = $('#form1')[0];
    		var formData = new FormData(form);
 		$.ajax({

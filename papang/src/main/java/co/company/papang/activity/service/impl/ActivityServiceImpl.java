@@ -69,4 +69,14 @@ public class ActivityServiceImpl implements ActivityService {
 	public int insertCook(CookVO cookVO) {
 		return dao.insertCook(cookVO);
 	}
+
+	@Override//요리 단건 조회
+	public CookVO getCook(CookVO cookVO) {
+		return dao.getCook(cookVO);
+	}
+
+	@Override//요리 후기글 등록
+	public int insertCookActComm(Act_comVO act_comVO) {
+		return dao.insertCookActComm(act_comVO);
+	}
 }

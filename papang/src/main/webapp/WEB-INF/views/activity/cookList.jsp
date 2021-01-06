@@ -212,7 +212,7 @@ thead, #dataTable_filter, #dataTable_length {
 </script>
 </head>
 <body>
-	<div class="Bigtitle">아빠와 요리해요</div>
+	<div class="Bigtitle" id="Bigtitle">아빠와 요리해요</div>
 	<div class="search_div" align="center">
 		<button class="search_btn" id="c_search1" value="이유식">이유식 만들기</button>
 		<button class="search_btn" id="c_search2"  value="아이와함께">아이와 함께 요리해요</button>
@@ -220,7 +220,6 @@ thead, #dataTable_filter, #dataTable_length {
 		<button class="search_btn" id="c_search4" value="육식아이">육식 아이</button>
 	</div>
 
-	<!-- test -->
 
 	<div class="header_div">
 		<div class="title_div">
@@ -250,7 +249,7 @@ thead, #dataTable_filter, #dataTable_length {
 			<c:forEach items="${cookList}" var="cook">
 				<tr class="dataTableTr">
 					<td class="cookno_hidden">${cook.COOK_NO}</td>
-					<td>
+					<td class="c_box">
 						<ol class="lst_recipe cool_recipes">
 							<li><a class="call_recipe thmb" href="#">
 							 <img id="${cook.COOK_NO}" src=""></a>
@@ -281,11 +280,11 @@ thead, #dataTable_filter, #dataTable_length {
 				<script>
 					var sentence = '${cook.COOK_CONTENT}';
 					console.log('======');
-					console.log(sentence);
+					/* console.log(sentence); */
 					var start = sentence.indexOf('src="');
 					var end = sentence.indexOf('"', start+5);
 					var list = sentence.substring(start+5, end);
-					console.log(list);
+					/* console.log(list); */
 					$('#${cook.COOK_NO}').attr('src',list);
 					console.log(${cook.MBR_PIC});
 				</script>

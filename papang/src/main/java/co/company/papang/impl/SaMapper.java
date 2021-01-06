@@ -24,6 +24,7 @@ public interface SaMapper {
 	//1.[요리]
 	public List<Map<String,Object>> getCookList(CookVO cookVO);//리스트 전체 조회
 	public int insertCook(CookVO cookVO); //요리 글 등록
+	public CookVO getCook(CookVO cookVO);//요리 단건 조회
 	
 	
 	//2.[놀이]
@@ -38,6 +39,8 @@ public interface SaMapper {
 	public List<Act_comVO> getActComm(Act_comVO act_comVO);//놀이후기 전체조회
 	public Act_comVO getStar(Act_comVO act_comVO);//놀이 단건글 평점조회
 	public int insertActComm(Act_comVO act_comVO);//놀이 후기글 등록
+	//3-2.요리후기
+	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
 	
 	
 	
