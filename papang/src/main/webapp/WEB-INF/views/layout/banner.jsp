@@ -2,27 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <html>
 <head>
 <meta charset="UTF-8">
 <title></title>
 <style>
-img{
-margin:10px 30px 0px 0px; }
-.w-100 {
-	height: 700px;
-    width: 90%!important;
 
+.w-100 {
+	height: 600px;
+    width: 80%!important;
+	
 	<!-- 슬라이드 사진크기 -->
-	display: inline;
+	display: block;
 }
 .w-101 {
-	height: 30%;
+	height: 400px;
     width: 40%!important;
     float: left;
 	
 	<!-- 슬라이드 사진크기 -->
-	display: inline;
+	display: block;
 }
 .carousel-control-prev1 {
     left: 0;
@@ -37,10 +37,10 @@ margin:10px 30px 0px 0px; }
     z-index: 1;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: right;
-    align-items: right;
-    -ms-flex-pack: right;
-    justify-content: right;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     width: 25%;
     color: #fff;
     text-align: center;
@@ -49,19 +49,13 @@ margin:10px 30px 0px 0px; }
 }
 .carousel-inner1 {
 	position: relative;
-    width: 10%;
+    width: 100%;
     overflow: hidden;
     left: 190px;
 }
-
-.carousel-inner{
-float: right;
-width: 10%;
-height: 100%;
-}
 .a {
-	width:30%; 
-	height:30%;  
+	width:300px; 
+	height:450px;  
 	float:left;
 	background-color: black;
 	text-align: center;
@@ -74,32 +68,46 @@ h1 {
 	font-family: "Trebuchet MS", Dotum, Arial;
 }
 
-
-	
+.carousel-inner{
+	margin-top: 5%;
+	float:right;
+	width:15%;
+	height:700px;
+}	
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
+
  
 </head>
 <body>
 	<!-- 첫번째 슬라이드 -->
-
-	<div  align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel" >
-		<div class="carousel-inner" style="display:inline-block;">
+<div>
+	<div align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner">
 			<c:forEach items="${bannerlist}" var="banner" varStatus='i'>
 				<c:if test="${i.index eq 0 }">
 					<div class="carousel-item active">
-					<a href="${banner.ban_link}"><img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/banner.jpg"></a>
+					<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/banner.jpg"></a>
+					</div>
 				</c:if>
-				<c:if test="${i.index ne 0 && banner.ban_category eq '사이드배너'}">	
+				<c:if test="${i.index ne 0 }">	
 					<div class="carousel-item">
-				 	 <a href="${banner.ban_link}"><img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}"></a>
+					 <a href="${banner.ban_link}"><img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}"></a>	
+					</div>
 				</c:if> 
-					
-		</div>
+				 	
 			</c:forEach>
 		
 	</div>
-
+	
+		<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"> 
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> 
+			<span class="sr-only">Previous</span>
+		</a> 
+		<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"> 
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> 
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
 	
 	
 </body>
