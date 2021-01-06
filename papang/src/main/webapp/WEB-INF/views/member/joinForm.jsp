@@ -19,6 +19,12 @@ p {
 	margin-top: 0;
 	margin-bottom: 1rem;
 }
+.center_div {
+    min-height: 750px;
+    display: inline-block;
+    margin: 90px 5% 50px 270px;
+    width: 70%;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -234,7 +240,7 @@ p {
 						<tr>
 							<td class="txt">성별&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="radio" id="mbr_gender" style="margin-left:20px; margin-right: 20px;"
-								name="mbr_gender" value="남" checked>남성 <input  style="margin-left:80px; margin-right: 20px;"
+								name="mbr_gender" value="남" checked>남성 <input  style="margin-left:180px; margin-right: 20px;"
 								type="radio" id="mbr_gender" name="mbr_gender" value="녀">여성</td>
 						</tr>
 						<tr>
