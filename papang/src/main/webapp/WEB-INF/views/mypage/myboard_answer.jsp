@@ -30,7 +30,7 @@
 				<thead>
 					<tr class="tableTrTh">
 						<th width="15%" class="tableTh">게시글번호</th>
-						<th width="20%" class="tableTh">제목</th>
+						<th width="20%" class="tableTh">답글내용</th>
 						<th width="15%" class="tableTh">작성자</th>
 						<th width="15%" class="tableTh">작성일</th>
 						<th width="15%" class="tableTh">분류</th>
@@ -40,7 +40,7 @@
 				<c:forEach var="co2" items="${cos2}">
 					<tr>
 						<td align="center">${co2.cc_no}</td>
-						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co2.cc_content}</td>
+						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co2.com_no}" class="boardTagA">${co2.cc_content}</td>
 						<td align="center">${co2.mbr_id}</td>
 						<td align="center">${co2.cc_date}</td>
 						<td align="center">${co2.cc_category}</td>

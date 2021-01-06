@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
-.center_div{
+.center_div {
 	font-size: 19px;
 }
 
@@ -31,7 +31,7 @@
 .custom_calendar_table td, .custom_calendar_table th {
 	text-align: left;
 	vertical-align: text-top;
-	height: 60px;
+	height: 80px;
 	min-width: 50px;
 	max-width: 50px;
 	font-size: 20px;
@@ -62,8 +62,13 @@
 	color: #288CFF;
 }
 
-.custom_calendar_table tbody td.select_day {
+.custom_calendar_table tbody td.startDay {
 	background-color: #ff971d;
+	color: #fff;
+}
+
+.custom_calendar_table tbody td.endDay {
+	background-color: red;
 	color: #fff;
 }
 
@@ -79,9 +84,33 @@
 	font-size: 30px;
 }
 
-.btnReserve{
+.sitterInfoTable2 {
+	width: 80%;
+	font-size: 30px;
+}
+
+.btnReserve {
 	width: 100px;
 	height: 35px;
+}
+
+.sitterFormHr{
+	border-top: 5px solid black;
+}
+
+.startDayTd, .endDayTd {
+	color: red;
+}
+
+.priceTd {
+	color: blue;
+}
+
+.reservationInfoDiv{
+	background-color: white;
+	border-radius: 8px;
+	display: inline-block;
+	width: 99%;
 }
 </style>
 <script type="text/javascript">
@@ -137,7 +166,9 @@ function calendarMaker(target, date) {
     var nextMonthdays = 7-(cnt%7)
     var nextMonth = parseInt(nowDate.getMonth()) + 2;
     if(nextMonth == 13){
-    	nextMonth = 1;
+    	nextMonth = "01";
+    } else if(nextMonth < 10) {
+    	nextMonth = "0" + nextMonth; 
     }
     for(i = 1; i <= nextMonthdays; i++){
     	tag += "<td>" + nextMonth + "/" + i + "</td>";  	
@@ -162,20 +193,43 @@ function calendarMaker(target, date) {
     }
 
     function calMoveEvtFn() {
-        //전달 클릭
+        //이전달 클릭
         $(".prev").on("click", function () {
             nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate());
             calendarMaker($(target), nowDate);
         });
-        //다음날 클릭
+        //다음달 클릭
         $(".next").on("click", function () {
             nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, nowDate.getDate());
             calendarMaker($(target), nowDate);
         });
         //일자 선택 클릭
+        var startDaySelete = false;
+        var endDaySelete = false;
+        var year = nowDate.getFullYear();
+        var month = nowDate.getMonth() + 1;
         $(".custom_calendar_table").on("click", "td", function () {
-            $(".custom_calendar_table .select_day").removeClass("select_day");
-            $(this).removeClass("select_day").addClass("select_day");
+        	if(!startDaySelete) { //시작일이 입력되지 않았을 때 
+        		startDaySelete = true;
+        		$(this).addClass("startDay");
+        		$('.startDayTd').text(("0" + year).slice(-2) + "-" + month + "-" + $(this).text());
+        	} else { //시작일이 입력되었을 때
+        		var thisClass = $(this).attr('class'); //누른 td의 클래스 조회	
+        		if(thisClass == 'startDay'){//시작일을 다시 눌렀을 때
+        			startDaySelete = false;
+        			$(this).removeClass("startDay");
+        			$(".custom_calendar_table .endDay").removeClass("endDay");
+        		} else { //시작일 말고 다른 날짜를 눌렀을 때
+        			if(!endDaySelete){//종료일이 입력되지 않았을 때
+        				endDaySelete = true;
+            			$(this).addClass("endDay");	
+        			} else {//종료일이 이미 있고 시작일을 누른 것이 아닐 때
+        				$(".custom_calendar_table .endDay").removeClass("endDay");
+        				$(this).addClass("endDay");
+        			}
+        		}
+        	}; 
+        	//
         });
     }
 }
@@ -190,38 +244,64 @@ function calendarMaker(target, date) {
 			<input type="checkbox" value="${v.chi_name}">${v.chi_name}
 		</c:forEach>
 		<button class="btnReserve btnYellow">예약하기</button>
-		<br><br>
-		
+		<br>
+		<br>
+
 	</div>
 	<div align="center">
 		<div id="calendarForm" align="center"></div>
+		<br>
 		<div id="sitterForm" class="strongYellow" align="center">
-			<img class="sitterProfileImg" alt="시터이미지"
-				src="${pageContext.request.contextPath}/resources/images/sitterProfile/${sitterVOChk.sit_pic}">
-			<table class="sitterInfoTable" align="center">
-				<tr align="center">
-					<td align="center">휴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;무:</td>
-					<td align="left">${sitterVOChk.sit_off}</td>
-				</tr>
-				<tr>
-					<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
-					<td align="left">${sitterVOChk.sit_pay}</td>
-				</tr>
-				<tr>
-					<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점:</td>
-					<td align="left">★★★★☆</td>
-				</tr>
-				<tr>
-					<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
-					<td align="left">${sitterVOChk.sit_loc}</td>
-				</tr>
-				<tr>
-					<td align="center">제재횟수:</td>
-					<td align="left">0회</td>
-				</tr>
-			</table>
+			<div>
+				<img class="sitterProfileImg" alt="시터이미지"
+					src="${pageContext.request.contextPath}/resources/images/sitterProfile/${sitterVOChk.sit_pic}">
+				<table class="sitterInfoTable" align="center">
+					<tr align="center">
+						<td align="center">휴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;무:</td>
+						<td align="left">${sitterVOChk.sit_off}</td>
+					</tr>
+					<tr>
+						<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
+						<td align="left">${sitterVOChk.sit_pay}</td>
+					</tr>
+					<tr>
+						<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점:</td>
+						<td align="left">★★★★☆</td>
+					</tr>
+					<tr>
+						<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
+						<td align="left">${sitterVOChk.sit_loc}</td>
+					</tr>
+					<tr>
+						<td align="center">제재횟수:</td>
+						<td align="left">0회</td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<br>
+			<div align="center" class="reservationInfoDiv">
+				<br>
+				<table class="sitterInfoTable2" align="center">
+					<tr align="center">
+						<td align="center">돌봄 시작일:</td>
+						<td align="left" class="startDayTd"></td>
+					</tr>
+					<tr>
+						<td align="center">돌봄 종료일:</td>
+						<td align="left" class="endDayTd"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><hr class="sitterFormHr"></td>
+					</tr>
+					<tr>
+						<td align="center">돌봄 총비용:</td>
+						<td align="left" class="priceTd">99,000원</td>
+					</tr>
+				</table>
+				<br>
+			</div>
 		</div>
 	</div>
-	
 </body>
 </html>

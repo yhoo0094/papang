@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,9 +17,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.YrMapper;
+import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 
 
@@ -37,7 +40,6 @@ public class MypageController {
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
 		System.out.println("===================");
-		
 		
 		System.out.println(mbr_id);
 		memberVO.setMbr_id(mbr_id);
@@ -96,9 +98,90 @@ public class MypageController {
 	
 	
 	@RequestMapping("mypage/babyinfo") //아이관리
-	public ModelAndView test3(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/babyinfo"); 
+	public ModelAndView test3(HttpSession session,HttpServletRequest request,ChildVO childVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		 
+		childVO.setMbr_id(mbr_id);
+		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
+		
+		 
+		
+		
+//		String[] exam = request.getParameterValues("user_CheckBox");
+//		int size = exam.length;
+//		
+//		for(int i =0;i<size;i++) {
+//			System.out.println("55555555555555");
+//			System.out.println(exam[i]);
+//			System.out.println("66666666666");
+//		}
+		
+		
+		
+//		
+//		String[] ajaxMsg = request.getParameterValues("valueArr");
+//        int size = ajaxMsg.length;
+//        for(int i=0; i<size; i++) {
+//        	childVO.setCid_no(ajaxMsg[i])
+//        	dao.babyinfodeleteChildVO(childVO)
+        
+        	
+        	mav.setViewName("mypage/babyinfo");
+		return mav;
 	}
+
+	@RequestMapping("mypage/babyinfodelete") //아이삭제
+	public ModelAndView test34(HttpSession session,HttpServletRequest request,ChildVO childVO) throws IOException{
+		
+		
+		String[] exam = request.getParameterValues("user_CheckBox");
+		int size = exam.length;
+		
+		for(int i =0;i<size;i++) {
+		System.out.println("55555555555555");
+		System.out.println(exam[i]);
+		childVO.setChi_no(exam[i]);
+		dao.babyinfodeleteChildVO(childVO);
+		System.out.println("66666666666");
+	}
+			
+		
+//		
+//		String[] ajaxMsg = request.getParameterValues("valueArr");
+//        int size = ajaxMsg.length;
+//        for(int i=0; i<size; i++) {
+//        	childVO.setCid_no(ajaxMsg[i])
+//        	dao.babyinfodeleteChildVO(childVO)
+        
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		 
+		childVO.setMbr_id(mbr_id);
+		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
+		mav.setViewName("mypage/babyinfo");
+		return mav; 
+	}
+	
+	@RequestMapping("mypage/babyinfoinsert") //아이등록
+	public ModelAndView test35(HttpSession session,HttpServletRequest request,ChildVO childVO) throws IOException{
+		
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		 
+		childVO.setMbr_id(mbr_id);
+		dao.babyinfoinsertChildVO(childVO);
+		
+		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
+		mav.setViewName("mypage/babyinfo");
+		return mav; 
+	}
+
+	
 	@RequestMapping("mypage/market_buyinfo") //구매목록
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/market_buyinfo"); 
@@ -140,8 +223,14 @@ public class MypageController {
 	}
 	
 	@RequestMapping("mypage/myboard_police") //신고현황보기
-	public ModelAndView test9(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/myboard_police"); 
+	public ModelAndView test9(HttpSession session,HttpServletResponse response,ReportVO reportVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		reportVO.setMbr_id(mbr_id);
+		mav.addObject("cos3",dao.myboard_policeReportVO(reportVO));
+		mav.setViewName("mypage/myboard_police");
+		return mav; 
 	}
 	@RequestMapping("mypage/myboard_care") //돌봄신청내역
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
@@ -171,6 +260,7 @@ public class MypageController {
 		
 		mav.addObject(dao.sitter_infoSitterVO(sitterVo));
 		mav.addObject(dao.getMemberVO(memberVO));
+		
 		System.out.println(sitterVo.getSit_payday()); 
 		
 		mav.setViewName("mypage/sitter_info");
@@ -197,6 +287,7 @@ public class MypageController {
 	//등록처리
 		@PostMapping("/mypage/sitterupdate")
 		public String userInsert(HttpServletRequest request,HttpSession session,HttpServletResponse response,SitterVO sitterVO,MemberVO memberVO) throws IllegalStateException, IOException {
+			
 			
 			MemberVO vo = (MemberVO) session.getAttribute("user");
 			String mbr_id = vo.getMbr_id();
