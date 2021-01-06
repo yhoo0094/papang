@@ -63,7 +63,7 @@ public class MemberController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/images/memberimage");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			member.setMbr_pic(multipartFile.getOriginalFilename());
 		}
@@ -87,7 +87,6 @@ public class MemberController {
 		if (chkPw.equals(member.getMbr_pw())) {
 			session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
 			try {
-				
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인되었습니다');</script>");
 				out.println("<script>location.href='/papang/';</script>");
@@ -115,16 +114,18 @@ public class MemberController {
 
 	// 관리자 로그인 처리
 	@PostMapping("/member/adminLogin") // url 예전 .do
-	public void adminlogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
+	public void adminLogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
 			HttpServletResponse response) {
-		String chkPw = log_service.adminLoginCheck(admin);
+		String chkAdPw = log_service.adminLoginCheck(admin);
+		System.out.println("관리자 로그인체크 >>>" + chkAdPw);
+		System.out.println("관리자 아이디 >>>" + admin.getAd_id());
+		System.out.println("관리자 비번 >>>" + admin.getAd_pw());
 		response.setContentType("text/html; charset=UTF-8");
-		if (chkPw.equals(admin.getAd_pw())) {
+		if (chkAdPw.equals(admin.getAd_pw())) {
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
 			try {
-				
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인되었습니다');</script>");
+				out.println("<script>alert('관리자');</script>");
 				out.println("<script>location.href='/papang/';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
