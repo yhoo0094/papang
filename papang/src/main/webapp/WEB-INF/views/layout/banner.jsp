@@ -11,14 +11,14 @@
 
 .w-100 {
 	height: 600px;
-    width: 80%!important;
+    width: 80%;
 	
 	<!-- 슬라이드 사진크기 -->
 	display: block;
 }
 .w-101 {
 	height: 400px;
-    width: 40%!important;
+    width: 40%;
     float: left;
 	
 	<!-- 슬라이드 사진크기 -->
@@ -74,8 +74,10 @@ h1 {
 	width:10%;
 	height:700px;
 }	
+.carousel-inner {
+     width: 10% !important;
+}
 </style>
-
  
 </head>
 <body>
@@ -89,7 +91,7 @@ h1 {
 					<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/banner.jpg"></a>
 					</div>
 				</c:if>
-				<c:if test="${i.index ne 0 }">	
+				<c:if test="${i.index ne 0 && banner.ban_category eq '사이드배너'}">	
 					<div class="carousel-item">
 					 <a href="${banner.ban_link}"><img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}"></a>	
 					</div>
