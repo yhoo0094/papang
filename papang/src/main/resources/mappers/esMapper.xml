@@ -15,6 +15,7 @@
 								mbr_post, 
 								mbr_addr1, 
 								mbr_addr2,
+								mbr_addr3,
 <if test="mbr_bank != null and mbr_bank != ''">mbr_bank,</if>
 <if test="mbr_account != null and mbr_account != ''">mbr_account,</if>
 <if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
@@ -35,65 +36,104 @@
 <if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
 	 	               		#{mbr_gender} )
 	</insert>
-<!-- 아이디중복체크 -->
-	<select id="checkId" parameterType="String" resultType="int">
+	<!-- 아이디중복체크 -->
+	<select id="checkId" parameterType="string" resultType="int">
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 	</select>
-<!-- 닉네임중복체크 -->
-	<select id="checkNk" parameterType="String" resultType="int">
+	<!-- 닉네임중복체크 -->
+	<select id="checkNk" parameterType="string" resultType="int">
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_nick = #{mbr_nick}
 	</select>
 
-
 <!-- =========================================================== -->
 <!-- 로그인 -->
-<!-- 일반회원 -->
+	<!-- 일반회원 -->
 	<select id="login" resultType="MemberVO">
 		SELECT *
 		FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 		  AND mbr_pw = #{mbr_pw}
 	</select>
-<!-- 관리자 -->
-<select id="adminLogin" resultType="AdminVO">
+	<!-- 관리자 -->
+	<select id="adminLogin" resultType="AdminVO">
 		SELECT *
 		FROM ADMIN
 		WHERE ad_id = #{ad_id}
 		  AND ad_pw = #{ad_pw}
 	</select>
-	
+<!-- =========================================================== -->	
 <!-- 로그인 정보체크 -->
-<!-- 일반회원 -->
+	<!-- 일반회원 -->
 	<select id="loginCheck" resultType="string">
 		SELECT mbr_pw
 		FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 	</select>
-<!-- 관리자 -->
+	<!-- 관리자 -->
 	<select id="adminLoginCheck" resultType="string">
 		SELECT ad_pw
 		FROM ADMIN
 		WHERE ad_id = #{ad_id}
 	</select>
 <!-- =========================================================== -->
+<!-- 카카오.. -->
+	<!-- 아이디 체크 -->
+	<select id="kakaoCheck" parameterType="string" resultType="int">
+		SELECT count(*) FROM MEMBER
+		WHERE mbr_id = #{kid}
+	</select>
+	<!-- 카카오 추가정보 기입 (회원가입) -->
+	<insert id="insertKakaoUser" parameterType="MemberVO">
+		INSERT INTO MEMBER (	mbr_id,
+								mbr_name, 
+								mbr_nick,
+								mbr_birth,
+								mbr_email,
+								mbr_phone,
+								mbr_post, 
+								mbr_addr1, 
+								mbr_addr2,
+								mbr_addr3,
+<if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
+								mbr_gender )
+	 	            VALUES( #{mbr_id},
+	 	               		#{mbr_name},
+	 	               		#{mbr_nick},
+	 	               		#{mbr_birth},
+	 	               		#{mbr_email},
+	 	               		#{mbr_phone},
+	 	               		#{mbr_post},
+	 	               		#{mbr_addr1},
+	 	               		#{mbr_addr2},
+	 	               		#{mbr_addr3},
+<if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
+	 	               		#{mbr_gender} )
+	</insert>
+	<!-- 카카오 로그인 -->
+	<select id="kLogin" resultType="MemberVO">
+		SELECT *
+		FROM MEMBER
+		WHERE mbr_id = #{mbr_id}
+	</select>
+<!-- =========================================================== -->
 <!-- 판매상품 -->
-<!-- 단건조회  -->
+	<!-- 단건조회  -->
 	<select id="getItem" parameterType="ProductVO" resultType="ProductVO">
 		SELECT *
 		FROM PRODUCT
 		WHERE pro_no = #{pro_no}
 	</select>
 	
-<!-- 전체조회  -->	
+	<!-- 전체조회  -->	
 	<select id="getItemList" resultType="ProductVO">
 		SELECT * 
 		FROM PRODUCT	  
 		ORDER BY pro_no DESC 
 	</select>
 	
-<!--  글등록    -->
+	<!--  글등록    -->
 	<insert id="insertItem" parameterType="ProductVO">
 		INSERT INTO PRODUCT (	pro_no,
 								pro_name, 
@@ -108,7 +148,7 @@
 	 	               		#{pro_detail},
 	 	               		#{pro_cc} )
 	</insert>
-<!--  글수정    -->
+	<!--  글수정    -->
 	<update id="updateItem" parameterType="ProductVO">
 		UPDATE PRODUCT SET  pro_name = #{pro_name}, 
 							pro_price = #{pro_price},
@@ -117,7 +157,7 @@
 		WHERE pro_no = #{pro_no}
 					
 	</update>
-<!-- 삭제 -->
+	<!-- 삭제 -->
 	<delete id="deleteItem" parameterType="ProductVO">
 		DELETE PRODUCT
 		WHERE pro_no = #{pro_no}
@@ -125,18 +165,21 @@
 
 <!-- =========================================================== -->
 <!-- 장터 -->
-<!-- 전체조회  -->	
+	<!-- 전체조회  -->	
 	<select id="getUsedList" resultType="UsedVO">
 		SELECT * 
 		FROM USED	
-		<!-- 판매중조회.. 음 where 들어갈거없으면 그냥 하면되지않을까  -->	
-		<if test="USED_CATEGORY == 'onSale'">
-			WHERE used_category = #{used_category}
-		</if>  
+		ORDER BY used_no DESC 
+	</select>
+	<!-- 판매중인 상품 조회  -->	
+	<select id="onSaleUsedList" resultType="UsedVO">
+		SELECT * 
+		FROM USED	
+		WHERE used_category = 'onSale'
 		ORDER BY used_no DESC 
 	</select>
 	
-<!--  글등록    -->
+	<!--  글등록    -->
 	<insert id="insertUsed" parameterType="UsedVO">
 		INSERT INTO USED (	used_no,
 							mbr_id, 
@@ -157,7 +200,7 @@
 	 	               		#{used_price},
 	 	               		#{used_content} )
 	</insert>
-<!--  글수정    -->
+	<!--  글수정    -->
 	<update id="updateUsed" parameterType="UsedVO">
 		UPDATE USED SET		used_title = #{used_title}, 
 							used_category = #{used_category},
@@ -168,7 +211,7 @@
 		WHERE used_no = #{used_no}
 					
 	</update>
-<!-- 삭제 -->
+	<!-- 삭제 -->
 	<delete id="deleteUsed" parameterType="UsedVO">
 		DELETE USED
 		WHERE used_no = #{used_no}
@@ -177,7 +220,7 @@
 
 <!-- =========================================================== -->
 <!-- 장바구니 -->
-<!-- 전체조회  -->	
+	<!-- 전체조회  -->	
 	<select id="getCartList" resultType="BagVO">
 		<!-- SELECT b.mbr_id, b.pro_no, b.bag_cnt, p.pro_name, p.pro_price, p.pro_pic
 		FROM BAG b, PRODUCT p	
@@ -190,7 +233,7 @@
 		WHERE b.mbr_id =  #{mbr_id}
 	</select>
 	
-<!--  장바구니 추가    -->
+	<!--  장바구니 추가    -->
 	<insert id="insertCart" parameterType="BagVO">
 		INSERT INTO BAG (	bag_no,
 							mbr_id,
@@ -201,12 +244,12 @@
 	 	               		#{pro_no},
 	 	               		#{bag_cnt} )
 	</insert>
-<!--  수량 수정    -->
+	<!--  수량 수정    -->
 	<update id="updateCart" parameterType="BagVO">
 		UPDATE BAG SET bag_cnt = #{bag_cnt}
 		WHERE pro_no = #{pro_no}
 	</update>
-<!-- 삭제 -->
+	<!-- 삭제 -->
 	<delete id="deleteCart" parameterType="BagVO">
 		DELETE BAG
 		WHERE bag_no = #{bag_no}
@@ -214,21 +257,21 @@
 	</delete>
 <!-- =========================================================== -->
 <!-- 전체 주문 -->
-<!-- 주문정보 입력 -->
+	<!-- 주문정보 입력 -->
 	<insert id="orderInfo">
 		INSERT INTO ORDER_INFO (order_no, mbr_id, order_sum) <!-- 운송장번호 아직 -->
 					VALUES ( #{order_no},
 							 #{mbr_id},
 							 #{order_sum} )
 	</insert>
-<!-- 주문상세정보 입력 -->
+	<!-- 주문상세정보 입력 -->
 	<insert id="orderDetail">
 		INSERT INTO ORDER_DETAIL (od_detail_no, order_no, pro_no, bag_cnt)
 			SELECT seq_order_detail_od_detail_no.nextval, ${order_no}, pro_no, bag_cnt
 		FROM BAG
 	</insert>
 	
-<!-- 주문후 장바구니 비우기 -->
+	<!-- 주문후 장바구니 비우기 -->
 	<delete id="deleteAllCart">
 		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
