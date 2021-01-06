@@ -6,6 +6,7 @@ import java.util.Map;
 import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
@@ -18,15 +19,14 @@ public interface ActivityService {
 	
 	//----------활동--------------
 	//1.[요리]
-	
-	
+	public List<Map<String,Object>> getCookList(CookVO cookVO);//요리 리스트 전체 조회
+	public int insertCook(CookVO cookVO); //요리 글 등록
 	
 	//2.[놀이]
 	public List<Map<String,Object>> getPlayList(PlayVO playVO); //리스트 전체 조회
 	public PlayVO getPlay(PlayVO playVO); //리스트 단건 조회
 	public int hitPlus(PlayVO playVO);//조회수
 	public int insertPlay(PlayVO playVO);//놀이 글 등록
-	public MemberVO getMember(MemberVO memberVO);//멤버 조회(멤버 사진 조회용)
 	
 	//3.[활동후기]
 		//3-1.놀이후기

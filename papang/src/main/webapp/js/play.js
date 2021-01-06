@@ -10,32 +10,54 @@
 			$("#cook_div .custom-select").trigger("change");
 			$("#cook_div th:eq(0)").trigger("click");
 			
-	// 놀이 - 검색버튼
+	// ########놀이 - 검색버튼
 		$('#search1').on('click',function search1() {
 			var play_category ='예비아빠';
 			location.href='playList?play_category='+play_category;
 		})
-		/*window.onload=search1;*/
 		
 			$('#search2').on('click',function search2() {
 			var play_category ='만0~1세';
 			location.href='playList?play_category='+play_category;
 		})
-		/*window.onload=search2;*/
 		 
 			$('#search3').on('click',function search3() {
 			var play_category ='만2세';
 			location.href='playList?play_category='+play_category;
 		})
-		/*window.onload=search3;*/
 		
 			$('#search4').on('click',function search4() {
 			var play_category ='만3~6세';
 			location.href='playList?play_category='+play_category;
 		})
-		/*window.onload=search4;*/
 		
 		
+		
+		// ########요리 - 검색버튼
+		$('#c_search1').on('click',function search5() {
+			var play_category ='이유식';
+			location.href='cookList?cook_category='+cook_category;
+		})
+		
+		
+			$('#c_search2').on('click',function search6() {
+			var play_category ='아이와함께';
+			location.href='cookList?cook_category='+cook_category;
+		})
+		
+		 
+			$('#c_search3').on('click',function search7() {
+			var play_category ='비건아이';
+			location.href='cookList?cook_category='+cook_category;
+		})
+		
+			$('#c_search4').on('click',function search8() {
+			var play_category ='육식아이';
+			location.href='cookList?cook_category='+cook_category;
+		})
+		
+		
+		//취소버튼 - 이전페이지로 돌아가기(글작성 폼)
 		$("#cancleBtn").click(function(){
 
 		window.history.back();

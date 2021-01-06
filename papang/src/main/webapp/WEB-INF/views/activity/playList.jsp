@@ -91,7 +91,7 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
     document.body.appendChild(css);
     
-    
+  //글등록 버튼 이벤트
 	$('#regbtn').on('click',function() {
 		var mbr_id = '${user.mbr_id}';
 		
@@ -105,6 +105,7 @@ window.onload = function() {
 		}
 	})
 	
+	//제목 클릭시 리스트 돌아가기
 	$('#Bigtitle').on('click',function() {
 		location.href="playList"
 	})
@@ -167,9 +168,12 @@ window.onload = function() {
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >
 			<li>
-			<a class="call_recipe thmb" href="#"> <img class="badimg"  id='${play.PLAY_NO}' src=""></a> 
+			<a class="call_recipe thmb" href="#"> 
+				<img class="badimg"  id='${play.PLAY_NO}' src="">
+			</a> 
 			<span class="author"> 
 				<a href="#"><img src="${pageContext.request.contextPath}/images/memberimage/${play.MBR_PIC}"></a> 
+				<p>작성자 :</p><p>${play.MBR_ID}</p>
 				<p>글번호 :</p><p class="play_no">${play.PLAY_NO}</p>
 				<p>제목 : ${play.PLAY_TITLE}</p>
 				<p>카테고리: </p><p class="play_category">${play.PLAY_CATEGORY}</p>
@@ -180,7 +184,7 @@ window.onload = function() {
 						<a>조회수: ${play.PLAY_HIT}</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">좋아요</button>
+							<button type="submit" class="btn_like">평점</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>

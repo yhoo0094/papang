@@ -2,8 +2,6 @@ package co.company.papang.activity.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.activity.service.ActivityService;
 import co.company.papang.vo.Act_comVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
@@ -31,10 +29,24 @@ import co.company.papang.vo.PlayVO;
 public class ActivityController {
 	@Autowired
 	ActivityService service;
-
+	
+	// ###################################요리###################################
+	//1.요리 리스트 전제 조회
 	@RequestMapping("activity/cookList")
-	public ModelAndView cookList(HttpServletResponse response) throws IOException {
-		return new ModelAndView("activity/cookList");
+	public ModelAndView cookList(HttpServletResponse response, CookVO cookVO,MemberVO memberVO) throws IOException {
+		ModelAndView mvc = new ModelAndView();
+		System.out.println("==================");
+		System.out.println(service.getCookList(cookVO));
+		mvc.addObject("cookList",service.getCookList(cookVO));
+		mvc.setViewName("activity/cookList");
+		return mvc;
+	}
+	
+	// 요리 글 등록
+	@PostMapping("activity/insertCook")
+	public String insertCook(Model model, CookVO cookVO) {
+		service.insertCook(cookVO);
+		return "redirect:cookList";
 	}
 
 	@RequestMapping("activity/cookForm")
@@ -52,29 +64,21 @@ public class ActivityController {
 		return new ModelAndView("activity/test");
 	}
 
-	// 놀이
+	// ###################################놀이###################################
 	// 1. 놀이 리스트 전체 조회/ 놀이 리스트 검색
 	@RequestMapping("activity/playList")
-	public ModelAndView playList(HttpServletResponse response, PlayVO playVO, MemberVO memberVO, HttpSession session)
-			throws IOException {
+	public ModelAndView playList(HttpServletResponse response, PlayVO playVO, MemberVO memberVO)throws IOException {
 		ModelAndView mav = new ModelAndView();
-		System.out.println("----");
-		// memberVO =(MemberVO)session.getAttribute("user");
-		// mav.addObject("member",service.getMember(memberVO));
-		System.out.println(memberVO.getMbr_id());
-		System.out.println("----------------");
-		System.out.println(service.getPlayList(playVO));
+		//System.out.println(memberVO.getMbr_id());
+		//System.out.println(service.getPlayList(playVO));
 		mav.addObject("playlist", service.getPlayList(playVO));
-		System.out.println("==============");
-		/* System.out.println(service.getPlayList(playVO).); */
 		mav.setViewName("activity/playList");
 		return mav;
 	}
 
 	// 놀이 단건 조회
 	@RequestMapping("activity/playView")
-	public ModelAndView playView(HttpServletResponse response, HttpServletRequest request, PlayVO playVO,
-			Act_comVO act_comVO) throws IOException {
+	public ModelAndView playView(HttpServletResponse response, HttpServletRequest request, PlayVO playVO,Act_comVO act_comVO) throws IOException {
 		// 조회수 작업
 		boolean existCookie = false;
 		Cookie[] cookieList = request.getCookies();
@@ -106,12 +110,10 @@ public class ActivityController {
 	@RequestMapping("activity/playForm")
 	public ModelAndView playForm(HttpServletResponse response, HttpSession session, MemberVO member)
 			throws IOException {
-
 		return new ModelAndView("activity/playForm");
 	}
 
 	// 놀이 글 등록
-	// 사원등록
 	@PostMapping("activity/insertPlay")
 	public String insertPlay(Model model, PlayVO playVO) {
 		service.insertPlay(playVO);
@@ -119,11 +121,9 @@ public class ActivityController {
 	}
 
 	// 놀이 후기등록
-	// 등록처리
 	@RequestMapping(value = "/acInsert", method = RequestMethod.POST)
 	@ResponseBody
-	public Act_comVO insertAC(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
-			throws IllegalStateException, IOException {
+	public Act_comVO insertAC(Act_comVO vo, Model model, HttpServletResponse response, HttpServletRequest request) throws IllegalStateException, IOException {
 		// 파일업로드
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
@@ -136,7 +136,6 @@ public class ActivityController {
 		}
 
 		service.insertActComm(vo);
-		// return Collections.singletonMap("result", true);
 		return vo;
 	}
 

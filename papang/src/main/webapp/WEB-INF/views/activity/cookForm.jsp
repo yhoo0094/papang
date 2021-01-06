@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
@@ -27,44 +26,46 @@
 <div>
 	<div class="Bigtitle">아빠와 요리해요 > 글 등록</div>	
 		<div class="cook_content">
-		
-		<div class="cView_title">
-			<input class="in_title" placeholder="제목을 입력하세요">
-		</div>
-		
-			<div class="cView_category">
-			<select class="in_category">
-				<option selected>-- 카테고리 선택 --</option>
-				<option value="이유식 만들기">이유식 만들기</option>
-				<option value="아이와 함께 요리해요">아이와 함께 요리해요</option>
-				<option value="비건아이로 키우기">비건아이로 키우기</option>
-				<option value="육식동물 아이">육식동물 아이</option>
-			</select>
-		</div>
-		
-		<div align="center">
-			<textarea id="summernote"
-							class="communityFormTxtarea" rows="20" cols="102" name="comm"></textarea>
-		</div>
-		<div class="btn_div" align="center">
-			<button class="btnRed bMedium">등록</button>
-			<button class="btnGray bMedium">취소</button>
-		</div>
+		<form action="${pageContext.request.contextPath}/activity/insertCook" method="post">
+			<div class="cView_title">
+				<input class="in_title" name="cook_title" placeholder="제목을 입력하세요">
+				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
+			</div>
+			
+				<div class="cView_category">
+				<select class="in_category" name="cook_category">
+					<option selected>-- 카테고리 선택 --</option>
+					<option value="이유식">이유식 만들기</option>
+					<option value="아이와함께">아이와 함께 요리해요</option>
+					<option value="비건아이">비건아이로 키우기</option>
+					<option value="육식아이">육식동물 아이</option>
+				</select>
+			</div>
+			
+			<div align="center">
+				<textarea name="cook_content" id="summernote"
+								class="communityFormTxtarea" rows="20" cols="102" ></textarea>
+			</div>
+			<div class="btn_div" align="center">	
+				<button type="submit" class="btnRed bMedium">등록</button>
+				<button type="reset" class="btnGray bMedium" id="cancleBtn">취소</button>
+			</div>
+		</form>
 	</div>
 </div>
 <!--전체 div 끝 --> 
 
 
 <script>
-		//여기 아래 부분
-		$('#summernote').summernote({
-			height : 500, // 에디터 높이
-			width : 800,
-			minHeight : null, // 최소 높이
-			maxHeight : null, // 최대 높이
-			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
-			lang : "ko-KR", // 한글 설정
-		});
+//여기 아래 부분
+$('#summernote').summernote({
+	height : 500, // 에디터 높이
+	width : 800,
+	minHeight : null, // 최소 높이
+	maxHeight : null, // 최대 높이
+	focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+	lang : "ko-KR", // 한글 설정
+});
 	</script>
 </body>
 </html>

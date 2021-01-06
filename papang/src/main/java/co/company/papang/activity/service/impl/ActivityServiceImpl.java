@@ -9,6 +9,7 @@ import co.company.papang.activity.service.ActivityService;
 import co.company.papang.impl.SaMapper;
 import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
@@ -18,22 +19,22 @@ public class ActivityServiceImpl implements ActivityService {
 
 	@Override//리스트 전체 조회
 	
-	//리스트 전체 조회
+	//놀이 리스트 전체 조회
 	public List<Map<String,Object>> getPlayList(PlayVO playVO) {
 		return dao.getPlayList(playVO);
 	}
 
-	@Override//내자녀 조회
+	@Override//예방접종 내자녀 조회
 	public List<ChildVO> selectChild(ChildVO childVO) {
 		return dao.selectChild(childVO);
 	}
 
-	@Override//리스트 단건 조회
+	@Override//놀이 리스트 단건 조회
 	public PlayVO getPlay(PlayVO playVO) {
 		return dao.getPlay(playVO);
 	}
 
-	@Override//요리후기 전제조회
+	@Override//놀이후기 전제조회
 	public List<Act_comVO> getActComm(Act_comVO act_comVO) {
 		return dao.getActComm(act_comVO);
 	}
@@ -59,8 +60,13 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	
-	@Override//멤버 조회
-	public MemberVO getMember(MemberVO memberVO) {
-		return dao.getMember(memberVO);
+	@Override//요리 리스트 전체 조회
+	public List<Map<String, Object>> getCookList(CookVO cookVO) {
+		return dao.getCookList(cookVO);
+	}
+
+	@Override//요리 글 등록
+	public int insertCook(CookVO cookVO) {
+		return dao.insertCook(cookVO);
 	}
 }

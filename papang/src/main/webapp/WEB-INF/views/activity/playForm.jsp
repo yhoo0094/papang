@@ -31,7 +31,6 @@
 		<form action="${pageContext.request.contextPath}/activity/insertPlay" method="post">
 			<div class="cView_title">
 				<input class="in_title" name="play_title" placeholder="제목을 입력하세요">
-				<%-- <input type="hidden" name="play_no" value="${}"> --%>
 				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
 			</div>
 			<div class="cView_category">
@@ -45,7 +44,7 @@
 			</div>
 			<div align="center">
 				<textarea name="play_content" id="summernote"
-								class="communityFormTxtarea" rows="20" cols="102" name="comm" ></textarea>
+								class="communityFormTxtarea" rows="20" cols="102" ></textarea>
 			</div>
 			<div class="btn_div" align="center">
 				<button class="btnRed bMedium" type="submit">등록</button>

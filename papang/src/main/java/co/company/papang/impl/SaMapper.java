@@ -5,6 +5,7 @@ import java.util.Map;
 
 import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 import co.company.papang.vo.PreventionVO;
@@ -21,7 +22,8 @@ public interface SaMapper {
 	
 	//----------활동--------------
 	//1.[요리]
-	
+	public List<Map<String,Object>> getCookList(CookVO cookVO);//리스트 전체 조회
+	public int insertCook(CookVO cookVO); //요리 글 등록
 	
 	
 	//2.[놀이]

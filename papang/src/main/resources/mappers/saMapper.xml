@@ -6,13 +6,38 @@
 
 <!-- #################################################################1.활동################################################################# -->
 <!-- (1).요리 --> 
+<!-- CLOB 데이터 형식 String 변환 -->
+<resultMap type="map" id="cookMemberPic">
+	<result property="COOK_CONTENT" column="COOK_CONTENT" jdbcType="CLOB" javaType="java.lang.String"/>
+</resultMap>
 
+<!-- 요리 리스트 전체 조회 -->
+<select id="getCookList" resultType="map" resultMap="cookMemberPic">
+	SELECT A.COOK_NO, A.COOK_TITLE, B.MBR_ID, B.MBR_PIC, A.COOK_HIT, A.COOK_CATEGORY, A.COOK_CONTENT
+	FROM COOK A, MEMBER B
+	WHERE  A.MBR_ID = B.MBR_ID
+	<where>
+		<if test="cook_category != null and cook_category!=''">
+			COOK_CATEGORY = #{cook_category}
+		</if>
+	</where>
+</select>
 
-
+<!-- 요리 글 등록 -->
+<insert id="insertCook" parameterType="CookVO" >
+	INSERT INTO COOK (COOK_TITLE,MBR_ID, COOK_CATEGORY,COOK_CONTENT) 
+	VALUES (#{cook_title},#{mbr_id},#{cook_category},#{cook_content})
+</insert>
 
 <!-- (2).놀이  -->
+
+<!-- CLOB데이터 형식 String 변환 -->
+<resultMap type="map" id="memberPicresult">
+	<result property="PLAY_CONTENT" column="PLAY_CONTENT" jdbcType="CLOB" javaType="java.lang.String" />
+</resultMap>
+
 <!-- 놀이 전체조회, 놀이검색 --> 
-<select id="getPlayList" resultType="map">
+<select id="getPlayList" resultType="map" resultMap="memberPicresult">
 	SELECT A.PLAY_NO, A.PLAY_TITLE, A.PLAY_CATEGORY, A.PLAY_HIT, A.PLAY_CONTENT, B.MBR_ID, B.MBR_PIC 
 	FROM PLAY A, MEMBER B
 	WHERE A.MBR_ID = B.MBR_ID
@@ -21,7 +46,6 @@
 				PLAY_CATEGORY = #{play_category}
 			</if>
 	</where>
-	<!-- ORDER BY PLAY_NO DESC -->
 </select>
 
 
@@ -33,10 +57,6 @@
 		WHERE PLAY_NO=#{play_no}
 </select>
 
-<!-- 멤버 사진 전체 조회 -->
-<!-- <select id="getMember" resultType="MemberVO">
-	
-</select> -->
 
 <!-- 조회수 증가 -->
 	<update id="hitPlus" parameterType="PlayVO">
@@ -45,7 +65,7 @@
 		WHERE PLAY_NO = #{play_no}
 	</update>
 	
-	<!-- 놀이 글 등록 -->
+<!-- 놀이 글 등록 -->
 	<insert id="insertPlay" parameterType="PlayVO">
 		INSERT INTO PLAY (PLAY_NO,PLAY_TITLE,MBR_ID,PLAY_CATEGORY,PLAY_CONTENT) 
 		VALUES (SEQ_PLAY_PLAY_NO.NEXTVAL,#{play_title},#{mbr_id},#{play_category},#{play_content})
