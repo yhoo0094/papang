@@ -14,6 +14,7 @@ public interface EsMapper {
 
 	// 회원가입
 	public int insertUser(MemberVO member); // 등록
+	public int insertKakaoUser(MemberVO member); // 카카오 회원등록
 	
 	// 중복체크
 	public int checkId(String mbr_id); // 아이디
@@ -24,6 +25,8 @@ public interface EsMapper {
 	public String loginCheck(MemberVO member); // 로그인 체크
 	public AdminVO adminLogin(AdminVO admin); // 관리자로그인
 	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
+	public MemberVO kLogin(MemberVO member); // 카카오로그인
+	public int kakaoCheck(String kid); // 카톡아이디 체크
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회

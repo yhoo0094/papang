@@ -145,7 +145,7 @@ function formCheck() {
 					</div>
 					<!-- 소셜로그인 -->
 					<div class="login100-form-social flex-c-m" style="margin-top: 20px">
-						<a class="loginpage" href="#"><button type="button"
+						<a class="loginpage" href="${kakao_url}"><button type="button"
 								class="social-item flex-c-m m-r-5">
 								<img class="loginpage"
 									src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png">

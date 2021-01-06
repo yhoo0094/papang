@@ -34,4 +34,14 @@ public class MemberRegService {
 		}
 		return resultCnt;
 	}
+	public int insertKakaoUser(MemberVO member) {
+		int resultCnt = 0;
+		dao = memberSqlSession.getMapper(EsMapper.class);
+		try {
+			resultCnt = dao.insertKakaoUser(member);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultCnt;
+	}
 }

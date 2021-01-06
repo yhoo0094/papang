@@ -23,5 +23,10 @@ public class LoginServiceImpl implements LoginService{
 		return dao.adminLoginCheck(admin);
 	}
 
+	@Override
+	public int kakaoCheck(String kid) {
+		return dao.kakaoCheck(kid);
+	}
+
 
 }

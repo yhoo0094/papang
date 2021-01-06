@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import co.company.papang.impl.EsMapper;
 import co.company.papang.member.service.LoginService;
 import co.company.papang.member.service.MemberRegService;
@@ -38,6 +40,11 @@ public class MemberController {
 	@RequestMapping("/member/joinForm") // url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 		return new ModelAndView("member/joinForm"); // jsp주소
+	}
+	// 소셜로그인 추가정보 입력 폼 버전
+	@RequestMapping("/member/snsJoinForm") // url 예전 .do
+	public ModelAndView test3(HttpServletResponse response) throws IOException {
+		return new ModelAndView("member/snsJoinForm"); // jsp주소
 	}
 
 	// 아이디중복체크
@@ -74,7 +81,13 @@ public class MemberController {
 	// 로그인 폼
 	@RequestMapping("/member/loginForm") // url 예전 .do
 	public ModelAndView test4(HttpServletResponse response) throws IOException {
-		return new ModelAndView("member/loginForm"); // jsp주소
+		ModelAndView mav = new ModelAndView();
+		String kakaoUrl = KakaoAPI.getAuthorizationUrl(); /* 생성한 인증 URL을 View로 전달 */
+		mav.setViewName("member/loginForm"); // 로그인 폼
+		// mav.addObject("naver_url", naverAuthUrl); // 네이버 로그인
+		mav.addObject("kakao_url", kakaoUrl); // 카카오 로그인
+		// 이때 mav에 설정한 오브젝트 이름을 로그인.jsp 에서 a태그에 불러서 씀
+		return mav;
 	}
 
 	// 로그인처리
@@ -94,6 +107,14 @@ public class MemberController {
 				e.printStackTrace();
 			}
 			rs = "/";
+		} else if (chkPw == null || chkPw == "") {
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('없는 아이디 입니다');</script>");
+				out.println("<script>location.href='/papang/member/loginForm';</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
@@ -116,10 +137,8 @@ public class MemberController {
 	@PostMapping("/member/adminLogin") // url 예전 .do
 	public void adminLogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
 			HttpServletResponse response) {
-		String chkAdPw = log_service.adminLoginCheck(admin);
-		System.out.println("관리자 로그인체크 >>>" + chkAdPw);
-		System.out.println("관리자 아이디 >>>" + admin.getAd_id());
-		System.out.println("관리자 비번 >>>" + admin.getAd_pw());
+		String chkAdPw = "";
+		chkAdPw = log_service.adminLoginCheck(admin);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkAdPw.equals(admin.getAd_pw())) {
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
@@ -127,6 +146,15 @@ public class MemberController {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('관리자');</script>");
 				out.println("<script>location.href='/papang/';</script>");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+// 체크해서 나온 비번이 null 일때 (근까 없는 아이디일때) 로그인실패가 아니라 500 에러(null)로 넘어가는데..
+		}  else if (chkAdPw == null || chkAdPw == "") {
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('없는 아이디 입니다');</script>");
+				out.println("<script>location.href='/papang/member/adminLoginForm';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -149,7 +177,74 @@ public class MemberController {
 		//return "main/main";
 		return "redirect:/";
 	}
+// 소셜로그인
+	// 카카오로그인
+	@RequestMapping(value = "/kakaologin")
+	public ModelAndView kLogin(@RequestParam("code") String code, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session, MemberVO member) throws Exception {
+		// code : 인가 코드 받기 요청으로 얻은 인가 코드
+		ModelAndView mav = new ModelAndView(); // 결과값을 node에 담아줌
+		JsonNode node = KakaoAPI.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음
+		JsonNode accessToken = node.get("access_token"); // 사용자의 정보에 접근할수있는 토큰?
+		JsonNode userInfo = KakaoAPI.getKakaoUserInfo(accessToken); // 토큰을 갖고 회원정보를 얻어냄
+		String kid = null;
+		String kemail = null;
+		String kname = null;
 
+		JsonNode id = userInfo.path("id");
+		kid = id.asText();
+		
+		JsonNode kakao_account = userInfo.path("kakao_account");
+		kemail = kakao_account.path("email").asText();
+		
+		JsonNode properties = userInfo.path("properties");
+		kname = properties.path("nickname").asText();
+		kname = properties.path("nickname").asText();
+		
+		// 회원가입 된 카카오 아이디인지 체크
+		kid = "kakao" + kid;
+		int chkKid = log_service.kakaoCheck(kid);
+		
+		if (chkKid == 0) { // 가입안된 카톡
+			session.setAttribute("kid", kid);
+			session.setAttribute("kemail", kemail);
+			session.setAttribute("kname", kname);
+			mav.setViewName("member/snsJoinForm");
+		} else { // 기존에 가입한 카톡아이디면 메인으로 이동
+			response.setContentType("text/html; charset=UTF-8");
+			member.setMbr_id(kid);
+			dao.kLogin(member);
+			session.setAttribute("user", member);
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인되었습니다');</script>");
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			mav.setViewName("main/main");
+		}
+		
+		return mav;
+	}
+
+	// 카카오 추가정보 기입 회원가입 처리
+	@PostMapping("/member/kakaoJoin")
+	public String kakaoJoin(HttpServletRequest request, MemberVO member) throws IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		// 이미지파일(첨부파일 읽어내기)
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			// 파일 경로 webapp 바로 밑이 최상위
+			String path = request.getSession().getServletContext().getRealPath("/images/memberimage");
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+			member.setMbr_pic(multipartFile.getOriginalFilename());
+		}
+		reg_service.insertKakaoUser(member);
+		return "main/main";
+	}
+	
 	// 아이디찾기로 이동
 	@RequestMapping("/member/findIdForm") // url 예전 .do
 	public ModelAndView test5(HttpServletResponse response) throws IOException {
@@ -162,9 +257,4 @@ public class MemberController {
 		return new ModelAndView("member/findPw"); // jsp주소
 	}
 	
-// 소셜로그인
-	@RequestMapping("/loginCallback")
-	public String callback() {
-		return "";
-	}
 }

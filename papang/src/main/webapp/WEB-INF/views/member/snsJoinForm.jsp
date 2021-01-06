@@ -22,36 +22,6 @@ p {
 </style>
 <script type="text/javascript">
 	$(function() {
-		// 아이디 중복검사
-		$("#mbr_id")
-				.blur(
-						function() {
-							var mbr_id = $("#mbr_id").val();
-							$
-									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/idchk?mbr_id="
-												+ mbr_id,
-										type : 'get',
-										success : function(data) {
-											if (data == 1) { // 중복
-												$("#idchk").text("사용중인 아이디입니다");
-												$("#idchk").css("color", "red");
-												$("joinBtn").attr("disabled",
-														true);
-											} else {
-												$("#idchk")
-														.text("사용가능한 아이디입니다");
-												$("#idchk").css("color",
-														"green");
-												$("joinBtn").attr("disabled",
-														false);
-											}
-										},
-										error : function() {
-											alert("실패");
-										}
-									})
-						})
 		// 닉네임 중복검사
 		$("#mbr_nick")
 				.blur(
@@ -84,67 +54,54 @@ p {
 						})
 	});
 	function formCheck() {
-		var f = document.frm;
-		if (f.mbr_id.value == "") {
-			alert("아이디를 입력하세요");
-			f.mbr_id.focus();
-			return false;
-		}
-		if (chked == 0) {
-			alert("아이디 중복체크를 해주세요.");
-			return false;
-		}
-		if (f.mbr_pw.value == "") {
-			alert("비밀번호를 입력하세요");
-			f.mbr_pw.focus();
-			return false;
-		}
-		if (f.mbr_name.value == "") {
+		var frm = document.frm;
+		if (frm.mbr_name.value == "") {
 			alert("이름 입력하세요");
-			f.mbr_name.focus();
+			frm.mbr_name.focus();
 			return false;
 		}
-		if (f.mbr_nick.value == "") {
+		if (frm.mbr_nick.value == "") {
 			alert("닉네임을 입력하세요");
-			f.mbr_nick.focus();
+			frm.mbr_nick.focus();
 			return false;
 		}
-		if (f.mbr_birth.value == "") {
+		if (frm.mbr_birth.value == "") {
 			alert("생년월일을 선택하세요");
-			f.mbr_birth.focus();
+			frm.mbr_birth.focus();
 			return false;
 		}
-		if (f.mbr_email.value == "") {
+// 		if (frm.mbr_phone.value == "") {
+// 			alert("전화번호를 입력하세요");
+// 			frm.mbr_phone.focus();
+// 			return false;
+// 		}
+		if (frm.mbr_email.value == "") {
 			alert("이메일을 입력하세요");
-			f.mbr_email.focus();
+			frm.mbr_email.focus();
 			return false;
 		}
-		if (f.mbr_phone.value == "") {
-			alert("전화번호를 입력하세요");
-			f.mbr_phone.focus();
-			return false;
-		}
-		if (isNaN(f.mbr_phone.value)) {
+		if (isNaN(frm.mbr_phone.value)) {
 			alert("전화번호는 숫자만 입력가능합니다");
-			f.mbr_phone.focus();
+			frm.mbr_phone.focus();
 			return false;
 		}
-		// 		if (f.mbr_post.value == "") {
+		// 		if (frm.mbr_post.value == "") {
 		// 			alert("우편번호를 입력하세요");
-		// 			f.mbr_post.focus();
+		// 			frm.mbr_post.focus();
 		// 			return false;
 		// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
 		// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-		// 		if (f.mbr_addr2.value == "") {
+		// 		if (frm.mbr_addr2.value == "") {
 		// 			alert("상세주소를 입력하세요");
-		// 			f.mbr_addr2.focus();
+		// 			frm.mbr_addr2.focus();
 		// 			return false;
 		// 		}
-		// 		if (isNaN(f.mbr_account.value)) {
-		// 			alert("계좌번호는 숫자만 입력가능합니다");
-		// 			f.mbr_account.focus();
-		// 			return false;
-		// 		}
+		
+		if (isNaN(frm.mbr_account.value)) {
+			alert("계좌번호는 숫자만 입력가능합니다");
+			frm.mbr_account.focus();
+			return false;
+		}
 		return true;
 	}
 </script>
@@ -153,63 +110,20 @@ p {
 	<div class="w3-content w3-container">
 		<div class="w3-container">
 			<div class="w3-large" align="center">
-				<h3 class="big_title">회원가입</h3>
+				<h3 class="big_title">추가정보 입력</h3>
 			</div>
-			<form action="${pageContext.request.contextPath}/member/join"
+			<form action="${pageContext.request.contextPath}/member/kakaoJoin"
 				class="frm" name="frm" id="frm" method="post" style="margin: auto;"
 				encType="multipart/form-data">
 				<div>
 					<table class="table">
 						<tr>
 							<td class="txt">아이디&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_id" name="mbr_id"
+							<td><input type="text" id="mbr_id" name="mbr_id" value="${kid}"
 								placeholder="아이디" class="form-control"></td>
 							<td><span id="idchk"></span></td>
 						</tr>
-						<tr>
-							<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="password"
-								class="form-control pw" id="mbr_pw" name="mbr_pw"
-								placeholder="비밀번호"></td>
-						</tr>
-						<tr>
-							<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="password" class="form-control pw"
-								id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
-
-							<script>
-								$('.pw').focusout(
-										function() {
-											var pw1 = $("#mbr_pw").val();
-											var pw2 = $("#mbr_pw2").val();
-
-											if (pw1 != "" && pw2 == "") {
-												null;
-											} else if (pw1 != "" || pw2 != "") {
-												if (pw1 == pw2) {
-													$("#alert-success").css(
-															"display",
-															"inline-block");
-													$("#alert-fail").css(
-															"display", "none");
-												} else {
-													//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
-													$("#alert-success").css(
-															"display", "none");
-													$("#alert-fail").css(
-															"display",
-															"inline-block");
-												}
-											}
-										});
-							</script>
-
-							<td><span id="alert-success"
-								style="display: none; color: #0B8026; font-weight: bold;">비밀번호가
-									일치합니다.</span> <span id="alert-fail"
-								style="display: none; color: #d92742; font-weight: bold;">비밀번호가
-									일치하지 않습니다.</span></td>
-						</tr>
+						
 						<tr>
 							<td class="txt">이름&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_name" style="width: 80%;"
@@ -218,7 +132,7 @@ p {
 						<tr>
 							<td class="txt">닉네임&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="text" id="mbr_nick" name="mbr_nick"
-								placeholder="닉네임" class="form-control"></td>
+								placeholder="닉네임" class="form-control" value="${kname}"></td>
 							<td><span id="nkchk"></span></td>
 						</tr>
 						<tr>
@@ -245,7 +159,7 @@ p {
 						<tr>
 							<td class="txt">이메일</td>
 							<td colspan="2"><input type="email" id="mbr_email" style="width: 80%;"
-								name="mbr_email" placeholder="abc@example.com"
+								name="mbr_email" value="${kemail}"
 								class="form-control"></td>
 						<tr>
 							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
@@ -268,42 +182,6 @@ p {
 							<td class="txt">참고사항&nbsp;<span style="color: red;">*</span></td>
 							<td colspan="2"><input type="text" id="mbr_addr3" style="width: 80%;"
 								class="form-control" name="mbr_addr3" placeholder="참고사항"></td>
-						</tr>
-						<tr>
-							<td class="txt">은행</td>
-							<td><select name="mbr_bank" id="mbr_bank"
-								class="form-control">
-									<option value="">은행명을 선택하세요</option>
-									<option value="35">경남은행</option>
-									<option value="29">광주은행</option>
-									<option value="7">국민은행</option>
-									<option value="5">기업은행</option>
-									<option value="15">농협중앙회</option>
-									<option value="17">농협회원조합</option>
-									<option value="25">대구은행</option>
-									<option value="47">도이치은행</option>
-									<option value="27">부산은행</option>
-									<option value="3">산업은행</option>
-									<option value="41">상호저축은행</option>
-									<option value="37">새마을금고</option>
-									<option value="11">수협중앙회</option>
-									<option value="36">신한금융투자</option>
-									<option value="60">신한은행</option>
-									<option value="39">신협중앙회</option>
-									<option value="9">외환은행</option>
-									<option value="19">우리은행</option>
-									<option value="56">우체국</option>
-									<option value="33">전북은행</option>
-									<option value="31">제주은행</option>
-									<option value="68">카카오뱅크</option>
-									<option value="67">케이뱅크</option>
-									<option value="59">하나은행</option>
-									<option value="23">한국씨티은행</option>
-									<option value="45">HSBC은행</option>
-									<option value="21">SC제일은행</option>
-							</select></td>
-							<td><input type="text" id="mbr_account" name="mbr_account"
-								class="form-control" placeholder="계좌번호를 입력해주세요"></td>
 						</tr>
 					</table>
 				</div>
