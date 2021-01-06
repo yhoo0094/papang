@@ -188,7 +188,9 @@
 				</c:forEach>
 			</table>
 		</c:if>
-		<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
+		<c:if test="${not empty communityVO.com_no}">
+			<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
+		</c:if>
 	</div>
 
 	<script>
