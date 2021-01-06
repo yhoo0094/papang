@@ -62,14 +62,8 @@
 	color: #288CFF;
 }
 
-.custom_calendar_table tbody td.startDay {
-	background-color: #ff971d;
-	color: #fff;
-}
-
-.custom_calendar_table tbody td.endDay {
-	background-color: red;
-	color: #fff;
+.custom_calendar_table tbody td.startDay, .custom_calendar_table tbody td.endDay, .custom_calendar_table tbody td.reservedTd {
+	background-color: yellow;
 }
 
 .sitterProfileImg {
@@ -112,21 +106,17 @@
 	display: inline-block;
 	width: 99%;
 }
-.reservedTd{
-	background-color: green;
-}
+
 </style>
 <script type="text/javascript">
-var startDaySelete = false;
-var endDaySelete = false;
-var nowDate = new Date();
-var yearForCal = nowDate.getFullYear();
-var monthForCal = nowDate.getMonth() + 1;
-
-
 $(()=>{
 	calendarMaker($("#calendarForm"), new Date());
 })
+var startDaySelete = false;
+var endDaySelete = false;
+var nowDate2 = new Date();
+var yearForCal = nowDate2.getFullYear();
+var monthForCal = nowDate2.getMonth() + 1;
 
 function calendarMaker(target, date) {
     if (date == null || date == undefined) {
@@ -157,7 +147,7 @@ function calendarMaker(target, date) {
     } else if(prevMonth < 10) {
     	prevMonth="0"+ prevMonth;
     }
-    for (i = 0; i < thisMonth.getDay(); i++) {
+    for (i = 0; i <= thisMonth.getDay(); i++) {
         tag += "<td>"+ prevMonth + "/" + (prevMonthStart+i) +"</td>";
         cnt++;
     }
@@ -212,26 +202,28 @@ function calendarMaker(target, date) {
         $(".prev").on("click", function () {
             nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate());
             calendarMaker($(target), nowDate);
+            yearForCal = nowDate.getFullYear();
+            monthForCal = nowDate.getMonth()+1;
         });
         //다음달 클릭
         $(".next").on("click", function () {
             nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, nowDate.getDate());
             calendarMaker($(target), nowDate);
-        });
-        //일자 선택 클릭
-
-        $(".custom_calendar_table").on("click", "td", function () {
             yearForCal = nowDate.getFullYear();
-    		monthForCal = nowDate.getMonth() + 1;
+            monthForCal = nowDate.getMonth()+1;
+        });
+        
+      	//일자 선택 클릭
+        $(".custom_calendar_table").on("click", "td", function () {
         	if(!startDaySelete) { //시작일이 입력되지 않았을 때 
-        		startDaySelete = true;
-        		$(this).addClass("startDay");
         		if(monthForCal < 10){
         			monthForCal = "0"+monthForCal;
         		}
+        		startDaySelete = true;
+        		$(this).addClass("startDay");
         		if(($(this).text()).length > 2){
         			if(monthForCal == '01'){
-        				yearForCalForCal = yearForCal - 1;
+        				yearForCal = yearForCal - 1;
         				$('.startDayTd').text(("0" + yearForCal).slice(-2) + "-" + ($(this).text()).slice(-5,-3) + "-" +($(this).text()).slice(-2));
         				yearForCal = yearForCal + 1;
         			} else {
@@ -252,7 +244,7 @@ function calendarMaker(target, date) {
         			$(".custom_calendar_table .reservedTd").removeClass("reservedTd");
         			$(".custom_calendar_table .endDay").removeClass("endDay");
         		} else { //시작일 말고 다른 날짜를 눌렀을 때
-        			if(startDaySelete){ //시작일이 선택되어 있을 때
+        			if(startDaySelete && $('#custom_set_date').find('.startDay').length == 0){ //시작일이 선택되어 있고 달을 옮겼을 때
         				$('#custom_set_date').find('td').eq(0).addClass("startDay");
         				endDaySelete = true;
             			$(this).addClass("endDay"); 
@@ -267,11 +259,24 @@ function calendarMaker(target, date) {
                 		} else {
                 			$('.endDayTd').text(("0" + yearForCal).slice(-2) + "-" + monthForCal + "-" + ($(this).text()).slice(-2));
                 		}
+            			var startDayTdText = $('.startDayTd').text();
+            			var endDayTdText= $('.endDayTd').text();
+            			var startDayTd = parseInt(($('.startDayTd').text()).replace(/-/gi,''));
+            			var endDayTd = parseInt(($('.endDayTd').text()).replace(/-/gi,''));
+            			if(startDayTd > endDayTd){
+            				$('.startDayTd').text(endDayTdText);
+            				$('.endDayTd').text(startDayTdText);
+            				$('.startDay').attr('class', 'tempt');
+                			$('.endDay').attr('class', 'startDay');
+                			$('.tempt').attr('class', 'endDay');
+            				$(".custom_calendar_table .endDay").removeClass("endDay");
+            				console.log($('#custom_set_date').find('.endDay').length);
+            			} 
         			} else if(!endDaySelete){//종료일이 입력되지 않았을 때 
         				endDaySelete = true;
             			$(this).addClass("endDay");	
                 		if(($(this).text()).length > 2){
-                			if(monthForCal == '01'){
+                			if(monthForCal == '01' && ($(this).text()).slice(-5,-3) == '12'){
                 				yearForCal = yearForCal - 1;
                 				$('.endDayTd').text(("0" + yearForCal).slice(-2) + "-" + ($(this).text()).slice(-5,-3) + "-" +($(this).text()).slice(-2));
                 				yearForCal = yearForCal + 1;
@@ -287,7 +292,7 @@ function calendarMaker(target, date) {
         				$(this).addClass("endDay");
         				$('.endDayTd').text('');
         				if(($(this).text()).length > 2){
-        					if(monthForCal == '01'){
+        					if(monthForCal == '01' && ($(this).text()).slice(-5,-3) == '12'){
                 				yearForCal = yearForCal - 1;
                 				$('.endDayTd').text(("0" + yearForCal).slice(-2) + "-" + ($(this).text()).slice(-5,-3) + "-" +($(this).text()).slice(-2));
                 				yearForCal = yearForCal + 1;
@@ -309,41 +314,27 @@ function calendarMaker(target, date) {
             			$('.endDay').attr('class', 'startDay');
             			$('.tempt').attr('class', 'endDay');
         			}
-        			var allTd = $('#custom_set_date').find('td');
-        			var started = false;
-        			$.each(allTd, function(idx, val){
-        				if($(val).attr('class') == 'endDay'){
-        					started = false;
-        				}
-        				if(started){
-        					$(val).attr('class', 'reservedTd');
-        				}
-        				if($(val).attr('class') == 'startDay'){
-        					started = true;
-        				}
-        			})
-        			
-        				
-        			
-        			
-        			/* if($('.startDay').parent('tr').find('.endDay').length == 1){//시작일과 끝날이 같은 줄에 있을 때
-        				$('.startDay').nextUntil('.endDay').attr("class", "reservedTd");
-        			} */
-        			/* $('.startDay').nextAll('td').attr("class", "reservedTd");
-        			$('.endDay').prevAll('td').attr("class", "reservedTd");
-        			$('.startDay').parent('tr').attr('class','tempTr')
-        			console.log($('.tempTr').find('.endDay').length); */
-        			/* while($('.tempTr').find('.endDay').length == 0){
-        				if($('.tempTr').next('tr').child('td').find('.endDay').length == 0){
-        					
-        				}
-        			} */
-        			console.log(); 
-        			
         		}
-        	}; 
-        	//
-        });
+        	};//end of if 
+        	var allTd = $('#custom_set_date').find('td');
+			var started = false;
+			var daysOfReserve = 0;
+			$.each(allTd, function(idx, val){
+				if($(val).attr('class') == 'endDay'){
+					daysOfReserve++;
+					started = false;
+				}
+				if(started && endDaySelete){
+					$(val).attr('class', 'reservedTd');
+					daysOfReserve++;
+				}
+				if($(val).attr('class') == 'startDay'){
+					started = true;
+					daysOfReserve++;
+				}
+			})
+			console.log(daysOfReserve);
+        });//일자 선택 클릭 끝 
     }
 }
 </script>
