@@ -20,7 +20,7 @@ public class MailAuthConfiguration {
 		
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");
-		mailSender.setPort(465); // 지메일 465 네이버 587
+		mailSender.setPort(587); // 지메일. 465 네이버 
 		mailSender.setUsername("dleotjs2018@gmail.com"); // 보내는사람(관리자) 이메일
 		mailSender.setPassword("dPekagkrdnjs"); // 관리자 비번
 		mailSender.setDefaultEncoding("utf-8");

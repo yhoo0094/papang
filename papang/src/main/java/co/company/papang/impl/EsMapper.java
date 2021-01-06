@@ -15,7 +15,8 @@ public interface EsMapper {
 	// 회원가입
 	public int insertUser(MemberVO member); // 등록
 	public int insertKakaoUser(MemberVO member); // 카카오 회원등록
-	
+	public int GetKey(String mbr_id, String authkey); // 유저 인증키 생성 메서드
+	public int alter_authkey(String mbr_id, String authkey); // 유저 인증키 Y로 바꿔줌
 	// 중복체크
 	public int checkId(String mbr_id); // 아이디
 	public int checkNk(String mbr_nick); // 닉네임

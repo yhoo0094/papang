@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import co.company.papang.impl.EsMapper;
 import co.company.papang.member.service.LoginService;
 import co.company.papang.member.service.MemberRegService;
+import co.company.papang.member.service.UserMailSendService;
 import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.MemberVO;
 
@@ -35,6 +36,7 @@ public class MemberController {
 	@Autowired EsMapper dao;
 	@Autowired MemberRegService reg_service;
 	@Autowired LoginService log_service;
+	@Autowired UserMailSendService mailsender;
 
 	// 회원가입 폼 버전1.. 일단 여기에 기능 몰빵해둠~~ 몰겠어 디자인적으로.. ㅎㅎ
 	@RequestMapping("/member/joinForm") // url 예전 .do
@@ -75,7 +77,25 @@ public class MemberController {
 			member.setMbr_pic(multipartFile.getOriginalFilename());
 		}
 		reg_service.insertUser(member);
+		
+		// 인증 메일 보내기 메서드
+		mailsender.mailSendWithUserKey(member.getMbr_email(), member.getMbr_id(), request);
 		return "main/main";
+	}
+	
+	// e-mail 인증 컨트롤러
+	@RequestMapping(value = "/member/key_alter", method = RequestMethod.GET)
+	public void key_alterConfirm(@RequestParam("mbr_id") String mbr_id, @RequestParam("authkey") String key, HttpServletResponse response) {
+		mailsender.alter_userKey_service(mbr_id, key); // mailsender의 경우 @Autowired
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('인증되었습니다');</script>");
+			out.println("<script>location.href='/papang/';</script>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//return "main/main";
 	}
 
 	// 로그인 폼

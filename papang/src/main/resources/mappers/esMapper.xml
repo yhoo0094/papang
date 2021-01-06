@@ -46,6 +46,17 @@
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_nick = #{mbr_nick}
 	</select>
+	<!-- 이메일 인증 난수 생성 -->
+	<update id="GetKey" parameterType="Map">
+		UPDATE MEMBER SET authkey = #{param2}
+		WHERE mbr_id = #{param1}
+	</update>
+	<!-- 이메일 인증완료시 Y -->
+	<update id="alter_authkey" parameterType="Map">
+		UPDATE MEMBER SET authkey = 'Y'
+		WHERE mbr_id = #{param1}
+		AND authkey = #{param2}
+	</update>
 
 <!-- =========================================================== -->
 <!-- 로그인 -->
