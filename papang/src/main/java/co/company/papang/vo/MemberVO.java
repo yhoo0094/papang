@@ -28,4 +28,6 @@ public class MemberVO {
 	private String mbr_gender;	
 	private String rcnt; // 재영아..
 	private String mbr_pic;
+	private int authstatus; // 이메일인증(완료시 1)
+	private String authkey; // 권한키
 }
