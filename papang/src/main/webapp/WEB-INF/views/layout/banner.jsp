@@ -71,7 +71,7 @@ h1 {
 .carousel-inner{
 	margin-top: 5%;
 	float:right;
-	width:15%;
+	width:10%;
 	height:700px;
 }	
 </style>
