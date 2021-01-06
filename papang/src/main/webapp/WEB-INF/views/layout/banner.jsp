@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
-img{
-margin:10px 30px 0px 0px; }
 .w-100 {
 	height: 700px;
     width: 90%!important;
@@ -59,25 +57,8 @@ float: right;
 width: 10%;
 height: 100%;
 }
-.a {
-	width:30%; 
-	height:30%;  
-	float:left;
-	background-color: black;
-	text-align: center;
-	color: white;
-	border: none;
-}
-h1 {
-	font-size: 45px;
-	font-weight: bold;
-	font-family: "Trebuchet MS", Dotum, Arial;
-}
-
-
 	
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
  
 </head>
 <body>
