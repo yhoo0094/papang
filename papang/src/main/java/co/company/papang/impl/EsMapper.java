@@ -2,6 +2,7 @@ package co.company.papang.impl;
 
 import java.util.List;
 
+import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
@@ -21,6 +22,7 @@ public interface EsMapper {
 	// 로그인
 	public MemberVO login(MemberVO member); // 로그인
 	public String loginCheck(MemberVO member); // 로그인 체크
+	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회
