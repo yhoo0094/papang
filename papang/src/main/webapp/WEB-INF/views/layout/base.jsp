@@ -116,9 +116,6 @@ body {background-color: #fff5d2;}
     color: #fff5d2;
 }
 
-.side_div{
-
-}
 
 /* .naviClass, .banner_div, .center_div{
 	display: block;
@@ -226,9 +223,11 @@ a.item {
 	</div>
 
 	<tiles:insertAttribute name="left" />
-<!-- 	<div class="side_div" align="right"> -->
-		<tiles:insertAttribute name="banner" />
-<!-- 	</div> -->
+	
+	
+	<tiles:insertAttribute name="banner" />
+	 
+	
 	<div class="main_div">
 		<tiles:insertAttribute name="main" />
 	</div>

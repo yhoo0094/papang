@@ -66,14 +66,16 @@ h1 {
 	font-size: 45px;
 	font-weight: bold;
 	font-family: "Trebuchet MS", Dotum, Arial;
-}	
+}
+
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" ></script>
  
 </head>
 <body>
 	<!-- 첫번째 슬라이드 -->
-<div>
+<div id='side_div'>
 	<div align="center" id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner">
 			<c:forEach items="${bannerlist}" var="banner" varStatus='i'>
@@ -90,8 +92,7 @@ h1 {
 			</c:forEach>
 		
 	</div>
-	
-		
+
 	</div>
 	
 </body>
