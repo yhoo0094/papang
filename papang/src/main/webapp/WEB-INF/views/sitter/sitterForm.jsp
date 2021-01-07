@@ -109,7 +109,7 @@
 }
 
 .offDayTd{
-	background-color: gray;
+	background-color: #bbbbbb;
 }
 
 </style>
@@ -414,7 +414,7 @@ function calendarMaker(target, date) {
 						<td align="left" class="sitOffTd">${sitterVOChk.sit_off}</td>
 					</tr>
 					<tr>
-						<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
+						<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
 						<td align="left" class="sitterPayTd">${sitterVOChk.sit_pay}</td>
 					</tr>
 					<tr>
