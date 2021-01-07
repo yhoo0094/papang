@@ -169,7 +169,7 @@ window.onload = function() {
 							<ol class="lst_recipe cool_recipes" >
 			<li>
 			<a class="call_recipe thmb" href="#"> 
-				<img class="badimg"  id='${play.PLAY_NO}' src="">
+				<img class="badimg"  id='${play.PLAY_NO}' src="" alt="대표 사진이 없습니다">
 			</a> 
 			<span class="author"> 
 				<a href="#"><img src="${pageContext.request.contextPath}/images/memberimage/${play.MBR_PIC}"></a> 
@@ -194,14 +194,14 @@ window.onload = function() {
 					</td>
 				</tr>
 					<script>
-			var sentence = '${play.PLAY_CONTENT}';
-			console.log('======');
-			console.log(sentence);
-			var start = sentence.indexOf('src="');
-			var end = sentence.indexOf('"', start+5);
-			var list = sentence.substring(start+5, end);
-			console.log(list);
-			$('#${play.PLAY_NO}').attr('src',list);
+						var sentence = '${play.PLAY_CONTENT}';
+						console.log('======');
+						console.log(sentence);
+						var start = sentence.indexOf('src="');
+						var end = sentence.indexOf('"', start+5);
+						var list = sentence.substring(start+5, end);
+						console.log(list);
+						$('#${play.PLAY_NO}').attr('src',list);
 			</script>
 				</c:forEach>
 				

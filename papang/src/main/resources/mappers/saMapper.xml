@@ -53,8 +53,7 @@
 </insert>
 
 <!-- (2).놀이  -->
-
-<!-- CLOB데이터 형식 String 변환 -->
+  <!-- CLOB데이터 형식 String 변환 -->
 <resultMap type="map" id="memberPicresult">
 	<result property="PLAY_CONTENT" column="PLAY_CONTENT" jdbcType="CLOB" javaType="java.lang.String" />
 </resultMap>
@@ -75,7 +74,7 @@
 
 <!-- 놀이 단건조회 -->
 <select id="getPlay" resultType="PlayVO">
-		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT
+		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT,MBR_ID
 		FROM PLAY
 		WHERE PLAY_NO=#{play_no}
 </select>
@@ -93,6 +92,26 @@
 		INSERT INTO PLAY (PLAY_NO,PLAY_TITLE,MBR_ID,PLAY_CATEGORY,PLAY_CONTENT) 
 		VALUES (SEQ_PLAY_PLAY_NO.NEXTVAL,#{play_title},#{mbr_id},#{play_category},#{play_content})
 	</insert>
+
+<!-- 놀이 글 삭제 -->
+	<delete id="deletePaly" parameterType="PlayVO">
+		DELETE FROM PLAY 
+		WHERE PLAY_NO=#{play_no}
+	</delete>
+	
+<!-- 놀이 글 업데이트 -->
+	<update id="updatePlay" parameterType="PlayVO">
+		UPDATE PLAY 
+		SET PLAY_TITLE=#{play_title}, PLAY_CONTENT=#{play_content} 
+		WHERE PLAY_NO =#{play_no}
+	</update>
+	
+<!-- 놀이 글 삭제시 해당 글 후기 삭제 -->
+	<delete id="deletePlayAct" parameterType="Act_comVO">
+	 DELETE
+	 FROM ACT_COM
+	 WHERE AC_CATEGORY='놀이' AND PC_NO=#{pc_no}
+	 </delete>
 
 <!--놀이 후기  전체 조회 -->
   	 <select id="getActComm" resultType="Act_comVO" parameterType="act_comVO">

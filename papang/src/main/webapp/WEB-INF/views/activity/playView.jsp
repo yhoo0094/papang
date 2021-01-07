@@ -210,12 +210,26 @@ $(()=>{
 		preview(arr);
 
 	});
-	var a = ${actcommList}
+	/* 후기 리스트 display */
+/* 	var a = ${actcommList};
 	if(a.length ==0) {
 		$('#test').css('display','none');
-	}
+	} */
+	
+	/* 수정,삭제 버튼이벤트 */
+	$('#btnDelete').click(function() {
+		/* if(prompt('정말 삭제하시겠습니까?')){ */
+		var play_no = $('#pc_no').val();
+		//console.log(play_no);
+		location.href="${pageContext.request.contextPath}/activity/deletePlay?play_no="+play_no+"&pc_no="+play_no;
+		/* } */
+	});
 	
 });
+
+
+
+
 //후기 등록 요청
 function acInsert() {
 	//등록 버튼 클릭
@@ -262,7 +276,8 @@ function checkExtension(fileName, fileSize) {
 			return true;
 		}
 
-		function preview(arr) {arr.forEach(function(f) {
+		function preview(arr) {
+			arr.forEach(function(f) {
 						//파일명이 길면 파일명...으로 처리
 						var fileName = f.name;
 						if (fileName.length > 10) {
@@ -285,11 +300,8 @@ function checkExtension(fileName, fileSize) {
 							$('#img').attr('style','width:300px; height:300px');
 						}
 					});//arr.forEach
+				}
 					
-					
-		}		
-			
-	
 
 </script>
 </head>
@@ -297,7 +309,9 @@ function checkExtension(fileName, fileSize) {
 	<div>
 		<%-- <h3>아이디: ${user.mbr_id}</h3> --%>
 		<div class="Bigtitle"><a class="back" href="${pageContext.request.contextPath}/activity/playList">아빠와 놀아요</a> > 따라해보세요</div>
+		<form id="frm" action="updatePlay">
 		<div class="cook_content">
+		<input type="hidden" name="play_no" value="${playVO.play_no}">
 			<div class="cView_title">
 				<div class="c_title" id="c_title">${playVO.play_title}</div>
 				<div class="c_star" id="c_star">${acrate.ROUNDRATE}</div>
@@ -309,11 +323,12 @@ function checkExtension(fileName, fileSize) {
 
 		<div class="btnDiv" align="center">
 			<c:if test="${user.mbr_id eq playVO.mbr_id}">
-						<button type="button" class="btnGray bMedium btnDelide" id="btnInsert">삭제</button>
-						<button type="button" class="btnRed bMedium btnUpdate" id="btnInsert">수정</button>
+						<button type="button" class="btnGray bMedium btnDelide" id="btnDelete">삭제</button>
+						<button type="submit" class="btnRed bMedium btnUpdate" id="btnUpdate">수정</button>
 			</c:if>
 		</div>
-		
+		</form>
+		<c:if test="${not empty actcommList}">
 		<div id="test">
 		<p class="comm_title">후기</p>
 		<div class="comm_div">
@@ -325,6 +340,7 @@ function checkExtension(fileName, fileSize) {
 			</c:forEach>
 			</div>
 		</div>
+		</c:if>
 
 		<p class="comm_title">후기작성</p>
 		

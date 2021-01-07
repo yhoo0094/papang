@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
@@ -22,32 +22,43 @@
  	.bMedium{font-size: 18px;margin: 10px;}
  	.note-editable{font-size: 23px;} 
 </style>
+<script>
+var play_category = $('#mbr_id').val();
+console.log(play_category);
+</script>
 
 <body>
 <!-- 전체 div 시작 -->
 <div>
 	<div class="Bigtitle">아빠와 함께 놀아요 > 글 등록</div>	
 		<div class="cook_content">
-		<form action="${pageContext.request.contextPath}/activity/insertPlay" method="post">
+		<form id="frm" action="${pageContext.request.contextPath}/activity/insertPlay" method="post">
 			<div class="cView_title">
-				<input class="in_title" name="play_title" placeholder="제목을 입력하세요">
+				<input type="hidden" name="play_no" value="${playVO.play_no}">
+				<input class="in_title" name="play_title" placeholder="제목을 입력하세요" 
+				<c:if test="${not empty param.play_no}">value=${playVO.play_title}</c:if>>
 				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
 			</div>
 			<div class="cView_category">
 				<select class="in_category" name="play_category">
-					<option selected>-- 카테고리 선택 --</option>
-					<option value="예비아빠">예비아빠</option>
-					<option value="만0~1세">만0~1세</option>
-					<option value="만2세">만2세</option>
-					<option value="만3~6세">만3~6세</option>
+					<option> -- 카테고리 선택 --</option>
+					<option value="예비아빠" <c:if test="${playVO.play_category == '예비아빠'}">selected</c:if>>예비아빠</option>
+					<option value="만0~1세" <c:if test="${playVO.play_category == '만0~1세'}">selected</c:if>>만0~1세</option>
+					<option value="만2세" <c:if test="${playVO.play_category == '만2세'}">selected</c:if>>만2세</option>
+					<option value="만3~6세" <c:if test="${playVO.play_category == '만3~6세'}">selected</c:if>>만3~6세</option>
 				</select>
 			</div>
 			<div align="center">
 				<textarea name="play_content" id="summernote"
-								class="communityFormTxtarea" rows="20" cols="102" ></textarea>
+								class="communityFormTxtarea" rows="20" cols="102" >${playVO.play_content}</textarea>
 			</div>
 			<div class="btn_div" align="center">
-				<button class="btnRed bMedium" type="submit">등록</button>
+				<c:if test="${empty param.play_no}">
+					<button class="btnRed bMedium" type="submit">등록하기</button>
+				</c:if>
+				<c:if test="${not empty param.play_no}">
+					<button class="btnRed bMedium" id="updateBtn" type="button">수정하기</button>
+				</c:if>
 				<button class="btnGray bMedium" id="cancleBtn" type="reset">취소</button>
 			</div>
 		</form>
@@ -66,6 +77,16 @@
 			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
 		});
-	</script>
+ 	
+$(()=>{
+	
+	$('#updateBtn').on('click',function(){
+		alert('test');
+		$('#frm').attr('action','updateSuccess');
+		$('#frm').submit();
+	});
+});
+</script>
+
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
 <style>
-td{    width: 90px; height:70px; border:1px solid black;text-align: center;font-size: 12px;}
+td{width: 90px; height:70px; border:1px solid black;text-align: center;font-size: 12px;}
 .vacc_table{display: inline;}
 .content{margin: 10px 0 0 0;}
 th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
@@ -45,14 +45,6 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 <script type="text/javascript" >
 	$(function(){
 		childList();
-
-		//userSelect();
-		
-		//userDelete();
-		
-		//userInsert();
-	
-		//userUpdate();
 		
 		init();
 	});
@@ -67,27 +59,7 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 		});
 	}//init
 	
-	//사용자 삭제 요청
-	function userDelete() {
-		//삭제 버튼 클릭
-		$('body').on('click','#btnDelete',function(){
-			var userId = $(this).closest('tr').find('#hidden_userId').val();
-			var result = confirm(userId +" 사용자를 정말로 삭제하시겠습니까?");
-			if(result) {
-				$.ajax({
-					url:'users/'+userId,  
-					type:'DELETE',
-					contentType:'application/json;charset=utf-8',
-					dataType:'json',
-					error:function(xhr,status,msg){
-						console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-					}, success:function(xhr) {
-						console.log(xhr.result);
-						userList();
-					}
-				});      }//if
-		}); //삭제 버튼 클릭
-	}//userDelete
+
 	
 	//사용자 조회 요청
 	function userSelect() {
@@ -116,55 +88,8 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 		$('select[name="role"]').val(user.role).attr("selected", "selected");
 	}//userSelectResult
 	
-	//사용자 수정 요청
-	function userUpdate() {
-		//수정 버튼 클릭
-		$('#btnUpdate').on('click',function(){
-			var id = $('input:text[name="id"]').val();
-			var name = $('input:text[name="name"]').val();
-			var password = $('input:text[name="password"]').val();
-			var role = $('select[name="role"]').val();		
-			$.ajax({ 
-			    url: "users", 
-			    type: 'PUT', 
-			    dataType: 'json', 
-			    data: JSON.stringify({ id: id, name:name,password: password, role: role }),
-			    contentType: 'application/json',
-			    success: function(data) { 
-			        userList();
-			    },
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    }
-			});
-		});//수정 버튼 클릭
-	}//userUpdate
-	
-	//사용자 등록 요청
-	function userInsert(){
-		//등록 버튼 클릭
-		$('#btnInsert').on('click',function(){
-			$("#form1")
-			$.ajax({ 
-			    url: "users",  
-			    type: 'POST',  
-			    dataType: 'json', 
-			    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
-			    //data :$("#form1").serialize(),
-			    data : JSON.stringify($("#form1").serializeObject()),
-			    contentType: 'application/json', 
-			    success: function(response) {
-			    	if(response.result == true) {
-			    		userList();
-			    	}
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			 });  
-		});//등록 버튼 클릭
-	}//userInsert
-	
+
+
 	//사용자 목록 조회 요청
 	function childList() {
 		$.ajax({
@@ -204,7 +129,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	  modal.find('.modal-body input').val(recipient)
 	})
 	
-	
+	$(() => {
+		
+	console.log($('#BCG_1차').text());
+	});
 	
 	
 /* 	$( document ).ready( function() {
@@ -277,7 +205,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 	<tr>
 			 		<td class="vacc_title">결핵</td>
 			 		<td class="vacc_title">BCG(피내용)</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="BCG_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -295,11 +223,11 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 	<tr>
 			 		<td class="vacc_title">B형간염</td>
 			 		<td class="vacc_title">Hepβ(유전자재조합)</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hepβ_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hepβ_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hepβ_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -315,14 +243,14 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td class="vacc_title">DTaP</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="DTaP_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="DTaP_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="DTaP_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="DTaP_추가4차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추가 4차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 5차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="DTaP_추가5차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추가 5차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 	</tr>
@@ -340,22 +268,22 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 6차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Tdap_추가6차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 6차 {DBVALUE}</td>
 			 	</tr>
 			 	<tr>
 			 		<td class="vacc_title">폴리오</td>
 			 		<td class="vacc_title">IPV</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="IPV_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="IPV_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="IPV_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="IPV_추가4차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 	</tr>
@@ -364,10 +292,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td class="vacc_title">Hib</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hib_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hib_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hib_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="Hib_추가4차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -381,10 +309,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td class="vacc_title">PCV</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="PCV_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="PCV_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="PCV_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="PCV_추가4차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -403,7 +331,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="6" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> 고위험군에 한하여 접종 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="PPSV_고위험군에_한하여_접종" colspan="6" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> 고위험군에 한하여 접종 {DBVALUE}</td>
 			 	</tr>
 			 	<tr>
 			 		<td class="vacc_title">홍역ㆍ유행성이하선염ㆍ풍진</td>

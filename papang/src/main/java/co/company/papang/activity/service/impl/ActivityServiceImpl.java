@@ -84,4 +84,21 @@ public class ActivityServiceImpl implements ActivityService {
 	public List<Act_comVO> getCActComm(Act_comVO act_comVO) {
 		return dao.getCActComm(act_comVO);
 	}
+
+	@Override //놀이 글 단건 삭제
+	public int deletePaly(PlayVO playVO) {
+		return dao.deletePaly(playVO);
+	}
+
+	
+	
+	@Override//놀이 글 삭제시 관련 후기 삭제
+	public int deletePlayAct(Act_comVO act_comVO) {
+		return dao.deletePlayAct(act_comVO);
+	}
+
+	@Override
+	public int updatePlay(PlayVO playVO) {
+		return dao.updatePlay(playVO);
+	}
 }

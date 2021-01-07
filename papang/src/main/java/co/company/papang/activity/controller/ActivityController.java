@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,7 +76,7 @@ public class ActivityController {
 		return mav ;
 	}
 	
-	
+	// ###################################요리 후기 ###################################
 	// 요리 후기등록
 		@RequestMapping(value = "/cacInsert", method = RequestMethod.POST)
 		@ResponseBody
@@ -142,7 +143,7 @@ public class ActivityController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
 		act_comVO.setPc_no(playVO.getPlay_no());
-		mav.addObject("actcommList", service.getActComm(act_comVO));
+		mav.addObject("actcommList", service.getActComm(act_comVO)); //놀이 후기 조회
 		mav.addObject("acrate", service.getStar(act_comVO));
 		mav.setViewName("activity/playView");
 		return mav;
@@ -161,6 +162,34 @@ public class ActivityController {
 		service.insertPlay(playVO);
 		return "redirect:playList";
 	}
+	
+	//놀이 글 삭제 
+		@RequestMapping("activity/deletePlay")
+		public String deletePaly(HttpServletResponse response,Model model, HttpSession session, PlayVO playVO, MemberVO memberVO,Act_comVO act_comVO) {
+			service.deletePaly(playVO);
+			service.deletePlayAct(act_comVO);
+			return "redirect:playList";
+		}
+		
+		//글 수정폼 데이터 불러오기
+		@GetMapping("activity/updatePlay")
+		public ModelAndView getupdatePlay(HttpServletResponse response,Model model,PlayVO playVO) {
+			ModelAndView mav = new ModelAndView();
+			mav.addObject(service.getPlay(playVO));
+			mav.setViewName("activity/playForm");
+			return mav;
+		}
+		
+		//놀이 글 수정하기
+		@PostMapping("activity/updateSuccess")
+		public String updatePaly(HttpServletResponse response,Model model, HttpSession session, PlayVO playVO, MemberVO memberVO,Act_comVO act_comVO) {
+			service.updatePlay(playVO);
+			System.out.println("service.updatePlay(playVO)");
+			return "activity/playList";
+		}
+	
+	
+	// ###################################놀이 후기 ###################################
 
 	// 놀이 후기등록
 	@RequestMapping(value = "/acInsert", method = RequestMethod.POST)
@@ -179,6 +208,8 @@ public class ActivityController {
 		service.insertActComm(vo);
 		return vo;
 	}
+	
+	
 
 	@RequestMapping("activity/playtest")
 	public ModelAndView playtest(HttpServletResponse response) throws IOException {
