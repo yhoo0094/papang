@@ -62,7 +62,7 @@ td>span {
 					</tbody>
 					<tfoot>
 						<tr>
-							<c:if test="${empty user.mbr_id}">
+							<c:if test="${!empty admin.ad_id}">
 								<td><button type="button" class="btnYellow" id="itemUpdate">수정</button></td>
 								<td><button type="button" class="btnRed" id="itemDelete">삭제</button></td>
 							</c:if>
@@ -118,13 +118,11 @@ td>span {
 				</table>
 			</div>
 		</div>
-	</div>
-	<!-- /.row -->
+	</div>	<!-- /.row -->
 	<!-- 상세보기 -->
 	<div>
 		<h2>상세정보</h2>
 		<div class="col-lg-10">
-
 			<p>${pro.pro_detail }</p>
 		</div>
 	</div>

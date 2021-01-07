@@ -187,18 +187,31 @@
 		FROM USED u
 		<where>
 			<![CDATA[ rownum <= 100 ]]>
-			<if test="used_loc != null and used_loc != ''">
+			<if test="used_loc == '전체'">
+				and 1 = 1
+			</if>
+			<if test="used_loc != null and used_loc != '' and used_loc != '전체'">
 				and used_loc = #{used_loc}
 			</if>
 		</where>
-		ORDER BY used_no DESC 
+		ORDER BY used_no 
 	</select>
 	<!-- 판매중인 상품 조회  -->	
 	<select id="onSaleUsedList" resultType="UsedVO">
 		SELECT * 
-		FROM USED	
-		WHERE used_category = '판매중'
-		ORDER BY used_no DESC 
+		FROM USED
+		<where>
+			<![CDATA[ rownum <= 100 ]]>
+			<if test="used_loc == '전체'">
+				and 1 = 1
+			</if>
+			<if test="used_loc != null and used_loc != '' and used_loc != '전체'">
+				and used_loc = #{used_loc}
+			</if>
+		</where>
+		and used_category = '판매중'
+		
+		ORDER BY used_no 
 	</select>
 
 	<!-- 단건조회  -->
@@ -213,7 +226,6 @@
 		INSERT INTO USED (	used_no,
 							mbr_id, 
 							used_title, 
-							used_date,
 							used_loc,
 							<if test="used_pic != null and used_pic != ''">used_pic,</if>
 							used_price,
@@ -221,7 +233,6 @@
 	 	            VALUES( seq_used_used_no.nextval,
 	 	               		#{mbr_id},
 	 	               		#{used_title},
-	 	               		sysdate,
 	 	               		#{used_loc},
 	 	               		<if test="used_pic != null and used_pic != ''">#{used_pic},</if>
 	 	               		#{used_price},

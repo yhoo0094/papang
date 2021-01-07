@@ -41,11 +41,6 @@ public class MarketController {
 
 // 상품판매	
 	// 판매상품 전체 리스트
-	/*
-	 * @RequestMapping("marketList/itemBoard") //url 예전 .do public ModelAndView
-	 * test(HttpServletResponse response) throws IOException{ return new
-	 * ModelAndView("marketList/itemBoard"); //jsp주소 }
-	 */
 	@RequestMapping("marketList/itemBoard") // url 예전 .do
 	public ModelAndView test(ProductVO product) throws IOException {
 		ModelAndView mav = new ModelAndView();
@@ -60,15 +55,7 @@ public class MarketController {
 		model.addAttribute("pro", mk_service.getItem(product));
 		return "market/itemDetail"; // jsp주소
 	}
-//	@RequestMapping("market/itemDetail") //url 예전 .do
-//	public ModelAndView test2(ProductVO product, HttpServletResponse response, HttpServletRequest request) throws IOException{
-//		request.getParameter("pro_no");
-//		ModelAndView mav = new ModelAndView();
-//		//mav.addObject("pro", dao.getItem(product));
-//		mav.setViewName("market/itemDetail");
-//		return mav; //jsp주소
-//	}
-
+	
 	// 판매상품 등록
 	@RequestMapping("market/itemInsert") // url 예전 .do
 	public String test9(HttpServletResponse response, HttpServletRequest request, ProductVO product)
@@ -121,6 +108,14 @@ public class MarketController {
 		mav.setViewName("marketList/usedBoard");
 		return mav; // jsp주소
 	}
+	// 중고게시판 판매중 리스트
+	@RequestMapping("marketList/usedOnSaleBoard") // url 예전 .do
+	public ModelAndView test16(UsedVO used) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("usedList", used_service.onSaleUsedList(used));
+		mav.setViewName("marketList/usedOnSaleBoard");
+		return mav; // jsp주소
+	}
 
 	// 중고게시판 상세
 	@RequestMapping("market/usedDetail") // url 예전 .do
@@ -152,12 +147,23 @@ public class MarketController {
 
 	// 중고게시판 등록
 	@RequestMapping("market/usedInsert") // url 예전 .do
-	public String test10(UsedVO used, HttpSession session) throws IOException {
+	public String test10(HttpServletRequest request, UsedVO used, HttpSession session) throws IllegalStateException, IOException {
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
 		used.setMbr_id(mbr_id);
+		
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+
+		// 이미지파일(첨부파일 읽어내기)
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			// 파일 경로 webapp 바로 밑이 최상위
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+			used.setUsed_pic(multipartFile.getOriginalFilename());
+		}
 		used_service.insertUsed(used);
-		return "redirect:/market/usedInsert"; //jsp주소
+		return "redirect:/marketList/usedBoard"; //jsp주소
 	}
 
 	// 중고게시판 등록 폼

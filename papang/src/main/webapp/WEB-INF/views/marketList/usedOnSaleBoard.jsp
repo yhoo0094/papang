@@ -17,11 +17,10 @@
 <body>
 	<br>
 	<h1>중고장터</h1>
-	<h5 style="display: inline;"><a href="${pageContext.request.contextPath}/marketList/usedOnSaleBoard">판매중</a>  </h5><h3 style="display: inline;">  <a href="${pageContext.request.contextPath}/marketList/usedBoard">전체상품</a></h3>
-
-	<form id="usedBoardCategory" class="category" action="${pageContext.request.contextPath}/marketList/usedBoard" method="post">
+	<h3 style="display: inline;"><a href="${pageContext.request.contextPath}/marketList/usedOnSaleBoard">판매중</a>  </h3><h5 style="display: inline;">  <a href="${pageContext.request.contextPath}/marketList/usedBoard">전체상품</a></h5>
+	<form id="usedBoardCategory" class="category" action="${pageContext.request.contextPath}/marketList/usedOnSaleBoard" method="post">
 		<select id="used_loc" name="used_loc" style="width: 100%">
-			<option value="" selected>지역
+			<option>지역
 			<option <c:if test="${used.used_loc == '전체'}">selected="selected"</c:if> value='전체'>전체</option>
 			<option <c:if test="${used.used_loc == '택배'}">selected="selected"</c:if> value='택배'>택배</option>
 			<option <c:if test="${used.used_loc == '서울'}">selected="selected"</c:if> value='서울'>서울</option>

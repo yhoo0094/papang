@@ -182,7 +182,7 @@ a {}
 				</ul></li>
 			<li><a href="#none">중고장터</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/marketList/used/${used_category}">판매중</a></li>
+					<li><a href="${pageContext.request.contextPath}/marketList/usedOnSaleBoard">판매중 상품</a></li>
 					<li><a href="${pageContext.request.contextPath}/marketList/usedBoard">전체상품</a></li>
 				</ul></li>
 		</ul>

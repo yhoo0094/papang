@@ -16,6 +16,10 @@ public class UsedServiceImpl implements UsedService{
 	public List<UsedVO> getUsedList(UsedVO used) {
 		return dao.getUsedList(used);
 	}
+	@Override
+	public List<UsedVO> onSaleUsedList(UsedVO used) {
+		return dao.onSaleUsedList(used);
+	}
 
 	@Override
 	public UsedVO getUsed(UsedVO used) {
@@ -29,8 +33,6 @@ public class UsedServiceImpl implements UsedService{
 
 	@Override
 	public int hitPlus(UsedVO used) {
-		// TODO Auto-generated method stub
 		return dao.hitPlus(used);
 	}
-
 }

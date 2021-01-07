@@ -44,17 +44,17 @@
 <div align="center" class="FormTitle strongYellow">
 	<h3>중고장터 글 등록</h3>
 </div>
-<form id="frm" class="form-horizontal" name="frm" method="post" action="${pageContext.request.contextPath}/market/usedInsert">
+<form id="frm" class="form-horizontal" name="frm" method="post" action="${pageContext.request.contextPath}/market/usedInsert" encType="multipart/form-data">
    <div align="center">
       <table class="table" style="width: 100%">
          <tbody>
             <tr>
                <td align="center" style="width: 10%">제목</td>
-               <td><input name="used_title" type="text" style="width: 100%"></td>
+               <td><input name="used_title" type="text" style="width: 100%" class="form-control"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">지역</td>
-               <td><select name="used_loc" class="FormType">
+               <td><select name="used_loc" class="FormType form-control">
 						<option value='택배'>택배</option>
 						<option value='서울'>서울</option>
 						<option value='부산'>부산</option>
@@ -76,13 +76,12 @@
             </tr>
             <tr>
                <td align="center" style="width: 10%">가격</td>
-               <td><input name="used_price" type="text" style="width: 100%"></td>
+               <td><input name="used_price" type="text" style="width: 100%" class="form-control"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">사진</td>
-               <td><input type="text" id="used_pic" name="used_pic"
-                  style="width: 80%; margin-right: 20px"><input type="button" value="찾기">
-                  <input type="hidden" id="mbr_id" name="mbr_id" value="${user.mbr_id}">
+               <td><input type="file" id="used_pic" name="uploadFile" class="form-control"
+                  style="width: 100%">
                </td>
             </tr>
          </tbody>
