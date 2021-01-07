@@ -23,6 +23,8 @@ import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
+import co.company.papang.vo.Pro_OdVO;
+import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 
@@ -185,77 +187,70 @@ public class MypageController {
 	}
 	
 	
-	@RequestMapping("mypage/market_buyinfo") //구매목록
-	public ModelAndView test4(HttpSession session,HttpServletRequest request,Order_infoVO order_infoVO,Od_detailVO od_detailVO) throws IOException{
-		ModelAndView mav=new ModelAndView();
-		MemberVO vo = (MemberVO) session.getAttribute("user");
-		
-		String no = request.getParameter("no");
-		//session.setAttribute("dd", "abcd");
-		String mbr_id = vo.getMbr_id(); 
-		//System.out.println("나오냐"+mbr_id);
-		order_infoVO.setMbr_id(mbr_id);
-		
-		if(no==null) {
-				mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
-				mav.setViewName("mypage/market_buyinfo");
-		return mav;
-		}
-		else {
-			mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
-			mav.setViewName("mypage/market_buyinfo");
-			System.out.println("나오나"+no);
-	        
-			
-			od_detailVO.setOrder_no(no);
-			
-			mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(od_detailVO));
-			
-			mav.setViewName("mypage/market_buyinfo");
-			return mav;
-		}
-		
-	}
 //	@RequestMapping("mypage/market_buyinfo") //구매목록
 //	public ModelAndView test4(HttpSession session,HttpServletRequest request,Order_infoVO order_infoVO,Od_detailVO od_detailVO) throws IOException{
 //		ModelAndView mav=new ModelAndView();
 //		MemberVO vo = (MemberVO) session.getAttribute("user");
-//			
-//		String mbr_id = vo.getMbr_id(); 
-//		
-//		order_infoVO.setMbr_id(mbr_id);
-//				
-//		mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
-//						
-//		mav.setViewName("mypage/market_buyinfo");
-//		return mav;
-//	}
-//	
-//	@RequestMapping("mypage/findno") //구매목록2
-//	public ModelAndView test42(HttpSession session,HttpServletRequest request,Order_infoVO order_infoVO,Od_detailVO od_detailVO) throws IOException{
-//		ModelAndView mav=new ModelAndView();
-//		MemberVO vo = (MemberVO) session.getAttribute("user");
-//		
-//		
-//		
-//		String mbr_id = vo.getMbr_id(); 
-//		
-//		order_infoVO.setMbr_id(mbr_id);
-//		
-//		
-//		mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
 //		
 //		String no = request.getParameter("no");
-//		System.out.println("나오나"+no);
+//		System.out.println("나오나1"+no);
 //		
-//		od_detailVO.setOrder_no(no);
+//		String mbr_id = vo.getMbr_id(); 
 //		
-//		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(od_detailVO));
+//		order_infoVO.setMbr_id(mbr_id);
 //		
-//		mav.setViewName("mypage/market_buyinfo");
+//		if(no==null) {
+//				mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
+//				mav.setViewName("mypage/market_buyinfo");
 //		return mav;
+//		}
+//		else {
+//			mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
+//			mav.setViewName("mypage/market_buyinfo");
+//			System.out.println("나오나2"+no);
+//	        
+//			
+//			od_detailVO.setOrder_no(no);
+//			
+//			mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(od_detailVO));
+//			
+//			mav.setViewName("mypage/market_buyinfo");
+//			return mav;
+//		}
+//		
 //	}
-//	
+	
+	@RequestMapping("mypage/market_buyinfo") //구매목록
+	public ModelAndView test4(HttpSession session,HttpServletRequest request,Order_infoVO order_infoVO,Od_detailVO od_detailVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+			
+		String mbr_id = vo.getMbr_id(); 
+		
+		order_infoVO.setMbr_id(mbr_id);
+				
+		mav.addObject("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
+						
+		mav.setViewName("mypage/market_buyinfo");
+		return mav;
+	}
+	
+	@RequestMapping("/mypage/market_buyinfomm") //구매목록2
+	public ModelAndView test42(Order_infoVO order_infoVO,Pro_OdVO pro_odVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
+		
+		System.out.println("1111111111111");
+		System.out.println(pro_odVO);
+		System.out.println(pro_odVO.getOrder_no());
+		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
+		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
+		System.out.println("2222222222");
+		mav.setViewName("no/mypage/aaa");
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping("mypage/market_deli") //배송 현황 조회

@@ -10,6 +10,8 @@ import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
+import co.company.papang.vo.Pro_OdVO;
+import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 
@@ -30,8 +32,8 @@ public interface YrMapper {
 	
 	//장터부터 하겠습니다.
 	public List<Order_infoVO> market_buyinfoOrder_infoVO(Order_infoVO order_infoVO);//구매조회1
-	public List<Od_detailVO> market_buyinfoOrder_info2VO(Od_detailVO od_detailVO); //구매조회2
-	
+	//public List<Od_detailVO> market_buyinfoOrder_info2VO(Od_detailVO od_detailVO); //구매조회2
+	public List<Pro_OdVO> market_buyinfoOrder_info2VO(Pro_OdVO pro_OdVO); //구매조회3 상품;
 	//게시물부터한다
 	public List<CommunityVO> myboard_questionCommunityVO(CommunityVO community); //질문보기
 	public List<Community_comVO> myboard_answerCommunity_comVO(Community_comVO community_comVO); //질문보기

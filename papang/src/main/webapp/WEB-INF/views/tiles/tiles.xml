@@ -8,7 +8,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/{1}.jsp" />
 	</definition>
-	
+		<!-- notiles -->
+	<definition name="no/*/*" template="/WEB-INF/views/layout/NewFile.jsp">
+	<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
 	<!-- home -->
 	<definition name="main/*" template="/WEB-INF/views/layout/base.jsp">
 		<put-attribute name="main" value="/WEB-INF/views/main/{1}.jsp" />	
