@@ -131,7 +131,17 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	
 	$(() => {
 		
-	console.log($('#BCG_1차').text());
+	/* console.log($('#BCG_1차').text()); */
+	
+	$('td').on('click',function(){
+		console.log($(this));
+		console.log('====');
+		console.log($(this).attr('id'))
+		 var $in = $(this).attr('id');
+		$('#inTitle').attr('value',$in) 
+		
+	})
+	
 	});
 	
 	
@@ -153,6 +163,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	      </div>
 	      <div class="modal-body">
 	        <form>
+	        <div class="form-group">
+	            <label for="recipient-name" class="control-label">접종명</label>
+	            <input id="inTitle" type="text" class="form-control" id="recipient-title" value="">
+	          </div>
 	          <div class="form-group">
 	            <label for="recipient-name" class="control-label">접종일</label>
 	            <input type="date" class="form-control" id="recipient-name">
@@ -165,7 +179,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	      </div>
 	      <div class="modal-footer" align="center">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary">등록하기</button>
+	        <button type="submit" class="btn btn-primary">등록하기</button>
 	      </div>
 	    </div>
 	  </div>
@@ -341,11 +355,11 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="MMR_1차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="MMR_2차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 	</tr>
@@ -357,7 +371,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="VAR_1회" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -374,8 +388,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="3" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
-			 		<td class="vacc_prev" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 1차접종 6개월 후</td>
+			 		<td class="vacc_prev" id="HepA_1회" colspan="3" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1회 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="HepA_2차" colspan="2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 1차접종 6개월 후</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -389,12 +403,12 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="4" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> 3차 1차 접종 후 12개월 후</td>
+			 		<td class="vacc_prev" id="IJEV_1차" colspan="4" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="IJEV_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"> 3차 1차 접종 후 12개월 후</td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차{DBVALUE}</td>
+			 		<td class="vacc_prev" id="IJEV_추가4차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 4차{DBVALUE}</td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 5차{DBVALUE}</td>
+			 		<td class="vacc_prev" id="IJEV_추가5차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">추 5차{DBVALUE}</td>
 			 	</tr>
 			 	<tr>
 			 		<td class="vacc_title">LJEV(햄스터 신장세포 유래 약독화 생백신)</td>
@@ -403,8 +417,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="4" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차{DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 1차 접종 후 12개월 후</td>
+			 		<td class="vacc_prev" id="LJEV_1차" colspan="4" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차{DBVALUE}</td>
+			 		<td class="vacc_prev" id="LJEV_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 1차 접종 후 12개월 후</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -426,7 +440,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1~2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="HPV_1_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1~2차 {DBVALUE}</td>
 			 	</tr>
 			 	<tr>
 			 		<td class="vacc_title">인플루엔자</td>
@@ -435,7 +449,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" colspan="7" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">우선접종권장 대상자{DBVALUE}</td>
+			 		<td class="vacc_prev" id="IIV_우선접종권자" colspan="7" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">우선접종권장 대상자{DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -445,8 +459,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td class="vacc_title">RV1</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="RV1_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id ="RV1_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
@@ -462,9 +476,9 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 			 		<td class="vacc_title">RV5</td>
 			 		<td></td>
 			 		<td></td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
-			 		<td class="vacc_prev" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="RV5_1차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">1차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="RV5_2차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">2차 {DBVALUE}</td>
+			 		<td class="vacc_prev" id="RV5_3차" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">3차 {DBVALUE}</td>
 			 		<td></td>
 			 		<td></td>
 			 		<td></td>
