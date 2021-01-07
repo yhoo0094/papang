@@ -80,8 +80,10 @@ thead, .marketTable_filter, .marketTables_length{
 			</tbody>
 		</table>
 	</div>
+	<c:if test="${!empty admin.ad_id}">
 	<div align="right">
-		<button type="button"
-			onclick="location.href='/papang/market/itemInsertForm'">등록</button>
+		<button type="button" class="btnYellow bMedium"
+			onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
 	</div>
+	</c:if>
 </div>

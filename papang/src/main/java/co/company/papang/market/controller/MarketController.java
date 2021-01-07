@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,18 +24,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.EsMapper;
 import co.company.papang.market.service.MarketService;
+import co.company.papang.market.service.UsedService;
 import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.UsedVO;
+import co.company.papang.vo.Used_comVO;
 
 @Controller
 public class MarketController {
-	@Autowired
-	EsMapper dao;
-	@Autowired
-	MarketService mk_service;
+	@Autowired EsMapper dao;
+	@Autowired MarketService mk_service;
+	@Autowired UsedService used_service;
 
 // 상품판매	
 	// 판매상품 전체 리스트
@@ -112,20 +115,49 @@ public class MarketController {
 //	중고게시판
 	// 중고게시판 리스트
 	@RequestMapping("marketList/usedBoard") // url 예전 .do
-	public ModelAndView test3(HttpServletResponse response) throws IOException {
-		return new ModelAndView("redirect:/marketList/usedBoard"); // jsp주소
+	public ModelAndView test3(UsedVO used) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("usedList", used_service.getUsedList(used));
+		mav.setViewName("marketList/usedBoard");
+		return mav; // jsp주소
 	}
 
 	// 중고게시판 상세
 	@RequestMapping("market/usedDetail") // url 예전 .do
-	public ModelAndView test4(HttpServletResponse response) throws IOException {
-		return new ModelAndView("market/usedDetail"); // jsp주소
+	public String getUsed(UsedVO used, Used_comVO used_com, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// 조회수 올리기
+		if(used.getUsed_no() != null) {
+			boolean existCookie = false;
+			Cookie[] cookieList = request.getCookies();
+			for(Cookie co : cookieList) {
+				if(co.getValue().equals(used.getUsed_no())) {
+					existCookie = true;
+				}
+			}
+			//쿠키생성
+			if(!existCookie) {
+				//쿠키가 없는 경우
+				System.out.println("쿠키생성");
+				Cookie cookie = new Cookie("cookieCode", used.getUsed_no());
+				cookie.setMaxAge(60*60*24);
+				response.addCookie(cookie);
+				used_service.hitPlus(used);
+			}
+			model.addAttribute("used",used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
+			// model.addAttribute("used_comList",used_service.getUsedComList(used_com)); // 댓글조회
+		}
+		// model.addAttribute("used", used_service.getUsed(used));
+		return "market/usedDetail"; // jsp주소
 	}
 
 	// 중고게시판 등록
 	@RequestMapping("market/usedInsert") // url 예전 .do
-	public ModelAndView test10(HttpServletResponse response) throws IOException {
-		return new ModelAndView("market/usedInsert"); // jsp주소
+	public String test10(UsedVO used, HttpSession session) throws IOException {
+		MemberVO memberVO = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVO.getMbr_id();
+		used.setMbr_id(mbr_id);
+		used_service.insertUsed(used);
+		return "redirect:/market/usedInsert"; //jsp주소
 	}
 
 	// 중고게시판 등록 폼
@@ -200,7 +232,8 @@ public class MarketController {
 	
 	// 전체 주문하기
 	@RequestMapping(value = "/market/order", method = RequestMethod.POST)
-	public void test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request) throws IOException {
+	@ResponseBody
+	public boolean test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request) throws IOException {
 		String order_sum = request.getParameter("order_sum");
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
@@ -223,10 +256,11 @@ public class MarketController {
 		mk_service.orderInfo(order);
 		
 		detail.setOrder_no(order_no);
+		detail.setMbr_id(mbr_id);
 		mk_service.orderDetail(detail);
 		
 		mk_service.deleteAllCart(mbr_id); // 전체주문이니까 주문끝나면 카트 완전히 비우기
-		//return "redirect:/mypage/market_buyinfo";
+		return true;
 	}
 	// 선택 주문하기
 //	@RequestMapping(value="/market/order", method=RequestMethod.POST)

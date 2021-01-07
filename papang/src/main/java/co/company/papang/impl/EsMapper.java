@@ -43,6 +43,7 @@ public interface EsMapper {
 	public int insertUsed(UsedVO used); // 등록
 	public int updateUsed(UsedVO used); // 수정
 	public int deleteUsed(UsedVO used); // 삭제
+	public int hitPlus(UsedVO used); //조회수
 	
 	// 장바구니
 	public List<BagVO> getCartList(String mbr_id);//전체조회

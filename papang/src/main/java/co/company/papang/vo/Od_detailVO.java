@@ -14,4 +14,5 @@ public class Od_detailVO {
 	private String order_no;
 	private String pro_no;
 	private String bag_cnt;
+	private String mbr_id;
 }

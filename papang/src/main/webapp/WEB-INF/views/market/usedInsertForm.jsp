@@ -33,9 +33,6 @@
 	border-collapse: collapse;
 }
 </style>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
 <script
    src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
 <script
@@ -57,9 +54,8 @@
             </tr>
             <tr>
                <td align="center" style="width: 10%">지역</td>
-               <td><select name="used_loc"
-					class="FormType">
-						<option value='택배' selected>택배</option>
+               <td><select name="used_loc" class="FormType">
+						<option value='택배'>택배</option>
 						<option value='서울'>서울</option>
 						<option value='부산'>부산</option>
 						<option value='대구'>대구</option>
@@ -86,7 +82,7 @@
                <td align="center" style="width: 10%">사진</td>
                <td><input type="text" id="used_pic" name="used_pic"
                   style="width: 80%; margin-right: 20px"><input type="button" value="찾기">
-                  <input type="hidden" id="used_no" name="used_no"><input type="hidden" id="mbr_id" name="mbr_id">
+                  <input type="hidden" id="mbr_id" name="mbr_id" value="${user.mbr_id}">
                </td>
             </tr>
          </tbody>
@@ -94,8 +90,8 @@
    </div>
    <div align="center">
       <textarea id="summernote" name="used_content"></textarea><br>
-      <input type="submit" class="btn btn-primary" value="등록">&nbsp;&nbsp;
-      <input type="reset" class="btn btn-primary" value="취소">
+      <input type="submit" class="btnRed bMedium" value="등록">&nbsp;&nbsp;
+      <input type="reset" class="btnGray bMedium" value="취소">
    </div>
 </form>
 <script>

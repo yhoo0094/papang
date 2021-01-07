@@ -183,16 +183,29 @@
 <!-- 장터 -->
 	<!-- 전체조회  -->	
 	<select id="getUsedList" resultType="UsedVO">
-		SELECT * 
-		FROM USED	
+		SELECT rownum, u.*
+		FROM USED u
+		<where>
+			<![CDATA[ rownum <= 100 ]]>
+			<if test="used_loc != null and used_loc != ''">
+				and used_loc = #{used_loc}
+			</if>
+		</where>
 		ORDER BY used_no DESC 
 	</select>
 	<!-- 판매중인 상품 조회  -->	
 	<select id="onSaleUsedList" resultType="UsedVO">
 		SELECT * 
 		FROM USED	
-		WHERE used_category = 'onSale'
+		WHERE used_category = '판매중'
 		ORDER BY used_no DESC 
+	</select>
+
+	<!-- 단건조회  -->
+	<select id="getUsed" parameterType="UsedVO" resultType="UsedVO">
+		SELECT *
+		FROM USED
+		WHERE used_no = #{used_no}
 	</select>
 	
 	<!--  글등록    -->
@@ -201,7 +214,6 @@
 							mbr_id, 
 							used_title, 
 							used_date,
-							used_category,
 							used_loc,
 							<if test="used_pic != null and used_pic != ''">used_pic,</if>
 							used_price,
@@ -210,7 +222,6 @@
 	 	               		#{mbr_id},
 	 	               		#{used_title},
 	 	               		sysdate,
-	 	               		#{used_category},
 	 	               		#{used_loc},
 	 	               		<if test="used_pic != null and used_pic != ''">#{used_pic},</if>
 	 	               		#{used_price},
@@ -232,7 +243,13 @@
 		DELETE USED
 		WHERE used_no = #{used_no}
 	</delete>
-
+	
+	<!-- 조회수 -->
+	<update id="hitPlus" parameterType="UsedVO">
+		UPDATE USED
+		SET	used_hit = used_hit + 1
+		WHERE used_no = #{used_no}
+	</update>
 
 <!-- =========================================================== -->
 <!-- 장바구니 -->
@@ -268,8 +285,7 @@
 	<!-- 삭제 -->
 	<delete id="deleteCart" parameterType="BagVO">
 		DELETE BAG
-		WHERE bag_no = #{bag_no}
-		AND mbr_id = #{mbr_id}
+		WHERE mbr_id = #{mbr_id}
 	</delete>
 <!-- =========================================================== -->
 <!-- 전체 주문 -->
@@ -283,8 +299,9 @@
 	<!-- 주문상세정보 입력 -->
 	<insert id="orderDetail">
 		INSERT INTO ORDER_DETAIL (od_detail_no, order_no, pro_no, bag_cnt)
-			SELECT seq_order_detail_od_detail_no.nextval, ${order_no}, pro_no, bag_cnt
+			SELECT seq_order_detail_od_detail_no.nextval, #{order_no}, pro_no, bag_cnt
 		FROM BAG
+		WHERE mbr_id = #{mbr_id}
 	</insert>
 	
 	<!-- 주문후 장바구니 비우기 -->
