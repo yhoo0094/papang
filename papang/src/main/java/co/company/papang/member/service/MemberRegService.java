@@ -23,6 +23,11 @@ public class MemberRegService {
 		dao = memberSqlSession.getMapper(EsMapper .class);
 		return dao.checkNk(mbr_nick);
 	}
+	// 이메일 중복체크
+	public int mbrEmCheck(String mbr_email) {
+		dao = memberSqlSession.getMapper(EsMapper .class);
+		return dao.checkEm(mbr_email);
+	}
 	// 회원가입
 	public int insertUser(MemberVO member) {
 		int resultCnt = 0;

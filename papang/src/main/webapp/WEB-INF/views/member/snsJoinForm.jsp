@@ -58,6 +58,35 @@ p {
 										}
 									})
 						})
+		// 이메일 중복검사
+		$("#mbr_email")
+				.blur(
+						function() {
+							var mbr_email = $("#mbr_email").val();
+							$.ajax({
+										url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
+												+ mbr_email,
+										type : 'get',
+										success : function(data) {
+											if (data == 1) { // 중복
+												$("#emailchk").text("사용불가");
+												$("#emailchk").css("color", "red");
+												$("joinBtn").attr("disabled",
+														true);
+											} else {
+												$("#emailchk")
+														.text("사용가능");
+												$("#emailchk").css("color",
+														"green");
+												$("joinBtn").attr("disabled",
+														false);
+											}
+										},
+										error : function() {
+											alert("실패");
+										}
+									})
+						})
 	});
 	function formCheck() {
 		var frm = document.frm;
@@ -127,29 +156,34 @@ p {
 							<td class="txt" width="20%">이름&nbsp;<span style="color: red;">*</span><input
 								type="hidden" id="mbr_id" name="mbr_id" value="${kid}"
 								placeholder="아이디" class="form-control"></td>
-							<td colspan="2"><input type="text" id="mbr_name"
-								style="width: 74.103%;" name="mbr_name" placeholder="이름"
+							<td><input type="text" id="mbr_name"
+								style="width: 80%;" name="mbr_name" placeholder="이름"
 								class="form-control"></td>
 						</tr>
 						<tr>
 							<td class="txt">닉네임&nbsp;<span style="color: red;">*</span></td>
-							<td width="60%"><input type="text" id="mbr_nick" name="mbr_nick" style="width: 100%;"
-								placeholder="닉네임" class="form-control" value="${kname}"></td>
-							<td width="20%"><span id="nkchk"></span></td>
+							<td><input type="text" id="mbr_nick" name="mbr_nick" style="width: 80%;"
+								placeholder="닉네임" class="form-control" value="${kname}">
+							<span id="nkchk"></span></td>
+						</tr>
+						<tr>
+							<td class="txt">이메일</td>
+							<td><input type="email" id="mbr_email" style="width: 80%;" name="mbr_email" value="${kemail}"
+								class="form-control"><span id="emailchk"></span></td>
 						</tr>
 						<tr>
 							<td class="txt">프로필사진</td>
-							<td colspan="2"><input type="file" id="mbr_pic"
-								style="width: 74.103%;" name="uploadFile" class="form-control"></td>
+							<td><input type="file" id="mbr_pic"
+								style="width: 80%;" name="uploadFile" class="form-control"></td>
 						</tr>
 						<tr>
 							<td class="txt">생년월일&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="date" id="mbr_birth"
-								style="width: 74.103%;" name="mbr_birth" class="form-control"></td>
+							<td><input type="date" id="mbr_birth"
+								style="width: 80%;" name="mbr_birth" class="form-control"></td>
 						</tr>
 						<tr>
 							<td class="txt">성별&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="radio" id="mbr_gender"
+							<td><input type="radio" id="mbr_gender"
 								style="margin-left: 20px; margin-right: 20px;" name="mbr_gender"
 								value="남" checked>남성 <input
 								style="margin-left: 180px; margin-right: 20px;" type="radio"
@@ -157,47 +191,38 @@ p {
 						</tr>
 						<tr>
 							<td class="txt">전화번호&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_phone"
-								style="width: 74.103%;" name="mbr_phone" placeholder="-없이 입력"
-								class="form-control"></td>
+							<td><input type="text" id="mbr_phone" class="form-control"
+								style="width: 80%;" name="mbr_phone" placeholder="-없이 입력"></td>
 						</tr>
 						<tr>
-							<td class="txt">이메일</td>
-							<td colspan="2"><input type="email" id="mbr_email"
-								style="width: 74.103%;" name="mbr_email" value="${kemail}"
-								class="form-control"></td>
-						<tr>
 							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_post" name="mbr_post" style="width: 100%;"
-								class="form-control" placeholder="우편번호" readonly></td>
-							<td><input type="button" id="postSearch" class="btnRed"
+							<td><input type="text" id="mbr_post" name="mbr_post" style="width: 80%;"
+								class="form-control" placeholder="우편번호" readonly>
+								<input type="button" id="postSearch" class="btnYellow"
 								value="우편번호 검색" onclick="sample2_execDaumPostcode()"
-								style="padding: 5px"></td>
+								style="padding: 5px; width: 100px;"></td>
 						</tr>
 						<tr>
 							<td class="txt">주소&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_addr1"
-								style="width: 74.103%;" name="mbr_addr1" class="form-control"
-								placeholder="주소" readonly></td>
+							<td><input type="text" id="mbr_addr1" placeholder="주소" readonly
+								style="width: 80%;" name="mbr_addr1" class="form-control"></td>
 						</tr>
 						<tr>
 							<td class="txt">상세주소&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_addr2"
-								style="width: 74.103%;" class="form-control" name="mbr_addr2"
-								placeholder="상세주소"></td>
+							<td><input type="text" id="mbr_addr2" placeholder="상세주소"
+								style="width: 80%;" class="form-control" name="mbr_addr2"></td>
 						</tr>
 						<tr>
 							<td class="txt">참고사항&nbsp;<span style="color: red;">*</span></td>
-							<td colspan="2"><input type="text" id="mbr_addr3"
-								style="width: 74.103%;" class="form-control" name="mbr_addr3"
-								placeholder="주소 참고사항" readonly></td>
+							<td><input type="text" id="mbr_addr3" placeholder="주소 참고사항" readonly
+								style="width: 80%;" class="form-control" name="mbr_addr3"></td>
 						</tr>
 					</table>
 				</div>
 				<div align="center">
-					<button type="submit" class="btnRed" id="joinBtn"
+					<button type="submit" class="btnRed bMedium" id="joinBtn"
 						onclick="return formCheck()" style="margin-right: 30px;">회원가입</button>
-					<button type="reset" class="btnGray" style="margin-right: 30px;">취소</button>
+					<button type="reset" class="btnGray bMedium" style="margin-right: 30px;">취소</button>
 				</div>
 			</form>
 			<div id="layer"

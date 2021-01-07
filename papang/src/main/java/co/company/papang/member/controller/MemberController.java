@@ -62,10 +62,17 @@ public class MemberController {
 	public int nkChk(@RequestParam("mbr_nick") String mbr_nick) throws IOException {
 		return reg_service.mbrNkCheck(mbr_nick); // jsp주소
 	}
+	
+	// 이메일 중복체크
+	@RequestMapping(value = "/ajax/emailchk", method = RequestMethod.GET) // url 예전 .do
+	@ResponseBody
+	public int emailChk(@RequestParam("mbr_email") String mbr_email) throws IOException {
+		return reg_service.mbrEmCheck(mbr_email); // jsp주소
+	}
 
 	// 회원가입 처리
 	@PostMapping("/member/join")
-	public String join(HttpServletRequest request, MemberVO member) throws IOException {
+	public void join(HttpServletRequest request, MemberVO member, HttpServletResponse response) throws IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
 		// 이미지파일(첨부파일 읽어내기)
@@ -80,7 +87,15 @@ public class MemberController {
 		
 		// 인증 메일 보내기 메서드
 		mailsender.mailSendWithUserKey(member.getMbr_email(), member.getMbr_id(), request);
-		return "main/main";
+		response.setContentType("text/html; charset=UTF-8");
+		try {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('이메일 인증을 완료해주세요');</script>");
+			out.println("<script>location.href='/papang/';</script>");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//return "main/main";
 	}
 	
 	// e-mail 인증 컨트롤러

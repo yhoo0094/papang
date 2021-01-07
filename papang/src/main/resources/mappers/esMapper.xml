@@ -46,6 +46,11 @@
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_nick = #{mbr_nick}
 	</select>
+	<!-- 이메일중복체크 -->
+	<select id="checkEm" parameterType="string" resultType="int">
+		SELECT count(*) FROM MEMBER
+		WHERE mbr_email = #{mbr_email}
+	</select>
 	<!-- 이메일 인증 난수 생성 -->
 	<update id="GetKey" parameterType="Map">
 		UPDATE MEMBER SET authkey = #{param2}

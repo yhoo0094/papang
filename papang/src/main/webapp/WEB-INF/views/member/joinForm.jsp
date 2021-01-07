@@ -33,8 +33,7 @@ p {
 				.blur(
 						function() {
 							var mbr_id = $("#mbr_id").val();
-							$
-									.ajax({
+							$.ajax({
 										url : "${pageContext.request.contextPath}/ajax/idchk?mbr_id="
 												+ mbr_id,
 										type : 'get',
@@ -63,8 +62,7 @@ p {
 				.blur(
 						function() {
 							var mbr_nick = $("#mbr_nick").val();
-							$
-									.ajax({
+							$.ajax({
 										url : "${pageContext.request.contextPath}/ajax/nkchk?mbr_nick="
 												+ mbr_nick,
 										type : 'get',
@@ -78,6 +76,35 @@ p {
 												$("#nkchk")
 														.text("사용가능");
 												$("#nkchk").css("color",
+														"green");
+												$("joinBtn").attr("disabled",
+														false);
+											}
+										},
+										error : function() {
+											alert("실패");
+										}
+									})
+						})
+		// 이메일 중복검사
+		$("#mbr_email")
+				.blur(
+						function() {
+							var mbr_email = $("#mbr_email").val();
+							$.ajax({
+										url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
+												+ mbr_email,
+										type : 'get',
+										success : function(data) {
+											if (data == 1) { // 중복
+												$("#emailchk").text("사용불가");
+												$("#emailchk").css("color", "red");
+												$("joinBtn").attr("disabled",
+														true);
+											} else {
+												$("#emailchk")
+														.text("사용가능");
+												$("#emailchk").css("color",
 														"green");
 												$("joinBtn").attr("disabled",
 														false);
@@ -226,6 +253,12 @@ p {
 								placeholder="닉네임" class="form-control"><span id="nkchk"></span></td>
 						</tr>
 						<tr>
+							<td class="txt">이메일</td>
+							<td><input type="email" id="mbr_email" style="width: 80%;"
+								name="mbr_email" placeholder="abc@example.com" class="form-control">
+								<span id="emailchk"></span></td>
+						</tr>
+						<tr>
 							<td class="txt">프로필사진</td>
 							<td><input type="file" id="mbr_pic" style="width: 80%;"
 								name="uploadFile" class="form-control"></td>
@@ -246,13 +279,6 @@ p {
 							<td><input type="text" id="mbr_phone" style="width: 80%;"
 								name="mbr_phone" placeholder="-없이 입력" class="form-control"></td>
 						</tr>
-						
-						<tr>
-							<td class="txt">이메일</td>
-							<td><input type="email" id="mbr_email" style="width: 80%; margin-right: 5px"
-								name="mbr_email" placeholder="abc@example.com" class="form-control"></td>
-						</tr>
-						
 						<tr>
 							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="text" id="mbr_post" name="mbr_post" style="width: 80%;"

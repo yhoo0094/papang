@@ -20,6 +20,7 @@ public interface EsMapper {
 	// 중복체크
 	public int checkId(String mbr_id); // 아이디
 	public int checkNk(String mbr_nick); // 닉네임
+	public int checkEm(String mbr_email); // 이메일
 	
 	// 로그인
 	public MemberVO login(MemberVO member); // 로그인
