@@ -134,6 +134,9 @@ $(function() {
 
 });
 
+
+
+
 </script>
 </head>
 <body>
@@ -146,11 +149,11 @@ $(function() {
 <table >
 	<tr  width="400" align="center">
 		<td class="theader" rowspan="2" height="140"  >
-			<img id = "sit_pic" name="sit_pic" src="${pageContext.request.contextPath}/resources/images/active/${ sitterVO.sit_pic}">
+			<img id = "sit_pic" name="sit_pic" src="${pageContext.request.contextPath}/resources/images/sitterProfile/${ sitterVO.sit_pic}">
 		</td> 
 		<td width="400" align="center" height="70">지역</td>
 		<td width="400" align="center" height="70">
-		    <select id="location1" name="location1" class="input_middle">
+		    <select  name="sit_loc" id ="sit_loc" class="input_middle">
                         <option value="${ sitterVO.sit_loc}">${ sitterVO.sit_loc}</option>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
@@ -168,30 +171,30 @@ $(function() {
 							<option value="경남">경남</option>
 							<option value="전북">전북</option>
 							<option value="경남">경남</option>
-							<option value="전남">전남</option>
+							<option value="전남">전남</option> 
 							<option value="제주">제주</option>                       
             </select></td>
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
-		<td>희망시급</td>
-		<td> <input type="text" id = "sit_pay" name="sit_pay" value="${sitterVO.sit_pay}"/></td>	
+		<td align="center" >희망시급</td>
+		<td> <input type="text" id = "sit_pay" name="sit_pay" style = "text-align:center;" value="${sitterVO.sit_pay}"/>원</td>	
             
 	</tr>
 	
 	 
 	
 	<tr  width="400" align="center" height="70">
-		<td align="left"><input type="file" id="uploadFile"  name="uploadFile"/></td>
-							
+		<td align="center"><input type="file" id="uploadFile"  name="uploadFile"/></td>
+							 
 		<td>희망연령대 </td>
-		<td colspan="2"><select id="location1" name="location1" class="input_middle">
+		<td colspan="2"><select id="sit_age" name="sit_age" class="input_middle">
                         <option value="${ sitterVO.sit_age}">${ sitterVO.sit_age}</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							                    
-        </select></td>	
+        </select>개월</td>	
             
 	</tr>
 	
@@ -203,7 +206,7 @@ $(function() {
 		</td>
 		
 		<td class="theader" colspan="2">
-			<input type="date" value="${sitterVO.sit_payday}"/>
+			${sitterVO.sit_payday}
 		</td>
 	
 	</tr>
@@ -222,14 +225,7 @@ $(function() {
        <input type = "checkbox" name = "array" value = "목" > <label>목</label></input>
        <input type = "checkbox" name = "array" value = "금" > <label>금</label></input>
    </td>
-<script>
 
-var sitoff= ${sitterVO.sit_off};
-sitoff=sitoff.split(' ');
-$('[name="array"]').val(sitoff);
-
-
-</script>
 	</tr>	
 	
 	<tr  width="400" align="center" height="70">
@@ -238,7 +234,7 @@ $('[name="array"]').val(sitoff);
 		</td>
 		
 		<td class="theader" colspan="2">
-		<input type="text" id="sit_note" name="sit_note" value="${ sitterVO.sit_note}"/>
+		<input type="text" id="sit_note" name="sit_note" style = "text-align:center;" value="${ sitterVO.sit_note}"/>
 		</td>
 	
 	</tr>
@@ -249,37 +245,7 @@ $('[name="array"]').val(sitoff);
 		</td>
 		
 		
-		<td class="theader" colspan="2"><select name="mbr_bank" id="mbr_bank">
-		 							<option value="${ memberVO.mbr_bank}">${ memberVO.mbr_bank}</option>
-									<option value="경남은행">경남은행</option>
-									<option value="광주은행">광주은행</option>
-									<option value="국민은행">국민은행</option>
-									<option value="기업은행">기업은행</option>
-									<option value="농협중앙회">농협중앙회</option>
-									<option value="농협회원조합">농협회원조합</option>
-									<option value="대구은행">대구은행</option>
-									<option value="도이치은행">도이치은행</option>
-									<option value="부산은행">부산은행</option>
-									<option value="산업은행">산업은행</option>
-									<option value="상호저축은행">상호저축은행</option>
-									<option value="새마을금고">새마을금고</option>
-									<option value="수협중앙회">수협중앙회</option>
-									<option value="신한금융투자">신한금융투자</option>
-									<option value="신한은행">신한은행</option>
-									<option value="신협중앙회">신협중앙회</option>
-									<option value="외환은행">외환은행</option>
-									<option value="우리은행">우리은행</option>
-									<option value="우체국">우체국</option>
-									<option value="전북은행">전북은행</option>
-									<option value="제주은행">제주은행</option>
-									<option value="카카오뱅크">카카오뱅크</option>
-									<option value="케이뱅크">케이뱅크</option>
-									<option value="하나은행">하나은행</option>
-									<option value="한국씨티은행">한국씨티은행</option>
-									<option value="HSBC은행">HSBC은행</option>
-									<option value="SC제일은행">SC제일은행</option>
-							</select>
-        <input type="text" value="${ memberVO.mbr_account}" />
+		<td class="theader" colspan="2">${memberVO.mbr_bank}　${ memberVO.mbr_account}
 		</td>
 	
 	</tr>
@@ -296,5 +262,19 @@ $('[name="array"]').val(sitoff);
 </form>
 
 </body>
+<script>
 
+
+ var sitoff= '${sitterVO.sit_off}';
+sitoff=sitoff.split(' ');
+console.log(sitoff[0]); 
+$('[name="array"]').val(sitoff);
+
+
+
+/* $("input[name=current_proudct]:checked").each(function() { 
+var test = $(this).val(); } */ //뿌릴떄쓰자
+
+
+</script>
 </html>

@@ -239,12 +239,12 @@ public class MypageController {
 	public ModelAndView test42(Order_infoVO order_infoVO,Pro_OdVO pro_odVO) throws IOException{
 		ModelAndView mav=new ModelAndView();
 		
-		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
+		
 		
 		System.out.println("1111111111111");
 		System.out.println(pro_odVO);
-		System.out.println(pro_odVO.getOrder_no());
-		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
+//		System.out.println(pro_odVO.getOrder_no());
+//		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
 		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
 		System.out.println("2222222222");
 		mav.setViewName("no/mypage/aaa");
@@ -361,7 +361,33 @@ public class MypageController {
 			
 			
 			sitterVO.setSit_mbr_id(mbr_id);
+//			@RequestMapping("mypage/babyinfodelete") //아이삭제
+//			public ModelAndView test34(HttpSession session,HttpServletRequest request,ChildVO childVO) throws IOException{
+//				
+//				
+//				String[] exam = request.getParameterValues("user_CheckBox");
+//				int size = exam.length;
+//				
+//				for(int i =0;i<size;i++) {
+//				System.out.println("55555555555555");
+//				System.out.println(exam[i]);
+//				childVO.setChi_no(exam[i]);
+//				dao.babyinfodeleteChildVO(childVO);
+//				System.out.println("66666666666");
+//			}
+			String[] exam = request.getParameterValues("array");
+			int size = exam.length;
+			String a ="";
+			for(int i =0;i<size;i++) {
+				
 			
+				System.out.println("나오냐냐냐냐");
+				
+				a = a+exam[i]+" ";
+				System.out.println("나오냐냐냐냐");
+				
+			}
+			System.out.println(a);
 			MultipartHttpServletRequest multipartRequest =
 					(MultipartHttpServletRequest)request;
 					//이미지파일
@@ -375,13 +401,10 @@ public class MypageController {
 					multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
 					sitterVO.setSit_pic(multipartFile.getOriginalFilename());
 					}
-					 String result3 = "";
-
-				      for(String str : sitterVO.getArray()) {
-				         result3 += str+' ';
-				      }
-				      sitterVO.setSit_off(result3);
-
+					 
+				      
+				      sitterVO.setSit_off(a);
+                     
 					dao.updateSitterVO(sitterVO);
 			return "main/main";
 		}
