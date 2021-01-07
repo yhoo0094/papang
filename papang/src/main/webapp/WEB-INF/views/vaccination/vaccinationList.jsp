@@ -44,7 +44,9 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 <script src="../resources/json.min.js"></script>
 <script type="text/javascript" >
 	$(function(){
+		
 		childList();
+		preventionInsert();
 		
 		init();
 	});
@@ -58,37 +60,16 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 			});
 		});
 	}//init
+	//아이별 일정 등록 INSERT
+	/* function preventionInsert() {
+		$.ajax({
+			url :'../childinsert',
+			type : 'POST',
+			dataType :'json',
+			data : {mbr_id }
+		});//ajax
+	}//insert */
 	
-
-	
-	//사용자 조회 요청
-	function userSelect() {
-		//조회 버튼 클릭
-		$('body').on('click','#btnSelect',function(){
-			var userId = $(this).closest('tr').find('#hidden_userId').val();
-			//특정 사용자 조회
-			$.ajax({
-				url:'users/'+userId,
-				type:'GET',
-				contentType:'application/json;charset=utf-8',
-				dataType:'json',
-				error:function(xhr,status,msg){
-					alert("상태값 :" + status + " Http에러메시지 :"+msg);
-				},
-				success:userSelectResult
-			});
-		}); //조회 버튼 클릭
-	}//userSelect
-	
-	//사용자 조회 응답
-	function userSelectResult(user) {
-		$('input:text[name="id"]').val(user.id);
-		$('input:text[name="name"]').val(user.name);
-		$('input:text[name="password"]').val(user.password);
-		$('select[name="role"]').val(user.role).attr("selected", "selected");
-	}//userSelectResult
-	
-
 
 	//사용자 목록 조회 요청
 	function childList() {
@@ -97,7 +78,7 @@ th{background-color: rgb(249, 196, 94);border :1px solid black;font-size: 12px;}
 			type:'GET',
 			//contentType:'application/json;charset=utf-8',
 			dataType:'json',
-			data: {mbr_id : 'father1'},
+			data: {mbr_id : '${user.mbr_id}'},
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
@@ -138,7 +119,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 		console.log('====');
 		console.log($(this).attr('id'))
 		 var $in = $(this).attr('id');
-		$('#inTitle').attr('value',$in) 
+		$('#inTitle').attr('value',$in).attr('readonly','true') 
 		
 	})
 	

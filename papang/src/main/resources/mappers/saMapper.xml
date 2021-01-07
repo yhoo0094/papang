@@ -138,35 +138,16 @@ INSERT INTO ACT_COM
 </insert>
 
 <!-- #################################################################2.예방접종 #################################################################-->
-
-<!--  사원등록    -->
-	<insert id="insertPreven" parameterType="preventionVO">
-	<!-- 	INSERT INTO EMPLOYEES (	employee_id, 
-								first_name, 
-								last_name,
-								email,
-								hire_date,
-								job_id
-								)
-	 	                VALUES(
-	 	               			#{employeeId},
-	 	               			#{firstName},
-	 	               			#{lastName},
-	 	               			#{email},
-	 	               			#{hireDate},
-	 	               			#{jobId}) -->
-	</insert>
-
-	<select id="selectChild" resultType="ChildVO">
+<!-- 예방접종 아이 전체조회 -->
+<select id="selectChild" resultType="ChildVO">
 		SELECT *
 		FROM CHILD
 		<where>
-			<if test="mbr_id != null and mbr_id !=''">
-				mbr_id = #{mbr_id}
-			</if>
+			MBR_ID = #{mbr_id}
 		</where>
 	</select>
 	
+	<!-- 예방접종 내역 전체 조회 -->
 	<select id="selectPrevent" resultType="PreventionVO">
 		SELECT *
 		FROM PREVENT
@@ -176,5 +157,7 @@ INSERT INTO ACT_COM
 			</if>
 		</where>
 	</select>
+
+
 
 </mapper>

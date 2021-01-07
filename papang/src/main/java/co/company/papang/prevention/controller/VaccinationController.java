@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.prevention.service.VaccinationService;
 import co.company.papang.vo.ChildVO;
+import co.company.papang.vo.MemberVO;
 
 @Controller
 public class VaccinationController {
@@ -39,8 +41,10 @@ public class VaccinationController {
 	// 전체조회
 	@ResponseBody
 	@RequestMapping(value = "/child", method = RequestMethod.GET)
-	public List<ChildVO> selectChild(Model model, ChildVO vo) {
-		return service.selectChild(vo);
+	public List<ChildVO> selectChild(Model model, ChildVO child) {
+
+		
+		return service.selectChild(child);
 	}
 
 }
