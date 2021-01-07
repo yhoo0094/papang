@@ -37,6 +37,12 @@ public class SitterController {
 		return "sitter/sitterForm"; //jsp주소
 	}
 	
+	@RequestMapping("/sitter/reservation") //시터 서비스 예약하기
+	public String sitterReservation() {
+		
+		return "redirect:sitter/reservationView"; //jsp주소
+	}
+	
 	@RequestMapping("/sitter/scheduleView") //시터 스케쥴 보기
 	public String sitterScheduleView() {
 		return "sitter/sitterScheduleView"; //jsp주소
