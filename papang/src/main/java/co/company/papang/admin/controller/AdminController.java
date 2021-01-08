@@ -9,13 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.company.papang.impl.JyMapper;
-import co.company.papang.vo.NqVO;
+import co.company.papang.admin.service.AdminService;
+import co.company.papang.vo.ProductVO;
 
 @Controller
 public class AdminController {
 	
-	@Autowired JyMapper jymapper;
+	
+	@Autowired AdminService service;
 	@RequestMapping("/admin") //url 예전 .do
 	public ModelAndView test(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/admin"); //jsp주소
@@ -64,8 +65,13 @@ public class AdminController {
 	
 	
 	@RequestMapping("/admin/warehousing") //url 예전 .do
-	public ModelAndView test8(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/warehousing"); //jsp주소
+	public ModelAndView test8(HttpServletResponse response,ProductVO vo) throws IOException{
+		ModelAndView mav = new ModelAndView();
+		System.out.println("=============");
+		System.out.println(service.getprono(vo));
+		mav.addObject("product", service.getprono(vo));
+		mav.setViewName("admin/warehousing");
+		return mav; //jsp주소
 	}
 	
 	@RequestMapping("/admin/report") //url 예전 .do

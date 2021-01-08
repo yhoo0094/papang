@@ -1,6 +1,7 @@
 package co.company.papang.admin.service.Impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,9 @@ import co.company.papang.impl.JyMapper;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.WarehousingVO;
 @Service
 public class AdminServiceImpl implements AdminService{
 	@Autowired
@@ -128,6 +131,30 @@ public class AdminServiceImpl implements AdminService{
 	public int updateBannerstatus(BannerVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.updateBannerstatus(vo);
+	}
+
+	@Override
+	public List<ProductVO> getprono(ProductVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.getprono(vo);
+	}
+
+	@Override
+	public int Wareinsert(WarehousingVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.Wareinsert(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> warehousinglist(WarehousingVO vo) {
+
+		return jyMapper.warehousinglist(vo);
+	}
+
+	@Override
+	public int updateprocnt(WarehousingVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updateprocnt(vo);
 	}
 
 	

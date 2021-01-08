@@ -64,12 +64,14 @@
 	console.log("상태값 :" + status + " Http에러메시지 :"+msg);
 	}, success:function(xhr) {
 	console.log(xhr.result);
-	nqList();
+	
 	$('#form1').each(function() {
 		alert("삭제되었습니다");
 		this.reset();
 		$('.note-editable').html("");
 		$('#la').html("선택한 파일 없음");
+		nqList();
+		//location.reload();
 	});
 	}
 	});      }//if
@@ -277,16 +279,19 @@
 </form>
 <br>
 <br>
-<div align="left">분류
-<select id='filter'>
+<div class="card mb-4">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i> 공지사항/자주묻는 질문
+	</div>
+	<div class="card-body">
+
+		<div class="table-responsive">
+			분류 <select id='filter'>
 		<option selected value=''>전체</option>
 		<option value="공지사항">공지사항</option>
 		<option value="자주묻는 질문">자주묻는 질문</option>
 </select>
-</div>
-<div align="center">
-
-		<table class="table table-bordered" id="dataTable" width="100%"
+			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
 					<tr>
@@ -297,9 +302,11 @@
 						<th>조회</th>
 						<th>삭제</th>
 					</tr>
-				</thead>	
+				</thead>
 				<tbody></tbody>
 			</table>
+		</div>
+	</div>
 </div>
 
 

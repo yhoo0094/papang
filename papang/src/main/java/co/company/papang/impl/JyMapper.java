@@ -1,11 +1,14 @@
 package co.company.papang.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.WarehousingVO;
 
 public interface JyMapper {
 	// 怨듭��벑濡�
@@ -64,5 +67,18 @@ public interface JyMapper {
 	
 	//배너 상태 수정
 	public int updateBannerstatus(BannerVO vo);
+	
+	//상품 이름,번호
+	public List<ProductVO> getprono(ProductVO vo);
+	
+	//입고 등록
+	public int Wareinsert(WarehousingVO vo);
+	
+	//입출고 조회
+	public List<Map<String,Object>> warehousinglist(WarehousingVO vo);
+	
+	//상품 수량 입고 수정
+	public int updateprocnt(WarehousingVO vo);
+	
 
 }

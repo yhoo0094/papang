@@ -122,7 +122,7 @@
 		
 		console.log(sitter.sit_loc);
 		$('#img').attr('src',
-				'${pageContext.request.contextPath}/images/' + sitter.sit_pic);
+				'${pageContext.request.contextPath}/resources/images/sitterProfile/' + sitter.sit_pic);
 		$('#sit_mbr_id').val(sitter.sit_mbr_id);
 		$('#la').html(sitter.sit_pic);
 		$('#sit_payday').val(sitter.sit_payday);
@@ -358,7 +358,7 @@
 					<tr align="center">
 						<td>
 						<img id="img" class="sitterProfileImg" alt="시터이미지"
-							src="" style="width:300px; height: 350px"></td>
+							src="${pageContext.request.contextPath}/resources/images/sitterProfile/defaultpic.png" style="width:300px; height: 350px"></td>
 					</tr>
 					<tr align="center">
 						<td><input type="file" name="uploadFile2" id="uf" />

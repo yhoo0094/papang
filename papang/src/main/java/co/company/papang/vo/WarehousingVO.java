@@ -15,4 +15,5 @@ public class WarehousingVO {
 	private String ware_cnt;
 	private String ware_date;
 	private String ware_note;
+	private String ware_category;
 }

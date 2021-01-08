@@ -24,7 +24,9 @@ import co.company.papang.admin.service.AdminService;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.WarehousingVO;
 
 @RestController
 public class AdminRestController {
@@ -50,7 +52,7 @@ public class AdminRestController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("resources/images/nqfile");
 			System.out.println("path=" + path);
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 
@@ -90,7 +92,7 @@ public class AdminRestController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("resources/images/nqfile");
 			System.out.println("path=" + path);
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽
 																							// �씠由�
@@ -159,7 +161,7 @@ public class AdminRestController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile2");
 
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("resources/images/sitterProfile");
 			System.out.println("path=" + path);
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 
@@ -263,6 +265,27 @@ public class AdminRestController {
 	public BannerVO bannerstatus(@RequestBody BannerVO vo, Model model) {
 		service.updateBannerstatus(vo);
 		return vo;
+	}
+
+	// 등록
+	@RequestMapping(value = "/warehousing", method = RequestMethod.POST)
+	public WarehousingVO insertUser(@RequestBody WarehousingVO vo, Model model) {
+		service.Wareinsert(vo);
+		System.out.println(vo);
+		service.updateprocnt(vo);
+	
+		return vo;
+	}
+
+	
+
+	
+	
+
+	// 입고/출고 조회
+	@RequestMapping(value = "/warehousing", method = RequestMethod.GET)
+	public List<Map<String, Object>> warehousinglist(Model model, WarehousingVO vo) {
+		return service.warehousinglist(vo);
 	}
 
 }

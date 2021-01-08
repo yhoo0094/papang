@@ -28,7 +28,9 @@
 		SEQ_NQ_nq_no.nextval,
 		'ADMIN',
 		#{nq_title},
-		#{nq_content},
+		<if test="nq_content != null and nq_content !=''">
+		 #{nq_content},
+		</if>
 		#{nq_category},
 		#{nq_file},
 		sysdate)
@@ -210,6 +212,50 @@
 		ban_pic_status =
 		#{ban_pic_status}
 		where ban_no = #{ban_no}
+	</update>
+	
+	<!-- 상품 이름,번호 조회 -->
+	<select id="getprono" parameterType="ProductVO" resultType="ProductVO">
+	select pro_no, pro_name from product
+	</select>
+	
+	<!-- 입고 등록 -->
+	<insert id="Wareinsert" parameterType="co.company.papang.vo.WarehousingVO">
+		INSERT INTO WAREHOUSING (
+		WARE_NO,
+		PRO_NO,
+		WARE_CNT,
+		WARE_DATE,
+		WARE_NOTE,
+		WARE_CATEGORY
+		)
+		VALUES(
+		SEQ_WAREHOUSING_WARE_NO.nextval,
+		#{pro_no},
+		#{ware_cnt},
+		sysdate,
+		#{ware_note},
+		'입고'
+		)
+	</insert>
+	
+	<!-- 입/출고조회 -->
+	<select id="warehousinglist" parameterType="co.company.papang.vo.WarehousingVO" resultType="map">
+		SELECT W.WARE_NO,W.WARE_CATEGORY,W.WARE_CNT,P.PRO_NO,P.PRO_CATEGORY,P.PRO_NAME,P.PRO_CNT,P.PRO_CN,TO_CHAR(W.WARE_DATE,'YYYY-MM-DD') AS WARE_DATE, W.WARE_NOTE
+		FROM PRODUCT P , WAREHOUSING W
+	<where>
+	P.PRO_NO = W.PRO_NO
+	<if test="ware_category != null and ware_category !=''">
+		AND W.WARE_CATEGORY = #{ware_category}
+	</if>
+	</where>
+	ORDER BY W.WARE_NO desc
+	</select>
+	
+	 
+	<!-- 상품 수량 수정-->
+	<update id="updateprocnt" parameterType="co.company.papang.vo.WarehousingVO">
+		update product set pro_cnt = NVL(pro_cnt,0)+ #{ware_cnt} where pro_no= #{pro_no}
 	</update>
 	
 </mapper>
