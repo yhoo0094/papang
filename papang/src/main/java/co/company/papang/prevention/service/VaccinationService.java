@@ -9,8 +9,7 @@ import co.company.papang.vo.PreventionVO;
 
 public interface VaccinationService  {
 
-	public int insertPreven(PreventionVO preventionVO);
-	
-	//내자녀 조회
-	public List<ChildVO> selectChild(ChildVO childVO);
+	public List<ChildVO> selectChild(ChildVO childVO);	//내자녀 조회
+	public int insertPrevent(PreventionVO preventionVO);//예방접종 일지 등록
+	public List<PreventionVO> getPrevent(PreventionVO preventionVO);//예방접종 단건 조회
 }

@@ -14,17 +14,22 @@ import co.company.papang.vo.PreventionVO;
 public class VaccinationServiceImpl implements VaccinationService {
 	@Autowired SaMapper dao;
 
-	@Override
-	public int insertPreven(PreventionVO preventionVO) {
-		return dao.insertPreven(preventionVO);
-
-	}
-
-	@Override
+	@Override//아이 전제 조회
 	public List<ChildVO> selectChild(ChildVO childVO) {
-		// TODO Auto-generated method stub
 		return dao.selectChild(childVO);
 	}
+
+	@Override
+	public int insertPrevent(PreventionVO preventionVO) {
+		return dao.insertPrevent(preventionVO);
+	}
+
+	@Override
+	public List<PreventionVO> getPrevent(PreventionVO preventionVO) {
+		return dao.getPreventList(preventionVO);
+	}
+	
+	
 
 	
 	
