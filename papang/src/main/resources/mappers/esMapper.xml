@@ -170,6 +170,7 @@
 							pro_price = #{pro_price},
 							pro_detail = #{pro_detail},
 							<if test="pro_pic != null and pro_pic != ''">pro_pic = #{pro_pic},</if>
+							pro_cc = #{pro_cc}
 		WHERE pro_no = #{pro_no}
 					
 	</update>

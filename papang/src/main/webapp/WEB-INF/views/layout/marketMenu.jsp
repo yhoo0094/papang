@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 <style type="text/css">
 	/* 마이페이지 메뉴 */
@@ -176,9 +177,9 @@ a {}
 			<li><a href="#none">상품판매</a>
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/marketList/itemBoard">전체목록</a></li>
-
+<c:if test='${empty admin.ad_id}'>
 					<li><a href="${pageContext.request.contextPath}/marketList/cart">장바구니</a></li>
-
+</c:if>
 				</ul></li>
 			<li><a href="#none">중고장터</a>
 				<ul>

@@ -63,8 +63,8 @@ td>span {
 					<tfoot>
 						<tr>
 							<c:if test="${!empty admin.ad_id}">
-								<td><button type="button" class="btnYellow" id="itemUpdate">수정</button></td>
-								<td><button type="button" class="btnRed" id="itemDelete">삭제</button></td>
+								<td><button type="button" class="btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button></td>
+								<td><button type="button" class="btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
 							</c:if>
 							<c:if test="${!empty user.mbr_id}">
 								<td colspan="2"><input type="hidden" name="pro_no"

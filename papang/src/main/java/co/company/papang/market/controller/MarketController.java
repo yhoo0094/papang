@@ -83,19 +83,34 @@ public class MarketController {
 
 	// 판매상품 수정
 	@RequestMapping("market/itemUpdate") // url 예전 .do
-	public String test6(HttpServletResponse response) throws IOException {
+	public String test6(HttpServletResponse response, HttpServletRequest request, ProductVO product) throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+//		String pro_no = request.getParameter("pro_no");
+//		product.setPro_no(pro_no);
+		
+		// 이미지파일(첨부파일 읽어내기)
+		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+			// 파일 경로 webapp 바로 밑이 최상위
+			String path = request.getSession().getServletContext().getRealPath("/images");
+			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+			product.setPro_pic(multipartFile.getOriginalFilename());
+		}
+		mk_service.updateItem(product);
 		return "redirect:/market/itemDetail"; // jsp주소
 	}
 
 	// 판매상품 수정 폼
 	@RequestMapping("market/itemUpdateForm") // url 예전 .do
-	public ModelAndView test12(HttpServletResponse response) throws IOException {
-		return new ModelAndView("market/itemUpdateForm"); // jsp주소
+	public String test12(HttpServletRequest request, ProductVO product, Model model) throws IOException {
+		model.addAttribute("pro", mk_service.getItem(product));
+		return "market/itemUpdateForm"; // jsp주소
 	}
 
-	// 판매상품 삭제.. 이게 맞을려나...
+	// 판매상품 삭제
 	@RequestMapping("market/itemDelete") // url 예전 .do
 	public String test14(ProductVO product) throws IOException {
+		mk_service.deleteItem(product);
 		return "redirect:/marketList/itemBoard"; // jsp주소
 	}
 
@@ -174,7 +189,7 @@ public class MarketController {
 
 	// 중고게시판 수정
 	@RequestMapping("market/usedUpdate") // url 예전 .do
-	public ModelAndView test8(HttpServletResponse response) throws IOException {
+	public ModelAndView test8(HttpServletResponse response) throws IllegalStateException, IOException {
 		return new ModelAndView("market/usedUpdate"); // jsp주소
 	}
 

@@ -13,34 +13,33 @@
 
 <h1 class="mt-4">판매상품 수정</h1>
 	
-<form id="frm" class="form-horizontal" name="frm" method="post" action="${pageContext.request.contextPath}/market/itemUpdate">
+<form id="frm" class="form-horizontal" name="frm" method="post" encType="multipart/form-data" action="${pageContext.request.contextPath}/market/itemUpdate">
    <div align="center">
       <table class="table" style="width: 100%">
          <tbody>
             <tr>
                <td align="center" style="width: 10%" >상품명</td>
-               <td><label>${pro_name}</label></td>
+               <td><input class="form-control" name="pro_name" type="text" style="width: 100%" value="${pro.pro_name}"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">가격</td>
-               <td><input name="pro_price" type="text" style="width: 100%" value="${pro_name}"></td>
+               <td><input class="form-control" name="pro_price" type="text" style="width: 100%" value="${pro.pro_price}"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">기업코드</td>
-               <td><label>${pro_cc}</label></td>
+               <td><input class="form-control" name="pro_cc" type="text" style="width: 100%" value="${pro.pro_cc}"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">대표사진</td>
-               <td><input type="text" id="pro_pic" name="pro_pic"
-                  value="image" value="${pro_pic}" style="width: 80%; margin-right: 20px"><input type="button" value="찾기">
-                  <input type="hidden" id="pro_no" name="pro_no" value="${pro_no}">
+               <td><input type="file" id="pro_pic" name="uploadFile" class="form-control" style="width: 100%" >
+                  <input type="hidden" id="pro_no" name="pro_no" value="${pro.pro_no}">
                </td>
             </tr>
          </tbody>
       </table>
    </div>
    <div align="center">
-      <textarea id="summernote" name="pro_detail"></textarea><br>
+      <textarea id="summernote" name="pro_detail">${pro.pro_detail}</textarea><br>
       <input type="submit" class="btn btn-primary" value="수정">&nbsp;&nbsp;
       <input type="reset" class="btn btn-primary" value="취소">
    </div>

@@ -24,6 +24,15 @@ public class MarketServiceImpl implements MarketService {
 	public int insertItem(ProductVO product) {
 		return dao.insertItem(product);
 	}
+	@Override
+	public int updateItem(ProductVO product) {
+		return dao.updateItem(product);
+	}
+	
+	@Override
+	public int deleteItem(ProductVO product) {
+		return dao.deleteItem(product);
+	}
 
 	@Override
 	public int insertCart(BagVO bag) {
