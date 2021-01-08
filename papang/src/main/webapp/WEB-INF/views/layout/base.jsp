@@ -201,6 +201,7 @@ a.item {
 	<a class="item" href="${pageContext.request.contextPath}/admin" onfocus="blur()">
 	관리자페이지로 이동</a>
 </c:if>
+  <button type="button" class="btn btn-dark" style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop">ID/패스워드 찾기</button>
 <c:if test='${empty user.mbr_id and empty admin.ad_id}'>
 	<a class="item" href="${pageContext.request.contextPath}/member/joinForm" onfocus="blur()">
 	회원가입</a>
@@ -240,7 +241,37 @@ a.item {
 	</div>
 	
 	<!-- /.container -->
+	
+	<!-- id/비번찾기  -->
+   <div class="modal" id="findPop">
+      <div class="modal-dialog modal-dialog-scrollable">
+         <div class="modal-content">
 
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h1 class="modal-title">아이디/비밀번호 찾기</h1>
+               <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" align="center">
+               <form id="frm2" name="frm2">
+                  <div id="find" align="center">
+                     <button type="button" class="find" id="idBtn" data-toggle="modal" data-target="#idPop">ID 찾기</button>
+                     <button type="button" class="find" id="pwBtn" data-toggle="modal" data-target="#pwPop">비밀번호 찾기</button>
+                  </div>
+                  <div style="margin-bottom: 40px;"></div>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">닫기</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+	
+	
+	
 	<!-- Footer -->
 	<footer class="py-5">
 		<div class="container">
