@@ -46,7 +46,8 @@ $(function(){
 	<br>
 	<h3 style="display: inline;">장바구니</h3>
 	<div align="right">
-		<button id="deleteBtn" class="btnGray btnWrite">선택상품 삭제</button>
+		<button id="updateBtn" class="btnYellow" onclick="location.href='/papang/market/cartUpdate'">수량 수정</button>
+		<button id="deleteBtn" class="btnGray">선택 삭제</button>
 	</div>
 	<hr />
 	<br>
@@ -55,7 +56,7 @@ $(function(){
 			<thead>
 				<tr class="tableTrTh">
 					<th width="5%" class="tableTh"><input type="checkbox"
-						name="allCheck" id="allCheck"> <!-- lable for="allCheck">모두선택</lable-->
+						name="allCheck" id="allCheck">
 					</th>
 					<th width="25%" class="tableTh">사진</th>
 					<th width="30%" class="tableTh">상품명</th>
@@ -69,37 +70,35 @@ $(function(){
 				<c:forEach items="${cart}" var="cart">
 					<tr>
 						<td align="center"><input type="checkbox" name="chBox"
-							class="chBox" data-bag_no="${cart.bag_no}" onClick="itemSum()"
-							value="${cart.pro_price * cart.bag_cnt}"> <input
-							type="hidden" name="bag_no" value="${cart.bag_no}"></td>
+							class="chBox" data-bag_no="${cart.bag_no}" value="${cart.pro_price * cart.bag_cnt}">
+							<input type="hidden" name="bag_no" value="${cart.bag_no}"></td>
 						<td align="center"><img style="max-width: 100%; height: auto"
 							src="${pageContext.request.contextPath}/images/${cart.pro_pic}"></td>
 						<td><a href="../market/itemDetail?pro_no=${cart.pro_no}"
 							class="boardTagA">${cart.pro_name}</a></td>
 						<td align="center">${cart.pro_price}원</td>
-						<td align="center">${cart.bag_cnt}</td>
-						<td align="center">${cart.pro_price * cart.bag_cnt}원</td>
+						<td align="center"><input class="count" type="text" value="${cart.bag_cnt}" min="1">
+						<input type="hidden" value="${cart.pro_no}"></td>
+						<td align="center" class="rsSum">${cart.pro_price * cart.bag_cnt}</td>
 					</tr>
 					<c:set var="sum" value="${sum + (cart.pro_price * cart.bag_cnt)}" />
 				</c:forEach>
 			</tbody>
 		</table>
 		<script type="text/javascript">
-		function itemSum(){
-////////////////////////////////////////////외않되 ?? ㅠ ??
-			var str = "";
-			var sum = 0;
-			var cnt = $(".chBox").length;
-			for(var i=0; i<cnt; i++){
-				if($(".chBox")[i].checked == true){
-					console.log("d>>>"+ $(".chBox"));
-					sum += parseInt($(".chBox")[i].val());
-				}
-			}
-			$("#selSum").val(sum+" 원"); // 선택상품 가격
-			console.log("sum>>>" + sum);
-			$("#amount").val(sum); // 주문할때 넘길 돈
-		}
+		
+// 		$(".count").on({
+// 	         "change" : function() {
+// 				var cnt = $(this).val();
+// 				var price = $(this).parent().prev().text();
+// 				var result = cnt*parseInt(price);
+// 				$(this).parent().next().text(result);
+				
+				
+// 				var rsSum = $("tr").find("td.rsSum").text();
+// 				console.log("한줄합"+rsSum);
+// 	         }
+// 		});
 		</script>
 		<br>
 	</div>
@@ -112,17 +111,9 @@ $(function(){
 		<div class="orderAll">
 			<form id="orderForm" method="post">
 				<input type="hidden" name="order_sum" id="amount" value="${sum}">
-				<input type="hidden" name="chk[]" id="chk" value="">
 				<button type="button" id="OrderBtn" class="btnRed bBig">전체상품 구매</button>
 			</form>
 		</div>
-		<!-- div class="order">
-		<form id="selectOrderForm" method="post">
-		<input type="hidden" name="select_sum" id="amount" value="">
-		<input type="hidden" name="chk[]" id="chk" value="">
-		<button id="selectOrderBtn" class="btnYellow btnWrite">선택상품 구매</button>
-	</form>
-	</div-->
 	</div>
 	<script type="text/javascript">
 $("#allCheck").click(function(){
@@ -150,10 +141,9 @@ $(".chBox").click(function(){
 // 전체상품 주문 -> 결제
 $("#OrderBtn").on("click",function(){
 	
-	//if(confirm("전체상품을 주문하시겠습니까?")){
+	if(confirm("전체상품을 주문하시겠습니까?")){
 	     // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	        var amount = $("#amount").val();
-// 	     	var mbr_id = ${user.mbr_id};
 	     	var link;
 	     	
 			var IMP = window.IMP; // 생략가능
@@ -198,30 +188,9 @@ $("#OrderBtn").on("click",function(){
 	     	        alert(msg);
 	     	    }
 	     	});
-	//}
+		}
 	})
 
-// $("#selectOrderBtn").click(function(){
-// 	var checkArr = new Array();
-// 	$("input[class='chBox']:checked").each(function(){
-// 		checkArr.push($(this).attr("data-bag_no"));
-// 	});
-// 	$("#chk").val(checkArr);
-// 	if(confirm("선택상품을 주문하시겠습니까?")){
-// 		alert("감사합니다");
-// 		$("#selectOrderForm").submit();
-// 		$.ajax({
-// 			url : "${pageContext.request.contextPath}/market/order",
-// 			type : "post",
-// 			data : {chBox : checkArr},
-// 			success : function(result){
-// 				if (result == 1){
-// 					location.href = "${pageContext.request.contextPath}/market/orderList"
-// 				} else { alert("주문 실패"); }
-// 			}
-// 		})
-// 	}
-//});
 $("#deleteBtn").click(function(){
 	var confirm_val = confirm("선택 상품을 삭제하시겠습니까?");
 
@@ -243,12 +212,4 @@ $("#deleteBtn").click(function(){
 	}
 });
 </script>
-	<!-- div class="cartResult" align="center" style="margin: auto;">
-	<div class="sum">
-		총 합계 : <strong><fmt:formatNumber pattern="###,###,###" value="${sum}" />원</strong>
-	</div>
-	<div class="order">
-		<button type="button" class="orderBtn btnRed">주문하기</button>
-	</div>
-</div -->
 </body>

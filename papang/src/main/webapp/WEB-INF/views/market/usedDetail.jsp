@@ -27,8 +27,8 @@
 			<tfoot>
 				<tr>
 					<c:if test="${used.mbr_id == user.mbr_id}">
-						<td><button type="button" class="btnYellow" id="usedUpdate">수정</button></td>
-						<td><button type="button" class="btnRed" id="usedDelete">삭제</button></td>
+						<td><button type="button" class="btnYellow" id="usedUpdate" onclick="location.href='/papang/market/usedUpdateForm?used_no=${used.used_no}'">수정</button></td>
+						<td><button type="button" class="btnRed" id="usedDelete" onclick="location.href='/papang/market/usedDelete?used_no=${used.used_no}'">삭제</button></td>
 					</c:if>
 				</tr>
 			</tfoot>

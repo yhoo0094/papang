@@ -40,8 +40,8 @@
    </div>
    <div align="center">
       <textarea id="summernote" name="pro_detail">${pro.pro_detail}</textarea><br>
-      <input type="submit" class="btn btn-primary" value="수정">&nbsp;&nbsp;
-      <input type="reset" class="btn btn-primary" value="취소">
+      <button type="submit" class="btnRed bMedium">수정</button>
+      <button type="button" class="btnGray bMedium" onclick="location.href='/papang/marketList/itemBoard'">취소</button>
    </div>
 </form>
 <script>

@@ -35,4 +35,12 @@ public class UsedServiceImpl implements UsedService{
 	public int hitPlus(UsedVO used) {
 		return dao.hitPlus(used);
 	}
+	@Override
+	public int updateUsed(UsedVO used) {
+		return dao.updateUsed(used);
+	}
+	@Override
+	public int deleteUsed(UsedVO used) {
+		return dao.deleteUsed(used);
+	}
 }

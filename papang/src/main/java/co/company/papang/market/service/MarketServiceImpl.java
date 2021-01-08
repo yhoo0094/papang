@@ -64,4 +64,19 @@ public class MarketServiceImpl implements MarketService {
 		dao.orderDetail(detail);
 	}
 
+	@Override
+	public int countCart(String pro_no, String mbr_id) {
+		return dao.countCart(pro_no, mbr_id);
+	}
+
+	@Override
+	public void cntChange(BagVO bag) {
+		dao.cntChange(bag);
+	}
+
+	@Override
+	public void updateCart(BagVO bag) {
+		dao.updateCart(bag);
+	}
+
 }

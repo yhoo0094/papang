@@ -15,9 +15,14 @@ public interface MarketService {
 	public int deleteItem(ProductVO product); // 삭제
 	
 	// 장바구니
+	public List<BagVO> getCartList(String mbr_id);//전체조회
 	public int insertCart(BagVO bag); // 등록
-	public List<BagVO> getCartList(String mbr_id);// 목록
-	public int deleteCart(BagVO bag);
+	public int countCart(String pro_no, String mbr_id); // 장바구니 상품확인
+	public void cntChange(BagVO bag); // 등록시 수량수정
+	
+	public void updateCart(BagVO bag); // 수정
+	public int deleteCart(BagVO bag); // 주문후 장바구니 전체삭제
+	
 	
 	// 주문
 	public void orderInfo(Order_infoVO order); // 주문내역 생성

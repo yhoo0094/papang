@@ -69,10 +69,11 @@ td>span {
 							<c:if test="${!empty user.mbr_id}">
 								<td colspan="2"><input type="hidden" name="pro_no"
 									id="pro_no" value="${pro.pro_no}"> 구입수량
-									<button type="button" id="plusBtn">+</button> <input
-									type="number" class="numBox" min="1" value="1" readonly>
+									<button type="button" id="minusBtn">-</button><input
+									type="text" class="numBox" min="1" value="1" readonly>
+									<button type="button" id="plusBtn">+</button> 
 									<!-- 이때 max 값을 상품수량.. 입출고를 통해 결정된 총수량.. 글구 input type hidden 으로해서도 한개 정하고 -->
-									<button type="button" id="minusBtn">-</button> <!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
+									 <!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
 									<button type="submit" class="btnRed" id="addCartBtn">장바구니</button>
 									<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 button onclick="" --> 
 									<script type="text/javascript">

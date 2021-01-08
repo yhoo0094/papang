@@ -130,8 +130,7 @@ function formCheck() {
 						<small> 아이디 기억하기</small>
 					</div -->
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" id="loginBtn" type="submit"
-							onclick="return formCheck()">Login</button>
+						<button class="login100-form-btn" id="loginBtn" type="submit">Login</button>
 					</div>
 					<div align="center" style="margin-top: 10px">
 						<p class="loginpage">
