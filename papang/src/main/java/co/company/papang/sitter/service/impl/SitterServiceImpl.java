@@ -12,6 +12,7 @@ import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.SitterVOChk;
+import co.company.papang.vo.Sitter_revVO;
 
 @Service
 public class SitterServiceImpl implements SitterService {
@@ -30,6 +31,11 @@ public class SitterServiceImpl implements SitterService {
 	@Override
 	public List<ChildVO> getChildList(ChildVO childVO) {
 		return dao.getChildList(childVO);
+	}
+
+	@Override
+	public int insertReservation(Sitter_revVO sitter_revVO) {
+		return dao.insertReservation(sitter_revVO);
 	}
 	
 }

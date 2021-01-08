@@ -4,13 +4,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.company.papang.sitter.service.SitterService;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.SitterVOChk;
+import co.company.papang.vo.Sitter_revVO;
 
 @Controller
 public class SitterController {
@@ -38,9 +41,17 @@ public class SitterController {
 	}
 	
 	@RequestMapping("/sitter/reservation") //시터 서비스 예약하기
-	public String sitterReservation() {
-		
-		return "redirect:sitter/reservationView"; //jsp주소
+	public String sitterReservation(Sitter_revVO sitter_revVO, @RequestParam("reservationDays") String reservationDays, HttpSession session) {
+		String[] reservationArray = reservationDays.split(" ");
+		MemberVO memberVO = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVO.getMbr_id();
+		sitter_revVO.setMbr_id(mbr_id);
+		for(String reservation : reservationArray) {
+			sitter_revVO.setSrv_date(reservation);
+			service.insertReservation(sitter_revVO);
+			System.out.println(sitter_revVO);
+		}
+		return "redirect:/sitter/reservationView"; //jsp주소
 	}
 	
 	@RequestMapping("/sitter/scheduleView") //시터 스케쥴 보기

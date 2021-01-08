@@ -170,8 +170,8 @@ function calendarMaker(target, date) {
     } else if(prevMonth < 10) {
     	prevMonth="0"+ prevMonth;
     }
-    for (i = 0; i <= thisMonth.getDay(); i++) {
-        tag += "<td>"+ prevMonth + "/" + (prevMonthStart+i) +"</td>";
+    for (i = 0; i < thisMonth.getDay(); i++) {
+        tag += "<td>"+ prevMonth + "/" + (prevMonthStart+i+1) +"</td>";
         cnt++;
     }
 
@@ -270,6 +270,7 @@ function calendarMaker(target, date) {
         			$(this).removeClass("startDay");
         			$(".custom_calendar_table .reservedTd").removeClass("reservedTd");
         			$(".custom_calendar_table .endDay").removeClass("endDay");
+        			$('.reservationDays').val('');
         		} else { //시작일 말고 다른 날짜를 눌렀을 때
         			if(startDaySelete && $('#custom_set_date').find('.startDay').length == 0){ //시작일이 선택되어 있고 달을 옮겼을 때
         				$('#custom_set_date').find('td').eq(0).addClass("startDay");
@@ -297,7 +298,6 @@ function calendarMaker(target, date) {
                 			$('.endDay').attr('class', 'startDay');
                 			$('.tempt').attr('class', 'endDay');
             				$(".custom_calendar_table .endDay").removeClass("endDay");
-            				console.log($('#custom_set_date').find('.endDay').length);
             			} 
         			} else if(!endDaySelete){//종료일이 입력되지 않았을 때 
         				endDaySelete = true;
@@ -365,7 +365,9 @@ function calendarMaker(target, date) {
 			if(endDayTdText == null || endDayTdText == ''){
 				endDayTdText = startDayTdText;
 			}
-			howManyDays(startDayTdText, endDayTdText, minusDays);
+			if(startDayTdText != ''){
+				howManyDays(startDayTdText, endDayTdText, minusDays);	
+			}
         });//일자 선택 클릭 끝 
         
         function howManyDays(startDayTdText, endDayTdText, minusDays) {
@@ -377,18 +379,40 @@ function calendarMaker(target, date) {
         	temptEndDayTdText = new Date(temptEndDayTdText);
         	temptStartDayTdText2 = temptStartDayTdText;
         	
-        	while(temptStartDayTdText2.getTime() != temptEndDayTdText.getTime()){
-        		temptStartDayTdText2.setDate(temptStartDayTdText2.getDate() + 1);
-					        		
-        	}
-        		
+        	var onDayCnt = 1; //기간에 포함된 서비스 일 수
+        	var offDayCnt = 0; //기간에 포함된 휴무 일 수
         	
-        	var daysBeetween = ((temptEndDayTdText.getTime() - temptStartDayTdText.getTime())/1000/60/60/24) + 1;
+        	//휴무일을 숫자로 변환하기
+        	var sitOffTdText = $('.sitOffTd').text();
+        	var days = ['일','월','화','수','목','금'];
+        	var changedText = '';
+        	$.each(days, function(idx, val){
+        		if(sitOffTdText.indexOf(val) != -1){
+        			changedText = changedText + String(idx);
+        		};
+        	});
+        	var  reservationDays = '';
+        	while(true){
+       			if(changedText.indexOf(temptStartDayTdText2.getDay()) != -1) { //휴무일이다!
+       				offDayCnt++
+       			} else { //휴무일이 아닐 때
+       				reservationDays = reservationDays + " " + temptStartDayTdText2;
+       				if(endDaySelete != false){
+       					onDayCnt++	
+       				}
+       			}
+       			if(temptStartDayTdText2.getTime() == temptEndDayTdText.getTime() || endDaySelete == false){
+       				break;
+       			}
+       			temptStartDayTdText2.setDate(temptStartDayTdText2.getDate() + 1);
+        	}
+        	
         	var pay = ($('.sitterPayTd').text()).replace(',','');
-        	var result = String((parseInt(daysBeetween)-parseInt(minusDays))*parseInt(pay)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        	var result = String(parseInt(onDayCnt)*parseInt(pay)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         	if(startDaySelete){
         		$('.priceTd').text(result);
         	}
+        	$('.reservationDays').val($.trim(reservationDays));
 		}
     }//함수 끝
 }
@@ -400,9 +424,11 @@ function calendarMaker(target, date) {
 	<br>
 	<div align="right">
 		<form action="${pageContext.request.contextPath}/sitter/reservation">
-			<input type="hidden" value="${sitterVOChk.sit_mbr_id}">
+			<input type="hidden" name="sit_mbr_id" value="${sitterVOChk.sit_mbr_id}">
+			<input type="text" class="reservationDays" name="reservationDays">
+			<input type="hidden" name="srv_pay" value="${sitterVOChk.sit_pay}">
 			<c:forEach items="${childVOList}" var="v">
-				<input type="checkbox" value="${v.chi_name}" >${v.chi_name}
+				<input type="checkbox" value="${v.chi_no}" name="chi_no">${v.chi_name}
 			</c:forEach>
 			<button class="btnReserve btnYellow" type="submit">예약하기</button>
 			<br>
