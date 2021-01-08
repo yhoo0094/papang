@@ -70,8 +70,6 @@
 	</where>
 </select>
 
-
-
 <!-- 놀이 단건조회 -->
 <select id="getPlay" resultType="PlayVO">
 		SELECT PLAY_NO, PLAY_TITLE, PLAY_CATEGORY,PLAY_CONTENT,MBR_ID
@@ -140,24 +138,32 @@ INSERT INTO ACT_COM
 <!-- #################################################################2.예방접종 #################################################################-->
 <!-- 예방접종 아이 전체조회 -->
 <select id="selectChild" resultType="ChildVO">
-		SELECT *
-		FROM CHILD
-		<where>
-			MBR_ID = #{mbr_id}
-		</where>
-	</select>
+	SELECT * FROM CHILD
+	<where>
+		MBR_ID = #{mbr_id}
+	</where>
+</select>
 	
-	<!-- 예방접종 내역 전체 조회 -->
-	<select id="selectPrevent" resultType="PreventionVO">
-		SELECT *
-		FROM PREVENT
-		<where>
-			<if test="mbr_id != null and mbr_id !=''">
-				mbr_id = #{mbr_id}
-			</if>
-		</where>
-	</select>
+<!-- 예방접종 내역 전체 조회 --> 
+<select id="selectPrevent" resultType="PreventionVO">
+	SELECT *
+	FROM PREVENT
+	<where>
+		<if test="mbr_id != null and mbr_id !=''">
+			mbr_id = #{mbr_id}
+		</if>
+	</where>
+</select>
 
+<!-- 접종 일지 등록 -->
+<insert id="insertPrevent" parameterType="PreventionVO">
+	INSERT INTO PREVENTION (CHI_NO,PRV_NAME,PRV_DATE,PRV_MEMO) 
+	VALUES (#{chi_no},#{prv_name},TO_DATE(#{prv_date},'YYYY-MM-DD'),#{prv_memo})
+</insert>
 
+<!-- 예방 접종 단건 조회 -->
+<select id="getPreventList" resultType="PreventionVO">
+	SELECT * FROM PREVENTION WHERE CHI_NO= ${chi_no}
+</select>
 
 </mapper>
