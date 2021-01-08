@@ -375,6 +375,14 @@ function calendarMaker(target, date) {
         	temptEndDayTdText = "20" + endDayTdText; 
         	temptStartDayTdText = new Date(temptStartDayTdText);
         	temptEndDayTdText = new Date(temptEndDayTdText);
+        	temptStartDayTdText2 = temptStartDayTdText;
+        	
+        	while(temptStartDayTdText2.getTime() != temptEndDayTdText.getTime()){
+        		temptStartDayTdText2.setDate(temptStartDayTdText2.getDate() + 1);
+					        		
+        	}
+        		
+        	
         	var daysBeetween = ((temptEndDayTdText.getTime() - temptStartDayTdText.getTime())/1000/60/60/24) + 1;
         	var pay = ($('.sitterPayTd').text()).replace(',','');
         	var result = String((parseInt(daysBeetween)-parseInt(minusDays))*parseInt(pay)).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
