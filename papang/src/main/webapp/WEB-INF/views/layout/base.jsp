@@ -197,25 +197,29 @@ a.item {
 					</ul>
 				</div>
 				<div class="util right" align="right" style="margin-bottom: 70px">
-<c:if test='${empty user.mbr_id}'>
+<c:if test='${!empty admin.ad_id}'>
+	<a class="item" href="${pageContext.request.contextPath}/admin" onfocus="blur()">
+	관리자페이지로 이동</a>
+</c:if>
+<c:if test='${empty user.mbr_id and empty admin.ad_id}'>
 	<a class="item" href="${pageContext.request.contextPath}/member/joinForm" onfocus="blur()">
-	회원가입&nbsp;</a>
+	회원가입</a>
 </c:if>
-<c:if test='${empty user.mbr_id}'>
+<c:if test='${empty user.mbr_id and empty admin.ad_id}'>
 	<a href="${pageContext.request.contextPath}/member/loginForm" onfocus="blur()">
-	로그인&nbsp;</a>
+	로그인</a>
 </c:if>
 <c:if test='${!empty user.mbr_id}'>
-	<a href="${pageContext.request.contextPath}/mypage/myhome" onfocus="blur()">
-	마이페이지&nbsp;</a>
+	<a class="item" href="${pageContext.request.contextPath}/mypage/myhome" onfocus="blur()">
+	마이페이지</a>
 </c:if>
 <c:if test='${!empty user.mbr_id}'>
-	<a href="${pageContext.request.contextPath}/marketList/cart" onfocus="blur()">
-	장바구니&nbsp;</a>
+	<a class="item" href="${pageContext.request.contextPath}/marketList/cart" onfocus="blur()">
+	장바구니</a>
 </c:if>
-<c:if test='${!empty user.mbr_id}'>
+<c:if test='${!empty user.mbr_id or !empty admin.ad_id}'>
 	<a href="${pageContext.request.contextPath}/member/logout" onfocus="blur()">
-	로그아웃&nbsp;</a>
+	로그아웃</a>
 </c:if>
 </div>
 			</div>

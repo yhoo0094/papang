@@ -11,6 +11,8 @@ public interface MarketService {
 	// 판매상품
 	public ProductVO getItem(ProductVO product); // 단건조회
 	public int insertItem(ProductVO product); // 등록
+	public int updateItem(ProductVO product); // 수정
+	public int deleteItem(ProductVO product); // 삭제
 	
 	// 장바구니
 	public int insertCart(BagVO bag); // 등록

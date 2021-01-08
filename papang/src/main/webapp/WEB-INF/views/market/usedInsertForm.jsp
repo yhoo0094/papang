@@ -89,8 +89,8 @@
    </div>
    <div align="center">
       <textarea id="summernote" name="used_content"></textarea><br>
-      <input type="submit" class="btnRed bMedium" value="등록">&nbsp;&nbsp;
-      <input type="reset" class="btnGray bMedium" value="취소">
+      <button type="submit" class="btnRed bMedium">등록</button>
+      <button type="button" class="btnGray bMedium" onclick="location.href='/papang/marketList/usedOnSaleBoard'">취소</button>
    </div>
 </form>
 <script>
