@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Sitter_comVO {
-	private String sit_mbr_id;
-	private String mbr_id;
-	private String sc_no;
+	private String srv_no;
 	private String sc_content;
 	private String sc_rate;
 }
