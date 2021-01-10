@@ -6,6 +6,7 @@ import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.SitterVOChk;
+import co.company.papang.vo.Sitter_comVO;
 import co.company.papang.vo.Sitter_revChkVO;
 import co.company.papang.vo.Sitter_revVO;
 
@@ -21,4 +22,7 @@ public interface SitterService {
 	public int insertReservation(Sitter_revVO sitter_revVO);
 	public int deleteReservation(Sitter_revChkVO sitter_revChkVO); //딜리트
 	public int updateReservationStatus(Sitter_revChkVO Sitter_revChkVO); //예약 업데이트(결제여부)
+	
+	//시터 서비스 후기
+	public int insertReview(Sitter_comVO sitter_comVO); //후기 인서트
 }

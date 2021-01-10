@@ -22,6 +22,7 @@ import co.company.papang.sitter.service.SitterService;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.SitterVOChk;
+import co.company.papang.vo.Sitter_comVO;
 import co.company.papang.vo.Sitter_revChkVO;
 import co.company.papang.vo.Sitter_revVO;
 
@@ -173,6 +174,12 @@ public class SitterController {
 		} else {
 			return "redirect:/sitter/scheduleView"; //jsp주소
 		}
+	}
+	
+	@RequestMapping("/sitter/insertReview") //리뷰인서트
+	public String insertReview(Sitter_comVO sitter_comVO) {
+		service.insertReview(sitter_comVO);
+		return "redirect:/sitter/reservationView"; //jsp주소
 	}
 	
 	@RequestMapping("/sitter/menu") //시터 사이드 메뉴

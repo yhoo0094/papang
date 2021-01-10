@@ -97,7 +97,6 @@
 	</insert>
 
 	<!-- ##################################시터########################################### -->
-	
 	<!-- 전체조회 -->
 	<select id="getSitterList" resultType="SitterVOChk">
 		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, S.SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
@@ -122,31 +121,34 @@
 	<!-- ##################################시터서비스########################################### -->
 	<!-- 범위 조회 -->
 	<select id="getReservationList" resultType="Sitter_revChkVO" parameterType="Sitter_revChkVO">
-		SELECT A.SRV_NO, A.MBR_ID, A.SIT_MBR_ID, A.CHI_NO, A.SRV_PAY, A.SRV_STATUS, MIN(A.SRV_DATE) START_DATE, MAX(A.SRV_DATE) END_DATE, COUNT(A.SRV_DATE) COUNT, B.SRV_DATE
-		FROM SITTER_REV A, (SELECT SRV_NO, SRV_DATE FROM  SITTER_REV) B
+		SELECT C.SRV_NO, C.MBR_ID, C.SIT_MBR_ID, C.CHI_NO, C.SRV_PAY, C.SRV_STATUS, C.START_DATE, C.END_DATE, C.COUNT, C.SRV_DATE, D.REVIEW FROM
+		(SELECT A.SRV_NO, A.MBR_ID, A.SIT_MBR_ID, A.CHI_NO, A.SRV_PAY, A.SRV_STATUS, MIN(A.SRV_DATE) START_DATE, MAX(A.SRV_DATE) END_DATE, COUNT(A.SRV_DATE) COUNT, B.SRV_DATE
+		FROM SITTER_REV A, (SELECT SRV_NO, SRV_DATE FROM  SITTER_REV) B 
+		WHERE A.SRV_NO = B.SRV_NO 
+		GROUP BY A.SRV_NO, A.MBR_ID, A.SIT_MBR_ID, A.CHI_NO, A.SRV_PAY, A.SRV_STATUS, B.SRV_DATE) C, 
+		(SELECT SRV_NO, COUNT(SRV_NO) REVIEW FROM SITTER_COM GROUP BY SRV_NO) D
 		<where>
-			A.SRV_NO = B.SRV_NO
+			C.SRV_NO = D.SRV_NO(+)
 			<if test="sit_mbr_id != null and sit_mbr_id != ''">
-				and A.SIT_MBR_ID = #{sit_mbr_id}
+				and C.SIT_MBR_ID = #{sit_mbr_id}
 			</if>
 			<if test="mbr_id != null and mbr_id != ''">
-				and A.MBR_ID = #{mbr_id}
+				and C.MBR_ID = #{mbr_id}
 			</if>
 			<if test="chi_no != null and chi_no != ''">
-				and A.CHI_NO = #{chi_no}
+				and C.CHI_NO = #{chi_no}
 			</if>
 			<if test="start_date != null and start_date != ''">
 				<![CDATA[
-				and B.SRV_DATE >= #{start_date}
+				and C.SRV_DATE >= #{start_date}
 				]]>
 			</if>
 			<if test="end_date != null and end_date != ''">
 				<![CDATA[
-				and B.SRV_DATE <= #{end_date}
+				and C.SRV_DATE <= #{end_date}
 				]]>
 			</if>
 		</where>
-		GROUP BY A.SRV_NO, A.MBR_ID, A.SIT_MBR_ID, A.CHI_NO, A.SRV_PAY, A.SRV_STATUS, B.Srv_Date
 	</select>
 	
 	<!-- 인서트 -->
@@ -185,6 +187,13 @@
 		SRV_STATUS = '결제완료'
 		WHERE SRV_NO = #{srv_no}
 	</update>
+	
+	<!-- ##################################시터 서비스 후기########################################### -->
+	<!-- 인서트 -->
+	<insert id="insertReview" parameterType="Sitter_comVO">
+	INSERT INTO SITTER_COM (SRV_NO, SC_CONTENT, SC_RATE)
+  	VALUES (#{srv_no}, #{sc_content}, #{sc_rate})
+	</insert>
 	
 	<!-- ##################################아기########################################### -->
 	<!-- 단건조회 -->
