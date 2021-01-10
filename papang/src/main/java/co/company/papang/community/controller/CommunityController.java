@@ -23,8 +23,9 @@ public class CommunityController {
 	
 	/*-------------------------- 커뮤니티 --------------------------*/
 	@RequestMapping("/community/board") //커뮤니티 게시판 보기
-	public ModelAndView communityBoard(CommunityVO communityVO) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView communityBoard(CommunityVO communityVO, ModelAndView mav) {
+		// = new ModelAndView();
+		mav.addObject("NqVOList", service.getNoticeList());
 		mav.addObject("CommunityVOList", service.getCommunityList(communityVO));
 		mav.setViewName("community/communityBoard");
 		return mav; //jsp주소

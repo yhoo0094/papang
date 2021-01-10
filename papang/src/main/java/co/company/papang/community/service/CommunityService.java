@@ -4,11 +4,13 @@ import java.util.List;
 
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
+import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVOChk;
 
 public interface CommunityService {
 	//커뮤니티 게시판
 	public List<CommunityVO> getCommunityList(CommunityVO CommunityVO); //전체조회
+	public List<NqVO> getNoticeList(); //공지사항 전체조회
 	public CommunityVO getCommunity(CommunityVO CommunityVO); //단건조회
 	public int communityFormInsert(CommunityVO communityVO); //인서트
 	public int communityFormUpdate(CommunityVO CommunityVO); //업데이트

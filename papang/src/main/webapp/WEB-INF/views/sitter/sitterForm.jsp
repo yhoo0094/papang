@@ -40,7 +40,7 @@
 .prev, .next {
 	background: none;
 	border: none;
-	width: 50px;
+	width: 20px;
 }
 
 .custom_calendar_table thead.cal_week th {
@@ -111,13 +111,46 @@
 .offDayTd{
 	background-color: #bbbbbb;
 }
+.introductoryOff{
+	color: #bbbbbb;
+}
+
+.reservatedDayTd{
+	background-color: cyan;
+}
+.introductoryRev{
+	color: cyan;
+}
+
+.introductoryForCalender{
+	float: right;
+	position: relative;
+}
+.calenderMenu{
+	position: absolute;
+	width: 33%;
+}
+
 
 </style>
 <script type="text/javascript">
 $(()=>{
 	calendarMaker($("#calendarForm"), new Date());
 	offDays();
+	var sit_pay = ("${sitterVOChk.sit_pay}").replace(",","");
+	$('.srv_payInput').val(sit_pay);
+	giveIdForDate();
+	getReservatedDayList();
 })
+
+var startDaySelete = false;
+var endDaySelete = false;
+var nowDate2 = new Date();
+var yearForCal = nowDate2.getFullYear();
+var monthForCal = nowDate2.getMonth() + 1;
+var startDayTdText = $('.startDayTd').text();
+var endDayTdText = $('.endDayTd').text();
+var reservatedDayList = [];
 
 function offDays(){
 		var sitOffTdText = $('.sitOffTd').text();
@@ -133,13 +166,46 @@ function offDays(){
 	   $('.offDayTd').off();
 }
 
-var startDaySelete = false;
-var endDaySelete = false;
-var nowDate2 = new Date();
-var yearForCal = nowDate2.getFullYear();
-var monthForCal = nowDate2.getMonth() + 1;
-var startDayTdText = $('.startDayTd').text();
-var endDayTdText = $('.endDayTd').text();
+function giveIdForDate() {
+	var allTd = $('#custom_set_date').find('td');
+	$.each(allTd, function(idx, val){
+		var date = ($(val).text()).replace("/","");
+		if(date.length == 2){//이번달 날짜 일때
+			if(monthForCal < 10){//한자리수 달 일때
+				$(val).attr('id',"0" + monthForCal + date);	
+			} else {
+				$(val).attr('id',monthForCal + date);	
+			}
+		} else {
+			$(val).attr('id',date);	
+		}
+	})
+}
+
+function getReservatedDayList(){
+	console.log("실행");
+	var calenderY = $('.calenderY').text();
+	var calenderM = $('.calenderM').text();
+	$.ajax({ 
+	    url: "${pageContext.request.contextPath}/ajax/reservatedDays",  
+	    type: 'POST', 
+	    dataType: 'json', 
+	    data : {"calenderY":calenderY,"calenderM":calenderM, "sit_mbr_id": "${param.sit_mbr_id}"},
+	    success: function(sitter_revChkVOList) {
+	    	$.each(sitter_revChkVOList, function(idx, val) {
+	    		var srv_date = (val.srv_date).substring(5,7) + (val.srv_date).substring(8,10);
+	    		reservatedDayList.push(srv_date); //책갈피
+	    		$('#'+ srv_date ).attr('class','reservatedDayTd'); 
+	    		$('.reservatedDayTd').off();
+			})
+	    }, 
+	    error:function(xhr, status, message) { 
+	        alert(" status: "+status+" er:"+message);
+	    } 
+	 });  
+}
+
+
 
 function calendarMaker(target, date) {
     if (date == null || date == undefined) {
@@ -207,9 +273,12 @@ function calendarMaker(target, date) {
 
     function assembly(year, month) {
         var calendar_html_code =
+        	"<div class='introductoryForCalender'><span class='introductoryRev'>■</span>예약완료 <span class='introductoryOff'>■</span>휴무일 </div>"+
+        	"<div class='calenderMenu' align = 'center'>"+
         	"<button type='button' class='prev'><</button>&nbsp;&nbsp;" +
-        	"<span>" + year + "</span>년 <span>" + month + "</span>월"+
+        	"<span class='calenderY'>" + year + "</span>년 <span class='calenderM'>" + month + "</span>월"+
         	"&nbsp;&nbsp;<button type='button' class='next'>></button>"+
+        	"</div>"+
             "<table class='custom_calendar_table' border='1'>" +
             "<thead  class='cal_week'>" +
             "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>" +
@@ -228,6 +297,8 @@ function calendarMaker(target, date) {
             yearForCal = nowDate.getFullYear();
             monthForCal = nowDate.getMonth()+1;
             offDays();
+            giveIdForDate();
+            getReservatedDayList()
         });
         //다음달 클릭
         $(".next").on("click", function () {
@@ -236,6 +307,8 @@ function calendarMaker(target, date) {
             yearForCal = nowDate.getFullYear();
             monthForCal = nowDate.getMonth()+1;
             offDays();
+            giveIdForDate();
+            getReservatedDayList()
         });
         
       	//일자 선택 클릭
@@ -345,16 +418,12 @@ function calendarMaker(target, date) {
         	};//end of if 
         	var allTd = $('#custom_set_date').find('td');
 			var started = false;
-			var minusDays = 0; //휴무일과 겹치는 일 수
 			$.each(allTd, function(idx, val){
 				if($(val).attr('class') == 'endDay'){
 					started = false;
 				}
-				if(started && endDaySelete && $(val).attr('class') != 'offDayTd'){
+				if(started && endDaySelete && $(val).attr('class') != 'offDayTd' && $(val).attr('class') != 'reservatedDayTd'){
 					$(val).attr('class', 'reservedTd');
-				}
-				if(started && endDaySelete && $(val).attr('class') == 'offDayTd'){
-					minusDays = minusDays + 1;
 				}
 				if($(val).attr('class') == 'startDay'){
 					started = true;
@@ -366,11 +435,11 @@ function calendarMaker(target, date) {
 				endDayTdText = startDayTdText;
 			}
 			if(startDayTdText != ''){
-				howManyDays(startDayTdText, endDayTdText, minusDays);	
+				howManyDays(startDayTdText, endDayTdText);	
 			}
         });//일자 선택 클릭 끝 
         
-        function howManyDays(startDayTdText, endDayTdText, minusDays) {
+        function howManyDays(startDayTdText, endDayTdText) {
         	var temptStartDayTdText = null;
         	var temptEndDayTdText = null;
         	temptStartDayTdText = "20" + startDayTdText;
@@ -379,7 +448,7 @@ function calendarMaker(target, date) {
         	temptEndDayTdText = new Date(temptEndDayTdText);
         	temptStartDayTdText2 = temptStartDayTdText;
         	
-        	var onDayCnt = 1; //기간에 포함된 서비스 일 수
+        	var onDayCnt = 0; //기간에 포함된 서비스 일 수
         	var offDayCnt = 0; //기간에 포함된 휴무 일 수
         	
         	//휴무일을 숫자로 변환하기
@@ -396,9 +465,21 @@ function calendarMaker(target, date) {
        			if(changedText.indexOf(temptStartDayTdText2.getDay()) != -1) { //휴무일이다!
        				offDayCnt++
        			} else { //휴무일이 아닐 때
-       				reservationDays = reservationDays + " " + temptStartDayTdText2;
-       				if(endDaySelete != false){
-       					onDayCnt++	
+       				var changeToDateYear = String(temptStartDayTdText2.getFullYear());
+       				var changeToDateMonth = temptStartDayTdText2.getMonth() + 1;
+       				var changeToDateDate = temptStartDayTdText2.getDate();
+       				if(changeToDateMonth < 10){
+       					changeToDateMonth = "0" + changeToDateMonth;
+       				} 
+       				if(changeToDateDate < 10){
+       					changeToDateDate = "0" + changeToDateDate;
+       				} 
+       			//책갈피
+       				var mmddType = changeToDateMonth+changeToDateDate; //(mmdd 형식으로 바꾸기)
+       				var changeToDate = changeToDateYear+changeToDateMonth+changeToDateDate; //(yyyymmdd 형식으로 바꾸기)
+       				if(!reservatedDayList.includes(mmddType)){
+       					reservationDays = reservationDays + " " + changeToDate;
+           				onDayCnt++	
        				}
        			}
        			if(temptStartDayTdText2.getTime() == temptEndDayTdText.getTime() || endDaySelete == false){
@@ -414,7 +495,7 @@ function calendarMaker(target, date) {
         	}
         	$('.reservationDays').val($.trim(reservationDays));
 		}
-    }//함수 끝
+    }//calMoveEvtFn함수 끝
 }
 </script>
 </head>
@@ -425,8 +506,8 @@ function calendarMaker(target, date) {
 	<div align="right">
 		<form action="${pageContext.request.contextPath}/sitter/reservation">
 			<input type="hidden" name="sit_mbr_id" value="${sitterVOChk.sit_mbr_id}">
-			<input type="text" class="reservationDays" name="reservationDays">
-			<input type="hidden" name="srv_pay" value="${sitterVOChk.sit_pay}">
+			<input type="hidden" class="reservationDays" name="reservationDays">
+			<input type="hidden" class="srv_payInput" name="srv_pay" value="">
 			<c:forEach items="${childVOList}" var="v">
 				<input type="checkbox" value="${v.chi_no}" name="chi_no">${v.chi_name}
 			</c:forEach>

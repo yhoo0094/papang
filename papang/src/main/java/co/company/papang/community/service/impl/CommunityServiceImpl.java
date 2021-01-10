@@ -9,6 +9,7 @@ import co.company.papang.community.service.CommunityService;
 import co.company.papang.impl.SmMapper;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
+import co.company.papang.vo.NqVO;
 import co.company.papang.vo.SitterVOChk;
 
 @Service
@@ -58,6 +59,11 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public List<SitterVOChk> getSitterList(SitterVOChk sitterVOChk) {
 		return dao.getSitterList(sitterVOChk);
+	}
+
+	@Override
+	public List<NqVO> getNoticeList() {
+		return dao.getNoticeList();
 	}
 	
 	

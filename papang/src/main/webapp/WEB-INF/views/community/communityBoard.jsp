@@ -4,6 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 <style type="text/css">
+.noticeTitleTd{
+	color: #007bff;
+}	
 </style>
 </head>
 <body>
@@ -32,14 +35,24 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${NqVOList}" var="v">
+				<tr class="noticeTitleTd">
+					<td align="center">공지</td>
+					<td><span style="display: none;">A</span><a href="${pageContext.request.contextPath}/community/form?com_no=${v.nq_no}">${v.nq_title}</a></td>
+					<td align="center"><span style="display: none;">A</span>${v.ad_id}</td>
+					<td align="center"><span style="display: none;">A</span>${v.nq_date}</td>
+					<td align="center"><span style="display: none;">A</span>${v.nq_category}</td>
+					<td align="center"><span style="display: none;">A</span>${v.nq_hit}</td>
+				</tr>
+			</c:forEach>
 			<c:forEach items="${CommunityVOList}" var="v">
 				<tr>
 					<td align="center">${v.com_no}</td>
-					<td><a href="${pageContext.request.contextPath}/community/form?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
-					<td align="center">${v.mbr_id}</td>
-					<td align="center">${v.com_date}</td>
-					<td align="center">${v.com_category}</td>
-					<td align="center">${v.com_hit}</td>
+					<td><span style="display: none;">B</span><a href="${pageContext.request.contextPath}/community/form?com_no=${v.com_no}" class="boardTagA">${v.com_title}</a></td>
+					<td align="center"><span style="display: none;">B</span>${v.mbr_id}</td>
+					<td align="center"><span style="display: none;">B</span>${v.com_date}</td>
+					<td align="center"><span style="display: none;">B</span>${v.com_category}</td>
+					<td align="center"><span style="display: none;">B</span>${v.com_hit}</td>
 				</tr>
 			</c:forEach>
 			</tbody>
