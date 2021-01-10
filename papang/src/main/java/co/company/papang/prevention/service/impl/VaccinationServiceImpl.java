@@ -19,16 +19,17 @@ public class VaccinationServiceImpl implements VaccinationService {
 		return dao.selectChild(childVO);
 	}
 
-	@Override
+	@Override//예방접종 일지등록
 	public int insertPrevent(PreventionVO preventionVO) {
 		return dao.insertPrevent(preventionVO);
 	}
 
 	@Override
-	public List<PreventionVO> getPrevent(PreventionVO preventionVO) {
+	public List<PreventionVO> getPreventList(PreventionVO preventionVO) {
 		return dao.getPreventList(preventionVO);
 	}
-	
+
+
 	
 
 	

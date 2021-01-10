@@ -151,11 +151,32 @@ th {
 <script type="text/javascript">
 	$(function(){
 		
+	
 		childList();//아이 전체 조회
 		prevInsert();//예방접종 일지 등록
+		prevSelectList();//아이별 예방접종 전체 조회 결과
+	
+		$('#child').on('change',function(){
+			
+			console.log('=========================edddd');
+			//console.log($('#child').val());
+			var chi_no = $('#child').val();//아이번호
+			var chi_name = $("#child option:selected").text();//아이름
+			$('.chi_num').attr("value",chi_no);
+			$('.chi_nm').attr("value",chi_name);
+			
+			$('.vacc_prev').css('background-color','#f9c0c0');
+			prevSelectList();
+			
+			}); 
 		
 		init();
+	
+	
+		
+		
 	});
+	
 	
 	//초기화
 	function init() {
@@ -189,7 +210,7 @@ th {
 		console.log(data);
 		console.log(data);
 		$.each(data,function(idx,item){
-			console.log(item);
+			//console.log(item);
 			$('#child')
 			.append($("<option class='selectOpt' value= '"+item.chi_no+"'>"+item.chi_name+"</option>"));
 			
@@ -200,16 +221,9 @@ th {
 		$('.chi_num').attr("value",chi_no);
 		var chi_name= $("#child option:selected").text();//아이이름
 		$('.chi_nm').attr("value",chi_name);
+		prevSelectList();
 		
-		$('#child').on('change',function(){
-			console.log($('#child').val());
-			var chi_no = $('#child').val();//아이번호
-			var chi_name = $("#child option:selected").text();//아이름
-			$('.chi_num').attr("value",chi_no);
-			$('.chi_nm').attr("value",chi_name);
-			
-			
-			}); 
+	
 	}//childListResult
 	
 	//예방접종 일지 등록
@@ -227,6 +241,7 @@ th {
 					$('#recipient-name').val("");
 					$('#message-text').val("");
 				    $('#btnCancle').click();
+				    prevSelectList();
 				    
 				},
 				error:function(xhr, status, message) { 
@@ -238,39 +253,41 @@ th {
 		});
 	}
 	
+	//1.아이별 예방접종 일지 전체 조회
+	 function prevSelectList() {
+			var chi_no = $('#child').val();//아이번호
+		$.ajax({
+			url:"../prevSelectList",
+			type: 'GET',
+			dataType:'json',
+			data : {
+				chi_no : $('.chi_num').val()
+			},
+			success: prevSelectListResult,
+			error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		        
+		    } 
+		});//ajax끝
+	}//selectList 끝
 	
-	/* //사용자 등록 요청
-	function userInsert(){
-		//등록 버튼 클릭
-		$('#btnInsert').on('click',function(){
-			$("#form1")
-			$.ajax({ 
-			    url: "users",  
-			    type: 'POST',  
-			    dataType: 'json', 
-			    //data: JSON.stringify({ id: id, name:name,password: password, role: role }),
-			    //data :$("#form1").serialize(),
-			    data : JSON.stringify($("#form1").serializeObject()),
-			    contentType: 'application/json', 
-			    success: function(response) {
-			    	if(response.result == true) {
-			    		userList();
-			    	}
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			 });  
-		});//등록 버튼 클릭
-	}//userInsert */
-	
-/* 	function prevInsert(){
-		$('td').on('click',function() {
+	//2.아이별 예방접종 일지 전체 조회 응답
+	function prevSelectListResult(data) {
+		console.log("===!!!!!예방접종 일지 결과 조회 응답")
+		//console.log(data);
+		 $.each(data,function(idx,item){
+			console.log(item+"//////");
+			//console.log(item.prv_name);
+			console.log(item.chi_no);
+			var prv_name = item.prv_name;
+			console.log(prv_name);
+			//console.log("'#"+item.prv_name+"'");
+		//	console.log($('#prv_name').val());
+	$('#'+item.prv_name).css('background-color','#98d6ea');
 			
-		});
+		});//each 
+		
 	}
-	 */
-	
 	
 </script>
 <script>

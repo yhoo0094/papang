@@ -161,9 +161,9 @@ INSERT INTO ACT_COM
 	VALUES (#{chi_no},#{prv_name},TO_DATE(#{prv_date},'YYYY-MM-DD'),#{prv_memo})
 </insert>
 
-<!-- 예방 접종 단건 조회 -->
+<!-- 예방 접종 전체 조회 -->
 <select id="getPreventList" resultType="PreventionVO">
-	SELECT * FROM PREVENTION WHERE CHI_NO= ${chi_no}
+	SELECT * FROM PREVENTION WHERE CHI_NO= #{chi_no}
 </select>
 
 </mapper>

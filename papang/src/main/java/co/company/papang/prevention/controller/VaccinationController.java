@@ -54,9 +54,10 @@ public class VaccinationController {
 
 	
 	  @ResponseBody //아이별 예방접종 전체 조회
-	  @RequestMapping(value = "/prevSelectList", method = RequestMethod.GET) public
-	  List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
-	  return service.getPrevent(preventionVO); }
+	  @RequestMapping(value = "/prevSelectList", method = RequestMethod.GET) 
+	  public List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
+	  return service.getPreventList(preventionVO);
+	  }
 	 
 
 }
