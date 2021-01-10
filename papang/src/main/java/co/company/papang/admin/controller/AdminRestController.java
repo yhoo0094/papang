@@ -21,10 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.papang.admin.service.AdminService;
+import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
-import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 
@@ -273,19 +273,20 @@ public class AdminRestController {
 		service.Wareinsert(vo);
 		System.out.println(vo);
 		service.updateprocnt(vo);
-	
+
 		return vo;
 	}
-
-	
-
-	
-	
 
 	// 입고/출고 조회
 	@RequestMapping(value = "/warehousing", method = RequestMethod.GET)
 	public List<Map<String, Object>> warehousinglist(Model model, WarehousingVO vo) {
 		return service.warehousinglist(vo);
+	}
+
+	// 알림 갯수 조회
+	@RequestMapping(value = "/alarm", method = RequestMethod.GET)
+	public List<AlarmVO> getalarmList(Model model,AlarmVO vo) {
+		return service.getacount(vo);
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import co.company.papang.admin.service.AdminService;
 import co.company.papang.impl.JyMapper;
+import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
@@ -155,6 +156,12 @@ public class AdminServiceImpl implements AdminService{
 	public int updateprocnt(WarehousingVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.updateprocnt(vo);
+	}
+
+	@Override
+	public List<AlarmVO> getacount(AlarmVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.getacount(vo);
 	}
 
 	

@@ -14,4 +14,5 @@ public class AlarmVO {
 	private String arm_content;
 	private String arm_date;
 	private String arm_status;
+	private String arm_count;
 }

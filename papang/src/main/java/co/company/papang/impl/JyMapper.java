@@ -3,6 +3,7 @@ package co.company.papang.impl;
 import java.util.List;
 import java.util.Map;
 
+import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
@@ -79,6 +80,9 @@ public interface JyMapper {
 	
 	//상품 수량 입고 수정
 	public int updateprocnt(WarehousingVO vo);
+	
+	//알람 갯수
+	public List<AlarmVO> getacount(AlarmVO vo);
 	
 
 }

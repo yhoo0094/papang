@@ -258,4 +258,10 @@
 		update product set pro_cnt = NVL(pro_cnt,0)+ #{ware_cnt} where pro_no= #{pro_no}
 	</update>
 	
+	<!-- 알림 갯수  -->
+	<select id="getacount" parameterType="AlarmVO" resultType="AlarmVO">
+	select count(*) as arm_count from ALARM
+	where mbr_id= #{mbr_id}
+	</select>
+	
 </mapper>
