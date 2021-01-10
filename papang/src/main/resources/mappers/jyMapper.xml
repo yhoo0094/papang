@@ -260,8 +260,14 @@
 	
 	<!-- 알림 갯수  -->
 	<select id="getacount" parameterType="AlarmVO" resultType="AlarmVO">
-	select count(*) as arm_count from ALARM
+	select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date ,arm_content, count(*) as arm_count from ALARM
 	where mbr_id= #{mbr_id}
+	and arm_status = 'N'
+	GROUP BY mbr_id, arm_no ,arm_date ,arm_content
+	order by arm_no DESC
 	</select>
+	
+	
+	
 	
 </mapper>

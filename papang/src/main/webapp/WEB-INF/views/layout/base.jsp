@@ -151,7 +151,45 @@ a.item {
 }
 
 </style>
+<script type="text/javascript">
+	$(function() {
+		
+		if($('#aid').val() != null && $('#aid').val() != ''){
+			alarmlist();
+		}
+		
+			
+		
+		// console.log('테스트');
+	});
+	//사용자 목록 조회 요청
+	function alarmlist() {
+	var aid = $('#aid').val();
+		$.ajax({
+			url : 'alarm',
+			type : 'GET',
+			data: {mbr_id : aid},
+			//contentType:'application/json;charset=utf-8',
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : alarmlistResult
+		});
+	}//userList
 
+	//사용자 목록 조회 응답
+	function alarmlistResult(data) {
+	
+	$.each(data, function(idx, item) {
+		$('<tr>').append($('<td>').html(item.arm_content)).append(
+				$('<td>').html(item.arm_date + '일전')).append(	
+						$('<input type=\'hidden\' id=\'hidden_arm_no\'>')
+								.val(item.arm_no)).appendTo('#modaltable tbody');
+				$('#alarmcount').html(item.arm_count);
+	});
+	}
+	</script>
 </head>
 
 <body>
@@ -238,6 +276,7 @@ a.item {
 	</div>
 	<div class="center_div">
 		<tiles:insertAttribute name="body" />
+		<input type='hidden' value='${user.mbr_id}' id='aid'>
 	</div>
 	
 	<!-- /.container -->
@@ -255,7 +294,9 @@ a.item {
 
             <!-- Modal body -->
             <div class="modal-body" align="center">
-             
+             <table id='modaltable'>
+             <tbody></tbody>
+             </table>
             </div>
          </div>
       </div>
@@ -305,6 +346,8 @@ a.item {
 	<script src="${pageContext.request.contextPath}/js/sangmin.js"></script>
 	<script src="${pageContext.request.contextPath}/js/play.js"></script>
 	<script src="${pageContext.request.contextPath}/js/market.js"></script>
+	
+	
 </body>
 
 </html>
