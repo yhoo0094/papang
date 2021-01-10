@@ -166,7 +166,7 @@ a.item {
 	function alarmlist() {
 	var aid = $('#aid').val();
 		$.ajax({
-			url : 'alarm',
+			url : '${pageContext.request.contextPath}/alarm',
 			type : 'GET',
 			data: {mbr_id : aid},
 			//contentType:'application/json;charset=utf-8',
