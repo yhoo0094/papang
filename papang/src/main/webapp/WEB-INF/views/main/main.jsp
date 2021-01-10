@@ -10,36 +10,7 @@
 		display: none;
 	}
 </style>
-<script type="text/javascript">
-	$(function() {
-		alarmlist();
-		 console.log('테스트');
-	});
-	//사용자 목록 조회 요청
-	function alarmlist() {
-		
-		$.ajax({
-			url : '../alarm',
-			type : 'GET',
-			data: {mbr_id : ${user.mbr_id}},
-			//contentType:'application/json;charset=utf-8',
-			dataType : 'json',
-			
-			error : function(xhr, status, msg) {
-				alert("상태값 :" + status + " Http에러메시지 :" + msg);
-			},
-			success : alarmlistResult
-		});
-	}//userList
 
-	//사용자 목록 조회 응답
-	function alarmlistResult(data) {
-		console.log("테스트");
-		$('#alarmcount').html(data.arm_count);
-		
-	}//userListResult
-
-	</script>
 </head>
 <body>
 	
