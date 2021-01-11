@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -12,8 +11,13 @@
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-.w3-input {
-   
+.modal-dialog {
+    max-width: 950px;
+    margin: 1.75rem auto;
+}
+.modal-wd {
+    width: 1000px;
+    margin: 230px 0 0 110px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -51,7 +55,7 @@ p {
 
 .content_div {
    width: 90%;
-   margin: 0px 0px 0px 200px;
+   margin: 0px 0px 0px 150px;
 }
 
 .w3-large {
@@ -114,7 +118,7 @@ table tbody tr td {
       <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel">
          <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content modal-wd">
             <div class="modal-body" id="body1">....</div>
             </div>
          </div>
