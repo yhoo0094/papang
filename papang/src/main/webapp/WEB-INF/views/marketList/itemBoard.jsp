@@ -18,8 +18,7 @@
 } */
 .card-img-top {
 	width: 100%;
- 	min-height: 300px;
-	height: auto;
+ 	height: 300px;
 	display: block;
 /* 	border-radius: 10px; */
 /* 	-webkit-transform: translate(50%, 50%); */

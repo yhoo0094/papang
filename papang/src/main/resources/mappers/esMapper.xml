@@ -94,7 +94,7 @@
 		WHERE ad_id = #{ad_id}
 	</select>
 <!-- =========================================================== -->
-<!-- 로그인 유효아이디체크 -->
+<!-- 로그인시 유효아이디체크..  -->
 	<!-- 일반회원 -->
 	<select id="loginChk" resultType="string">
 		SELECT count(*)
@@ -108,6 +108,21 @@
 		SELECT RINFO_START+RINFO_CNT
 		FROM REPORT_INFO
 		WHERE mbr_id = #{mbr_id}
+	</select>
+<!-- =========================================================== -->
+<!-- 아이디 비번 찾기 -->
+	<!-- 아이디 -->
+	<select id="findId" resultType="string">
+		SELECT mbr_id FROM member
+		WHERE mbr_name = #{mbr_name}
+		AND mbr_email = #{mbr_email}
+	</select>
+	<!-- 비번 -->
+	<select id="findPw" resultType="string">
+		SELECT mbr_pw FROM member
+		WHERE mbr_name = #{mbr_name}
+		AND mbr_id = #{mbr_id}
+		AND mbr_email = #{mbr_email}
 	</select>
 <!-- =========================================================== -->
 <!-- 카카오.. -->

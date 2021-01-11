@@ -32,6 +32,9 @@ public interface EsMapper {
 	public int kakaoCheck(String kid); // 카톡아이디 체크
 	public String stChk(MemberVO member); // 활동 정지일
 	
+	public String findId(MemberVO member); // 아이디찾기
+	public String findPw(MemberVO member); // 아이디찾기
+	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회
 	public List<ProductVO> getItemListPriceDesc(ProductVO product);// 전체조회

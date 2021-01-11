@@ -44,22 +44,86 @@ p.loginpage {
   height: 50px;
 } */
 </style>
-<!-- script type="text/javascript">
-function formCheck() {
-	var frm = document.frm;
-	if (frm.mbr_id.value == "") {
-		alert("사용자 아이디를 입력하세요");
-		frm.mbr_id.focus();
-		return false;
+<script type="text/javascript">
+	function findIdCheck() {
+		var frm1 = document.frm1;
+		if (frm1.name.value == "") {
+			alert("이름을 입력하세요");
+			frm1.name.focus();
+			return false;
+		}
+		if(frm1.email.value == "") {
+			alert ("이메일 주소를 입력하세요");
+			frm1.email.focus();
+			return false;
+		}
+		else {
+			var mbr_name = $("#name").val();
+			var mbr_email = $("#email").val();
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/ajax/findId",
+				data : {
+					"mbr_name" : mbr_name,
+					"mbr_email" : mbr_email
+				},
+				error:function(xhr,status,msg){
+					alert("존재하지 않는 회원입니다");
+				}, success : function (result){
+					var id = result;
+					alert("아이디는 " + result + " 입니다");
+					console.log("id가져왔니"+id);
+				}
+			});
+			return false;
+		}
 	}
-	if (frm.mbr_pw.value == "") {
-		alert("비밀번호를 입력하세요");
-		frm.mbr_pw.focus();
-		return false;
+	function findPwCheck() {
+		var frm2 = document.frm2;
+		if(frm2.idchk.value == "") {
+			alert ("아이디를 입력하세요");
+			frm2.idchk.focus();
+			return false;
+		}
+		if (frm2.nmchk.value == "") {
+			alert("이름을 입력하세요");
+			frm2.nmchk.focus();
+			return false;
+		}
+		if(frm2.phchk.value == "") {
+			alert ("전화번호를 입력하세요");
+			frm2.phchk.focus();
+			return false;
+		}
+		if(isNaN(frm2.phchk.value)) {
+			alert ("전화번호는 숫자만 입력가능합니다");
+			frm2.phchk.focus();
+			return false;
+		}
+		else {
+			var idchk = $("#idchk").val();
+			var nmchk = $("#nmchk").val();
+			var phchk = $("#phchk").val();
+
+			$.ajax({
+				url: "ajax/findPw.do",
+				data : {
+					"mbr_id" : idchk,
+					"mbr_nm" : nmchk,
+					"mbr_phone" : phchk
+				},
+				dataType : "json",
+				error:function(xhr,status,msg){
+					alert("존재하지 않는 회원입니다");
+				}, success : function (vo){
+					var pw = vo.mbr_pw;
+					$("#showPw").val(pw);
+				}
+			})
+			return false;
+		}
 	}
-	return true;
-}
-</script -->
+</script>
 <head>
 <title>로그인</title>
 <meta charset="UTF-8">
@@ -138,10 +202,10 @@ function formCheck() {
 								href="${pageContext.request.contextPath}/member/joinForm">회원가입</a>
 						</p>
 						<p class="loginpage">
-							<a class="loginpage"
-								href="${pageContext.request.contextPath}/member/findIdForm">아이디찾기</a>&nbsp;&nbsp;
-							<a class="loginpage"
-								href="${pageContext.request.contextPath}/member/findPwForm">비밀번호찾기</a>
+							<a class="loginpage" data-toggle="modal" data-target="#idPop">아이디찾기</a>&nbsp;&nbsp;
+<%-- href="${pageContext.request.contextPath}/member/findIdForm" --%>
+							<a class="loginpage" data-toggle="modal" data-target="#pwPop">비밀번호찾기</a>
+<%-- href="${pageContext.request.contextPath}/member/findPwForm" --%>
 						</p>
 					</div>
 					<!-- 소셜로그인 -->
@@ -163,7 +227,74 @@ function formCheck() {
 
 
 	<div id="dropDownSelect1"></div>
+<!-- id찾기 -->
+	<div class="modal" id="idPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
 
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">아이디 찾기</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body" align="center">
+					<form id="frm1" name="frm1" method="post">
+						<table class="table">
+							<tr style="line-height: 32px;">
+								<td class="txt">이름</td>
+								<td><input type="text" class="form-control" id="name" name="name" placeholder="이름"></td>
+							</tr>
+							<tr>
+								<td class="txt">이메일</td>
+								<td><input type="email" class="form-control" id="email" name="email" placeholder="이메일"></td>
+							</tr>
+						</table>
+						<button type="submit" name="fid" id="fid" class="btnRed" onclick="return findIdCheck()">아이디찾기</button>
+						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비번찾기 -->
+	<div class="modal" id="pwPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">비밀번호 찾기</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body" align="center">
+					<form id="frm2" name="frm2" method="post">
+					 <!-- action="findPw.do" -->
+						<table class="table">
+							<tr style="line-height: 32px;">
+								<td class="txt">아이디</td>
+								<td><input type="text" class="form-control" id="idchk" name="idchk" placeholder="아이디"></td>
+							</tr>
+							<tr style="line-height: 32px;">
+								<td class="txt">이름</td>
+								<td><input type="text" class="form-control" id="nmchk" name="nmchk" placeholder="이름"></td>
+							</tr>
+							<tr>
+								<td class="txt">이메일</td>
+								<td><input type="email" class="form-control" id="phchk" name="phchk" placeholder="이메일"></td>
+							</tr>
+						</table>
+						<button type="submit" name="fpw" id="fpw" class="btnRed" onclick="return findPwCheck()">비밀번호찾기</button>
+						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
+					</form>
+				</div>
+				<!--  input type="text" id ="showPw" style="text-align: center;" readonly-->
+			</div>
+		</div>
+	</div>
 	<!--===============================================================================================-->
 	<script
 		src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
