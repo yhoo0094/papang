@@ -14,5 +14,5 @@ public class SitChiVO {
 	private String chi_gender;
 	private String srv_date;
 	private String srv_pay;
-	
+	private String workingday;
 }
