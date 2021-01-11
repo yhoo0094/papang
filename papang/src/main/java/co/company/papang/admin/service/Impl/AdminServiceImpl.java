@@ -164,6 +164,12 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.getacount(vo);
 	}
 
+	@Override
+	public int updateAstatus(AlarmVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updateAstatus(vo);
+	}
+
 	
 
 	

@@ -156,12 +156,38 @@ a.item {
 		
 		if($('#aid').val() != null && $('#aid').val() != ''){
 			alarmlist();
+			alarmUpdate()
 		}
 		
 			
 		
 		// console.log('테스트');
 	});
+	
+	function alarmUpdate() {
+		//수정 버튼 클릭
+		var aid = $('#aid').val();
+		$('#findPop').on('show.bs.modal', function (e) {
+     
+			$.ajax({
+				url : "${pageContext.request.contextPath}/alarm",
+				type : 'PUT',
+				dataType : 'json',
+				data : JSON.stringify({
+					mbr_id : aid
+				}),
+				contentType : 'application/json',
+				success : function(data) {
+					$('#alarmcount').html(0);
+				},
+				error : function(xhr, status, message) {
+					
+				}
+			});
+			console.log($(this).val());
+			
+		});
+	}
 	//사용자 목록 조회 요청
 	function alarmlist() {
 	var aid = $('#aid').val();
@@ -189,6 +215,10 @@ a.item {
 				$('#alarmcount').html(item.arm_count);
 	});
 	}
+	
+
+	
+	
 	</script>
 </head>
 
@@ -238,8 +268,9 @@ a.item {
 	<a class="item" href="${pageContext.request.contextPath}/admin" onfocus="blur()">
 	관리자페이지로 이동</a>
 </c:if>
-  <button type="button" class="btn btn-dark" style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop">알림</button>
+  <button type="button"  style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop"><img src="${pageContext.request.contextPath}/resources/images/login/free-icon-bells-2315189.png" style="width:20px;border: none"></img></button>
   <label id='alarmcount' style="left: 170 px ">0</label>
+ 
 <c:if test='${empty user.mbr_id and empty admin.ad_id}'>
 	<a class="item" href="${pageContext.request.contextPath}/member/joinForm" onfocus="blur()">
 	회원가입</a>
@@ -281,7 +312,7 @@ a.item {
 	
 	<!-- /.container -->
 	
-	<!-- id/비번찾기  -->
+	
    <div class="modal" id="findPop">
       <div class="modal-dialog modal-dialog-scrollable">
          <div class="modal-content">

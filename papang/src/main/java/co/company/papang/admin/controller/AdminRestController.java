@@ -288,5 +288,16 @@ public class AdminRestController {
 	public List<AlarmVO> getalarmList(Model model,AlarmVO vo) {
 		return service.getacount(vo);
 	}
+	
+	// 배너 상태 수정
+	@RequestMapping(value = "/alarm", method = RequestMethod.PUT
+	// ,produces="application/json" //응답헤더
+			, consumes = "application/json" // 요청헤더
+	// ,headers = {"Content-type=application/json" }
+	)
+	public AlarmVO alarmstatus(@RequestBody AlarmVO vo, Model model) {
+		service.updateAstatus(vo);
+		return vo;
+	}
 
 }

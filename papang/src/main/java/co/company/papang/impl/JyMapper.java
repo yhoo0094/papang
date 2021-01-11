@@ -84,5 +84,8 @@ public interface JyMapper {
 	//알람 갯수
 	public List<AlarmVO> getacount(AlarmVO vo);
 	
+	//알람 읽음 처리
+	public int updateAstatus(AlarmVO vo);
+	
 
 }

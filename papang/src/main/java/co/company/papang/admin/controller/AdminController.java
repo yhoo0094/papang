@@ -88,4 +88,9 @@ public class AdminController {
 	public ModelAndView test11(HttpServletResponse response) throws IOException{
 		return new ModelAndView("admin/sitterChart"); //jsp주소
 	}
+	
+	@RequestMapping("report") //url 예전 .do
+	public ModelAndView test12(HttpServletResponse response) throws IOException{
+		return new ModelAndView("report/report"); //공지사항 리스트
+	}
 }

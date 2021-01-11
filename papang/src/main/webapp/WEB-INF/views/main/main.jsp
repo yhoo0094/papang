@@ -26,7 +26,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/snowman.jpg')">
+        <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/snowman.jpg')">
        
           <div class="carousel-caption d-none d-md-block">
             <h3>First Slide</h3>
@@ -36,7 +36,7 @@
     	<c:forEach  var="banner" items="${bannerlist}">
     	<c:if test="${banner.ban_category eq '이미지슬라이드'}">
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}')">
+        <div onclick="location.href='${banner.ban_link}'" class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}')">
           <div class="carousel-caption d-none d-md-block">
             <h3>${banner.ban_pic_name}</h3>
           </div>
