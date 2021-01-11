@@ -48,7 +48,16 @@ public class MarketController {
 		mav.setViewName("marketList/itemBoard");
 		return mav; // jsp주소
 	}
-
+	
+	// 판매상품 전체 리스트
+	@RequestMapping("marketList/itemBoardPriceDesc") // url 예전 .do
+	public ModelAndView test17(ProductVO product) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pro", dao.getItemListPriceDesc(product));
+		mav.setViewName("marketList/itemBoard");
+		return mav; // jsp주소
+	}
+	
 	// 판매상품 상세
 	@RequestMapping("market/itemDetail") // url 예전 .do
 	public String getItem(ProductVO product, Model model) throws IOException {

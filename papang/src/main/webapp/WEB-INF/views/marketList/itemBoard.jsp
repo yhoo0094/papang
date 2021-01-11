@@ -47,7 +47,7 @@ thead, .marketTable_filter, .marketTables_length{
 
 <div class="container center_div">
 	<h2>전체 상품</h2>
-	
+	<a href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순</a>
 	<div id="marketListBoard">
 		<table class="table" id="marketTable">
 			<thead>

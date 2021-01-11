@@ -43,7 +43,7 @@
 	</form>
 	<hr />
 	<br>
-	<div align="center" id = usedBoardTable>
+	<div align="center" id = "usedBoardTable">
 		<table class="table" id="dataTable">
 			<thead>
 				<tr class="tableTrTh">
