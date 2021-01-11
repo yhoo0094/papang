@@ -44,8 +44,8 @@
 	</form>
 	<hr />
 	<br>
-	<div align="center" id = usedBoardTable>
-		<table class="table" id="usedTable">
+	<div align="center" id = "usedBoardTable">
+		<table class="table" id="dataTable">
 			<thead>
 				<tr class="tableTrTh">
 					<th width="10%" class="tableTh">글번호</th>
