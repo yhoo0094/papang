@@ -119,9 +119,9 @@
 	var formData = new FormData(form);
 
 	$.ajax({ 
-	url: "../nq", 
-	type: 'PUT', 
-	dataType: 'json', 
+	url: "${pageContext.request.contextPath}/nqupdate", 
+	dataType: 'json',
+	method : 'post',
 	data: formData,
 	contentType : false,
     processData : false,

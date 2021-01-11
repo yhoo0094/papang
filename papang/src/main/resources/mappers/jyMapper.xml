@@ -28,9 +28,7 @@
 		SEQ_NQ_nq_no.nextval,
 		'ADMIN',
 		#{nq_title},
-		<if test="nq_content != null and nq_content !=''">
 		 #{nq_content},
-		</if>
 		#{nq_category},
 		#{nq_file},
 		sysdate)
@@ -52,11 +50,12 @@
 	<!-- 공지 수정 -->
 	<update id="updateNq" parameterType="co.company.papang.vo.NqVO">
 		update nq set
-		nq_title =
-		#{nq_title},
-		nq_content = #{nq_content},
+		nq_title = #{nq_title},
 		nq_category = #{nq_category},
-		nq_file = #{nq_file}
+		nq_content = #{nq_content}
+		<if test="nq_file != null and nq_file !=''">
+		, nq_file = #{nq_file}
+		</if>
 		where nq_no = #{nq_no}
 	</update>
 
@@ -272,5 +271,9 @@
 	update ALARM set ARM_STATUS='Y' where mbr_id = #{mbr_id}
 	</update>
 	
-	
+	<!-- 신고 등록 -->
+	<insert id='insertReport' parameterType='ReportVO'>
+	INSERT INTO REPORT(MBR_ID,REPO_CATEGORY,REPO_CATEGORY_NO,REPO_TITLE,REPO_CONTENT)
+	VALUES(#{mbr_id},#{repo_category},#{repo_category_no},#{repo_title},#{repo_content})
+	</insert>
 </mapper>

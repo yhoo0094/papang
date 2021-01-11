@@ -129,7 +129,7 @@
       </form>
       <div class="card mb-4">
 	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> 입·출고 내역
+		<i class="fas fa-table mr-1"></i> 재고 현황
 	</div>
 	<div>
 	분류 <select id='filter'>
@@ -167,4 +167,3 @@
 			
 		</div>
       
-</body>

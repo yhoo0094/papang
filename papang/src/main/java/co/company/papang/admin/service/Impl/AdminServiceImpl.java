@@ -13,6 +13,7 @@ import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 @Service
@@ -168,6 +169,12 @@ public class AdminServiceImpl implements AdminService{
 	public int updateAstatus(AlarmVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.updateAstatus(vo);
+	}
+
+	@Override
+	public int insertReport(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertReport(vo);
 	}
 
 	

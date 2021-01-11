@@ -85,7 +85,7 @@ margin: 0 0 0 10%;
 							href="${pageContext.request.contextPath}/admin/nqInsert">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> 공지사항 등록
+							</div> 공지사항 관리
 						</a>
 						
 						 <a class="nav-link collapsed" href="" data-toggle="collapse"
@@ -105,16 +105,11 @@ margin: 0 0 0 10%;
 									href="${pageContext.request.contextPath}/admin/sittermember">시터/회원
 									관리</a> <a class="nav-link"
 									href="${pageContext.request.contextPath}/admin/sitterSchedule">시터
-									스케줄</a>
+									월급 관리</a>
 							</nav>
 						</div>
 
-						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/lullaby">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> 자장가 관리
-						</a> <a class="nav-link"
+						 <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/banner">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>

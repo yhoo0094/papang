@@ -25,6 +25,7 @@ import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 
@@ -79,12 +80,30 @@ public class AdminRestController {
 		return result;
 	}
 
-	// 공지사항 수정
-	@RequestMapping(value = "/nq", method = RequestMethod.PUT
-	// ,produces="application/json" //�쓳�떟�뿤�뜑
-			, consumes = "application/json" // �슂泥��뿤�뜑
-	// ,headers = {"Content-type=application/json" }
-	)
+	/*
+	 * // 공지사항 수정
+	 * 
+	 * @RequestMapping(value = "/nq", method = RequestMethod.PUT //
+	 * ,produces="application/json" //�쓳�떟�뿤�뜑 , consumes = "application/json" //
+	 * �슂泥��뿤�뜑 // ,headers = {"Content-type=application/json" } ) public NqVO
+	 * updateNq2(NqVO vo, Model model, HttpServletResponse response,
+	 * HttpServletRequest request) throws IllegalStateException, IOException {
+	 * MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)
+	 * request;
+	 * 
+	 * MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+	 * 
+	 * if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) { String path =
+	 * request.getSession().getServletContext().getRealPath(
+	 * "resources/images/nqfile"); System.out.println("path=" + path);
+	 * multipartFile.transferTo(new File(path,
+	 * multipartFile.getOriginalFilename())); // �삤由ъ��꼸�씠由� : �뾽濡쒕뱶�맂 �썑�쓽 // �씠由�
+	 * vo.setNq_file(multipartFile.getOriginalFilename()); } service.updateNq(vo);
+	 * return vo; }
+	 */
+
+	// 공지수정
+	@RequestMapping(value = "/nqupdate")
 	public NqVO updateNq(NqVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -227,7 +246,7 @@ public class AdminRestController {
 		return service.getBanner(vo);
 	}
 
-	// 공지사항 수정
+	// 배너 수정
 	@RequestMapping(value = "/bannerUpdate")
 	public BannerVO updateBanner(BannerVO vo, Model model, HttpServletResponse response, HttpServletRequest request)
 			throws IllegalStateException, IOException {
@@ -285,10 +304,10 @@ public class AdminRestController {
 
 	// 알림 갯수 조회
 	@RequestMapping(value = "/alarm", method = RequestMethod.GET)
-	public List<AlarmVO> getalarmList(Model model,AlarmVO vo) {
+	public List<AlarmVO> getalarmList(Model model, AlarmVO vo) {
 		return service.getacount(vo);
 	}
-	
+
 	// 배너 상태 수정
 	@RequestMapping(value = "/alarm", method = RequestMethod.PUT
 	// ,produces="application/json" //응답헤더
@@ -298,6 +317,17 @@ public class AdminRestController {
 	public AlarmVO alarmstatus(@RequestBody AlarmVO vo, Model model) {
 		service.updateAstatus(vo);
 		return vo;
+	}
+
+	//신고 등록
+	@RequestMapping(value = "/reportInsert", method = RequestMethod.POST
+	// ,produces="application/json"
+	// ,consumes="application/json"
+	// ,headers = {"Content-type=application/json" }
+	)
+	public boolean insertReport(ReportVO vo, Model model) {
+		service.insertReport(vo);
+		return true;
 	}
 
 }

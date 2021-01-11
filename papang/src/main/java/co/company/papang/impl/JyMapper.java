@@ -8,6 +8,7 @@ import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 
@@ -86,6 +87,9 @@ public interface JyMapper {
 	
 	//알람 읽음 처리
 	public int updateAstatus(AlarmVO vo);
+	
+	//신고 등록
+	public int insertReport(ReportVO vo);
 	
 
 }
