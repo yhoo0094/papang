@@ -3,18 +3,19 @@ package co.company.papang.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
-import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.Pro_OdVO;
-import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
+import co.company.papang.vo.SitChiVO;
 import co.company.papang.vo.SitterVO;
-
+import co.company.papang.vo.Sitter_revVO;
+ 
 
 
 public interface YrMapper {
@@ -39,12 +40,14 @@ public interface YrMapper {
 	public List<Community_comVO> myboard_answerCommunity_comVO(Community_comVO community_comVO); //질문보기
 	public List<ReportVO> myboard_policeReportVO(ReportVO reportVO); //신고현황보기
 	
-	
+	 
 
 	//시터정보부터 한다
 	public SitterVO sitter_infoSitterVO(SitterVO sitter); //시터 정보조회
 	public void updateSitterVO(SitterVO sitter); //시터정보수정
 	
+	public List<Map<String,Object>> getSitter_revVO(Sitter_revVO SitterVO); //예약정보조회
+	public List<SitChiVO> getSitter_revVO2(SitChiVO sitChiVO);//예약정보조회 상세히
 	
 }
 

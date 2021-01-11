@@ -74,7 +74,7 @@ table tbody tr td {
          </br>
 
 
-         <!-- <form id="fim" name="fim" action="market_buyinfo" method="post">  -->
+    
          <div class="content_div">
 
             <table class="table" id="dataTable">
@@ -108,7 +108,7 @@ table tbody tr td {
 
 
          </div>
-         <!--  </form>  -->
+       
       </div>
 
       <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
