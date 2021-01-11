@@ -169,6 +169,11 @@
 		SITTER_REV.SRV_PAY 
 		FROM SITTER_REV JOIN CHILD ON SITTER_REV.CHI_NO = CHILD.CHI_NO
         WHERE SITTER_REV.SRV_NO=#{srv_no}
+</select>
+
+	<!-- 예약정보 모달창 합계-->
+<select id="getSitter_revVO3" parameterType="sitChiVO" resultType="sitChiVO">
+		
 </select>		
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
