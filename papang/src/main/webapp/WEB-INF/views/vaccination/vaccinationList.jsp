@@ -145,10 +145,6 @@ th {
 			}); 
 		
 		init();
-	
-	
-		
-		
 	});
 	
 	
@@ -228,7 +224,7 @@ th {
 	
 	//1.아이별 예방접종 일지 전체 조회
 	 function prevSelectList() {
-			var chi_no = $('#child').val();//아이번호
+			//var chi_no = $('#child').val();//아이번호
 		$.ajax({
 			url:"../prevSelectList",
 			type: 'GET',
@@ -260,6 +256,30 @@ th {
 			
 		});//each 
 		
+	}//prevSelectListResult 끝
+	
+	
+	//3.아이별 예방접종 단건 조회 (모달 단건 쿼리)
+	function prevSelect(name) {
+		console.log('호가인용!!');
+		console.log(name);
+		$.ajax({
+			url :"../prevSelect",
+			type : 'GET',
+			dataType : 'json',
+			data : {
+				"chi_no" : $('.chi_num').val(), 
+				"prv_name" : name
+			},
+			success : function(result) {
+				console.log('여기가리절트!!!');
+				console.log(result);
+			},error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		        
+		    } 
+			
+		});//prevSelect 끝
 	}
 	
 </script>
@@ -280,7 +300,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 		console.log('====');
 		console.log($(this).attr('id'))
 		 var $in = $(this).attr('id');
-		$('#inTitle').attr('value',$in).attr('readonly','true')
+		$('#inTitle').attr('value',$in).attr('readonly','true');
+		prevSelect($in);
 		
 		
 	})

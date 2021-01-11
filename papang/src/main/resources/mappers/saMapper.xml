@@ -166,4 +166,9 @@ INSERT INTO ACT_COM
 	SELECT * FROM PREVENTION WHERE CHI_NO= #{chi_no}
 </select>
 
+<!-- 예방 접종 단건 조회 -->
+<select id="getPrevent" resultType="PreventionVO">
+	SELECT * FROM PREVENTION WHERE CHI_NO=#{chi_no} AND PRV_NAME=#{prv_name}
+</select>
+
 </mapper>

@@ -52,12 +52,19 @@ public class VaccinationController {
 		return service.insertPrevent(preventionVO);
 	}
 
-	
-	  @ResponseBody //아이별 예방접종 전체 조회
-	  @RequestMapping(value = "/prevSelectList", method = RequestMethod.GET) 
-	  public List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
-	  return service.getPreventList(preventionVO);
-	  }
+
+  @ResponseBody //아이별 예방접종 전체 조회
+  @RequestMapping(value = "/prevSelectList", method = RequestMethod.GET) 
+  public List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
+  return service.getPreventList(preventionVO);
+  }
+  
+  @ResponseBody //아이별 예방접종 단건 조회
+  @RequestMapping(value = "/prevSelect", method = RequestMethod.GET) 
+  public PreventionVO getPrevent(Model model, PreventionVO preventionVO) {
+  return service.getPrevent(preventionVO);
+  }
+  
 	 
 
 }
