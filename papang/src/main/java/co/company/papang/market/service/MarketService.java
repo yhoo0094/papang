@@ -21,7 +21,7 @@ public interface MarketService {
 	public void cntChange(BagVO bag); // 등록시 수량수정
 	
 	public void updateCart(BagVO bag); // 수정
-	public int deleteCart(BagVO bag); // 주문후 장바구니 전체삭제
+	public int deleteCart(BagVO bag); // 선택삭제
 	
 	
 	// 주문

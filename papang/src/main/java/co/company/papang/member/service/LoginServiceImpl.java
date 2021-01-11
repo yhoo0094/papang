@@ -16,10 +16,13 @@ public class LoginServiceImpl implements LoginService{
 	public String loginCheck(MemberVO member) {
 		return dao.loginCheck(member);
 	}
+//	@Override
+//	public int loginChk(MemberVO member) {
+//		return dao.loginChk(member);
+//	}
 
 	@Override
 	public String adminLoginCheck(AdminVO admin) {
-		System.out.println("로그인서비스impl");
 		return dao.adminLoginCheck(admin);
 	}
 

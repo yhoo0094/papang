@@ -36,5 +36,7 @@
 					
 				</tbody>
 			</table>
+			
+			합계 <input type="text" id="a" name="a" value="${sitter_revVO.sum}" >
 </body>
 </html>

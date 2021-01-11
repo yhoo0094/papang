@@ -80,7 +80,7 @@
 		  AND ad_pw = #{ad_pw}
 	</select>
 <!-- =========================================================== -->	
-<!-- 로그인 정보체크 -->
+<!-- 로그인 비번체크 -->
 	<!-- 일반회원 -->
 	<select id="loginCheck" resultType="string">
 		SELECT mbr_pw
@@ -92,6 +92,22 @@
 		SELECT ad_pw
 		FROM ADMIN
 		WHERE ad_id = #{ad_id}
+	</select>
+<!-- =========================================================== -->
+<!-- 로그인 유효아이디체크 -->
+	<!-- 일반회원 -->
+	<select id="loginChk" resultType="string">
+		SELECT count(*)
+		FROM MEMBER
+		WHERE mbr_id = #{mbr_id}
+	</select>
+<!-- =========================================================== -->
+<!-- 활동정지 체크 -->
+	<!-- 일반회원 -->
+	<select id="stChk" resultType="string">
+		SELECT RINFO_START+RINFO_CNT
+		FROM REPORT_INFO
+		WHERE mbr_id = #{mbr_id}
 	</select>
 <!-- =========================================================== -->
 <!-- 카카오.. -->
@@ -151,13 +167,13 @@
 	
 	<!--  글등록    -->
 	<insert id="insertItem" parameterType="ProductVO">
-		INSERT INTO PRODUCT (	pro_no,
+		INSERT INTO PRODUCT (	
 								pro_name, 
 								pro_price, 
 								pro_pic,
 								pro_detail,
 								pro_cc )
-	 	            VALUES( seq_product_pro_no.nextval,
+	 	            VALUES( 
 	 	               		#{pro_name},
 	 	               		#{pro_price},
 	 	               		#{pro_pic},
@@ -224,14 +240,14 @@
 	
 	<!--  글등록    -->
 	<insert id="insertUsed" parameterType="UsedVO">
-		INSERT INTO USED (	used_no,
+		INSERT INTO USED (	
 							mbr_id, 
 							used_title, 
 							used_loc,
 							<if test="used_pic != null and used_pic != ''">used_pic,</if>
 							used_price,
 							used_content )
-	 	            VALUES( seq_used_used_no.nextval,
+	 	            VALUES( 
 	 	               		#{mbr_id},
 	 	               		#{used_title},
 	 	               		#{used_loc},
@@ -280,11 +296,11 @@
 	
 	<!--  장바구니 추가    -->
 	<insert id="insertCart" parameterType="BagVO">
-		INSERT INTO BAG (	bag_no,
+		INSERT INTO BAG (	
 							mbr_id,
 							pro_no, 
 							bag_cnt )
-	 	            VALUES(	seq_bag_bag_no.nextval,
+	 	            VALUES(	
 	 	            		#{mbr_id},
 	 	               		#{pro_no},
 	 	               		#{bag_cnt} )
@@ -297,7 +313,8 @@
 	<!-- 삭제 -->
 	<delete id="deleteCart" parameterType="BagVO">
 		DELETE BAG
-		WHERE mbr_id = #{mbr_id}
+		WHERE bag_no = #{bag_no}
+		AND mbr_id = #{mbr_id}
 	</delete>
 <!-- =========================================================== -->
 <!-- 전체 주문 -->

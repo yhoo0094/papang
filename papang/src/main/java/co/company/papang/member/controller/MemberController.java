@@ -133,16 +133,46 @@ public class MemberController {
 		String chkPw = log_service.loginCheck(member);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkPw.equals(member.getMbr_pw())) {
-			session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인되었습니다');</script>");
-				out.println("<script>location.href='/papang/';</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
+			member = dao.login(member);
+			if (member.getAuthkey().equals("Y")) {
+				if (member.getMbr_status().equals("활동중")) {
+					session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
+					try {
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('로그인되었습니다');</script>");
+						out.println("<script>location.href='/papang/';</script>");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else if (member.getMbr_status().equals("탈퇴")) {
+					try {
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('탈퇴한 회원입니다');</script>");
+						out.println("<script>location.href='/papang/';</script>");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else if (member.getMbr_status().equals("활동정지")) {
+					String stDate = dao.stChk(member);
+					try {
+						PrintWriter out = response.getWriter();
+						out.println("<script>alert('"+stDate+"까지 활동정지입니다');</script>");
+						out.println("<script>location.href='/papang/';</script>");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			} else {
+				try {
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('이메일인증이 필요합니다');</script>");
+					out.println("<script>location.href='/papang/';</script>");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 			rs = "/";
-		} else if (chkPw == null || chkPw == "") {
+		} else if (chkPw == null || chkPw.equals("")) {
 			try {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('없는 아이디 입니다');</script>");
@@ -176,6 +206,7 @@ public class MemberController {
 		chkAdPw = log_service.adminLoginCheck(admin);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkAdPw.equals(admin.getAd_pw())) {
+			admin = dao.adminLogin(admin);
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
 			try {
 				PrintWriter out = response.getWriter();
@@ -185,7 +216,7 @@ public class MemberController {
 				e.printStackTrace();
 			}
 // 체크해서 나온 비번이 null 일때 (근까 없는 아이디일때) 로그인실패가 아니라 500 에러(null)로 넘어가는데..
-		}  else if (chkAdPw == null || chkAdPw == "") {
+		}  else if (chkAdPw == null || chkAdPw.equals("")) {
 			try {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('없는 아이디 입니다');</script>");

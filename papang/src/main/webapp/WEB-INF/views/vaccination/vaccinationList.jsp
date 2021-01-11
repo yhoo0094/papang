@@ -15,34 +15,27 @@ td {
 	text-align: center;
 	font-size: 12px;
 }
-
 .vacc_table {
 	display: inline;
 }
-
 .content {
 	margin: 10px 0 0 0;
 }
-
 th {
 	background-color: rgb(249, 196, 94);
 	border: 1px solid black;
 	font-size: 12px;
 }
-
 .vacc_title {
 	background-color: rgb(249, 196, 94);
 }
-
 .vacc_prev {
 	background-color: #f9c0c0;
 }
-
 .vacc_prev:hover {
 	background-color: #ec5858;
 	transition-duration: 1s;
 }
-
 .ex_div {
 	width: 16px;
 	height: 16px;;
@@ -50,89 +43,71 @@ th {
 	margin: 0 12px 0 0;
 	border-radius: 4px;
 }
-
 .prev {
 	background-color: #f9c0c0
 }
-
 .reg {
 	background-color: #98d6ea;
 }
-
 .control-label {
 	width: 70px;
 }
-
 .form-control {
 	width: 470px;
 }
-
 #message-text {
 	height: 150px;
 }
-
 .modal-footer {
 	display: block;
 }
-
 .btn-primary {
 	background-color: rgb(249, 196, 94);
 	border: none;
 	width: 80px;
 }
-
 .btn-primary:hover {
 	color: #fff;
 	background-color: rgb(238, 140, 140);
 }
-
 .btn-primary:focus {
 	color: #fff;
 	background-color: rgb(249, 196, 94);
 	border: rgb(249, 196, 94);
 }
-
 .btn-primary:not(:disabled):not(.disabled):active {
 	color: #fff;
 	background-color: rgb(249, 196, 94);
 	border: rgb(249, 196, 94);
 	box-shadow: none;
 }
-
 .btn-default {
 	background-color: #EDEDED;
 	width: 80px;
 }
-
 .modal-header {
 	background-color: rgb(249, 196, 94);
 	display: block;
 	height: 60px;
 }
-
 .modal-title {
 	display: inline;
 	margin: 0 0 0 150px;
 }
-
 .modal-header .close {
 	padding: 0;
 	margin: 0;
 }
-
 .modal {
 	top: 160px;
 }
-
 .Bigtitle {
 	margin: 20px 0 40px -2px;
 }
-
 .ex {
 	display: block;
 	margin-top: 20px;
 }
-
 .select, .age {
 	display: inline-block;
 	height: 40px;
@@ -140,7 +115,6 @@ th {
 	margin: 0 20px 0 0;
 	font-size: 16px;
 }
-
 .select {
 	border-radius: 8px;
 	border: 3px solid rgb(249, 196, 94);
@@ -188,7 +162,6 @@ th {
 		});
 	}//init
 	
-
 	//사용자 목록 조회 요청
 	function childList() {
 		$.ajax({
@@ -325,8 +298,6 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     $( this ).toggleClass( 'reg' );
   } );
 } ); */
-
-
 </script>
 </head>
 <body>
@@ -347,8 +318,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						</button>
 					</div>
 
-					<input type="text" class="chi_nm" name="chi_name" value="" /> 
-					<input type="text" class="chi_num" name="chi_no" value="" />
+					<input type="hidden" class="chi_nm" name="chi_name" value="" /> 
+					<input type="hidden" class="chi_num" name="chi_no" value="" />
 
 					<div class="modal-body">
 						<div class="form-group">
@@ -357,6 +328,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 								id="recipient-title" value="">
 						</div>
 						<div class="form-group">
+						
 							<label for="recipient-name" class="control-label">접종일</label> <input
 								type="date" class="form-control" id="recipient-name"
 								name="prv_date">
@@ -379,7 +351,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	</div>
 
 	<div class="Bigtitle">예방접종</div>
-	<input class="chi_num" name="chi_no" type="text" value="">
+	<input class="chi_num" name="chi_no" type="hidden" value="">
 	<select class="select" id='child'>
 
 	</select>

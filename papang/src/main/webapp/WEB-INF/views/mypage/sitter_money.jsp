@@ -83,6 +83,7 @@ $(".qwe").on("click", function() {
       success : function(result) {
          modal.find('#body1').html(result);
          modal.modal('show');
+         console.log("srv_no 는 "+srv_no);
       }
    });
 });

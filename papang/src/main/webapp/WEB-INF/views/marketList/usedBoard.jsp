@@ -45,7 +45,7 @@
 	<hr />
 	<br>
 	<div align="center" id = usedBoardTable>
-		<table class="table" id="dataTable">
+		<table class="table" id="usedTable">
 			<thead>
 				<tr class="tableTrTh">
 					<th width="10%" class="tableTh">글번호</th>
