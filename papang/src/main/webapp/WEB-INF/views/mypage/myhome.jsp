@@ -34,12 +34,108 @@ p {
 table tbody tr td {
   font-size: 24px;
 }
+
+.img1 {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
 </style>
 
 
 
 
 <title>마이페이지</title>
+<script>
+$(function() {
+
+
+	$("#uploadFile").on(
+			'change',
+			function(e) {
+				if (window.FileReader) {
+					console.log($($(this)[0].files[0].name));
+					var filename = $(this)[0].files[0].name;
+
+				} else {
+
+					var filename = $(this).val().split('/').pop().split(
+							'\\').pop();
+					console.log($(this).val().split('/').pop().split('\\')
+							.pop());
+
+				}
+
+				$('#la').text(filename);
+
+				var files = e.target.files;
+				var arr = Array.prototype.slice.call(files);
+				for (var i = 0; i < files.length; i++) {
+					if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+					}
+				}
+
+				preview(arr);
+
+			});
+
+	function checkExtension(fileName, fileSize) {
+
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 20971520; //20MB
+
+		if (fileSize >= maxSize) {
+			alert('파일 사이즈 초과');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+
+		if (regex.test(fileName)) {
+			alert('업로드 불가능한 파일이 있습니다.');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+		return true;
+	}
+
+	function preview(arr) {
+		arr
+				.forEach(function(f) {
+
+					//파일명이 길면 파일명...으로 처리
+					var fileName = f.name;
+					if (fileName.length > 10) {
+						fileName = fileName.substring(0, 7) + "...";
+					}
+
+					//div에 이미지 추가
+					var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+					str += '<span>' + fileName + '</span><br>';
+
+					//이미지 파일 미리보기
+					if (f.type.match('image.*')) {
+						var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+						reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+							//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+
+							$('#mbr_pic').attr('src', e.target.result);
+							$('#mbr_pic').attr('style',"width:300px; height: 400px");
+						}
+						reader.readAsDataURL(f);
+					} else {
+						$('#mbr_pic').attr('src', e.target.result);
+						$('#mbr_pic').attr('style',"width:300px; height: 400px");
+					}
+				});//arr.forEach
+	}
+
+});
+
+
+
+
+</script>
 </head>
 <body> 
 					<!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
@@ -56,11 +152,16 @@ table tbody tr td {
 			</div>
 			<div class="content_div">
 			 
-				 <form id="fim" name="fim" action="update" method="post" onsubmit="return submitCheck();"> 
+				 <form id="fim" name="fim" action="update" method="post" enctype="multipart/form-data" onsubmit="return submitCheck();" > 
 					<p>
 						<label>이름</label> <input class="w3-input" type="text" id="mbr_name"
 							name="mbr_name" readonly value="${ memberVO.mbr_name}">
 					</p>
+					<p>
+						<label>이름</label> <img class= "img1" id = "mbr_pic" name="mbr_pic" 
+						src="${pageContext.request.contextPath}/resources/images/sitterProfile/${ memberVO.mbr_pic}"><input type="file" id="uploadFile"  name="uploadFile" value="${ memberVO.mbr_pic}"/>		
+					</p>
+					
 					<p>
 						<label>아이디</label> <input class="w3-input" type="text" id="mbr_id"
 							name="mbr_id" readonly value="${ memberVO.mbr_id }">
@@ -97,8 +198,8 @@ table tbody tr td {
 						<label>우편 번호</label>    <input  type="text" class="input_small"
 							id="sample2_postcode" name="mbr_post" value="${ memberVO.mbr_post }" > 주소<input  type="text" class="input_small"
 							id="sample2_address" name="mbr_addr1" type="text" value="${ memberVO.mbr_addr1 }">   
-							<input class="input_small" type="text" id="sample2_extraAddress" placeholder="참고항목" ><input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
-					</p>  
+							<input class="input_small" type="text" id="sample2_extraAddress" name="mbr_addr3"  value="${ memberVO.mbr_addr3 }" ><input type="button" onclick="sample2_execDaumPostcode()" value="우편번호 찾기">
+					</p>   
   
 					<p> 
 							<input class="w3-input"

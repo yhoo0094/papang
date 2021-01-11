@@ -58,12 +58,24 @@ public class MypageController {
 		return mav; 
 	}
 	@RequestMapping("mypage/update") //회원정보수정 (마이페이지 메인홈)
-	public ModelAndView test22(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
+	public ModelAndView test22(HttpSession session,HttpServletResponse response,MemberVO memberVO,HttpServletRequest request) throws IOException{
 		
 		ModelAndView mav=new ModelAndView();
 
 		System.out.println(memberVO);
-	
+		MultipartHttpServletRequest multipartRequest =
+				(MultipartHttpServletRequest)request;
+				//이미지파일
+				MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+				//첨부파일
+				if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
+					
+					String path = request.getSession().getServletContext().getRealPath("/resources/images/sitterProfile");
+					System.out.println("path="+path);
+					
+				multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
+				memberVO.setMbr_pic(multipartFile.getOriginalFilename());
+				}
 		dao.updateMemberVO(memberVO);
 		mav.setViewName("main/main");
 		session.invalidate();
@@ -394,8 +406,8 @@ public class MypageController {
 					MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 					//첨부파일
 					if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
-						
-						String path = request.getSession().getServletContext().getRealPath("/images");
+						 
+						String path = request.getSession().getServletContext().getRealPath("/resources/images/sitterProfile");
 						System.out.println("path="+path);
 						
 					multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));

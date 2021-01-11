@@ -8,7 +8,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-img {
+.img1 {
   width: 300px;
   height: 150px;
   object-fit: cover;
@@ -128,7 +128,7 @@ $(function() {
 					<tr> 
 			
 						<td align="center">${co8.pro_no}</td>
-						<td align="center"><img id = "pro_pic" name="pro_pic" src="${pageContext.request.contextPath}/images/${co8.pro_pic}"></td>
+						<td align="center"><img class ="img1" id = "pro_pic" name="pro_pic" src="${pageContext.request.contextPath}/images/${co8.pro_pic}"></td>
 						<td align="center">${co8.pro_name}</td>
 						<td align="center">${co8.pro_price}</td>
 						<td align="center">${co8.bag_cnt}</td>  
@@ -138,5 +138,7 @@ $(function() {
 					
 				</tbody>
 			</table>
+			
+			
 </body>
 </html>

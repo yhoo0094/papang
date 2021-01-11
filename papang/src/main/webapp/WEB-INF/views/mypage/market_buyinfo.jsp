@@ -63,7 +63,7 @@ p {
 }
 
 table tbody tr td {
-   font-size: 24px;
+   font-size: 16px;
 }
 </style>
 <title>마이페이지</title>
@@ -84,12 +84,13 @@ table tbody tr td {
             <table class="table" id="dataTable">
                <thead>
                   <tr class="tableTrTh">
-                     <th width="15%" class="tableTh">주문번호</th>
-                     <th width="15%" class="tableTh">운송장번호</th>
-                     <th width="20%" class="tableTh">주문날짜</th>
-                     <th width="15%" class="tableTh">주문상태</th>
-                     <th width="15%" class="tableTh">가격합계</th>
-                     <th width="15%" class="tableTh">상세보기</th>
+                     <th width="14%" class="tableTh">주문번호</th>
+                     <th width="10%" class="tableTh">운송장번호</th>
+                     <th width="10%" class="tableTh">주문날짜</th>
+                     <th width="13%" class="tableTh">주문상태</th>
+                     <th width="12%" class="tableTh">가격합계</th>
+                     <th width="12%" class="tableTh">상세보기</th>
+                     <th width="12%" class="tableTh">배송조회</th>
                   </tr>
                </thead>
                <tbody>
@@ -99,11 +100,12 @@ table tbody tr td {
                         <td align="center">${co6.waybill}</td>
                         <td align="center">${co6.order_date}</td>
                         <td align="center">${co6.order_status}</td>
-                        <td align="center">${co6.order_sum}</td>
+                        <td align="center">${co6.order_sum}원</td>
                         <td align="center" class="qwe" data-num="${co6.order_no}"
                            data-target="#exampleModal1" data-toggle="modal" align="center"
                            style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button
                               type="submit">상세보기</button></td>
+                        <td align="center"><button>배송조회</button></td>      
                      </tr>
                   </c:forEach>
                </tbody>

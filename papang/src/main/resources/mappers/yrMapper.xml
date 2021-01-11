@@ -17,12 +17,14 @@
 	    MBR_POST,
 	    MBR_ADDR1, 
 	    MBR_ADDR2,
+	    MBR_ADDR3,
 	    MBR_BANK,MBR_ACCOUNT,
 	    MBR_AUTHOR,
 	    MBR_DATE,
 	    MBR_STATUS,
 	    MBR_GENDER,
-	    MBR_EMAIL
+	    MBR_EMAIL,
+	    MBR_PIC
 	    
 	    FROM MEMBER
 	     
@@ -34,21 +36,26 @@
 		UPDATE
 		
 		MEMBER
-		
+		 
 		SET 
 		 
 	    MBR_NICK= #{mbr_nick},
 	    MBR_PHONE= #{mbr_phone},
 	    MBR_EMAIL= #{mbr_email}, 
 	    MBR_BANK= #{mbr_bank},
-	    MBR_POST=#{mbr_post},
+	    MBR_POST=#{mbr_post}, 
 	    MBR_ADDR1= #{mbr_addr1},	  
-	    MBR_ADDR2= #{mbr_addr2},	   
+	    MBR_ADDR2= #{mbr_addr2},	
+	    MBR_ADDR3= #{mbr_addr3},
+	    <if test = "mbr_pic !=null">	
+	    MBR_PIC= #{mbr_pic}, 
+	    </if>
 	    MBR_ACCOUNT= #{mbr_account},
 	    MBR_PW=#{mbr_pw}
 	    
 	    
 		WHERE MBR_ID = #{mbr_id}
+		
 	</select>
 	
 	<!-- 회원탈퇴 -->
@@ -138,7 +145,10 @@
 	    SIT_PAY=#{sit_pay},
 	    SIT_LOC=#{sit_loc},
 	    SIT_AGE=#{sit_age},
-	    SIT_OFF=#{sit_off}
+	    SIT_OFF=#{sit_off},
+	    <if test = "sit_pic !=null">
+	    SIT_PIC=#{sit_pic}
+	    </if>
 	   
 	
 	    

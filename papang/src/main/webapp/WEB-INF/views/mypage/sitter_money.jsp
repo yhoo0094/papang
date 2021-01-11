@@ -51,13 +51,19 @@
 					</tr>
 				</c:forEach>	
 					
-					 
+					   
 				</tbody>
 			</table>
+			<input type="text" class="form-control" 
+      ng-model="xxxx"
+     min-mode="'month'" min-date="startmnth" max-date="endmnth"
+     datepicker-popup="yyyy-MM" is_open="status.date_opened" 
+     ng-required="true" placeholder="YYYY-MM" 
+     datepicker-options="datepickerOptions" 
+     datepicker-mode="'month'" ng-click="openfromDate($event)" 
+     show-button-bar="false">
 			<br>	
-		<div align="right">
-			
-		</div>
+		
 		
 		
      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
@@ -121,6 +127,19 @@ $(".qwe").on("click", function() {
       }
       }); */
    });
+    
+   $scope.startmnth = new Date().getMonth()
+   $scope.endmnth = new Date().getMonth()
+
+   $scope.datepickerOptions = {
+          startingDay: 1,
+   };
+
+   $scope.openfromDate = function ($event) {                    
+          $event.preventDefault();
+          $event.stopPropagation();        
+          $scope.status.date_opened = true;
+       };
 </script>
 
 </html>
