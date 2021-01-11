@@ -43,7 +43,16 @@ public class SitterController {
 	
 	@RequestMapping("/sitter/form") //시터 폼 보기
 	public String sitterForm(Model model, SitterVOChk sitterVOChk, ChildVO childVO, HttpSession session) {
-		model.addAttribute("sitterVOChk",service.getSitter(sitterVOChk));
+		//별점구하기
+		sitterVOChk = service.getSitter(sitterVOChk);
+		int rateInt = Integer.parseInt(sitterVOChk.getRate());
+		String rate = "";
+		for(int i =0; i < rateInt; i++) {
+			rate = rate + "★";
+		}
+		sitterVOChk.setRate(rate);
+		model.addAttribute("sitterVOChk",sitterVOChk);
+		
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		childVO.setMbr_id(memberVO.getMbr_id());
 		model.addAttribute("childVOList",service.getChildList(childVO));
@@ -179,6 +188,18 @@ public class SitterController {
 	@RequestMapping("/sitter/insertReview") //리뷰인서트
 	public String insertReview(Sitter_comVO sitter_comVO) {
 		service.insertReview(sitter_comVO);
+		return "redirect:/sitter/reservationView"; //jsp주소
+	}
+	
+	@RequestMapping("/sitter/updateReview") //리뷰업데이트
+	public String updateReview(Sitter_comVO sitter_comVO) {
+		service.updateReview(sitter_comVO);
+		return "redirect:/sitter/reservationView"; //jsp주소
+	}
+	
+	@RequestMapping("/sitter/deleteReview") //리뷰딜리트
+	public String deleteReview(Sitter_comVO sitter_comVO) {
+		service.deleteReview(sitter_comVO);
 		return "redirect:/sitter/reservationView"; //jsp주소
 	}
 	

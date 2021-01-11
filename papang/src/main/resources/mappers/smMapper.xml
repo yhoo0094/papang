@@ -64,7 +64,6 @@
 		WHERE COM_NO = #{com_no}
 	</update>
 	
-	
 	<!-- ##################################커뮤니티 댓글########################################### -->
 	<!-- 커뮤니티 댓글 전체조회 -->
 	<select id="getCommunityComList" resultType="community_comVO" parameterType="community_comVO">
@@ -98,7 +97,7 @@
 
 	<!-- ##################################시터########################################### -->
 	<!-- 전체조회 -->
-	<select id="getSitterList" resultType="SitterVOChk">
+	<!-- <select id="getSitterList" resultType="SitterVOChk">
 		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, S.SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
 		FROM SITTER S
 		<where>
@@ -108,14 +107,65 @@
 			<if test="off_days != null and off_days != ''">
 				AND NOT REGEXP_LIKE(S.SIT_OFF,#{off_days})
 			</if>
+			<if test="sit_loc != null and sit_loc != ''">
+				AND SIT_LOC = #{sit_loc}
+			</if>
+		</where>
+	</select> -->
+	
+	<!-- 전체조회 -->
+	<select id="getSitterList" resultType="SitterVOChk">
+		SELECT * FROM(
+			SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, replace(TRIM(S.SIT_OFF), ' ', ', ') SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
+				,NVL(ROUND((SELECT AVG(SC_RATE) 
+	              FROM SITTER_COM A, (SELECT * FROM SITTER_REV WHERE ROWID IN (SELECT MAX(ROWID) FROM SITTER_REV GROUP BY SRV_NO)) B
+	              WHERE B.SIT_MBR_ID = S.SIT_MBR_ID AND A.SRV_NO = B.SRV_NO)), 0) RATE,
+	              (SELECT COUNT(MBR_ID) FROM REPORT WHERE MBR_ID  = S.SIT_MBR_ID) REPORT
+			FROM SITTER S
+		)
+		<where>
+			<![CDATA[
+				ROWNUM <= 100
+			]]>
+			<if test="off_days != null and off_days != ''">
+				AND NOT REGEXP_LIKE(SIT_OFF,#{off_days})
+			</if>
+			<if test="sit_loc != null and sit_loc != '선택하세요'">
+				AND SIT_LOC = #{sit_loc}
+			</if>
+			<if test="minPay != null and minPay != ''">
+				AND SIT_PAY >= #{minPay}
+			</if>
+			<if test="maxPay != null and maxPay != ''">
+				<![CDATA[
+				AND SIT_PAY <= #{maxPay}
+				]]>
+			</if>
+			<if test="minRate != null and minRate != ''">
+				AND (RATE >= #{minRate} or RATE = 0)
+			</if>
+			<if test="maxRate != null and maxRate != ''">
+				<![CDATA[
+				AND (RATE <= #{maxRate} or RATE = 0)
+				]]>
+			</if>
+			<if test="report != null and report != ''">
+				<![CDATA[
+				AND REPORT <= #{report}
+				]]>
+			</if>
 		</where>
 	</select>
 	
 	<!-- 단건조회 -->
 	<select id="getSitter" resultType="SitterVOChk">
-		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, replace(TRIM(S.SIT_OFF), ' ', ', ') SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
+		SELECT S.SIT_MBR_ID, S.SIT_PAYDAY, replace(TRIM(S.SIT_OFF), ' ', ', ') SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
+			,ROUND((SELECT AVG(SC_RATE) 
+              FROM SITTER_COM A, (SELECT * FROM SITTER_REV WHERE ROWID IN (SELECT MAX(ROWID) FROM SITTER_REV GROUP BY SRV_NO)) B
+              WHERE B.SIT_MBR_ID = S.SIT_MBR_ID AND A.SRV_NO = B.SRV_NO)) RATE,
+              (SELECT COUNT(MBR_ID) FROM REPORT WHERE MBR_ID  = S.SIT_MBR_ID) REPORT
 		FROM SITTER S
-		where S.SIT_MBR_ID = #{sit_mbr_id}
+		WHERE SIT_MBR_ID = #{sit_mbr_id}
 	</select>
 	
 	<!-- ##################################시터서비스########################################### -->
@@ -200,6 +250,19 @@
 	INSERT INTO SITTER_COM (SRV_NO, SC_CONTENT, SC_RATE)
   	VALUES (#{srv_no}, #{sc_content}, #{sc_rate})
 	</insert>
+	
+	<!-- 업데이트 -->
+	<update id="updateReview" parameterType="Sitter_comVO">
+	UPDATE SITTER_COM 
+	SET SC_CONTENT = #{sc_content}, SC_RATE = #{sc_rate}
+	WHERE SRV_NO = #{srv_no}
+	</update>
+	
+	<!-- 딜리트 -->
+	<delete id="deleteReview" parameterType="Sitter_comVO">
+	DELETE SITTER_COM
+	WHERE SRV_NO = #{srv_no}
+	</delete>
 	
 	<!-- ##################################아기########################################### -->
 	<!-- 단건조회 -->

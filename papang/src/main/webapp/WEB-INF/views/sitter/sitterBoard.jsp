@@ -63,6 +63,22 @@ thead, #dataTable_filter, #dataTable_length {
 				location.href="${pageContext.request.contextPath}/sitter/form?sit_mbr_id=" + sit_mbr_id; 		
 			}
 		})
+		
+		if('${sitterVOChk.sit_loc}' != ''){
+			var optionList = $('.loactionInput').find('option');
+			$.each(optionList, function(idx, val) {
+				console.log($(val).text());
+				if('${sitterVOChk.sit_loc}' == $(val).text()){
+					$(val).attr("selected","selected");
+				}
+			})
+		}
+		
+		$('#resetBtn').on({
+			"click" : function() {
+				location.href = "${pageContext.request.contextPath}/sitter/board";
+			}
+		})
 	}) 
 </script>
 </head>
@@ -72,7 +88,7 @@ thead, #dataTable_filter, #dataTable_length {
 	<br>
 	<div align="center">
 		<div align="center" class="communityFormTitle communityFormFilter">
-			<form action="${pageContext.request.contextPath}/sitter/board">
+			<form action="${pageContext.request.contextPath}/sitter/board" method="post">
 				<table style="width: 70%">
 					<tr>
 						<td align="center" width="6%" height="40px">휴무일</td>
@@ -85,33 +101,33 @@ thead, #dataTable_filter, #dataTable_length {
 							</td>
 						<td align="center" width="10%">시급</td>
 						<td align="left"><input type="number"
-							class="sitterBoardInputSize" step="1000" placeholder="최소금액">
+							class="sitterBoardInputSize" step="1000" placeholder="최소금액" name="minPay" <c:if test="${sitterVOChk.minPay != null}">value="${sitterVOChk.minPay}"</c:if>>
 							~ <input type="number" class="sitterBoardInputSize" step="1000"
-							placeholder="최대금액"></td>
+							placeholder="최대금액" name="maxPay" <c:if test="${sitterVOChk.maxPay != null}">value="${sitterVOChk.maxPay}"</c:if>></td>
 					</tr>
 					<tr>
 						<td align="center" height="40px">별점</td>
-						<td align="left"><select class="sitterBoardInputSize">
-								<option value="5">★★★★★
-								<option value="4">★★★★
-								<option value="3">★★★
-								<option value="2">★★
-								<option value="1" selected="selected">★
-						</select> ~ <select class="sitterBoardInputSize">
-								<option value="5">★★★★★
-								<option value="4">★★★★
-								<option value="3">★★★
-								<option value="2">★★
-								<option value="1">★
+						<td align="left"><select class="sitterBoardInputSize" name="minRate">
+								<option value="5" <c:if test="${sitterVOChk.minRate == 5}">selected="selected"</c:if>>★★★★★
+								<option value="4" <c:if test="${sitterVOChk.minRate == 4}">selected="selected"</c:if>>★★★★
+								<option value="3" <c:if test="${sitterVOChk.minRate == 3}">selected="selected"</c:if>>★★★
+								<option value="2" <c:if test="${sitterVOChk.minRate == 2}">selected="selected"</c:if>>★★
+								<option value="1" <c:if test="${sitterVOChk.minRate == null}">selected="selected"</c:if>>★
+						</select> ~ <select class="sitterBoardInputSize" name="maxRate">
+								<option value="5" <c:if test="${sitterVOChk.maxRate == null}">selected="selected"</c:if>>★★★★★
+								<option value="4" <c:if test="${sitterVOChk.maxRate == 4}">selected="selected"</c:if>>★★★★
+								<option value="3" <c:if test="${sitterVOChk.maxRate == 3}">selected="selected"</c:if>>★★★
+								<option value="2" <c:if test="${sitterVOChk.maxRate == 2}">selected="selected"</c:if>>★★
+								<option value="1" <c:if test="${sitterVOChk.maxRate == 1}">selected="selected"</c:if>>★
 						</select></td>
 						<td align="center">제재횟수</td>
-						<td align="left"><input type="number" placeholder="제재횟수"
-							class="sitterBoardInputSize"> 회 이하</td>
+						<td align="left"><input type="number" placeholder="제재횟수" name="report"
+							class="sitterBoardInputSize" <c:if test="${sitterVOChk.report != null}">value="${sitterVOChk.report}"</c:if>> 회 이하</td>
 					</tr>
 					<tr>
 						<td align="center" height="40px">지역</td>
-						<td align="left"><select id="location1" name="location1"
-							class="loactionin sitterBoardInputSize">
+						<td align="left"><select name="sit_loc"
+							class="loactionInput sitterBoardInputSize">
 								<option>선택하세요</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -135,7 +151,8 @@ thead, #dataTable_filter, #dataTable_length {
 						<td align="center" colspan="2">
 							<button type="submit" class="btnYellow bSamll">검색</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btnYellow bSamll">초기화</button>
+							<button type="button" class="btnYellow bSamll" id="resetBtn">초기화</button>
+							
 						</td>
 					</tr>
 				</table>

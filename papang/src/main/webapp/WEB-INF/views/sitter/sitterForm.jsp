@@ -534,7 +534,10 @@ function calendarMaker(target, date) {
 					</tr>
 					<tr>
 						<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점:</td>
-						<td align="left">★★★★☆</td>
+						<td align="left">
+							<c:if test="${sitterVOChk.rate == null}">평가없음</c:if>
+							<c:if test="${sitterVOChk.rate != null}">${sitterVOChk.rate}</c:if>
+						</td>
 					</tr>
 					<tr>
 						<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역:</td>
@@ -542,7 +545,7 @@ function calendarMaker(target, date) {
 					</tr>
 					<tr>
 						<td align="center">제재횟수:</td>
-						<td align="left">0회</td>
+						<td align="left">${sitterVOChk.report}</td>
 					</tr>
 				</table>
 			</div>

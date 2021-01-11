@@ -22,4 +22,8 @@ public class SitterVOChk {
 	private String off_days;
 	private String maxPay;
 	private String minPay;
+	private String maxRate;
+	private String minRate;
+	private String rate;
+	private String report;
 }

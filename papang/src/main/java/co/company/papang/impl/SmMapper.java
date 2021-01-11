@@ -40,5 +40,7 @@ public interface SmMapper {
 	//시터 서비스 후기
 	public Sitter_comVO getReview(Sitter_comVO sitter_comVO); //단건조회
 	public int insertReview(Sitter_comVO sitter_comVO); //후기 인서트
+	public int updateReview(Sitter_comVO sitter_comVO); //후기 업데이트
+	public int deleteReview(Sitter_comVO sitter_comVO); //후기 딜리트
 }
 

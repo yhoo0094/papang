@@ -157,6 +157,18 @@ $(()=>{
 			})
 		}
 	})
+	$('#reviewUpdateBtn').on({//후기 수정 버튼
+		'click': function() {
+			var reservationNum = $('#reservationNumTd').text();
+			$('#reviewForm').attr('action','${pageContext.request.contextPath}/sitter/updateReview')
+		}
+	})
+	$('#reviewDeleteBtn').on({//후기 삭제 버튼
+		'click': function() {
+			var reservationNum = $('#reservationNumTd').text();
+			$('#reviewForm').attr('action','${pageContext.request.contextPath}/sitter/deleteReview')
+		}
+	})
 })
 
 function getReservatedDayList(){
@@ -203,6 +215,7 @@ function getReservatedDayList(){
     		    			$('#reviewViewBtn').css('display','none'); //후기보기
     		    			$('#reviewInsertBtn').css('display','inline'); //후기쓰기
     		    			$('#reviewUpdateBtn').css('display','none'); //후기수정
+    		    			$('#reviewDeleteBtn').css('display','none'); //후기삭제
     		    		} else if(val.srv_status == '결제완료' && val.review == '1') {//결제완료&후기작성
     		    			$('#sitterRevPayBtn').css('display','none'); //결제하기
     		    			$('#sitterRevCancleBtn').css('display','none'); //취소하기
@@ -210,6 +223,7 @@ function getReservatedDayList(){
     		    			$('#reviewViewBtn').css('display','inline'); //후기보기
     		    			$('#reviewInsertBtn').css('display','none'); //후기쓰기
     		    			$('#reviewUpdateBtn').css('display','inline'); //후기수정
+    		    			$('#reviewDeleteBtn').css('display','inline'); //후기삭제
     		    		} else { //미결제
     		    			$('#sitterRevPayBtn').css('display','inline'); //결제하기
     		    			$('#sitterRevCancleBtn').css('display','inline'); //취소하기
@@ -405,7 +419,7 @@ $(function(){
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="${pageContext.request.contextPath}/sitter/insertReview">
+				<form id="reviewForm" action="${pageContext.request.contextPath}/sitter/insertReview">
 					<input type="hidden" name="srv_no" id="reviewNo">
 					<div class="modal-body" align="center">
 						<div align="left" style="display: inline-block; width: 50%;">후기</div>
@@ -426,6 +440,7 @@ $(function(){
 					<div class="modal-footer">
 						<button type="submit" id="reviewInsertBtn" class="btn btn-primary" >후기쓰기</button>
 						<button type="submit" id="reviewUpdateBtn"  class="btn btn-primary" >수정하기</button>
+						<button type="submit" id="reviewDeleteBtn"  class="btn btn-primary" >삭제하기</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
 					</div>
 				</form>
