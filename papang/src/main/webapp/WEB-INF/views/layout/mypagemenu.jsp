@@ -199,6 +199,7 @@ a {}
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/mypage/sitter_money">월급확인</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/sitter_info">시터정보조회</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/exam">연습장</a></li>
 				</ul></li>
 		</ul>
 	</div>

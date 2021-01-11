@@ -12,10 +12,10 @@
 	    MBR_NAME,
 	    MBR_NICK,
 	    MBR_PW,
-	    MBR_BIRTH,
+	    MBR_BIRTH , 
 	    MBR_PHONE,
 	    MBR_POST,
-	    MBR_ADDR1,
+	    MBR_ADDR1, 
 	    MBR_ADDR2,
 	    MBR_BANK,MBR_ACCOUNT,
 	    MBR_AUTHOR,
@@ -28,19 +28,21 @@
 	     
 		WHERE MBR_ID = #{mbr_id}
 	</select>
-	
+	 
 <!-- 회원정보수정 -->
 <select id="updateMemberVO" parameterType="memberVO" resultType="memberVO">
 		UPDATE
 		
 		MEMBER
 		
-		SET
+		SET 
 		 
 	    MBR_NICK= #{mbr_nick},
 	    MBR_PHONE= #{mbr_phone},
-	    MBR_EMAIL= #{mbr_email},
-	    MBR_BANK= #{mbr_bank},	
+	    MBR_EMAIL= #{mbr_email}, 
+	    MBR_BANK= #{mbr_bank},
+	    MBR_POST=#{mbr_post},
+	    MBR_ADDR1= #{mbr_addr1},	  
 	    MBR_ADDR2= #{mbr_addr2},	   
 	    MBR_ACCOUNT= #{mbr_account},
 	    MBR_PW=#{mbr_pw}

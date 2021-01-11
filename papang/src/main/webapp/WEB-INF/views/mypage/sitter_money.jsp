@@ -13,7 +13,7 @@
 }
 </style>
 <body>
-		<h3>예약정보</h3>
+		<h3>월급 확인</h3>
 		<hr />
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
@@ -30,10 +30,11 @@
 						<th width="15%" class="tableTh">시작 일</th>
 						<th width="15%" class="tableTh">종료 일</th>
 						<th width="15%" class="tableTh">결제 상태</th>
+						<th width="15%" class="tableTh">결제 상태</th>
 					 
 					</tr>
 				</thead>
-				<tbody>
+				<tbody> 
 				<c:forEach var="co" items="${co}">
 					<tr> 
 						<td align="center" class="qwe" data-num="${co.srv_no}"
@@ -43,7 +44,10 @@
 						<td align="center">${co.startday}</td>
 						<td align="center">${co.finishday}</td>
 						<td align="center">${co.srv_status}</td>
-						
+						<td align="center" class="qwe" data-num="${co.srv_no}"
+                           data-target="#exampleModal1" data-toggle="modal" align="center"
+                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button>상세보기</button></td>
+						 
 					</tr>
 				</c:forEach>	
 					
