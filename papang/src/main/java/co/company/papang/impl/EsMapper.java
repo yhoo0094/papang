@@ -30,6 +30,7 @@ public interface EsMapper {
 	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	public MemberVO kLogin(MemberVO member); // 카카오로그인
 	public int kakaoCheck(String kid); // 카톡아이디 체크
+	public String stChk(MemberVO member); // 활동 정지일
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회

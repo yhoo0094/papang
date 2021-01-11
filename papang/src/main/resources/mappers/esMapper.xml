@@ -102,6 +102,14 @@
 		WHERE mbr_id = #{mbr_id}
 	</select>
 <!-- =========================================================== -->
+<!-- 활동정지 체크 -->
+	<!-- 일반회원 -->
+	<select id="stChk" resultType="string">
+		SELECT RINFO_START+RINFO_CNT
+		FROM REPORT_INFO
+		WHERE mbr_id = #{mbr_id}
+	</select>
+<!-- =========================================================== -->
 <!-- 카카오.. -->
 	<!-- 아이디 체크 -->
 	<select id="kakaoCheck" parameterType="string" resultType="int">
