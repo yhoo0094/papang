@@ -26,7 +26,9 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.Pro_OdVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
+import co.company.papang.vo.SitChiVO;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_revVO;
 
 
 @Controller
@@ -34,6 +36,7 @@ public class MypageController {
 	
 	@Autowired 
 	YrMapper dao;
+
 	
 	@RequestMapping("mypage/myhome") //회원정보수정 (마이페이지 메인홈)
 	public ModelAndView test(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
@@ -304,10 +307,7 @@ public class MypageController {
 		return new ModelAndView("mypage/myboard_care"); 
 	} 
 	
-	@RequestMapping("mypage/sitter_money") //시터 월급보기(시터권한)
-	public ModelAndView test11(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mypage/sitter_money"); 
-	}
+	
 	
 	@RequestMapping("mypage/sitter_info") //시터 정보보기(시터권한)
 	public ModelAndView test12(HttpSession session,HttpServletResponse response,SitterVO  sitterVo,MemberVO memberVO) throws IOException{
@@ -415,4 +415,30 @@ public class MypageController {
 	}
 	
 	
+	@RequestMapping("mypage/sitter_money") //예약정보보기
+	public ModelAndView test136(HttpSession session,HttpServletResponse response,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
+		
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		 
+		
+		sitter_revVO.setSit_mbr_id(mbr_id); 
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("co",dao.getSitter_revVO(sitter_revVO));
+		mav.setViewName("mypage/sitter_money");
+		
+	 return mav;
+	}
+	
+	@RequestMapping("/mypage/sitter_money2") //예약정보보기 디테일
+	public ModelAndView test424(SitChiVO sitChiVO,Sitter_revVO sitter_revVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		
+//		System.out.println(pro_odVO.getOrder_no());
+//		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
+		mav.addObject("cos7",dao.getSitter_revVO2(sitChiVO));
+		System.out.println("2222222222");
+		mav.setViewName("no/mypage/bbb");
+		return mav;
+	}
 }

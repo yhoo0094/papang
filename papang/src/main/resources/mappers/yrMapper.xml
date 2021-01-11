@@ -147,8 +147,29 @@
 		WHERE SIT_MBR_ID = #{sit_mbr_id}
 	</select>	
 	
+	<!-- 예약정보 -->
+<select id="getSitter_revVO" parameterType="sitter_revVO" resultType="map">
+		SELECT 
+		SRV_NO "srv_no",
+		MBR_ID "mbr_id", 
+		CHI_NO "chi_no", 
+		TO_CHAR(MIN(SRV_DATE),'yyyy-mm-dd') AS "startday",  
+		TO_CHAR(MAX(SRV_DATE),'yyyy-mm-dd') AS "finishday",
+		SRV_STATUS "srv_status"
+		FROM SITTER_REV  
+		WHERE SIT_MBR_ID = #{sit_mbr_id}
+		GROUP BY SRV_NO,MBR_ID,CHI_NO,SRV_STATUS
+</select>		
 	
-	
+	<!-- 예약정보 상세히-->
+<select id="getSitter_revVO2" parameterType="sitChiVO" resultType="sitChiVO">
+		SELECT
+		SITTER_REV.SRV_NO,SITTER_REV.MBR_ID,CHILD.CHI_NAME,CHILD.CHI_GENDER,
+		TO_CHAR(SITTER_REV.SRV_DATE),'yyyy-mm-dd') AS "workingday",
+		SITTER_REV.SRV_PAY 
+        FROM SITTER_REV JOIN CHILD ON SITTER_REV.CHI_NO = CHILD.CHI_NO
+        WHERE SITTER_REV.SRV_NO=#{srv_no}
+</select>		
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 
