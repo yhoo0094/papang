@@ -189,6 +189,12 @@
 	</update>
 	
 	<!-- ##################################시터 서비스 후기########################################### -->
+	<!-- 단건조회 -->
+	<select id="getReview" parameterType="Sitter_comVO" resultType="Sitter_comVO">
+		SELECT * FROM SITTER_COM
+		WHERE SRV_NO = #{srv_no}
+	</select>
+	
 	<!-- 인서트 -->
 	<insert id="insertReview" parameterType="Sitter_comVO">
 	INSERT INTO SITTER_COM (SRV_NO, SC_CONTENT, SC_RATE)

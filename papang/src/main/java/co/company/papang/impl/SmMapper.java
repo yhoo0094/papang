@@ -38,6 +38,7 @@ public interface SmMapper {
 	public int updateReservationStatus(Sitter_revChkVO sitter_revChkVO); //예약 업데이트(결제여부)
 	
 	//시터 서비스 후기
+	public Sitter_comVO getReview(Sitter_comVO sitter_comVO); //단건조회
 	public int insertReview(Sitter_comVO sitter_comVO); //후기 인서트
 }
 

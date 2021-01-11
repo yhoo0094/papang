@@ -133,9 +133,28 @@ $(()=>{
 		}
 	})
 	
-	$('#sitterRevReviewBtn').on({
+	//모달 숨기기
+	$('#sitterRevReviewBtn').on({//후기 쓰기 버튼
 		'click': function() {
 			$('#reservationModal').modal("hide");
+			$('#reviewRate').find('option').eq(0).attr({'selected':'selected'});
+	    	$('#reviewComment').text(sitter_comVO.sc_content);
+		}
+	})
+	$('#reviewViewBtn').on({//후기 보기 버튼
+		'click': function() {
+			$('#reservationModal').modal("hide");
+			var srv_no = $('#reviewNo').val();
+			$.ajax({ 
+			    url: "${pageContext.request.contextPath}/ajax/getReview",  
+			    type: 'POST', 
+			    dataType: 'json', 
+			    data : {"srv_no":srv_no},
+			    success: function(sitter_comVO) {
+			    	$('#reviewRate').find('option').eq(5-sitter_comVO.sc_rate).attr({'selected':'selected'});
+			    	$('#reviewComment').text(sitter_comVO.sc_content);
+			    }
+			})
 		}
 	})
 })
@@ -182,19 +201,21 @@ function getReservatedDayList(){
     		    			$('#sitterRevCancleBtn').css('display','none'); //취소하기
     		    			$('#sitterRevReviewBtn').css('display','inline'); //후기작성
     		    			$('#reviewViewBtn').css('display','none'); //후기보기
+    		    			$('#reviewInsertBtn').css('display','inline'); //후기쓰기
+    		    			$('#reviewUpdateBtn').css('display','none'); //후기수정
     		    		} else if(val.srv_status == '결제완료' && val.review == '1') {//결제완료&후기작성
     		    			$('#sitterRevPayBtn').css('display','none'); //결제하기
     		    			$('#sitterRevCancleBtn').css('display','none'); //취소하기
     		    			$('#sitterRevReviewBtn').css('display','none'); //후기작성
     		    			$('#reviewViewBtn').css('display','inline'); //후기보기
+    		    			$('#reviewInsertBtn').css('display','none'); //후기쓰기
+    		    			$('#reviewUpdateBtn').css('display','inline'); //후기수정
     		    		} else { //미결제
     		    			$('#sitterRevPayBtn').css('display','inline'); //결제하기
     		    			$('#sitterRevCancleBtn').css('display','inline'); //취소하기
     		    			$('#sitterRevReviewBtn').css('display','none'); //후기작성
     		    			$('#reviewViewBtn').css('display','none'); //후기보기
     		    		}
-    					
-    					
     				}
     			});
 			})
@@ -385,12 +406,12 @@ $(function(){
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form action="${pageContext.request.contextPath}/sitter/insertReview">
-					<input type="text" name="srv_no" id="reviewNo">
+					<input type="hidden" name="srv_no" id="reviewNo">
 					<div class="modal-body" align="center">
-						<div align="left" style="display: inline-block; width: 50%;">후기쓰기</div>
+						<div align="left" style="display: inline-block; width: 50%;">후기</div>
 						<div align="right" style="float: right; display: inline-block; width: 50%;">
-							<select name="sc_rate">
-									<option value="5" selected="selected">★★★★★
+							<select name="sc_rate" id="reviewRate">
+									<option value="5">★★★★★
 									<option value="4">★★★★
 									<option value="3">★★★
 									<option value="2">★★
@@ -399,11 +420,12 @@ $(function(){
 						</div>
 						<br><br>			
 						<div>
-							<textarea rows="5" cols="55" name="sc_content"></textarea>
+							<textarea rows="5" cols="55" name="sc_content" id="reviewComment"></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary" >확인</button>
+						<button type="submit" id="reviewInsertBtn" class="btn btn-primary" >후기쓰기</button>
+						<button type="submit" id="reviewUpdateBtn"  class="btn btn-primary" >수정하기</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
 					</div>
 				</form>
