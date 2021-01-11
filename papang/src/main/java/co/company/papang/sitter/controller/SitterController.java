@@ -182,6 +182,13 @@ public class SitterController {
 		return "redirect:/sitter/reservationView"; //jsp주소
 	}
 	
+	@RequestMapping("/ajax/getReview")//리뷰데이터 가져오기
+	@ResponseBody
+	public Sitter_comVO getReview(Sitter_comVO sitter_comVO) {
+		sitter_comVO = service.getReview(sitter_comVO);
+		return sitter_comVO; //jsp주소
+	}
+	
 	@RequestMapping("/sitter/menu") //시터 사이드 메뉴
 	public String sitterMenu() {
 		return "layout/sitterMenu"; //jsp주소

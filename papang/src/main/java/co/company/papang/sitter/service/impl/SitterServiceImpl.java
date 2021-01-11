@@ -64,5 +64,10 @@ public class SitterServiceImpl implements SitterService {
 	public int insertReview(Sitter_comVO sitter_comVO) {
 		return dao.insertReview(sitter_comVO);
 	}
+
+	@Override
+	public Sitter_comVO getReview(Sitter_comVO sitter_comVO) {
+		return dao.getReview(sitter_comVO);
+	}
 	
 }
