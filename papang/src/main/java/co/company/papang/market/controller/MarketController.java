@@ -243,6 +243,14 @@ public class MarketController {
 		}
 		return result;
 	}
+	// 장바구니중복체크
+	@RequestMapping(value = "/ajax/cartCnt", method = RequestMethod.GET) // url 예전 .do
+	@ResponseBody
+	public int cartCnt(@RequestParam("pro_no") String pro_no, HttpSession session) throws IOException {
+		MemberVO memberVo = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		return mk_service.countCart(pro_no, mbr_id); // jsp주소
+	}
 	// 장바구니 수정
 	@RequestMapping("market/cartUpdate") // url 예전 .do
 	@ResponseBody

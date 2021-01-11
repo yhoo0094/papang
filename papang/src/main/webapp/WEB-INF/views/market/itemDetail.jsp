@@ -67,10 +67,10 @@ td>span {
 								<td><button type="button" class="btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
 							</c:if>
 							<c:if test="${!empty user.mbr_id}">
-								<td colspan="2"><input type="hidden" name="pro_no"
-									id="pro_no" value="${pro.pro_no}"> 구입수량
-									<button type="button" id="minusBtn">-</button><input
-									type="text" class="numBox" min="1" value="1" readonly>
+								<td colspan="2">
+									<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
+									구입수량<button type="button" id="minusBtn">-</button>
+									<input type="text" class="numBox" min="1" value="1" readonly>
 									<button type="button" id="plusBtn">+</button> 
 									<!-- 이때 max 값을 상품수량.. 입출고를 통해 결정된 총수량.. 글구 input type hidden 으로해서도 한개 정하고 -->
 									 <!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
@@ -98,6 +98,26 @@ td>span {
 											var bag_cnt = $(".numBox").val();
 											var data = {pro_no : pro_no,
 														bag_cnt : bag_cnt};
+											var chk = {pro_no : pro_no}
+											$.ajax({
+												url : "${pageContext.request.contextPath}/ajax/cartCnt",
+												type : 'get',
+												success : function(chk) {
+													if (chk == 1) { // 중복있음
+														
+													} else {
+														$("#idchk")
+																.text("사용가능");
+														$("#idchk").css("color",
+																"green");
+														$("joinBtn").attr("disabled",
+																false);
+													}
+												},
+												error : function() {
+													alert("장바구니 담기 실패");
+												}
+											})
 											$.ajax({
 													url : "${pageContext.request.contextPath}/market/cartInsert",
 													type : "post",

@@ -154,9 +154,9 @@ $("#OrderBtn").on("click",function(){
 	     	    merchant_uid : 'merchant' + new Date().getTime(),
 	     	    name : '주문명:결제테스트',
 	     	    amount : 100,
-	     	    buyer_email : 'oivevri@gmail.com',
+	     	    buyer_email : '${user.mbr_email}',
 	     	    buyer_name : '${user.mbr_id}',
-	     	    buyer_tel : '12345',
+	     	    buyer_tel : '${user.mbr_phone}',
 	     	    buyer_addr : '테스트주소',
 	     	    buyer_postcode : '12345'
 	     	}, function(rsp) {

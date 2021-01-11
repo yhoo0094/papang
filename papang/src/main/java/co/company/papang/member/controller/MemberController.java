@@ -133,9 +133,11 @@ public class MemberController {
 		String chkPw = log_service.loginCheck(member);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkPw.equals(member.getMbr_pw())) {
+			member = dao.login(member);
 			session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
 			try {
 				PrintWriter out = response.getWriter();
+				System.out.println(">>>>" + member.getMbr_email());
 				out.println("<script>alert('로그인되었습니다');</script>");
 				out.println("<script>location.href='/papang/';</script>");
 			} catch (IOException e) {
@@ -176,6 +178,7 @@ public class MemberController {
 		chkAdPw = log_service.adminLoginCheck(admin);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkAdPw.equals(admin.getAd_pw())) {
+			admin = dao.adminLogin(admin);
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
 			try {
 				PrintWriter out = response.getWriter();
