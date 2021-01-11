@@ -207,9 +207,9 @@ a.item {
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/marketList/itemBoard">장터</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">자장가</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/playList">놀이</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/cookList">활동</a>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/activity/cookList">요리</a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/vaccination/vaccinationList">예방접종</a>
 						</li>
