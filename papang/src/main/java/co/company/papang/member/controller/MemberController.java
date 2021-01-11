@@ -137,7 +137,6 @@ public class MemberController {
 			session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
 			try {
 				PrintWriter out = response.getWriter();
-				System.out.println(">>>>" + member.getMbr_email());
 				out.println("<script>alert('로그인되었습니다');</script>");
 				out.println("<script>location.href='/papang/';</script>");
 			} catch (IOException e) {

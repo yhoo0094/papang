@@ -25,6 +25,7 @@ public interface EsMapper {
 	// 로그인
 	public MemberVO login(MemberVO member); // 로그인
 	public String loginCheck(MemberVO member); // 로그인 체크
+	//public int loginChk(MemberVO member); // 유효아이디 체크
 	public AdminVO adminLogin(AdminVO admin); // 관리자로그인
 	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	public MemberVO kLogin(MemberVO member); // 카카오로그인
@@ -53,8 +54,7 @@ public interface EsMapper {
 	public void cntChange(BagVO bag); // 등록시 수량수정
 	
 	public void updateCart(BagVO bag); // 수정
-	public int deleteCart(BagVO bag); // 주문후 장바구니 전체삭제
-	
+	public int deleteCart(BagVO bag); // 선택삭제
 
 	// 주문
 	public void orderInfo(Order_infoVO order); // 주문내역 생성
