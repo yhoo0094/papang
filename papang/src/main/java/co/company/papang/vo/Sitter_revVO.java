@@ -16,4 +16,5 @@ public class Sitter_revVO {
 	private String srv_date;
 	private String srv_pay;
 	private String srv_status;
+	private String sum;
 }

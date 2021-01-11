@@ -352,7 +352,7 @@ public class MypageController {
 //	}
 	
 	//등록처리
-		@PostMapping("/mypage/sitterupdate")
+		@PostMapping("/mypage/sitterupdate") //정보변환
 		public String userInsert(HttpServletRequest request,HttpSession session,HttpServletResponse response,SitterVO sitterVO,MemberVO memberVO) throws IllegalStateException, IOException {
 			
 			
@@ -428,15 +428,23 @@ public class MypageController {
 		mav.setViewName("mypage/sitter_money");
 		
 	 return mav;
-	}
+	} 
 	
 	@RequestMapping("/mypage/sitter_money2") //예약정보보기 디테일
-	public ModelAndView test424(SitChiVO sitChiVO,Sitter_revVO sitter_revVO) throws IOException{
+	public ModelAndView test424(HttpServletRequest request,HttpSession session,SitChiVO sitChiVO,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
 		ModelAndView mav=new ModelAndView();
-		
+
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		String srv_no = request.getParameter("srv_no");
+		System.out.println(srv_no);
 //		System.out.println(pro_odVO.getOrder_no());
 //		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
+		
+		sitter_revVO.setSit_mbr_id(mbr_id); 
+		sitter_revVO.setSrv_no(srv_no);
 		mav.addObject("cos7",dao.getSitter_revVO2(sitChiVO));
+		mav.addObject(dao.getSitter_revVO3(sitter_revVO));
 		System.out.println("2222222222");
 		mav.setViewName("no/mypage/bbb");
 		return mav;

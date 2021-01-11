@@ -172,8 +172,10 @@
 </select>
 
 	<!-- 예약정보 모달창 합계-->
-<select id="getSitter_revVO3" parameterType="sitChiVO" resultType="sitChiVO">
-		
+<select id="getSitter_revVO3" parameterType="sitter_revVO" resultType="sitter_revVO">
+		SELECT SUM(SRV_PAY) AS "sum"
+		 FROM SITTER_REV 
+		 WHERE SIT_MBR_ID = #{sit_mbr_id} AND SRV_NO=#{srv_no}
 </select>		
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
