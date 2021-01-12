@@ -222,7 +222,16 @@
 		WHERE SRV_NO = #{srv_no}
 	</update>
 	
+	<!-- 후기조회 -->
+	<select id="getReviewList" parameterType="Sitter_revChkVO" resultType="Sitter_revChkVO">
+		SELECT  B.SC_CONTENT, LPAD('　', SC_RATE+2, '★') SC_RATE FROM
+		(SELECT * FROM SITTER_REV 
+		WHERE ROWID IN (SELECT MAX(ROWID) FROM SITTER_REV GROUP BY SRV_NO) and SIT_MBR_ID = #{sit_mbr_id} and SRV_STATUS = '결제완료') A, SITTER_COM B
+		WHERE A.SRV_NO = B.SRV_NO
+	</select>
+	
 	<!-- ##################################시터 서비스 후기########################################### -->
+	
 	<!-- 단건조회 -->
 	<select id="getReview" parameterType="Sitter_comVO" resultType="Sitter_comVO">
 		SELECT * FROM SITTER_COM
@@ -231,8 +240,8 @@
 	
 	<!-- 인서트 -->
 	<insert id="insertReview" parameterType="Sitter_comVO">
-	INSERT INTO SITTER_COM (SRV_NO, SC_CONTENT, SC_RATE)
-  	VALUES (#{srv_no}, #{sc_content}, #{sc_rate})
+		INSERT INTO SITTER_COM (SRV_NO, SC_CONTENT, SC_RATE)
+	  	VALUES (#{srv_no}, #{sc_content}, #{sc_rate})
 	</insert>
 	
 	<!-- 업데이트 -->

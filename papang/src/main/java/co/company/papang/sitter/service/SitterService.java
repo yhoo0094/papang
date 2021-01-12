@@ -22,6 +22,7 @@ public interface SitterService {
 	public int insertReservation(Sitter_revVO sitter_revVO);
 	public int deleteReservation(Sitter_revChkVO sitter_revChkVO); //딜리트
 	public int updateReservationStatus(Sitter_revChkVO Sitter_revChkVO); //예약 업데이트(결제여부)
+	public List<Sitter_comVO> getReviewList(Sitter_revChkVO sitter_revChkVO); //조건부 전체
 	
 	//시터 서비스 후기
 	public Sitter_comVO getReview(Sitter_comVO sitter_comVO); //단건조회

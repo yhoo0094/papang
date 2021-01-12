@@ -42,7 +42,7 @@ public class SitterController {
 	}
 	
 	@RequestMapping("/sitter/form") //시터 폼 보기
-	public String sitterForm(Model model, SitterVOChk sitterVOChk, ChildVO childVO, HttpSession session) {
+	public String sitterForm(Model model, SitterVOChk sitterVOChk, ChildVO childVO, HttpSession session, Sitter_revChkVO sitter_revChkVO) {
 		//별점구하기
 		sitterVOChk = service.getSitter(sitterVOChk);
 		int rateInt = Integer.parseInt(sitterVOChk.getRate());
@@ -56,6 +56,8 @@ public class SitterController {
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		childVO.setMbr_id(memberVO.getMbr_id());
 		model.addAttribute("childVOList",service.getChildList(childVO));
+		model.addAttribute("sitter_revChkVOList",service.getReviewList(sitter_revChkVO));
+		
 		return "sitter/sitterForm"; //jsp주소
 	}
 	
