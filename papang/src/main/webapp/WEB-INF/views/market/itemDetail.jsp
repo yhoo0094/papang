@@ -56,8 +56,12 @@ td>span {
 							<td><span><strong>${pro.pro_no}</strong></span></td>
 						</tr>
 						<tr>
-							<th scope="row"><span>기업명</span></th>
-							<td><span><strong>${pro.pro_cn}</strong></span></td>
+							<th scope="row"><span>상품재고</span></th>
+							<td><span><strong>${pro.pro_cnt}</strong></span></td>
+						</tr>
+						<tr>
+							<th scope="row"><span>기업코드</span></th>
+							<td><span><strong>${pro.pro_cc}</strong></span></td>
 						</tr>
 					</tbody>
 					<tfoot>
@@ -81,7 +85,11 @@ td>span {
 										$("#plusBtn").click(function() {
 											var num = $(".numBox").val();
 											var plusNum = Number(num) + 1;
-											$(".numBox").val(plusNum);
+											if(plusNum >= ${pro.pro_cnt}){
+												$(".numBox").val(num);
+											} else{
+												$(".numBox").val(plusNum);
+											}
 										});
 										$("#minusBtn").click(function() {
 											var num = $(".numBox").val();
@@ -100,37 +108,33 @@ td>span {
 														bag_cnt : bag_cnt};
 											var chk = {pro_no : pro_no}
 											$.ajax({
-												url : "${pageContext.request.contextPath}/ajax/cartCnt",
+												url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
 												type : 'get',
-												success : function(chk) {
-													if (chk == 1) { // 중복있음
-														
+												success : function(rs) {
+													if (rs != 0) { // 중복있음
+														alert("장바구니에 이미 담긴 상품입니다");
 													} else {
-														$("#idchk")
-																.text("사용가능");
-														$("#idchk").css("color",
-																"green");
-														$("joinBtn").attr("disabled",
-																false);
+														// 카드에 담기는거..
+														$.ajax({
+															url : "${pageContext.request.contextPath}/market/cartInsert",
+															type : "post",
+															data : data,
+															success : function(result) {
+																if (result == 1) {
+																	alert("카드에 담겼습니다");
+																	$(".numBox").val("1");
+																}
+															}, error : function() {
+																alert("실패");
+															}
+														})
 													}
 												},
 												error : function() {
 													alert("장바구니 담기 실패");
 												}
 											})
-											$.ajax({
-													url : "${pageContext.request.contextPath}/market/cartInsert",
-													type : "post",
-													data : data,
-													success : function(result) {
-														if (result == 1) {
-															alert("카드에 담겼습니다");
-															$(".numBox").val("1");
-														}
-													}, error : function() {
-														alert("실패");
-													}
-											})
+											
 										})
 									</script></td>
 							</c:if>

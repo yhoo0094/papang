@@ -269,6 +269,7 @@ public class MarketController {
 	public int cartCnt(@RequestParam("pro_no") String pro_no, HttpSession session) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
+		System.out.println(">>>중복체크" + mk_service.countCart(pro_no, mbr_id));
 		return mk_service.countCart(pro_no, mbr_id); // jsp주소
 	}
 	// 장바구니 수정

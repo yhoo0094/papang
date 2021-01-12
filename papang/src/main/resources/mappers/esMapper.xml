@@ -337,7 +337,13 @@
 		ON b.pro_no = p.pro_no
 		WHERE b.mbr_id =  #{mbr_id}
 	</select>
-	
+	<!-- 장바구니 중복체크 -->
+	<select id="countCart" resultType="int">
+		SELECT count(*) FROM BAG
+		WHERE pro_no = #{param1}
+		AND mbr_id = #{param2}
+		 
+	</select>
 	<!--  장바구니 추가    -->
 	<insert id="insertCart" parameterType="BagVO">
 		INSERT INTO BAG (	
