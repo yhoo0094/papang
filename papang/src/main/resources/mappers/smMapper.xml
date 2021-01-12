@@ -96,22 +96,6 @@
 	</insert>
 
 	<!-- ##################################시터########################################### -->
-	<!-- 전체조회 -->
-	<!-- <select id="getSitterList" resultType="SitterVOChk">
-		SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, S.SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
-		FROM SITTER S
-		<where>
-			<![CDATA[
-				ROWNUM <= 100
-			]]>
-			<if test="off_days != null and off_days != ''">
-				AND NOT REGEXP_LIKE(S.SIT_OFF,#{off_days})
-			</if>
-			<if test="sit_loc != null and sit_loc != ''">
-				AND SIT_LOC = #{sit_loc}
-			</if>
-		</where>
-	</select> -->
 	
 	<!-- 전체조회 -->
 	<select id="getSitterList" resultType="SitterVOChk">
@@ -275,9 +259,9 @@
 	<!-- ##################################공지사항########################################### -->
 	<!-- 전체조회 -->
 	<select id="getNoticeList" resultType="NqVO" >
-		SELECT *
+		SELECT NQ_NO, AD_ID, NQ_TITLE, NQ_CATEGORY, NQ_FILE, NQ_DATE, NQ_HIT
 		FROM NQ 
-		where NQ_CATEGORY = '공지사항'
+		WHERE NQ_CATEGORY = '공지사항'
 	</select>
 	
 	<!-- 단건조회 -->
@@ -287,4 +271,11 @@
 		WHERE NQ_CATEGORY = '공지사항'
 		AND NQ_NO = #{nq_no}
 	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="noticeHitPlus" parameterType="nqVO">
+		UPDATE NQ SET
+		NQ_HIT = NQ_HIT + 1
+		WHERE NQ_NO = #{nq_no}
+	</update>
 </mapper>

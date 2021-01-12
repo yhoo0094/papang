@@ -23,6 +23,7 @@ public interface SmMapper {
 	//공지사항
 	public List<NqVO> getNoticeList(); //전체조회
 	public NqVO getNotice(NqVO nqVO); //단건조회
+	public int noticeHitPlus(NqVO nqVO); //조회수 증가
 	
 	//커뮤니티 댓글
 	public List<Community_comVO> getCommunityComList(Community_comVO community_comVO);//전체조회

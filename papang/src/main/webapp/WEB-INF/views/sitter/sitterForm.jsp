@@ -131,7 +131,9 @@
 	width: 33%;
 }
 
-
+#showRateBtn{
+	float: right;
+}
 </style>
 <script type="text/javascript">
 $(()=>{
@@ -522,6 +524,7 @@ function calendarMaker(target, date) {
 			<div>
 				<img class="sitterProfileImg" alt="시터이미지"
 					src="${pageContext.request.contextPath}/resources/images/sitterProfile/${sitterVOChk.sit_pic}">
+				<button id="showRateBtn" class="btnRed">후기보기</button>
 				<table class="sitterInfoTable" align="center">
 					<tr align="center">
 						<td align="center">휴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;무:</td>
@@ -547,6 +550,7 @@ function calendarMaker(target, date) {
 						<td align="left">${sitterVOChk.report}</td>
 					</tr>
 				</table>
+				
 			</div>
 			<br>
 			<br>

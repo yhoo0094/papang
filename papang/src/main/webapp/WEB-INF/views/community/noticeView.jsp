@@ -66,12 +66,12 @@
 			<tr>
 				<td align="center" width="20%" class="strongYellow">첨부파일</td>
 				<td class="whiteBackground" width="80%">
-					${nqVO.nq_file}
+					<a href="${pageContext.request.contextPath}/community/filedown?uFile=${nqVO.nq_file}">${nqVO.nq_file}</a> 
 				</td>
 			</tr>
 			<tr>
 				<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
-				<td class="whiteBackground" width="700px">
+				<td class="whiteBackground" style="height: 500px">
 					${nqVO.nq_content}
 				</td>		
 			</tr>
