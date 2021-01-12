@@ -327,9 +327,9 @@ public class MemberController {
 	// 비번찾기
 	@ResponseBody
 	@RequestMapping("/ajax/findPw") // url 예전 .do
-	public String test6(@RequestParam("mbr_id")String mbr_id, @RequestParam("mbr_email")String mbr_email, HttpServletRequest request) {
+	public boolean test6(@RequestParam("mbr_id")String mbr_id, @RequestParam("mbr_email")String mbr_email, HttpServletRequest request) {
 		mailsender.mailSendWithPassword(mbr_id, mbr_email, request);
-		return "user/userSearchPassword";
+		return true;
 	}
 	
 }

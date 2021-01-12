@@ -80,19 +80,19 @@ p.loginpage {
 	}
 	function findPwCheck() {
 		var frm2 = document.frm2;
-		if(frm2.id.value == "") {
+		if(frm2.id2.value == "") {
 			alert ("아이디를 입력하세요");
-			frm2.id.focus();
+			frm2.id2.focus();
 			return false;
 		}
-		if (frm2.email.value == "") {
+		if (frm2.email2.value == "") {
 			alert("이메일을 입력하세요");
-			frm2.email.focus();
+			frm2.email2.focus();
 			return false;
 		}
 		else {
-			var mbr_id = $("#id").val();
-			var mbr_email = $("#email").val();
+			var mbr_id = $("#id2").val();
+			var mbr_email = $("#email2").val();
 
 			$.ajax({
 				url: "${pageContext.request.contextPath}/ajax/findPw",
@@ -104,9 +104,7 @@ p.loginpage {
 				error:function(xhr,status,msg){
 					alert("존재하지 않는 회원입니다");
 				}, success : function (result){
-					if(result == 0){
-						alert("입력정보를 다시 확인해 주십시오")
-					}
+					alert("이메일이 전송되었습니다");
 				}
 			})
 			return false;
@@ -232,11 +230,11 @@ p.loginpage {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">이름</td>
-								<td><input type="text" class="form-control" id="name" name="name" placeholder="이름"></td>
+								<td><input type="text" class="form-control" id="name" name="mbr_name" placeholder="이름"></td>
 							</tr>
 							<tr>
 								<td class="txt">이메일</td>
-								<td><input type="email" class="form-control" id="email" name="email" placeholder="이메일"></td>
+								<td><input type="email" class="form-control" id="email" name="mbr_email" placeholder="이메일"></td>
 							</tr>
 						</table>
 						<button type="submit" name="fid" id="fid" class="btnRed" onclick="return findIdCheck()">아이디찾기</button>
@@ -264,11 +262,11 @@ p.loginpage {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">아이디</td>
-								<td><input type="text" class="form-control" id="id" name="id" placeholder="아이디"></td>
+								<td><input type="text" class="form-control" id="id2" name="mbr_id" placeholder="아이디"></td>
 							</tr>
 							<tr>
 								<td class="txt">이메일</td>
-								<td><input type="email" class="form-control" id="email" name="email" placeholder="이메일"></td>
+								<td><input type="email" class="form-control" id="email2" name="mbr_email" placeholder="이메일"></td>
 							</tr>
 						</table>
 						<button type="submit" name="fpw" id="fpw" class="btnRed" onclick="return findPwCheck()">비밀번호찾기</button>
