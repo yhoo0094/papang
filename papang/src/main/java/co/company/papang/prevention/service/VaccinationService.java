@@ -15,4 +15,6 @@ public interface VaccinationService  {
 	public PreventionVO getPrevent(PreventionVO preventionVO);//예방접종 단건 쿼리
 	public int updatePrevent(PreventionVO preventionVO);//예방접종 업데이트
 	public ChildVO getChild(ChildVO childVO);//아이 단건 조회
+	
+	public ChildVO getDate(ChildVO childVO);//날짜구하기
 }

@@ -5,12 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import co.company.papang.activity.service.ActivityService;
 import co.company.papang.impl.SaMapper;
 import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CookVO;
-import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 
 @Service
@@ -97,8 +97,23 @@ public class ActivityServiceImpl implements ActivityService {
 		return dao.deletePlayAct(act_comVO);
 	}
 
-	@Override
+	@Override//놀이 글 업데이트
 	public int updatePlay(PlayVO playVO) {
 		return dao.updatePlay(playVO);
+	}
+
+	@Override//요리 조회수
+	public int cookhitPlus(CookVO cookVO) {
+		return dao.cookhitPlus(cookVO);
+	}
+
+	@Override//요리 글 삭제
+	public int deleteCook(CookVO cookVO) {
+		return dao.deleteCook(cookVO);
+	}
+
+	@Override//요리 후기 삭제
+	public int deleteCookAcCom(Act_comVO act_comVO) {
+		return dao.deleteCookAcCom(act_comVO);
 	}
 }

@@ -131,7 +131,8 @@ th {
 		childList();//아이 전체 조회
 		prevInsert();//예방접종 일지 등록
 		prevSelectList();//아이별 예방접종 전체 조회 결과
-		getChild();//아이단건조회
+		$("#child").trigger("change");
+		getchildDate() ;//아이 태어난날 구하기
 		
 		
 		$('#child').on('change',function(){
@@ -197,7 +198,7 @@ th {
 		var chi_name= $("#child option:selected").text();//아이이름
 		$('.chi_nm').attr("value",chi_name);
 		prevSelectList();
-		
+		getchildDate(); 
 		$('#child').change();
 		
 	
@@ -323,10 +324,29 @@ th {
 				console.log(result);
 				$('.age').text("태어난지 "+"" +result.chi_days+ "일 ("+ result.chi_month + ")개월");
 				
-			}
+			},error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
 		});
 	}
 	
+	//6.아이 태어난날 구하기
+	function getchildDate() {
+		var chiNum = $('#chiNum').val();
+		console.log('ddddddd');
+		console.log(chiNum);
+		$.ajax({
+			url :"../getDate",
+			type : 'GET',
+			dataType :'json',
+			data : {'chi_no' : chiNum },
+			success : function(result) {
+				console.log('태어났니?');
+				console.log(result);
+				
+			}
+		});
+	}
 	
 	
 	

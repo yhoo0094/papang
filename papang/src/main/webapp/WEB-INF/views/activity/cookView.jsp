@@ -218,11 +218,22 @@ $(()=>{
 
 	});
 	
+	
+	//등록된 후기 없을시 리스트영역 숨기기
 	 var a = ${actcommList}
 	 console.log("==="+a)
 	if(a.length ==0) {
 		$('#test').css('display','none'); 
 	}
+	 
+	 //삭제 버튼 이벤트
+		$('#btnDelete').click(function() {
+			var cook_no = $('#pc_no').val();
+			location.href="${pageContext.request.contextPath}/activity/cookDelete?cook_no="+cook_no+"&pc_no="+cook_no;
+			/* } */
+		});
+	 
+	 
 	
 });
 
@@ -287,7 +298,7 @@ function cacInsert() {
 		    processData : false ,
 			success :function(vo) {
 				/* console.log(vo) */		
-				location.href="${pageContext.request.contextPath}/activity/cookView?cook_no="+${cookVO.cook_no}
+				location.reload();
 			},
 			error : function(xhr, status, message) {
 				alert("status: " + status + " er:" + message);
@@ -303,14 +314,15 @@ function cacInsert() {
 	<div class="cook_content">
 		<div class="cView_title">
 			<p class="c_title">${cookVO.cook_title}</p>
-			<p class="c_star">	&#128512;&#128512;&#128512;&#128512;&#128512; DBVALUE</p>
+			<div class="c_star" id="c_star">${acrate.ROUNDRATE}</div>
 		</div>
+		<div class="star_div"></div>
 		<div class="cView_image" align="center" id="cView_image">${cookVO.cook_content}
 		</div>
 	</div>
 	<div class="btnDiv" align="center">
 			<c:if test="${user.mbr_id eq cookVO.mbr_id}">
-						<button type="button" class="btnGray bMedium btnDelide" id="btnInsert1">삭제</button>
+						<button type="button" class="btnGray bMedium btnDelide" id="btnDelete">삭제</button>
 						<button type="button" class="btnRed bMedium btnUpdate" id="btnInsert2">수정</button>
 			</c:if>
 		</div>

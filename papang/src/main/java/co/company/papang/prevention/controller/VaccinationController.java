@@ -24,8 +24,8 @@ public class VaccinationController {
 	VaccinationService service; // 서비스
 
 	@RequestMapping("vaccination/vaccinationList")
-	public ModelAndView vaccinationList(HttpServletResponse response) throws IOException {
-		return new ModelAndView("vaccination/vaccinationList");
+	public ModelAndView vaccinationList(HttpServletResponse response,ChildVO childVO) throws IOException {
+		return  new ModelAndView("vaccination/vaccinationList");
 	}
 
 	@RequestMapping("vaccination/vaccNotice")
@@ -77,6 +77,11 @@ public class VaccinationController {
 	  return  service.getChild(childVO);
   }
   
+  @ResponseBody //날짜구하기
+  @RequestMapping(value = "/getDate", method = RequestMethod.GET) 
+  public ChildVO getDate(Model model, ChildVO childVO) {
+	  return  service.getDate(childVO);
+  }
 	 
 
 }

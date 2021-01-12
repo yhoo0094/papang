@@ -43,6 +43,11 @@ public class VaccinationServiceImpl implements VaccinationService {
 	public ChildVO getChild(ChildVO childVO) {
 		return dao.getChild(childVO);
 	}
+
+	@Override
+	public ChildVO getDate(ChildVO childVO) {
+		return dao.getDate(childVO);
+	}
 	
 
 
