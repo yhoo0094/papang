@@ -13,13 +13,16 @@ import co.company.papang.vo.Sitter_revVO;
 
 public interface SmMapper {
 	//커뮤니티 게시판
-	public List<CommunityVO> getCommunityList(CommunityVO CommunityVO); //전체조회
-	public List<NqVO> getNoticeList(); //공지사항 전체조회
-	public CommunityVO getCommunity(CommunityVO CommunityVO); //단건조회
+	public List<CommunityVO> getCommunityList(CommunityVO communityVO); //전체조회
+	public CommunityVO getCommunity(CommunityVO communityVO); //단건조회
 	public int communityFormInsert(CommunityVO communityVO); //인서트
 	public int communityFormUpdate(CommunityVO communityVO); //업데이트
 	public int communityFormDelete(CommunityVO communityVO); //삭제
 	public int hitPlus(CommunityVO CommunityVO); //조회수
+	
+	//공지사항
+	public List<NqVO> getNoticeList(); //전체조회
+	public NqVO getNotice(NqVO nqVO); //단건조회
 	
 	//커뮤니티 댓글
 	public List<Community_comVO> getCommunityComList(Community_comVO community_comVO);//전체조회

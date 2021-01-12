@@ -104,7 +104,6 @@
 						</c:if></td>
 				</tr>
 				<tr>
-
 					<td align="center" class="strongYellow">분류</td>
 					<td class="whiteBackground"><select name="com_category"
 						class="communityFormType"

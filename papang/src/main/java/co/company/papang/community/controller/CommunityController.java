@@ -16,6 +16,7 @@ import co.company.papang.community.service.CommunityService;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
+import co.company.papang.vo.NqVO;
 
 @Controller
 public class CommunityController {
@@ -57,6 +58,24 @@ public class CommunityController {
 		}
 		return "community/communityForm"; //jsp주소
 	}
+	
+	@RequestMapping("/community/noticeForm") //공지사항 보기 가기
+	public String noticeForm(Model model, HttpServletRequest request, HttpServletResponse response, NqVO nqVO) {
+		//조회수 작업
+		/*
+		 * boolean existCookie = false; Cookie[] cookieList = request.getCookies();
+		 * for(Cookie co : cookieList) {
+		 * if(co.getValue().equals(communityVO.getCom_no())) { existCookie = true; } }
+		 * //쿠키생성 if(!existCookie) { //쿠키가 없는 경우 System.out.println("쿠키생성"); Cookie
+		 * cookie = new Cookie("cookieCode", communityVO.getCom_no());
+		 * cookie.setMaxAge(60*60*24); response.addCookie(cookie);
+		 * service.hitPlus(communityVO); }
+		 */
+		//조회수 작업 끝
+		model.addAttribute("nqVO",service.getNotice(nqVO));
+		return "community/noticeView"; //jsp주소
+	}
+	
 	
 	@RequestMapping("/community/formInsert") //커뮤니티 글 인서트
 	public String communityFormInsert(CommunityVO communityVO, Errors errors, HttpServletRequest request, HttpSession session) {

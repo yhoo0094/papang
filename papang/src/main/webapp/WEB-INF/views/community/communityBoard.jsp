@@ -37,8 +37,8 @@
 			<tbody>
 			<c:forEach items="${NqVOList}" var="v">
 				<tr class="noticeTitleTd">
-					<td align="center">공지</td>
-					<td><span style="display: none;">A</span><a href="${pageContext.request.contextPath}/community/form?com_no=${v.nq_no}">${v.nq_title}</a></td>
+					<td align="center"><span style="display: none;">99999999{v.nq_no}</span></td>
+					<td><span style="display: none;">A</span><a href="${pageContext.request.contextPath}/community/noticeForm?nq_no=${v.nq_no}">${v.nq_title}</a></td>
 					<td align="center"><span style="display: none;">A</span>${v.ad_id}</td>
 					<td align="center"><span style="display: none;">A</span>${v.nq_date}</td>
 					<td align="center"><span style="display: none;">A</span>${v.nq_category}</td>

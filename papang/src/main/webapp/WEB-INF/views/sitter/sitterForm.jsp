@@ -183,7 +183,6 @@ function giveIdForDate() {
 }
 
 function getReservatedDayList(){
-	console.log("실행");
 	var calenderY = $('.calenderY').text();
 	var calenderM = $('.calenderM').text();
 	$.ajax({ 

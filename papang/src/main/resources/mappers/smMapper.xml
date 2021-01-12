@@ -273,11 +273,18 @@
 	</select>
 	
 	<!-- ##################################공지사항########################################### -->
-	<!-- 공지사항 전체조회 -->
+	<!-- 전체조회 -->
 	<select id="getNoticeList" resultType="NqVO" >
 		SELECT *
 		FROM NQ 
 		where NQ_CATEGORY = '공지사항'
-		ORDER BY NQ_NO DESC
+	</select>
+	
+	<!-- 단건조회 -->
+	<select id="getNotice" resultType="NqVO" >
+		SELECT *
+		FROM NQ 
+		WHERE NQ_CATEGORY = '공지사항'
+		AND NQ_NO = #{nq_no}
 	</select>
 </mapper>

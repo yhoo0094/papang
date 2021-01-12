@@ -65,6 +65,11 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<NqVO> getNoticeList() {
 		return dao.getNoticeList();
 	}
+
+	@Override
+	public NqVO getNotice(NqVO nqVO) {
+		return dao.getNotice(nqVO);
+	}
 	
 	
 }
