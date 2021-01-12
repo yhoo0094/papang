@@ -37,9 +37,7 @@
 				<tbody> 
 				<c:forEach var="co" items="${co}">
 					<tr> 
-						<td align="center" class="qwe" data-num="${co.srv_no}"
-                           data-target="#exampleModal1" data-toggle="modal" align="center"
-                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${co.srv_no}</td>
+						<td align="center">${co.srv_no}</td>
 						<td align="center">${co.mbr_id}</td>
 						<td align="center">${co.startday}</td>
 						<td align="center">${co.finishday}</td>
@@ -53,20 +51,48 @@
 					
 					   
 				</tbody>
-			</table>
-			<input type="text" class="form-control" 
-      ng-model="xxxx"
-     min-mode="'month'" min-date="startmnth" max-date="endmnth"
-     datepicker-popup="yyyy-MM" is_open="status.date_opened" 
-     ng-required="true" placeholder="YYYY-MM" 
-     datepicker-options="datepickerOptions" 
-     datepicker-mode="'month'" ng-click="openfromDate($event)" 
-     show-button-bar="false">
-			<br>	
+			</table>  
+			
+			<select  class="input_small" name="year" id="year" style="font-size:20px;">
+		 							
+									<option value="2020">2021년</option>
+									<option value="2020">2022</option>
+									<option value="2020">2023</option>
+			</select>   
+			
+			<select  class="input_small" name="month" id="month" style="font-size:20px;">
+		 							<option value="01">1월</option>
+									<option value="02">2</option>
+									<option value="03">3</option>
+									<option value="04">4</option>
+									<option value="05">5</option>
+									<option value="06">6</option>
+									<option value="07">7</option>
+									<option value="08">8</option>
+									<option value="09">9</option> 
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+			</select>
+			 
+			<button class="qwe2" 
+                           data-target="#exampleModal2" data-toggle="modal">월급보기</button>
+		
+			<br>
+			<input id="result" name="result" value="">	
 		
 		
-		
+		 
      <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-body" id="body1">....</div>
+            </div>
+         </div> 
+      </div>
+      
+      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel">
          <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -85,6 +111,7 @@ var no = td.eq(0).text();
 $("#no").val(no);
 console.log(no);
 
+
 $(".qwe").on("click", function() {
    var srv_no = $(this).data("num");
    modal = $("#exampleModal1"); 
@@ -97,6 +124,24 @@ $(".qwe").on("click", function() {
       }
    });
 });
+
+
+ $(".qwe2").on("click", function() {
+	   var year = $("#year").val();
+	   var month = $("#month").val();
+	   modal = $("#exampleModal2"); 
+	   $.ajax({    
+	      url : "sitter_money3",
+	      success : function(result) {
+	         modal.find('#body1').html(result);
+	         modal.modal('show');
+	         
+	      }
+	   });
+	}); 
+
+
+
 
    //테이블의 Row 클릭시 값 가져오기
    $("#dataTable tr").click(function() {
@@ -128,18 +173,7 @@ $(".qwe").on("click", function() {
       }); */
    });
     
-   $scope.startmnth = new Date().getMonth()
-   $scope.endmnth = new Date().getMonth()
-
-   $scope.datepickerOptions = {
-          startingDay: 1,
-   };
-
-   $scope.openfromDate = function ($event) {                    
-          $event.preventDefault();
-          $event.stopPropagation();        
-          $scope.status.date_opened = true;
-       };
+  
 </script>
 
 </html>

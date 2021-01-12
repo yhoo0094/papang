@@ -462,6 +462,29 @@ public class MypageController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("/mypage/sitter_money3") //예약정보보기 디테일
+	public ModelAndView test422(HttpServletRequest request,HttpSession session,SitChiVO sitChiVO,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id();
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		String year_month=year+"-"+month;
+		
+		sitter_revVO.setSit_mbr_id(mbr_id); 
+		sitter_revVO.setSrv_status("결제완료"); 
+		sitter_revVO.setSrv_date(year_month);
+		
+		mav.addObject("cos7",dao.getSitter_revVO4(sitter_revVO));
+		System.out.println(year);
+		System.out.println(month);
+	
+		mav.setViewName("no/mypage/ccc");
+		return mav;
+	}
+	
+	
 	@RequestMapping("mypage/exam") //시터 정보보기(시터권한)
 	public ModelAndView test132(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/exam"); 
