@@ -171,4 +171,8 @@ INSERT INTO ACT_COM
 	SELECT * FROM PREVENTION WHERE CHI_NO=#{chi_no} AND PRV_NAME=#{prv_name}
 </select>
 
+<!-- 예방접종 단건 업데이트 -->
+<update id="updatePrevent" parameterType="PreventionVO">
+ 	UPDATE PREVENTION SET PRV_MEMO=#{prv_memo} , PRV_DATE=#{prv_date} WHERE CHI_NO=#{chi_no} AND PRV_NAME=#{prv_name}
+ </update>
 </mapper>

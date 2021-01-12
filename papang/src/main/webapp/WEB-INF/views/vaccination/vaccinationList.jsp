@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +129,7 @@ th {
 		childList();//아이 전체 조회
 		prevInsert();//예방접종 일지 등록
 		prevSelectList();//아이별 예방접종 전체 조회 결과
-	
+		
 		$('#child').on('change',function(){
 			
 			console.log('=========================edddd');
@@ -143,6 +143,11 @@ th {
 			prevSelectList();
 			
 			}); 
+		
+		$('#btnUpdate').on('click',function() {
+			var name = $('#inTitle').val();			
+			updatePrevent(name);
+		});
 		
 		init();
 	});
@@ -243,15 +248,8 @@ th {
 	//2.아이별 예방접종 일지 전체 조회 응답
 	function prevSelectListResult(data) {
 		console.log("===!!!!!예방접종 일지 결과 조회 응답")
-		//console.log(data);
 		 $.each(data,function(idx,item){
-			console.log(item+"//////");
-			//console.log(item.prv_name);
-			console.log(item.chi_no);
 			var prv_name = item.prv_name;
-			console.log(prv_name);
-			//console.log("'#"+item.prv_name+"'");
-		//	console.log($('#prv_name').val());
 	$('#'+item.prv_name).css('background-color','#98d6ea');
 			
 		});//each 
@@ -261,6 +259,7 @@ th {
 	
 	//3.아이별 예방접종 단건 조회 (모달 단건 쿼리)
 	function prevSelect(name) {
+		var $chi_no =  $('.chi_num').val();
 		console.log('호가인용!!');
 		console.log(name);
 		$.ajax({
@@ -268,18 +267,48 @@ th {
 			type : 'GET',
 			dataType : 'json',
 			data : {
-				"chi_no" : $('.chi_num').val(), 
-				"prv_name" : name
+				"chi_no" : $chi_no, 
+				"prv_name" :name
 			},
 			success : function(result) {
-				console.log('여기가리절트!!!');
 				console.log(result);
+				var date = (result.prv_date).substring(0,10);
+				//console.log(date);
+				$('#recipient-name').val(date); //책
+				$('#message-text').val(result.prv_memo); //책
 			},error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
 		        
 		    } 
 			
 		});//prevSelect 끝
+	}
+	
+	//4.아이별 예방접종 업데이트 (모달 업데이트)
+	function updatePrevent(name) {
+		console.log("dpd?");
+		var $chi_no =  $('.chi_num').val();
+		var $prv_memo =  $('#message-text').val();
+		var $prv_date =  ($('#recipient-name').val());
+		console.log($prv_date);
+		
+		$.ajax({
+			url :"../prevUpdate",
+			type : 'POST',
+			dataType :'json',
+			data : {
+				"chi_no" :$chi_no ,
+				"prv_name" : name,
+				"prv_memo" : $prv_memo,
+				"prv_date" :$prv_date
+			},
+			success : function(result) {
+				alert("업데이트 성공");
+				$('#exampleModal').modal("hide");
+			},error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
 	}
 	
 </script>
@@ -292,17 +321,20 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	})
 	
 	$(() => {
-		
-	/* console.log($('#BCG_1차').text()); */
-	
 	$('td').on('click',function(){
-		console.log($(this));
-		console.log('====');
-		console.log($(this).attr('id'))
 		 var $in = $(this).attr('id');
 		$('#inTitle').attr('value',$in).attr('readonly','true');
-		prevSelect($in);
-		
+		if($(this).css("background-color") == "rgb(152, 214, 234)") {
+			prevSelect($in);
+			$('#btnInsert').css("display","none");
+			$('#btnUpdate').css("display","inline");
+		} else {
+			//아무것도 입력안된 칸 눌렀을때 초기화 해두기
+			$('#recipient-name').val("");
+			$('#message-text').val("");
+			$('#btnInsert').css("display","inline");
+			$('#btnUpdate').css("display","none");
+		}
 		
 	})
 	
@@ -339,8 +371,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						</button>
 					</div>
 
-					<input type="hidden" class="chi_nm" name="chi_name" value="" /> 
-					<input type="hidden" class="chi_num" name="chi_no" value="" />
+					<input type="text" class="chi_nm" name="chi_name" value="" /> 
+					<input type="text" class="chi_num" name="chi_no" value="" />
 
 					<div class="modal-body">
 						<div class="form-group">
@@ -350,9 +382,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						</div>
 						<div class="form-group">
 						
-							<label for="recipient-name" class="control-label">접종일</label> <input
-								type="date" class="form-control" id="recipient-name"
-								name="prv_date">
+							<label for="recipient-name" class="control-label">접종일</label> 
+							<input type="date" class="form-control" id="recipient-name" name="prv_date">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="control-label">예방일지</label>
@@ -364,6 +395,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<div class="modal-footer" align="center">
 						<button type="button" id="btnCancle"class="btn btn-default" data-dismiss="modal">취소</button>
 						<button type="button" id="btnInsert" class="btn btn-primary">등록하기</button>
+						<button type="button" id="btnUpdate" class="btn btn-primary">수정하기</button>
+						
 					</div>
 				</form>
 		<!-- 모달끝 -->
@@ -376,7 +409,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	<select class="select" id='child'>
 
 	</select>
-	<p class="age">만{DBVALUE}살</p>
+	<p class="age"></p>
 	<div class="ex">
 		<div class="ex_div prev"></div>
 		작성 가능

@@ -29,9 +29,14 @@ public class VaccinationServiceImpl implements VaccinationService {
 		return dao.getPreventList(preventionVO);
 	}
 
-	@Override
+	@Override//예방접종 단건 쿼리
 	public PreventionVO getPrevent(PreventionVO preventionVO) {
 		return dao.getPrevent(preventionVO);
+	}
+
+	@Override//예방접종 업데이트
+	public int updatePrevent(PreventionVO preventionVO) {
+		return dao.updatePrevent(preventionVO);
 	}
 	
 

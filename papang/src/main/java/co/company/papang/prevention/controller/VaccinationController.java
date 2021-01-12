@@ -65,6 +65,12 @@ public class VaccinationController {
   return service.getPrevent(preventionVO);
   }
   
+  @ResponseBody //아이별 예방접종 업데이트
+  @RequestMapping(value = "/prevUpdate", method = RequestMethod.POST) 
+  public int updatePrevent(Model model, PreventionVO preventionVO) {
+	  return  service.updatePrevent(preventionVO);
+  }
+  
 	 
 
 }
