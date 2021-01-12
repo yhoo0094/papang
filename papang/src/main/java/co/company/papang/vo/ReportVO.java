@@ -17,4 +17,5 @@ public class ReportVO {
 	private String repo_content;
 	private String repo_status;
 	private String repo_ans;
+	private String re_mbr_id;
 }

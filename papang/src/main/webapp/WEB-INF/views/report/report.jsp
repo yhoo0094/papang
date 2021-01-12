@@ -83,6 +83,9 @@ function reportInsert(){
                   </td>
                </tr>
                <tr>
+               <td>신고자 </td><td><input type='text' name='re_mbr_id' value='${ReportVO.re_mbr_id}'></td>
+               </tr>
+               <tr>
                <td align="center"><br><br><br><br><br>신고 내용</td><td colspan="2"><textarea name = 'repo_content' rows="10" cols="210" style="width: 100%"></textarea></td>
                </tr>
             </tbody>

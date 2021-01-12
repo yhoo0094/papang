@@ -14,6 +14,7 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
+import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 @Service
@@ -175,6 +176,42 @@ public class AdminServiceImpl implements AdminService{
 	public int insertReport(ReportVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.insertReport(vo);
+	}
+
+	@Override
+	public List<ReportVO> reportselect(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.reportselect(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> reportinfoselect(Report_info vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.reportinfoselect(vo);
+	}
+
+	@Override
+	public List<Map<String,Object>> reportselectone(ReportVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.reportselectone(vo);
+	}
+
+	@Override
+	public int reportinfoinsert(Report_info vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.reportinfoinsert(vo);
+	}
+
+	@Override
+	public int updatestatus(Report_info vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updatestatus(vo);
+	}
+
+	@Override
+	public int updaterepoans(Report_info vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.updaterepoans(vo);
 	}
 
 	

@@ -26,8 +26,8 @@
 
 <style>
 body{
-width : 80%;
-margin: 0 0 0 10%;
+width : 90%;
+margin: 0 0 0 5%;
 }
 </style>
 </head>

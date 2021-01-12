@@ -9,6 +9,7 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
+import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 
@@ -90,6 +91,24 @@ public interface JyMapper {
 	
 	//신고 등록
 	public int insertReport(ReportVO vo);
+	
+	//신고 조회
+	public List<ReportVO> reportselect(ReportVO vo);
+	
+	//제재내역 조회
+	public List<Map<String,Object>> reportinfoselect(Report_info vo); 
+	
+	//신고 단건 조회
+	public List<Map<String,Object>> reportselectone(ReportVO vo);
+	
+	//제재 처리 등록
+	public int reportinfoinsert(Report_info vo); 
+	
+	//멤버 활동정지 업데이트
+	public int updatestatus(Report_info vo);
+	
+	//답변 업데이트
+	public int updaterepoans(Report_info vo);
 	
 
 }

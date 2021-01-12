@@ -26,6 +26,7 @@ import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
 import co.company.papang.vo.ReportVO;
+import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
 import co.company.papang.vo.WarehousingVO;
 
@@ -319,7 +320,7 @@ public class AdminRestController {
 		return vo;
 	}
 
-	//신고 등록
+	// 신고 등록
 	@RequestMapping(value = "/reportInsert", method = RequestMethod.POST
 	// ,produces="application/json"
 	// ,consumes="application/json"
@@ -327,6 +328,38 @@ public class AdminRestController {
 	)
 	public boolean insertReport(ReportVO vo, Model model) {
 		service.insertReport(vo);
+		return true;
+	}
+
+	// 제제내역 조회
+	@RequestMapping(value = "/reportinfoselect", method = RequestMethod.GET)
+	public List<Map<String, Object>> reportinfoselect(Model model, Report_info vo) {
+		return service.reportinfoselect(vo);
+	}
+
+	// 신고내역 조회
+	@RequestMapping(value = "/reportselect", method = RequestMethod.GET)
+	public List<ReportVO> reportselect(Model model, ReportVO vo) {
+		return service.reportselect(vo);
+	}
+
+	// 신고 단건조회
+	@RequestMapping(value = "/reportselectone/{repo_no}", method = RequestMethod.GET)
+	public List<Map<String, Object>> getBanner(@PathVariable String repo_no, ReportVO vo, Model model) {
+		vo.setRepo_no(repo_no);
+		return service.reportselectone(vo);
+	}
+
+	// 신고 등록
+	@RequestMapping(value = "/reportinfoInsert", method = RequestMethod.POST
+	// ,produces="application/json"
+	// ,consumes="application/json"
+	// ,headers = {"Content-type=application/json" }
+	)
+	public boolean reportinfoInsert(Report_info vo, Model model) {
+		service.reportinfoinsert(vo);
+		service.updatestatus(vo);
+		service.updaterepoans(vo);
 		return true;
 	}
 

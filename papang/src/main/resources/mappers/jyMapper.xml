@@ -30,7 +30,9 @@
 		#{nq_title},
 		 #{nq_content},
 		#{nq_category},
+		<if test="nq_file != null and nq_file !=''">
 		#{nq_file},
+		</if>
 		sysdate)
 
 	</insert>
@@ -273,7 +275,55 @@
 	
 	<!-- 신고 등록 -->
 	<insert id='insertReport' parameterType='ReportVO'>
-	INSERT INTO REPORT(MBR_ID,REPO_CATEGORY,REPO_CATEGORY_NO,REPO_TITLE,REPO_CONTENT)
-	VALUES(#{mbr_id},#{repo_category},#{repo_category_no},#{repo_title},#{repo_content})
+	INSERT INTO REPORT(MBR_ID,REPO_CATEGORY,REPO_CATEGORY_NO,REPO_TITLE,REPO_CONTENT,RE_MBR_ID)
+	VALUES(#{mbr_id},#{repo_category},#{repo_category_no},#{repo_title},#{repo_content},#{re_mbr_id})
 	</insert>
+	
+	<select id ='reportselect' parameterType="ReportVO" resultType="ReportVO">
+	select * from report
+	where repo_status='미처리'
+	</select>
+	
+	<select id ='reportinfoselect' parameterType="co.company.papang.vo.Report_info" resultType="map">
+	SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD') AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS RINFO_CNT,R.RINFO_REASON
+	FROM MEMBER M , REPORT_INFO R
+	WHERE M.MBR_ID = R.MBR_ID
+	ORDER BY R.REPO_NO DESC
+	</select>
+	
+	<select id ='reportselectone' resultType="map">
+	SELECT R.REPO_NO,M.MBR_AUTHOR,R.RE_MBR_ID,M.MBR_STATUS FROM REPORT R,MEMBER M
+	WHERE REPO_STATUS='미처리'
+  	AND R.MBR_ID = M.MBR_ID
+	AND REPO_NO= #{repo_no}
+	</select> 
+	
+	<!-- 제재 처리 등록 -->
+	<insert id="reportinfoinsert" parameterType="co.company.papang.vo.Report_info">
+		INSERT INTO REPORT_INFO (
+		REPO_NO,
+		MBR_ID,
+		RINFO_REASON,
+		RINFO_CNT,
+		RINFO_START
+		)
+		VALUES(
+		#{repo_no},
+		#{mbr_id},
+		#{rinfo_reason},
+		#{rinfo_cnt},
+		#{rinfo_start}
+		)
+	</insert>
+	
+	
+	<!-- 정지 처리 -->
+	<update id = "updatestatus" parameterType="co.company.papang.vo.Report_info">
+	update MEMBER set MBR_STATUS='활동정지' where mbr_id = #{mbr_id}
+	</update>
+	
+	<!-- 읽음처리 -->
+	<update id = "updaterepoans" parameterType="co.company.papang.vo.Report_info">
+	update REPORT set REPO_ANS = #{rinfo_reason} ,REPO_STATUS='처리' where REPO_NO = #{repo_no}
+	</update>
 </mapper>
