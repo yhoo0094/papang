@@ -18,11 +18,11 @@ public class MemberRegService {
 		dao = memberSqlSession.getMapper(EsMapper .class);
 		return dao.checkId(mbr_id);
 	}
-	// 닉네임 중복체크
-	public int mbrNkCheck(String mbr_nick) {
-		dao = memberSqlSession.getMapper(EsMapper .class);
-		return dao.checkNk(mbr_nick);
-	}
+//	// 닉네임 중복체크
+//	public int mbrNkCheck(String mbr_nick) {
+//		dao = memberSqlSession.getMapper(EsMapper .class);
+//		return dao.checkNk(mbr_nick);
+//	}
 	// 이메일 중복체크
 	public int mbrEmCheck(String mbr_email) {
 		dao = memberSqlSession.getMapper(EsMapper .class);

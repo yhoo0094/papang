@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import co.company.papang.impl.EsMapper;
 import co.company.papang.member.service.LoginService;
 import co.company.papang.member.service.MemberRegService;
+import co.company.papang.member.service.Sha256;
 import co.company.papang.member.service.UserMailSendService;
 import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.MemberVO;
@@ -56,12 +57,12 @@ public class MemberController {
 		return reg_service.mbrIdCheck(mbr_id); // jsp주소
 	}
 
-	// 닉 중복체크
-	@RequestMapping(value = "/ajax/nkchk", method = RequestMethod.GET) // url 예전 .do
-	@ResponseBody
-	public int nkChk(@RequestParam("mbr_nick") String mbr_nick) throws IOException {
-		return reg_service.mbrNkCheck(mbr_nick); // jsp주소
-	}
+//	// 닉 중복체크
+//	@RequestMapping(value = "/ajax/nkchk", method = RequestMethod.GET) // url 예전 .do
+//	@ResponseBody
+//	public int nkChk(@RequestParam("mbr_nick") String mbr_nick) throws IOException {
+//		return reg_service.mbrNkCheck(mbr_nick); // jsp주소
+//	}
 	
 	// 이메일 중복체크
 	@RequestMapping(value = "/ajax/emailchk", method = RequestMethod.GET) // url 예전 .do
@@ -75,6 +76,10 @@ public class MemberController {
 	public void join(HttpServletRequest request, MemberVO member, HttpServletResponse response) throws IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
+		// 비밀번호 암호화(Sha256)
+		String encryPw = Sha256.encrypt(member.getMbr_pw());
+		member.setMbr_pw(encryPw);
+		
 		// 이미지파일(첨부파일 읽어내기)
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
@@ -129,7 +134,9 @@ public class MemberController {
 	@PostMapping("/member/login") // post 요청은 로그인 처리
 	public void login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
 			HttpServletResponse response) {
-		String rs = "";
+		// 비밀번호 암호화(Sha256)
+		String encryPw = Sha256.encrypt(member.getMbr_pw());
+		member.setMbr_pw(encryPw);
 		String chkPw = log_service.loginCheck(member);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkPw.equals(member.getMbr_pw())) {
@@ -171,7 +178,6 @@ public class MemberController {
 					e.printStackTrace();
 				}
 			}
-			rs = "/";
 		} else if (chkPw == null || chkPw.equals("")) {
 			try {
 				PrintWriter out = response.getWriter();
@@ -188,7 +194,6 @@ public class MemberController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			rs = "/member/loginForm";
 		}
 	}
 
@@ -316,14 +321,15 @@ public class MemberController {
 	@RequestMapping("/ajax/findId") // url 예전 .do
 	public String test5( MemberVO member) throws IOException {
 		String id = dao.findId(member);
-		System.out.println("아이디"+id);
 		return id;
 	}
 
 	// 비번찾기
+	@ResponseBody
 	@RequestMapping("/ajax/findPw") // url 예전 .do
-	public ModelAndView test6(HttpServletResponse response) throws IOException {
-		return new ModelAndView("member/findPw"); // jsp주소
+	public String test6(@RequestParam("mbr_id")String mbr_id, @RequestParam("mbr_email")String mbr_email, HttpServletRequest request) {
+		mailsender.mailSendWithPassword(mbr_id, mbr_email, request);
+		return "user/userSearchPassword";
 	}
 	
 }

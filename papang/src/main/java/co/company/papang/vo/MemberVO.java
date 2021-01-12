@@ -12,7 +12,7 @@ public class MemberVO {
 	private String mbr_id; // 중복체크
 	private String mbr_pw; // 비번확인
 	private String mbr_name;
-	private String mbr_nick; // 유니크??!!
+//	private String mbr_nick; // 유니크
 	private String mbr_birth;
 	private String mbr_email; // 필수아님
 	private String mbr_phone;

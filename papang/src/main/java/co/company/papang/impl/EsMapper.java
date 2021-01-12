@@ -19,7 +19,6 @@ public interface EsMapper {
 	public int alter_authkey(String mbr_id, String authkey); // 유저 인증키 Y로 바꿔줌
 	// 중복체크
 	public int checkId(String mbr_id); // 아이디
-	public int checkNk(String mbr_nick); // 닉네임
 	public int checkEm(String mbr_email); // 이메일
 	
 	// 로그인
@@ -33,7 +32,7 @@ public interface EsMapper {
 	public String stChk(MemberVO member); // 활동 정지일
 	
 	public String findId(MemberVO member); // 아이디찾기
-	public String findPw(MemberVO member); // 아이디찾기
+	public String findPw(String mbr_id, String mbr_email, String key); // 비번찾기(임시비번 발급)
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회

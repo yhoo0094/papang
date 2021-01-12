@@ -8,14 +8,13 @@
 		INSERT INTO MEMBER (	mbr_id,
 								mbr_pw, 
 								mbr_name, 
-								mbr_nick,
 								mbr_birth,
 								mbr_email,
-								mbr_phone,
-								mbr_post, 
-								mbr_addr1, 
-								mbr_addr2,
-								mbr_addr3,
+<if test="mbr_phone != null and mbr_phone != ''">mbr_phone,</if>
+<if test="mbr_post != null and mbr_post != ''">mbr_post, </if>
+<if test="mbr_addr1 != null and mbr_addr1 != ''">mbr_addr1, </if>
+<if test="mbr_addr2 != null and mbr_addr2 != ''">mbr_addr2,</if>
+<if test="mbr_addr3 != null and mbr_addr3 != ''">mbr_addr3,</if>
 <if test="mbr_bank != null and mbr_bank != ''">mbr_bank,</if>
 <if test="mbr_account != null and mbr_account != ''">mbr_account,</if>
 <if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
@@ -23,14 +22,13 @@
 	 	            VALUES( #{mbr_id},
 	 	               		#{mbr_pw},
 	 	               		#{mbr_name},
-	 	               		#{mbr_nick},
 	 	               		#{mbr_birth},
 	 	               		#{mbr_email},
-	 	               		#{mbr_phone},
-	 	               		#{mbr_post},
-	 	               		#{mbr_addr1},
-	 	               		#{mbr_addr2},
-	 	               		#{mbr_addr3},
+<if test="mbr_phone != null and mbr_phone != ''">#{mbr_phone},</if>
+<if test="mbr_post != null and mbr_post != ''">#{mbr_post},</if>
+<if test="mbr_addr1 != null and mbr_addr1 != ''">#{mbr_addr1},</if>
+<if test="mbr_addr2 != null and mbr_addr2 != ''">#{mbr_addr2},</if>
+<if test="mbr_addr3 != null and mbr_addr3 != ''">#{mbr_addr3},</if>
 <if test="mbr_bank != null and mbr_bank != ''">#{mbr_bank},</if>
 <if test="mbr_account != null and mbr_account != ''">#{mbr_account},</if>
 <if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
@@ -41,11 +39,11 @@
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_id = #{mbr_id}
 	</select>
-	<!-- 닉네임중복체크 -->
+	<!-- 닉네임중복체크
 	<select id="checkNk" parameterType="string" resultType="int">
 		SELECT count(*) FROM MEMBER
 		WHERE mbr_nick = #{mbr_nick}
-	</select>
+	</select -->
 	<!-- 이메일중복체크 -->
 	<select id="checkEm" parameterType="string" resultType="int">
 		SELECT count(*) FROM MEMBER
@@ -117,12 +115,12 @@
 		WHERE mbr_name = #{mbr_name}
 		AND mbr_email = #{mbr_email}
 	</select>
-	<!-- 비번 -->
+	<!-- 비번 임시발급-->
 	<select id="findPw" resultType="string">
-		SELECT mbr_pw FROM member
-		WHERE mbr_name = #{mbr_name}
-		AND mbr_id = #{mbr_id}
-		AND mbr_email = #{mbr_email}
+		UPDATE member
+		SET mbr_pw = #{param3}
+		WHERE mbr_id = #{param1}
+		AND mbr_email = #{param2}
 	</select>
 <!-- =========================================================== -->
 <!-- 카카오.. -->
@@ -135,26 +133,24 @@
 	<insert id="insertKakaoUser" parameterType="MemberVO">
 		INSERT INTO MEMBER (	mbr_id,
 								mbr_name, 
-								mbr_nick,
 								mbr_birth,
 								mbr_email,
-								mbr_phone,
-								mbr_post, 
-								mbr_addr1, 
-								mbr_addr2,
-								mbr_addr3,
+<if test="mbr_phone != null and mbr_phone != ''">mbr_phone,</if>
+<if test="mbr_post != null and mbr_post != ''">mbr_post, </if>
+<if test="mbr_addr1 != null and mbr_addr1 != ''">mbr_addr1, </if>
+<if test="mbr_addr2 != null and mbr_addr2 != ''">mbr_addr2,</if>
+<if test="mbr_addr3 != null and mbr_addr3 != ''">mbr_addr3,</if>
 <if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
 								mbr_gender )
 	 	            VALUES( #{mbr_id},
 	 	               		#{mbr_name},
-	 	               		#{mbr_nick},
 	 	               		#{mbr_birth},
 	 	               		#{mbr_email},
-	 	               		#{mbr_phone},
-	 	               		#{mbr_post},
-	 	               		#{mbr_addr1},
-	 	               		#{mbr_addr2},
-	 	               		#{mbr_addr3},
+<if test="mbr_phone != null and mbr_phone != ''">#{mbr_phone},</if>
+<if test="mbr_post != null and mbr_post != ''">#{mbr_post},</if>
+<if test="mbr_addr1 != null and mbr_addr1 != ''">#{mbr_addr1},</if>
+<if test="mbr_addr2 != null and mbr_addr2 != ''">#{mbr_addr2},</if>
+<if test="mbr_addr3 != null and mbr_addr3 != ''">#{mbr_addr3},</if>
 <if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
 	 	               		#{mbr_gender} )
 	</insert>

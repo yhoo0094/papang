@@ -28,36 +28,6 @@ p {
 </style>
 <script type="text/javascript">
 	$(function() {
-		// 닉네임 중복검사
-		$("#mbr_nick")
-				.blur(
-						function() {
-							var mbr_nick = $("#mbr_nick").val();
-							$
-									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/nkchk?mbr_nick="
-												+ mbr_nick,
-										type : 'get',
-										success : function(data) {
-											if (data == 1) { // 중복
-												$("#nkchk").text("사용중인 닉네임입니다");
-												$("#nkchk").css("color", "red");
-												$("joinBtn").attr("disabled",
-														true);
-											} else {
-												$("#nkchk")
-														.text("사용가능한 닉네임입니다");
-												$("#nkchk").css("color",
-														"green");
-												$("joinBtn").attr("disabled",
-														false);
-											}
-										},
-										error : function() {
-											alert("실패");
-										}
-									})
-						})
 		// 이메일 중복검사
 		$("#mbr_email")
 				.blur(
@@ -93,11 +63,6 @@ p {
 		if (frm.mbr_name.value == "") {
 			alert("이름 입력하세요");
 			frm.mbr_name.focus();
-			return false;
-		}
-		if (frm.mbr_nick.value == "") {
-			alert("닉네임을 입력하세요");
-			frm.mbr_nick.focus();
 			return false;
 		}
 		if (frm.mbr_birth.value == "") {
@@ -159,12 +124,6 @@ p {
 							<td><input type="text" id="mbr_name"
 								style="width: 80%;" name="mbr_name" placeholder="이름"
 								class="form-control"></td>
-						</tr>
-						<tr>
-							<td class="txt">닉네임&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_nick" name="mbr_nick" style="width: 80%;"
-								placeholder="닉네임" class="form-control" value="${kname}">
-							<span id="nkchk"></span></td>
 						</tr>
 						<tr>
 							<td class="txt">이메일</td>
