@@ -54,12 +54,13 @@
 			</table>  
 			
 			<select  class="input_small" name="year" id="year" style="font-size:20px;">
-		 							
-									<option value="2020">2021년</option>
-									<option value="2020">2022</option>
-									<option value="2020">2023</option>
+		 							<option value="2021">2021년</option>
+		 							<option value="2020">2020년</option>
+									<option value="2021">2021년</option> 
+									<option value="2022">2022년</option>
+									<option value="2023">2023년</option>
 			</select>   
-			
+			 
 			<select  class="input_small" name="month" id="month" style="font-size:20px;">
 		 							<option value="01">1월</option>
 									<option value="02">2</option>
@@ -79,7 +80,7 @@
                            data-target="#exampleModal2" data-toggle="modal">월급보기</button>
 		
 			<br>
-			<input id="result" name="result" value="">	
+			
 		
 		
 		 
@@ -132,6 +133,7 @@ $(".qwe").on("click", function() {
 	   modal = $("#exampleModal2"); 
 	   $.ajax({    
 	      url : "sitter_money3",
+	      data: {"year":year,"month":month},
 	      success : function(result) {
 	         modal.find('#body1').html(result);
 	         modal.modal('show');

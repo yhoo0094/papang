@@ -190,31 +190,26 @@
 
 	<!-- 예약정보  합계 월급-->
 <select id="getSitter_revVO4" parameterType="sitter_revVO" resultType="sitter_revVO">
-		 
-		<!-- SELECT 
-		SUM(SRV_PAY),
-		TO_CHAR(SRV_DATE,'YYYY-MM'),
-		SRV_STATUS
-		FROM SITTER_REV
-		WHERE
-		SIT_MBR_ID='ALPACA' AND 
-		SRV_STATUS='결제완료'AND   
-		TO_CHAR(SRV_DATE,'YYYY')='2020' AND 
-		TO_CHAR(SRV_DATE,'MM')='12'  
-		GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS ;  -->
-		
 		SELECT 
+		SRV_NO, 
 		SRV_DATE,
-		SRV_PAY,
+		SRV_PAY, 
 		SRV_STATUS 
 		FROM SITTER_REV 
-		WHERE SIT_MBR_ID='ALPACA' 
-		AND SRV_STATUS='결제완료' 
-		AND TO_CHAR(SRV_DATE,'YYYY-MM')='2020-12'
-		 
+		WHERE SIT_MBR_ID=#{sit_mbr_id}
+		AND SRV_STATUS=#{srv_status}  
+		AND TO_CHAR(SRV_DATE,'YYYY-MM')=#{srv_date} 
 </select>
-
-		
+  
+	<!-- 예약정보  합계 월급-->
+<select id="getSitter_revVO5" parameterType="sitter_revVO" resultType="sitter_revVO">
+SELECT SUM(SRV_PAY) AS "sum" 
+FROM SITTER_REV
+WHERE SIT_MBR_ID=#{sit_mbr_id} AND 
+SRV_STATUS=#{srv_status} AND 
+ TO_CHAR(SRV_DATE,'YYYY-MM')=#{srv_date} 
+GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS 
+</select>		
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 

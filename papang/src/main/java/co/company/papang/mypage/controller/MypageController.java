@@ -2,6 +2,7 @@ package co.company.papang.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -477,10 +478,19 @@ public class MypageController {
 		sitter_revVO.setSrv_date(year_month);
 		
 		mav.addObject("cos7",dao.getSitter_revVO4(sitter_revVO));
+		mav.addObject(dao.getSitter_revVO5(sitter_revVO)); 
+		System.out.println(dao.getSitter_revVO5(sitter_revVO));
+		List<Sitter_revVO> a = dao.getSitter_revVO4(sitter_revVO);
+		for(Sitter_revVO i : a) {
+			System.out.println(i);
+		}
+		
 		System.out.println(year);
 		System.out.println(month);
 	
 		mav.setViewName("no/mypage/ccc");
+		
+	    
 		return mav;
 	}
 	

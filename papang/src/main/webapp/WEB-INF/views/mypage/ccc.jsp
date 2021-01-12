@@ -13,6 +13,7 @@
       	      <table class="table" id="dataTable"> 
 				<thead>
 					<tr class="tableTrTh"> 
+						<th width="15%" class="tableTh">예약번호</th>
 						<th width="15%" class="tableTh">날짜</th>
 						<th width="20%" class="tableTh">가격</th>
 						<th width="20%" class="tableTh">상태</th>
@@ -22,12 +23,12 @@
 				</thead>  
 				<tbody>
 				<c:forEach var="co8" items="${cos7}" >
-					<tr> 
-			
+					<tr> 	 
+						<td align="center">${co8.srv_no}</td>		
 						<td align="center">${co8.srv_date}</td>
 						<td align="center">${co8.srv_pay}</td>
 						<td align="center">${co8.srv_status}</td>
-					 
+					  
 					</tr>
 				</c:forEach>	
 					
@@ -35,6 +36,6 @@
 				</tbody>
 			</table>
 			
-			 
+			 　　　　　　　　　　　 　월급<input id="result" type="text" name="result" style = "text-align:right" value="${sitter_revVO.sum}" >원
 </body>
 </html>

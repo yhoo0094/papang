@@ -188,7 +188,7 @@ $(function() {
 						</div>
 					</p>
 					<p>
-						<label>닉네임</label> <input class="w3-input" id="mbr_nick" name="mbr_nick"  value="${ memberVO.mbr_nick }">
+						
 					</p>
 					<p>
 						<label>핸드폰</label> <input class="w3-input" type="text"

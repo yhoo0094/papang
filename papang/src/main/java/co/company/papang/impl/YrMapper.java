@@ -50,5 +50,6 @@ public interface YrMapper {
 	public List<SitChiVO> getSitter_revVO2(SitChiVO sitChiVO);//예약정보조회 상세히
 	public Sitter_revVO getSitter_revVO3(Sitter_revVO SitterVO); //예약정보조회 합계
 	public List<Sitter_revVO> getSitter_revVO4(Sitter_revVO sitter_revVO);//월급계산 
+	public Sitter_revVO getSitter_revVO5(Sitter_revVO sitter_revVO); //월급계산 합계 
 } 
 
