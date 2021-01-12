@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import co.company.papang.impl.EsMapper;
 import co.company.papang.vo.UsedVO;
+import co.company.papang.vo.Used_comVO;
 
 @Service
 public class UsedServiceImpl implements UsedService{
@@ -42,5 +43,13 @@ public class UsedServiceImpl implements UsedService{
 	@Override
 	public int deleteUsed(UsedVO used) {
 		return dao.deleteUsed(used);
+	}
+	@Override
+	public List<Used_comVO> getUsedCommList(Used_comVO usedCom) {
+		return dao.getUsedCommList(usedCom);
+	}
+	@Override
+	public int usedCommInsert(Used_comVO usedCom) {
+		return dao.usedCommInsert(usedCom);
 	}
 }

@@ -155,13 +155,13 @@ public class MarketController {
 			if(!existCookie) {
 				//쿠키가 없는 경우
 				System.out.println("쿠키생성");
-				Cookie cookie = new Cookie("cookieCode", used.getUsed_no());
+				Cookie cookie = new Cookie("UsedCookie", used.getUsed_no());
 				cookie.setMaxAge(60*60*24);
 				response.addCookie(cookie);
 				used_service.hitPlus(used);
 			}
 			model.addAttribute("used",used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
-			// model.addAttribute("used_comList",used_service.getUsedComList(used_com)); // 댓글조회
+			model.addAttribute("used_comList", used_service.getUsedCommList(used_com)); // 댓글조회
 		}
 		// model.addAttribute("used", used_service.getUsed(used));
 		return "market/usedDetail"; // jsp주소
@@ -222,6 +222,17 @@ public class MarketController {
 	public String test17(UsedVO used) throws IOException {
 		used_service.deleteUsed(used);
 		return "redirect:/marketList/usedOnSaleBoard";
+	}
+// 댓글
+	@ResponseBody
+	@RequestMapping("used/usedComm")
+	public Used_comVO usedCommInsert(Used_comVO usedCom, HttpServletRequest request, HttpSession session){
+		MemberVO memberVO = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVO.getMbr_id();
+		usedCom.setMbr_id(mbr_id);
+		used_service.usedCommInsert(usedCom);
+		System.out.println("글번호>>>" + usedCom.getUsed_no());
+		return usedCom;
 	}
 	
 // 장바구니

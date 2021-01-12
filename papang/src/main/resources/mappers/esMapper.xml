@@ -295,6 +295,33 @@
 		SET	used_hit = used_hit + 1
 		WHERE used_no = #{used_no}
 	</update>
+<!-- =========================================================== -->
+<!-- 댓글 -->
+	<select id="getUsedCommList" resultType="Used_comVO" parameterType="Used_comVO">
+		SELECT ROWNUM, u.*
+		FROM used_com u
+		<where>
+			<![CDATA[
+				ROWNUM <= 100
+			]]>
+				AND u.used_no = #{used_no}
+		</where>
+		ORDER BY u.uc_no DESC
+	</select>
+	
+	<!-- 커뮤니티 댓글 등록 -->
+	<insert id="usedCommInsert" parameterType="Used_comVO">
+		INSERT INTO used_com (	uc_no,
+    							mbr_id,
+    							uc_content,
+    							used_no
+							)
+		VALUES(	SEQ_USED_COM_uc_no.nextval,
+				#{mbr_id},
+				#{uc_content},
+				#{used_no}
+		)
+	</insert>
 
 <!-- =========================================================== -->
 <!-- 장바구니 -->

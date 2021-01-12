@@ -9,6 +9,7 @@ import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.UsedVO;
+import co.company.papang.vo.Used_comVO;
 
 public interface EsMapper {
 
@@ -50,6 +51,9 @@ public interface EsMapper {
 	public int updateUsed(UsedVO used); // 수정
 	public int deleteUsed(UsedVO used); // 삭제
 	public int hitPlus(UsedVO used); //조회수
+	// 댓글
+	public List<Used_comVO> getUsedCommList(Used_comVO usedCom);// 댓글조회
+	public int usedCommInsert(Used_comVO usedCom);// 댓글등록
 	
 	// 장바구니
 	public List<BagVO> getCartList(String mbr_id);//전체조회
