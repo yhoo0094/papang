@@ -175,4 +175,9 @@ INSERT INTO ACT_COM
 <update id="updatePrevent" parameterType="PreventionVO">
  	UPDATE PREVENTION SET PRV_MEMO=#{prv_memo} , PRV_DATE=#{prv_date} WHERE CHI_NO=#{chi_no} AND PRV_NAME=#{prv_name}
  </update>
+ 
+<!-- 아이 단건 조회 -->
+<select id="getChild" resultType="ChildVO">
+	SELECT TRUNC(SYSDATE - TO_DATE((SELECT CHI_BIRTH FROM CHILD WHERE CHI_NO=#{chi_no}), 'YY/MM/DD')) chi_days, (SELECT TRUNC(MONTHS_BETWEEN(SYSDATE, chi_birth)) FROM CHILD WHERE CHI_NO=#{chi_no}) chi_month FROM DUAL	
+</select>
 </mapper>

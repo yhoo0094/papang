@@ -16,4 +16,6 @@ public class ChildVO {
 	private String chi_gender;
 	private String chi_sns;
 	private String chi_pic;
+	private String chi_days;
+	private String chi_month;
 }

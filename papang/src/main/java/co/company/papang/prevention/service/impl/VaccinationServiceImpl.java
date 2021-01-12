@@ -38,6 +38,11 @@ public class VaccinationServiceImpl implements VaccinationService {
 	public int updatePrevent(PreventionVO preventionVO) {
 		return dao.updatePrevent(preventionVO);
 	}
+
+	@Override
+	public ChildVO getChild(ChildVO childVO) {
+		return dao.getChild(childVO);
+	}
 	
 
 
