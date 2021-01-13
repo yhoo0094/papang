@@ -37,6 +37,11 @@ public class VaccinationController {
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 		return new ModelAndView("vaccination/test");
 	}
+	
+	@RequestMapping("vaccination/test2")
+	public ModelAndView test2(HttpServletResponse response) throws IOException {
+		return new ModelAndView("vaccination/test2");
+	}
 
 	@ResponseBody // 아이 전체조회
 	@RequestMapping(value = "/child", method = RequestMethod.GET)

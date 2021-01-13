@@ -26,7 +26,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/snowman.jpg')">
+        <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/상단배너1.jpg')">
        
           <div class="carousel-caption d-none d-md-block">
             <h3>First Slide</h3>
@@ -38,7 +38,7 @@
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div onclick="location.href='${banner.ban_link}'" class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>${banner.ban_pic_name}</h3>
+           <%--  <h3>${banner.ban_pic_name}</h3> --%>
           </div>
         </div>
         </c:if>
@@ -62,9 +62,9 @@
 
     <!-- Marketing Icons Section -->
     <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">베이비시터 서비스</h4>
+      <div class="col-lg-4 mb-4"  align="center">
+        <div class="card h-100" >
+          <h4 class="card-header" >베이비시터 서비스</h4>
           <div class="card-body">
             <p class="card-text">어머니의 마음과 전문가의 손길이 함게합니다.
             <br/>
@@ -73,12 +73,12 @@
              	 행복한 돌봄을 만들어 갑니다!
              </p>
           </div>
-          <div class="card-footer" align="center">
+          <div class="card-footer">
             <a href="#" class="btn btn-primary">예약하기</a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-4">
+      <div class="col-lg-4 mb-4"  align="center">
         <div class="card h-100">
           <h4 class="card-header">파파존스 SHOP</h4>
           <div class="card-body">
@@ -95,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-4">
+      <div class="col-lg-4 mb-4"  align="center">
         <div class="card h-100">
           <h4 class="card-header">육아대디 첫 걸음</h4>
           <div class="card-body">
@@ -108,7 +108,7 @@
             	
             </p>
           </div>
-          <div class="card-footer" align="center">
+          <div class="card-footer">
             <a href="#" class="btn btn-primary">바로가기</a>
           </div>
         </div>
