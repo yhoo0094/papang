@@ -21,5 +21,7 @@ public interface UsedService {
 	// 댓글
 	public List<Used_comVO> getUsedCommList(Used_comVO usedCom);// 댓글조회
 	public int usedCommInsert(Used_comVO usedCom);// 댓글등록
+	public int usedCommUpdate(Used_comVO usedCom);// 댓글수정
+	public int usedCommDelete(Used_comVO usedCom);// 댓글삭제
 }
 

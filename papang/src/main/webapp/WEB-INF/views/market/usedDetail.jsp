@@ -42,12 +42,12 @@
 		$("#commentUpdateBtn").on({ //댓글 모달에서 수정하기 버튼 클릭
 			"click" : function() {
 				$.ajax({ 
-				    url: "${pageContext.request.contextPath}/community/commentUpdate",  
+				    url: "${pageContext.request.contextPath}/used/usedCommUpdate",  
 				    type: 'POST',  
 				    dataType: 'json', 
 				    data : $("#commentUpdateForm").serialize(),
 				    success: function(result) {
-				    		console.log(result.cc_content);
+				    		console.log(result.uc_content);
 				    		$tr.find('#tempt').text(result.uc_content);
 				    }, 
 				    error:function(xhr, status, message) { 
@@ -60,36 +60,30 @@
 		//댓글 수정 버튼 클릭
 		$('.commentUpdateBtn').on({
 			"click" : function() {
-				var cc_no = $(this).parent().find('.commentNumInput').val();
+				var uc_no = $(this).parent().find('.commentNumInput').val();
 				var commentText = $(this).closest('div').find('.commentContent').text();
 				$tr = $(this).closest('div')
 				$(this).closest('div').find('.commentContent').eq(0).attr("id","tempt");//댓글 위치
 				$('#commentUpdateModal').modal();
 				$('#commentUpdateTextarea').val(commentText);
-				$('#commentUpdateInput').val(cc_no);
+				$('#commentUpdateInput').val(uc_no);
 			}
 		});
-		
-		$("#gobackBtn").on({
-			"click" : function() {
-				location.href="${pageContext.request.contextPath}/community/board";
-			}
-		})
 		
 		$(".commentDeleteBtn").on({ //댓글 삭제하기
 			"click" : function() {
 				if(confirm("정말로 삭제하시겠습니까?")){
-					var cc_no = $(this).parent().find('.commentNumInput').val();
+					var uc_no = $(this).parent().find('.commentNumInput').val();
 					var tr =  $(this).closest('tr');
 					$.ajax({ 
-					    url: "${pageContext.request.contextPath}/community/commentDelete",  
+					    url: "${pageContext.request.contextPath}/used/usedCommDelete",  
 					    type: 'POST',  
 					    dataType: 'text', 
-					    data : {"cc_no":cc_no},
-					    success: function(number) {
+					    data : {
+					    	"uc_no":uc_no
+					    }, success: function(number) {
 					    	tr.remove();
-					    }, 
-					    error:function(xhr, status, message) { 
+					    }, error:function(xhr, status, message) { 
 					        alert(" status: "+status+" er:"+message);
 					    } 
 					 });

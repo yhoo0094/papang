@@ -246,8 +246,9 @@ public class MarketController {
 	}
 
 // 댓글
+	// 댓글 등록
 	@ResponseBody
-	@RequestMapping("used/usedComm")
+	@RequestMapping("used/usedComm") 
 	public Used_comVO usedCommInsert(Used_comVO usedCom, HttpServletRequest request, HttpSession session) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
@@ -256,6 +257,20 @@ public class MarketController {
 		return usedCom;
 	}
 
+	// 댓글 수정
+	@ResponseBody
+	@RequestMapping("used/usedCommUpdate")
+	public Used_comVO test19(Used_comVO usedCom) {
+		used_service.usedCommUpdate(usedCom);
+		return usedCom;
+	}
+
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping("used/usedCommDelete")
+	public int test20(Used_comVO usedCom) {
+		return used_service.usedCommDelete(usedCom);
+	}
 // 장바구니
 	// 장바구니 목록
 	@RequestMapping("marketList/cart") // url 예전 .do

@@ -52,4 +52,12 @@ public class UsedServiceImpl implements UsedService{
 	public int usedCommInsert(Used_comVO usedCom) {
 		return dao.usedCommInsert(usedCom);
 	}
+	@Override
+	public int usedCommUpdate(Used_comVO usedCom) {
+		return dao.usedCommUpdate(usedCom);
+	}
+	@Override
+	public int usedCommDelete(Used_comVO usedCom) {
+		return dao.usedCommDelete(usedCom);
+	}
 }

@@ -81,7 +81,7 @@ thead, .dataTables_length{
 										<h4 class="card-title">
 											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 										</h4>
-										<p class="card-text">${pro.pro_price}</p>
+										<p class="card-text">&#8361;${pro.pro_price}</p>
 									</div>
 								</div>
 							</div>

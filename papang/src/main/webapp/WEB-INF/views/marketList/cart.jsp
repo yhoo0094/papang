@@ -76,10 +76,11 @@ $(function(){
 							src="${pageContext.request.contextPath}/resources/images/market/${cart.pro_pic}"></td>
 						<td><a href="../market/itemDetail?pro_no=${cart.pro_no}"
 							class="boardTagA">${cart.pro_name}</a></td>
-						<td align="center">${cart.pro_price}원</td>
+						<td align="center">${cart.pro_price} 원</td>
 						<td align="center"><input class="count" type="text" value="${cart.bag_cnt}" min="1">
 						<input type="hidden" value="${cart.pro_no}"></td>
-						<td align="center" class="rsSum">${cart.pro_price * cart.bag_cnt}</td>
+						<td align="center" class="rsSum"><fmt:formatNumber
+							pattern="###,###,###" value="${cart.pro_price * cart.bag_cnt}" />원</td>
 					</tr>
 					<c:set var="sum" value="${sum + (cart.pro_price * cart.bag_cnt)}" />
 				</c:forEach>

@@ -171,7 +171,7 @@
 	
 	<!-- 전체조회  -->	
 	<select id="getItemList" resultType="ProductVO">
-		SELECT pro_no, pro_name, pro_price, pro_pic, pro_cnt
+		SELECT pro_no, pro_name, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(pro_price)), '([0-9]{3})','\1,')), '^,','') AS pro_price, pro_pic, pro_cnt
 		FROM PRODUCT	  
 		ORDER BY pro_no DESC 
 	</select>
@@ -316,17 +316,30 @@
 	
 	<!-- 커뮤니티 댓글 등록 -->
 	<insert id="usedCommInsert" parameterType="Used_comVO">
-		INSERT INTO used_com (	uc_no,
+		INSERT INTO USED_COM (	uc_no,
     							mbr_id,
     							uc_content,
     							used_no
 							)
-		VALUES(	SEQ_USED_COM_uc_no.nextval,
+		VALUES(	seq_used_com_uc_no.nextval,
 				#{mbr_id},
 				#{uc_content},
 				#{used_no}
 		)
 	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="usedCommUpdate" parameterType="Used_comVO">
+		UPDATE USED_COM
+		SET uc_content = #{uc_content}
+		WHERE uc_no = #{uc_no}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="usedCommDelete" parameterType="Used_comVO">
+		 DELETE USED_COM
+		 WHERE uc_no = #{uc_no}
+	</delete>
 
 <!-- =========================================================== -->
 <!-- 장바구니 -->
