@@ -25,17 +25,25 @@ td>span {
 	border: none;
 	background: none;
 }
+.proInfo{width: 140%;}
+.center_div {
+    margin: 140px 15% 50px 12%;
+    width: 80%;
+}
+.proDetail {margin-top:50px;}
+.font-sy{font-family: :'Jua', sans-serif;}
+.worh{color:rgb(232 80 80);}
 </style>
 
 <div class="container center_div">
-	<h1 class="mt-4 mb-3">${pro.pro_name}</h1>
+	<h1 class="mt-4 mb-3 font-sy">${pro.pro_name}</h1>
 	<div class="row">
 		<div class="col-lg-6">
 			<img class="img-fluid rounded mb-4"
 				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"
 				alt="${pro.pro_name}">
 		</div>
-		<div class="col-lg-6">
+		<div class="col-lg-6 proInfo">
 			<p />
 
 			<p />
@@ -58,7 +66,7 @@ td>span {
 						<tr>
 							<th scope="row"><span>상품재고</span></th>
 							<td><c:if test="${pro.pro_cnt != 0}"><span><strong>${pro.pro_cnt}</strong></span></c:if>
-							<c:if test="${pro.pro_cnt == 0}"><span><strong>재고가 없습니다</strong></span></c:if></td>
+							<c:if test="${pro.pro_cnt == 0}"><span class="worh"><strong>재고가 없습니다</strong></span></c:if></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>기업코드</span></th>
@@ -146,7 +154,7 @@ td>span {
 		</div>
 	</div>	<!-- /.row -->
 	<!-- 상세보기 -->
-	<div>
+	<div class="proDetail">
 		<h2>상세정보</h2>
 		<div class="col-lg-10">
 			<p>${pro.pro_detail }</p>
