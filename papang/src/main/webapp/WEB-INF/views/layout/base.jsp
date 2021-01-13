@@ -116,7 +116,15 @@ body {background-color: #fff5d2;}
     color: #fff5d2;
 }
 
+.topnav {
+    width: 60px;
+    height: 60px;
+    margin: 0 0 0 280px;
+}
 
+.card-body {
+    height: 200px;
+}
 /* .naviClass, .banner_div, .center_div{
 	display: block;
 } */
