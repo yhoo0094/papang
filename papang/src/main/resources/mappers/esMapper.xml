@@ -175,13 +175,18 @@
 		FROM PRODUCT	  
 		ORDER BY pro_no DESC 
 	</select>
-	<!-- 전체조회  -->	
+	<!-- 가격높은순  -->	
 	<select id="getItemListPriceDesc" resultType="ProductVO">
 		SELECT * 
 		FROM PRODUCT	  
 		ORDER BY pro_price DESC 
 	</select>
-	
+	<!-- 가격낮은순  -->	
+	<select id="getItemListPrice" resultType="ProductVO">
+		SELECT * 
+		FROM PRODUCT	  
+		ORDER BY pro_price
+	</select>
 	<!--  글등록    -->
 	<insert id="insertItem" parameterType="ProductVO">
 		INSERT INTO PRODUCT (	

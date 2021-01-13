@@ -46,7 +46,7 @@ public class MarketController {
 	UsedService used_service;
 
 // 상품판매	
-	// 판매상품 전체 리스트
+	// 판매상품 전체 리스트 : 최신 등록순
 	@RequestMapping("marketList/itemBoard") // url 예전 .do
 	public ModelAndView test(ProductVO product) throws IOException {
 		ModelAndView mav = new ModelAndView();
@@ -55,7 +55,7 @@ public class MarketController {
 		return mav; // jsp주소
 	}
 
-	// 판매상품 전체 리스트
+	// 가격높은순
 	@RequestMapping("marketList/itemBoardPriceDesc") // url 예전 .do
 	public ModelAndView test17(ProductVO product) throws IOException {
 		ModelAndView mav = new ModelAndView();
@@ -63,7 +63,16 @@ public class MarketController {
 		mav.setViewName("marketList/itemBoard");
 		return mav; // jsp주소
 	}
-
+	
+	// 가격낮은순
+	@RequestMapping("marketList/itemBoardPrice") // url 예전 .do
+	public ModelAndView test19(ProductVO product) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pro", dao.getItemListPrice(product));
+		mav.setViewName("marketList/itemBoard");
+		return mav; // jsp주소
+	}
+	
 	// 판매상품 상세
 	@RequestMapping("market/itemDetail") // url 예전 .do
 	public String getItem(ProductVO product, Model model) throws IOException {

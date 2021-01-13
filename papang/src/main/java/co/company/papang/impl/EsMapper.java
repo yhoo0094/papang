@@ -38,7 +38,8 @@ public interface EsMapper {
 	
 	// 판매상품
 	public List<ProductVO> getItemList(ProductVO product);// 전체조회
-	public List<ProductVO> getItemListPriceDesc(ProductVO product);// 전체조회
+	public List<ProductVO> getItemListPriceDesc(ProductVO product);// 가격높은순
+	public List<ProductVO> getItemListPrice(ProductVO product);// 가격낮은순
 	public ProductVO getItem(ProductVO product); // 단건조회
 	public int insertItem(ProductVO product); // 등록
 	public int updateItem(ProductVO product); // 수정
