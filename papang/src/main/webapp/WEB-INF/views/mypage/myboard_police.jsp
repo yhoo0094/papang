@@ -16,8 +16,9 @@
 	display: block;
 	 white-space: nowrap;
     overflow: hidden; 
+    width:400px;
 }
-</style>
+</style> 
 <body>
 		<h3>신고현황</h3>
 		<hr />
@@ -25,17 +26,17 @@
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
 				method="get">
 				
-			</form>
+			</form> 
 		</div>
 		<br>
 			<table class="table" id="dataTable" style="table-layout: fixed">
 				<thead>
 					<tr class="tableTrTh">
-						<th width="15%" class="tableTh">게시글번호</th>			
-						<th width="15%" class="tableTh">신고 제목</th>
-						<th width="30%" class="tableTh">신고 사유</th> 
-						<th width="15%" class="tableTh">답변</th>
-						<th width="15%" class="tableTh">처리상태</th>
+						<th width="10%" class="tableTh">번호</th>			
+						<th width="10%" class="tableTh">신고 제목</th>
+						<th width="30%" class="tableTh">신고 사유</th>   
+						<th width="30%" class="tableTh">답변</th>
+						<th width="10%" class="tableTh">처리상태</th> 
 						<th width="10%" class="tableTh">카테고리</th>
 					</tr>
 				</thead>
@@ -43,9 +44,9 @@
 				<c:forEach var="co" items="${cos3}">
 					<tr>
 						<td align="center">${co.repo_no}</td>
-						<td align="center">${co.repo_title}</td>
-						<td class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" align="center"  style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${co.repo_content}</td>
-						<td align="center">${co.repo_ans}</td>
+						<td align="center">${co.repo_title}</td>  
+						<td align="center">${co.repo_content}</td> 
+						<td class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" align="center"  style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap; cursor: pointer; ">${co.repo_ans}</td>
 						<td align="center">${co.repo_status}</td>
 						<td align="center">${co.repo_category}</td>
 					</tr>
