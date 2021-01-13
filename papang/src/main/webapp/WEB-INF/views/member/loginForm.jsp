@@ -37,12 +37,6 @@ p.loginpage {
 	margin: 0px;
 }
 
-
-
-/* .social-item {
-  width: 50px;
-  height: 50px;
-} */
 </style>
 <script type="text/javascript">
 	function findIdCheck() {
@@ -72,7 +66,6 @@ p.loginpage {
 				}, success : function (result){
 					var id = result;
 					alert("아이디는 " + result + " 입니다");
-					console.log("id가져왔니"+id);
 				}
 			});
 			return false;

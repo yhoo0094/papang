@@ -215,7 +215,7 @@ public class MemberController {
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
 			try {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('관리자');</script>");
+				out.println("<script>alert('관리자 접속');</script>");
 				out.println("<script>location.href='/papang/';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();

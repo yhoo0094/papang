@@ -85,7 +85,7 @@ td>span {
 										$("#plusBtn").click(function() {
 											var num = $(".numBox").val();
 											var plusNum = Number(num) + 1;
-											if(plusNum >= ${pro.pro_cnt}){
+											if(plusNum > ${pro.pro_cnt}){
 												$(".numBox").val(num);
 											} else{
 												$(".numBox").val(plusNum);
