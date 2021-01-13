@@ -14,10 +14,16 @@
 .qwe{
 	text-overflow: ellipsis;
 	display: block;
-	 white-space: nowrap;
+	 white-space: nowrap; 
     overflow: hidden; 
+    
+   
 }
-</style>
+textarea.form-control {
+    height: 240px;
+    width: 410px;
+}
+</style> 
 <body>
 		<h3>신고현황</h3>
 		<hr />
@@ -25,29 +31,31 @@
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
 				method="get">
 				
-			</form>
+			</form> 
 		</div>
 		<br>
 			<table class="table" id="dataTable" style="table-layout: fixed">
 				<thead>
 					<tr class="tableTrTh">
-						<th width="15%" class="tableTh">게시글번호</th>			
-						<th width="15%" class="tableTh">신고 제목</th>
-						<th width="30%" class="tableTh">신고 사유</th> 
-						<th width="15%" class="tableTh">답변</th>
-						<th width="15%" class="tableTh">처리상태</th>
+						<th width="10%" class="tableTh">번호</th>			
+						<th width="10%" class="tableTh">신고 제목</th>
+						<th width="25%" class="tableTh">신고 사유</th>   
+						<th width="25%" class="tableTh">답변</th>
+						<th width="10%" class="tableTh">처리상태</th>    
 						<th width="10%" class="tableTh">카테고리</th>
+						<td width="10%" class="tableTh" style="display: none">히든</td>
 					</tr>
 				</thead>
 				<tbody> 
 				<c:forEach var="co" items="${cos3}">
 					<tr>
-						<td align="center">${co.repo_no}</td>
-						<td align="center">${co.repo_title}</td>
-						<td class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" align="center"  style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">${co.repo_content}</td>
-						<td align="center">${co.repo_ans}</td>
+						<td align="center">${co.repo_no}</td> 
+						<td align="center">${co.repo_title}</td>   
+						<td align="center">${co.repo_content}</td>  
+						<td align="center" class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="text-overflow: ellipsis; overflow: hidden; cursor: pointer; color:red;">답변보기</td>
 						<td align="center">${co.repo_status}</td>
 						<td align="center">${co.repo_category}</td>
+						<td class="tableTh" style="display: none">${co.repo_ans}</td> 
 					</tr>
 				</c:forEach>	
 					
@@ -80,7 +88,7 @@
             <input type="text" class="form-control" id="recipient-name2" value="2">
           </div>
           <div class="form-group">
-            <label for="message-text" class="control-label">답변</label>
+            <label for="message-text" class="control-label">관리자 답변</label>
             <textarea class="form-control" id="recipient-name3">3</textarea>
           </div>
         </form>
@@ -120,7 +128,7 @@ $("#dataTable tr").click(function(){
 	
 	var title = td.eq(1).text();
 	var content = td.eq(2).text();
-	var ans = td.eq(3).text();
+	var ans = td.eq(6).text();
 	
 	$("#recipient-name1").val(title)
 	$("#recipient-name2").val(content)

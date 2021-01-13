@@ -9,6 +9,7 @@ import co.company.papang.impl.SaMapper;
 import co.company.papang.prevention.service.VaccinationService;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.PreventionVO;
+import co.company.papang.vo.ProductVO;
 
 @Service
 public class VaccinationServiceImpl implements VaccinationService {
@@ -39,9 +40,19 @@ public class VaccinationServiceImpl implements VaccinationService {
 		return dao.updatePrevent(preventionVO);
 	}
 
-	@Override
+	@Override // 아이 단건조회
 	public ChildVO getChild(ChildVO childVO) {
 		return dao.getChild(childVO);
+	}
+
+	@Override//아이 단건조회 - 태어난날 구하기
+	public ChildVO getDate(ChildVO childVO) {
+		return dao.getDate(childVO);
+	}
+
+	@Override//메인 상품리스트
+	public List<ProductVO> productList(ProductVO productVO) {
+		return dao.productList(productVO);
 	}
 	
 

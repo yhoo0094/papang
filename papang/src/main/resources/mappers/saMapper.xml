@@ -45,12 +45,30 @@
 		ORDER BY A.AC_NO DESC
 	</select>  
 	
+<!-- 요리 글 삭제 -->
+<delete id="deleteCook" parameterType="CookVO">
+	DELETE FROM COOK WHERE COOK_NO=#{cook_no}
+</delete>
+
+<!-- 요리 후기 삭제 -->
+<delete id="deleteCookAcCom" parameterType="act_comVO">
+	DELETE FROM ACT_COM WHERE AC_CATEGORY='요리' AND PC_NO=#{pc_no}
+</delete>
+
 <!-- 요리 후기 등록 -->
 <insert id="insertCookActComm" parameterType="act_comVO">
 	INSERT INTO ACT_COM
 	(MBR_ID,AC_NO,AC_CONTENT,AC_RATE,AC_CATEGORY,PC_NO,AC_PIC) VALUES 
 	(#{mbr_id},SEQ_ACT_COM_AC_NO.NEXTVAL,#{ac_content},#{ac_rate},'요리',#{pc_no},#{ac_pic})
 </insert>
+
+<!-- 요리조회수 증가 -->
+<update id="cookhitPlus" parameterType="CookVO">
+	UPDATE COOK SET
+	COOK_HIT = COOK_HIT + 1
+	WHERE COOK_NO = #{cook_no}
+</update>
+
 
 <!-- (2).놀이  -->
   <!-- CLOB데이터 형식 String 변환 -->
@@ -78,7 +96,7 @@
 </select>
 
 
-<!-- 조회수 증가 -->
+<!-- 놀이조회수 증가 -->
 	<update id="hitPlus" parameterType="PlayVO">
 		UPDATE PLAY SET
 		PLAY_HIT = PLAY_HIT + 1
@@ -122,8 +140,9 @@
 
 <!-- 후기 : 평점조회 -->
  <select id="getStar" resultType="Act_comVO" parameterType="act_comVO">
-		SELECT ROUND(AVG(AC_RATE)) AS ROUNDRATE FROM ACT_COM WHERE AC_CATEGORY='놀이' AND PC_NO=#{pc_no}
-	</select>   
+		SELECT ROUND(AVG(AC_RATE)) AS ROUNDRATE FROM ACT_COM
+		 	WHERE AC_CATEGORY=#{ac_category} AND PC_NO=#{pc_no}
+</select>   
 
 
 <!-- 후기 : 후기등록 -->
@@ -180,4 +199,20 @@ INSERT INTO ACT_COM
 <select id="getChild" resultType="ChildVO">
 	SELECT TRUNC(SYSDATE - TO_DATE((SELECT CHI_BIRTH FROM CHILD WHERE CHI_NO=#{chi_no}), 'YY/MM/DD')) chi_days, (SELECT TRUNC(MONTHS_BETWEEN(SYSDATE, chi_birth)) FROM CHILD WHERE CHI_NO=#{chi_no}) chi_month FROM DUAL	
 </select>
+
+<!-- 날짜계산 -->
+<select id="getDate" resultType="ChildVO">
+	SELECT CHI_BIRTH FROM CHILD WHERE CHI_NO=#{chi_no}
+</select>
+
+
+
+<!-- ################################메인 -->
+<select id="productList" resultType = "ProductVO">
+	SELECT ROWNUM, A.* FROM 
+	(SELECT PRO_NO, PRO_NAME, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(PRO_PRICE)), '([0-9]{3})','\1,')), '^,','') AS PRO_PRICE,PRO_PIC FROM PRODUCT
+	 ORDER BY PRO_NO DESC) A
+	 WHERE  <![CDATA[ROWNUM <= 6]]>
+</select>
+
 </mapper>

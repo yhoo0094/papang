@@ -1,13 +1,13 @@
 	//play-box 클릭
 	$('.box').on('click',function boxclick() {
 			var play_no= $(this).find('.play_no').text();
-			location.href='playView?play_no='+ play_no;
+			location.href='playView?play_no='+ play_no+'&ac_category=놀이';
 		});
 		
 	//cook-box 클릭
 	$('.c_box').on('click',function(){
 		var cook_no = $(this).find('.cook_no').text();
-		location.href="cookView?cook_no=" + cook_no;	
+		location.href="cookView?cook_no=" + cook_no+'&ac_category=요리';
 	});
 	
 	$(function(){

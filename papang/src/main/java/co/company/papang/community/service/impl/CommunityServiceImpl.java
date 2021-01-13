@@ -75,6 +75,14 @@ public class CommunityServiceImpl implements CommunityService {
 	public int noticeHitPlus(NqVO nqVO) {
 		return dao.noticeHitPlus(nqVO);
 	}
-	
-	
+
+	@Override
+	public int commentDelete(Community_comVO community_comVO) {
+		return dao.commentDelete(community_comVO);
+	}
+
+	@Override
+	public int commentUpdate(Community_comVO community_comVO) {
+		return dao.commentUpdate(community_comVO);
+	}
 }

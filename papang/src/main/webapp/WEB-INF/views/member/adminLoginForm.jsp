@@ -37,49 +37,50 @@ p.loginpage {
 	margin: 0px;
 }
 
-/* .social-item {
-  width: 50px;
-  height: 50px;
-} */
 </style>
-<script type="text/javascript">
-// 	$(function() {
-// 		$("#loginBtn").click(function() {
-// 			var ad_id = $("#ad_id").val();
-// 			var ad_pw = $("#ad_pw").val();
-// 			//var remember = $("#remember").is(":checked");
-// 			$.ajax({
-// 				type : "post",
-// 				url : "${pageContext.request.contextPath}/member/adminLogin",
-// 				data : {
-// 					ad_id : ad_id,
-// 					ad_pw : ad_pw,
-// 					//remember : remember
-// 				},
-// 				success : function(data) {
-// 					if (data == 0) { // 데이터없음 = 로그인X
-// 						alert("회원이 아닙니다");
-// 					} else {
-// 						location.href = "main/main";
-// 					}
-// 				}
-
-// 			})
-// 		})
-// 	})
-</script>
 <head>
 <title>로그인</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/util.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/login.css">
+<!--===============================================================================================-->
+
 </head>
-<body>
+<body style="background-color: #fff5d2;">
 
 	<div class="limiter">
 		<div class="container-login100"
 			style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
-				<span class="login100-form-title p-b-41"> 로그인 </span>
+				<span class="login100-form-title p-b-41"> 관리자 로그인 </span>
 				<form class="login100-form validate-form p-b-33 p-t-5" id="frm"
 					name="frm" method="post" action="${pageContext.request.contextPath}/member/adminLogin">
 

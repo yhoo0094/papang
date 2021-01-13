@@ -39,12 +39,75 @@
 .note-resizebar {
 	display: none;
 }
+.commentMenu{
+	font-size: 12px; 
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
+	var $tr;
 	$(()=>{
+		$('.sirenImg').on({
+			"click" : function() {
+				
+			}
+		});
+		
+		$("#commentUpdateBtn").on({ //댓글 모달에서 수정하기 버튼 클릭
+			"click" : function() {
+				$.ajax({ 
+				    url: "${pageContext.request.contextPath}/community/commentUpdate",  
+				    type: 'POST',  
+				    dataType: 'json', 
+				    data : $("#commentUpdateForm").serialize(),
+				    success: function(result) {
+				    		console.log(result.cc_content);
+				    		$tr.find('#tempt').text(result.cc_content);
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				 });
+			}
+		});
+		
+		//댓글 수정 버튼 클릭
+		$('.commentUpdateBtn').on({
+			"click" : function() {
+				var cc_no = $(this).parent().find('.commentNumInput').val();
+				var commentText = $(this).closest('div').find('.commentContent').text();
+				$tr = $(this).closest('div')
+				$(this).closest('div').find('.commentContent').eq(0).attr("id","tempt");//댓글 위치
+				$('#commentUpdateModal').modal();
+				$('#commentUpdateTextarea').val(commentText);
+				$('#commentUpdateInput').val(cc_no);
+			}
+		});
+		
 		$("#gobackBtn").on({
 			"click" : function() {
 				location.href="${pageContext.request.contextPath}/community/board";
+			}
+		})
+		
+		$(".commentDeleteBtn").on({ //댓글 삭제하기
+			"click" : function() {
+				if(confirm("정말로 삭제하시겠습니까?")){
+					var cc_no = $(this).parent().find('.commentNumInput').val();
+					var tr =  $(this).closest('tr');
+					$.ajax({ 
+					    url: "${pageContext.request.contextPath}/community/commentDelete",  
+					    type: 'POST',  
+					    dataType: 'text', 
+					    data : {"cc_no":cc_no},
+					    success: function(number) {
+					    	tr.remove();
+					    }, 
+					    error:function(xhr, status, message) { 
+					        alert(" status: "+status+" er:"+message);
+					    } 
+					 });
+				}
 			}
 		})
 		
@@ -78,6 +141,10 @@
 				location.href = "${pageContext.request.contextPath}/community/delete?com_no="+${param.com_no}
 			}
 		});
+		
+		if(${update}){
+			alert("수정이 완료되었습니다.")
+		};
 	})
 </script>
 </head>
@@ -131,7 +198,8 @@
 			</table>
 			<br>
 			<div align="center">
-				<c:if test="${not empty communityVO.com_no and communityVO.mbr_id eq sessionScope.user.mbr_id}">
+				<c:if
+					test="${not empty communityVO.com_no and communityVO.mbr_id eq sessionScope.user.mbr_id}">
 					<button type="button" id="updateBtn" class="btnYellow bMedium">수정하기</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" id="deleteBtn" class="btnRed bMedium">삭제하기</button>
@@ -171,16 +239,26 @@
 			</div>
 			<table style="width: 100%">
 				<c:forEach items="${community_comVOList}" var="v">
-					<tr>
+					<tr class="commentTr">
 						<td align="center" width="10%">
 							<div>${v.mbr_id}</div>
 						</td>
 						<td width="90%">
-							<div id="commentDiv">
-								${v.cc_content}&nbsp; <img class="sirenImg" alt="사이렌사진"
-									src="${pageContext.request.contextPath}/resources/images/siren.png"
-									width="1%" height="1%"> <span style="font-size: 8px">
-									신고하기 </span>
+							<div>
+								<span class="commentContent" id="tempt">${v.cc_content}</span>
+								<c:if test="${sessionScope.user.mbr_id != v.mbr_id}">
+									<img class="sirenImg" alt="사이렌사진"
+										src="${pageContext.request.contextPath}/resources/images/siren.png"
+										width="1%" height="1%">
+									<span class="commentMenu">신고하기</span>
+								</c:if> 
+								<c:if test="${sessionScope.user.mbr_id == v.mbr_id}">
+									<span class="commentMenu">
+										<span class="commentMenu commentUpdateBtn">(수정</span> 
+										/ <span class="commentMenu commentDeleteBtn">삭제)</span>
+										<input type="hidden" value="${v.cc_no}" class="commentNumInput">
+									</span>
+								</c:if>
 							</div>
 						</td>
 					</tr>
@@ -191,7 +269,6 @@
 			<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 		</c:if>
 	</div>
-
 	<script>
 		//여기 아래 부분
 		$('#summernote').summernote({
@@ -202,4 +279,24 @@
 			lang : "ko-KR", // 한글 설정
 		});
 	</script>
+	
+	<!-- Modal 댓글 수정창-->
+	<div class="modal fade" id="commentUpdateModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="commentUpdateForm" action="${pageContext.request.contextPath}/community/commentUpdate">
+					<input type="hidden" name="cc_no" id="commentUpdateInput">
+					<div class="modal-body" align="center">
+						<textarea id="commentUpdateTextarea" name="cc_content" rows="5" cols="102" name="comm" style="width: 100%"></textarea>
+					</div>
+					<div align="right" style="margin-right: 20px; margin-bottom: 20px">
+						<button id="commentUpdateBtn" type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
 </body>

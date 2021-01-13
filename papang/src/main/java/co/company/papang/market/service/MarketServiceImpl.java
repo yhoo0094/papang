@@ -49,34 +49,51 @@ public class MarketServiceImpl implements MarketService {
 		return dao.deleteCart(bag);
 	}
 
-	@Override
-	public void orderInfo(Order_infoVO order) {
-		dao.orderInfo(order);
-	}
-
-	@Override
-	public void deleteAllCart(String mbr_id) {
-		dao.deleteAllCart(mbr_id);
-	}
-
-	@Override
-	public void orderDetail(Od_detailVO detail) {
-		dao.orderDetail(detail);
-	}
+//	@Override
+//	public void orderInfo(Order_infoVO order) {
+//		dao.orderInfo(order);
+//	}
+//
+//	@Override
+//	public void deleteAllCart(String mbr_id) {
+//		dao.deleteAllCart(mbr_id);
+//	}
+//
+//	@Override
+//	public void orderDetail(Od_detailVO detail) {
+//		dao.orderDetail(detail);
+//	}
 
 	@Override
 	public int countCart(String pro_no, String mbr_id) {
 		return dao.countCart(pro_no, mbr_id);
 	}
 
-	@Override
-	public void cntChange(BagVO bag) {
-		dao.cntChange(bag);
-	}
+//	@Override
+//	public void cntChange(BagVO bag) {
+//		dao.cntChange(bag);
+//	}
 
 	@Override
 	public void updateCart(BagVO bag) {
 		dao.updateCart(bag);
+	}
+
+	@Override
+	public void orderInsert(Order_infoVO order, Od_detailVO detail, String mbr_id) {
+		dao.orderInfo(order);
+		dao.orderDetail(detail);
+		dao.deleteAllCart(mbr_id);
+	}
+
+	@Override
+	public void minusWareCnt(String mbr_id) {
+		dao.minusWareCnt(mbr_id);
+	}
+
+	@Override
+	public void updateProCnt(BagVO bag) {
+		dao.updateProCnt(bag);
 	}
 
 }

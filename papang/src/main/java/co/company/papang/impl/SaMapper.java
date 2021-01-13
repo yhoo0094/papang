@@ -9,6 +9,7 @@ import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 import co.company.papang.vo.PreventionVO;
+import co.company.papang.vo.ProductVO;
 
 public interface SaMapper {
 
@@ -28,12 +29,14 @@ public interface SaMapper {
 	public List<Map<String,Object>> getCookList(CookVO cookVO);//리스트 전체 조회
 	public int insertCook(CookVO cookVO); //요리 글 등록
 	public CookVO getCook(CookVO cookVO);//요리 단건 조회
-	
+	public int cookhitPlus(CookVO cookVO);//요리글 조회수 증가
+	public int deleteCook(CookVO cookVO);//요리 글 삭제
+	public int deleteCookAcCom(Act_comVO act_comVO);//요리 글 삭제시 후기 삭제
 	
 	//2.[놀이]
 	public List<Map<String,Object>> getPlayList(PlayVO playVO); //리스트 전체 조회
 	public PlayVO getPlay(PlayVO playVO); //리스트 단건 조회
-	public int hitPlus(PlayVO playVO);//조회수
+	public int hitPlus(PlayVO playVO);//놀이조회수
 	public int insertPlay(PlayVO playVO);//놀이 글 등록
 	public MemberVO getMember(MemberVO memberVO);//멤버 조회(멤버 사진 조회용)
 	public int deletePaly(PlayVO playVO); //놀이 글 삭제
@@ -50,9 +53,14 @@ public interface SaMapper {
 	public List<Act_comVO> getCActComm(Act_comVO act_comVO);//요리후기 전제 조회
 	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
 	
+	//4.날짜구하기
+	public ChildVO getDate(ChildVO childVO);//날짜구하기
 	
 	
 	
+	
+	//4.[메인]
+	public List<ProductVO> productList(ProductVO productVO);//메인 상품리스트 가져오기
 	
 }
 

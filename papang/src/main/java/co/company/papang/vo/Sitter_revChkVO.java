@@ -20,5 +20,7 @@ public class Sitter_revChkVO {
 	private String end_date;
 	private String count;
 	private String review;
+	private String sc_content;
+	private String sc_rate;
 	
 }

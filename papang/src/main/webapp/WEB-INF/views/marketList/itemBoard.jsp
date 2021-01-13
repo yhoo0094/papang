@@ -28,7 +28,7 @@
 /* 	position: relative; */
 	
 }
-thead, .marketTable_filter, .marketTables_length{
+thead, .dataTables_length{
 	display: none;
 }
 
@@ -46,17 +46,24 @@ thead, .marketTable_filter, .marketTables_length{
 
 <div class="container center_div">
 	<h2>전체 상품</h2>
+	<div align="right">
+		<c:if test="${!empty admin.ad_id}">
+			<button type="button" class="btnYellow bMedium"
+				onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
+		</c:if>
+	</div>
 	<a href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순</a>
 	<div id="marketListBoard">
-		<table class="table" id="marketTable">
+		<table class="table" id="dataTable">
 			<thead>
 				<tr>
-					<th class="tableTh">r</th>
-					<th class="tableTh">r</th>
+					<th>r</th>
+					<th>r</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="pro" items="${ pro }">
+				<c:if test="${ !empty pro.pro_cnt }">
 					<tr class="marketTableTr">
 					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
 						<td><p style="display: none">${pro.pro_no}</p>
@@ -64,8 +71,11 @@ thead, .marketTable_filter, .marketTables_length{
 								<div class="card h-100 strongYellow">
 									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img
 										class="card-img-top"
-										src="${pageContext.request.contextPath}/images/${pro.pro_pic}"></a>
+										src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"></a>
 									<div class="card-body">
+									<c:if test="${pro.pro_cnt == 0}">
+									<font style="color: red;">품절</font>
+									</c:if>
 										<h4 class="card-title">
 											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 										</h4>
@@ -75,14 +85,9 @@ thead, .marketTable_filter, .marketTables_length{
 							</div>
 						</td>
 					</tr>
+				</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<c:if test="${!empty admin.ad_id}">
-	<div align="right">
-		<button type="button" class="btnYellow bMedium"
-			onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
-	</div>
-	</c:if>
 </div>

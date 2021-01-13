@@ -2,7 +2,9 @@ package co.company.papang.market.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,12 +34,16 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.UsedVO;
 import co.company.papang.vo.Used_comVO;
+import co.company.papang.vo.WarehousingVO;
 
 @Controller
 public class MarketController {
-	@Autowired EsMapper dao;
-	@Autowired MarketService mk_service;
-	@Autowired UsedService used_service;
+	@Autowired
+	EsMapper dao;
+	@Autowired
+	MarketService mk_service;
+	@Autowired
+	UsedService used_service;
 
 // 상품판매	
 	// 판매상품 전체 리스트
@@ -48,7 +54,7 @@ public class MarketController {
 		mav.setViewName("marketList/itemBoard");
 		return mav; // jsp주소
 	}
-	
+
 	// 판매상품 전체 리스트
 	@RequestMapping("marketList/itemBoardPriceDesc") // url 예전 .do
 	public ModelAndView test17(ProductVO product) throws IOException {
@@ -57,14 +63,14 @@ public class MarketController {
 		mav.setViewName("marketList/itemBoard");
 		return mav; // jsp주소
 	}
-	
+
 	// 판매상품 상세
 	@RequestMapping("market/itemDetail") // url 예전 .do
 	public String getItem(ProductVO product, Model model) throws IOException {
 		model.addAttribute("pro", mk_service.getItem(product));
 		return "market/itemDetail"; // jsp주소
 	}
-	
+
 	// 판매상품 등록
 	@RequestMapping("market/itemInsert") // url 예전 .do
 	public String test9(HttpServletResponse response, HttpServletRequest request, ProductVO product)
@@ -75,7 +81,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
@@ -92,19 +98,20 @@ public class MarketController {
 
 	// 판매상품 수정
 	@RequestMapping("market/itemUpdate") // url 예전 .do
-	public String test6(HttpServletResponse response, HttpServletRequest request, ProductVO product) throws IllegalStateException, IOException {
+	public String test6(HttpServletResponse response, HttpServletRequest request, ProductVO product)
+			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		
+
 		// 이미지파일(첨부파일 읽어내기)
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
 		mk_service.updateItem(product);
-		return "redirect:/market/itemDetail?pro_no="+ product.getPro_no(); // jsp주소
+		return "redirect:/market/itemDetail?pro_no=" + product.getPro_no(); // jsp주소
 	}
 
 	// 판매상품 수정 폼
@@ -130,6 +137,7 @@ public class MarketController {
 		mav.setViewName("marketList/usedBoard");
 		return mav; // jsp주소
 	}
+
 	// 중고게시판 판매중 리스트
 	@RequestMapping("marketList/usedOnSaleBoard") // url 예전 .do
 	public ModelAndView test16(UsedVO used) throws IOException {
@@ -141,26 +149,27 @@ public class MarketController {
 
 	// 중고게시판 상세
 	@RequestMapping("market/usedDetail") // url 예전 .do
-	public String getUsed(UsedVO used, Used_comVO used_com, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public String getUsed(UsedVO used, Used_comVO used_com, Model model, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		// 조회수 올리기
-		if(used.getUsed_no() != null) {
+		if (used.getUsed_no() != null) {
 			boolean existCookie = false;
 			Cookie[] cookieList = request.getCookies();
-			for(Cookie co : cookieList) {
-				if(co.getValue().equals(used.getUsed_no())) {
+			for (Cookie co : cookieList) {
+				if (co.getValue().equals(used.getUsed_no())) {
 					existCookie = true;
 				}
 			}
-			//쿠키생성
-			if(!existCookie) {
-				//쿠키가 없는 경우
+			// 쿠키생성
+			if (!existCookie) {
+				// 쿠키가 없는 경우
 				System.out.println("쿠키생성");
 				Cookie cookie = new Cookie("UsedCookie", used.getUsed_no());
-				cookie.setMaxAge(60*60*24);
+				cookie.setMaxAge(60 * 60 * 24);
 				response.addCookie(cookie);
 				used_service.hitPlus(used);
 			}
-			model.addAttribute("used",used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
+			model.addAttribute("used", used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
 			model.addAttribute("used_comList", used_service.getUsedCommList(used_com)); // 댓글조회
 		}
 		// model.addAttribute("used", used_service.getUsed(used));
@@ -169,23 +178,24 @@ public class MarketController {
 
 	// 중고게시판 등록
 	@RequestMapping("market/usedInsert") // url 예전 .do
-	public String test10(HttpServletRequest request, UsedVO used, HttpSession session) throws IllegalStateException, IOException {
+	public String test10(HttpServletRequest request, UsedVO used, HttpSession session)
+			throws IllegalStateException, IOException {
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
 		used.setMbr_id(mbr_id);
-		
+
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 
 		// 이미지파일(첨부파일 읽어내기)
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
 		used_service.insertUsed(used);
-		return "redirect:/marketList/usedBoard"; //jsp주소
+		return "redirect:/marketList/usedBoard"; // jsp주소
 	}
 
 	// 중고게시판 등록 폼
@@ -196,45 +206,47 @@ public class MarketController {
 
 	// 중고게시판 수정
 	@RequestMapping("market/usedUpdate") // url 예전 .do
-	public String test8(UsedVO used, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
+	public String test8(UsedVO used, HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		
+
 		// 이미지파일(첨부파일 읽어내기)
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
 		used_service.updateUsed(used);
-		return "redirect:/market/usedDetail?used_no="+ used.getUsed_no();
+		return "redirect:/market/usedDetail?used_no=" + used.getUsed_no();
 	}
 
 	// 중고게시판 수정 폼
 	@RequestMapping("market/usedUpdateForm") // url 예전 .do
 	public String test13(UsedVO used, Model model) throws IOException {
-		model.addAttribute("used",used_service.getUsed(used));
+		model.addAttribute("used", used_service.getUsed(used));
 		return "market/usedUpdateForm"; // jsp주소
 	}
+
 	// 중고게시판 삭제
 	@RequestMapping("market/usedDelete") // url 예전 .do
 	public String test17(UsedVO used) throws IOException {
 		used_service.deleteUsed(used);
 		return "redirect:/marketList/usedOnSaleBoard";
 	}
+
 // 댓글
 	@ResponseBody
 	@RequestMapping("used/usedComm")
-	public Used_comVO usedCommInsert(Used_comVO usedCom, HttpServletRequest request, HttpSession session){
+	public Used_comVO usedCommInsert(Used_comVO usedCom, HttpServletRequest request, HttpSession session) {
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
 		usedCom.setMbr_id(mbr_id);
 		used_service.usedCommInsert(usedCom);
-		System.out.println("글번호>>>" + usedCom.getUsed_no());
 		return usedCom;
 	}
-	
+
 // 장바구니
 	// 장바구니 목록
 	@RequestMapping("marketList/cart") // url 예전 .do
@@ -263,15 +275,16 @@ public class MarketController {
 		}
 		return result;
 	}
+
 	// 장바구니중복체크
 	@RequestMapping(value = "/ajax/cartCnt", method = RequestMethod.GET) // url 예전 .do
 	@ResponseBody
 	public int cartCnt(@RequestParam("pro_no") String pro_no, HttpSession session) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
-		System.out.println(">>>중복체크" + mk_service.countCart(pro_no, mbr_id));
 		return mk_service.countCart(pro_no, mbr_id); // jsp주소
 	}
+
 	// 장바구니 수정
 	@RequestMapping("market/cartUpdate") // url 예전 .do
 	@ResponseBody
@@ -288,7 +301,7 @@ public class MarketController {
 		}
 		return result;
 	}
-	
+
 	// 장바구니 삭제
 	@RequestMapping(value = "/market/cartDelete", method = RequestMethod.POST) // url 예전 .do
 	@ResponseBody
@@ -300,7 +313,6 @@ public class MarketController {
 		int bag_no = 0;
 		if (mbr_id != null) {
 			bag.setMbr_id(mbr_id);
-			System.out.println("chArr>>>>" + chArr);
 			for (String i : chArr) {
 				bag_no = Integer.parseInt(i);
 				bag.setBag_no(bag_no);
@@ -312,16 +324,36 @@ public class MarketController {
 	}
 
 // 주문
+	// 상품재고 update, 재고내역 insert
+	@RequestMapping(value = "/market/changeWare", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean test18(HttpSession session, @RequestParam(value = "proArr[]") List<String> proArr, @RequestParam(value = "bagArr[]") List<String> bagArr, BagVO bag, HttpServletRequest request) throws IOException {
+		MemberVO memberVo = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVo.getMbr_id();
+		// 여기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!String pro_no;
+		for(int i=0;i<proArr.size();i++) {
+			bag.setPro_no(proArr.get(i));
+			bag.setBag_cnt(bagArr.get(i));
+			mk_service.updateProCnt(bag);
+		}
+		mk_service.minusWareCnt(mbr_id); // 출고내역
+//		order.setMbr_id(mbr_id);
+//		order.setOrder_sum(order_sum);
+//		mk_service.orderInsert(order, detail, mbr_id);// 주문완료시 3개 작동
+		return true;
+	}
+
 	// 전체 주문하기
 	@RequestMapping(value = "/market/order", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request) throws IOException {
+	public boolean test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request)
+			throws IOException {
 		String order_sum = request.getParameter("order_sum");
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		order.setMbr_id(mbr_id);
 		order.setOrder_sum(order_sum);
-		
+
 		// 주문번호 무작위 생성
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
@@ -335,13 +367,11 @@ public class MarketController {
 
 		String order_no = ymd + subNum;
 		order.setOrder_no(order_no);
-		mk_service.orderInfo(order);
-		
+
 		detail.setOrder_no(order_no);
 		detail.setMbr_id(mbr_id);
-		mk_service.orderDetail(detail);
-		
-		mk_service.deleteAllCart(mbr_id); // 전체주문이니까 주문끝나면 카트 완전히 비우기
+
+		mk_service.orderInsert(order, detail, mbr_id);// 주문완료시 3개 작동
 		return true;
 	}
 	// 선택 주문하기

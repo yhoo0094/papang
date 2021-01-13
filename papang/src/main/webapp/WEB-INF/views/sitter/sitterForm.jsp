@@ -206,8 +206,6 @@ function getReservatedDayList(){
 	 });  
 }
 
-
-
 function calendarMaker(target, date) {
     if (date == null || date == undefined) {
         date = new Date();
@@ -524,7 +522,7 @@ function calendarMaker(target, date) {
 			<div>
 				<img class="sitterProfileImg" alt="시터이미지"
 					src="${pageContext.request.contextPath}/resources/images/sitterProfile/${sitterVOChk.sit_pic}">
-				<button id="showRateBtn" class="btnRed">후기보기</button>
+				<button id="showRateBtn" class="btnYellow" type="button" data-toggle="modal" data-target="#reviewModal">후기보기</button>
 				<table class="sitterInfoTable" align="center">
 					<tr align="center">
 						<td align="center">휴&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;무:</td>
@@ -577,5 +575,36 @@ function calendarMaker(target, date) {
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal 후기 리스트-->
+	<div class="modal fade" id="reviewModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<p class="modal-title" id="exampleModalLabel">서비스 후기</p>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<span id="reservationNumTd" style="display: none;"></span>
+				</div>
+				<div class="modal-body" align="center">
+					<table class="reportTd">
+						<c:forEach items="${sitter_revChkVOList}" var="v">
+							<tr>
+								<td align="left">${v.sc_rate}</td>
+								<td id="reservationSitterIdTd">${v.sc_content}</td>
+							</tr>	
+						</c:forEach>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal -->
 </body>
 </html>

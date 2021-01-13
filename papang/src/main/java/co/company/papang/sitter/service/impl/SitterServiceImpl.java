@@ -79,5 +79,10 @@ public class SitterServiceImpl implements SitterService {
 	public int deleteReview(Sitter_comVO sitter_comVO) {
 		return dao.deleteReview(sitter_comVO);
 	}
+
+	@Override
+	public List<Sitter_comVO> getReviewList(Sitter_revChkVO sitter_revChkVO) {
+		return dao.getReviewList(sitter_revChkVO);
+	}
 	
 }

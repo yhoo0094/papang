@@ -129,6 +129,7 @@ thead, #dataTable_filter, #dataTable_length {
 	margin: 4rem 0 1rem 0;
 }
 .cookno_hidden{display: none;}
+
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
@@ -251,8 +252,11 @@ thead, #dataTable_filter, #dataTable_length {
 					<td class="cookno_hidden">${cook.COOK_NO}</td>
 					<td class="c_box">
 						<ol class="lst_recipe cool_recipes">
-							<li><a class="call_recipe thmb" href="#">
-							 <img id="${cook.COOK_NO}" src=""></a>
+							<li>
+							
+							<a class="call_recipe thmb" href="#">
+							<img id="${cook.COOK_NO}" src=""></a>
+							 
 								<span class="author"> 
 								<a href="#">
 								<!-- 회원이미지--> 

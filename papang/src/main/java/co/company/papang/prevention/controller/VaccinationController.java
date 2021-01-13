@@ -1,7 +1,6 @@
 package co.company.papang.prevention.controller;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import co.company.papang.prevention.service.VaccinationService;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.PreventionVO;
+import co.company.papang.vo.ProductVO;
 
 @Controller
 public class VaccinationController {
@@ -24,8 +24,8 @@ public class VaccinationController {
 	VaccinationService service; // 서비스
 
 	@RequestMapping("vaccination/vaccinationList")
-	public ModelAndView vaccinationList(HttpServletResponse response) throws IOException {
-		return new ModelAndView("vaccination/vaccinationList");
+	public ModelAndView vaccinationList(HttpServletResponse response,ChildVO childVO) throws IOException {
+		return  new ModelAndView("vaccination/vaccinationList");
 	}
 
 	@RequestMapping("vaccination/vaccNotice")
@@ -36,6 +36,11 @@ public class VaccinationController {
 	@RequestMapping("vaccination/test")
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 		return new ModelAndView("vaccination/test");
+	}
+	
+	@RequestMapping("vaccination/test2")
+	public ModelAndView test2(HttpServletResponse response) throws IOException {
+		return new ModelAndView("vaccination/test2");
 	}
 
 	@ResponseBody // 아이 전체조회
@@ -77,6 +82,13 @@ public class VaccinationController {
 	  return  service.getChild(childVO);
   }
   
+  @ResponseBody //날짜구하기
+  @RequestMapping(value = "/getDate", method = RequestMethod.GET) 
+  public ChildVO getDate(Model model, ChildVO childVO) {
+	  return  service.getDate(childVO);
+  }
+  
+
 	 
 
 }

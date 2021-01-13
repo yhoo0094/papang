@@ -9,6 +9,7 @@
 	.center_div{
 		display: none;
 	}
+
 </style>
 
 </head>
@@ -26,7 +27,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/BXSlider/snowman.jpg')">
+        <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/상단배너1.jpg')">
        
           <div class="carousel-caption d-none d-md-block">
             <h3>First Slide</h3>
@@ -38,7 +39,7 @@
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div onclick="location.href='${banner.ban_link}'" class="carousel-item" style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/${banner.ban_pic}')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>${banner.ban_pic_name}</h3>
+           <%--  <h3>${banner.ban_pic_name}</h3> --%>
           </div>
         </div>
         </c:if>
@@ -58,119 +59,111 @@
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome to Modern Business</h1>
+    <h1 class="my-4">파파존스 서비스를 소개합니다</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
+    
+    
+      <div class="col-lg-4 mb-4"  align="center">
+       <figure class="snip1200">
+		  		  <img src="${pageContext.request.contextPath}/resources/images/main/메인미니1.png" />
+		  <figcaption>
+		    <p>어머니의 마음과 전문가의 
+		    <br/>
+		    손길이 함게합니다.
+            <br/>
+             	파파존스는 언제 어디서나
+            <br/>
+             	 우리아이들과
+             <br/>	
+             	 행복한 돌봄을 만들어 갑니다!</p>
+		    <div class="heading">
+		      <h2>시터<span> 서비스</span></h2>
+		    </div>
+		  </figcaption>
+		  <a href="#"></a>
+		</figure>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
+      
+      
+      <div class="col-lg-4 mb-4"  align="center">
+            <figure class="snip1200">
+					  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인2.jpg" />
+			  <figcaption>
+			    <p>엄마의 마음으로, 
+	            <br/>
+	            우리아이가 안전한 세상을 꿈꿉니다.
+	            <br/>
+	            100% 순면제작, 무형광 
+	            <br/>
+	            제품을 만나보세요</p>
+			    <div class="heading">
+			      <h2>파파존스<span> SHOP</span></h2>
+			    </div>
+			  </figcaption>
+			  <a href="#"></a>
+			</figure>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
+      
+      
+      <div class="col-lg-4 mb-4"  align="center">
+            <figure class="snip1200">
+			  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인3.jpg" />
+			  <figcaption>
+			    <p>새로운 놀이 아이디어가 필요할 때.
+            	<br/>
+            	놀면서 아이 성장발달을 
+            	<br/>
+            	도와주고 싶을 때. 
+            	<br/>
+            	파파존스의 놀이 패키지를
+            	 <br/>
+            	 만나보세요!</p>
+			    <div class="heading">
+			      <h2>육아대디<span> 첫 걸음</span></h2>
+			    </div>
+			  </figcaption>
+			  <a href="#"></a>
+			</figure>
       </div>
+      
     </div>
     <!-- /.row -->
 
+<hr/>
     <!-- Portfolio Section -->
-    <h2>Portfolio Heading</h2>
-
+    <h2 class="fontTitle">파파존스 SHOP</h2>
+	
     <div class="row">
+    <c:forEach items="${products}" var="product">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+        <p class="pro_no">${product.pro_no}</p>
+          <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/images/${product.pro_pic}" alt="상품 사진이없습니다"></a>
           <div class="card-body">
+          
+          <div class="proNameDiv">
             <h4 class="card-title">
-              <a href="#">Project One</a>
+              <a class="card_title2" href="#">${product.pro_name}</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+         </div>
+          
+          <div class="proPriceDiv">
+            <p class="card-text">
+       		 &#8361;${product.pro_price}
+            </p>
+          </div>
+            
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Two</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Three</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Four</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Five</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Six</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-          </div>
-        </div>
-      </div>
+	</c:forEach>
     </div>
     <!-- /.row -->
 
+
+<hr/>
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
@@ -198,10 +191,14 @@
     <!-- Call to Action Section -->
     <div class="row mb-4">
       <div class="col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+        <p>대구광역시 중구 국채보상로 537 5층  |   대표번호 : (053)421-2460 |  사업자번호 : 573-33-00097  | 
+			<br>
+	  		신고번호 제2021-3219632   |   대표: 강은선 김상민 문선애 조영래 최재영
+  		</p>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
+        
+        <a class="btn" href="#"><img class="topnav" src="${pageContext.request.contextPath}/resources/images/main/topnav.png"/></a>
       </div>
     </div>
 
