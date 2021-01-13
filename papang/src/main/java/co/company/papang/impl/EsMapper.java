@@ -7,6 +7,7 @@ import co.company.papang.vo.BagVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.Report_info;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.UsedVO;
 import co.company.papang.vo.Used_comVO;
@@ -30,7 +31,7 @@ public interface EsMapper {
 	public String adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	public MemberVO kLogin(MemberVO member); // 카카오로그인
 	public int kakaoCheck(String kid); // 카톡아이디 체크
-	public String stChk(MemberVO member); // 활동 정지일
+	public Report_info stChk(MemberVO member); // 활동 정지일
 	
 	public String findId(MemberVO member); // 아이디찾기
 	public String findPw(String mbr_id, String mbr_email, String key); // 비번찾기(임시비번 발급)
@@ -68,5 +69,6 @@ public interface EsMapper {
 	public void orderInfo(Order_infoVO order); // 주문내역 생성
 	public void orderDetail(Od_detailVO detail); // 주문 상세정보
 	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
+	public void updateProCnt(String pro_no, String pro_cnt, String bag_cnt);// 주문완료 후 상품재고 변경
 }
 

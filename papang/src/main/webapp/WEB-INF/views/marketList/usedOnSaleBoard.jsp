@@ -47,14 +47,14 @@
 		<table class="table" id="dataTable">
 			<thead>
 				<tr class="tableTrTh">
-					<th width="10%" class="tableTh">글번호</th>
-					<th width="10%" class="tableTh">분류</th>
-					<th width="10%" class="tableTh">지역</th>
-					<th width="15%" class="tableTh">사진</th>
-					<th width="25%" class="tableTh">제목</th>
-					<th width="10%" class="tableTh">작성자</th>
-					<th width="10%" class="tableTh">작성일</th>
-					<th width="10%" class="tableTh">조회수</th>
+					<th width="10%">글번호</th>
+					<th width="10%">분류</th>
+					<th width="10%">지역</th>
+					<th width="15%">사진</th>
+					<th width="25%">제목</th>
+					<th width="10%">작성자</th>
+					<th width="10%">작성일</th>
+					<th width="10%">조회수</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -32,6 +32,7 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.UsedVO;
 import co.company.papang.vo.Used_comVO;
+import co.company.papang.vo.WarehousingVO;
 
 @Controller
 public class MarketController {
@@ -231,7 +232,6 @@ public class MarketController {
 		String mbr_id = memberVO.getMbr_id();
 		usedCom.setMbr_id(mbr_id);
 		used_service.usedCommInsert(usedCom);
-		System.out.println("글번호>>>" + usedCom.getUsed_no());
 		return usedCom;
 	}
 	
@@ -269,7 +269,6 @@ public class MarketController {
 	public int cartCnt(@RequestParam("pro_no") String pro_no, HttpSession session) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
-		System.out.println(">>>중복체크" + mk_service.countCart(pro_no, mbr_id));
 		return mk_service.countCart(pro_no, mbr_id); // jsp주소
 	}
 	// 장바구니 수정
@@ -300,7 +299,6 @@ public class MarketController {
 		int bag_no = 0;
 		if (mbr_id != null) {
 			bag.setMbr_id(mbr_id);
-			System.out.println("chArr>>>>" + chArr);
 			for (String i : chArr) {
 				bag_no = Integer.parseInt(i);
 				bag.setBag_no(bag_no);
@@ -342,6 +340,12 @@ public class MarketController {
 		mk_service.orderDetail(detail);
 		
 		mk_service.deleteAllCart(mbr_id); // 전체주문이니까 주문끝나면 카트 완전히 비우기
+
+		// 상품재고 변경
+		String upPro_no = detail.getPro_no();
+		String upBag_cnt = detail.getBag_cnt();
+		//String upPro_cnt = 
+		
 		return true;
 	}
 	// 선택 주문하기

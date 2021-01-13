@@ -46,13 +46,19 @@ thead, .marketTable_filter, .marketTables_length{
 
 <div class="container center_div">
 	<h2>전체 상품</h2>
+	<div align="right">
+		<c:if test="${!empty admin.ad_id}">
+			<button type="button" class="btnYellow bMedium"
+				onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
+		</c:if>
+	</div>
 	<a href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순</a>
 	<div id="marketListBoard">
-		<table class="table" id="marketTable">
+		<table class="table" id="dataTable">
 			<thead>
 				<tr>
-					<th class="tableTh">r</th>
-					<th class="tableTh">r</th>
+					<th>r</th>
+					<th>r</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -79,10 +85,4 @@ thead, .marketTable_filter, .marketTables_length{
 			</tbody>
 		</table>
 	</div>
-	<c:if test="${!empty admin.ad_id}">
-	<div align="right">
-		<button type="button" class="btnYellow bMedium"
-			onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
-	</div>
-	</c:if>
 </div>

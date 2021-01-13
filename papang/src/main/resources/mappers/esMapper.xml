@@ -102,8 +102,8 @@
 <!-- =========================================================== -->
 <!-- 활동정지 체크 -->
 	<!-- 일반회원 -->
-	<select id="stChk" resultType="string">
-		SELECT RINFO_START+RINFO_CNT
+	<select id="stChk" resultType="Report_info">
+		SELECT RINFO_START+RINFO_CNT as rinfo_start,  rinfo_reason
 		FROM REPORT_INFO
 		WHERE mbr_id = #{mbr_id}
 	</select>
@@ -171,7 +171,7 @@
 	
 	<!-- 전체조회  -->	
 	<select id="getItemList" resultType="ProductVO">
-		SELECT * 
+		SELECT pro_no, pro_name, pro_price, pro_pic
 		FROM PRODUCT	  
 		ORDER BY pro_no DESC 
 	</select>
@@ -379,8 +379,7 @@
 	<insert id="orderDetail">
 		INSERT INTO ORDER_DETAIL (od_detail_no, order_no, pro_no, bag_cnt)
 			SELECT seq_order_detail_od_detail_no.nextval, #{order_no}, pro_no, bag_cnt
-		FROM BAG
-		WHERE mbr_id = #{mbr_id}
+		FROM BAG WHERE mbr_id = #{mbr_id}
 	</insert>
 	
 	<!-- 주문후 장바구니 비우기 -->
@@ -388,4 +387,16 @@
 		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
 	</delete>
+	<!-- 주문후 상품재고 변경 -->
+	<update id="updateProCnt" parameterType="string">
+		UPDATE product
+		SET pro_cnt = #{param2} - #{param3}
+		WHERE pro_no = #{param1};
+	</update>
+	<!-- 주문후 재고 테이블에서 출고내역 등록 -->
+	<insert id="minusWareCnt">
+		INSERT INTO WAREHOUSING ( PRO_NO, WARE_CNT, WARE_CATEGORY )
+			SELECT pro_no, -bag_cnt, '출고'
+		FROM BAG WHERE mbr_id = #{mbr_id}
+	</insert>
 </mapper>

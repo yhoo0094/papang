@@ -31,6 +31,7 @@ import co.company.papang.member.service.Sha256;
 import co.company.papang.member.service.UserMailSendService;
 import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.MemberVO;
+import co.company.papang.vo.Report_info;
 
 @Controller
 public class MemberController {
@@ -160,10 +161,13 @@ public class MemberController {
 						e.printStackTrace();
 					}
 				} else if (member.getMbr_status().equals("활동정지")) {
-					String stDate = dao.stChk(member);
+					Report_info rinfo = dao.stChk(member);
+					String stDate = rinfo.getRinfo_start();
+					String stReason = rinfo.getRinfo_reason();
 					try {
 						PrintWriter out = response.getWriter();
 						out.println("<script>alert('"+stDate+"까지 활동정지입니다');</script>");
+						out.println("<script>alert('정지사유 : "+stReason+"');</script>");
 						out.println("<script>location.href='/papang/';</script>");
 					} catch (IOException e) {
 						e.printStackTrace();
