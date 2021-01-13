@@ -138,7 +138,7 @@ $(()=>{
 		'click': function() {
 			$('#reservationModal').modal("hide");
 			$('#reviewRate').find('option').eq(0).attr({'selected':'selected'});
-	    	$('#reviewComment').text(sitter_comVO.sc_content);
+	    	$('#reviewComment').text('');
 		}
 	})
 	$('#reviewViewBtn').on({//후기 보기 버튼

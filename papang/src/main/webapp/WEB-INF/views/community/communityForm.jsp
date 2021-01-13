@@ -47,9 +47,15 @@
 <script type="text/javascript">
 	var $tr;
 	$(()=>{
-		$('.sirenImg').on({
+		$('#reportCommentSpan').on({ //댓글 신고하기
 			"click" : function() {
-				
+				$('#reprotCommentForm').submit();
+			}
+		});
+		
+		$('#reportSpan').on({ //글 신고하기
+			"click" : function() {
+				$('#reprotForm').submit();
 			}
 		});
 		
@@ -150,7 +156,7 @@
 </head>
 <body>
 	<div align="center" class="communityFormTitle strongYellow">
-		<h3>커뮤니티 글 등록하기</h3>
+		<h3>커뮤니티</h3>
 	</div>
 	<br>
 	<div align="center" class="communityFormDiv">
@@ -213,8 +219,21 @@
 				</c:if>
 			</div>
 		</form:form>
+		<form action="${pageContext.request.contextPath}/report.do" id="reprotForm">
+			<input type="hidden" name="mbr_id" value="${sessionScope.user.mbr_id}">
+			<input type="hidden" name="repo_category" value="커뮤니티">
+			<input type="hidden" name="repo_category_no" value="${communityVO.com_no}">
+			<input type="hidden" name="re_mbr_id" value="${communityVO.mbr_id}">
+		</form>
 		<c:if test="${not empty communityVO.com_no}">
 			<br>
+			<c:if test="${communityVO.mbr_id != sessionScope.user.mbr_id}">
+				<div align="right" style="font-size: 16px; float: right; color: #ff577f">
+					<span id="reportSpan" class="commentMenu">
+						<img class="sirenImg" alt="사이렌사진" src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">글 신고하기
+					</span>
+				</div>
+			</c:if>
 			<div align="left">
 				<b style="font-size: 20px;">댓글 쓰기</b>
 			</div>
@@ -247,10 +266,15 @@
 							<div>
 								<span class="commentContent" id="tempt">${v.cc_content}</span>
 								<c:if test="${sessionScope.user.mbr_id != v.mbr_id}">
-									<img class="sirenImg" alt="사이렌사진"
-										src="${pageContext.request.contextPath}/resources/images/siren.png"
-										width="1%" height="1%">
-									<span class="commentMenu">신고하기</span>
+									<span class="commentMenu" id="reportCommentSpan">
+										<img class="sirenImg" alt="사이렌사진" src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">신고하기
+									</span>
+									<form action="${pageContext.request.contextPath}/report.do" id="reprotCommentForm">
+										<input type="hidden" name="mbr_id" value="${sessionScope.user.mbr_id}">
+										<input type="hidden" name="repo_category" value="커뮤니티댓글">
+										<input type="hidden" name="repo_category_no" value="${v.cc_no}">
+										<input type="hidden" name="re_mbr_id" value="${v.mbr_id}">
+									</form>
 								</c:if> 
 								<c:if test="${sessionScope.user.mbr_id == v.mbr_id}">
 									<span class="commentMenu">

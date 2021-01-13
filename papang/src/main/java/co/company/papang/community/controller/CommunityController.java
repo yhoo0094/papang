@@ -27,6 +27,7 @@ import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.ReportVO;
 
 @Controller
 public class CommunityController {
@@ -151,9 +152,9 @@ public class CommunityController {
 		return service.commentDelete(community_comVO);
 	}
 	
-	@RequestMapping("community/commentReport")//댓글 신고하기
-	public int commentReport(Community_comVO community_comVO) {
-		return service.commentDelete(community_comVO);
+	@RequestMapping("report.do")//댓글 신고하기
+	public String commentReport(ReportVO reportVO) {
+		return "report/report";
 	}
 
 	/*-------------------------- 기타 --------------------------*/

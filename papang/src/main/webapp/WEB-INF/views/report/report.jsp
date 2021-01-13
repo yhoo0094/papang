@@ -46,44 +46,20 @@ function reportInsert(){
                <tr>
                   <td align="center">신고글</td>
                   <td width="100%">
-                  	  <select id='repo_category' name= 'repo_category' style="width:15%">
-                  	  
-                	<c:if test='${ReportVO.repo_category eq "시터"}'>
-                  	  <option value="시터" selected="selected">시터</option>
-                  	  <option value="장터 ">장터</option>
-					  <option value="커뮤니티">커뮤니티</option>
-					  <option value="활동">활동</option>
-                  	  </c:if>
-                  	  
-                  	  <c:if test='${ReportVO.repo_category eq "장터"}'>
-                  	  <option value="시터">시터</option>
-                  	  <option value="장터 " selected="selected">장터</option>
-					  <option value="커뮤니티">커뮤니티</option>
-					  <option value="활동">활동</option>
-                  	  </c:if>
-                  	  
-                  	  <c:if test='${ReportVO.repo_category eq "커뮤니티"}'>
-                  	  <option value="시터">시터</option>
-                  	  <option value="장터 ">장터</option>
-					  <option value="커뮤니티"  selected="selected">커뮤니티</option>
-					  <option value="활동">활동</option>
-                  	  </c:if>
-                  	  
-                  	  <c:if test='${ReportVO.repo_category eq "활동"}'>
-                  	  <option value="시터">시터</option>
-                  	  <option value="장터 ">장터</option>
-					  <option value="커뮤니티">커뮤니티</option>
-					  <option value="활동"  selected="selected">활동</option>
-                  	  </c:if>
-                  	  
+                  	  <select id='repo_category' name= 'repo_category' style="width:20%">
+	                  	  <option value="시터" <c:if test='${reportVO.repo_category eq "시터"}'> selected="selected" </c:if>>시터</option>
+	                  	  <option value="장터" <c:if test='${reportVO.repo_category eq "장터"}'> selected="selected" </c:if>>장터</option>
+						  <option value="활동" <c:if test='${reportVO.repo_category eq "활동"}'> selected="selected" </c:if>>활동</option>
+						  <option value="커뮤니티" <c:if test='${reportVO.repo_category eq "커뮤니티"}'> selected="selected" </c:if>>커뮤니티</option>
+						  <option value="커뮤니티댓글" <c:if test='${reportVO.repo_category eq "커뮤니티댓글"}'> selected="selected" </c:if>>커뮤니티댓글</option>
                   	  </select>
-                  	  <input type="text" value='글제목' style="width:84%">
+                  	  <input type="text" value='글제목' style="width:79%">
                   	  <input type="hidden" value='${user.mbr_id}' name = 'mbr_id'>
-                  	  <input type="hidden" value='${ReportVO.repo_category_no' name ='repo_category_no'>
+                  	  <input type="hidden" value='${reportVO.repo_category_no}' name ='repo_category_no'>
                   </td>
                </tr>
                <tr>
-               <td>신고자 </td><td><input type='text' name='re_mbr_id' value='${ReportVO.re_mbr_id}'></td>
+               <td align="center">신고대상ID </td><td><input type='text' name='re_mbr_id' value='${reportVO.re_mbr_id}'></td>
                </tr>
                <tr>
                <td align="center"><br><br><br><br><br>신고 내용</td><td colspan="2"><textarea name = 'repo_content' rows="10" cols="210" style="width: 100%"></textarea></td>
