@@ -64,34 +64,52 @@
     <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header">베이비시터 서비스</h4>
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            <p class="card-text">어머니의 마음과 전문가의 손길이 함게합니다.
+            <br/>
+             	파파존스는 언제 어디서나 우리아이들과
+             <br/>	
+             	 행복한 돌봄을 만들어 갑니다!
+             </p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
+          <div class="card-footer" align="center">
+            <a href="#" class="btn btn-primary">예약하기</a>
           </div>
         </div>
       </div>
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header">파파존스 SHOP</h4>
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
+            <p class="card-text">
+  			엄마의 마음으로, 우리아이가 안전한
+            <br/>
+            세상을 꿈꿉니다.
+            <br/>
+            100% 순면제작, 무형광 제품을 만나보세요
+            </p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
+          <div class="card-footer" align="center">
+            <a href="#" class="btn btn-primary">바로가기</a>
           </div>
         </div>
       </div>
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
+          <h4 class="card-header">육아대디 첫 걸음</h4>
           <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            <p class="card-text">
+            	새로운 놀이 아이디어가 필요할 때.
+            	<br/>
+            	놀면서 아이 성장발달을 도와주고 싶을 때. 
+            	<br/>
+            	파파존스의 놀이 패키지를 만나보세요!
+            	
+            </p>
           </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
+          <div class="card-footer" align="center">
+            <a href="#" class="btn btn-primary">바로가기</a>
           </div>
         </div>
       </div>
@@ -109,7 +127,9 @@
             <h4 class="card-title">
               <a href="#">Project One</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+            <p class="card-text">
+          dddddddddddddddddddd
+            </p>
           </div>
         </div>
       </div>
@@ -198,10 +218,14 @@
     <!-- Call to Action Section -->
     <div class="row mb-4">
       <div class="col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+        <p>대구광역시 중구 국채보상로 537 5층  |   대표번호 : (053)421-2460 |  사업자번호 : 573-33-00097  | 
+			<br>
+	  		신고번호 제2021-3219632   |   대표: 강은선 김상민 문선애 조영래 최재영
+  		</p>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
+        
+        <a class="btn" href="#"><img class="topnav" src="${pageContext.request.contextPath}/resources/images/main/topnav.png"/></a>
       </div>
     </div>
 
