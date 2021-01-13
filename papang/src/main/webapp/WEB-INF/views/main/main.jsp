@@ -9,6 +9,7 @@
 	.center_div{
 		display: none;
 	}
+
 </style>
 
 </head>
@@ -58,66 +59,81 @@
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome to Modern Business</h1>
+    <h1 class="my-4">파파존스 서비스를 소개합니다</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
+    
+    
       <div class="col-lg-4 mb-4"  align="center">
-        <div class="card h-100" >
-          <h4 class="card-header" >베이비시터 서비스</h4>
-          <div class="card-body">
-            <p class="card-text">어머니의 마음과 전문가의 손길이 함게합니다.
+       <figure class="snip1200">
+		  		  <img src="${pageContext.request.contextPath}/resources/images/main/메인미니1.png" />
+		  <figcaption>
+		    <p>어머니의 마음과 전문가의 
+		    <br/>
+		    손길이 함게합니다.
             <br/>
-             	파파존스는 언제 어디서나 우리아이들과
+             	파파존스는 언제 어디서나
+            <br/>
+             	 우리아이들과
              <br/>	
-             	 행복한 돌봄을 만들어 갑니다!
-             </p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">예약하기</a>
-          </div>
-        </div>
+             	 행복한 돌봄을 만들어 갑니다!</p>
+		    <div class="heading">
+		      <h2>시터<span> 서비스</span></h2>
+		    </div>
+		  </figcaption>
+		  <a href="#"></a>
+		</figure>
       </div>
+      
+      
       <div class="col-lg-4 mb-4"  align="center">
-        <div class="card h-100">
-          <h4 class="card-header">파파존스 SHOP</h4>
-          <div class="card-body">
-            <p class="card-text">
-  			엄마의 마음으로, 우리아이가 안전한
-            <br/>
-            세상을 꿈꿉니다.
-            <br/>
-            100% 순면제작, 무형광 제품을 만나보세요
-            </p>
-          </div>
-          <div class="card-footer" align="center">
-            <a href="#" class="btn btn-primary">바로가기</a>
-          </div>
-        </div>
+            <figure class="snip1200">
+					  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인2.jpg" />
+			  <figcaption>
+			    <p>엄마의 마음으로, 
+	            <br/>
+	            우리아이가 안전한 세상을 꿈꿉니다.
+	            <br/>
+	            100% 순면제작, 무형광 
+	            <br/>
+	            제품을 만나보세요</p>
+			    <div class="heading">
+			      <h2>파파존스<span> SHOP</span></h2>
+			    </div>
+			  </figcaption>
+			  <a href="#"></a>
+			</figure>
       </div>
+      
+      
       <div class="col-lg-4 mb-4"  align="center">
-        <div class="card h-100">
-          <h4 class="card-header">육아대디 첫 걸음</h4>
-          <div class="card-body">
-            <p class="card-text">
-            	새로운 놀이 아이디어가 필요할 때.
+            <figure class="snip1200">
+			  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인3.jpg" />
+			  <figcaption>
+			    <p>새로운 놀이 아이디어가 필요할 때.
             	<br/>
-            	놀면서 아이 성장발달을 도와주고 싶을 때. 
+            	놀면서 아이 성장발달을 
             	<br/>
-            	파파존스의 놀이 패키지를 만나보세요!
-            	
-            </p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">바로가기</a>
-          </div>
-        </div>
+            	도와주고 싶을 때. 
+            	<br/>
+            	파파존스의 놀이 패키지를
+            	 <br/>
+            	 만나보세요!</p>
+			    <div class="heading">
+			      <h2>육아대디<span> 첫 걸음</span></h2>
+			    </div>
+			  </figcaption>
+			  <a href="#"></a>
+			</figure>
       </div>
+      
     </div>
     <!-- /.row -->
 
+<hr/>
     <!-- Portfolio Section -->
-    <h2>Portfolio Heading</h2>
+    <h2 class="fontTitle">파파존스 SHOP</h2>
 
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
@@ -191,6 +207,8 @@
     </div>
     <!-- /.row -->
 
+
+<hr/>
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
