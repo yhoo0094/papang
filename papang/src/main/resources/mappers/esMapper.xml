@@ -171,7 +171,7 @@
 	
 	<!-- 전체조회  -->	
 	<select id="getItemList" resultType="ProductVO">
-		SELECT pro_no, pro_name, pro_price, pro_pic
+		SELECT pro_no, pro_name, pro_price, pro_pic, pro_cnt
 		FROM PRODUCT	  
 		ORDER BY pro_no DESC 
 	</select>
@@ -368,6 +368,23 @@
 	</delete>
 <!-- =========================================================== -->
 <!-- 전체 주문 -->
+	<!-- 주문후 상품재고 변경 -->
+	<update id="updateProCnt" parameterType="string">
+		UPDATE PRODUCT
+		SET pro_cnt = (
+						SELECT #{pro_cnt}-bag_cnt
+						FROM BAG
+						WHERE mbr_id = #{mbr_id}
+					)
+		WHERE pro_no = #{pro_no};
+	</update>
+	<!-- 주문후 재고 테이블에서 출고내역 등록 -->
+	<insert id="minusWareCnt">
+		INSERT INTO WAREHOUSING ( PRO_NO, WARE_CNT, WARE_CATEGORY )
+			SELECT pro_no, -bag_cnt, '출고'
+			FROM BAG WHERE mbr_id = #{mbr_id}
+	</insert>
+	
 	<!-- 주문정보 입력 -->
 	<insert id="orderInfo">
 		INSERT INTO ORDER_INFO (order_no, mbr_id, order_sum) <!-- 운송장번호 아직 -->
@@ -387,16 +404,4 @@
 		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
 	</delete>
-	<!-- 주문후 상품재고 변경 -->
-	<update id="updateProCnt" parameterType="string">
-		UPDATE product
-		SET pro_cnt = #{param2} - #{param3}
-		WHERE pro_no = #{param1};
-	</update>
-	<!-- 주문후 재고 테이블에서 출고내역 등록 -->
-	<insert id="minusWareCnt">
-		INSERT INTO WAREHOUSING ( PRO_NO, WARE_CNT, WARE_CATEGORY )
-			SELECT pro_no, -bag_cnt, '출고'
-		FROM BAG WHERE mbr_id = #{mbr_id}
-	</insert>
 </mapper>

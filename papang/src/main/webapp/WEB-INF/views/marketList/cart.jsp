@@ -168,7 +168,31 @@ $("#OrderBtn").on("click",function(){
  	    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
  	    			alert(msg);
-	     	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+ 	    			// 재고 업데이트
+ 	    			$.ajax({
+ 	    				url: "${pageContext.request.contextPath}/market/changeWare",
+ 	    				type: "POST",
+ 	    				success : function(){
+ 	    					alert("재고 성공");
+ 	    				}, error: function(){
+ 	    					alert("재고 실패");
+ 	    				}
+ 	    			})
+ 	    			
+ 	    			
+	     	    	// 결제 정보, 결제 상세, 카트 비우기
+	     	    	$.ajax({
+	     	    		url: "${pageContext.request.contextPath}/market/order",
+	     	    		type: 'POST',
+	     	    		dataType: 'json',
+	     	    		data: { order_sum : amount },
+	     	    		success : function(){
+	     	    			alert("결제 성공");
+	     	    			location.href = "${pageContext.request.contextPath}/mypage/market_buyinfo"
+	     	    		},error:function(){
+	     	    			alert("실패");
+	     	    		}
+	     	    	});
 	     	    	$.ajax({
 	     	    		url: "${pageContext.request.contextPath}/market/order",
 	     	    		type: 'POST',

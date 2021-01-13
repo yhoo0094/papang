@@ -28,7 +28,7 @@
 /* 	position: relative; */
 	
 }
-thead, .marketTable_filter, .marketTables_length{
+thead, .dataTables_length{
 	display: none;
 }
 
@@ -63,6 +63,7 @@ thead, .marketTable_filter, .marketTables_length{
 			</thead>
 			<tbody>
 				<c:forEach var="pro" items="${ pro }">
+				<c:if test="${ !empty pro.pro_cnt }">
 					<tr class="marketTableTr">
 					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
 						<td><p style="display: none">${pro.pro_no}</p>
@@ -72,6 +73,9 @@ thead, .marketTable_filter, .marketTables_length{
 										class="card-img-top"
 										src="${pageContext.request.contextPath}/images/${pro.pro_pic}"></a>
 									<div class="card-body">
+									<c:if test="${pro.pro_cnt == 0}">
+									<font style="color: red;">품절</font>
+									</c:if>
 										<h4 class="card-title">
 											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 										</h4>
@@ -81,6 +85,7 @@ thead, .marketTable_filter, .marketTables_length{
 							</div>
 						</td>
 					</tr>
+				</c:if>
 				</c:forEach>
 			</tbody>
 		</table>

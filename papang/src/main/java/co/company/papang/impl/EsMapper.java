@@ -60,15 +60,17 @@ public interface EsMapper {
 	public List<BagVO> getCartList(String mbr_id);//전체조회
 	public int insertCart(BagVO bag); // 등록
 	public int countCart(String pro_no, String mbr_id); // 장바구니 상품확인
-	public void cntChange(BagVO bag); // 등록시 수량수정
+	// public void cntChange(BagVO bag); // 등록시 수량수정
 	
 	public void updateCart(BagVO bag); // 수정
 	public int deleteCart(BagVO bag); // 선택삭제
 
 	// 주문
+	public void orderInsert(Order_infoVO order, Od_detailVO detail, String mbr_id); // 주문
 	public void orderInfo(Order_infoVO order); // 주문내역 생성
 	public void orderDetail(Od_detailVO detail); // 주문 상세정보
 	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
 	public void updateProCnt(String pro_no, String pro_cnt, String bag_cnt);// 주문완료 후 상품재고 변경
+	public void minusWareCnt(String mbr_id); // 출고내역 등록
 }
 

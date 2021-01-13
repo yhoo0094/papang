@@ -6,7 +6,7 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 th {
-	min-width: 100px;
+	min-width: 150px;
 	text-align: right;
 }
 
@@ -57,7 +57,8 @@ td>span {
 						</tr>
 						<tr>
 							<th scope="row"><span>상품재고</span></th>
-							<td><span><strong>${pro.pro_cnt}</strong></span></td>
+							<td><c:if test="${pro.pro_cnt != 0}"><span><strong>${pro.pro_cnt}</strong></span></c:if>
+							<c:if test="${pro.pro_cnt == 0}"><span><strong>재고가 없습니다</strong></span></c:if></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>기업코드</span></th>
@@ -70,7 +71,7 @@ td>span {
 								<td><button type="button" class="btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button></td>
 								<td><button type="button" class="btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
 							</c:if>
-							<c:if test="${!empty user.mbr_id}">
+							<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
 								<td colspan="2">
 									<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
 									구입수량<button type="button" id="minusBtn">-</button>
