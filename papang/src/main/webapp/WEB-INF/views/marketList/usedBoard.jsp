@@ -65,7 +65,7 @@
 					<td align="center">${used.used_category}</td>
 					<td align="center">${used.used_loc}</td>
 					<td align="center"><img class="img-fluid rounded listImg" alt="${used.used_pic}"
-						src="${pageContext.request.contextPath}/images/${used.used_pic}"></td>
+						src="${pageContext.request.contextPath}/resources/images/used/${used.used_pic}"></td>
 					<td><a href="${pageContext.request.contextPath}/market/usedDetail?used_no=${used.used_no}">${used.used_title}</a></td>
 					<td align="center">${used.mbr_id}</td>
 					<td align="center">${used.used_date}</td>

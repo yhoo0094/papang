@@ -32,7 +32,7 @@ td>span {
 	<div class="row">
 		<div class="col-lg-6">
 			<img class="img-fluid rounded mb-4"
-				src="${pageContext.request.contextPath}/images/${pro.pro_pic}"
+				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"
 				alt="${pro.pro_name}">
 		</div>
 		<div class="col-lg-6">

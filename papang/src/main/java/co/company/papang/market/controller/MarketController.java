@@ -2,7 +2,9 @@ package co.company.papang.market.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
@@ -104,7 +106,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
@@ -188,7 +190,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
@@ -212,7 +214,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/images");
+			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
@@ -325,11 +327,15 @@ public class MarketController {
 	// 상품재고 update, 재고내역 insert
 	@RequestMapping(value = "/market/changeWare", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean test18(HttpSession session, ProductVO pro, HttpServletRequest request) throws IOException {
+	public boolean test18(HttpSession session, @RequestParam(value = "proArr[]") List<String> proArr, @RequestParam(value = "bagArr[]") List<String> bagArr, BagVO bag, HttpServletRequest request) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
-//		pro.setPro_no(pro_no);
-
+		// 여기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!String pro_no;
+		for(int i=0;i<proArr.size();i++) {
+			bag.setPro_no(proArr.get(i));
+			bag.setBag_cnt(bagArr.get(i));
+			mk_service.updateProCnt(bag);
+		}
 		mk_service.minusWareCnt(mbr_id); // 출고내역
 //		order.setMbr_id(mbr_id);
 //		order.setOrder_sum(order_sum);

@@ -70,10 +70,10 @@ $(function(){
 				<c:forEach items="${cart}" var="cart">
 					<tr>
 						<td align="center"><input type="checkbox" name="chBox"
-							class="chBox" data-bag_no="${cart.bag_no}" value="${cart.pro_price * cart.bag_cnt}">
+							class="chBox" data-pro_no="${cart.pro_no}" data-bag_cnt="${cart.bag_cnt}" data-bag_no="${cart.bag_no}" value="${cart.pro_price * cart.bag_cnt}">
 							<input type="hidden" name="bag_no" value="${cart.bag_no}"></td>
 						<td align="center"><img style="max-width: 100%; height: auto"
-							src="${pageContext.request.contextPath}/images/${cart.pro_pic}"></td>
+							src="${pageContext.request.contextPath}/resources/images/market/${cart.pro_pic}"></td>
 						<td><a href="../market/itemDetail?pro_no=${cart.pro_no}"
 							class="boardTagA">${cart.pro_name}</a></td>
 						<td align="center">${cart.pro_price}원</td>
@@ -145,7 +145,16 @@ $("#OrderBtn").on("click",function(){
 	     // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	        var amount = $("#amount").val();
 	     	var link;
-	     	
+	     	var proArr = new Array();
+			$("input[class='chBox']").each(function(){
+				proArr.push($(this).attr("data-pro_no"));
+			});
+			var bagArr = new Array();
+			$("input[class='chBox']").each(function(){
+				bagArr.push($(this).attr("data-bag_cnt"));
+			});
+			
+			
 			var IMP = window.IMP; // 생략가능
    			 IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
 	     	IMP.request_pay({
@@ -168,43 +177,35 @@ $("#OrderBtn").on("click",function(){
  	    			msg += '카드 승인번호 : ' + rsp.apply_num;
 
  	    			alert(msg);
- 	    			// 재고 업데이트
+ 	    			// 재고 업데이트, 출고내역 등록
  	    			$.ajax({
  	    				url: "${pageContext.request.contextPath}/market/changeWare",
  	    				type: "POST",
+ 	    				data : {
+ 	    					proArr : proArr,
+ 	    					bagArr : bagArr},
  	    				success : function(){
- 	    					alert("재고 성공");
+ 	    					// 결제 정보, 결제 상세, 카트 비우기
+ 	   	     	    		$.ajax({
+ 	   	     	    			url: "${pageContext.request.contextPath}/market/order",
+ 	   	     	    			type: 'POST',
+ 	   	     	    			dataType: 'json',
+ 	   	     	    			data: { order_sum : amount },
+ 	   	     	    			success : function(){
+ 	   	     	   	 				alert("결제 성공");
+ 	   	     	    				location.href = "${pageContext.request.contextPath}/mypage/market_buyinfo"
+ 	   	     	    			},error:function(){
+ 	   	     	    				alert("실패");
+ 	   	     	    			}
+ 	   	     	    		});
  	    				}, error: function(){
  	    					alert("재고 실패");
  	    				}
  	    			})
  	    			
  	    			
-	     	    	// 결제 정보, 결제 상세, 카트 비우기
-	     	    	$.ajax({
-	     	    		url: "${pageContext.request.contextPath}/market/order",
-	     	    		type: 'POST',
-	     	    		dataType: 'json',
-	     	    		data: { order_sum : amount },
-	     	    		success : function(){
-	     	    			alert("결제 성공");
-	     	    			location.href = "${pageContext.request.contextPath}/mypage/market_buyinfo"
-	     	    		},error:function(){
-	     	    			alert("실패");
-	     	    		}
-	     	    	});
-	     	    	$.ajax({
-	     	    		url: "${pageContext.request.contextPath}/market/order",
-	     	    		type: 'POST',
-	     	    		dataType: 'json',
-	     	    		data: { order_sum : amount },
-	     	    		success : function(){
-	     	    			alert("결제 성공");
-	     	    			location.href = "${pageContext.request.contextPath}/mypage/market_buyinfo"
-	     	    		},error:function(){
-	     	    			alert("실패");
-	     	    		}
-	     	    	});
+	     	    	
+	     	    	
 	     	    } else {
 	     	        var msg = '결제에 실패하였습니다.';
 	     	        msg += '에러내용 : ' + rsp.error_msg;

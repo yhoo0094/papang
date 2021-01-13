@@ -54,7 +54,7 @@
 				</tr>
 				<tr>
 					<td colspan="3"><img class="img-fluid rounded" alt="${used.used_pic}"
-						src="${pageContext.request.contextPath}/images/${used.used_pic}"></td>
+						src="${pageContext.request.contextPath}/resources/images/used/${used.used_pic}"></td>
 				</tr>
 				<tr>
 					<td colspan="3">${used.used_content}</td>

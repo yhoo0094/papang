@@ -71,7 +71,7 @@ thead, .dataTables_length{
 								<div class="card h-100 strongYellow">
 									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img
 										class="card-img-top"
-										src="${pageContext.request.contextPath}/images/${pro.pro_pic}"></a>
+										src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"></a>
 									<div class="card-body">
 									<c:if test="${pro.pro_cnt == 0}">
 									<font style="color: red;">품절</font>

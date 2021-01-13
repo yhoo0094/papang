@@ -29,6 +29,7 @@ public interface MarketService {
 //	public void orderInfo(Order_infoVO order); // 주문내역 생성
 //	public void orderDetail(Od_detailVO detail); // 주문 상세정보
 //	public void deleteAllCart(String mbr_id); // 주문후 장바구니 비우기
+	public void updateProCnt(BagVO bag);// 주문완료 후 상품재고 변경
 	public void minusWareCnt(String mbr_id); // 출고내역 등록
 }
 

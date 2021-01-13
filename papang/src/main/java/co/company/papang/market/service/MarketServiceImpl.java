@@ -91,4 +91,9 @@ public class MarketServiceImpl implements MarketService {
 		dao.minusWareCnt(mbr_id);
 	}
 
+	@Override
+	public void updateProCnt(BagVO bag) {
+		dao.updateProCnt(bag);
+	}
+
 }
