@@ -45,7 +45,45 @@
 }
 </style>
 <script type="text/javascript">
+	var $tr;
 	$(()=>{
+		$('.sirenImg').on({
+			"click" : function() {
+				
+			}
+		});
+		
+		$("#commentUpdateBtn").on({ //댓글 모달에서 수정하기 버튼 클릭
+			"click" : function() {
+				$.ajax({ 
+				    url: "${pageContext.request.contextPath}/community/commentUpdate",  
+				    type: 'POST',  
+				    dataType: 'json', 
+				    data : $("#commentUpdateForm").serialize(),
+				    success: function(result) {
+				    		console.log(result.cc_content);
+				    		$tr.find('#tempt').text(result.cc_content);
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				 });
+			}
+		});
+		
+		//댓글 수정 버튼 클릭
+		$('.commentUpdateBtn').on({
+			"click" : function() {
+				var cc_no = $(this).parent().find('.commentNumInput').val();
+				var commentText = $(this).closest('div').find('.commentContent').text();
+				$tr = $(this).closest('div')
+				$(this).closest('div').find('.commentContent').eq(0).attr("id","tempt");//댓글 위치
+				$('#commentUpdateModal').modal();
+				$('#commentUpdateTextarea').val(commentText);
+				$('#commentUpdateInput').val(cc_no);
+			}
+		});
+		
 		$("#gobackBtn").on({
 			"click" : function() {
 				location.href="${pageContext.request.contextPath}/community/board";
@@ -54,32 +92,24 @@
 		
 		$(".commentDeleteBtn").on({ //댓글 삭제하기
 			"click" : function() {
-				console.log("클릭");
-				var cc_no = $(this).parent().find('.commentNumInput').val();
-				var tr =  $(this).closest('tr');
-				$.ajax({ 
-				    url: "${pageContext.request.contextPath}/community/commentDelete",  
-				    type: 'POST',  
-				    dataType: 'text', 
-				    data : {"cc_no":cc_no},
-				    success: function(number) {
-				    	tr.remove();
-				    }, 
-				    error:function(xhr, status, message) { 
-				        alert(" status: "+status+" er:"+message);
-				    } 
-				 });
+				if(confirm("정말로 삭제하시겠습니까?")){
+					var cc_no = $(this).parent().find('.commentNumInput').val();
+					var tr =  $(this).closest('tr');
+					$.ajax({ 
+					    url: "${pageContext.request.contextPath}/community/commentDelete",  
+					    type: 'POST',  
+					    dataType: 'text', 
+					    data : {"cc_no":cc_no},
+					    success: function(number) {
+					    	tr.remove();
+					    }, 
+					    error:function(xhr, status, message) { 
+					        alert(" status: "+status+" er:"+message);
+					    } 
+					 });
+				}
 			}
 		})
-		
-		//댓글 수정 버튼 클릭
-		$('.commentUpdateBtn').on({
-			"click" : function() {
-				var comment = $(this).closest('div').find('.commentContent').text(); 
-				$('#commentUpdateModal').modal();
-				$('#commentUpdateTextarea').val(comment);
-			}
-		});
 		
 		//댓글쓰기 버튼 클릭
 		$('#commentInsertBtn').on('click',function(){
@@ -215,7 +245,7 @@
 						</td>
 						<td width="90%">
 							<div>
-								<span class="commentContent">${v.cc_content}</span>
+								<span class="commentContent" id="tempt">${v.cc_content}</span>
 								<c:if test="${sessionScope.user.mbr_id != v.mbr_id}">
 									<img class="sirenImg" alt="사이렌사진"
 										src="${pageContext.request.contextPath}/resources/images/siren.png"
@@ -255,13 +285,16 @@
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-body" align="center">
-					<textarea id="commentUpdateTextarea" name="cc_content" rows="5" cols="102" name="comm" style="width: 100%"></textarea>
-				</div>
-				<div align="right" style="margin-right: 20px; margin-bottom: 20px">
-					<button type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				</div>
+				<form id="commentUpdateForm" action="${pageContext.request.contextPath}/community/commentUpdate">
+					<input type="hidden" name="cc_no" id="commentUpdateInput">
+					<div class="modal-body" align="center">
+						<textarea id="commentUpdateTextarea" name="cc_content" rows="5" cols="102" name="comm" style="width: 100%"></textarea>
+					</div>
+					<div align="right" style="margin-right: 20px; margin-bottom: 20px">
+						<button id="commentUpdateBtn" type="button" class="btn btn-primary" data-dismiss="modal">수정</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

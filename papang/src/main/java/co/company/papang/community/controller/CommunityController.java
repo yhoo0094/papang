@@ -138,10 +138,21 @@ public class CommunityController {
 		}
 	
 	/*-------------------------- 댓글 --------------------------*/
-	
-	@RequestMapping("community/commentDelete")
+	@RequestMapping("community/commentUpdate")//댓글 업데이트
+	@ResponseBody
+	public Community_comVO commentUpdate(Community_comVO community_comVO) {
+		service.commentUpdate(community_comVO);
+		return community_comVO;
+	}
+		
+	@RequestMapping("community/commentDelete")//댓글 삭제
 	@ResponseBody
 	public int commentDelete(Community_comVO community_comVO) {
+		return service.commentDelete(community_comVO);
+	}
+	
+	@RequestMapping("community/commentReport")//댓글 신고하기
+	public int commentReport(Community_comVO community_comVO) {
 		return service.commentDelete(community_comVO);
 	}
 

@@ -95,6 +95,11 @@
 		)
 	</insert>
 	
+	<update id="commentUpdate" parameterType="Community_comVO">
+		UPDATE COMMUNITY_COM SET CC_CONTENT = #{cc_content}
+		WHERE CC_NO = #{cc_no}
+	</update>
+	
 	<delete id="commentDelete" parameterType="Community_comVO">
 		 DELETE COMMUNITY_COM WHERE CC_NO = #{cc_no}
 	</delete>

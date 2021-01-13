@@ -24,6 +24,7 @@ public interface CommunityService {
 	//커뮤니티 댓글
 	public List<Community_comVO> getCommunityComList(Community_comVO community_comVO);//전체조회
 	public int communityCommentInsert(Community_comVO community_comVO);//인서트
+	public int commentUpdate(Community_comVO community_comVO);//업데이트
 	public int commentDelete(Community_comVO community_comVO);//딜리트
 	
 	//시터 보드
