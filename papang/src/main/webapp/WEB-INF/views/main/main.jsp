@@ -140,7 +140,7 @@
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
         <p class="pro_no">${product.pro_no}</p>
-          <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/images/${product.pro_pic}" alt="상품 사진이없습니다"></a>
+          <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/market/${product.pro_pic}" alt="상품 사진이없습니다"></a>
           <div class="card-body">
           
           <div class="proNameDiv">
@@ -167,18 +167,16 @@
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
-        <h2>Modern Business Features</h2>
-        <p>The Modern Business template by Start Bootstrap includes:</p>
+        <h2>서비스 소개</h2>
+        <p>파파존스는 고객님의 편리를 위해 항상 노력하겠습니다.</p>
         <ul>
-          <li>
-            <strong>Bootstrap v4</strong>
-          </li>
-          <li>jQuery</li>
-          <li>Font Awesome</li>
-          <li>Working contact form with validation</li>
-          <li>Unstyled page elements for easy customization</li>
+          <p><strong>주요 서비스</strong></p>
+          <li>베이비시터 예약</li>
+          <li>파파존스 SHOP</li>
+          <li>육아 정보</li>
+          <li>육아 예방접종 일지 캘린더</li>
         </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+        <p>믿고 맏길 수 있는 베이비시터 서비스 제공. 100% 순면 무형광 제작된 파파존스 핸드메이드 상품 판매.초보 육아대디를 위한 유용한 정보 제공.육아 예방접종 일지 등록 제공.</p>
       </div>
       <div class="col-lg-6">
         <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
