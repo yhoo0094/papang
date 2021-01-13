@@ -94,6 +94,10 @@
 		'커뮤니티'
 		)
 	</insert>
+	
+	<delete id="commentDelete" parameterType="Community_comVO">
+		 DELETE COMMUNITY_COM WHERE CC_NO = #{cc_no}
+	</delete>
 
 	<!-- ##################################시터########################################### -->
 	
