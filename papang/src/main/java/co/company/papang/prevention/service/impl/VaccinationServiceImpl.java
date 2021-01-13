@@ -54,6 +54,11 @@ public class VaccinationServiceImpl implements VaccinationService {
 	public List<ProductVO> productList(ProductVO productVO) {
 		return dao.productList(productVO);
 	}
+
+	@Override//메인 상품 단건
+	public ProductVO getProduct(ProductVO productVO) {
+		return dao.getProduct(productVO);
+	}
 	
 
 

@@ -11,6 +11,35 @@
 	}
 
 </style>
+  <script>
+$(() => {
+	
+	/* 장터 단건조회 페이지 이동 */
+	$('.mainBox').on('click',function() {
+		var prono=$(this).find('.pro_no').text(); 
+		location.href= "${pageContext.request.contextPath}/market/itemDetail?pro_no="+prono;
+		
+	});
+	/* 서비스소개 활동 연결 */
+	$('.mainact').on('click',function() {
+		location.href= "${pageContext.request.contextPath}/activity/playList";
+	});
+	
+	/* 서비스소개 마켓 연결 */
+	$('.mainmarket').on('click',function() {
+		location.href= "${pageContext.request.contextPath}/marketList/itemBoard";
+		});
+		
+	/* 서비스소개 시터 연결 */
+	$('.mainsit').on('click',function() {
+		location.href= "${pageContext.request.contextPath}/sitter/board";
+	});
+	
+	
+	
+});
+
+</script>
 
 </head>
 <body>
@@ -65,7 +94,7 @@
     <div class="row">
     
     
-      <div class="col-lg-4 mb-4"  align="center">
+      <div class="col-lg-4 mb-4 mainsit"  align="center">
        <figure class="snip1200">
 		  		  <img src="${pageContext.request.contextPath}/resources/images/main/메인미니1.png" />
 		  <figcaption>
@@ -82,12 +111,11 @@
 		      <h2>시터<span> 서비스</span></h2>
 		    </div>
 		  </figcaption>
-		  <a href="#"></a>
 		</figure>
       </div>
       
       
-      <div class="col-lg-4 mb-4"  align="center">
+      <div class="col-lg-4 mb-4 mainmarket"  align="center">
             <figure class="snip1200">
 					  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인2.jpg" />
 			  <figcaption>
@@ -102,12 +130,11 @@
 			      <h2>파파존스<span> SHOP</span></h2>
 			    </div>
 			  </figcaption>
-			  <a href="#"></a>
 			</figure>
       </div>
       
       
-      <div class="col-lg-4 mb-4"  align="center">
+      <div class="col-lg-4 mb-4 mainact"  align="center">
             <figure class="snip1200">
 			  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인3.jpg" />
 			  <figcaption>
@@ -124,7 +151,6 @@
 			      <h2>육아대디<span> 첫 걸음</span></h2>
 			    </div>
 			  </figcaption>
-			  <a href="#"></a>
 			</figure>
       </div>
       
@@ -137,7 +163,7 @@
 	
     <div class="row">
     <c:forEach items="${products}" var="product">
-      <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="col-lg-4 col-sm-6 portfolio-item mainBox">
         <div class="card h-100">
         <p class="pro_no">${product.pro_no}</p>
           <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/market/${product.pro_pic}" alt="상품 사진이없습니다"></a>
@@ -201,5 +227,6 @@
     </div>
 
   </div>
+
   </body>
 </html>

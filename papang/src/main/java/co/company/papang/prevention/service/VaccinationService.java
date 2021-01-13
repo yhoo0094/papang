@@ -22,4 +22,6 @@ public interface VaccinationService  {
 	
 	//메인 상품리스트
 	public List<ProductVO> productList(ProductVO productVO);//메인 상품리스트 가져오기
+	//메인 상품 단건 조회
+	public ProductVO getProduct(ProductVO productVO);
 }

@@ -61,6 +61,7 @@ public interface SaMapper {
 	
 	//4.[메인]
 	public List<ProductVO> productList(ProductVO productVO);//메인 상품리스트 가져오기
+	public ProductVO getProduct(ProductVO productVO);//메인 상품 단건 가져오기
 	
 }
 

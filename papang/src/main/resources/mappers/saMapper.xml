@@ -208,11 +208,19 @@ INSERT INTO ACT_COM
 
 
 <!-- ################################메인 -->
+<!-- 메인 - 상품 전체 리스트 조회 -->
 <select id="productList" resultType = "ProductVO">
 	SELECT ROWNUM, A.* FROM 
 	(SELECT PRO_NO, PRO_NAME, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(PRO_PRICE)), '([0-9]{3})','\1,')), '^,','') AS PRO_PRICE,PRO_PIC FROM PRODUCT
 	 ORDER BY PRO_NO DESC) A
 	 WHERE  <![CDATA[ROWNUM <= 6]]>
 </select>
+
+<!-- 메인 - 상품 단건조회 연결 -->
+<select id="getProduct" parameterType="ProductVO" resultType="ProductVO">
+		SELECT *
+		FROM PRODUCT
+		WHERE pro_no = #{pro_no}
+	</select>
 
 </mapper>
