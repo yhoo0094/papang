@@ -25,6 +25,7 @@ import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
@@ -360,7 +361,20 @@ public class AdminRestController {
 		service.reportinfoinsert(vo);
 		service.updatestatus(vo);
 		service.updaterepoans(vo);
+		service.insertreportAlarm(vo);
 		return true;
 	}
 
+	// 월별 매출 현황
+	@RequestMapping(value = "/orderinfoselect", method = RequestMethod.GET)
+	public List<Order_infoVO> orderinfoselect(Model model, Order_infoVO vo) {
+		return service.orderinfoselect(vo);
+	}
+
+	// 월별 매출 현황
+	@RequestMapping(value = "/orderinfoselect2", method = RequestMethod.GET)
+	public List<Order_infoVO> orderinfoselect2(Model model, Order_infoVO vo) {
+		return service.orderinfoselect2(vo);
+	}
+	
 }

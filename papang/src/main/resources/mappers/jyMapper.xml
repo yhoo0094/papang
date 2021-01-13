@@ -71,7 +71,7 @@
 	<!-- 회원 전체조회 -->
 	<select id="getListMember"
 		resultType="co.company.papang.vo.MemberVO">
-		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name, mbr_nick, NVL((select count(*) from report_info group by mbr_id),0) as rcnt
+		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name, NVL((select count(*) from report_info group by mbr_id),0) as rcnt
 		from member
 		<where>
 			<if test="mbr_author != null and mbr_author !=''">
@@ -285,14 +285,14 @@
 	</select>
 	
 	<select id ='reportinfoselect' parameterType="co.company.papang.vo.Report_info" resultType="map">
-	SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD') AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS RINFO_CNT,R.RINFO_REASON
+	SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD') AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS RINFO_CNT,SUBSTR(R.RINFO_REASON,0,10)||'...' AS RINFO_REASON
 	FROM MEMBER M , REPORT_INFO R
 	WHERE M.MBR_ID = R.MBR_ID
 	ORDER BY R.REPO_NO DESC
 	</select>
 	
 	<select id ='reportselectone' resultType="map">
-	SELECT R.REPO_NO,M.MBR_AUTHOR,R.RE_MBR_ID,M.MBR_STATUS FROM REPORT R,MEMBER M
+	SELECT R.REPO_NO,R.RE_MBR_ID,M.MBR_AUTHOR,R.MBR_ID,M.MBR_STATUS,R.REPO_CONTENT FROM REPORT R,MEMBER M
 	WHERE REPO_STATUS='미처리'
   	AND R.MBR_ID = M.MBR_ID
 	AND REPO_NO= #{repo_no}
@@ -316,7 +316,6 @@
 		)
 	</insert>
 	
-	
 	<!-- 정지 처리 -->
 	<update id = "updatestatus" parameterType="co.company.papang.vo.Report_info">
 	update MEMBER set MBR_STATUS='활동정지' where mbr_id = #{mbr_id}
@@ -326,4 +325,23 @@
 	<update id = "updaterepoans" parameterType="co.company.papang.vo.Report_info">
 	update REPORT set REPO_ANS = #{rinfo_reason} ,REPO_STATUS='처리' where REPO_NO = #{repo_no}
 	</update>
+	
+	<!-- 시터 알림 기능 -->
+	<insert id="insertreportAlarm" parameterType="co.company.papang.vo.Report_info">
+	INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{repo_mbr_id} ,'신고하신 '||(select re_mbr_id from report where repo_no = #{repo_no})||' 제재 처리 되었습니다.' ,sysdate)
+	</insert>
+	
+	<!-- 월별 매출 현황 -->
+	<select id ='orderinfoselect' parameterType="Order_infoVO" resultType="Order_infoVO">
+	select to_char(order_date,'yy/mm') as order_date , sum(order_sum) as order_sum from order_info
+	group by to_char(order_date,'yy/mm')
+	order by order_date
+	</select>
+	
+	<!-- 일별 매출 현황 -->
+	<select id ='orderinfoselect2' parameterType="Order_infoVO" resultType="Order_infoVO">
+	select to_char(order_date,'yy/mm/dd') as order_date,sum(order_sum) as order_sum from order_info
+	group by to_char(order_date,'yy/mm/dd')
+	order by order_date
+	</select>
 </mapper>

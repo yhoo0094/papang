@@ -8,11 +8,24 @@ $(function() {
 	reportSelect2();
 	reportInsert();
 	
-	//init();
+	init();
 	/* $("#filter").on('change', function() {
 		WareList();
 	}); */
 });
+
+
+//초기화
+function init() {
+	//초기화 버튼 클릭
+	$('#btnInit').on('click', function() {
+		$('#form1').each(function() {
+			this.reset();
+			
+		});
+	});
+}//init
+
 function reportinfoList() {
 		$.ajax({
 			url : '../reportinfoselect',
@@ -113,6 +126,8 @@ function reportinfoList() {
 		$('#id').val(item.RE_MBR_ID);
 		$('#status').val(item.MBR_STATUS);
 		$('#repo_no').val(item.REPO_NO);
+		$('#repo_content').val(item.REPO_CONTENT);
+		$('#re_mbr_id').val(item.MBR_ID);
 		});
 	}
 	
@@ -150,60 +165,14 @@ function reportinfoList() {
 </script>		
 <h1 class="mt-4">신고 관리</h1>
 
-       <div align="center">
-       <form id="form1" class="form-horizontal" style="width: 80%"> 
-         <table class="table" >
-            <tbody>
-               <tr>
-                  <td align="center" width="20%">회원 유형</td>
-                  <td><input type='text' id='author'><input type='hidden' name='repo_no' id='repo_no'>
-                  </td>
-               </tr>
-               <tr>
-                  <td align="center">ID</td>
-                  <td><input type="text" style="width: 100%" id='id' name='mbr_id'></td>
-               </tr>
-               <tr>
-               <td align="center">활동 상태</td><td><input type='text' id='status'></td>
-               </tr>
-               <tr>
-               <td align="center">정지 시작일</td><td><input type='date' name='rinfo_start'></td>
-               </tr>
-               <tr>
-               <td align="center">정지 기간</td><td><input type='text' id='rinfo_cnt' name='rinfo_cnt'></td>
-               </tr>
-               <tr>
-               <td align="center"><br><br><br><br>제재 사유</td><td colspan="2"><textarea name = 'rinfo_reason' rows="10" cols="210" style="width: 100%"></textarea></td>
-               </tr>
-            </tbody>
-         </table>
-         <div align="center">
-			<input type="button" class="btn btn-primary" value="등록"
-				id="btnInsert" />  <input type="button"
-				class="btn btn-primary" value="초기화" id="btnInit" />
-		</div>
-      </div>
-      </form>
-      <br>
-	
       <div class="card mb-4">
 	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> 신고/제제 내역
+		<i class="fas fa-table mr-1"></i> 신고 내역
 	</div>
-	<div>
-	<!-- 분류 <select id='filter'>
-		<option selected value=''>전체</option>
-		<option value="입고">입고</option>
-		<option value="출고">출고</option>
-	</select> -->
-	</div>
-	
-		
+	<div class="card-body">
+
 		<div class="table-responsive">
-			<table>
-			<tr>
-			<td>
-			<table class="table table-bordered" id="dataTable" width="100%
+			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
 					<tr>
@@ -216,14 +185,71 @@ function reportinfoList() {
 						<th>관리</th>
 					</tr>
 				</thead>
-			
 				<tbody></tbody>
-			
 			</table>
+		</div>
+	</div>
+</div>
+      <br>
+	
+      <div class="card mb-4">
+	<div class="card-header">
+		<i class="fas fa-table mr-1"></i> 제재/제재 내역
+	</div>
+	<div>
+	
+	</div>
+	
+		
+		<div class="table-responsive">
+			<table>
+			<tr>
+			<td width="45%">
+		
+			<form id="form1" class="form-horizontal" style="width: 80%"> 
+			<p align="center">제재 하기</p>
+         <table class="table" >
+            <tbody>
+               <tr>
+                  <td align="center" width="20%">회원 유형</td>
+                  <td><input type='text' id='author' style="width: 100%"><input type='hidden' name='repo_no' id='repo_no' style="width: 100%">
+                  <input type='hidden' name='repo_mbr_id' id='re_mbr_id' style="width: 100%">
+                  </td>
+               </tr>
+               <tr>
+                  <td align="center">ID</td>
+                  <td><input type="text" style="width: 100%" id='id' name='mbr_id' style="width: 100%"></td>
+               </tr>
+               <tr>
+               <td align="center">활동 상태</td><td><input type='text' id='status' style="width: 100%"></td>
+               </tr>
+               <tr>
+               <td align="center">신고 사유</td><td><input type='text' id='repo_content' style="width: 100%"></td>
+               </tr>
+               <tr>
+               <td align="center">정지 시작일</td><td><input type='date' name='rinfo_start' style="width: 100%"></td>
+               </tr>
+               <tr>
+               <td align="center">정지 기간</td><td><input type='text' id='rinfo_cnt' name='rinfo_cnt' style="width: 100%"></td>
+               </tr>
+               <tr>
+               <td align="center"><br><br><br><br>제재 사유</td><td colspan="2"><textarea name = 'rinfo_reason' rows="10" cols="210" style="width: 100%"></textarea></td>
+               </tr>
+            </tbody>
+         </table>
+         <div align="center">
+			<input type="button" class="btn btn-primary" value="등록"
+				id="btnInsert" />  <input type="button"
+				class="btn btn-primary" value="초기화" id="btnInit" />
+		</div>
+     
+      </form>
 			</td>
+			
 			<td width="1%"></td>
 			
-				<td>
+				<td width="54%">
+				<p align="center">제재 내역</p>
 			<table class="table table-bordered" id="dataTable2" width="100%"
 				cellspacing="0" >
 				<thead>

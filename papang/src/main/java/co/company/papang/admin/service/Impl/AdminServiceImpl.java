@@ -12,6 +12,7 @@ import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.NqVO;
+import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
@@ -212,6 +213,24 @@ public class AdminServiceImpl implements AdminService{
 	public int updaterepoans(Report_info vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.updaterepoans(vo);
+	}
+
+	@Override
+	public int insertreportAlarm(Report_info vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertreportAlarm(vo);
+	}
+
+	@Override
+	public List<Order_infoVO> orderinfoselect(Order_infoVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.orderinfoselect(vo);
+	}
+
+	@Override
+	public List<Order_infoVO> orderinfoselect2(Order_infoVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.orderinfoselect2(vo);
 	}
 
 	

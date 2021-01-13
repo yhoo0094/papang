@@ -86,7 +86,7 @@ public class AdminController {
 	
 	@RequestMapping("/admin/productChart") //url 예전 .do
 	public ModelAndView test11(HttpServletResponse response) throws IOException{
-		return new ModelAndView("admin/sitterChart"); //jsp주소
+		return new ModelAndView("admin/productChart"); //jsp주소
 	}
 	
 	@RequestMapping("report") //url 예전 .do

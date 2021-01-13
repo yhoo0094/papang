@@ -15,4 +15,5 @@ public class Report_info {
 	private String rinfo_cnt;
 	private String rinfo_start;
 	private String repo_no;
+	private String repo_mbr_id;
 }

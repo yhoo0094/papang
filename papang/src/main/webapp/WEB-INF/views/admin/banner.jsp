@@ -165,7 +165,7 @@
 						$('#form1').each(function() {
 							this.reset();
 							bannerlist();
-							$('#img').attr('src','');
+							$('#img').attr('src', '');
 							$('#la').html("선택한 파일 없음");
 							alert("등록되었습니다");
 						});
@@ -246,35 +246,36 @@
 			});
 		});//수정 버튼 클릭
 	}//userUpdate
-	
+
 	//사용자 삭제 요청
 	function bannerDelete() {
-	//삭제 버튼 클릭
-	$('body').on('click','#btnDelete',function(){
-	var banno = $(this).parent().parent().children().eq(0).html();
-	var result = confirm(banno +" 번 배너를 정말로 삭제하시겠습니까?");
-	if(result) {
-	$.ajax({
-	url:'../banner/'+banno,  
-	type:'DELETE',
-	contentType:'application/json;charset=utf-8',
-	dataType:'json',
-	error:function(xhr,status,msg){
-	console.log("상태값 :" + status + " Http에러메시지 :"+msg);
-	}, success:function(xhr) {
-	console.log(xhr.result);
-	bannerlist();
-	$('#form1').each(function() {
-		alert("삭제되었습니다");
-		this.reset();
-		$('#la').html("선택한 파일 없음");
-	});
-	}
-	});      }//if
-	}); //삭제 버튼 클릭
+		//삭제 버튼 클릭
+		$('body').on('click', '#btnDelete', function() {
+			var banno = $(this).parent().parent().children().eq(0).html();
+			var result = confirm(banno + " 번 배너를 정말로 삭제하시겠습니까?");
+			if (result) {
+				$.ajax({
+					url : '../banner/' + banno,
+					type : 'DELETE',
+					contentType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					error : function(xhr, status, msg) {
+						console.log("상태값 :" + status + " Http에러메시지 :" + msg);
+					},
+					success : function(xhr) {
+						console.log(xhr.result);
+						bannerlist();
+						$('#form1').each(function() {
+							alert("삭제되었습니다");
+							this.reset();
+							$('#la').html("선택한 파일 없음");
+						});
+					}
+				});
+			}//if
+		}); //삭제 버튼 클릭
 	}//nqDelete
-	
-	
+
 	function statusUpdate() {
 		//수정 버튼 클릭
 		var banno;
@@ -291,20 +292,18 @@
 				}),
 				contentType : 'application/json',
 				success : function(data) {
-					alert(banno+"번 배너의 상태가"+status+"으로 변경 되었습니다");
+					alert(banno + "번 배너의 상태가" + status + "으로 변경 되었습니다");
 				},
 				error : function(xhr, status, message) {
 					alert(" status: " + status + " er:" + message);
 				}
 			});
 			console.log($(this).val());
-		
 
 		});
 
 	}//userUpdate
-	
-	
+
 	//초기화
 	function init() {
 		//초기화 버튼 클릭
