@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductVO {
-	private int pro_no; // 상품번호
+	private Integer pro_no; // 상품번호
 	private String pro_name; // 상품명
 	private String pro_price; // 가격
 	private String pro_pic; // 메인사진

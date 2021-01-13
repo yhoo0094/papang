@@ -81,7 +81,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
+			String path = request.getSession().getServletContext().getRealPath("/images");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
@@ -106,7 +106,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/resources/images/market");
+			String path = request.getSession().getServletContext().getRealPath("/images");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
@@ -190,7 +190,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
+			String path = request.getSession().getServletContext().getRealPath("/images");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
@@ -214,7 +214,7 @@ public class MarketController {
 		MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
 		if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
 			// 파일 경로 webapp 바로 밑이 최상위
-			String path = request.getSession().getServletContext().getRealPath("/resources/images/used");
+			String path = request.getSession().getServletContext().getRealPath("/images");
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			used.setUsed_pic(multipartFile.getOriginalFilename());
 		}
