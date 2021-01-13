@@ -11,6 +11,10 @@
     margin: 176px 15% 9px 23%;
     width: 65%;
 }
+   
+.yra:link{color:blue; text-decoration:underline}  
+      .yra:visited{color:blue;text-decoration:none}   
+      .yra:hover {color:#ff00ff; text-decoration:underline}              
 </style>
 <body>
 		<h3>질문게시판</h3>
@@ -30,14 +34,14 @@
 						<th width="15%" class="tableTh">작성자</th>
 						<th width="15%" class="tableTh">작성일</th>
 						<th width="15%" class="tableTh">분류</th>
-						<th width="15%" class="tableTh">조회수</th>
+		 				<th width="15%" class="tableTh">조회수</th>
 					</tr>
-				</thead>
+				</thead>  
 				<tbody>
 				<c:forEach var="co" items="${cos}">
 					<tr>
 						<td align="center">${co.com_no}</td>
-						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
+						<td align="center"><a class="yra" href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
 						<td align="center">${co.mbr_id}</td>
 						<td align="center">${co.com_date}</td>
 						<td align="center">${co.com_category}</td>

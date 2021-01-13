@@ -11,8 +11,11 @@
     margin: 176px 15% 9px 23%;
     width: 65%;
 }
+  .yra:link{color:blue; text-decoration:underline}  
+      .yra:visited{color:blue;text-decoration:none}   
+      .yra:hover {color:#ff00ff; text-decoration:underline} 
 </style>
-<body>
+<body> 
 		<h3>답변게시판</h3>
 		<hr />
 		<div align="right">
@@ -38,9 +41,9 @@
 				</thead>
 				<tbody>
 				<c:forEach var="co2" items="${cos2}">
-					<tr>
+					<tr> 
 						<td align="center">${co2.cc_no}</td>
-						<td><a href="${pageContext.request.contextPath}/community/form?com_no=${co2.com_no}" class="boardTagA">${co2.cc_content}</td>
+						<td align="left"> <a class="yra" href="${pageContext.request.contextPath}/community/form?com_no=${co2.com_no}" class="boardTagA">${co2.cc_content}</td>
 						<td align="center">${co2.mbr_id}</td>
 						<td align="center">${co2.cc_date}</td>
 						<td align="center">${co2.cc_category}</td>
