@@ -9,6 +9,7 @@ import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.PlayVO;
 import co.company.papang.vo.PreventionVO;
+import co.company.papang.vo.ProductVO;
 
 public interface SaMapper {
 
@@ -57,6 +58,9 @@ public interface SaMapper {
 	
 	
 	
+	
+	//4.[메인]
+	public List<ProductVO> productList(ProductVO productVO);//메인 상품리스트 가져오기
 	
 }
 

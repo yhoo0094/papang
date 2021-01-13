@@ -280,9 +280,21 @@ max-height: 340px;
 }	
 .my-4 {
     margin-top: 3.8rem!important;
+    color: rgb(64, 60, 60);
 }
-.fontTitle {margin: 40px 0 20px 0;}
+.fontTitle {margin: 40px 0 20px 0;color:rgb(64, 60, 60);font-size: 2rem;}
 .card-img-top {height: 300px;}
+.btn:focus {
+    box-shadow: none;
+}
+.card-body {
+    height: 100px;
+}
+
+.card-text{color: #fa91a2;}
+.card_title2, .card-title{color: rgb(64, 60, 60);}
+.pro_no{display: none;}
+
 </style>
 <script type="text/javascript">
 	$(function() {

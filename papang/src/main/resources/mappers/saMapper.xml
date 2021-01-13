@@ -206,4 +206,13 @@ INSERT INTO ACT_COM
 </select>
 
 
+
+<!-- ################################메인 -->
+<select id="productList" resultType = "ProductVO">
+	SELECT ROWNUM, A.* FROM 
+	(SELECT PRO_NO, PRO_NAME, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(PRO_PRICE)), '([0-9]{3})','\1,')), '^,','') AS PRO_PRICE,PRO_PIC FROM PRODUCT
+	 ORDER BY PRO_NO DESC) A
+	 WHERE  <![CDATA[ROWNUM <= 6]]>
+</select>
+
 </mapper>
