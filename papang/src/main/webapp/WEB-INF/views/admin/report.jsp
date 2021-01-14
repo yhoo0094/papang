@@ -269,7 +269,5 @@ function reportinfoList() {
 			</td>
 			</tr>
 			</table>
-			
-			
-			
+		</div>
 		</div>

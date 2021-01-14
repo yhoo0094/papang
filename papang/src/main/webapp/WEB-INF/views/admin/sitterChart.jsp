@@ -139,8 +139,10 @@ function sitterinfoselect2Result(data) {
   <span class='calenderY'><input type='text' id='year' style="width:50px"></span>년 <span class='calenderM'><input type='text' id='month' style="width:30px"></span>월
   &nbsp;&nbsp;<button type='button' id='next'>></button>
   </div>
+  <br>
   <div id="chartContainer" style="width: 100%; height: 300px"></div>
-  
+  <br>
+  <bt>
   <div class="card mb-4">
 	<div class="card-header">
 		<i class="fas fa-table mr-1"></i> 시터 일별 매출 현황
