@@ -89,7 +89,6 @@ $(function(){
 		<script type="text/javascript">
 		$(".count").focusout(function(){
 			var bag_cnt = $(this).val();
-// 			var pro_no = $(obj).next().val();
 			var bag_no = $(this).next().val();
 			
 			// 수량수정
@@ -101,10 +100,9 @@ $(function(){
 //  					pro_no : pro_no,
  					bag_no : bag_no},
  				success : function(){
- 					alert("성공");
  					location.reload();
  				}, error: function(){
- 					alert("재고가 부족합니다");
+ 					alert("수정 실패");
  					location.reload();
  				}
  			})
