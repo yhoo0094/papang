@@ -44,6 +44,7 @@ public interface YrMapper {
 
 	//시터정보부터 한다
 	public SitterVO sitter_infoSitterVO(SitterVO sitter); //시터 정보조회
+	public int getcount(SitterVO sitter); //시터 권한체크?
 	public void updateSitterVO(SitterVO sitter); //시터정보수정
 	
 	public List<Map<String,Object>> getSitter_revVO(Sitter_revVO SitterVO); //예약정보조회

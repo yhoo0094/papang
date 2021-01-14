@@ -2,6 +2,7 @@ package co.company.papang.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -334,7 +335,13 @@ public class MypageController {
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
 		
+		sitterVo.setSit_mbr_id(mbr_id);
+		System.out.println(sitterVo); 
 		
+		int a = dao.getcount(sitterVo); 
+		System.out.println("되");
+		
+		if(a==1){ 
 		sitterVo.setSit_mbr_id(mbr_id);
 		memberVO.setMbr_id(mbr_id);
 		
@@ -350,6 +357,21 @@ public class MypageController {
 		
 		
 		return mav; 
+		}
+		else {
+			System.out.println("시터가 아닙니다");
+			  
+			  response.setContentType("text/html; charset=UTF-8");
+			  
+			  PrintWriter out = response.getWriter();
+			   
+			  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
+			   
+			  out.flush();
+
+
+			  return new ModelAndView("main/main");
+		}
 		
 		
 	}
@@ -432,18 +454,43 @@ public class MypageController {
 	
 	
 	@RequestMapping("mypage/sitter_money") //예약정보보기
-	public ModelAndView test136(HttpSession session,HttpServletResponse response,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
+	public ModelAndView test136(HttpSession session,HttpServletResponse response,Sitter_revVO sitter_revVO,MemberVO memberVO,SitterVO sitterVO) throws IOException{
 		
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
-		 
+		System.out.println(mbr_id);
+		sitterVO.setSit_mbr_id(mbr_id);
+		System.out.println(sitterVO); 
 		
-		sitter_revVO.setSit_mbr_id(mbr_id); 
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("co",dao.getSitter_revVO(sitter_revVO));
-		mav.setViewName("mypage/sitter_money");
+		int a = dao.getcount(sitterVO); 
+		System.out.println("되");
+		System.out.println(a);
+		System.out.println("나");
 		
-	 return mav;
+		
+		  if(a==1){ 
+			  sitter_revVO.setSit_mbr_id(mbr_id);
+			  ModelAndView mav=new ModelAndView();
+			  mav.addObject("co",dao.getSitter_revVO(sitter_revVO));
+		  mav.setViewName("mypage/sitter_money");
+		  System.out.println("시터 입니다");
+		  return mav;
+		  } else {
+		  System.out.println("시터가 아닙니다");
+		  
+		  response.setContentType("text/html; charset=UTF-8");
+		  
+		  PrintWriter out = response.getWriter();
+		   
+		  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
+		   
+		  out.flush();
+
+
+		  return new ModelAndView("main/main");
+		  
+		  }
+		
 	} 
 	
 	@RequestMapping("/mypage/sitter_money2") //예약정보보기 디테일

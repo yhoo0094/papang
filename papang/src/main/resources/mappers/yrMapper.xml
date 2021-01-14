@@ -128,6 +128,14 @@
 		FROM SITTER 
 		WHERE SIT_MBR_ID=#{sit_mbr_id}
 	</select>
+	
+	<!-- 시터권한 체크-->
+<select id="getcount" parameterType="sitterVO" resultType="int">
+		SELECT 
+		COUNT(*) 
+		FROM SITTER  
+		WHERE SIT_MBR_ID = #{sit_mbr_id} 
+</select>	
 <!-- 시터정보조회 후 수정 -->
 <select id="updateSitterVO" parameterType="sitterVO" resultType="sitterVO">
 		UPDATE

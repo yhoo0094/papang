@@ -185,7 +185,7 @@ a {}
 					<li><a href="${pageContext.request.contextPath}/marketList/cart">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/market_buyinfo">구매내역</a></li>
 
-					<li><a href="${pageContext.request.contextPath}/mypage/market_deli">배송현황조회</a></li>
+					
 				</ul></li>
 			<li><a href="#none">게시물</a>
 				<ul>
