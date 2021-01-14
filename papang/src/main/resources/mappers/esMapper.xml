@@ -349,7 +349,7 @@
 		FROM BAG b, PRODUCT p	
 		WHERE b.pro_no = p.pro_no
 		ORDER BY pro_no -->
-		SELECT b.bag_no, b.mbr_id, b.pro_no, b.bag_cnt, p.pro_name, p.pro_price, p.pro_pic
+		SELECT b.bag_no, b.mbr_id, b.pro_no, b.bag_cnt, p.pro_name, p.pro_price, p.pro_pic, p.pro_cnt
 		FROM BAG b
 		INNER JOIN PRODUCT p
 		ON b.pro_no = p.pro_no
@@ -376,7 +376,7 @@
 	<!--  수량 수정    -->
 	<update id="updateCart" parameterType="BagVO">
 		UPDATE BAG SET bag_cnt = #{bag_cnt}
-		WHERE pro_no = #{pro_no}
+		WHERE bag_no = #{bag_no}
 	</update>
 	<!-- 삭제 -->
 	<delete id="deleteCart" parameterType="BagVO">
