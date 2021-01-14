@@ -274,7 +274,7 @@ public class MarketController {
 	}
 	
 	//신고하기
-	@RequestMapping("report.do")
+	@RequestMapping("used/report")
 	public String commentReport(ReportVO reportVO) {
 		return "report/report";
 	}

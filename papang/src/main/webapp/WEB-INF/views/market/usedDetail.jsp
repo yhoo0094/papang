@@ -99,7 +99,7 @@
 			<span class="commentMenu" id="reportCommentSpan"> <img class="sirenImg" alt="사이렌사진"
 				src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">신고하기
 			</span>
-			<form action="${pageContext.request.contextPath}/report.do" id="reprotCommentForm">
+			<form action="${pageContext.request.contextPath}/used/report" id="reprotCommentForm">
 				<input type="hidden" name="mbr_id"
 					value="${user.mbr_id}"> <input type="hidden"
 					name="repo_category" value="중고장터"> <input type="hidden"
@@ -174,7 +174,7 @@
 									<img class="sirenImg" alt="사이렌사진"
 									src="${pageContext.request.contextPath}/resources/images/siren.png"
 									width="1%" height="1%"> <span class="commentMenu">신고하기 </span>
-									<form action="${pageContext.request.contextPath}/report.do" id="reprotCommentForm">
+									<form action="${pageContext.request.contextPath}/used/report" id="reprotCommentForm">
 										<input type="hidden" name="mbr_id" value="${sessionScope.user.mbr_id}">
 										<input type="hidden" name="repo_category" value="중고장터 댓글">
 										<input type="hidden" name="repo_category_no" value="${uc.uc_no}">

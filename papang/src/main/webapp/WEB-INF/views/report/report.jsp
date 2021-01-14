@@ -47,7 +47,6 @@ function reportInsert(){
                   <td align="center">신고글</td>
                   <td width="100%">
                   	  <select id='repo_category' name= 'repo_category' style="width:20%">
-	                  	  <option value="시터" <c:if test='${reportVO.repo_category eq "시터"}'> selected="selected" </c:if>>시터</option>
 	                  	  <option value="중고장터" <c:if test='${reportVO.repo_category eq "중고장터"}'> selected="selected" </c:if>>중고장터</option>
 	                  	  <option value="중고장터 댓글" <c:if test='${reportVO.repo_category eq "중고장터 댓글"}'> selected="selected" </c:if>>중고장터 댓글</option>
 						  <option value="활동" <c:if test='${reportVO.repo_category eq "활동"}'> selected="selected" </c:if>>활동</option>
