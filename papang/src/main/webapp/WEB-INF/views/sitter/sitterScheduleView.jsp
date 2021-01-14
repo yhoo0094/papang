@@ -80,46 +80,11 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
-$(()=>{
-	calendarMaker($("#calendarForm"), new Date());
 	
-	$('#sitterRevPayBtn').on({
-		'click': function() {
-			// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-	        var amount = $("#amount").val();
-	     	var link;
-			var IMP = window.IMP; // 생략가능
-   			IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
-	     	IMP.request_pay({
-	     	    pg : 'inicis',
-	     	    pay_method : 'card',
-	     	    merchant_uid : 'merchant' + new Date().getTime(),
-	     	    name : '파팡 시팅 서비스',
-	     	    amount : 100, //디버깅용
-	     	    //amount : ($('#reservationPriceTd').text()).replace(',',''), 
-	     	    buyer_email : '${user.mbr_email}',
-	     	    buyer_name : '${user.mbr_id}',
-	     	    buyer_tel : '12345',
-	     	    buyer_addr : '테스트주소',
-	     	    buyer_postcode : '12345'
-	     	}, function(rsp) {
-	     	    if ( rsp.success ) {
-	     	    	var reservationNum = $('#reservationNumTd').text(); 
-	     	    	var msg = '결제가 완료되었습니다.';
- 	    			msg += '\n고유ID : ' + rsp.imp_uid;
- 	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
- 	    			msg += '\결제 금액 : ' + rsp.paid_amount;
- 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
- 	    			alert(msg);
-	     	    	location.href = "${pageContext.request.contextPath}/sitter/reservationPay?srv_no=" + reservationNum;
-	     	    } else {
-	     	        var msg = '결제에 실패하였습니다.';
-	     	        msg += '에러내용 : ' + rsp.error_msg;
-	     	        alert(msg);
-	     	    }
-	     	});
-		}
-	})//sitterRevPayBtn버튼 끝
+$(()=>{
+	offDays();
+	
+	calendarMaker($("#calendarForm"), new Date());
 	
 	$('#sitterRevCancleBtn').on({
 		'click': function() {
@@ -128,6 +93,21 @@ $(()=>{
 		}
 	})
 })
+
+function offDays(){//휴무일 회색
+	var sitOffTdText = "${sitterVOChk.sit_off}"
+   	var allTr = $('#custom_set_date').find('tr');
+   	var days = ['월','화','수','목','금']
+   	$.each(days, function(idx, val){
+   		if(sitOffTdText.indexOf(val) != -1){
+   			console.log(allTr);
+   	   		$.each(allTr, function(idx2, val2){
+   	   			$(val2).find('td').eq(idx+1).attr('class', 'offDayTd');  			
+   	   		})
+   	   	}
+   	})
+   $('.offDayTd').off();
+}
 
 function getReservatedDayList(){
 	var calenderY = $('.calenderY').text();
