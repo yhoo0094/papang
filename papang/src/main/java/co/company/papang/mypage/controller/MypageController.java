@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.YrMapper;
+import co.company.papang.member.service.Sha256;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
@@ -62,7 +63,8 @@ public class MypageController {
 	public ModelAndView test22(HttpSession session,HttpServletResponse response,MemberVO memberVO,HttpServletRequest request) throws IOException{
 		
 		ModelAndView mav=new ModelAndView();
-
+		String encryPw = Sha256.encrypt(memberVO.getMbr_pw());
+	    memberVO.setMbr_pw(encryPw);
 		System.out.println(memberVO);
 		MultipartHttpServletRequest multipartRequest =
 				(MultipartHttpServletRequest)request;
@@ -78,6 +80,7 @@ public class MypageController {
 				memberVO.setMbr_pic(multipartFile.getOriginalFilename());
 				}
 		dao.updateMemberVO(memberVO);
+		
 		mav.setViewName("main/main");
 		session.invalidate();
 		return mav; 
