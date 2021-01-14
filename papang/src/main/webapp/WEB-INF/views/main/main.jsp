@@ -6,13 +6,42 @@
 <head>
 <title>Insert title here</title>
 <style type="text/css">
-	.center_div{
-		display: none;
-	}
+.center_div{display: none;}
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
 
 </style>
   <script>
 $(() => {
+	
+	 /* 1 */
+    $(window).scroll( function(){
+        /* 2 */
+        $('.hideme').each( function(i){
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+            /* 3 */
+            if( bottom_of_window > bottom_of_object/2 ){
+                $(this).animate({'opacity':'1'},500);
+            }
+        }); 
+    });
+	
+	 
+	 
 	
 	/* 장터 단건조회 페이지 이동 */
 	$('.mainBox').on('click',function() {
@@ -34,6 +63,9 @@ $(() => {
 	$('.mainsit').on('click',function() {
 		location.href= "${pageContext.request.contextPath}/sitter/board";
 	});
+	
+	
+
 	
 	
 	
@@ -94,7 +126,7 @@ $(() => {
     <div class="row">
     
     
-      <div class="col-lg-4 mb-4 mainsit"  align="center">
+      <div class="col-lg-4 mb-4 mainsit fadein"  align="center">
        <figure class="snip1200">
 		  		  <img src="${pageContext.request.contextPath}/resources/images/main/메인미니1.png" />
 		  <figcaption>
@@ -115,7 +147,7 @@ $(() => {
       </div>
       
       
-      <div class="col-lg-4 mb-4 mainmarket"  align="center">
+      <div class="col-lg-4 mb-4 mainmarket fadein"  align="center">
             <figure class="snip1200">
 					  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인2.jpg" />
 			  <figcaption>
@@ -134,7 +166,7 @@ $(() => {
       </div>
       
       
-      <div class="col-lg-4 mb-4 mainact"  align="center">
+      <div class="col-lg-4 mb-4 mainact fadein"  align="center">
             <figure class="snip1200">
 			  <img src="${pageContext.request.contextPath}/resources/images/main/미니메인3.jpg" />
 			  <figcaption>
@@ -164,7 +196,7 @@ $(() => {
     <div class="row">
     <c:forEach items="${products}" var="product">
       <div class="col-lg-4 col-sm-6 portfolio-item mainBox">
-        <div class="card h-100">
+        <div class="card h-100"> 
         <p class="pro_no">${product.pro_no}</p>
           <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/market/${product.pro_pic}" alt="상품 사진이없습니다"></a>
           <div class="card-body">
@@ -205,7 +237,7 @@ $(() => {
         <p>믿고 맏길 수 있는 베이비시터 서비스 제공. 100% 순면 무형광 제작된 파파존스 핸드메이드 상품 판매.초보 육아대디를 위한 유용한 정보 제공.육아 예방접종 일지 등록 제공.</p>
       </div>
       <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+       <%--  <img class="img-fluid rounded famImage" src="${pageContext.request.contextPath}/resources/images/new_logo2.png"> --%>
       </div>
     </div>
     <!-- /.row -->

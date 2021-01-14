@@ -128,8 +128,10 @@ thead, #dataTable_filter, #dataTable_length {
 .table {
 	margin: 4rem 0 1rem 0;
 }
+.titleFont{font-size: 18px;}
 .cookno_hidden{display: none;}
-
+.linebb{display: inline-block;}
+.nonediv{display: none;}
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
@@ -262,10 +264,12 @@ thead, #dataTable_filter, #dataTable_length {
 								<!-- 회원이미지--> 
 									<img src="${pageContext.request.contextPath}/images/memberimage/${cook.MBR_PIC}">
 								</a>
-									<p>작성자: </p><p>${cook.MBR_ID}</p>
-									<p>글번호 :</p><p class="cook_no">${cook.COOK_NO}</p>
-									<p>제목 : ${cook.COOK_TITLE}</p>
-									<p>카테고리: </p><p class="play_category">${cook.COOK_CATEGORY}</p>
+								 	<p>${cook.MBR_ID}</p>
+									<p class="titleFont">${cook.COOK_TITLE}</p>
+								 	<div class="nonediv">
+										<p>글번호 :</p><p class="cook_no">${cook.COOK_NO}</p>
+									</div>
+									<p class="linebb">카테고리: </p><p class="play_category linebb">${cook.COOK_CATEGORY}</p> 
 							</span> <!-- 시간,좋아요,공유 -->
 								<div class="option">
 									<div class="time">

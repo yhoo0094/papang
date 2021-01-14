@@ -2,6 +2,7 @@ package co.company.papang.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.YrMapper;
+import co.company.papang.member.service.Sha256;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
@@ -62,7 +64,8 @@ public class MypageController {
 	public ModelAndView test22(HttpSession session,HttpServletResponse response,MemberVO memberVO,HttpServletRequest request) throws IOException{
 		
 		ModelAndView mav=new ModelAndView();
-
+		String encryPw = Sha256.encrypt(memberVO.getMbr_pw());
+	    memberVO.setMbr_pw(encryPw);
 		System.out.println(memberVO);
 		MultipartHttpServletRequest multipartRequest =
 				(MultipartHttpServletRequest)request;
@@ -71,13 +74,14 @@ public class MypageController {
 				//첨부파일
 				if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
 					
-					String path = request.getSession().getServletContext().getRealPath("/resources/images/sitterProfile");
+					String path = request.getSession().getServletContext().getRealPath("/images/memberimage");
 					System.out.println("path="+path);
 					
 				multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
 				memberVO.setMbr_pic(multipartFile.getOriginalFilename());
 				}
 		dao.updateMemberVO(memberVO);
+		
 		mav.setViewName("main/main");
 		session.invalidate();
 		return mav; 
@@ -267,6 +271,21 @@ public class MypageController {
 		return mav;
 	}
 	
+	@RequestMapping("/mypage/market_buyinfomm2") //구매목록2
+	public ModelAndView test423(Order_infoVO order_infoVO,Pro_OdVO pro_odVO,HttpServletRequest request) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		
+		String order_no = request.getParameter("order_no");
+		System.out.println("조");
+		
+		order_infoVO.setOrder_no(order_no);
+		mav.addObject(dao.selectwaybill(order_infoVO));
+		System.out.println(order_no);
+		System.out.println("영");
+		mav.setViewName("no/mypage/exam");
+		return mav;
+	}
+	
 	
 	
 	@RequestMapping("mypage/market_deli") //배송 현황 조회
@@ -331,7 +350,13 @@ public class MypageController {
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
 		
+		sitterVo.setSit_mbr_id(mbr_id);
+		System.out.println(sitterVo); 
 		
+		int a = dao.getcount(sitterVo); 
+		System.out.println("되");
+		
+		if(a==1){ 
 		sitterVo.setSit_mbr_id(mbr_id);
 		memberVO.setMbr_id(mbr_id);
 		
@@ -347,6 +372,21 @@ public class MypageController {
 		
 		
 		return mav; 
+		}
+		else {
+			System.out.println("시터가 아닙니다");
+			  
+			  response.setContentType("text/html; charset=UTF-8");
+			  
+			  PrintWriter out = response.getWriter();
+			   
+			  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
+			   
+			  out.flush();
+
+
+			  return new ModelAndView("main/main");
+		}
 		
 		
 	}
@@ -429,18 +469,43 @@ public class MypageController {
 	
 	
 	@RequestMapping("mypage/sitter_money") //예약정보보기
-	public ModelAndView test136(HttpSession session,HttpServletResponse response,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
+	public ModelAndView test136(HttpSession session,HttpServletResponse response,Sitter_revVO sitter_revVO,MemberVO memberVO,SitterVO sitterVO) throws IOException{
 		
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
-		 
+		System.out.println(mbr_id);
+		sitterVO.setSit_mbr_id(mbr_id);
+		System.out.println(sitterVO); 
 		
-		sitter_revVO.setSit_mbr_id(mbr_id); 
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("co",dao.getSitter_revVO(sitter_revVO));
-		mav.setViewName("mypage/sitter_money");
+		int a = dao.getcount(sitterVO); 
+		System.out.println("되");
+		System.out.println(a);
+		System.out.println("나");
 		
-	 return mav;
+		
+		  if(a==1){ 
+			  sitter_revVO.setSit_mbr_id(mbr_id);
+			  ModelAndView mav=new ModelAndView();
+			  mav.addObject("co",dao.getSitter_revVO(sitter_revVO));
+		  mav.setViewName("mypage/sitter_money");
+		  System.out.println("시터 입니다");
+		  return mav;
+		  } else {
+		  System.out.println("시터가 아닙니다");
+		  
+		  response.setContentType("text/html; charset=UTF-8");
+		  
+		  PrintWriter out = response.getWriter();
+		   
+		  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
+		   
+		  out.flush();
+
+
+		  return new ModelAndView("main/main");
+		  
+		  }
+		
 	} 
 	
 	@RequestMapping("/mypage/sitter_money2") //예약정보보기 디테일

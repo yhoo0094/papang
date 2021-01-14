@@ -16,5 +16,6 @@ public class BagVO {
 	private String pro_name;
 	private String pro_price;
 	private String pro_pic;
+	private String pro_cnt;
 	
 }

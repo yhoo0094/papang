@@ -85,9 +85,9 @@ public class SitterController {
 	@ResponseBody
 	public List<Sitter_revChkVO> reservatedDays(Sitter_revChkVO sitter_revChkVO, @RequestParam("calenderY") String calenderY, @RequestParam("calenderM") String calenderM, HttpSession session) {
 		//mbr_id
-		MemberVO memberVO = (MemberVO) session.getAttribute("user");
-		String mbr_id = memberVO.getMbr_id();
-		sitter_revChkVO.setMbr_id(mbr_id);
+//		MemberVO memberVO = (MemberVO) session.getAttribute("user");
+//		String mbr_id = memberVO.getMbr_id();
+//		sitter_revChkVO.setMbr_id(mbr_id);
 		
 		//날짜 범위 집어넣기
 		List<Sitter_revChkVO> reservatedDayList = new ArrayList<Sitter_revChkVO>();
@@ -154,7 +154,14 @@ public class SitterController {
 	}
 	
 	@RequestMapping("/sitter/scheduleView") //시터 스케쥴 보기
-	public String sitterScheduleView() {
+	public String sitterScheduleView(HttpSession session, SitterVOChk SitterVOChk) {
+		//mbr_id
+		MemberVO memberVO = (MemberVO) session.getAttribute("user");
+		String mbr_id = memberVO.getMbr_id();
+		SitterVOChk.setSit_mbr_id(mbr_id);
+		
+		SitterVOChk = service.getSitter(SitterVOChk);
+		
 		return "sitter/sitterScheduleView"; //jsp주소
 	}
 	

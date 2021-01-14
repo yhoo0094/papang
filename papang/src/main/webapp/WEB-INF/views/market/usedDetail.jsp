@@ -90,11 +90,36 @@
 				}
 			}
 		})
+		// 본문 신고
+		$('#reportSpan').on({
+			"click" : function() {
+				$('#reprotForm').submit();
+			}
+		});
+		
+		 //댓글 신고
+		$('#reportCommentSpan').on({
+			"click" : function() {
+				$('#reprotCommentForm').submit();
+			}
+		});
 	})
 </script>
 <div class="container center_div">
 	<div>
 		<h2>[${used.used_category}] : ${used.used_title}</h2>
+		<c:if test="${user.mbr_id != uc.mbr_id}">
+			<span class="commentMenu" id="reportSpan"> <img class="sirenImg" alt="사이렌사진"
+				src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">신고하기
+			</span>
+			<form action="${pageContext.request.contextPath}/used/report" id="reprotForm">
+				<input type="hidden" name="mbr_id"
+					value="${user.mbr_id}"> <input type="hidden"
+					name="repo_category" value="중고장터"> <input type="hidden"
+					name="repo_category_no" value="${used.used_no}"> <input
+					type="hidden" name="re_mbr_id" value="${used.mbr_id}">
+			</form>
+		</c:if>
 		<table class="table">
 			<tbody>
 				<tr>
@@ -159,9 +184,16 @@
 							<div id="commentDiv">
 								<span class="commentContent" id="tempt">${uc.uc_content}</span>
 								<c:if test="${user.mbr_id != uc.mbr_id}">
+								<span class="commentMenu" id="reportCommentSpan">
 									<img class="sirenImg" alt="사이렌사진"
 									src="${pageContext.request.contextPath}/resources/images/siren.png"
-									width="1%" height="1%"> <span class="commentMenu">신고하기 </span>
+									width="1%" height="1%"> 신고하기 </span>
+									<form action="${pageContext.request.contextPath}/used/report" id="reprotCommentForm">
+										<input type="hidden" name="mbr_id" value="${sessionScope.user.mbr_id}">
+										<input type="hidden" name="repo_category" value="중고장터 댓글">
+										<input type="hidden" name="repo_category_no" value="${uc.uc_no}">
+										<input type="hidden" name="re_mbr_id" value="${uc.mbr_id}">
+									</form>
 								</c:if>
 								<c:if test="${user.mbr_id == uc.mbr_id}">
 								<span class="commentMenu">

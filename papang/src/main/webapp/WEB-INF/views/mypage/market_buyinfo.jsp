@@ -66,9 +66,6 @@ table tbody tr td {
    font-size: 16px;
 }
 
-.yra:link{color:blue; text-decoration:underline}  
-      .yra:visited{color:blue;text-decoration:none}   
-      .yra:hover {color:#ff00ff; text-decoration:underline} 
 </style>
 <title>마이페이지</title>
 </head>
@@ -109,8 +106,8 @@ table tbody tr td {
                            data-target="#exampleModal1" data-toggle="modal" align="center"
                            style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button
                               type="submit">상세보기</button></td>
-                        <td align="center"><a class="yra" href="https://tracker.delivery/#/kr.logen/${co6.waybill}" target="_blank">배송조회</a>     
-                          
+                        <td align="center"><button class="qwe2" data-toggle="modal" data-target="#exampleModal2" data-num="${co6.order_no}"  target="_blank">배송조회</button>     
+                           
                      </tr>
                   </c:forEach>
                </tbody>
@@ -123,6 +120,15 @@ table tbody tr td {
       </div>
 
       <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content modal-wd">
+            <div class="modal-body" id="body1">....</div>
+            </div>
+         </div>
+      </div>
+      
+      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel">
          <div class="modal-dialog" role="document">
             <div class="modal-content modal-wd">
@@ -152,6 +158,19 @@ $(".qwe").on("click", function() {
       }
    });
 });
+
+$(".qwe2").on("click", function() {
+	   var order_no = $(this).data("num");
+	   modal = $("#exampleModal2"); 
+	   $.ajax({   
+	      url : "market_buyinfomm2?order_no=" + order_no,
+	      success : function(result) {
+	         modal.find('#body1').html(result);
+	         modal.modal('show');
+	      }
+	   });
+	}); 
+
 
    //테이블의 Row 클릭시 값 가져오기
    $("#dataTable tr").click(function() {

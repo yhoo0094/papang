@@ -159,7 +159,7 @@ $(function() {
 					</p>
 					<p>
 						<label>이름</label> <img class= "img1" id = "mbr_pic" name="mbr_pic" 
-						src="${pageContext.request.contextPath}/resources/images/sitterProfile/${ memberVO.mbr_pic}"><input type="file" id="uploadFile"  name="uploadFile" value="${ memberVO.mbr_pic}"/>		
+						src="${pageContext.request.contextPath}/images/memberimage/${ memberVO.mbr_pic}"><input type="file" id="uploadFile"  name="uploadFile" value="${ memberVO.mbr_pic}"/>		
 					</p>
 					
 					<p>

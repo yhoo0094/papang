@@ -473,7 +473,6 @@ function calendarMaker(target, date) {
        				if(changeToDateDate < 10){
        					changeToDateDate = "0" + changeToDateDate;
        				} 
-       			//책갈피
        				var mmddType = changeToDateMonth+changeToDateDate; //(mmdd 형식으로 바꾸기)
        				var changeToDate = changeToDateYear+changeToDateMonth+changeToDateDate; //(yyyymmdd 형식으로 바꾸기)
        				if(!reservatedDayList.includes(mmddType)){

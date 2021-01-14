@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +33,7 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.UsedVO;
 import co.company.papang.vo.Used_comVO;
 import co.company.papang.vo.WarehousingVO;
@@ -140,7 +142,7 @@ public class MarketController {
 //	중고게시판
 	// 중고게시판 리스트
 	@RequestMapping("marketList/usedBoard") // url 예전 .do
-	public ModelAndView test3(UsedVO used) throws IOException {
+	public ModelAndView test3(UsedVO used, HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("usedList", used_service.getUsedList(used));
 		mav.setViewName("marketList/usedBoard");
@@ -158,30 +160,28 @@ public class MarketController {
 
 	// 중고게시판 상세
 	@RequestMapping("market/usedDetail") // url 예전 .do
-	public String getUsed(UsedVO used, Used_comVO used_com, Model model, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
-		// 조회수 올리기
-		if (used.getUsed_no() != null) {
-			boolean existCookie = false;
-			Cookie[] cookieList = request.getCookies();
-			for (Cookie co : cookieList) {
-				if (co.getValue().equals(used.getUsed_no())) {
-					existCookie = true;
-				}
-			}
-			// 쿠키생성
-			if (!existCookie) {
-				// 쿠키가 없는 경우
-				System.out.println("쿠키생성");
-				Cookie cookie = new Cookie("UsedCookie", used.getUsed_no());
-				cookie.setMaxAge(60 * 60 * 24);
-				response.addCookie(cookie);
-				used_service.hitPlus(used);
-			}
-			model.addAttribute("used", used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
-			model.addAttribute("used_comList", used_service.getUsedCommList(used_com)); // 댓글조회
+	public String getUsed(UsedVO used, Used_comVO used_com, @CookieValue(required = false) String usedCookie, Model model, HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws ClassNotFoundException, IOException {
+//		MemberVO memberVo = (MemberVO) session.getAttribute("user");
+//		String mbr_id = memberVo.getMbr_id();
+//		// 조회수 올리기
+//		if(!(cookie.contains(String.valueOf(mbr_id)))) {
+//			cookie += mbr_id + "/";
+//			used_service.hitPlus(used);
+//		}
+//		response.addCookie(new Cookie("usedCookie", cookie));
+//		
+		String usCookieVal = usedCookie==null?"":usedCookie;
+		if(usedCookie == null || usedCookie.indexOf(used.getUsed_no() + "A") == -1) { // 쿠키 자체가 없거나, 쿠키 안에 값이 없을 때
+			usCookieVal = usCookieVal + used.getUsed_no() + "A";
+			used_service.hitPlus(used); ///////////
+			Cookie cookie = new Cookie("usedCookie", usCookieVal);
+			cookie.setMaxAge(60 * 60 * 24);
+			response.addCookie(cookie);
 		}
-		// model.addAttribute("used", used_service.getUsed(used));
+		
+		model.addAttribute("used", used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
+		model.addAttribute("used_comList", used_service.getUsedCommList(used_com)); // 댓글조회
 		return "market/usedDetail"; // jsp주소
 	}
 
@@ -271,6 +271,13 @@ public class MarketController {
 	public int test20(Used_comVO usedCom) {
 		return used_service.usedCommDelete(usedCom);
 	}
+	
+	//신고하기
+	@RequestMapping("used/report")
+	public String commentReport(ReportVO reportVO) {
+		return "report/report";
+	}
+	
 // 장바구니
 	// 장바구니 목록
 	@RequestMapping("marketList/cart") // url 예전 .do
@@ -312,17 +319,20 @@ public class MarketController {
 	// 장바구니 수정
 	@RequestMapping("market/cartUpdate") // url 예전 .do
 	@ResponseBody
-	public int test18(HttpSession session, BagVO bag) throws IOException {
+	public int test18(HttpSession session, BagVO bag, HttpServletRequest request) throws IOException {
 		int result = 0;
 
-		MemberVO memberVo = (MemberVO) session.getAttribute("user");
-		String mbr_id = memberVo.getMbr_id();
-		bag.setMbr_id(mbr_id);
-		mk_service.insertCart(bag);
-		if (mbr_id != null) {
-			// 회원아이디만 담아주고, 상품번호나 수량은 아작스로, 장바구니번호는 시퀀스로 담음
-			result = 1;
-		}
+//		MemberVO memberVo = (MemberVO) session.getAttribute("user");
+//		String mbr_id = memberVo.getMbr_id();
+		String bag_cnt = request.getParameter("bag_cnt");
+//		String pro_no = request.getParameter("pro_no");
+		int bag_no = Integer.parseInt(request.getParameter("bag_no"));
+//		bag.setMbr_id(mbr_id);
+		bag.setBag_cnt(bag_cnt);
+//		bag.setPro_no(pro_no);
+		bag.setBag_no(bag_no);
+		
+		mk_service.updateCart(bag);
 		return result;
 	}
 

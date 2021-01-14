@@ -39,11 +39,12 @@ public interface YrMapper {
 	public List<CommunityVO> myboard_questionCommunityVO(CommunityVO community); //질문보기
 	public List<Community_comVO> myboard_answerCommunity_comVO(Community_comVO community_comVO); //질문보기
 	public List<ReportVO> myboard_policeReportVO(ReportVO reportVO); //신고현황보기
-	
-	 
+	public Order_infoVO selectwaybill(Order_infoVO order_infoVO);
+	  
 
 	//시터정보부터 한다
 	public SitterVO sitter_infoSitterVO(SitterVO sitter); //시터 정보조회
+	public int getcount(SitterVO sitter); //시터 권한체크?
 	public void updateSitterVO(SitterVO sitter); //시터정보수정
 	
 	public List<Map<String,Object>> getSitter_revVO(Sitter_revVO SitterVO); //예약정보조회

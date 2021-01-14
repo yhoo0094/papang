@@ -46,7 +46,7 @@ $(function(){
 	<br>
 	<h3 style="display: inline;">장바구니</h3>
 	<div align="right">
-		<button id="updateBtn" class="btnYellow" onclick="location.href='/papang/market/cartUpdate'">수량 수정</button>
+		<!-- button id="updateBtn" class="btnYellow" onclick="location.href='/papang/market/cartUpdate'">수량 수정</button -->
 		<button id="deleteBtn" class="btnGray">선택 삭제</button>
 	</div>
 	<hr />
@@ -77,8 +77,8 @@ $(function(){
 						<td><a href="../market/itemDetail?pro_no=${cart.pro_no}"
 							class="boardTagA">${cart.pro_name}</a></td>
 						<td align="center">${cart.pro_price} 원</td>
-						<td align="center"><input class="count" type="text" value="${cart.bag_cnt}" min="1">
-						<input type="hidden" value="${cart.pro_no}"></td>
+						<td align="center"><input class="count" type="number" value="${cart.bag_cnt}" min="1" max="${cart.pro_cnt}" required>
+						<input type="hidden" value="${cart.bag_no}"></td>
 						<td align="center" class="rsSum"><fmt:formatNumber
 							pattern="###,###,###" value="${cart.pro_price * cart.bag_cnt}" />원</td>
 					</tr>
@@ -87,17 +87,31 @@ $(function(){
 			</tbody>
 		</table>
 		<script type="text/javascript">
-		
-// 		$(".count").on({
-// 	         "change" : function() {
+		$(".count").focusout(function(){
+			var bag_cnt = $(this).val();
+			var bag_no = $(this).next().val();
+			
+			// 수량수정
+			$.ajax({
+ 				url: "${pageContext.request.contextPath}/market/cartUpdate",
+ 				type: "POST",
+ 				data : {
+ 					bag_cnt : bag_cnt,
+//  					pro_no : pro_no,
+ 					bag_no : bag_no},
+ 				success : function(){
+ 					location.reload();
+ 				}, error: function(){
+ 					alert("수정 실패");
+ 					location.reload();
+ 				}
+ 			})
+		})
+// 		$(".count").on({"change" : function() {
 // 				var cnt = $(this).val();
-// 				var price = $(this).parent().prev().text();
-// 				var result = cnt*parseInt(price);
-// 				$(this).parent().next().text(result);
-				
-				
-// 				var rsSum = $("tr").find("td.rsSum").text();
-// 				console.log("한줄합"+rsSum);
+// 				console.log("cnt"+cnt);
+// 				var pro_no = $(this).next().val();
+// 				console.log("pro_no" + pro_no);
 // 	         }
 // 		});
 		</script>
@@ -203,10 +217,6 @@ $("#OrderBtn").on("click",function(){
  	    					alert("재고 실패");
  	    				}
  	    			})
- 	    			
- 	    			
-	     	    	
-	     	    	
 	     	    } else {
 	     	        var msg = '결제에 실패하였습니다.';
 	     	        msg += '에러내용 : ' + rsp.error_msg;

@@ -20,4 +20,5 @@ public class SitterVO {
 	private String sit_note;
 	private String sit_pic;
 	private String[] array;
+	
 }

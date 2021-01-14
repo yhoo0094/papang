@@ -2,6 +2,7 @@ package co.company.papang.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -31,6 +32,7 @@ public class HomeController {
 		mav.addObject("products",mainService.productList(productVO));
 		
 		session.setAttribute("bannerlist",service.getbannerlist(bannervo));
+		
 		mav.setViewName("main/main");
 		return mav;
 	}
