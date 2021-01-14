@@ -32,6 +32,7 @@ import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ProductVO;
+import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.UsedVO;
 import co.company.papang.vo.Used_comVO;
 import co.company.papang.vo.WarehousingVO;
@@ -271,6 +272,13 @@ public class MarketController {
 	public int test20(Used_comVO usedCom) {
 		return used_service.usedCommDelete(usedCom);
 	}
+	
+	//신고하기
+	@RequestMapping("report.do")
+	public String commentReport(ReportVO reportVO) {
+		return "report/report";
+	}
+	
 // 장바구니
 	// 장바구니 목록
 	@RequestMapping("marketList/cart") // url 예전 .do
