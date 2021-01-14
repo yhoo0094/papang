@@ -31,6 +31,10 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .search_btn{transition-duration: 0.4s;} 
 .search_btn:hover{background-color:#e8505b;color:white;}
 .playno_hidden{display: none;}
+.titleFont{font-size: 18px;}
+.cookno_hidden{display: none;}
+.linebb{display: inline-block;}
+.nonediv{display: none;}
 </style>
 <script>
 
@@ -173,10 +177,13 @@ window.onload = function() {
 			</a> 
 			<span class="author"> 
 				<a href="#"><img src="${pageContext.request.contextPath}/images/memberimage/${play.MBR_PIC}"></a> 
-				<p>작성자 :</p><p>${play.MBR_ID}</p>
+				<p>${play.MBR_ID}</p>
+				<div class="nonediv">
 				<p>글번호 :</p><p class="play_no">${play.PLAY_NO}</p>
-				<p>제목 : ${play.PLAY_TITLE}</p>
-				<p>카테고리: </p><p class="play_category">${play.PLAY_CATEGORY}</p>
+				</div>
+				<p class="titleFont">${play.PLAY_TITLE}</p>
+				<p class="linebb"></p><p class="play_category linebb">${play.PLAY_CATEGORY}</p>
+				
 			</span>
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
