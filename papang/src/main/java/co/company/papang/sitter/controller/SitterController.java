@@ -154,14 +154,14 @@ public class SitterController {
 	}
 	
 	@RequestMapping("/sitter/scheduleView") //시터 스케쥴 보기
-	public String sitterScheduleView(HttpSession session, SitterVOChk SitterVOChk) {
+	public String sitterScheduleView(HttpSession session, SitterVOChk sitterVOChk, Model model) {
 		//mbr_id
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVO.getMbr_id();
-		SitterVOChk.setSit_mbr_id(mbr_id);
+		sitterVOChk.setSit_mbr_id(mbr_id);
 		
-		SitterVOChk = service.getSitter(SitterVOChk);
-		
+		//시터 정보
+		model.addAttribute("sitterVOChk",service.getSitter(sitterVOChk));
 		return "sitter/sitterScheduleView"; //jsp주소
 	}
 	
