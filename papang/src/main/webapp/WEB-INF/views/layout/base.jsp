@@ -294,7 +294,7 @@ max-height: 340px;
 .card-text{color: #fa91a2;}
 .card_title2, .card-title{color: rgb(64, 60, 60);}
 .pro_no{display: none;}
-
+.card_title2:hover{color: #fa91a2;text-decoration: none;}
 </style>
 <script type="text/javascript">
 	$(function() {
