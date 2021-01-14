@@ -195,12 +195,22 @@
 								value="질문">질문
 					</select></td>
 				</tr>
-				<tr>
-					<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
-					<td class="whiteBackground"><form:textarea id="summernote"
-							path="com_content" class="communityFormTxtarea" rows="20"
-							cols="102" name="comm"></form:textarea></td>
-				</tr>
+				<!-- 수정하기 -->
+				<c:if test="${empty communityVO.com_no or communityVO.mbr_id == sessionScope.user.mbr_id}">
+					<tr>
+						<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
+						<td class="whiteBackground"><form:textarea id="summernote"
+								path="com_content" class="communityFormTxtarea" rows="20"
+								cols="102" name="comm"></form:textarea></td>
+					</tr>
+				</c:if>
+				<!-- 뷰페이지 -->
+				<c:if test="${not empty communityVO.com_no and communityVO.mbr_id != sessionScope.user.mbr_id}">
+					<tr>
+						<td align="center" class="strongYellow" style="padding-bottom: 7px">내용</td>
+						<td class="whiteBackground" style="height: 500px;">${communityVO.com_content}</td>
+					</tr>
+				</c:if>
 			</table>
 			<br>
 			<div align="center">

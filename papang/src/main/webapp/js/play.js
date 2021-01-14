@@ -13,7 +13,7 @@
 	$(function(){
 	//날로먹는 페이지네이션
 			$("#cook_div .custom-select").empty();
-			$("#cook_div .custom-select").append("<option value='12'>12</option>");
+			$("#cook_div .custom-select").append("<option value='9'>9</option>");
 			$("#cook_div .custom-select").trigger("change");
 			$("#cook_div th:eq(0)").trigger("click");
 			
