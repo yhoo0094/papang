@@ -101,8 +101,13 @@
 		FROM PRODUCT JOIN ORDER_DETAIL ON PRODUCT.PRO_NO = ORDER_DETAIL.PRO_NO
 		WHERE  ORDER_DETAIL.ORDER_NO = #{order_no}
 </select>
- 
-
+ <!-- waybill 단건조회 -->
+<select id="selectwaybill" parameterType="order_infoVO" resultType="order_infoVO">
+		 SELECT
+		  WAYBILL 
+		  FROM ORDER_INFO 
+		  WHERE ORDER_NO=#{order_no}
+</select>  
 <!-- 내 게시물 질문 -->	
 	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
 		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT

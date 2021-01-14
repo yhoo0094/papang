@@ -74,7 +74,7 @@ public class MypageController {
 				//첨부파일
 				if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
 					
-					String path = request.getSession().getServletContext().getRealPath("/resources/images/sitterProfile");
+					String path = request.getSession().getServletContext().getRealPath("/images/memberimage");
 					System.out.println("path="+path);
 					
 				multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
@@ -268,6 +268,21 @@ public class MypageController {
 		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
 		System.out.println("2222222222");
 		mav.setViewName("no/mypage/aaa");
+		return mav;
+	}
+	
+	@RequestMapping("/mypage/market_buyinfomm2") //구매목록2
+	public ModelAndView test423(Order_infoVO order_infoVO,Pro_OdVO pro_odVO,HttpServletRequest request) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		
+		String order_no = request.getParameter("order_no");
+		System.out.println("조");
+		
+		order_infoVO.setOrder_no(order_no);
+		mav.addObject(dao.selectwaybill(order_infoVO));
+		System.out.println(order_no);
+		System.out.println("영");
+		mav.setViewName("no/mypage/exam");
 		return mav;
 	}
 	
