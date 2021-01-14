@@ -12,6 +12,7 @@ import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 
 public interface AdminService {
@@ -119,4 +120,10 @@ public interface AdminService {
 	
 	//일별 매출 현황
 	public List<Order_infoVO> orderinfoselect2(Order_infoVO vo);
+	
+	//시터 월별 매출 현황
+	public List<Map<String,Object>> sitterinfoselect(Sitter_revVO3 vo);
+	
+	//시터 일별 매출 현황
+	public List<Sitter_revVO3> sitterinfoselect2(Sitter_revVO3 vo);
 }

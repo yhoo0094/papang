@@ -28,10 +28,10 @@
 		SEQ_NQ_nq_no.nextval,
 		'ADMIN',
 		#{nq_title},
-		 #{nq_content},
+		#{nq_content},
 		#{nq_category},
 		<if test="nq_file != null and nq_file !=''">
-		#{nq_file},
+			#{nq_file},
 		</if>
 		sysdate)
 
@@ -56,7 +56,7 @@
 		nq_category = #{nq_category},
 		nq_content = #{nq_content}
 		<if test="nq_file != null and nq_file !=''">
-		, nq_file = #{nq_file}
+			, nq_file = #{nq_file}
 		</if>
 		where nq_no = #{nq_no}
 	</update>
@@ -71,8 +71,10 @@
 	<!-- 회원 전체조회 -->
 	<select id="getListMember"
 		resultType="co.company.papang.vo.MemberVO">
-		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name, NVL((select count(*) from report_info group by mbr_id),0) as rcnt
-		from member
+		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name,
+		NVL((select count(*) from report_info group by mbr_id),0) as rcnt
+		from
+		member
 		<where>
 			<if test="mbr_author != null and mbr_author !=''">
 				mbr_author = #{mbr_author}
@@ -80,70 +82,86 @@
 		</where>
 		ORDER BY mbr_id
 	</select>
-	
+
 	<!-- 맴버 권한 수정 -->
-	<update id="updateMember" parameterType="co.company.papang.vo.MemberVO">
+	<update id="updateMember"
+		parameterType="co.company.papang.vo.MemberVO">
 		update member set
 		mbr_author =
 		#{mbr_author}
-		where mbr_id = #{mbr_id}
+		where mbr_id =
+		#{mbr_id}
 	</update>
 	<!-- 시터 알림 기능 -->
-	<insert id="insertSitterAlarm" parameterType="co.company.papang.vo.MemberVO">
+	<insert id="insertSitterAlarm"
+		parameterType="co.company.papang.vo.MemberVO">
 		<if test="mbr_author == '시터'">
-			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'베이비시터로 권한 변경 되었습니다.',sysdate)
+			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+			VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'베이비시터로 권한 변경
+			되었습니다.',sysdate)
 		</if>
 		<if test="mbr_author == '회원'">
-			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'회원으로 권한 변경 되었습니다.',sysdate)
+			INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+			VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{mbr_id} ,'회원으로 권한 변경
+			되었습니다.',sysdate)
 		</if>
 	</insert>
-	
-	
+
+
 	<!-- 맴버 탈퇴 기능 -->
-	<update id="deleteMember" parameterType="co.company.papang.vo.MemberVO">
+	<update id="deleteMember"
+		parameterType="co.company.papang.vo.MemberVO">
 		update member set
 		mbr_status =
 		'탈퇴'
-		where mbr_id = #{mbr_id}
+		where mbr_id =
+		#{mbr_id}
 	</update>
-	
-	
+
+
 	<!-- 시터 등록 -->
-	<insert id="insertSitter" parameterType="co.company.papang.vo.SitterVO">
-		INSERT INTO SITTER(SIT_MBR_ID,SIT_AGE) VALUES(#{sit_mbr_id},(select NVL(TRUNC(MONTHS_BETWEEN(SYSDATE, mbr_birth)/12), 0) AS AGE from member where mbr_id=#{sit_mbr_id}))
+	<insert id="insertSitter"
+		parameterType="co.company.papang.vo.SitterVO">
+		INSERT INTO SITTER(SIT_MBR_ID,SIT_AGE)
+		VALUES(#{sit_mbr_id},(select NVL(TRUNC(MONTHS_BETWEEN(SYSDATE,
+		mbr_birth)/12), 0) AS AGE from member where mbr_id=#{sit_mbr_id}))
 	</insert>
-	
+
 	<!-- 시터 삭제 -->
-	<delete id="deleteSitter" parameterType="co.company.papang.vo.SitterVO">
+	<delete id="deleteSitter"
+		parameterType="co.company.papang.vo.SitterVO">
 		delete from SITTER
 		where sit_mbr_id =
 		#{sit_mbr_id}
 	</delete>
-	
+
 	<!-- 시터 단건조회 -->
-	<select id="getSitter" parameterType="co.company.papang.vo.SitterVO"
+	<select id="getSitter"
+		parameterType="co.company.papang.vo.SitterVO"
 		resultType="co.company.papang.vo.SitterVO">
 		SELECT * FROM SITTER
 		WHERE sit_mbr_id = #{sit_mbr_id}
 	</select>
-	
+
 	<!-- 시터 정보 수정 -->
-	<update id="updateSitter" parameterType="co.company.papang.vo.SitterVO">
+	<update id="updateSitter"
+		parameterType="co.company.papang.vo.SitterVO">
 		update sitter set
 		sit_payday = #{sit_payday},
-		sit_off =  #{sit_off},
-		sit_pay =  #{sit_pay},
+		sit_off = #{sit_off},
+		sit_pay = #{sit_pay},
 		sit_loc = #{sit_loc},
 		sit_note = #{sit_note}
 		<if test="sit_pic != null and sit_pic !=''">
-		, sit_pic = #{sit_pic}
+			, sit_pic = #{sit_pic}
 		</if>
 		WHERE sit_mbr_id = #{sit_mbr_id}
 	</update>
-	
-	
+
+
 	<!-- 공지등록 -->
-	<insert id="insertBanner" parameterType="co.company.papang.vo.BannerVO">
+	<insert id="insertBanner"
+		parameterType="co.company.papang.vo.BannerVO">
 		INSERT INTO BANNER (
 		BAN_NO,
 		AD_ID,
@@ -163,7 +181,7 @@
 		#{ban_link})
 
 	</insert>
-	
+
 	<!-- 배너 전체조회 -->
 	<select id="getbannerlist"
 		resultType="co.company.papang.vo.BannerVO">
@@ -172,56 +190,65 @@
 			<if test="ban_category != null and ban_category !=''">
 				ban_category = #{ban_category}
 			</if>
-				<if test="ban_pic_status != null and ban_pic_status !=''">
+			<if test="ban_pic_status != null and ban_pic_status !=''">
 				ban_pic_status = '표시'
 			</if>
-			
+
 		</where>
-		ORDER BY ban_no         
+		ORDER BY ban_no
 	</select>
-	
+
 	<!-- 배너 단건조회 -->
-	<select id="getBanner" parameterType="co.company.papang.vo.BannerVO"
+	<select id="getBanner"
+		parameterType="co.company.papang.vo.BannerVO"
 		resultType="co.company.papang.vo.BannerVO">
 		SELECT * FROM BANNER
 		WHERE ban_no = #{ban_no}
 	</select>
-	
+
 	<!-- 배너 정보 수정 -->
-	<update id="updateBanner" parameterType="co.company.papang.vo.BannerVO">
+	<update id="updateBanner"
+		parameterType="co.company.papang.vo.BannerVO">
 		update Banner set
 		ban_category = #{ban_category},
-		ban_pic_name =  #{ban_pic_name},
-		ban_pic_status =  #{ban_pic_status},
-		ban_link = #{ban_link}
+		ban_pic_name =
+		#{ban_pic_name},
+		ban_pic_status = #{ban_pic_status},
+		ban_link =
+		#{ban_link}
 		<if test="ban_pic != null and ban_pic !=''">
-		, ban_pic = #{ban_pic}
+			, ban_pic = #{ban_pic}
 		</if>
 		WHERE ban_no = #{ban_no}
 	</update>
-	
+
 	<!-- 배너 삭제 -->
-	<delete id="deleteBanner" parameterType="co.company.papang.vo.BannerVO">
+	<delete id="deleteBanner"
+		parameterType="co.company.papang.vo.BannerVO">
 		delete from BANNER
 		where ban_no =
 		#{ban_no}
 	</delete>
-	
+
 	<!-- 배너 상태 수정 -->
-	<update id="updateBannerstatus" parameterType="co.company.papang.vo.BannerVO">
+	<update id="updateBannerstatus"
+		parameterType="co.company.papang.vo.BannerVO">
 		update banner set
 		ban_pic_status =
 		#{ban_pic_status}
-		where ban_no = #{ban_no}
+		where
+		ban_no = #{ban_no}
 	</update>
-	
+
 	<!-- 상품 이름,번호 조회 -->
-	<select id="getprono" parameterType="ProductVO" resultType="ProductVO">
-	select pro_no, pro_name from product
+	<select id="getprono" parameterType="ProductVO"
+		resultType="ProductVO">
+		select pro_no, pro_name from product
 	</select>
-	
+
 	<!-- 입고 등록 -->
-	<insert id="Wareinsert" parameterType="co.company.papang.vo.WarehousingVO">
+	<insert id="Wareinsert"
+		parameterType="co.company.papang.vo.WarehousingVO">
 		INSERT INTO WAREHOUSING (
 		WARE_NO,
 		PRO_NO,
@@ -239,67 +266,83 @@
 		'입고'
 		)
 	</insert>
-	
+
 	<!-- 입/출고조회 -->
-	<select id="warehousinglist" parameterType="co.company.papang.vo.WarehousingVO" resultType="map">
-		SELECT W.WARE_NO,W.WARE_CATEGORY,W.WARE_CNT,P.PRO_NO,P.PRO_CATEGORY,P.PRO_NAME,P.PRO_CNT,P.PRO_CN,TO_CHAR(W.WARE_DATE,'YYYY-MM-DD') AS WARE_DATE, W.WARE_NOTE
+	<select id="warehousinglist"
+		parameterType="co.company.papang.vo.WarehousingVO" resultType="map">
+		SELECT
+		W.WARE_NO,W.WARE_CATEGORY,W.WARE_CNT,P.PRO_NO,P.PRO_CATEGORY,P.PRO_NAME,P.PRO_CNT,P.PRO_CN,TO_CHAR(W.WARE_DATE,'YYYY-MM-DD')
+		AS WARE_DATE, W.WARE_NOTE
 		FROM PRODUCT P , WAREHOUSING W
-	<where>
-	P.PRO_NO = W.PRO_NO
-	<if test="ware_category != null and ware_category !=''">
-		AND W.WARE_CATEGORY = #{ware_category}
-	</if>
-	</where>
-	ORDER BY W.WARE_NO desc
+		<where>
+			P.PRO_NO = W.PRO_NO
+			<if test="ware_category != null and ware_category !=''">
+				AND W.WARE_CATEGORY = #{ware_category}
+			</if>
+		</where>
+		ORDER BY W.WARE_NO desc
 	</select>
-	
-	 
-	<!-- 상품 수량 수정-->
-	<update id="updateprocnt" parameterType="co.company.papang.vo.WarehousingVO">
-		update product set pro_cnt = NVL(pro_cnt,0)+ #{ware_cnt} where pro_no= #{pro_no}
+
+
+	<!-- 상품 수량 수정 -->
+	<update id="updateprocnt"
+		parameterType="co.company.papang.vo.WarehousingVO">
+		update product set pro_cnt = NVL(pro_cnt,0)+ #{ware_cnt}
+		where pro_no= #{pro_no}
 	</update>
-	
-	<!-- 알림 갯수  -->
-	<select id="getacount" parameterType="AlarmVO" resultType="AlarmVO">
-	select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date ,arm_content, (select count(*) from alarm where mbr_id=#{mbr_id}) as arm_count from ALARM
-	where mbr_id= #{mbr_id}
-	and arm_status = 'N'
-	GROUP BY mbr_id, arm_no ,arm_date ,arm_content
-	order by arm_no DESC
+
+	<!-- 알림 갯수 -->
+	<select id="getacount" parameterType="AlarmVO"
+		resultType="AlarmVO">
+		select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date ,arm_content,
+		(select count(*) from alarm where mbr_id=#{mbr_id}) as arm_count from
+		ALARM
+		where mbr_id= #{mbr_id}
+		and arm_status = 'N'
+		GROUP BY mbr_id, arm_no ,arm_date ,arm_content
+		order by arm_no DESC
 	</select>
-	
+
 	<!-- 읽음처리 -->
-	<update id = "updateAstatus" parameterType="AlarmVO">
-	update ALARM set ARM_STATUS='Y' where mbr_id = #{mbr_id}
+	<update id="updateAstatus" parameterType="AlarmVO">
+		UPDATE ALARM set ARM_STATUS='Y' where mbr_id = #{mbr_id}
 	</update>
-	
+
 	<!-- 신고 등록 -->
 	<insert id='insertReport' parameterType='ReportVO'>
-	INSERT INTO REPORT(MBR_ID,REPO_CATEGORY,REPO_CATEGORY_NO,REPO_TITLE,REPO_CONTENT,RE_MBR_ID)
-	VALUES(#{mbr_id},#{repo_category},#{repo_category_no},#{repo_title},#{repo_content},#{re_mbr_id})
+		INSERT INTO
+		REPORT(MBR_ID,REPO_CATEGORY,REPO_CATEGORY_NO,REPO_TITLE,REPO_CONTENT,RE_MBR_ID)
+		VALUES(#{mbr_id},#{repo_category},#{repo_category_no},#{repo_title},#{repo_content},#{re_mbr_id})
 	</insert>
-	
-	<select id ='reportselect' parameterType="ReportVO" resultType="ReportVO">
-	select * from report
-	where repo_status='미처리'
+
+	<select id='reportselect' parameterType="ReportVO"
+		resultType="ReportVO">
+		select * from report
+		where repo_status='미처리'
 	</select>
-	
-	<select id ='reportinfoselect' parameterType="co.company.papang.vo.Report_info" resultType="map">
-	SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD') AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS RINFO_CNT,SUBSTR(R.RINFO_REASON,0,10)||'...' AS RINFO_REASON
-	FROM MEMBER M , REPORT_INFO R
-	WHERE M.MBR_ID = R.MBR_ID
-	ORDER BY R.REPO_NO DESC
+
+	<select id='reportinfoselect'
+		parameterType="co.company.papang.vo.Report_info" resultType="map">
+		SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD')
+		AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS
+		RINFO_CNT,SUBSTR(R.RINFO_REASON,0,10)||'...' AS RINFO_REASON
+		FROM MEMBER M , REPORT_INFO R
+		WHERE M.MBR_ID = R.MBR_ID
+		ORDER BY R.REPO_NO DESC
 	</select>
-	
-	<select id ='reportselectone' resultType="map">
-	SELECT R.REPO_NO,R.RE_MBR_ID,M.MBR_AUTHOR,R.MBR_ID,M.MBR_STATUS,R.REPO_CONTENT FROM REPORT R,MEMBER M
-	WHERE REPO_STATUS='미처리'
-  	AND R.MBR_ID = M.MBR_ID
-	AND REPO_NO= #{repo_no}
-	</select> 
-	
+
+	<select id='reportselectone' resultType="map">
+		SELECT
+		R.REPO_NO,R.RE_MBR_ID,M.MBR_AUTHOR,R.MBR_ID,M.MBR_STATUS,R.REPO_CONTENT
+		FROM REPORT R,MEMBER M
+		WHERE REPO_STATUS='미처리'
+		AND R.MBR_ID = M.MBR_ID
+		AND REPO_NO= #{repo_no}
+	</select>
+
 	<!-- 제재 처리 등록 -->
-	<insert id="reportinfoinsert" parameterType="co.company.papang.vo.Report_info">
+	<insert id="reportinfoinsert"
+		parameterType="co.company.papang.vo.Report_info">
 		INSERT INTO REPORT_INFO (
 		REPO_NO,
 		MBR_ID,
@@ -315,33 +358,58 @@
 		#{rinfo_start}
 		)
 	</insert>
-	
+
 	<!-- 정지 처리 -->
-	<update id = "updatestatus" parameterType="co.company.papang.vo.Report_info">
-	update MEMBER set MBR_STATUS='활동정지' where mbr_id = #{mbr_id}
+	<update id="updatestatus"
+		parameterType="co.company.papang.vo.Report_info">
+		update MEMBER set MBR_STATUS='활동정지' where mbr_id = #{mbr_id}
 	</update>
-	
+
 	<!-- 읽음처리 -->
-	<update id = "updaterepoans" parameterType="co.company.papang.vo.Report_info">
-	update REPORT set REPO_ANS = #{rinfo_reason} ,REPO_STATUS='처리' where REPO_NO = #{repo_no}
+	<update id="updaterepoans"
+		parameterType="co.company.papang.vo.Report_info">
+		update REPORT set REPO_ANS = #{rinfo_reason} ,REPO_STATUS='처리' where REPO_NO
+		= #{repo_no}
 	</update>
-	
+
 	<!-- 시터 알림 기능 -->
-	<insert id="insertreportAlarm" parameterType="co.company.papang.vo.Report_info">
-	INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE) VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{repo_mbr_id} ,'신고하신 '||(select re_mbr_id from report where repo_no = #{repo_no})||' 제재 처리 되었습니다.' ,sysdate)
+	<insert id="insertreportAlarm"
+		parameterType="co.company.papang.vo.Report_info">
+		INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+		VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{repo_mbr_id} ,'신고하신 '||(select
+		re_mbr_id from report where repo_no = #{repo_no})||' 제재 처리 되었습니다.'
+		,sysdate)
 	</insert>
-	
+
 	<!-- 월별 매출 현황 -->
-	<select id ='orderinfoselect' parameterType="Order_infoVO" resultType="Order_infoVO">
-	select to_char(order_date,'yy/mm') as order_date , sum(order_sum) as order_sum from order_info
-	group by to_char(order_date,'yy/mm')
-	order by order_date
+	<select id='orderinfoselect' parameterType="Order_infoVO"
+		resultType="Order_infoVO">
+		select to_char(order_date,'yy/mm') as order_date , sum(order_sum) as
+		order_sum from order_info
+		group by to_char(order_date,'yy/mm')
+		order by order_date
+	</select>
+
+	<!-- 일별 매출 현황 -->
+	<select id='orderinfoselect2' parameterType="Order_infoVO"
+		resultType="Order_infoVO">
+		select to_char(order_date,'yy/mm/dd') as order_date,sum(order_sum) as
+		order_sum from order_info
+		group by to_char(order_date,'yy/mm/dd')
+		order by order_date
+	</select>
+
+	<!-- 일별 매출 현황 -->
+	<select id='sitterinfoselect' parameterType="Sitter_revVO3"
+		resultType="map">
+		select sit_mbr_id "label", sum(srv_pay) "y" from sitter_rev
+		where to_char(srv_date,'yy/mm') = #{monthsitter}
+		group by sit_mbr_id
+		order by sum(srv_pay)
 	</select>
 	
-	<!-- 일별 매출 현황 -->
-	<select id ='orderinfoselect2' parameterType="Order_infoVO" resultType="Order_infoVO">
-	select to_char(order_date,'yy/mm/dd') as order_date,sum(order_sum) as order_sum from order_info
-	group by to_char(order_date,'yy/mm/dd')
-	order by order_date
+	<select id='sitterinfoselect2' parameterType="Sitter_revVO3" resultType="Sitter_revVO3">
+	select sit_mbr_id,to_char(srv_date,'yyyy-mm-dd') as srv_date,srv_pay from sitter_rev
+	order by SRV_DATE DESC
 	</select>
 </mapper>

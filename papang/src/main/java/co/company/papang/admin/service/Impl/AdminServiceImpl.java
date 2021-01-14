@@ -17,6 +17,7 @@ import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -231,6 +232,18 @@ public class AdminServiceImpl implements AdminService{
 	public List<Order_infoVO> orderinfoselect2(Order_infoVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.orderinfoselect2(vo);
+	}
+
+	@Override
+	public List<Map<String,Object>> sitterinfoselect(Sitter_revVO3 vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.sitterinfoselect(vo);
+	}
+
+	@Override
+	public List<Sitter_revVO3> sitterinfoselect2(Sitter_revVO3 vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.sitterinfoselect2(vo);
 	}
 
 	

@@ -29,6 +29,7 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 
 @RestController
@@ -371,10 +372,24 @@ public class AdminRestController {
 		return service.orderinfoselect(vo);
 	}
 
-	// 월별 매출 현황
+	// 일별 매출 현황
 	@RequestMapping(value = "/orderinfoselect2", method = RequestMethod.GET)
 	public List<Order_infoVO> orderinfoselect2(Model model, Order_infoVO vo) {
 		return service.orderinfoselect2(vo);
 	}
+	
+	// 배너 조회
+	@RequestMapping(value = "/sitterinfoselect", method = RequestMethod.GET)
+	public List<Map<String,Object>> sitterinfoselect(Model model, Sitter_revVO3 vo) {
+		System.out.println(service.sitterinfoselect(vo)+vo.getMonthsitter());
+		return service.sitterinfoselect(vo);
+	}
+	
+	// 일별 매출 현황
+	@RequestMapping(value = "/sitterinfoselect2", method = RequestMethod.GET)
+	public List<Sitter_revVO3> sitterinfoselect2(Model model, Sitter_revVO3 vo) {
+		return service.sitterinfoselect2(vo);
+	}
+
 	
 }
