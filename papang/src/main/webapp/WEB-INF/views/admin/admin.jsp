@@ -66,7 +66,7 @@ thead, #dataTable_filter, #dataTable_length {
 		$('#year').val(year);
 		$('#month').val(month);
 		reportselect();
-		$('#dataTable').DataTable();
+		
 		if ($('#month').val() * 1 < 10) {
 			var date7 = $('#year').val().substring(2, 4) + '/0'
 					+ $('#month').val();
@@ -328,7 +328,7 @@ thead, #dataTable_filter, #dataTable_length {
 
 
 
-<h1 class="mt-4">Dashboard</h1>
+<h1 class="mt-4">Papang</h1>
 <ol class="breadcrumb mb-4">
 	<li class="breadcrumb-item active">Dashboard</li>
 </ol>
@@ -340,7 +340,8 @@ thead, #dataTable_filter, #dataTable_length {
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${sitterVOChkList}" var="v">
+				<c:forEach items="${sitterVOChkList}" var="v" varStatus="i">
+					<c:if test='${i.index < 5}'>
 					<tr class="dataTableTr">
 						<td>
 							<div class="sitterDiv strongYellow">
@@ -375,6 +376,7 @@ thead, #dataTable_filter, #dataTable_length {
 							</div>
 						</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
