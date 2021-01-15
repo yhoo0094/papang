@@ -303,4 +303,7 @@
 		WHERE CHI_NO = #{chi_no}
 	</select>
 	
+	<select id="">
+	
+	</select>
 </mapper>
