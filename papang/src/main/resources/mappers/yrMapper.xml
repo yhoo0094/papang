@@ -89,7 +89,7 @@
 		INSERT 
 		INTO child 
 		(mbr_id,chi_birth,chi_name,chi_gender,chi_sns,chi_pic)
-		VALUES(#{mbr_id},#{chi_birth},#{chi_name},#{chi_gender},#{chi_sns},'ㅇ')
+		VALUES(#{mbr_id},#{chi_birth},#{chi_name},#{chi_gender},#{chi_sns},#{chi_pic})
 </select>
 		<!-- 구매내역1 -->
 <select id="market_buyinfoOrder_infoVO" parameterType="order_infoVO" resultType="order_infoVO">

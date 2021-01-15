@@ -172,15 +172,7 @@ public class MypageController {
 		dao.babyinfodeleteChildVO(childVO);
 		System.out.println("66666666666");
 	}
-			
-		
-//		
-//		String[] ajaxMsg = request.getParameterValues("valueArr");
-//        int size = ajaxMsg.length;
-//        for(int i=0; i<size; i++) {
-//        	childVO.setCid_no(ajaxMsg[i])
-//        	dao.babyinfodeleteChildVO(childVO)
-        
+
 		ModelAndView mav=new ModelAndView();
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
@@ -199,7 +191,7 @@ public class MypageController {
 		String mbr_id = vo.getMbr_id();
 		 
 		childVO.setMbr_id(mbr_id);
-		dao.babyinfoinsertChildVO(childVO);
+		
 		MultipartHttpServletRequest multipartRequest =
 				(MultipartHttpServletRequest)request;
 				//이미지파일
@@ -213,6 +205,7 @@ public class MypageController {
 				multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
 				childVO.setChi_pic(multipartFile.getOriginalFilename());
 				}
+				dao.babyinfoinsertChildVO(childVO);
 		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
 		mav.setViewName("mypage/babyinfo");
 		return mav; 
@@ -284,6 +277,8 @@ public class MypageController {
 		mav.addObject(dao.arrinfo(order_infoVO));
 		System.out.println(dao.arrinfo(order_infoVO));
 		System.out.println("2222222222");
+		
+		System.out.println(pro_odVO);
 		mav.setViewName("no/mypage/aaa"); 
 		return mav;
 	}

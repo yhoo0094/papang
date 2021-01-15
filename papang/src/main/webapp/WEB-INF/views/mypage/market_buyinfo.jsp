@@ -68,6 +68,14 @@ table tbody tr td {
 
 </style>
 <title>마이페이지</title>
+<script type="text/javascript">
+	$(()=>{
+		$('#cancleBtn').on("click", function() {
+			var order_no = $(this).data("num");
+			alert(order_no);
+		})
+	})
+</script>
 </head>
 <body>
    <div>
@@ -92,6 +100,7 @@ table tbody tr td {
                      <th width="12%" class="tableTh">가격합계</th>
                      <th width="12%" class="tableTh">상세보기</th>
                      <th width="12%" class="tableTh">배송조회</th>
+                     <th width="12%" class="tableTh"></th>
                   </tr>
                </thead>
                <tbody>
@@ -107,7 +116,7 @@ table tbody tr td {
                            style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button
                               type="submit">상세보기</button></td>
                         <td align="center"><button class="qwe2" data-toggle="modal" data-target="#exampleModal2" data-num="${co6.order_no}"  target="_blank">배송조회</button>     
-                           
+                        <td align="center"><button id="cancleBtn" type="button" data-num="${co6.order_no}">주문취소</button></td>   
                      </tr>
                   </c:forEach>
                </tbody>
