@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-<style type="text/css">
-.communityFormTitle {
+<
+style type ="text /css ">.communityFormTitle {
 	padding: 1%;
 }
 
@@ -53,7 +53,7 @@ thead, #dataTable_filter, #dataTable_length {
 	width: 260px;
 }
 </style>
-</style>	
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -66,7 +66,7 @@ thead, #dataTable_filter, #dataTable_length {
 		$('#year').val(year);
 		$('#month').val(month);
 		reportselect();
-		
+
 		if ($('#month').val() * 1 < 10) {
 			var date7 = $('#year').val().substring(2, 4) + '/0'
 					+ $('#month').val();
@@ -285,7 +285,7 @@ thead, #dataTable_filter, #dataTable_length {
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
-	var arr = [["성별","Rating"]];
+	var arr = [ [ "성별", "Rating" ] ];
 	google.load("visualization", "1", {
 		packages : [ "corechart" ]
 	});
@@ -300,10 +300,9 @@ thead, #dataTable_filter, #dataTable_length {
 				.getElementById("employee_piechart"));
 		chart.draw(data, options);
 	}
-	
-	
-	function mbrajax(){
-		
+
+	function mbrajax() {
+
 		$.ajax({
 			url : '${pageContext.request.contextPath}/gendercount',
 			type : 'GET',
@@ -313,7 +312,7 @@ thead, #dataTable_filter, #dataTable_length {
 			error : function(xhr, status, msg) {
 				alert("상태값 :" + status + " Http에러메시지 :" + msg);
 			},
-			success : function(data){
+			success : function(data) {
 				$.each(data, function(idx, val) {
 					var a = [];
 					a.push(val.MBR_GENDER);
@@ -323,8 +322,9 @@ thead, #dataTable_filter, #dataTable_length {
 				console.log(arr);
 			}
 		});
-		}
+	}
 </script>
+
 
 
 
@@ -333,20 +333,21 @@ thead, #dataTable_filter, #dataTable_length {
 	<li class="breadcrumb-item active">우수 베이비 시터</li>
 </ol>
 <div id="divForEntryNum">
-		<table class="table" id="dataTable">
-			<thead>
-				<tr>
-					<th>가</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${sitterVOChkList}" var="v" varStatus="i">
-					<c:if test='${i.index < 5}'>
+	<table class="table" id="dataTable">
+		<thead>
+			<tr>
+				<th>가</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${sitterVOChkList}" var="v" varStatus="i">
+				<c:if test='${i.index < 5}'>
 					<tr class="dataTableTr">
 						<td>
 							<div class="sitterDiv strongYellow">
-								<input class="sitterIdInput" type="hidden" value="${v.sit_mbr_id}"> 
-								<img class="sitterProfileImg" alt="시터이미지"
+								<input class="sitterIdInput" type="hidden"
+									value="${v.sit_mbr_id}"> <img class="sitterProfileImg"
+									alt="시터이미지"
 									src="${pageContext.request.contextPath}/resources/images/sitterProfile/${v.sit_pic}">
 								<table class="TableInTheDataTable" align="center">
 									<tr align="center">
@@ -359,10 +360,8 @@ thead, #dataTable_filter, #dataTable_length {
 									</tr>
 									<tr>
 										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
-										<td>
-											<c:if test="${v.rate == '　'}">평가없음</c:if>
-											<c:if test="${v.rate != null}">${v.rate}</c:if>
-										</td>
+										<td><c:if test="${v.rate == '　'}">평가없음</c:if> <c:if
+												test="${v.rate != null}">${v.rate}</c:if></td>
 									</tr>
 									<tr>
 										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
@@ -376,30 +375,31 @@ thead, #dataTable_filter, #dataTable_length {
 							</div>
 						</td>
 					</tr>
-					</c:if>
-				</c:forEach>
-			</tbody>
-		</table>
-	</div>
-	<br>
-	<br>
-	<br>
+				</c:if>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+<br>
+<br>
+<br>
 <div class="row">
 	<div class="col-xl-6">
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-chart-area mr-1"></i> 시터 월별 매출 현황
 			</div>
-			<div class="card-body">
+			<div class="card-body" style="height: 400px">
 				<div class='calenderMenu' align='center'>
 					<button type='button' id='prev' class='buttonclass'><</button>
-					&nbsp;&nbsp; <span class='calenderY'><input type='text' 
-						id='year' style="width: 50px; border: none"></span>년 <span class='calenderM'><input
-						type='text' id='month' style="width: 30px; border: none"></span>월 &nbsp;&nbsp;
+					&nbsp;&nbsp; <span class='calenderY'><input type='text'
+						id='year' style="width: 50px; border: none"></span>년 <span
+						class='calenderM'><input type='text' id='month'
+						style="width: 30px; border: none"></span>월 &nbsp;&nbsp;
 					<button type='button' id='next' class='buttonclass'>></button>
 				</div>
 				<br>
-				<div id="chartContainer" style="width: 80%; height: 300px"></div>
+				<div id="chartContainer" style="width: 90%; height: 70%"></div>
 			</div>
 		</div>
 	</div>
@@ -408,26 +408,21 @@ thead, #dataTable_filter, #dataTable_length {
 			<div class="card-header">
 				<i class="fas fa-chart-bar mr-1"></i> 장터 월별 매출 현황
 			</div>
-			<div class="card-body">
-				<div id="column_chart_div1" style="width: 80%; height: 353px;"></div>
+			<div class="card-body" style="height: 400px">
+				<div id="column_chart_div1" style="width: 90%; height: 100%"></div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="card mb-4">
-	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> Table
-	</div>
 
-
-
-	<table class="table">
-
-		<tr>
-			<td width="48%">
-				<p align="center">신고 내역</p>
-				<table class="table table-bordered" id="dataTable2" width="100%"
-					cellspacing="0">
+<div class="row">
+	<div class="col-xl-6">
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table mr-1"></i> 신고 내역
+			</div>
+			<div class="card-body" style="height: 400px">
+				<table class="table table-bordered" id="dataTable2" cellspacing="0">
 					<thead>
 						<tr>
 							<th>신고자 ID</th>
@@ -438,19 +433,18 @@ thead, #dataTable_filter, #dataTable_length {
 							<th>신고 내용</th>
 						</tr>
 					</thead>
-
 					<tbody></tbody>
-
 				</table>
-			</td>
-
-			<td width="4%"></td>
-
-			<td width="48%">
-				<p align="center">남녀 성비 차트</p>
-				<div align="center" id="employee_piechart"
-					style="width: 600px; height: 300px;"></div>
-
-			</td>
-		</tr>
-	</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-6">
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-chart-bar mr-1"></i> 남녀 성비 차트
+			</div>
+			<div align="center" id="employee_piechart"
+				style="width: 600px; height: 400px"></div>
+		</div>
+	</div>
+</div>

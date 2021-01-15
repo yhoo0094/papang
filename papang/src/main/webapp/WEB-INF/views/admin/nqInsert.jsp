@@ -247,7 +247,7 @@
 			<tbody>
 				<tr>
 					<td align="center" style="width: 10%">분류</td>
-					<td name="nq_category">공지사항</td>
+					<td><input type='text' name="nq_category" value='공지사항' style="border: none" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td align="center" style="width: 10%">제목</td>

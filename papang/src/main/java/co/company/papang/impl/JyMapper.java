@@ -130,4 +130,6 @@ public interface JyMapper {
 	//성비 차트 
 	public List<Map<String,Object>> gendercount();
 	
+	//월급 조회
+ 	public  List<Map<String,Object>> monthpay(Sitter_revVO3 vo);
 }

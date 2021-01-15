@@ -252,6 +252,12 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.gendercount();
 	}
 
+	@Override
+	public List<Map<String, Object>> monthpay(Sitter_revVO3 vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.monthpay(vo);
+	}
+
 	
 
 	

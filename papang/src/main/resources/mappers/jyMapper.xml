@@ -271,7 +271,7 @@
 	<select id="warehousinglist"
 		parameterType="co.company.papang.vo.WarehousingVO" resultType="map">
 		SELECT
-		W.WARE_NO,W.WARE_CATEGORY,W.WARE_CNT,P.PRO_NO,P.PRO_CATEGORY,P.PRO_NAME,P.PRO_CNT,P.PRO_CN,TO_CHAR(W.WARE_DATE,'YYYY-MM-DD')
+		W.WARE_NO,W.WARE_CATEGORY,W.WARE_CNT,P.PRO_NO,P.PRO_NAME,P.PRO_CNT,P.PRO_CN,TO_CHAR(W.WARE_DATE,'YYYY-MM-DD')
 		AS WARE_DATE, W.WARE_NOTE
 		FROM PRODUCT P , WAREHOUSING W
 		<where>
@@ -417,4 +417,15 @@
 	select mbr_gender ,ROUND(count(*)/(select count(*) from member)*100)AS mbr_count  from member 
     group by mbr_gender
     </select>
+    
+    <select id='monthpay' parameterType="Sitter_revVO3" resultType="map">
+    SELECT S.SIT_MBR_ID, SUM(S.SRV_PAY) AS SRV_PAY,M.MBR_ACCOUNT FROM SITTER_REV S,MEMBER M
+    WHERE S.MBR_ID = M.MBR_ID
+    AND TO_CHAR(SRV_DATE,'YY/MM')= #{monthsitter}
+    AND S.SRV_STATUS='결제완료'
+    GROUP BY S.SIT_MBR_ID,M.MBR_ACCOUNT
+    </select>
+    
+    
+    
 </mapper>
