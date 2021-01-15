@@ -330,7 +330,7 @@ thead, #dataTable_filter, #dataTable_length {
 
 <h1 class="mt-4">Papang</h1>
 <ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item active">Dashboard</li>
+	<li class="breadcrumb-item active">우수 베이비 시터</li>
 </ol>
 <div id="divForEntryNum">
 		<table class="table" id="dataTable">
