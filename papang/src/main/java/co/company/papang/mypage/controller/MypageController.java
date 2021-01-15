@@ -132,7 +132,7 @@ public class MypageController {
 		childVO.setMbr_id(mbr_id);
 		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
 		
-		 
+		
 		
 		
 //		String[] exam = request.getParameterValues("user_CheckBox");
@@ -200,7 +200,19 @@ public class MypageController {
 		 
 		childVO.setMbr_id(mbr_id);
 		dao.babyinfoinsertChildVO(childVO);
-		
+		MultipartHttpServletRequest multipartRequest =
+				(MultipartHttpServletRequest)request;
+				//이미지파일
+				MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
+				//첨부파일
+				if(!multipartFile.isEmpty() && multipartFile.getSize()>0) {
+					
+					String path = request.getSession().getServletContext().getRealPath("/resources/images/baby");
+					System.out.println("path="+path);
+					
+				multipartFile.transferTo(new File(path,multipartFile.getOriginalFilename()));
+				childVO.setChi_pic(multipartFile.getOriginalFilename());
+				}
 		mav.addObject("cos5",dao.babyinfoChildVO(childVO));
 		mav.setViewName("mypage/babyinfo");
 		return mav; 
@@ -256,18 +268,23 @@ public class MypageController {
 	}
 	
 	@RequestMapping("/mypage/market_buyinfomm") //구매목록2
-	public ModelAndView test42(Order_infoVO order_infoVO,Pro_OdVO pro_odVO) throws IOException{
+	public ModelAndView test42(Order_infoVO order_infoVO,Pro_OdVO pro_odVO,HttpServletRequest request) throws IOException{
 		ModelAndView mav=new ModelAndView();
 		
-		
+		 
 		
 		System.out.println("1111111111111");
 		System.out.println(pro_odVO);
+		String order_no = request.getParameter("order_no");
 //		System.out.println(pro_odVO.getOrder_no());
 //		pro_odVO.setOrder_no(pro_odVO.getOrder_no());
+		System.out.println("나옵니까!!!"+order_no);
+		order_infoVO.setOrder_no(order_no);
 		mav.addObject("cos7",dao.market_buyinfoOrder_info2VO(pro_odVO));
+		mav.addObject(dao.arrinfo(order_infoVO));
+		System.out.println(dao.arrinfo(order_infoVO));
 		System.out.println("2222222222");
-		mav.setViewName("no/mypage/aaa");
+		mav.setViewName("no/mypage/aaa"); 
 		return mav;
 	}
 	
@@ -279,6 +296,7 @@ public class MypageController {
 		System.out.println("조");
 		
 		order_infoVO.setOrder_no(order_no);
+		
 		mav.addObject(dao.selectwaybill(order_infoVO));
 		System.out.println(order_no);
 		System.out.println("영");

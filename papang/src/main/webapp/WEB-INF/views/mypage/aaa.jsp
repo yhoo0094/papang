@@ -120,10 +120,11 @@ $(function() {
 						<th width="20%" class="tableTh">상품 명</th>
 						<th width="20%" class="tableTh">상품 가격</th>
 						<th width="15%" class="tableTh">상품 수량</th>
-					
+						
+					 
 					</tr>
 				</thead>  
-				<tbody>
+				<tbody> 
 				<c:forEach var="co8" items="${cos7}" >
 					<tr> 
 			
@@ -132,13 +133,15 @@ $(function() {
 						<td style="text-align: center; vertical-align: middle;">${co8.pro_name}</td>
 						<td style="text-align: center; vertical-align: middle;">${co8.pro_price}</td>
 						<td style="text-align: center; vertical-align: middle;">${co8.bag_cnt}</td>  
+						   
 					</tr>
 				</c:forEach>	
 					
 					
 				</tbody>
-			</table>
+			</table> 
 			
-			
+			<div style="color:blue">배송지</div> <div>${order_infoVO.post}</div>
+			<div> ${order_infoVO.addr1}${order_infoVO.addr2}${order_infoVO.addr3}</div>
 </body>
 </html>

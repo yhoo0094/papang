@@ -100,10 +100,19 @@
 </select>  
 		<!-- 구매내역2 -->
 <select id="market_buyinfoOrder_info2VO" parameterType="pro_odVO" resultType="pro_odVO">
-		SELECT PRODUCT.PRO_NO,PRODUCT.PRO_PIC,PRODUCT.PRO_NAME,PRODUCT.PRO_PRICE,ORDER_DETAIL.BAG_CNT 
+		SELECT PRODUCT.PRO_NO,PRODUCT.PRO_PIC,PRODUCT.PRO_NAME,PRODUCT.PRO_PRICE,ORDER_DETAIL.BAG_CNT
 		FROM PRODUCT JOIN ORDER_DETAIL ON PRODUCT.PRO_NO = ORDER_DETAIL.PRO_NO
 		WHERE  ORDER_DETAIL.ORDER_NO = #{order_no}
 </select>
+ 		<!-- 배송지정보 -->
+<select id="arrinfo" parameterType="order_infoVO" resultType="order_infoVO">
+		SELECT 
+		POST,ADDR1,ADDR3 
+		FROM ORDER_INFO  
+		WHERE ORDER_NO = #{order_no}
+</select>
+
+
  <!-- waybill 단건조회 -->
 <select id="selectwaybill" parameterType="order_infoVO" resultType="order_infoVO">
 		 SELECT
@@ -226,6 +235,16 @@ SRV_STATUS=#{srv_status} AND
  TO_CHAR(SRV_DATE,'YYYY-MM')=#{srv_date} 
 GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS 
 </select>		
+
+   <!-- 주문후 상품재고 변경 -->
+   <update id="updateProCnt" parameterType="BagVO">
+      UPDATE PRODUCT
+      SET pro_cnt = pro_cnt-#{bag_cnt}
+      WHERE pro_no = #{pro_no}
+   </update>
+
+
+
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 
