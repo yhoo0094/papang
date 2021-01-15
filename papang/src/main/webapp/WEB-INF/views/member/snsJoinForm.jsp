@@ -28,35 +28,39 @@ p {
 </style>
 <script type="text/javascript">
 	$(function() {
+		var f = document.frm;
 		// 이메일 중복검사
 		$("#mbr_email")
 				.blur(
-						function() {
+					function() {
+						if (f.mbr_email.value != "") {
 							var mbr_email = $("#mbr_email").val();
 							$.ajax({
-										url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
-												+ mbr_email,
-										type : 'get',
-										success : function(data) {
-											if (data == 1) { // 중복
-												$("#emailchk").text("사용불가");
-												$("#emailchk").css("color", "red");
-												$("joinBtn").attr("disabled",
-														true);
-											} else {
-												$("#emailchk")
-														.text("사용가능");
-												$("#emailchk").css("color",
-														"green");
-												$("joinBtn").attr("disabled",
-														false);
-											}
-										},
-										error : function() {
-											alert("실패");
-										}
-									})
-						})
+								url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
+										+ mbr_email,
+								type : 'get',
+								success : function(data) {
+									if (data == 1) { // 중복
+										$("#emailchk").text("사용불가");
+										$("#emailchk").css("color", "red");
+										$("#joinBtn").attr("disabled",
+												true);
+									} else {
+										$("#emailchk")
+												.text("사용가능");
+										$("#emailchk").css("color",
+												"green");
+										$("#joinBtn").attr("disabled",
+												false);
+									}
+								},
+								error : function() {
+									alert("실패");
+								}
+							})
+					}
+				})
+						
 	});
 	function formCheck() {
 		var frm = document.frm;
@@ -65,38 +69,37 @@ p {
 			frm.mbr_name.focus();
 			return false;
 		}
-		if (frm.mbr_birth.value == "") {
-			alert("생년월일을 선택하세요");
-			frm.mbr_birth.focus();
-			return false;
-		}
-		// 		if (frm.mbr_phone.value == "") {
-		// 			alert("전화번호를 입력하세요");
-		// 			frm.mbr_phone.focus();
-		// 			return false;
-		// 		}
 		if (frm.mbr_email.value == "") {
 			alert("이메일을 입력하세요");
 			frm.mbr_email.focus();
 			return false;
 		}
+		if (frm.mbr_birth.value == "") {
+			alert("생년월일을 선택하세요");
+			frm.mbr_birth.focus();
+			return false;
+		}
+// 		if (frm.mbr_phone.value == "") {
+// 			alert("전화번호를 입력하세요");
+// 			frm.mbr_phone.focus();
+// 			return false;
+// 		}
 		if (isNaN(frm.mbr_phone.value)) {
 			alert("전화번호는 숫자만 입력가능합니다");
 			frm.mbr_phone.focus();
 			return false;
 		}
-		// 		if (frm.mbr_post.value == "") {
-		// 			alert("우편번호를 입력하세요");
-		// 			frm.mbr_post.focus();
-		// 			return false;
-		// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
-		// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-		// 		if (frm.mbr_addr2.value == "") {
-		// 			alert("상세주소를 입력하세요");
-		// 			frm.mbr_addr2.focus();
-		// 			return false;
-		// 		}
-
+// 		if (frm.mbr_post.value == "") {
+// 			alert("우편번호를 입력하세요");
+// 			frm.mbr_post.focus();
+// 			return false;
+// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
+// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
+// 		if (frm.mbr_addr2.value == "") {
+// 			alert("상세주소를 입력하세요");
+// 			frm.mbr_addr2.focus();
+// 			return false;
+// 		}
 		if (isNaN(frm.mbr_account.value)) {
 			alert("계좌번호는 숫자만 입력가능합니다");
 			frm.mbr_account.focus();
@@ -126,7 +129,7 @@ p {
 								class="form-control"></td>
 						</tr>
 						<tr>
-							<td class="txt">이메일</td>
+							<td class="txt">이메일&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="email" id="mbr_email" style="width: 80%;" name="mbr_email" value="${kemail}"
 								class="form-control"><span id="emailchk"></span></td>
 						</tr>
@@ -149,12 +152,12 @@ p {
 								id="mbr_gender" name="mbr_gender" value="녀">여성</td>
 						</tr>
 						<tr>
-							<td class="txt">전화번호&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">전화번호</td>
 							<td><input type="text" id="mbr_phone" class="form-control"
 								style="width: 80%;" name="mbr_phone" placeholder="-없이 입력"></td>
 						</tr>
 						<tr>
-							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">우편번호</td>
 							<td><input type="text" id="mbr_post" name="mbr_post" style="width: 80%;"
 								class="form-control" placeholder="우편번호" readonly>
 								<input type="button" id="postSearch" class="btnYellow"
@@ -162,19 +165,19 @@ p {
 								style="padding: 5px; width: 100px;"></td>
 						</tr>
 						<tr>
-							<td class="txt">주소&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">주소</td>
 							<td><input type="text" id="mbr_addr1" placeholder="주소" readonly
 								style="width: 80%;" name="mbr_addr1" class="form-control"></td>
 						</tr>
 						<tr>
-							<td class="txt">상세주소&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_addr2" placeholder="상세주소"
-								style="width: 80%;" class="form-control" name="mbr_addr2"></td>
-						</tr>
-						<tr>
-							<td class="txt">참고사항&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">참고사항</td>
 							<td><input type="text" id="mbr_addr3" placeholder="주소 참고사항" readonly
 								style="width: 80%;" class="form-control" name="mbr_addr3"></td>
+						</tr>
+						<tr>
+							<td class="txt">상세주소</td>
+							<td><input type="text" id="mbr_addr2" placeholder="상세주소"
+								style="width: 80%;" class="form-control" name="mbr_addr2"></td>
 						</tr>
 					</table>
 				</div>

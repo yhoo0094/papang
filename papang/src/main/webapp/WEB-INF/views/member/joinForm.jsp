@@ -28,74 +28,75 @@ p {
 </style>
 <script type="text/javascript">
 	$(function() {
+		var f = document.frm;
 		// 아이디 중복검사
 		$("#mbr_id")
-				.blur(
-						function() {
-							var mbr_id = $("#mbr_id").val();
-							$.ajax({
-										url : "${pageContext.request.contextPath}/ajax/idchk?mbr_id="
-												+ mbr_id,
-										type : 'get',
-										success : function(data) {
-											if (data == 1) { // 중복
-												$("#idchk").text("사용불가");
-												$("#idchk").css("color", "red");
-												$("joinBtn").attr("disabled",
-														true);
-											} else {
-												$("#idchk")
-														.text("사용가능");
-												$("#idchk").css("color",
-														"green");
-												$("joinBtn").attr("disabled",
-														false);
-											}
-										},
-										error : function() {
-											alert("실패");
-										}
-									})
-						})
+			.blur(
+				function() {
+					if (f.mbr_id.value != "") {
+						var mbr_id = $("#mbr_id").val();
+						$.ajax({
+								url : "${pageContext.request.contextPath}/ajax/idchk?mbr_id="
+										+ mbr_id,
+								type : 'get',
+								success : function(data) {
+									if (data == 1) { // 중복
+										$("#idchk").text("사용불가");
+										$("#idchk").css("color", "red");
+										$("#joinBtn").attr("disabled",
+												true);
+									} else {
+										$("#idchk")
+												.text("사용가능");
+										$("#idchk").css("color",
+												"green");
+										$("#joinBtn").attr("disabled",
+												false);
+									}
+								},
+								error : function() {
+									alert("실패");
+								}
+							})
+					}
+				})
 		// 이메일 중복검사
 		$("#mbr_email")
-				.blur(
-						function() {
-							var mbr_email = $("#mbr_email").val();
-							$.ajax({
-										url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
-												+ mbr_email,
-										type : 'get',
-										success : function(data) {
-											if (data == 1) { // 중복
-												$("#emailchk").text("사용불가");
-												$("#emailchk").css("color", "red");
-												$("joinBtn").attr("disabled",
-														true);
-											} else {
-												$("#emailchk")
-														.text("사용가능");
-												$("#emailchk").css("color",
-														"green");
-												$("joinBtn").attr("disabled",
-														false);
-											}
-										},
-										error : function() {
-											alert("실패");
-										}
-									})
-						})
+			.blur(
+				function() {
+					if (f.mbr_email.value != "") {
+						var mbr_email = $("#mbr_email").val();
+						$.ajax({
+								url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
+										+ mbr_email,
+								type : 'get',
+								success : function(data) {
+									if (data == 1) { // 중복
+										$("#emailchk").text("사용불가");
+										$("#emailchk").css("color", "red");
+										$("#joinBtn").attr("disabled",
+												true);
+									} else {
+										$("#emailchk")
+												.text("사용가능");
+										$("#emailchk").css("color",
+												"green");
+										$("#joinBtn").attr("disabled",
+												false);
+									}
+								},
+								error : function() {
+									alert("실패");
+								}
+							})
+					}
+				})
 	});
 	function formCheck() {
 		var f = document.frm;
 		if (f.mbr_id.value == "") {
 			alert("아이디를 입력하세요");
 			f.mbr_id.focus();
-			return false;
-		}
-		if (chked == 0) {
-			alert("아이디 중복체크를 해주세요.");
 			return false;
 		}
 		if (f.mbr_pw.value == "") {
@@ -108,42 +109,42 @@ p {
 			f.mbr_name.focus();
 			return false;
 		}
-		if (f.mbr_birth.value == "") {
-			alert("생년월일을 선택하세요");
-			f.mbr_birth.focus();
-			return false;
-		}
 		if (f.mbr_email.value == "") {
 			alert("이메일을 입력하세요");
 			f.mbr_email.focus();
 			return false;
 		}
-		if (f.mbr_phone.value == "") {
-			alert("전화번호를 입력하세요");
-			f.mbr_phone.focus();
+		if (f.mbr_birth.value == "") {
+			alert("생년월일을 선택하세요");
+			f.mbr_birth.focus();
 			return false;
 		}
+// 		if (f.mbr_phone.value == "") {
+// 			alert("전화번호를 입력하세요");
+// 			f.mbr_phone.focus();
+// 			return false;
+// 		}
 		if (isNaN(f.mbr_phone.value)) {
 			alert("전화번호는 숫자만 입력가능합니다");
 			f.mbr_phone.focus();
 			return false;
 		}
-		// 		if (f.mbr_post.value == "") {
-		// 			alert("우편번호를 입력하세요");
-		// 			f.mbr_post.focus();
-		// 			return false;
-		// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
-		// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-		// 		if (f.mbr_addr2.value == "") {
-		// 			alert("상세주소를 입력하세요");
-		// 			f.mbr_addr2.focus();
-		// 			return false;
-		// 		}
-		// 		if (isNaN(f.mbr_account.value)) {
-		// 			alert("계좌번호는 숫자만 입력가능합니다");
-		// 			f.mbr_account.focus();
-		// 			return false;
-		// 		}
+// 		if (f.mbr_post.value == "") {
+// 			alert("우편번호를 입력하세요");
+// 			f.mbr_post.focus();
+// 			return false;
+// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
+// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
+// 		if (f.mbr_addr2.value == "") {
+// 			alert("상세주소를 입력하세요");
+// 			f.mbr_addr2.focus();
+// 			return false;
+// 		}
+		if (isNaN(f.mbr_account.value)) {
+			alert("계좌번호는 숫자만 입력가능합니다");
+			f.mbr_account.focus();
+			return false;
+		}
 		return true;
 	}
 </script>
@@ -214,7 +215,7 @@ p {
 								name="mbr_name" placeholder="이름" class="form-control"></td>
 						</tr>
 						<tr>
-							<td class="txt">이메일</td>
+							<td class="txt">이메일&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="email" id="mbr_email" style="width: 80%;"
 								name="mbr_email" placeholder="abc@example.com" class="form-control">
 								<span id="emailchk"></span></td>
@@ -241,26 +242,26 @@ p {
 								name="mbr_phone" placeholder="-없이 입력" class="form-control"></td>
 						</tr>
 						<tr>
-							<td class="txt">우편번호&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">우편번호</td>
 							<td><input type="text" id="mbr_post" name="mbr_post" style="width: 80%;"
 								class="form-control" placeholder="우편번호" readonly>
 							<input type="button" id="postSearch" class="btnYellow"
 								value="우편번호 검색" onclick="sample2_execDaumPostcode()" style="padding: 5px; width: 100px;"></td>
 						</tr>
 						<tr>
-							<td class="txt">주소&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">주소</td>
 							<td><input type="text" id="mbr_addr1" style="width: 80%;" readonly
 								name="mbr_addr1" class="form-control" placeholder="주소"></td>
 						</tr>
 						<tr>
-							<td class="txt">상세주소&nbsp;<span style="color: red;">*</span></td>
-							<td><input type="text" id="mbr_addr2" style="width: 80%;"
-								class="form-control" name="mbr_addr2" placeholder="상세주소"></td>
-						</tr>
-						<tr>
-							<td class="txt">참고사항&nbsp;<span style="color: red;">*</span></td>
+							<td class="txt">참고사항</td>
 							<td><input type="text" id="mbr_addr3" style="width: 80%;" readonly
 								class="form-control" name="mbr_addr3" placeholder="주소 참고사항"></td>
+						</tr>
+						<tr>
+							<td class="txt">상세주소</td>
+							<td><input type="text" id="mbr_addr2" style="width: 80%;"
+								class="form-control" name="mbr_addr2" placeholder="상세주소"></td>
 						</tr>
 						<tr>
 							<td class="txt">은행</td>

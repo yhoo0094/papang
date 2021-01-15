@@ -8,7 +8,42 @@
 
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
-
+<script>
+function formCheck() {
+	var f = document.frm;
+	if (f.pro_name.value == "") {
+		alert("상품명을 입력하세요");
+		f.pro_name.focus();
+		return false;
+	}
+	if (f.pro_price.value == "") {
+		alert("상품가격을 입력하세요");
+		f.pro_price.focus();
+		return false;
+	}
+	if (isNaN(f.pro_price.value)) {
+		alert("상품가격은 숫자만 입력가능합니다");
+		f.pro_price.focus();
+		return false;
+	}
+	if (f.pro_cc.value == "") {
+		alert("기업코드를 입력하세요");
+		f.pro_cc.focus();
+		return false;
+	}
+	if (isNaN(f.pro_cc.value)) {
+		alert("기업코드는 숫자만 입력가능합니다");
+		f.pro_cc.focus();
+		return false;
+	}
+	if (f.pro_pic.value == "") {
+		alert("대표사진을 등록하세요");
+		f.pro_pic.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 
 
 <h1 class="mt-4">판매상품 등록</h1>
@@ -40,7 +75,7 @@
    </div>
    <div align="center">
       <textarea id="summernote" name="pro_detail"></textarea><br>
-      <button type="submit" class="btnRed bMedium">등록</button>
+      <button type="submit" class="btnRed bMedium" onclick="return formCheck()">등록</button>
       <button type="button" class="btnGray bMedium" onclick="location.href='/papang/marketList/itemBoard'">취소</button>
    </div>
 </form>
