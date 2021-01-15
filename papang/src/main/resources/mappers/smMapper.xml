@@ -148,6 +148,7 @@
 				]]>
 			</if>
 		</where>
+		ORDER BY RATE
 	</select>
 	
 	<!-- 단건조회 -->
