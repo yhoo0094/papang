@@ -22,7 +22,7 @@
 <body>
  
           
-	<iframe src="https://tracker.delivery/#/kr.logen/${order_infoVO.waybill}" width="500" height="700"></iframe> 
+	<iframe src="https://tracker.delivery/#/kr.logen/${order_infoVO.waybill}" width="970" height="800"></iframe> 
 
 	 
 			 　　　　　　　　　　

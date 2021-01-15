@@ -63,12 +63,12 @@ table tbody tr td {
 				<label style="font-size:20px;margin:50px">이름　　　　</label><input class="input_small" type="text" id="id"
 							name="id" readonly value="${ memberVO.mbr_name}">
 				</br> 
-				<label style="font-size:20px;margin:50px; style=color: red">비밀 번호　　
-				</label>
+				<label style="font-size:20px;margin:50px;color: red">비밀 번호　　
+				</label> 
 				<input class="input_small pw" type="password" id="mbr_pw"
 							name="mbr_pw">
 				</br>			
-				<label style="font-size:20px;margin:50px;style=color: red">비밀 번호 확인</label>  
+				<label style="font-size:20px;margin:50px;color: red">비밀 번호 확인</label>  
 				
 				<input class="input_small pw" type="password" id="mbr_pw2"
 							name="mbr_pw2">

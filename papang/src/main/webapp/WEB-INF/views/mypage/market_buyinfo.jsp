@@ -112,7 +112,7 @@ table tbody tr td {
                   </c:forEach>
                </tbody>
             </table>
-            </br> </br> no <input id="no" type="text" name="no">
+            </br> </br> 
 
 
          </div>
