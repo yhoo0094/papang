@@ -89,7 +89,7 @@ function reportinfoList() {
 							.append($('<td>').html(item.repo_content))
 							.append(
 							$('<td>').html(
-									'<button id=\'btnSelect\'>조회</button>'))
+									'<button id=\'btnSelect\' class=\'buttonclass\'>조회</button>'))
 							.append(
 							$('<input type=\'hidden\' id=\'hidden_repo_no\'>')
 									.val(item.repo_no))		

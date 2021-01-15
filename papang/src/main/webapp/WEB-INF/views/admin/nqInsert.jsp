@@ -198,10 +198,10 @@
 					$('<td>').html(item.nq_category)).append(
 					$('<td>').html(item.nq_title)).append(
 					$('<td>').html(item.nq_hit)).append(		
-					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					$('<td>').html('<button id=\'btnSelect\' class=\'buttonclass\'>조회</button>'))
 					.append(
 							$('<td>').html(
-									'<button id=\'btnDelete\'>삭제</button>'))
+									'<button id=\'btnDelete\' class=\'buttonclass\'>삭제</button>'))
 					.append(
 							$('<input type=\'hidden\' id=\'hidden_nq_no\'>')
 									.val(item.nq_no)).appendTo('#dataTable tbody');

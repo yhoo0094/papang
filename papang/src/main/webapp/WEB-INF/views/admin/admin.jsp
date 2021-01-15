@@ -301,9 +301,9 @@
 			<div class="card-body">
 				<div class='calenderMenu' align='center'>
 					<button type='button' id='prev' class='buttonclass'><</button>
-					&nbsp;&nbsp; <span class='calenderY'><input type='text'
-						id='year' style="width: 50px"></span>년 <span class='calenderM'><input
-						type='text' id='month' style="width: 30px"></span>월 &nbsp;&nbsp;
+					&nbsp;&nbsp; <span class='calenderY'><input type='text' 
+						id='year' style="width: 50px; border: none"></span>년 <span class='calenderM'><input
+						type='text' id='month' style="width: 30px; border: none"></span>월 &nbsp;&nbsp;
 					<button type='button' id='next' class='buttonclass'>></button>
 				</div>
 				<br>

@@ -136,7 +136,7 @@ function sitterinfoselect2Result(data) {
   <h1 class="mt-4">시터 월별 매출 현황</h1>
   <div class='calenderMenu' align = 'center'>
   <button type='button' id='prev' class='buttonclass'><</button>&nbsp;&nbsp;
-  <span class='calenderY'><input type='text' id='year' style="width:50px"></span>년 <span class='calenderM'><input type='text' id='month' style="width:30px"></span>월
+  <span class='calenderY'><input type='text' id='year' style="width:50px; border: none"></span>년 <span class='calenderM'><input type='text' id='month' style="width:30px; border: none"></span>월
   &nbsp;&nbsp;<button type='button' id='next' class='buttonclass'>></button>
   </div>
   <br>

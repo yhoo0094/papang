@@ -210,7 +210,7 @@
 										.append(
 												$("<td>")
 														.html(
-																'<button id=\'btnSelect\'  class=\'buttonclass\'>조회</button> <button id=\'btnDelete\'  class=\'buttonclass\'>탈퇴</button>'))
+																'<button id=\'btnSelect\'  class=\'buttonclass\' >조회</button> <button id=\'btnDelete\'  class=\'buttonclass\'>탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							} else {
 								$('<tr>')
@@ -227,7 +227,7 @@
 										.append(
 												$("<td>")
 														.html(
-																'<button id=\'btnDelete\' class=\'buttonclass\'>탈퇴</button>'))
+																'<button id=\'btnDelete\' class=\'buttonclass\' >탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							}
 							$("#author" + item.mbr_id).val(item.mbr_author)

@@ -138,7 +138,7 @@
 									.append(
 											$("<td>")
 													.html(
-															'<button id=\'btnSelect\'>조회</button><button id=\'btnDelete\'>삭제</button>'))
+															'<button id=\'btnSelect\' class=\'buttonclass\'>조회</button><button id=\'btnDelete\' class=\'buttonclass\'>삭제</button>'))
 									.appendTo('#dataTable tbody');
 							$("#status" + item.ban_no).val(item.ban_pic_status)
 									.prop("selected", true);
