@@ -84,5 +84,10 @@ public class SitterServiceImpl implements SitterService {
 	public List<Sitter_comVO> getReviewList(Sitter_revChkVO sitter_revChkVO) {
 		return dao.getReviewList(sitter_revChkVO);
 	}
+
+	@Override
+	public ChildVO getBaby(ChildVO childVO) {
+		return dao.getBaby(childVO);
+	}
 	
 }

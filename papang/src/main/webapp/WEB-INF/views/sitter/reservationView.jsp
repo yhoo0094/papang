@@ -195,11 +195,9 @@ function getReservatedDayList(){
 	    		$('#'+ srv_date ).addClass(srv_no);
 	    		hoverToSrv(srv_no);
 	    		
-	    		//예약 정보 모달 띄우기
-	    		$('#'+ srv_date ).attr('data-toggle', 'modal').attr('data-target', '#reservationModal')
-	    		
 	    		$('#'+ srv_date).on({ //결제하기 
     				'click': function() {
+    					//모달에 예약정보 뿌리기
     					var reservationDay = (val.start_date).substring(5,11)+" ~ "+(val.end_date).substring(5,11);
     					$('#reservationDayTd').text(reservationDay);
     					$('#reservationSitterIdTd').text(val.sit_mbr_id);
@@ -207,6 +205,25 @@ function getReservatedDayList(){
     					$('#reservationPriceTd').text(reservationPrice);
     					$('#reservationNumTd').text(val.srv_no);
     					$('#reviewNo').val(val.srv_no)
+    					
+    					$.ajax({ //시터정보 가져오기 
+    						url: "${pageContext.request.contextPath}/ajax/getSitter",  
+    					    type: 'POST', 
+    					    dataType: 'json', 
+    					    data : {sit_mbr_id : val.sit_mbr_id},
+    					    success: function(sitterVOChk) {
+    					    	//모달에 시터 정보 뿌리기
+    	    					$('#sitterImgTag').attr('src','${pageContext.request.contextPath}/resources/images/sitterProfile/'+sitterVOChk.sit_pic);
+    	    					$('#reservationRateTd').text(sitterVOChk.rate);
+    	    					$('#reservationReportTd').text(sitterVOChk.report);
+    					    },
+    					    error:function(xhr, status, message) { 
+    					        alert(" status: "+status+" er:"+message);
+    					    } 
+    					});
+    					
+   					//예약 정보 모달 띄우기
+   		    		$('#'+ srv_date ).attr('data-toggle', 'modal').attr('data-target', '#reservationModal')
     					
     					if(val.srv_status == '결제완료' && val.review == null){ //결제완료&후기미작성
     		    			$('#sitterRevPayBtn').css('display','none'); //결제하기
@@ -387,17 +404,26 @@ $(function(){
 					<span id="reservationNumTd" style="display: none;"></span>
 				</div>
 				<div class="modal-body" align="center">
-						<table class="reportTd">
+						<img alt="시터 사진" src="" id="sitterImgTag" style="width: 120px; margin:-115px 0 0 40px;">
+						<table class="reportTd" style="display: inline-block; width: 300px; margin-top: 10px;">
 							<tr>
-								<td align="left">시터</td>
+								<td align="center" width="55%">시터</td>
 								<td id="reservationSitterIdTd"></td>
 							</tr>
 							<tr>
-								<td width="50%" align="left">예약일</td>
+								<td align="center">평점</td>
+								<td><span id="reservationRateTd"></span></td>
+							</tr>
+							<tr>
+								<td align="center">제재횟수</td>
+								<td><span id="reservationReportTd"></span>회</td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">예약일</td>
 								<td width="50%" id="reservationDayTd"></td>
 							</tr>
 							<tr>
-								<td align="left">돌봄 비용</td>
+								<td align="center">돌봄 비용</td>
 								<td><span id="reservationPriceTd"></span>원</td>
 							</tr>
 						</table>

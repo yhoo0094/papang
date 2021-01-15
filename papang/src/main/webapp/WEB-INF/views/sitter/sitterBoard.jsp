@@ -186,7 +186,10 @@ thead, #dataTable_filter, #dataTable_length {
 									</tr>
 									<tr>
 										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
-										<td>★★★★☆</td>
+										<td>
+											<c:if test="${v.rate == '　'}">평가없음</c:if>
+											<c:if test="${v.rate != null}">${v.rate}</c:if>
+										</td>
 									</tr>
 									<tr>
 										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
@@ -194,7 +197,7 @@ thead, #dataTable_filter, #dataTable_length {
 									</tr>
 									<tr>
 										<td>제재횟수</td>
-										<td>0회</td>
+										<td>${v.report}회</td>
 									</tr>
 								</table>
 							</div>

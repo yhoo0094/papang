@@ -45,12 +45,14 @@ public class SitterController {
 	public String sitterForm(Model model, SitterVOChk sitterVOChk, ChildVO childVO, HttpSession session, Sitter_revChkVO sitter_revChkVO) {
 		//별점구하기
 		sitterVOChk = service.getSitter(sitterVOChk);
-		int rateInt = Integer.parseInt(sitterVOChk.getRate());
-		String rate = "";
-		for(int i =0; i < rateInt; i++) {
-			rate = rate + "★";
+		if(sitterVOChk.getRate() != null) {
+			int rateInt = Integer.parseInt(sitterVOChk.getRate());
+			String rate = "";
+			for(int i =0; i < rateInt; i++) {
+				rate = rate + "★";
+			}
+			sitterVOChk.setRate(rate);
 		}
-		sitterVOChk.setRate(rate);
 		model.addAttribute("sitterVOChk",sitterVOChk);
 		
 		MemberVO memberVO = (MemberVO) session.getAttribute("user");
@@ -81,13 +83,35 @@ public class SitterController {
 		return "redirect:/sitter/reservationView"; //jsp주소
 	}
 	
+	@RequestMapping("/ajax/getBabyInfo")//예약한 아기 정보 가져오기(아작스)
+	@ResponseBody
+	public ChildVO ajaxReservatedSchedual(ChildVO childVO) {
+		childVO = service.getBaby(childVO);
+		childVO.setChi_birth(childVO.getChi_birth().substring(0,11));
+		return childVO;
+	}
+	
+	@RequestMapping("/ajax/getSitter")//시터정보 가져오기(아작스)
+	@ResponseBody
+	public SitterVOChk ajaxGetSitter(SitterVOChk sitterVOChk) {
+		//별점구하기
+		sitterVOChk = service.getSitter(sitterVOChk);
+		String rate = "";
+		if(sitterVOChk.getRate() != null) {
+			int rateInt = Integer.parseInt(sitterVOChk.getRate());
+			for(int i =0; i < rateInt; i++) {
+				rate = rate + "★";
+			}
+		} else {
+			rate = "평점 정보가 없습니다.";
+		}
+		sitterVOChk.setRate(rate);
+		return sitterVOChk; //jsp주소
+	}
+	
 	@RequestMapping("/ajax/reservatedDays")//예약된 날짜 데이터 가져오기(유저용)
 	@ResponseBody
 	public List<Sitter_revChkVO> reservatedDays(Sitter_revChkVO sitter_revChkVO, @RequestParam("calenderY") String calenderY, @RequestParam("calenderM") String calenderM, HttpSession session) {
-		//mbr_id
-//		MemberVO memberVO = (MemberVO) session.getAttribute("user");
-//		String mbr_id = memberVO.getMbr_id();
-//		sitter_revChkVO.setMbr_id(mbr_id);
 		
 		//날짜 범위 집어넣기
 		List<Sitter_revChkVO> reservatedDayList = new ArrayList<Sitter_revChkVO>();

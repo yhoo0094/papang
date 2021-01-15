@@ -76,15 +76,20 @@
 	background-color: yellow;
 	cursor: pointer;
 }
+
+.offDayTd{
+	background-color: #bbbbbb;
+	cursor: default;
+}
 </style>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	
 $(()=>{
-	offDays();
 	
 	calendarMaker($("#calendarForm"), new Date());
+	offDays();
 	
 	$('#sitterRevCancleBtn').on({
 		'click': function() {
@@ -100,7 +105,6 @@ function offDays(){//휴무일 회색
    	var days = ['월','화','수','목','금']
    	$.each(days, function(idx, val){
    		if(sitOffTdText.indexOf(val) != -1){
-   			console.log(allTr);
    	   		$.each(allTr, function(idx2, val2){
    	   			$(val2).find('td').eq(idx+1).attr('class', 'offDayTd');  			
    	   		})
@@ -136,7 +140,7 @@ function getReservatedDayList(){
 	    		//예약 정보 모달 띄우기
 	    		$('#'+ srv_date ).attr('data-toggle', 'modal').attr('data-target', '#exampleModal3')
 	    		
-	    		$('#'+ srv_date).on({ //결제하기 
+	    		$('#'+ srv_date).on({ //모달에 정보 띄우기
     				'click': function() {
     					var reservationDay = (val.start_date).substring(5,11)+" ~ "+(val.end_date).substring(5,11);
     					$('#reservationDayTd').text(reservationDay);
@@ -144,6 +148,19 @@ function getReservatedDayList(){
     					var reservationPrice = String(val.srv_pay*val.count).replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
     					$('#reservationPriceTd').text(reservationPrice);
     					$('#reservationNumTd').text(val.srv_no);
+    					
+    					$.ajax({ 
+    					    url: "${pageContext.request.contextPath}/ajax/getBabyInfo",  
+    					    type: 'POST', 
+    					    dataType: 'json', 
+    					    data : {"chi_no":val.chi_no},
+    					    success: function(childVO) {
+    					    	$('#sitterImgTag').attr('src','${pageContext.request.contextPath}/resources/images/baby/'+childVO.chi_pic);
+    					    	$('#reservationBabyName').text(childVO.chi_name);
+    					    	$('#reservationBabyGender').text(childVO.chi_gender);
+    					    	$('#reservationBabyBirth').text(childVO.chi_birth);
+    					    }
+    					})
     					
     					if(val.srv_status == '결제완료'){
     		    			$('#sitterRevCancleBtn').css('display','none');
@@ -299,17 +316,26 @@ $(function(){
 					<span id="reservationNumTd" style="display: none;"></span>
 				</div>
 				<div class="modal-body" align="center">
-						<table class="reportTd">
+						<img alt="아기 사진" src="" id="sitterImgTag" style="width: 120px; margin:-115px 0 0 40px;">
+						<table class="reportTd" style="display: inline-block; width: 300px; margin-top: 10px;">
 							<tr>
-								<td align="left">시터</td>
-								<td id="reservationSitterIdTd"></td>
+								<td align="center" width="55%">이름</td>
+								<td id="reservationBabyName"></td>
 							</tr>
 							<tr>
-								<td width="50%" align="left">예약일</td>
+								<td align="center">성별</td>
+								<td><span id="reservationBabyGender"></span></td>
+							</tr>
+							<tr>
+								<td align="center">생일</td>
+								<td><span id="reservationBabyBirth"></span></td>
+							</tr>
+							<tr>
+								<td width="50%" align="center">예약일</td>
 								<td width="50%" id="reservationDayTd"></td>
 							</tr>
 							<tr>
-								<td align="left">돌봄 비용</td>
+								<td align="center">돌봄 비용</td>
 								<td><span id="reservationPriceTd"></span>원</td>
 							</tr>
 						</table>

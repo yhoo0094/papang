@@ -108,13 +108,13 @@
 	
 	<!-- 전체조회 -->
 	<select id="getSitterList" resultType="SitterVOChk">
-		SELECT * FROM(
+		SELECT ROWNUM, SIT_MBR_ID, SIT_PAYDAY, SIT_OFF, SIT_LOC, SIT_PAY, SIT_AGE, SIT_NOTE, SIT_PIC, LPAD('　', RATE+2, '★') RATE, REPORT FROM (
 			SELECT ROWNUM, S.SIT_MBR_ID, S.SIT_PAYDAY, replace(TRIM(S.SIT_OFF), ' ', ', ') SIT_OFF, S.SIT_LOC, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(S.SIT_PAY)), '([0-9]{3})','\1,')), '^,','') AS SIT_PAY, S.SIT_AGE, S.SIT_NOTE, S.SIT_PIC
 				,NVL(ROUND((SELECT AVG(SC_RATE) 
-	              FROM SITTER_COM A, (SELECT * FROM SITTER_REV WHERE ROWID IN (SELECT MAX(ROWID) FROM SITTER_REV GROUP BY SRV_NO)) B
-	              WHERE B.SIT_MBR_ID = S.SIT_MBR_ID AND A.SRV_NO = B.SRV_NO)), 0) RATE,
+	        FROM SITTER_COM A, (SELECT * FROM SITTER_REV WHERE ROWID IN (SELECT MAX(ROWID) FROM SITTER_REV GROUP BY SRV_NO)) B
+	        WHERE B.SIT_MBR_ID = S.SIT_MBR_ID AND A.SRV_NO = B.SRV_NO)), 0) RATE,
 	              (SELECT COUNT(MBR_ID) FROM REPORT WHERE MBR_ID  = S.SIT_MBR_ID) REPORT
-			FROM SITTER S
+				   FROM SITTER S
 		)
 		<where>
 			<![CDATA[
@@ -296,4 +296,11 @@
 		NQ_HIT = NQ_HIT + 1
 		WHERE NQ_NO = #{nq_no}
 	</update>
+	
+	<!-- ##################################아기########################################### -->
+	<select id="getBaby" resultType="ChildVO" parameterType="ChildVO">
+		SELECT * FROM CHILD
+		WHERE CHI_NO = #{chi_no}
+	</select>
+	
 </mapper>

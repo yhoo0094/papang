@@ -51,10 +51,6 @@
 	font-size: 25px;
 }
 
-.custom_calendar_table tbody td {
-	cursor: pointer;
-}
-
 .custom_calendar_table tbody td:nth-child(1) {
 	color: red;
 }
@@ -110,6 +106,7 @@
 
 .offDayTd{
 	background-color: #bbbbbb;
+	cursor: default;
 }
 .introductoryOff{
 	color: #bbbbbb;
@@ -117,6 +114,7 @@
 
 .reservatedDayTd{
 	background-color: cyan;
+	cursor: default;
 }
 .introductoryRev{
 	color: cyan;
@@ -133,6 +131,10 @@
 
 #showRateBtn{
 	float: right;
+}
+
+.custom_calendar_table tbody td:not(.reservatedDayTd){
+	cursor: pointer;
 }
 </style>
 <script type="text/javascript">
@@ -161,7 +163,7 @@ function offDays(){
 	   	$.each(days, function(idx, val){
 	   		if(sitOffTdText.indexOf(val) != -1){
 	   	   		$.each(allTr, function(idx2, val2){
-	   	   			$(val2).find('td').eq(idx+1).attr('class', 'offDayTd');  			
+	   	   			$(val2).find('td').eq(idx+1).attr('class', 'offDayTd').css('cursor','default');  			
 	   	   		})
 	   	   	}
 	   	})

@@ -29,4 +29,7 @@ public interface SitterService {
 	public int insertReview(Sitter_comVO sitter_comVO); //후기 인서트
 	public int updateReview(Sitter_comVO sitter_comVO); //후기 업데이트
 	public int deleteReview(Sitter_comVO sitter_comVO); //후기 딜리트
+	
+	//아기
+	public ChildVO getBaby(ChildVO childVO); //아기 단건조회
 }
