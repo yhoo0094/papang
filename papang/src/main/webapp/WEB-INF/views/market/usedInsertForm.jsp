@@ -40,7 +40,37 @@
 
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
-
+<script>
+function formCheck() {
+	var f = document.frm;
+	if (f.used_title.value == "") {
+		alert("제목을 입력하세요");
+		f.used_title.focus();
+		return false;
+	}
+	if (f.used_price.value == "") {
+		alert("상품가격을 입력하세요");
+		f.used_price.focus();
+		return false;
+	}
+	if (isNaN(f.used_price.value)) {
+		alert("상품가격은 숫자만 입력가능합니다");
+		f.used_price.focus();
+		return false;
+	}
+	if (f.used_pic.value == "") {
+		alert("대표사진을 등록하세요");
+		f.used_pic.focus();
+		return false;
+	}
+	if (f.used_content.value == "") {
+		alert("본문을 입력하세요");
+		f.used_content.focus();
+		return false;
+	}
+	return true;
+}
+</script>
 <div align="center" class="FormTitle strongYellow">
 	<h3>중고장터 글 등록</h3>
 </div>
@@ -89,7 +119,7 @@
    </div>
    <div align="center">
       <textarea id="summernote" name="used_content"></textarea><br>
-      <button type="submit" class="btnRed bMedium">등록</button>
+      <button type="submit" class="btnRed bMedium" onclick="return formCheck()">등록</button>
       <button type="button" class="btnGray bMedium" onclick="location.href='/papang/marketList/usedOnSaleBoard'">취소</button>
    </div>
 </form>

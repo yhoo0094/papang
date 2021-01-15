@@ -55,11 +55,11 @@ textarea.form-control {
 						<td align="center" class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="text-overflow: ellipsis; overflow: hidden; cursor: pointer; color:red;">답변보기</td>
 						<td align="center">${co.repo_status}</td>
 						<td align="center">${co.repo_category}</td>
-						<td class="tableTh" style="display: none">${co.repo_ans}</td> 
+						<td class="tableTh" style="display: none; color:red;">${co.repo_ans}</td> 
 					</tr>
 				</c:forEach>	
 					
-					
+					 
 				</tbody>
 			</table>
 			<br>	
@@ -89,7 +89,7 @@ textarea.form-control {
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">관리자 답변</label>
-            <textarea class="form-control" id="recipient-name3">3</textarea>
+            <textarea class="form-control" id="recipient-name3" style="color:red">3</textarea>
           </div>
         </form>
       </div>

@@ -46,6 +46,30 @@ $(function() {
 		}
 	})
 })
+function formCheck() {
+	var f = document.frm;
+	if (f.used_title.value == "") {
+		alert("제목을 입력하세요");
+		f.used_title.focus();
+		return false;
+	}
+	if (f.used_price.value == "") {
+		alert("상품가격을 입력하세요");
+		f.used_price.focus();
+		return false;
+	}
+	if (isNaN(f.used_price.value)) {
+		alert("상품가격은 숫자만 입력가능합니다");
+		f.used_price.focus();
+		return false;
+	}
+	if (f.used_content.value == "") {
+		alert("본문을 입력하세요");
+		f.used_content.focus();
+		return false;
+	}
+	return true;
+}
 </script>
 <script
    src="${pageContext.request.contextPath}/resources/summernote/js/summernote/summernote-lite.js"></script>
@@ -111,7 +135,7 @@ $(function() {
    </div>
    <div align="center">
       <textarea id="summernote" name="used_content">${used.used_content}</textarea><br>
-      <button type="submit" class="btnRed bMedium">수정</button>
+      <button type="submit" class="btnRed bMedium" onclick="return formCheck()">수정</button>
       <button type="button" class="btnGray bMedium" onclick="location.href='/papang/marketList/usedOnSaleBoard'">취소</button>
    </div>
 </form>

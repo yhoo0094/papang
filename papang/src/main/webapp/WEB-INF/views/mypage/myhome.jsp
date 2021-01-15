@@ -158,7 +158,7 @@ $(function() {
 							name="mbr_name" readonly value="${ memberVO.mbr_name}">
 					</p>
 					<p>
-						<label>이름</label> <img class= "img1" id = "mbr_pic" name="mbr_pic" 
+						<label>프로필 사진</label> <img class= "img1" id = "mbr_pic" name="mbr_pic" 
 						src="${pageContext.request.contextPath}/images/memberimage/${ memberVO.mbr_pic}"><input type="file" id="uploadFile"  name="uploadFile" value="${ memberVO.mbr_pic}"/>		
 					</p>
 					
@@ -239,7 +239,7 @@ $(function() {
 							id="mbr_account" name="mbr_account"  value="${ memberVO.mbr_account }">
 					</p>
 					<p>
-						<label>이메일</label> <input class="w3-input"
+						<label style="color: red">이메일</label> <input class="w3-input"
 							id="mbr_email" name="mbr_email" type="text"  value="${ memberVO.mbr_email }">
 					</p>
 					
@@ -282,8 +282,15 @@ $(function() {
     function submitCheck() {
     	var pwd1 = $("#mbr_pw").val();
         var pwd2 = $("#mbr_pw2").val();
+        var email = $("#mbr_email").val();
     	    
-    	   if(pwd1 == pwd2) {
+         if(email ==''){
+			   alert("이메일 입력해주세요");
+			   return false
+		   }   
+         
+        
+        else if(pwd1 == pwd2) {
     		   if(pwd2 !='' && pwd2 !=''){
     			   alert("다시 로그인해주세요");
     			   return true 
@@ -293,7 +300,9 @@ $(function() {
         		   return false 
         	   }
     		   
+    		   
     	   }
+    	   
    
     	   else if(pwd1 ==null || pwd2==null){
     		   alert("비밀번호를 제대로 입력해주세요");

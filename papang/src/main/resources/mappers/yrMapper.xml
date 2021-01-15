@@ -11,13 +11,14 @@
 	    MBR_ID,
 	    MBR_NAME,
 	    MBR_PW,
-	    MBR_BIRTH , 
+	    TO_CHAR(MBR_BIRTH , 'yyyy-mm-dd') AS "mbr_birth",
 	    MBR_PHONE,
 	    MBR_POST,
 	    MBR_ADDR1, 
 	    MBR_ADDR2,
 	    MBR_ADDR3,
-	    MBR_BANK,MBR_ACCOUNT,
+	    MBR_BANK,
+	    MBR_ACCOUNT,
 	    MBR_AUTHOR,
 	    MBR_DATE,
 	    MBR_STATUS,
@@ -71,8 +72,10 @@
 	</select>
 		<!-- 아기정보조회 -->
 <select id="babyinfoChildVO" parameterType="childVO" resultType="childVO">
-		SELECT CHI_NO,MBR_ID,CHI_BIRTH,CHI_NAME,CHI_GENDER,CHI_SNS,CHI_PIC 
-		FROM CHILD 
+		SELECT CHI_NO,MBR_ID,
+		TO_CHAR(chi_birth , 'yyyy-mm-dd') AS "chi_birth",
+		CHI_NAME,CHI_GENDER,CHI_SNS,CHI_PIC 
+		FROM CHILD  
 		 WHERE MBR_ID = #{mbr_id}
 </select>
 		<!-- 아기정보삭제 -->
