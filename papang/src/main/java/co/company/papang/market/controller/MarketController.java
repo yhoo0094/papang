@@ -383,10 +383,20 @@ public class MarketController {
 	public boolean test16(HttpSession session, Order_infoVO order, Od_detailVO detail, HttpServletRequest request)
 			throws IOException {
 		String order_sum = request.getParameter("order_sum");
+		String post = request.getParameter("post");
+		String addr1 = request.getParameter("addr1");
+		String addr2 = request.getParameter("addr2");
+		String addr3 = request.getParameter("addr3");
+		String addressee = request.getParameter("addressee");
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
 		order.setMbr_id(mbr_id);
 		order.setOrder_sum(order_sum);
+		order.setAddressee(addressee);
+		order.setPost(post);
+		order.setAddr1(addr1);
+		order.setAddr2(addr2);
+		order.setAddr3(addr3);
 
 		// 주문번호 무작위 생성
 		Calendar cal = Calendar.getInstance();

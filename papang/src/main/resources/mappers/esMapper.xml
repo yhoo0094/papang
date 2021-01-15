@@ -401,11 +401,18 @@
 	
 	<!-- 주문정보 입력 -->
 	<insert id="orderInfo" parameterType="Order_infoVO">
-		INSERT INTO ORDER_INFO (order_no, mbr_id, order_sum, waybill) <!-- 운송장번호 고정 -->
+		INSERT INTO ORDER_INFO (order_no, mbr_id, order_sum, waybill, addressee, post, addr1,
+								<if test="addr2 != null and addr2 != ''">addr2,</if> addr3) <!-- 운송장번호 고정 -->
 					VALUES ( #{order_no},
 							 #{mbr_id},
 							 #{order_sum},
-							 98712202816 )
+							 98712202816,
+							 #{addressee},
+							 #{post},
+							 #{addr1},
+							 <if test="addr2 != null and addr2 != ''">#{addr2},</if>
+							 #{addr3}
+							  )
 	</insert>
 	<!-- 주문상세정보 입력 -->
 	<insert id="orderDetail" parameterType="Od_detailVO">
