@@ -72,7 +72,7 @@ table tbody tr td {
 	$(()=>{
 		$('#cancleBtn').on("click", function() {
 			var order_no = $(this).data("num");
-			alert(order_no);
+			location.href="${pageContext.request.contextPath}/"
 		})
 	})
 </script>

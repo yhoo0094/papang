@@ -54,6 +54,13 @@ thead, #dataTable_filter, #dataTable_length {
 .dataTableTr>td {
 	width: 260px;
 }
+
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
 </style>
 <script type="text/javascript">
  	$(()=>{
@@ -83,7 +90,7 @@ thead, #dataTable_filter, #dataTable_length {
 </script>
 </head>
 <body>
-	<h3>시터 리스트</h3>
+	<h3 class="titleFont">시터 리스트</h3>
 	<hr>
 	<br>
 	<div align="center">

@@ -39,7 +39,14 @@ public class MypageController {
 	
 	@Autowired 
 	YrMapper dao;
-
+	
+	@RequestMapping("mypage/deleteItem") //장바구니 삭제
+	public String deleteItem() throws IOException{
+		
+		
+		return "mypage/market_buyinfo"; 
+		
+	}
 	
 	@RequestMapping("mypage/myhome") //회원정보수정 (마이페이지 메인홈)
 	public ModelAndView test(HttpSession session,HttpServletResponse response,MemberVO memberVO) throws IOException{
