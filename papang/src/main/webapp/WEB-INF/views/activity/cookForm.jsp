@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
@@ -20,34 +21,49 @@
  	.bMedium{font-size: 18px;margin: 10px;}
  	.note-editable{font-size: 23px;}
 </style>
+<script>
+$(()=>{
+	
+	$('#updateBtn').on('click',function(){
+		alert('test');
+		$('#frm').attr('action','updateSuccessCook');
+		$('#frm').submit();
+	});
+});
 
+</script>
 <body>
 <!-- 전체 div 시작 -->
 <div>
 	<div class="Bigtitle">아빠와 요리해요 > 글 등록</div>	
 		<div class="cook_content">
-		<form action="${pageContext.request.contextPath}/activity/insertCook" method="post">
+		<form action="${pageContext.request.contextPath}/activity/insertCook" method="post" id="frm">
 			<div class="cView_title">
-				<input class="in_title" name="cook_title" placeholder="제목을 입력하세요">
+				<input class="in_title" name="cook_title" placeholder="제목을 입력하세요" <c:if test="${not empty param.cook_no}">value='${cookVO.cook_title}'</c:if>>
 				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
+				<input type="hidden" name="cook_no"  value="${cookVO.cook_no}">
 			</div>
-			
 				<div class="cView_category">
 				<select class="in_category" name="cook_category">
 					<option selected>-- 카테고리 선택 --</option>
-					<option value="이유식">이유식 만들기</option>
-					<option value="아이와함께">아이와 함께 요리해요</option>
-					<option value="비건아이">비건아이로 키우기</option>
-					<option value="육식아이">육식동물 아이</option>
+					<option value="이유식" <c:if test="${cookVO.cook_category == '이유식'}">selected</c:if>>이유식</option>
+					<option value="아이와함께" <c:if test="${cookVO.cook_category == '아이와함께'}">selected</c:if>>아이와함께</option>
+					<option value="비건아이" <c:if test="${cookVO.cook_category == '비건아이'}">selected</c:if>>비건아이</option>
+					<option value="육식아이" <c:if test="${cookVO.cook_category == '육식아이'}">selected</c:if>>육식아이</option>
 				</select>
 			</div>
 			
 			<div align="center">
 				<textarea name="cook_content" id="summernote"
-								class="communityFormTxtarea" rows="20" cols="102" ></textarea>
+								class="communityFormTxtarea" rows="20" cols="102" >${cookVO.cook_content}</textarea>
 			</div>
-			<div class="btn_div" align="center">	
-				<button type="submit" class="btnRed bMedium">등록</button>
+			<div class="btn_div" align="center">
+				<c:if test="${empty param.cook_no}">	
+					<button type="submit" class="btnRed bMedium">등록하기</button>
+				</c:if>
+				<c:if test="${not empty param.cook_no}">
+					<button class="btnRed bMedium" id="updateBtn" type="button">수정하기</button>
+				</c:if>
 				<button type="reset" class="btnGray bMedium" id="cancleBtn">취소</button>
 			</div>
 		</form>

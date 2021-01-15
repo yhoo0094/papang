@@ -32,6 +32,7 @@ public interface SaMapper {
 	public int cookhitPlus(CookVO cookVO);//요리글 조회수 증가
 	public int deleteCook(CookVO cookVO);//요리 글 삭제
 	public int deleteCookAcCom(Act_comVO act_comVO);//요리 글 삭제시 후기 삭제
+	public int updateCook(CookVO cookVO);// 요리 글 업데이트
 	
 	//2.[놀이]
 	public List<Map<String,Object>> getPlayList(PlayVO playVO); //리스트 전체 조회
@@ -49,6 +50,7 @@ public interface SaMapper {
 	public int insertActComm(Act_comVO act_comVO);//놀이 후기글 등록
 	public int deletePlayAct(Act_comVO act_comVO);//놀이 글 삭제시 관련 후기 삭제
 	
+	
 	//3-2.요리후기
 	public List<Act_comVO> getCActComm(Act_comVO act_comVO);//요리후기 전제 조회
 	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
@@ -57,11 +59,12 @@ public interface SaMapper {
 	public ChildVO getDate(ChildVO childVO);//날짜구하기
 	
 	
-	
-	
 	//4.[메인]
 	public List<ProductVO> productList(ProductVO productVO);//메인 상품리스트 가져오기
 	public ProductVO getProduct(ProductVO productVO);//메인 상품 단건 가져오기
+	
+	//5.후기 리스트 페이지
+	public List<Act_comVO> getActList(Act_comVO act_comVO);//놀이후기 리스트 페이지용 전체조회
 	
 }
 

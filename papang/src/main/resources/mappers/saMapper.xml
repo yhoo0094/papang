@@ -45,6 +45,19 @@
 		ORDER BY A.AC_NO DESC
 	</select>  
 	
+	
+<!-- 후기 전체조회 :후기 리스트용 -->
+ <select id="getActList" resultType="Act_comVO" parameterType="act_comVO">
+	SELECT ROWNUM,A.*
+	FROM ACT_COM A
+	WHERE A.AC_CATEGORY=#{ac_category} AND A.PC_NO=#{pc_no}
+	ORDER BY A.AC_NO DESC
+</select>  
+
+<!-- 요리 글 단건 업데이트 -->
+<update id="updateCook" parameterType="CookVO">
+	UPDATE COOK SET COOK_TITLE=#{cook_title},COOK_CATEGORY=#{cook_category},COOK_CONTENT=#{cook_content} WHERE COOK_NO=${cook_no}
+</update>	
 <!-- 요리 글 삭제 -->
 <delete id="deleteCook" parameterType="CookVO">
 	DELETE FROM COOK WHERE COOK_NO=#{cook_no}
@@ -68,6 +81,10 @@
 	COOK_HIT = COOK_HIT + 1
 	WHERE COOK_NO = #{cook_no}
 </update>
+
+
+
+<!-- 요리 글 업데이트 -->
 
 
 <!-- (2).놀이  -->

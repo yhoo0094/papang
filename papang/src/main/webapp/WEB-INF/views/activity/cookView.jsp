@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/active/css/cookList.css"/>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/active/css/cookList.css" />
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous"/>
+	crossorigin="anonymous" />
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/active/css/cookList.css" />
@@ -19,9 +20,11 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	crossorigin="anonymous"/>
+	crossorigin="anonymous" />
 <style>
-@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+@import
+	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 .cook_content {
 	background-color: rgb(249, 196, 94);
 	width: 70%;
@@ -33,7 +36,7 @@
 .cView_title {
 	height: 120px;
 	padding: 20px;
-	display: inline-block; 	
+	display: inline-block;
 }
 
 .cView_comment {
@@ -85,7 +88,6 @@
 	height: 180px;
 }
 
-
 .comm_btn_div {
 	margin-top: 20px;
 }
@@ -115,12 +117,17 @@
 }
 
 .comm_img {
-	    width: auto;
-    height: auto;
+	width: auto;
+	height: auto;
 	display: inline-block;
 }
 
-.commtext {height: 300px;width: 570px;border-radius: 0 8px 8px 0;border: none;}
+.commtext {
+	height: 300px;
+	width: 570px;
+	border-radius: 0 8px 8px 0;
+	border: none;
+}
 
 .comm_imgdiv {
 	display: inline-block;
@@ -131,7 +138,11 @@
 	margin: 20px 0 0 0;
 }
 
-.img{width: auto;height: auto;}
+.img {
+	width: auto;
+	height: auto;
+}
+
 .star {
 	width: 30px;
 	height: 30px;
@@ -157,7 +168,6 @@ a[href], a[href]:hover {
 	font-size: 0.5em;
 	text-decoration: none
 } */
-
 .starrating>input {
 	display: none;
 } /* Remove radio buttons */
@@ -186,14 +196,30 @@ a[href], a[href]:hover {
 .container {
 	font-family: FontAwesome;
 }
-.back{color: rgb(249, 196, 94);font-size: 35px;font-weight: bold;}
-.back:focus, .back:hover {
-    color:  rgb(238, 140, 140);
-    text-decoration: none;
+
+.back {
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+	font-weight: bold;
 }
-.btnDiv{margin: 30px 0 0 0;}
-.btnUpdate{margin-left: 10px;}
-body {background-color: #fff5d2;}
+
+.back:focus, .back:hover {
+	color: rgb(238, 140, 140);
+	text-decoration: none;
+}
+
+.btnDiv {
+	margin: 30px 0 0 0;
+}
+
+.btnUpdate {
+	margin-left: 10px;
+}
+
+body {
+	background-color: #fff5d2;
+}
+.inin{display: inline-block;}
 </style>
 <script>
 $(()=>{
@@ -218,20 +244,35 @@ $(()=>{
 
 	});
 	
+	var cook_no = $('#pc_no').val();
+	
+	/* 수정,삭제 버튼이벤트 */
+	$('#btnDelete').click(function() {
+		alert('확인용');
+		location.href="${pageContext.request.contextPath}/activity/deleteCook?cook_no="+cook_no+"&pc_no="+cook_no;
+	});
+	
+	
+
+	console.log(${chk});
 	
 	//등록된 후기 없을시 리스트영역 숨기기
-	 var a = ${actcommList}
+	if(${chk} == 1){
+		$('#test').css('display','none'); 
+	};
+	
+	 /* var a = [];
+	a.push(${actcommList});
 	 console.log("==="+a)
 	if(a.length ==0) {
 		$('#test').css('display','none'); 
-	}
+	} */
 	 
-	 //삭제 버튼 이벤트
-		$('#btnDelete').click(function() {
-			var cook_no = $('#pc_no').val();
-			location.href="${pageContext.request.contextPath}/activity/cookDelete?cook_no="+cook_no+"&pc_no="+cook_no;
-			/* } */
+	 
+	 $('#moreBtn').on('click',function() {
+			location.href="${pageContext.request.contextPath}/activity/actComList?ac_category="+"요리"+"&pc_no="+cook_no;
 		});
+	 
 	 
 	 
 	
@@ -309,71 +350,82 @@ function cacInsert() {
 </script>
 </head>
 <body>
-<div>
-	<div class="Bigtitle"><a class="back" href="${pageContext.request.contextPath}/activity/cookList">아빠와 요리해요</a> > 따라해보세요</div>
-	<div class="cook_content">
-		<div class="cView_title">
-			<p class="c_title">${cookVO.cook_title}</p>
-			<div class="c_star" id="c_star">${acrate.ROUNDRATE}</div>
+	<div>
+		<div class="Bigtitle">
+			<a class="back"
+				href="${pageContext.request.contextPath}/activity/cookList">아빠와
+				요리해요</a> > 따라해보세요
 		</div>
-		<div class="star_div"></div>
-		<div class="cView_image" align="center" id="cView_image">${cookVO.cook_content}
+		<!-- 수정 ACTION FORM영역 -->
+		<form id="frm" action="updateCook">
+		<div class="cook_content">
+			<div class="cView_title">
+				<p class="c_title">${cookVO.cook_title}</p>
+				<div class="c_star" id="c_star">${acrate.ROUNDRATE}</div>
+				<input type="hidden" value="${cookVO.cook_no}" name="cook_no">
+				<input type="hidden" value="${cookVO.cook_category}" name="cook_category">
+			</div>
+			<div class="star_div"></div>
+			<div class="cView_image" align="center" id="cView_image">${cookVO.cook_content}
+			</div>
 		</div>
-	</div>
-	<div class="btnDiv" align="center">
+		<div class="btnDiv" align="center">
 			<c:if test="${user.mbr_id eq cookVO.mbr_id}">
-						<button type="button" class="btnGray bMedium btnDelide" id="btnDelete">삭제</button>
-						<button type="button" class="btnRed bMedium btnUpdate" id="btnInsert2">수정</button>
+				<button type="button" class="btnGray bMedium btnDelide"
+					id="btnDelete">삭제</button>
+				<button type="submit" class="btnRed bMedium btnUpdate"
+					id="btnInsert2">수정</button>
 			</c:if>
 		</div>
-		
-		
-	<div id="test">
-		<p class="comm_title">후기</p>
-		<div class="comm_div">
-			<c:forEach items="${actcommList}" var="actcomm">
-				<div class="comment">
-					<img
-						src="${pageContext.request.contextPath}/images/actCom/${actcomm.ac_pic}">
-				</div>
-			</c:forEach>
-		</div>
-	</div>
-	
-	<p class="comm_title">후기작성</p>
-		
-		<form id="form1">
-			<div class="comm_content">
-			 <input id="pc_no" name="pc_no" type="hidden" value="${cookVO.cook_no}">
-				<div class="comm_imgdiv">
-					<img id="img" class="sitterProfileImg" style="width:300px; height: 300px;">
-				</div>
-				<input type="hidden" value="${user.mbr_id}" name="mbr_id">
-				<input type="hidden" value="${cookVO.cook_no}" name="ac_no">
-				<input type="hidden" value="${cookVO.cook_category}" name="ac_category">
-				<textarea class="commtext" name="ac_content"></textarea>
-			<input class="comm_img"  type="file" name="uploadFile" id="uf"> 
-					<div class="container" id="starDiv">
-				<div
-					class="starrating risingstar d-flex justify-content-center flex-row-reverse">
-					<input type="radio" id="star5" name="ac_rate" value="5" />
-					<label for="star5" title="5 star"></label>
-					<input type="radio" id="star4" name="ac_rate" value="4" />
-					<label for="star4" title="4 star"></label>
-					<input type="radio" id="star3" name="ac_rate" value="3" />
-					<label for="star3" title="3 star"></label>
-					<input type="radio" id="star2" name="ac_rate" value="2" />
-					<label for="star2" title="2 star"></label>
-					<input type="radio" id="star1" name="ac_rate" value="1" />
-					<label for="star1" title="1 star"></label>
-				</div>
+		</form>
+
+		<div id="test">
+			<p class="comm_title inin">후기</p><p class="inin" id="moreBtn">더보기</p>
+			<div class="comm_div">
+				<c:forEach items="${actcommList}" var="actcomm">
+					<div class="comment">
+						<img
+							src="${pageContext.request.contextPath}/images/actCom/${actcomm.ac_pic}">
+					</div>
+				</c:forEach>
 			</div>
+		</div>
+
+		<p class="comm_title">후기작성</p>
+
+		<form id="form1" action="updateCook">
+			<div class="comm_content">
+				<input id="pc_no" name="pc_no" type="hidden"
+					value="${cookVO.cook_no}">
+				<div class="comm_imgdiv">
+					<img id="img" class="sitterProfileImg"
+						style="width: 300px; height: 300px;">
+				</div>
+				<input type="hidden" value="${user.mbr_id}" name="mbr_id"> 
+				<input type="hidden" value="${cookVO.cook_no}" name="ac_no">
+				 <input type="hidden" value="${cookVO.cook_category}" name="ac_category">
+				<textarea class="commtext" name="ac_content"></textarea>
+				<input class="comm_img" type="file" name="uploadFile" id="uf">
+				<div class="container" id="starDiv">
+					<div
+						class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+						<input type="radio" id="star5" name="ac_rate" value="5" /> <label
+							for="star5" title="5 star"></label> <input type="radio"
+							id="star4" name="ac_rate" value="4" /> <label for="star4"
+							title="4 star"></label> <input type="radio" id="star3"
+							name="ac_rate" value="3" /> <label for="star3" title="3 star"></label>
+						<input type="radio" id="star2" name="ac_rate" value="2" /> <label
+							for="star2" title="2 star"></label> <input type="radio"
+							id="star1" name="ac_rate" value="1" /> <label for="star1"
+							title="1 star"></label>
+					</div>
+				</div>
 				<div class="comm_btn_div" align="center">
 					<button type="button" class="btnRed bMedium" id="btnInsert">후기등록</button>
 				</div>
 			</div>
 		</form>
-	<!-- 화면 끝 -->
-</div>
+		<!-- 화면 끝 -->
+	</div>
 </body>
 </html>

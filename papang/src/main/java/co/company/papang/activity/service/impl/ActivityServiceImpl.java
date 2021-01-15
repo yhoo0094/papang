@@ -91,7 +91,6 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	
-	
 	@Override//놀이 글 삭제시 관련 후기 삭제
 	public int deletePlayAct(Act_comVO act_comVO) {
 		return dao.deletePlayAct(act_comVO);
@@ -116,4 +115,16 @@ public class ActivityServiceImpl implements ActivityService {
 	public int deleteCookAcCom(Act_comVO act_comVO) {
 		return dao.deleteCookAcCom(act_comVO);
 	}
+
+	@Override //요리 후기 업데이트
+	public int updateCook(CookVO cookVO) {
+		return dao.updateCook(cookVO);
+	}
+
+	@Override//후기리스트용 전제 조회
+	public List<Act_comVO> getActList(Act_comVO act_comVO) {
+		return dao.getActList(act_comVO);
+	}
+	
+	
 }

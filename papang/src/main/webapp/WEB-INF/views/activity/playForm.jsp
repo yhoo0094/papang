@@ -25,6 +25,17 @@
 <script>
 var play_category = $('#mbr_id').val();
 console.log(play_category);
+
+$(()=>{
+	
+	$('#updateBtn').on('click',function(){
+		alert('test');
+		$('#frm').attr('action','updateSuccess');
+		$('#frm').submit();
+	});
+});
+
+
 </script>
 
 <body>
@@ -78,14 +89,7 @@ console.log(play_category);
 			lang : "ko-KR", // 한글 설정
 		});
  	
-$(()=>{
-	
-	$('#updateBtn').on('click',function(){
-		alert('test');
-		$('#frm').attr('action','updateSuccess');
-		$('#frm').submit();
-	});
-});
+
 </script>
 
 </body>
