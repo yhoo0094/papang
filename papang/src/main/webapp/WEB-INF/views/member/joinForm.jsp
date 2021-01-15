@@ -35,12 +35,14 @@ p {
 				function() {
 					if (f.mbr_id.value != "") {
 						var mbr_id = $("#mbr_id").val();
-						$.ajax({
+						var regexPattern = /^[A-Za-z0-9]{4,12}$/;
+						 if (regexPattern.test(mbr_id)) {
+							$.ajax({
 								url : "${pageContext.request.contextPath}/ajax/idchk?mbr_id="
 										+ mbr_id,
 								type : 'get',
 								success : function(data) {
-									if (data == 1) { // 중복
+									if (data != 0) { // 중복
 										$("#idchk").text("사용불가");
 										$("#idchk").css("color", "red");
 										$("#joinBtn").attr("disabled",
@@ -58,6 +60,11 @@ p {
 									alert("실패");
 								}
 							})
+// 						 } else {
+// 							 $("#idchk").text("글자수가 부족합니다");
+// 							 $("#idchk").css("color", "red");
+// 							 $("#joinBtn").attr("disabled", true);
+						 }
 					}
 				})
 		// 이메일 중복검사
@@ -66,12 +73,16 @@ p {
 				function() {
 					if (f.mbr_email.value != "") {
 						var mbr_email = $("#mbr_email").val();
-						$.ajax({
+					    var regexPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+
+					    if (regexPattern.test(mbr_email)) {
+							$.ajax({
 								url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
 										+ mbr_email,
 								type : 'get',
 								success : function(data) {
-									if (data == 1) { // 중복
+									console.log(mbr_email);
+									if (data != 0) { // 중복
 										$("#emailchk").text("사용불가");
 										$("#emailchk").css("color", "red");
 										$("#joinBtn").attr("disabled",
@@ -89,6 +100,7 @@ p {
 									alert("실패");
 								}
 							})
+					    }
 					}
 				})
 	});
@@ -119,27 +131,11 @@ p {
 			f.mbr_birth.focus();
 			return false;
 		}
-// 		if (f.mbr_phone.value == "") {
-// 			alert("전화번호를 입력하세요");
-// 			f.mbr_phone.focus();
-// 			return false;
-// 		}
 		if (isNaN(f.mbr_phone.value)) {
 			alert("전화번호는 숫자만 입력가능합니다");
 			f.mbr_phone.focus();
 			return false;
 		}
-// 		if (f.mbr_post.value == "") {
-// 			alert("우편번호를 입력하세요");
-// 			f.mbr_post.focus();
-// 			return false;
-// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
-// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-// 		if (f.mbr_addr2.value == "") {
-// 			alert("상세주소를 입력하세요");
-// 			f.mbr_addr2.focus();
-// 			return false;
-// 		}
 		if (isNaN(f.mbr_account.value)) {
 			alert("계좌번호는 숫자만 입력가능합니다");
 			f.mbr_account.focus();
@@ -163,14 +159,14 @@ p {
 						<tr>
 							<td class="txt" width="20%">아이디&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="text" id="mbr_id" name="mbr_id" style="width: 80%;"
-								placeholder="아이디" class="form-control">
+								placeholder="문자/숫자를 포함한 4~12자리" class="form-control">
 							<span id="idchk"></span></td>
 						</tr>
 						<tr>
 							<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="password" style="width: 80%;"
 								class="form-control pw" id="mbr_pw" name="mbr_pw"
-								placeholder="비밀번호"></td>
+								placeholder="문자/숫자/특수문자를 포함한 4~15자리"></td>
 						</tr>
 						<tr>
 							<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
@@ -181,23 +177,28 @@ p {
 										function() {
 											var pw1 = $("#mbr_pw").val();
 											var pw2 = $("#mbr_pw2").val();
-
-											if (pw1 != "" && pw2 == "") {
-												null;
-											} else if (pw1 != "" || pw2 != "") {
-												if (pw1 == pw2) {
-													$("#alert-success").css(
-															"display",
-															"inline-block");
-													$("#alert-fail").css(
-															"display", "none");
-												} else {
-													//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
-													$("#alert-success").css(
-															"display", "none");
-													$("#alert-fail").css(
-															"display",
-															"inline-block");
+											var regex = /^.*(?=^.{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+											// 비번 정규식
+											if (regex.test(pw1)) {
+												if (pw1 != "" && pw2 == "") {
+													null;
+												} else if (pw1 != "" || pw2 != "") {
+													if (pw1 == pw2) {
+														$("#alert-success").css(
+																"display",
+																"inline-block");
+														$("#alert-fail").css(
+																"display", "none");
+														$("#joinBtn").attr("disabled", true);
+													} else {
+														//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
+														$("#alert-success").css(
+																"display", "none");
+														$("#alert-fail").css(
+																"display",
+																"inline-block");
+														$("#joinBtn").attr("disabled", false);
+													}
 												}
 											}
 										});
@@ -234,7 +235,7 @@ p {
 							<td class="txt">성별&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="radio" id="mbr_gender" style="margin-left:20px; margin-right: 20px;"
 								name="mbr_gender" value="남" checked>남성 <input  style="margin-left:180px; margin-right: 20px;"
-								type="radio" id="mbr_gender" name="mbr_gender" value="녀">여성</td>
+								type="radio" id="mbr_gender" name="mbr_gender" value="여">여성</td>
 						</tr>
 						<tr>
 							<td class="txt">전화번호&nbsp;<span style="color: red;">*</span></td>

@@ -35,29 +35,33 @@ p {
 					function() {
 						if (f.mbr_email.value != "") {
 							var mbr_email = $("#mbr_email").val();
-							$.ajax({
-								url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
-										+ mbr_email,
-								type : 'get',
-								success : function(data) {
-									if (data == 1) { // 중복
-										$("#emailchk").text("사용불가");
-										$("#emailchk").css("color", "red");
-										$("#joinBtn").attr("disabled",
-												true);
-									} else {
-										$("#emailchk")
-												.text("사용가능");
-										$("#emailchk").css("color",
-												"green");
-										$("#joinBtn").attr("disabled",
-												false);
+						    var regexPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 정규식
+
+						    if (regexPattern.test(mbr_email)) {
+								$.ajax({
+									url : "${pageContext.request.contextPath}/ajax/emailchk?mbr_email="
+											+ mbr_email,
+									type : 'get',
+									success : function(data) {
+										if (data == 1) { // 중복
+											$("#emailchk").text("사용불가");
+											$("#emailchk").css("color", "red");
+											$("#joinBtn").attr("disabled",
+													true);
+										} else {
+											$("#emailchk")
+													.text("사용가능");
+											$("#emailchk").css("color",
+													"green");
+											$("#joinBtn").attr("disabled",
+													false);
+										}
+									},
+									error : function() {
+										alert("실패");
 									}
-								},
-								error : function() {
-									alert("실패");
-								}
-							})
+								})
+						    }
 					}
 				})
 						
@@ -79,27 +83,11 @@ p {
 			frm.mbr_birth.focus();
 			return false;
 		}
-// 		if (frm.mbr_phone.value == "") {
-// 			alert("전화번호를 입력하세요");
-// 			frm.mbr_phone.focus();
-// 			return false;
-// 		}
 		if (isNaN(frm.mbr_phone.value)) {
 			alert("전화번호는 숫자만 입력가능합니다");
 			frm.mbr_phone.focus();
 			return false;
 		}
-// 		if (frm.mbr_post.value == "") {
-// 			alert("우편번호를 입력하세요");
-// 			frm.mbr_post.focus();
-// 			return false;
-// 		} // 음 근데 이건 우편번호 검색 api를 쓴 다음에 그냥 주소는 지정되는거니깐!
-// 		// 버튼을 통해서 값 하는거 따로 냅두고 상세주소만 널체크?
-// 		if (frm.mbr_addr2.value == "") {
-// 			alert("상세주소를 입력하세요");
-// 			frm.mbr_addr2.focus();
-// 			return false;
-// 		}
 		if (isNaN(frm.mbr_account.value)) {
 			alert("계좌번호는 숫자만 입력가능합니다");
 			frm.mbr_account.focus();
@@ -149,7 +137,7 @@ p {
 								style="margin-left: 20px; margin-right: 20px;" name="mbr_gender"
 								value="남" checked>남성 <input
 								style="margin-left: 180px; margin-right: 20px;" type="radio"
-								id="mbr_gender" name="mbr_gender" value="녀">여성</td>
+								id="mbr_gender" name="mbr_gender" value="여">여성</td>
 						</tr>
 						<tr>
 							<td class="txt">전화번호</td>
