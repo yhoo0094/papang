@@ -41,11 +41,13 @@ public class MypageController {
 	YrMapper dao;
 	
 	@RequestMapping("mypage/deleteItem") //장바구니 삭제
-	public String deleteItem() throws IOException{
-		
-		
+	public String deleteItem(HttpSession session, Order_infoVO order_infoVO, Model model) throws IOException{
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+		String mbr_id = vo.getMbr_id(); 
+		order_infoVO.setMbr_id(mbr_id);
+		model.addAttribute("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
+		//책갈피
 		return "mypage/market_buyinfo"; 
-		
 	}
 	
 	@RequestMapping("mypage/myhome") //회원정보수정 (마이페이지 메인홈)

@@ -70,9 +70,9 @@ table tbody tr td {
 <title>마이페이지</title>
 <script type="text/javascript">
 	$(()=>{
-		$('#cancleBtn').on("click", function() {
+		$('#cancleItemBtn').on("click", function() {
 			var order_no = $(this).data("num");
-			location.href="${pageContext.request.contextPath}/"
+			location.href="${pageContext.request.contextPath}/mypage/deleteItem?order_no="+order_no
 		})
 	})
 </script>
@@ -116,7 +116,7 @@ table tbody tr td {
                            style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button
                               type="submit">상세보기</button></td>
                         <td align="center"><button class="qwe2" data-toggle="modal" data-target="#exampleModal2" data-num="${co6.order_no}"  target="_blank">배송조회</button>     
-                        <td align="center"><button id="cancleBtn" type="button" data-num="${co6.order_no}">주문취소</button></td>   
+                        <td align="center"><button id="cancleItemBtn"  type="button" data-num="${co6.order_no}">주문취소</button></td>   
                      </tr>
                   </c:forEach>
                </tbody>
