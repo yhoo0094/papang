@@ -390,6 +390,13 @@ public class AdminRestController {
 	public List<Sitter_revVO3> sitterinfoselect2(Model model, Sitter_revVO3 vo) {
 		return service.sitterinfoselect2(vo);
 	}
+	
+	// 일별 매출 현황
+	@RequestMapping(value = "/gendercount", method = RequestMethod.GET)
+	public List<Map<String,Object>> gendercount(Model model) {
+		return service.gendercount();
+	}
+
 
 	
 }

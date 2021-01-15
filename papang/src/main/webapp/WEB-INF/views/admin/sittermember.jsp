@@ -210,7 +210,7 @@
 										.append(
 												$("<td>")
 														.html(
-																'<button id=\'btnSelect\'>조회</button> <button id=\'btnDelete\'>탈퇴</button>'))
+																'<button id=\'btnSelect\'  class=\'buttonclass\'>조회</button> <button id=\'btnDelete\'  class=\'buttonclass\'>탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							} else {
 								$('<tr>')
@@ -227,7 +227,7 @@
 										.append(
 												$("<td>")
 														.html(
-																'<button id=\'btnDelete\'>탈퇴</button>'))
+																'<button id=\'btnDelete\' class=\'buttonclass\'>탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							}
 							$("#author" + item.mbr_id).val(item.mbr_author)
@@ -373,17 +373,17 @@
 					<tr align="center">
 						<td align="center">아&nbsp;이&nbsp;디:</td>
 						<td align="left"><input type='text' name='sit_mbr_id'
-							id='sit_mbr_id' readonly></td>
+							id='sit_mbr_id' readonly width="100%"></td>
 					</tr>
 					<tr align="center">
 						<td align="center">나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이:</td>
 						<td align="left"><input type='text'
-							id='sit_age' readonly></td>
+							id='sit_age' readonly width="100%"></td>
 					</tr>
 					<tr>
 						<td align="center">월&nbsp;급&nbsp;일</td>
 						<td align="left"><input type='text' name='sit_payday'
-							id='sit_payday'></td>
+							id='sit_payday' width="100%"></td>
 					</tr>
 
 					<tr>
@@ -397,9 +397,9 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
+						<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
 						<td align="left"><input type='text' name='sit_pay'
-							id='sit_pay'></td>
+							id='sit_pay'>원</td>
 					</tr>
 
 					<tr>
@@ -434,9 +434,9 @@
 		</tr>
 		<tr>
 		<td colspan="2" align="center">
-		 <input type="button" class="btn btn-primary"
+		 <input type="button" class='buttonclass'
 			value="수정" id="btnUpdate" /> <input type="button"
-			class="btn btn-primary" value="초기화" id="btnInit" />
+			class='buttonclass' value="초기화" id="btnInit" />
 		</td>
 		</tr>
 	</table>

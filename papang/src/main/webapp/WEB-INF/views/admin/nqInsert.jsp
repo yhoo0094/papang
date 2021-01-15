@@ -177,13 +177,12 @@
 
 	//사용자 목록 조회 요청
 	function nqList() {
-		var filter=$("#filter").val()
+		
 		$.ajax({
 			url : '../nq',
 			type : 'GET',
 			//contentType:'application/json;charset=utf-8',
 			dataType : 'json',
-			data: {nq_category : filter},
 			error : function(xhr, status, msg) {
 				alert("상태값 :" + status + " Http에러메시지 :" + msg);
 			},
@@ -212,7 +211,7 @@
 	
 	
 </script>
-<h1 class="mt-4">공지사항/자주묻는 질문 관리</h1>
+<h1 class="mt-4">공지사항 관리</h1>
 <br>
 
 <script
@@ -248,10 +247,7 @@
 			<tbody>
 				<tr>
 					<td align="center" style="width: 10%">분류</td>
-					<td><select name="nq_category">
-							<option value="공지사항">공지사항</option>
-							<option value="자주묻는 질문" selected>자주묻는 질문</option>
-					</select></td>
+					<td name="nq_category">공지사항</td>
 				</tr>
 				<tr>
 					<td align="center" style="width: 10%">제목</td>
@@ -270,10 +266,10 @@
 	</div>
 	<div align="center">
 		 <textarea id="summernote" name="nq_content"></textarea> 
-		<br> <input type="button" class="btn btn-primary" value="등록"
-			id="btnInsert" /> <input type="button" class="btn btn-primary"
+		<br> <input type="button" class='buttonclass' value="등록"
+			id="btnInsert" /> <input type="button" class='buttonclass'
 			value="수정" id="btnUpdate" /> <input type="button"
-			class="btn btn-primary" value="초기화" id="btnInit" />
+			class='buttonclass' value="초기화" id="btnInit" />
 	</div>
 
 </form>
@@ -281,16 +277,12 @@
 <br>
 <div class="card mb-4">
 	<div class="card-header">
-		<i class="fas fa-table mr-1"></i> 공지사항/자주묻는 질문
+		<i class="fas fa-table mr-1"></i> 공지사항
 	</div>
 	<div class="card-body">
 
 		<div class="table-responsive">
-			분류 <select id='filter'>
-		<option selected value=''>전체</option>
-		<option value="공지사항">공지사항</option>
-		<option value="자주묻는 질문">자주묻는 질문</option>
-</select>
+		
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>

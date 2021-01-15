@@ -412,4 +412,9 @@
 	select sit_mbr_id,to_char(srv_date,'yyyy-mm-dd') as srv_date,srv_pay from sitter_rev
 	order by SRV_DATE DESC
 	</select>
+	
+	<select id='gendercount'  resultType="map">
+	select mbr_gender ,ROUND(count(*)/(select count(*) from member)*100)AS mbr_count  from member 
+    group by mbr_gender
+    </select>
 </mapper>

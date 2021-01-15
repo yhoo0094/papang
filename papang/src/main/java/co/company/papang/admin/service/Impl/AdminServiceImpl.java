@@ -246,6 +246,12 @@ public class AdminServiceImpl implements AdminService{
 		return jyMapper.sitterinfoselect2(vo);
 	}
 
+	@Override
+	public List<Map<String, Object>> gendercount() {
+		// TODO Auto-generated method stub
+		return jyMapper.gendercount();
+	}
+
 	
 
 	

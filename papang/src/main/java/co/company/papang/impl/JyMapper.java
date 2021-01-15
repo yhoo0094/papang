@@ -126,4 +126,8 @@ public interface JyMapper {
 	
 	//시터 일별 매출 현황
 	public List<Sitter_revVO3> sitterinfoselect2(Sitter_revVO3 vo);
+	
+	//성비 차트 
+	public List<Map<String,Object>> gendercount();
+	
 }

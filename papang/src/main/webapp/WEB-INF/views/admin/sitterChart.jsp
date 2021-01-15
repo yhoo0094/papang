@@ -133,11 +133,11 @@ function sitterinfoselect2Result(data) {
 }
 
 </script>   
-  <h1 class="mt-4">시터 매출 현황</h1>
+  <h1 class="mt-4">시터 월별 매출 현황</h1>
   <div class='calenderMenu' align = 'center'>
-  <button type='button' id='prev'><</button>&nbsp;&nbsp;
+  <button type='button' id='prev' class='buttonclass'><</button>&nbsp;&nbsp;
   <span class='calenderY'><input type='text' id='year' style="width:50px"></span>년 <span class='calenderM'><input type='text' id='month' style="width:30px"></span>월
-  &nbsp;&nbsp;<button type='button' id='next'>></button>
+  &nbsp;&nbsp;<button type='button' id='next' class='buttonclass'>></button>
   </div>
   <br>
   <div id="chartContainer" style="width: 100%; height: 300px"></div>

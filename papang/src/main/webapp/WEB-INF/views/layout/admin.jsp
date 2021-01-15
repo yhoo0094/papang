@@ -29,11 +29,35 @@ body{
 width : 90%;
 margin: 0 0 0 5%;
 }
+
+.buttonclass {
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	padding:7px 17px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.buttonclass:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.buttonclass:active {
+	position:relative;
+	top:1px;
+}
 </style>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="index.html">papang</a>
+		<a class="navbar-brand" href="${pageContext.request.contextPath}/">papang</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -41,15 +65,7 @@ margin: 0 0 0 5%;
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search" aria-describedby="basic-addon2" />
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
+			
 		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ml-auto ml-md-0">
@@ -59,11 +75,9 @@ margin: 0 0 0 5%;
 				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="${pageContext.request.contextPath}/">papang 페이지</a> 
-					<a class="dropdown-item" href="#">시터/회원 관리 페이지</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/sittermember">시터/회원 관리 페이지</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">1대1 문의 게시판</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/member/logout">Logout</a>
 				</div></li>
 		</ul>
 	</nav>

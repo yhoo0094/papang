@@ -238,9 +238,9 @@ function reportinfoList() {
             </tbody>
          </table>
          <div align="center">
-			<input type="button" class="btn btn-primary" value="등록"
+			<input type="button" class='buttonclass' value="등록"
 				id="btnInsert" />  <input type="button"
-				class="btn btn-primary" value="초기화" id="btnInit" />
+				class='buttonclass' value="초기화" id="btnInit" />
 		</div>
      
       </form>

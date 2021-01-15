@@ -103,7 +103,7 @@
          <table class="table">
             <tbody>
                <tr>
-                  <td align="center" id='pro_no_title'>상품 번호</td>
+                  <td align="center" id='pro_no_title' width="10%">상품 번호</td>
                   <td><select name ='pro_no'>
                   	<c:forEach items="${product}" var="pro">
                   	<option value='${pro.pro_no}'>${pro.pro_no} : ${pro.pro_name}</option>
@@ -121,27 +121,28 @@
             </tbody>
          </table>
          <div align="center">
-			<input type="button" class="btn btn-primary" value="등록"
+			<input type="button" class='buttonclass' value="등록"
 				id="btnInsert" />  <input type="button"
-				class="btn btn-primary" value="초기화" id="btnInit" />
+				class='buttonclass' value="초기화" id="btnInit" />
 		</div>
       </div>
       </form>
-      <div class="card mb-4">
+    <br>
+			<br>
+	<div class="card mb-4">
 	<div class="card-header">
 		<i class="fas fa-table mr-1"></i> 재고 현황
 	</div>
-	<div>
-	분류 <select id='filter'>
-		<option selected value=''>전체</option>
-		<option value="입고">입고</option>
-		<option value="출고">출고</option>
-	</select>
-	</div>
 	<div class="card-body">
-		
+
 		<div class="table-responsive">
-			
+			분류 <select id='filter'>
+				<option selected value=''>전체</option>
+				<option value="입고">입고</option>
+				<option value="출고">출고</option>
+			</select>
+			<br>
+			<br>
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
@@ -158,12 +159,8 @@
 						<th>특이사항</th>
 					</tr>
 				</thead>
-			
 				<tbody></tbody>
-				
-		
 			</table>
-			
-			
 		</div>
-      
+	</div>
+</div>

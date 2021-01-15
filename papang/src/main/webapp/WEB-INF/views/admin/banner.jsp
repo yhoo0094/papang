@@ -329,8 +329,13 @@
 					<td><select name="ban_category" id="ban_category">
 							<option value="사이드배너">사이드 배너</option>
 							<option value="이미지슬라이드">이미지 슬라이드</option>
-					</select></td>
+					</select>
+					</td>
 				</tr>
+				<tr>
+			
+				</tr>
+				
 				<tr>
 					<td align="center">제목</td>
 					<td><input type=hidden name='ban_no' id='ban_no'> <input
@@ -373,10 +378,10 @@
 			</tbody>
 		</table>
 		<div align="center">
-			<input type="button" class="btn btn-primary" value="등록"
-				id="btnInsert" /> <input type="button" class="btn btn-primary"
+			<input type="button" class='buttonclass' value="등록"
+				id="btnInsert" /> <input type="button" class='buttonclass'
 				value="수정" id="btnUpdate" /> <input type="button"
-				class="btn btn-primary" value="초기화" id="btnInit" />
+				class='buttonclass' value="초기화" id="btnInit" />
 
 		</div>
 	</div>
@@ -395,6 +400,8 @@
 				<option value="사이드배너">사이드 배너</option>
 				<option value="이미지슬라이드">이미지 슬라이드</option>
 			</select>
+			<br>
+			<br>
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
