@@ -7,11 +7,17 @@
 .noticeTitleTd{
 	color: #007bff;
 }	
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
 	<br>
-	<h3 style="display: inline;">커뮤니티 게시판</h3>
+	<h3 class="titleFont">커뮤니티 게시판</h3>
 	<form id="communityBoardCategory" class="category" action="${pageContext.request.contextPath}/community/board" method="post">
 		<select name="com_category" style="width: 100%">
 			<option value="">분류
@@ -27,10 +33,10 @@
 			<thead>
 				<tr class="tableTrTh">
 					<th width="5%" class="tableTh">No.</th>
-					<th width="20%" class="tableTh">제목</th>
-					<th width="15%" class="tableTh">작성자</th>
+					<th width="30%" class="tableTh">제목</th>
+					<th width="10%" class="tableTh">작성자</th>
 					<th width="15%" class="tableTh">작성일</th>
-					<th width="15%" class="tableTh">분류</th>
+					<th width="10%" class="tableTh">분류</th>
 					<th width="10%" class="tableTh">조회수</th>
 				</tr>
 			</thead>

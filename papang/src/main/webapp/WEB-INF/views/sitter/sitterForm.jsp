@@ -136,6 +136,15 @@
 .custom_calendar_table tbody td:not(.reservatedDayTd){
 	cursor: pointer;
 }
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
+#titleFont{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 $(()=>{
@@ -496,11 +505,17 @@ function calendarMaker(target, date) {
         	$('.reservationDays').val($.trim(reservationDays));
 		}
     }//calMoveEvtFn함수 끝
+    
+    $('#titleFont').on({
+		"click" : function() {
+			location.href = "${pageContext.request.contextPath}/sitter/board";
+		}
+	});
 }
 </script>
 </head>
 <body>
-	<h3>시터 예약하기</h3>
+	<h3 class="titleFont" id="titleFont"> 시터 리스트</h3><h3 class="titleFont"> > 시터 예약하기</h3>
 	<hr>
 	<br>
 	<div align="right">

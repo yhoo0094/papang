@@ -43,6 +43,15 @@
 	font-size: 12px; 
 	cursor: pointer;
 }
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
+#titleFont{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript">
 	var $tr;
@@ -148,6 +157,12 @@
 			}
 		});
 		
+		$('#titleFont').on({
+			"click" : function() {
+				location.href = "${pageContext.request.contextPath}/community/board";
+			}
+		});
+		
 		if(${update}){
 			alert("수정이 완료되었습니다.")
 		};
@@ -155,10 +170,8 @@
 </script>
 </head>
 <body>
-	<div align="center" class="communityFormTitle strongYellow">
-		<h3>커뮤니티</h3>
-	</div>
-	<br>
+	<h3 class="titleFont" id="titleFont">커뮤니티 게시판</h3><h3 class="titleFont"> > 글 페이지</h3>
+	<br><br>
 	<div align="center" class="communityFormDiv">
 		<form:form
 			action="${pageContext.request.contextPath}/community/formInsert"

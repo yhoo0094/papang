@@ -397,7 +397,7 @@ max-height: 340px;
 	<a class="item" href="${pageContext.request.contextPath}/admin" onfocus="blur()">
 	관리자페이지로 이동</a>
 </c:if>
-  <button type="button"  style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop"><img src="${pageContext.request.contextPath}/resources/images/login/free-icon-bells-2315189.png" style="width:20px;border: none"></img></button>
+  <button type="button"  style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop"><img src="${pageContext.request.contextPath}/resources/images/login/bell1.png" style="width:20px;border: none"></img></button>
   <label id='alarmcount' style="left: 170 px ">0</label>
  
 <c:if test='${empty user.mbr_id and empty admin.ad_id}'>

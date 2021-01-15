@@ -81,6 +81,15 @@
 	background-color: #bbbbbb;
 	cursor: default;
 }
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
+#titleFont{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -97,6 +106,12 @@ $(()=>{
 			location.href = "${pageContext.request.contextPath}/sitter/reservationCancle?srv_no=" + reservationNum + "&from=sitter";
 		}
 	})
+	
+	$('#titleFont').on({
+		"click" : function() {
+			location.href = "${pageContext.request.contextPath}/sitter/board";
+		}
+	});
 })
 
 function offDays(){//휴무일 회색
@@ -298,7 +313,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<h3 style="display: inline;">시터일정 보기</h3>
+	<h3 class="titleFont" id="titleFont"> 시터 리스트</h3><h3 class="titleFont"> > 시터일정 보기</h3>
 	<hr>
 	<div id="calendarForm" align="center"></div>
 

@@ -76,6 +76,15 @@
 	background-color: yellow;
 	cursor: pointer;
 }
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
+#titleFont{
+	cursor: pointer;
+}
 </style>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -370,6 +379,12 @@ function calendarMaker(target, date) {
         });
     }
     getReservatedDayList();
+    
+    $('#titleFont').on({
+		"click" : function() {
+			location.href = "${pageContext.request.contextPath}/sitter/board";
+		}
+	});
 }
 $(function(){
 	var IMP = window.IMP; // 생략가능
@@ -378,7 +393,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<h3 style="display: inline;">예약내역 보기</h3>
+	<h3 class="titleFont" id="titleFont"> 시터 리스트</h3><h3 class="titleFont"> > 예약내역 보기</h3>
 	<form class="category" action="#" method="get">
 		<select id="selectChildNum" name="chi_no"
 			style="width: 100%; font-size: 20px;">

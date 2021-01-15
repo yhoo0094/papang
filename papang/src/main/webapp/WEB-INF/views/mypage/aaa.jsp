@@ -129,14 +129,14 @@ $(function() {
 					<tr> 
 			
 						<td style="text-align: center; vertical-align: middle;">${co8.pro_no}</td>
-						<td style="text-align: center; vertical-align: middle;"><img class ="img1" id = "pro_pic" name="pro_pic" src="${pageContext.request.contextPath}/resource/market/${co8.pro_pic}"></td>
+						<td style="text-align: center; vertical-align: middle;"><img class ="img1" id = "pro_pic" name="pro_pic" src="${pageContext.request.contextPath}/resources/images/market/${co8.pro_pic}"></td>
 						<td style="text-align: center; vertical-align: middle;">${co8.pro_name}</td>
 						<td style="text-align: center; vertical-align: middle;">${co8.pro_price}</td>
 						<td style="text-align: center; vertical-align: middle;">${co8.bag_cnt}</td>  
 						   
 					</tr>
 				</c:forEach>	
-					
+					 
 					
 				</tbody>
 			</table> 
