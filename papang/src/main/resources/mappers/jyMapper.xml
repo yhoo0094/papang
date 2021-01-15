@@ -295,7 +295,7 @@
 	<select id="getacount" parameterType="AlarmVO"
 		resultType="AlarmVO">
 		select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date ,arm_content,
-		(select count(*) from alarm where mbr_id=#{mbr_id}) as arm_count from
+		(select count(*) from alarm where mbr_id=#{mbr_id} and arm_status = 'N') as arm_count from
 		ALARM
 		where mbr_id= #{mbr_id}
 		and arm_status = 'N'
