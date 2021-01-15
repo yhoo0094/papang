@@ -187,6 +187,7 @@ a[href], a[href]:hover {
 .btnDiv{margin: 30px 0 0 0;}
 .btnUpdate{margin-left: 10px;}
 body {background-color: #fff5d2;}
+.inin{display: inline-block;}
 </style>
 <script>
 $(()=>{
@@ -210,19 +211,32 @@ $(()=>{
 		preview(arr);
 
 	});
+	
+	
 	/* 후기 리스트 display */
 /* 	var a = ${actcommList};
 	if(a.length ==0) {
 		$('#test').css('display','none');
 	} */
 	
+	if(${chk} == 1){
+		$('#test').css('display','none'); 
+	};
+	
+	var play_no = $('#pc_no').val();
+	var play_category = $('#ac_category').val();
+	
+	
 	/* 수정,삭제 버튼이벤트 */
 	$('#btnDelete').click(function() {
 		/* if(prompt('정말 삭제하시겠습니까?')){ */
-		var play_no = $('#pc_no').val();
 		//console.log(play_no);
 		location.href="${pageContext.request.contextPath}/activity/deletePlay?play_no="+play_no+"&pc_no="+play_no;
 		/* } */
+	});
+	
+	$('#moreBtn').on('click',function() {
+		location.href="${pageContext.request.contextPath}/activity/actComList?ac_category="+"놀이"+"&pc_no="+play_no;
 	});
 	
 });
@@ -330,10 +344,11 @@ function checkExtension(fileName, fileSize) {
 		</form>
 		<c:if test="${not empty actcommList}">
 		<div id="test">
-		<p class="comm_title">후기</p>
+		<p class="comm_title inin">후기</p><p class="inin" id="moreBtn">더보기</p>
 		<div class="comm_div">
 			<c:forEach items="${actcommList}" var="actcomm">
 				<div class="comment">
+				
 					<img
 						src="${pageContext.request.contextPath}/images/actCom/${actcomm.ac_pic}">
 				</div>
@@ -352,7 +367,7 @@ function checkExtension(fileName, fileSize) {
 				</div>
 				<input type="hidden" value="${user.mbr_id}" name="mbr_id">
 				<input type="hidden" value="${playVO.play_no}" name="ac_no">
-				<input type="hidden" value="${playVO.play_category}" name="ac_category">
+				<input type="hidden" value="${playVO.play_category}" id="ac_category"  name="ac_category">
 				<textarea class="commtext" name="ac_content"></textarea>
 			<input class="comm_img"  type="file" name="uploadFile" id="uf">
 					<div class="container" id="starDiv">

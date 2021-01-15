@@ -2,6 +2,8 @@ package co.company.papang.activity.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -78,16 +80,49 @@ public class ActivityController {
 		 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getCook(cookVO));
-		
 		act_comVO.setPc_no(cookVO.getCook_no());
 		mav.addObject("acrate", service.getStar(act_comVO));
-		
-		mav.addObject("actcommList", service.getCActComm(act_comVO));
+		List<Act_comVO> actcommList = service.getCActComm(act_comVO);
+		int chk = 0; //리스트에 값이 있다
+		if(actcommList.size()==0) {
+			chk = 1; //리스트에 값이 없다
+		}
+		mav.addObject("chk", chk);
+		mav.addObject("actcommList", actcommList);
 		mav.setViewName("activity/cookView");
 		/* System.out.println(service.getCook(cookVO)); */
 		return mav;
 	}
 
+	//요리글 삭제
+	@RequestMapping("activity/deleteCook")
+	public String deletePaly(HttpServletResponse response, Model model, HttpSession session, CookVO cookVO,
+			MemberVO memberVO, Act_comVO act_comVO) {
+		service.deleteCook(cookVO);
+		service.deleteCookAcCom(act_comVO);
+		return "redirect:cookList";
+	}
+	
+	//요리 글 수정폼 불러오기
+	@RequestMapping("activity/updateCook")
+	public ModelAndView updateCook(HttpServletResponse response, CookVO cookVO) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(service.getCook(cookVO));
+		mav.setViewName("activity/cookForm");
+		return mav;
+	}
+	
+	
+	//요리 글 수정폼 불러오기
+	@RequestMapping("activity/updateSuccessCook")
+	public ModelAndView updateSuccessCook(HttpServletResponse response, CookVO cookVO) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject(service.updateCook(cookVO));
+		mav.setViewName("activity/cookView");
+		return mav;
+	}
+	
+	
 	// ###################################요리 후기 ###################################
 	// 요리 후기등록
 	@RequestMapping(value = "/cacInsert", method = RequestMethod.POST)
@@ -152,7 +187,16 @@ public class ActivityController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject(service.getPlay(playVO));
 		act_comVO.setPc_no(playVO.getPlay_no());
-		mav.addObject("actcommList", service.getActComm(act_comVO)); // 놀이 후기 조회
+		
+		List<Act_comVO> actcommList = service.getActComm(act_comVO);
+		
+		int chk = 0; //리스트에 값이 있다
+		if(actcommList.size()==0) {
+			chk = 1; //리스트에 값이 없다
+		}
+		mav.addObject("chk", chk);
+		
+		mav.addObject("actcommList", actcommList); // 놀이 후기 조회
 		mav.addObject("acrate", service.getStar(act_comVO));
 		mav.setViewName("activity/playView");
 		return mav;
@@ -181,7 +225,7 @@ public class ActivityController {
 		return "redirect:playList";
 	}
 
-	// 글 수정폼 데이터 불러오기
+	// 놀이글 수정폼 데이터 불러오기
 	@GetMapping("activity/updatePlay")
 	public ModelAndView getupdatePlay(HttpServletResponse response, Model model, PlayVO playVO) {
 		ModelAndView mav = new ModelAndView();
@@ -219,6 +263,15 @@ public class ActivityController {
 		return vo;
 	}
 
+	@RequestMapping("activity/actComList")
+	public ModelAndView actttest(HttpServletResponse response,Act_comVO act_comVO) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("actList",service.getActList(act_comVO));
+		mav.setViewName("activity/actComList");
+		return mav;
+	}
+
+	
 	@RequestMapping("activity/playtest")
 	public ModelAndView playtest(HttpServletResponse response) throws IOException {
 		return new ModelAndView("activity/test");

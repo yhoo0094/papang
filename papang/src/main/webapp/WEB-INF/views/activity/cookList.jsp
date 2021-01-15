@@ -132,6 +132,7 @@ thead, #dataTable_filter, #dataTable_length {
 .cookno_hidden{display: none;}
 .linebb{display: inline-block;}
 .nonediv{display: none;}
+.count{width: 100%;}
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
@@ -273,7 +274,7 @@ thead, #dataTable_filter, #dataTable_length {
 							</span> <!-- 시간,좋아요,공유 -->
 								<div class="option">
 									<div class="time">
-										<a href="">조회수 : ${cook.COOK_HIT}</a>
+										<a class="count" href="" style="width: 100%;">조회  ${cook.COOK_HIT}</a>
 									</div>
 									<div class="like">
 										<button type="submit" class="btn_like">평점 4</button>

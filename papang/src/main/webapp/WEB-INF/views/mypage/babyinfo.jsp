@@ -72,6 +72,97 @@ table tbody tr td {
 </style>
 <title>마이페이지</title>
 </head>
+
+<script>
+$(function() {
+
+
+	$("#uploadFile").on(
+			'change',
+			function(e) {
+				if (window.FileReader) {
+					console.log($($(this)[0].files[0].name));
+					var filename = $(this)[0].files[0].name;
+
+				} else {
+
+					var filename = $(this).val().split('/').pop().split(
+							'\\').pop();
+					console.log($(this).val().split('/').pop().split('\\')
+							.pop());
+
+				}
+
+				$('#la').text(filename);
+
+				var files = e.target.files;
+				var arr = Array.prototype.slice.call(files);
+				for (var i = 0; i < files.length; i++) {
+					if (!checkExtension(files[i].name, files[i].size)) {
+						return false;
+					}
+				}
+
+				preview(arr);
+
+			});
+
+	function checkExtension(fileName, fileSize) {
+
+		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+		var maxSize = 20971520; //20MB
+
+		if (fileSize >= maxSize) {
+			alert('파일 사이즈 초과');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+
+		if (regex.test(fileName)) {
+			alert('업로드 불가능한 파일이 있습니다.');
+			$("input[type='file']").val(""); //파일 초기화
+			return false;
+		}
+		return true;
+	}
+
+	function preview(arr) {
+		arr
+				.forEach(function(f) {
+
+					//파일명이 길면 파일명...으로 처리
+					var fileName = f.name;
+					if (fileName.length > 10) {
+						fileName = fileName.substring(0, 7) + "...";
+					}
+
+					//div에 이미지 추가
+					var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+					str += '<span>' + fileName + '</span><br>';
+
+					//이미지 파일 미리보기
+					if (f.type.match('image.*')) {
+						var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+						reader.onload = function(e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+							//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+
+							$('#mbr_pic').attr('src', e.target.result);
+							$('#mbr_pic').attr('style',"width:300px; height: 400px");
+						}
+						reader.readAsDataURL(f);
+					} else {
+						$('#mbr_pic').attr('src', e.target.result);
+						$('#mbr_pic').attr('style',"width:300px; height: 400px");
+					}
+				});//arr.forEach
+	}
+
+});
+
+
+
+
+</script>
 <body>
  
 	<div>
@@ -95,7 +186,7 @@ table tbody tr td {
 				<thead>
 					<tr class="tableTrTh">
 						<th width="15%" class="tableTh">선택</th>
-						<th width="15%" class="tableTh">넘버</th>
+						<th width="15%" class="tableTh">사진</th>
 						<th width="15%" class="tableTh">아기 이름</th>
 						<th width="15%" class="tableTh">성별</th>
 						<th width="15%" class="tableTh">태어난 날짜</th>
@@ -106,7 +197,8 @@ table tbody tr td {
 					<tr>
 						 
 						<td align="center"><input value="${co5.chi_no}" type="checkbox" name="user_CheckBox" ></td>
-						<td align="center">${co5.chi_no}</td>
+						<td align="center"><img class= "img1" id = "chi_pic" name="chi_pic" 
+						src="${pageContext.request.contextPath}/resources/images/baby/${co5.chi_pic}"></td>
 						<td align="center">${co5.chi_name}</td>
 						<td align="center">${co5.chi_gender}</td>
 						<td align="center">${co5.chi_birth}</td>
@@ -140,18 +232,21 @@ table tbody tr td {
 	</div>
 	</form>
 	
-	  <form id="fim2" name="fim2" action="babyinfoinsert" method="post">
+	  <form id="fim2" name="fim2" action="babyinfoinsert" method="post" enctype="multipart/form-data">
 			  <button type="submit" class="btnRed bSmall">추가</button>
 				    
 			<div id="aa" style="background:rgb(249, 196, 94)">    					    
 			<label class="label">아이 이름</label>
 			<input class="input_small" type="text" id="chi_name" name="chi_name"></br>
+			
 			<label class="label">아이 성별선택</label>
 			<select class="input_middle" id="chi_gender" name="chi_gender">
                         <option value="남">남</option>
                         <option value="여">여</option>
                         <option value="예정">예정</option>                       
-            </select>		
+            </select>
+                           사진 추가
+            <input type="file" id="uploadFile"  name="uploadFile" value="${childVO.chi_pic}"/>		
            <br>
 			<label class="label">아이 출생년도</label>
 			<input class="input_small" type="date" id="chi_birth" name="chi_birth">

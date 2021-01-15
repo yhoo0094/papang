@@ -390,22 +390,6 @@ max-height: 340px;
 						</li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/sitter/board">베이비시터</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Q&A</a>
-						</li>
-						<!-- <li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownPortfolio" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false"> Portfolio </a>
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="navbarDropdownPortfolio">
-								<a class="dropdown-item" href="portfolio-1-col.html">1
-									Column Portfolio</a> <a class="dropdown-item"
-									href="portfolio-2-col.html">2 Column Portfolio</a> <a
-									class="dropdown-item" href="portfolio-3-col.html">3 Column
-									Portfolio</a> <a class="dropdown-item" href="portfolio-4-col.html">4
-									Column Portfolio</a> <a class="dropdown-item"
-									href="portfolio-item.html">Single Portfolio Item</a>
-							</div></li> -->
 					</ul>
 				</div>
 				<div class="util right" align="right" style="margin-bottom: 70px">

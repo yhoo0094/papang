@@ -35,6 +35,7 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .cookno_hidden{display: none;}
 .linebb{display: inline-block;}
 .nonediv{display: none;}
+.count{width: 100%;}
 </style>
 <script>
 
@@ -188,10 +189,10 @@ window.onload = function() {
 				<!-- 시간,좋아요,공유 -->
 				<div class="option">
 					<div class="time">
-						<a>조회수: ${play.PLAY_HIT}</a>
+						<a class="count" style="width: 100%;">조회 ${play.PLAY_HIT}</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">평점</button>
+							<button type="submit" class="btn_like">후기</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>

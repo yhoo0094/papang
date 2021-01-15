@@ -22,6 +22,7 @@ public interface ActivityService {
 	public int cookhitPlus(CookVO cookVO);//요리글 조회수 증가
 	public int deleteCook(CookVO cookVO);//요리 글 삭제
 	public int deleteCookAcCom(Act_comVO act_comVO);//요리 글 삭제시 후기 삭제
+	public int updateCook(CookVO cookVO);// 요리 글 업데이트
 	
 	//2.[놀이]
 	public List<Map<String,Object>> getPlayList(PlayVO playVO); //리스트 전체 조회
@@ -40,4 +41,7 @@ public interface ActivityService {
 	//3-2.요리후기
 	public List<Act_comVO> getCActComm(Act_comVO act_comVO);//요리후기 전제 조회
 	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
+	
+	//5.후기 리스트 페이지
+	public List<Act_comVO> getActList(Act_comVO act_comVO);//놀이후기 리스트 페이지용 전체조회
 }
