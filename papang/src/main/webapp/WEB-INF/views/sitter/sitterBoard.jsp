@@ -99,7 +99,7 @@ thead, #dataTable_filter, #dataTable_length {
 								<input value="목" type="checkbox" name="off_days" <c:if test="${fn:indexOf(sitterVOChk.off_days,'목')>=0}">checked="checked"</c:if>> 목 
 								<input value="금" type="checkbox" name="off_days" <c:if test="${fn:indexOf(sitterVOChk.off_days,'금')>=0}">checked="checked"</c:if>> 금
 							</td>
-						<td align="center" width="10%">시급</td>
+						<td align="center" width="10%">일급</td>
 						<td align="left"><input type="number"
 							class="sitterBoardInputSize" step="1000" placeholder="최소금액" name="minPay" <c:if test="${sitterVOChk.minPay != null}">value="${sitterVOChk.minPay}"</c:if>>
 							~ <input type="number" class="sitterBoardInputSize" step="1000"
@@ -181,7 +181,7 @@ thead, #dataTable_filter, #dataTable_length {
 										<td align="left">${v.sit_off}</td>
 									</tr>
 									<tr>
-										<td align="center">시&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+										<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 										<td>${v.sit_pay}</td>
 									</tr>
 									<tr>

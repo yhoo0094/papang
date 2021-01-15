@@ -17,4 +17,9 @@ public class Order_infoVO {
 	private String order_date;
 	private String order_status;
 	private String order_sum;
+	private String addressee;
+	private String post;
+	private String addr1;
+	private String addr2;
+	private String addr3;
 }

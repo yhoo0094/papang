@@ -1,5 +1,59 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+<style type="text/css">
+.communityFormTitle {
+	padding: 1%;
+}
+
+.sitterBoardInputSize {
+	width: 40%;
+}
+
+.sitterProfileImg {
+	width: 100%;
+	height: 300px;
+	display: block;
+	border-radius: 10px;
+}
+
+thead, #dataTable_filter, #dataTable_length {
+	display: none;
+}
+
+.dataTableTr {
+	display: inline;
+	width: 50%;
+}
+
+.dataTableDisplayBlock {
+	display: block;
+	width: 20%;
+}
+
+.TableInTheDataTable td {
+	border-top: none;
+	vertical-align: middle;
+	padding: 3px 11px;
+}
+
+.dataTableTr .sitterDiv {
+	padding: 6px;
+	border-radius: 10px;
+}
+
+.communityFormFilter {
+	width: 100%;
+	border-radius: 20px;
+	background-color: #ff971d;
+}
+
+.dataTableTr>td {
+	width: 260px;
+}
+</style>
+</style>	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -12,6 +66,7 @@
 		$('#year').val(year);
 		$('#month').val(month);
 		reportselect();
+		$('#dataTable').DataTable();
 		if ($('#month').val() * 1 < 10) {
 			var date7 = $('#year').val().substring(2, 4) + '/0'
 					+ $('#month').val();
@@ -277,21 +332,56 @@
 <ol class="breadcrumb mb-4">
 	<li class="breadcrumb-item active">Dashboard</li>
 </ol>
-<div class="row">
-	<div class="col-xl-3 col-md-6">
-		<div class="card bg-primary text-white mb-4">
-			<div class="card-body">Primary Card</div>
-			<div
-				class="card-footer d-flex align-items-center justify-content-between">
-				<a class="small text-white stretched-link" href="#">View Details</a>
-				<div class="small text-white">
-					<i class="fas fa-angle-right"></i>
-				</div>
-			</div>
-		</div>
+<div id="divForEntryNum">
+		<table class="table" id="dataTable">
+			<thead>
+				<tr>
+					<th>가</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${sitterVOChkList}" var="v">
+					<tr class="dataTableTr">
+						<td>
+							<div class="sitterDiv strongYellow">
+								<input class="sitterIdInput" type="hidden" value="${v.sit_mbr_id}"> 
+								<img class="sitterProfileImg" alt="시터이미지"
+									src="${pageContext.request.contextPath}/resources/images/sitterProfile/${v.sit_pic}">
+								<table class="TableInTheDataTable" align="center">
+									<tr align="center">
+										<td>돌봄요일</td>
+										<td align="left">${v.sit_off}</td>
+									</tr>
+									<tr>
+										<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+										<td>${v.sit_pay}</td>
+									</tr>
+									<tr>
+										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+										<td>
+											<c:if test="${v.rate == '　'}">평가없음</c:if>
+											<c:if test="${v.rate != null}">${v.rate}</c:if>
+										</td>
+									</tr>
+									<tr>
+										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+										<td>${v.sit_loc}</td>
+									</tr>
+									<tr>
+										<td>제재횟수</td>
+										<td>${v.report}회</td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
-
-</div>
+	<br>
+	<br>
+	<br>
 <div class="row">
 	<div class="col-xl-6">
 		<div class="card mb-4">
