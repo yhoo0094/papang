@@ -156,6 +156,7 @@ a.item {
     border-right: 1px solid #f2efea;
     height: 1em;
     line-height: 1em;
+    color: #58391c;
 }
 
 
@@ -299,12 +300,13 @@ max-height: 340px;
 	position: absolute;
     background-color: red;
     border-radius: 50%;
-    right: 6px;
+    right: 4px;
     font-size: 5px;
     width: 12px;
     height: 10px;
     text-align: center;
     padding-bottom: 13px;
+    color: white;
 }
 </style>
 <script type="text/javascript">
@@ -385,7 +387,6 @@ max-height: 340px;
 
 <body>
 
-
 	<div class="naviClass">
 
 		<!-- Navigation -->
@@ -416,7 +417,7 @@ max-height: 340px;
 <c:if test='${sessionScope.user.mbr_id != null}'>
   <span style="position: relative; cursor: pointer;" data-toggle="modal" data-target="#findPop">
   	<label id='alarmcount'>0</label>
-  	<img src="${pageContext.request.contextPath}/resources/images/login/bell1.jpg" style="width:20px;border: none"></img>
+  	<img src="${pageContext.request.contextPath}/resources/images/login/bell1.jpg" style="width:24px;border: none"></img>
   </span>
 </c:if>  
  
@@ -425,7 +426,7 @@ max-height: 340px;
 	회원가입</a>
 </c:if>
 <c:if test='${empty user.mbr_id and empty admin.ad_id}'>
-	<a href="${pageContext.request.contextPath}/member/loginForm" onfocus="blur()">
+	<a class="item" href="${pageContext.request.contextPath}/member/loginForm" onfocus="blur()">
 	로그인</a>
 </c:if>
 <c:if test='${!empty user.mbr_id}'>
@@ -437,7 +438,7 @@ max-height: 340px;
 	장바구니</a>
 </c:if>
 <c:if test='${!empty user.mbr_id or !empty admin.ad_id}'>
-	<a href="${pageContext.request.contextPath}/member/logout" onfocus="blur()">
+	<a class="item" href="${pageContext.request.contextPath}/member/logout" onfocus="blur()">
 	로그아웃</a>
 </c:if>
 </div>
@@ -481,10 +482,6 @@ max-height: 340px;
          </div>
       </div>
    </div>
-
-
-	
-	
 	
 	<!-- Footer -->
 	<footer class="py-5">
