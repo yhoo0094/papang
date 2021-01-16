@@ -55,9 +55,12 @@ public class SitterController {
 		}
 		model.addAttribute("sitterVOChk",sitterVOChk);
 		
-		MemberVO memberVO = (MemberVO) session.getAttribute("user");
-		childVO.setMbr_id(memberVO.getMbr_id());
-		model.addAttribute("childVOList",service.getChildList(childVO));
+		if(session.getAttribute("user") != null) { //아이 리스트 뽑기
+			MemberVO memberVO = (MemberVO) session.getAttribute("user");
+			childVO.setMbr_id(memberVO.getMbr_id());
+			model.addAttribute("childVOList",service.getChildList(childVO));
+		}
+		
 		model.addAttribute("sitter_revChkVOList",service.getReviewList(sitter_revChkVO));
 		
 		return "sitter/sitterForm"; //jsp주소

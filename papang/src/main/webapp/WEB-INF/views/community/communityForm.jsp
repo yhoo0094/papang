@@ -58,13 +58,21 @@
 	$(()=>{
 		$('#reportCommentSpan').on({ //댓글 신고하기
 			"click" : function() {
-				$('#reprotCommentForm').submit();
+				if('${sessionScope.user.mbr_id}' != ''){
+					$('#reprotCommentForm').submit();	
+				} else {
+					alert("로그인이 필요합니다.")
+				}
 			}
 		});
 		
 		$('#reportSpan').on({ //글 신고하기
 			"click" : function() {
-				$('#reprotForm').submit();
+				if('${sessionScope.user.mbr_id}' != ''){
+					$('#reprotForm').submit();	
+				} else {
+					alert("로그인이 필요합니다.")
+				}
 			}
 		});
 		
@@ -128,18 +136,22 @@
 		
 		//댓글쓰기 버튼 클릭
 		$('#commentInsertBtn').on('click',function(){
-			$.ajax({ 
-			    url: "${pageContext.request.contextPath}/community/commentInsert",  
-			    type: 'POST',  
-			    dataType: 'json', 
-			    data : $("#commentForm").serialize(),
-			    success: function(community_comVO) {
-			    	location.reload();
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			 });  
+			if('${sessionScope.user.mbr_id}' != ''){
+				$.ajax({ 
+				    url: "${pageContext.request.contextPath}/community/commentInsert",  
+				    type: 'POST',  
+				    dataType: 'json', 
+				    data : $("#commentForm").serialize(),
+				    success: function(community_comVO) {
+				    	location.reload();
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				 });  
+			} else {
+				alert("로그인이 필요합니다.")
+			}
 		});//댓글쓰기 버튼 클릭
 		
 		//업데이트 버튼 클릭

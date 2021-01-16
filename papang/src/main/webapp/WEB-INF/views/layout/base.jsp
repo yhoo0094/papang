@@ -295,6 +295,17 @@ max-height: 340px;
 .card_title2, .card-title{color: rgb(64, 60, 60);}
 .pro_no{display: none;}
 .card_title2:hover{color: #fa91a2;text-decoration: none;}
+#alarmcount{
+	position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    right: 6px;
+    font-size: 5px;
+    width: 12px;
+    height: 10px;
+    text-align: center;
+    padding-bottom: 13px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -357,7 +368,12 @@ max-height: 340px;
 				$('<td>').html(item.arm_date + '일전')).append(	
 						$('<input type=\'hidden\' id=\'hidden_arm_no\'>')
 								.val(item.arm_no)).appendTo('#modaltable tbody');
-				$('#alarmcount').html(item.arm_count);
+				$('#alarmcount').html(item.arm_count); 
+				if(item.arm_count >= 0){//알람이 있으면 이미지 변경
+					//책갈피
+				} else {//알람이 없으면 기본 이미지
+					
+				}
 	});
 	}
 	
@@ -397,8 +413,12 @@ max-height: 340px;
 	<a class="item" href="${pageContext.request.contextPath}/admin" onfocus="blur()">
 	관리자페이지로 이동</a>
 </c:if>
-  <button type="button"  style="margin-right: 30px;" id="findBtn" data-toggle="modal" data-target="#findPop"><img src="${pageContext.request.contextPath}/resources/images/login/bell1.png" style="width:20px;border: none"></img></button>
-  <label id='alarmcount' style="left: 170 px ">0</label>
+<c:if test='${sessionScope.user.mbr_id != null}'>
+  <span style="position: relative; cursor: pointer;" data-toggle="modal" data-target="#findPop">
+  	<label id='alarmcount'>0</label>
+  	<img src="${pageContext.request.contextPath}/resources/images/login/bell1.jpg" style="width:20px;border: none"></img>
+  </span>
+</c:if>  
  
 <c:if test='${empty user.mbr_id and empty admin.ad_id}'>
 	<a class="item" href="${pageContext.request.contextPath}/member/joinForm" onfocus="blur()">

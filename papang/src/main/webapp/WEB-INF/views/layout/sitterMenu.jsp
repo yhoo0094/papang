@@ -30,7 +30,9 @@
 		<c:if test="${sessionScope.user.mbr_author== '시터'}">
 			<div class="sidebarMenuDiv"><a class="sidebarMenu" href="${pageContext.request.contextPath}/sitter/scheduleView">시터일정</a></div>
 		</c:if>
-		<div class="sidebarMenuDiv"><a class="sidebarMenu" href="${pageContext.request.contextPath}/sitter/reservationView">예약정보</a></div>
+		<c:if test="${not empty sessionScope.user.mbr_id}">
+			<div class="sidebarMenuDiv"><a class="sidebarMenu" href="${pageContext.request.contextPath}/sitter/reservationView">예약정보</a></div>
+		</c:if>
 	</div>
 </body>
 </html>

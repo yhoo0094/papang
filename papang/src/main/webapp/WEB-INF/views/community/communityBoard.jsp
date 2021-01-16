@@ -14,6 +14,24 @@
     font-weight: bold;
 }
 </style>
+<script type="text/javascript">
+ 		$(()=>{
+			$("#createBtn").on({
+				"click" : function() {
+					if('${sessionScope.user.mbr_id}' != ''){
+						location.href="${pageContext.request.contextPath}/community/form";	
+					} else {
+						alert("로그인이 필요합니다.")
+					}
+				}
+			})
+			$("#communityBoardCategory").on({
+				"change" : function() {
+					$("#communityBoardCategory").submit();
+				}
+			})
+		})
+	</script>
 </head>
 <body>
 	<br>
@@ -66,22 +84,7 @@
 		<br>
 	</div>
 	<div align="right">
-		<button id="createBtn" class="btnYellow bSamll btnWrite">글쓰기</button>
+		<button id="createBtn" class="btnYellow bSamll btnWrite" type="button">글쓰기</button>
 	</div>
-	<script type="text/javascript">
- 		$(()=>{
-			$("#createBtn").on({
-				"click" : function() {
-					location.href="${pageContext.request.contextPath}/community/form";		
-				}
-			})
-			$("#communityBoardCategory").on({
-				"change" : function() {
-					$("#communityBoardCategory").submit();
-				}
-			})
-		})
-		
-	</script>
 
 </body>
