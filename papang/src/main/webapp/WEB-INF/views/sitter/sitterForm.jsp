@@ -102,6 +102,7 @@
 	border-radius: 8px;
 	display: inline-block;
 	width: 99%;
+	margin-top: -25px;
 }
 
 .offDayTd{
@@ -131,6 +132,13 @@
 
 #showRateBtn{
 	float: right;
+	font-size : 18px;
+	color: white;
+	border: solid 1px #333;
+	background: #333;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	border-radius: .5em;
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
 }
 
 .custom_calendar_table tbody td:not(.reservatedDayTd){

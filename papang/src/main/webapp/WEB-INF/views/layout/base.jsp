@@ -307,6 +307,7 @@ max-height: 340px;
     text-align: center;
     padding-bottom: 13px;
     color: white;
+    display: none;
 }
 </style>
 <script type="text/javascript">
@@ -316,17 +317,12 @@ max-height: 340px;
 			alarmlist();
 			alarmUpdate()
 		}
-		
-			
-		
-		// console.log('테스트');
+
 	});
 	
 	function alarmUpdate() {
-		//수정 버튼 클릭
 		var aid = $('#aid').val();
 		$('#findPop').on('show.bs.modal', function (e) {
-     
 			$.ajax({
 				url : "${pageContext.request.contextPath}/alarm",
 				type : 'PUT',
@@ -342,11 +338,9 @@ max-height: 340px;
 					
 				}
 			});
-			console.log($(this).val());
-			
 		});
 	}
-	//사용자 목록 조회 요청
+	//알람 목록
 	function alarmlist() {
 	var aid = $('#aid').val();
 		$.ajax({
@@ -362,20 +356,20 @@ max-height: 340px;
 		});
 	}//userList
 
-	//사용자 목록 조회 응답
+	//알람 목록 결과
 	function alarmlistResult(data) {
-	
+		if($(data).length > 0){//알람이 있으면 숫자 표시
+			$('#alarmcount').css('display','inline-block')
+		} else {//알람이 없으면 숫자 숨기기
+			$('#alarmcount').css('display','none')
+		}
+		
 	$.each(data, function(idx, item) {
 		$('<tr>').append($('<td>').html(item.arm_content)).append(
 				$('<td>').html(item.arm_date + '일전')).append(	
 						$('<input type=\'hidden\' id=\'hidden_arm_no\'>')
 								.val(item.arm_no)).appendTo('#modaltable tbody');
 				$('#alarmcount').html(item.arm_count); 
-				if(item.arm_count >= 0){//알람이 있으면 이미지 변경
-					//책갈피
-				} else {//알람이 없으면 기본 이미지
-					
-				}
 	});
 	}
 	
