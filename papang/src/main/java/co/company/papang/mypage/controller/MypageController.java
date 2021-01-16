@@ -41,12 +41,17 @@ public class MypageController {
 	YrMapper dao;
 	
 	@RequestMapping("mypage/deleteItem") //장바구니 삭제
-	public String deleteItem(HttpSession session, Order_infoVO order_infoVO, Model model) throws IOException{
+	public String deleteItem(HttpSession session, Order_infoVO order_infoVO, Model model, Pro_OdVO pro_odVO) throws IOException{
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id(); 
 		order_infoVO.setMbr_id(mbr_id);
 		model.addAttribute("cos6",dao.market_buyinfoOrder_infoVO(order_infoVO));
-		//책갈피
+
+		List<Pro_OdVO> pro_odVOList = dao.market_buyinfoOrder_info2VO(pro_odVO);
+		for(Pro_OdVO a : pro_odVOList) {
+			//삭제 메서드 만들어서 돌리면 됩니다!
+		};
+		
 		return "mypage/market_buyinfo"; 
 	}
 	
