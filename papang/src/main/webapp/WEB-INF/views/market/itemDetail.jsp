@@ -5,7 +5,6 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
-#idTable>* , tr, th{border:1px solid black;}
 th {
     min-width: 120px;
     text-align: center;
@@ -53,11 +52,12 @@ h1 {
     height: 290px;
 }
 .buyDiv,.btnClass{display: inline-block;}
-.buyDiv{    height: 90px;width: 120%;border: 1px solid black;}
-
-
-/* test */
-table,tr,td {border:1px solid black;}
+.buyDiv{    height: 90px;width: 120%;}
+#addCartBtn{margin: 0 30px 0 40px;}
+.numBox{height: 60px; border: none;}
+.tableBor{border:1px solid #CCCCCC;}
+hr{width: 760px;}
+.bMedium {width: 170px;}
 </style>
 <script>
 $(()=>{
@@ -98,25 +98,6 @@ $(()=>{
 		
 	})
 	
-	// 수량 설정
-	$("#plusBtn").click(function() {
-		var num = $(".numBox").val();
-		var plusNum = Number(num) + 1;
-		if(plusNum > ${pro.pro_cnt}){
-			$(".numBox").val(num);
-		} else{
-			$(".numBox").val(plusNum);
-		}
-	});
-	$("#minusBtn").click(function() {
-		var num = $(".numBox").val();
-		var minusNum = Number(num) - 1;
-		if (minusNum <= 0) {
-			$(".numBox").val(num);
-		} else {
-			$(".numBox").val(minusNum);
-		}
-	});
 
 	
 	
@@ -208,8 +189,31 @@ $(()=>{
 				</table>
 				<hr/>
 				<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
+				<div>
+					<table style="width: 730px;">
+						<tr>
+							<th scope="row" rowspan="2" style="width: 280px;">
+							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
+								<span>구입수량</span>
+							</th>
+							<td class="tableBor" rowspan="2" style="width: 170px;"> 
+								<input type="text" class="numBox" min="1" value="1" readonly="true">
+							</td>
+							<td rowspan="1" class="tableBor">
+								<button type="button" id="plusBtn">+</button>
+							</td>
+							<td rowspan="2">
+								<button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button>
+							</td>
+						</tr>
+						<tr>
+							<td class="tableBor" rowspan="1"><button type="button" id="minusBtn">-</button></td>
+	
+						</tr>
+					</table>
+				</div>
 				
-				<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
+			<%-- 	<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
 				<div class="buyDiv">
 				구입수량 <input type="text" class="numBox" min="1" value="1" readonly>
 				<div>
@@ -223,26 +227,35 @@ $(()=>{
 					<div class="btnClass">	
 						<button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button>
 					</div>
-					</div>
+					</div> --%>
 				</c:if>
 			</div>
 		</div>
 	</div>	<!-- /.row -->
 	
-	<div>
-		<table>
-		<tr>
-			<td rowspan="2">구입수량</td>
-			<td rowspan="2"> <input type="text" class="numBox" min="1" value="1" readonly></td>
-			<td rowspan="1">dd</td>
-				<td rowspan="2">dd</td>
-		</tr>
-		<tr>
-		<td rowspan="1">dd</td>
+	<script>
+	// 수량 설정
+	 $("#plusBtn").click(function() { 
+		var num = $(".numBox").val();
+		var plusNum = Number(num) + 1;
+		if(plusNum > ${pro.pro_cnt}){
+			$(".numBox").val(num);
+		} else{
+			$(".numBox").val(plusNum);
+		}
+	});
+	$("#minusBtn").click(function() {
+		var num = $(".numBox").val();
+		var minusNum = Number(num) - 1;
+		if (minusNum <= 0) {
+			$(".numBox").val(num);
+		} else {
+			$(".numBox").val(minusNum);
+		}
+	});
+
+	</script>
 	
-		</tr>
-		</table>
-	</div>
 	<!-- 상세보기 -->
 	<div class="proDetail" align="center">
 	<div align="left">
