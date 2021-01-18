@@ -41,11 +41,27 @@ thead, .dataTables_length{
 .marketTableTr>td {
     width: 260px;
 }
-
+.Bigtitle {
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+margin: 20px 0 0 38px;
+}
+.row {
+    margin-right: -155px;
+}
+.h-100 {
+    width: 306px;
+}
+.proTitle{color:#58391c;font-size: 20px;}
+.proTitle:hover{color:#fa91a2; text-decoration: none;}
+.strongYellow {
+    background-color: white;
+}
 </style>
 
 <div class="container center_div">
-	<h2>전체 상품</h2>
+	<h2 class="Bigtitle">전체 상품</h2>
 	<div align="right">
 		<c:if test="${!empty admin.ad_id}">
 			<button type="button" class="btnYellow bMedium"
@@ -79,7 +95,7 @@ thead, .dataTables_length{
 									<font style="color: red;">품절</font>
 									</c:if>
 										<h4 class="card-title">
-											<a href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
+											<a class="proTitle" href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 										</h4>
 										<p class="card-text">&#8361;${pro.pro_price}</p>
 									</div>

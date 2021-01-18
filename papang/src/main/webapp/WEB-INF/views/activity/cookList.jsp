@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -101,6 +102,7 @@ thead, #dataTable_filter, #dataTable_length {
 	display: inline;
 	height: 70px;
 	width: 59%;
+	margin-left: 58px;
 }
 
 .typewrite {
@@ -277,7 +279,7 @@ thead, #dataTable_filter, #dataTable_length {
 										<a class="count" href="" style="width: 100%;">조회  ${cook.COOK_HIT}</a>
 									</div>
 									<div class="like">
-										<button type="submit" class="btn_like">평점 4</button>
+										<button type="button" class="btn_like" id="acBtn">후기</button>
 									</div>                                                                                                                                                                                                                                                             
 									<div class="share">
 										<a class="call-share">공유</a>
