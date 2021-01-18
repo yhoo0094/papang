@@ -71,7 +71,7 @@ a {}
 }
 
 #lnb>ul>li>ul>li.on a {
-	color: #d91c1b;
+		color: #55595c; 
 	background: #f5f2ec
 		url('https://t1.daumcdn.net/cfile/tistory/257B794F570C5C0D1A')
 		no-repeat 95% 3px;
@@ -80,14 +80,15 @@ a {}
 #lnb>ul>li>ul li ul {
 	display: none;
 	padding-bottom: 8px;
+		color: #55595c; 
 	background-color: #f5f2ec;
 }
 
 #lnb>ul>li>ul li li a {
 	display: block;
 	padding: 0 25px 10px 22px;
-	color: #666;
-	font-size: 12px;
+	color: #55595c; 
+	font-size: 18px;
 	background-color: #f5f2ec;
 }
 
@@ -185,16 +186,24 @@ a {}
 					<li><a href="${pageContext.request.contextPath}/marketList/cart">장바구니</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/market_buyinfo">구매내역</a></li>
 
-					
 				</ul></li>
-			<li><a href="#none">게시물</a>
+			<li><a href="#none">커뮤니티</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">내 게시물</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">댓글</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">질문</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">답글</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/myboard_police">신고현황</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_qna">Q&A</a></li>
-					
-				</ul></li>
+							
+				</ul>
+			</li>
+			
+			<li><a href="#none">활동</a>
+				<ul>
+					<li><a href="${pageContext.request.contextPath}/mypage/activity_play">놀이</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/activity_cook">요리</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/activity_act_com">후기</a></li> 
+							
+				</ul>
+			</li>
 			<li><a href="#none">시터정보</a>
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/mypage/sitter_money">월급확인</a></li>
