@@ -239,11 +239,17 @@ GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS
    <!-- 주문후 상품재고 변경 -->
    <update id="updateProCnt" parameterType="BagVO">
       UPDATE PRODUCT
-      SET pro_cnt = pro_cnt-#{bag_cnt}
+      SET pro_cnt = pro_cnt+#{bag_cnt} 
       WHERE pro_no = #{pro_no}
    </update>
 
-
+ <!-- 주문후 상품재고 변경, 삭제 -->
+   <update id="orderdelete" parameterType="order_infoVO">
+      DELETE  
+      FROM 
+      ORDER_INFO 
+      WHERE ORDER_NO = #{order_no}
+   </update>
 
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
