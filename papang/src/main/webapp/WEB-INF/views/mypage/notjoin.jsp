@@ -38,6 +38,9 @@ p {
 table tbody tr td {
   font-size: 24px;
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jua', sans-serif;
+    }
 </style>
 <title>마이페이지</title>
 </head>

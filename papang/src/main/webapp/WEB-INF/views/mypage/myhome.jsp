@@ -40,6 +40,9 @@ table tbody tr td {
   height: 300px;
   object-fit: cover;
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jua', sans-serif;
+    }
 </style>
 
 
