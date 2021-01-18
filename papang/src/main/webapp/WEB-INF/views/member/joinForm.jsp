@@ -22,7 +22,7 @@ p {
 .center_div {
     min-height: 750px;
     display: inline-block;
-    margin: 90px 5% 50px 270px;
+    margin: 90px 3% 50px 270px;
     width: 70%;
 }
 </style>
@@ -166,7 +166,7 @@ p {
 							<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
 							<td><input type="password" style="width: 80%;"
 								class="form-control pw" id="mbr_pw" name="mbr_pw"
-								placeholder="문자/숫자/특수문자를 포함한 4~15자리"></td>
+								placeholder="비밀번호"></td>
 						</tr>
 						<tr>
 							<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
@@ -177,9 +177,9 @@ p {
 										function() {
 											var pw1 = $("#mbr_pw").val();
 											var pw2 = $("#mbr_pw2").val();
-											var regex = /^.*(?=^.{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-											// 비번 정규식
-											if (regex.test(pw1)) {
+// 											var regex = /^.*(?=^.{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+// 											// 비번 정규식
+// 											if (regex.test(pw1)) {
 												if (pw1 != "" && pw2 == "") {
 													null;
 												} else if (pw1 != "" || pw2 != "") {
@@ -200,14 +200,14 @@ p {
 														$("#joinBtn").attr("disabled", false);
 													}
 												}
-											}
+// 											}
 										});
 							</script>
 
 							<span id="alert-success"
-								style="display: none; color: #0B8026; font-weight: bold;">비밀번호가
+								style="display: none; color: #0B8026;">비밀번호가
 									일치합니다.</span> <span id="alert-fail"
-								style="display: none; color: #d92742; font-weight: bold;">비밀번호가
+								style="display: none; color: #d92742;">비밀번호가
 									일치하지 않습니다.</span></td>
 						</tr>
 						<tr>
@@ -306,7 +306,7 @@ p {
 				<div align="center">
 					<button type="submit" class="btnRed bMedium" id="joinBtn"
 						onclick="return formCheck()" style="margin-right: 30px;">회원가입</button>
-					<button type="reset" class="btnGray bMedium" style="margin-right: 30px;">취소</button>
+					<button type="button" class="btnGray bMedium" style="margin-right: 30px;" onclick="location.href='/papang'">취소</button>
 				</div>
 			</form>
 			<div id="layer"
