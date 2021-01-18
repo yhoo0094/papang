@@ -58,19 +58,24 @@ margin: 20px 0 0 38px;
 .strongYellow {
     background-color: white;
 }
+.font-sy {font-family: :'Jua', sans-serif!important;}
+.dataTables_filter{width: 480px;}
+.searchBtn{color:#58391c;margin: 0 5px 0 20px;font-size: 18px;}
+.searchBtn:hover{color:#fa91a2;text-decoration: none;}
+table {width: 120%;}
 </style>
 
 <div class="container center_div">
-	<h2 class="Bigtitle">전체 상품</h2>
-	<div align="right">
+	<h2 class="Bigtitle">Papang Shop</h2>
+	<div align="right" style="width: 1011px;margin: 40px 0 40px 0">
 		<c:if test="${!empty admin.ad_id}">
 			<button type="button" class="btnYellow bMedium"
-				onclick="location.href='/papang/market/itemInsertForm'">상품등록</button>
+				onclick="location.href='/papang/market/itemInsertForm'">관리자 상품등록</button>
 		</c:if>
 	</div>
-	<a style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPrice">가격 낮은순</a>
-	<a style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순</a>
-	<a style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoard">최신 등록순</a>
+	 <a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPrice">가격 낮은순</a>
+	<a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순</a>
+	<a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoard">최신 등록순</a> 
 	<div id="marketListBoard">
 		<table class="table" id="dataTable">
 			<thead>
