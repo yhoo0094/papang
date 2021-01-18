@@ -5,11 +5,14 @@ package co.company.papang.impl;
 import java.util.List;
 import java.util.Map;
 
+import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Order_infoVO;
+import co.company.papang.vo.PlayVO;
 import co.company.papang.vo.Pro_OdVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
@@ -40,13 +43,15 @@ public interface YrMapper {
 	public void updateProCnt(Pro_OdVO Pro_OdVO);//재고 수량 변경
 	public void orderdelete(Order_infoVO order_infoVO);  //선택 삭제
 	
-	//게시물부터한다  
+	//게시물부터한다  selectplay selectact_com
 	public List<CommunityVO> myboard_questionCommunityVO(CommunityVO community); //질문보기
 	public List<Community_comVO> myboard_answerCommunity_comVO(Community_comVO community_comVO); //질문보기
 	public List<ReportVO> myboard_policeReportVO(ReportVO reportVO); //신고현황보기
 	public Order_infoVO selectwaybill(Order_infoVO order_infoVO);
-	  
-
+	public List<PlayVO> selectplay(PlayVO playVO); //놀이
+	public List<CookVO> selectcook(CookVO cookVO); //요리 
+	public List<Act_comVO> selectact_com(Act_comVO act_comVO); //활동 후기 
+    
 	//시터정보부터 한다
 	public SitterVO sitter_infoSitterVO(SitterVO sitter); //시터 정보조회
 	public int getcount(SitterVO sitter); //시터 권한체크?

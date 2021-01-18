@@ -194,11 +194,11 @@ p.loginpage {
 								class="social-item flex-c-m m-r-5">
 								<img class="loginpage"
 									src="${pageContext.request.contextPath}/resources/images/icon/kakaotalk.png">
-							</button> </a>&nbsp;&nbsp;&nbsp; <a href="#"><button type="button"
+							</button> </a>&nbsp;&nbsp;&nbsp; <!-- a href="#"><button type="button"
 								class="social-item flex-c-m m-r-5">
 								<img class="loginpage"
 									src="${pageContext.request.contextPath}/resources/images/icon/naver.png">
-							</button> </a>
+							</button> </a -->
 					</div>
 				</form>
 			</div>

@@ -34,7 +34,7 @@ public class ActivityController {
 	// ###################################요리###################################
 	// 1.요리 리스트 전제 조회
 	@RequestMapping("activity/cookList")
-	public ModelAndView cookList(HttpServletResponse response, CookVO cookVO) throws IOException {
+	public ModelAndView cookList(HttpServletResponse response, CookVO cookVO,Act_comVO act_comVO) throws IOException {
 		ModelAndView mvc = new ModelAndView();
 		System.out.println("==================");
 		System.out.println(service.getCookList(cookVO));

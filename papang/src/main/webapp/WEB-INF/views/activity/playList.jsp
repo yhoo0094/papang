@@ -20,7 +20,7 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .button span:after {content: '\00bb';position: absolute;opacity: 0;top: 0;right: -20px;transition: 0.5s;}
 .button:hover span {padding-right: 25px;}
 .button:hover span:after {opacity: 1;right: 0;}
-.button_div {display: inline;height: 70px;width: 59%;}
+.button_div {display: inline;height: 70px;width: 59%;margin-left: 58px;}
 .typewrite {color:rgb(249, 196, 94);/* margin-left: 190px; */ }
 .typewrite:hover {text-decoration: none; color:rgb(249, 196, 94);}
 .header_div{margin: 80px -180px 40px 0px;}
@@ -38,6 +38,8 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .count{width: 100%;}
 </style>
 <script>
+
+//후기버튼 클릭 이벤트
 
 
 var TxtType = function(el, toRotate, period) {
@@ -192,7 +194,7 @@ window.onload = function() {
 						<a class="count" style="width: 100%;">조회 ${play.PLAY_HIT}</a>
 					</div>
 					<div class="like">
-							<button type="submit" class="btn_like">후기</button>
+							<button type="submit" class="btn_like" id="acBtn">후기</button>
 					</div>
 					<div class="share">
 						<a class="call-share">공유</a>

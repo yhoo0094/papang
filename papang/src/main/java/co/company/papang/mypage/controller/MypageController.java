@@ -20,12 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.company.papang.impl.YrMapper;
 import co.company.papang.member.service.Sha256;
+import co.company.papang.vo.Act_comVO;
 import co.company.papang.vo.ChildVO;
 import co.company.papang.vo.CommunityVO;
 import co.company.papang.vo.Community_comVO;
+import co.company.papang.vo.CookVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Od_detailVO;
 import co.company.papang.vo.Order_infoVO;
+import co.company.papang.vo.PlayVO;
 import co.company.papang.vo.Pro_OdVO;
 import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
@@ -372,6 +375,56 @@ public class MypageController {
 		mav.setViewName("mypage/myboard_police");
 		return mav; 
 	}
+	
+	
+	@RequestMapping("mypage/activity_play") //놀이
+	public ModelAndView test42(HttpSession session,HttpServletRequest request,PlayVO playVO,Od_detailVO od_detailVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+			
+		String mbr_id = vo.getMbr_id(); 
+		
+		playVO.setMbr_id(mbr_id);
+				
+		mav.addObject("cos6",dao.selectplay(playVO));
+						
+		mav.setViewName("mypage/activity_play");
+		return mav;
+	}
+	
+	@RequestMapping("mypage/activity_cook") //요리
+	public ModelAndView test4223(HttpSession session,HttpServletRequest request,CookVO cookVO,Od_detailVO od_detailVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+			
+		String mbr_id = vo.getMbr_id(); 
+		
+		cookVO.setMbr_id(mbr_id);
+				 
+		mav.addObject("cos6",dao.selectcook(cookVO));
+						
+		mav.setViewName("mypage/activity_cook");
+		return mav;
+	}
+	
+	@RequestMapping("mypage/activity_act_com") //활동 후기
+	public ModelAndView test42223(HttpSession session,HttpServletRequest request,Act_comVO act_comVO,Od_detailVO od_detailVO) throws IOException{
+		ModelAndView mav=new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("user");
+			
+		String mbr_id = vo.getMbr_id(); 
+		
+		act_comVO.setMbr_id(mbr_id);
+				 
+		mav.addObject("cos6",dao.selectact_com(act_comVO));
+						
+		mav.setViewName("mypage/activity_act_com");
+		return mav;
+	}
+	
+	
+	
+	
 	@RequestMapping("mypage/myboard_care") //돌봄신청내역
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mypage/myboard_care"); 

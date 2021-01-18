@@ -177,13 +177,13 @@
 	</select>
 	<!-- 가격높은순  -->	
 	<select id="getItemListPriceDesc" resultType="ProductVO">
-		SELECT * 
+		SELECT pro_no, pro_name, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(pro_price)), '([0-9]{3})','\1,')), '^,','') AS pro_price, pro_pic, pro_cnt
 		FROM PRODUCT	  
 		ORDER BY pro_price DESC 
 	</select>
 	<!-- 가격낮은순  -->	
 	<select id="getItemListPrice" resultType="ProductVO">
-		SELECT * 
+		SELECT pro_no, pro_name, REGEXP_REPLACE(REVERSE(REGEXP_REPLACE( REVERSE(TO_CHAR(pro_price)), '([0-9]{3})','\1,')), '^,','') AS pro_price, pro_pic, pro_cnt
 		FROM PRODUCT	  
 		ORDER BY pro_price
 	</select>

@@ -22,7 +22,7 @@ p {
 .center_div {
     min-height: 750px;
     display: inline-block;
-    margin: 90px 5% 50px 270px;
+    margin: 90px 3% 50px 270px;
     width: 70%;
 }
 </style>
@@ -172,7 +172,7 @@ p {
 				<div align="center">
 					<button type="submit" class="btnRed bMedium" id="joinBtn"
 						onclick="return formCheck()" style="margin-right: 30px;">회원가입</button>
-					<button type="reset" class="btnGray bMedium" style="margin-right: 30px;">취소</button>
+					<button type="button" class="btnGray bMedium" style="margin-right: 30px;" onclick="location.href='/papang'">취소</button>
 				</div>
 			</form>
 			<div id="layer"

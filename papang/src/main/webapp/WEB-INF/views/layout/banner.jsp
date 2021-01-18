@@ -73,6 +73,7 @@ h1 {
 	float:right;
 	width:10%;
 	height:700px;
+	margin-right: 40px;
 }	
 .carousel-inner {
      width: 10% !important;
@@ -88,7 +89,9 @@ h1 {
 			<c:forEach items="${bannerlist}" var="banner" varStatus='i'>
 				<c:if test="${i.index eq 0 }">
 					<div class="carousel-item active">
-					<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/banner.jpg"></a>
+					<a href="${pageContext.request.contextPath}/marketList/itemBoard">
+						<img class="d-block w-100" src="${pageContext.request.contextPath}/resources/images/Banner/사이드배너1.png">
+					</a>
 					</div>
 				</c:if>
 				<c:if test="${i.index ne 0 && banner.ban_category eq '사이드배너'}">	

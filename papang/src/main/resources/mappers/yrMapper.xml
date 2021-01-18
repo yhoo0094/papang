@@ -251,6 +251,36 @@ GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS
       WHERE ORDER_NO = #{order_no}
    </update>
 
+
+	<!-- play 리스트-->
+<select id="selectplay" parameterType="playVO" resultType="playVO">
+	
+	SELECT 
+	PLAY_NO,PLAY_TITLE,MBR_ID,PLAY_CATEGORY,PLAY_HIT 
+	FROM PLAY
+	WHERE MBR_ID=#{mbr_id}
+</select>
+
+	<!-- cook 리스트-->
+<select id="selectcook" parameterType="cookVO" resultType="cookVO">
+	 
+	SELECT 
+	 COOK_NO,COOK_TITLE,MBR_ID,COOK_CATEGORY,COOK_HIT 
+	 FROM COOK 
+	 WHERE MBR_ID=#{mbr_id}
+</select>	
+
+	<!-- 활동 후기-->
+<select id="selectact_com" parameterType="act_comVO" resultType="act_comVO">
+	 
+	SELECT 
+	AC_NO,AC_PIC,AC_CONTENT,AC_RATE,AC_CATEGORY 
+	FROM ACT_COM 
+	WHERE MBR_ID=#{mbr_id}
+</select>	
+
+
+
 <!-- 전체조회  -->	
 	<select id="getEmpList" resultType="emp">
 		SELECT rownum id, e.* 
