@@ -327,7 +327,16 @@ function checkExtension(fileName, fileSize) {
 //후기 등록 요청
 function cacInsert() {
 	//등록 버튼 클릭
+	
 	$('#btnInsert').on('click', function() {
+		if('${user.mbr_id}'==null ||'${user.mbr_id}'== '' ){
+			var result = confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
+			if(result) {
+				location.href="${pageContext.request.contextPath}/member/loginForm";
+				}else {
+					return false;
+				}
+		}
 		var form = $('#form1')[0];
    		var formData = new FormData(form);
 		$.ajax({

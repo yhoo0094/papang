@@ -27,18 +27,7 @@
   <script>
 $(() => {
 	
-	 /* 1 */
-    $(window).scroll( function(){
-        /* 2 */
-        $('.hideme').each( function(i){
-            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = $(window).scrollTop() + $(window).height();
-            /* 3 */
-            if( bottom_of_window > bottom_of_object/2 ){
-                $(this).animate({'opacity':'1'},500);
-            }
-        }); 
-    });
+
 	
 	 
 	 
@@ -65,7 +54,9 @@ $(() => {
 	});
 	
 	
-
+	$('#moreBtn').on('click',function() {
+		location.href="${pageContext.request.contextPath}/marketList/itemBoard";
+	});
 	
 	
 	
@@ -120,7 +111,7 @@ $(() => {
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">파파존스 서비스를 소개합니다</h1>
+    <h1 class="my-4">Papang 서비스를 소개합니다</h1>
 
     <!-- Marketing Icons Section -->
     <div class="row">
@@ -191,8 +182,7 @@ $(() => {
 
 <hr/>
     <!-- Portfolio Section -->
-    <h2 class="fontTitle">파파존스 SHOP</h2>
-	
+    <h2 class="fontTitle">파파존스 SHOP</h2><p class="moreClass" id="moreBtn">더보기 ></p>
     <div class="row">
     <c:forEach items="${products}" var="product">
       <div class="col-lg-4 col-sm-6 portfolio-item mainBox">
@@ -225,7 +215,7 @@ $(() => {
     <!-- Features Section -->
     <div class="row">
       <div class="col-lg-6">
-        <h2>서비스 소개</h2>
+        <h2>Papang</h2>
         <p>파파존스는 고객님의 편리를 위해 항상 노력하겠습니다.</p>
         <ul>
           <p><strong>주요 서비스</strong></p>
@@ -247,10 +237,7 @@ $(() => {
     <!-- Call to Action Section -->
     <div class="row mb-4">
       <div class="col-md-8">
-        <p>대구광역시 중구 국채보상로 537 5층  |   대표번호 : (053)421-2460 |  사업자번호 : 573-33-00097  | 
-			<br>
-	  		신고번호 제2021-3219632   |   대표: 강은선 김상민 문선애 조영래 최재영
-  		</p>
+      
       </div>
       <div class="col-md-4">
         

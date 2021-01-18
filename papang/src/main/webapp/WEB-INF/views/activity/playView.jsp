@@ -141,15 +141,6 @@
 @import
 	url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
-/* h1[alt="Simple"] {
-	color: white;
-}
-
-a[href], a[href]:hover {
-	color: grey;
-	font-size: 0.5em;
-	text-decoration: none
-} */
 
 .starrating>input {
 	display: none;
@@ -212,13 +203,7 @@ $(()=>{
 
 	});
 	
-	
-	/* 후기 리스트 display */
-/* 	var a = ${actcommList};
-	if(a.length ==0) {
-		$('#test').css('display','none');
-	} */
-	
+	//후기없을시 리스트 display 설정	
 	if(${chk} == 1){
 		$('#test').css('display','none'); 
 	};
@@ -248,7 +233,15 @@ $(()=>{
 function acInsert() {
 	//등록 버튼 클릭
 	$('#btnInsert').on('click', function() {
-		alert('dd');
+		//alert('dd');
+		if('${user.mbr_id}'==null ||'${user.mbr_id}'== '' ){
+			var result = confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
+			if(result) {
+				location.href="${pageContext.request.contextPath}/member/loginForm";
+				}else {
+					return false;
+				}
+		}
 		var form = $('#form1')[0];
    		var formData = new FormData(form);
 		$.ajax({

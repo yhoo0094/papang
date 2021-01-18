@@ -309,6 +309,14 @@ max-height: 340px;
     color: white;
     display: none;
 }
+.footerDiv{color:white;}
+.fontTitle,.my-4 {font-size: 30px;}
+.fontTitle,.moreClass{display: inline-block;}
+.moreClass{float: right;margin: 50px 0 0 0;}
+.moreClass:hover{color:#fa91a2;cursor: pointer;}
+ .containerDiv{max-width: 1685px;} 
+.ml-auto {margin-left: 23%!important;}
+.nav-item{margin: 0 30px 0 0;}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -385,7 +393,7 @@ max-height: 340px;
 
 		<!-- Navigation -->
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
-			<div class="container">
+			<div class="container containerDiv">
 				<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img class="papanglogo" alt="로고" src="${pageContext.request.contextPath}/resources/images/new_logo2.png"> </a>
 				<div class="collapse navbar-collapse" id="navbarResponsive" align="center">
 					<ul class="navbar-nav ml-auto">
@@ -479,9 +487,11 @@ max-height: 340px;
 	
 	<!-- Footer -->
 	<footer class="py-5">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2020</p>
+		<div class="container footerDiv">
+		  <p>대구광역시 중구 국채보상로 537 5층  |   대표번호 : (053)421-2460 |  사업자번호 : 573-33-00097  | 
+			<br>
+	  		신고번호 제2021-3219632   |   대표: 강은선 김상민 문선애 조영래 최재영
+  		</p>
 		</div>
 		<!-- /.container -->
 	</footer>

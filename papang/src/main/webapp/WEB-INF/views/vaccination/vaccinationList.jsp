@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,27 +16,34 @@ td {
 	text-align: center;
 	font-size: 12px;
 }
+
 .vacc_table {
 	display: inline;
 }
+
 .content {
 	margin: 10px 0 0 0;
 }
+
 th {
 	background-color: rgb(249, 196, 94);
 	border: 1px solid black;
 	font-size: 12px;
 }
+
 .vacc_title {
 	background-color: rgb(249, 196, 94);
 }
+
 .vacc_prev {
 	background-color: #f9c0c0;
 }
+
 .vacc_prev:hover {
 	background-color: #ec5858;
 	transition-duration: 1s;
 }
+
 .ex_div {
 	width: 16px;
 	height: 16px;;
@@ -43,71 +51,89 @@ th {
 	margin: 0 12px 0 0;
 	border-radius: 4px;
 }
+
 .prev {
 	background-color: #f9c0c0
 }
+
 .reg {
 	background-color: #98d6ea;
 }
+
 .control-label {
 	width: 70px;
 }
+
 .form-control {
 	width: 470px;
 }
+
 #message-text {
 	height: 150px;
 }
+
 .modal-footer {
 	display: block;
 }
+
 .btn-primary {
 	background-color: rgb(249, 196, 94);
 	border: none;
 	width: 80px;
 }
+
 .btn-primary:hover {
 	color: #fff;
 	background-color: rgb(238, 140, 140);
 }
+
 .btn-primary:focus {
 	color: #fff;
 	background-color: rgb(249, 196, 94);
 	border: rgb(249, 196, 94);
 }
+
 .btn-primary:not(:disabled):not(.disabled):active {
 	color: #fff;
 	background-color: rgb(249, 196, 94);
 	border: rgb(249, 196, 94);
 	box-shadow: none;
 }
+
 .btn-default {
 	background-color: #EDEDED;
 	width: 80px;
 }
+
 .modal-header {
 	background-color: rgb(249, 196, 94);
 	display: block;
 	height: 60px;
 }
+
 .modal-title {
 	display: inline;
 	margin: 0 0 0 150px;
 }
+
 .modal-header .close {
 	padding: 0;
 	margin: 0;
 }
+
 .modal {
 	top: 160px;
 }
+
 .Bigtitle {
 	margin: 20px 0 40px -2px;
 }
+
 .ex {
 	display: block;
 	margin-top: 20px;
 }
+
 .select, .age {
 	display: inline-block;
 	height: 40px;
@@ -115,21 +141,33 @@ th {
 	margin: 0 20px 0 0;
 	font-size: 16px;
 }
-.age {width: 180px;}
+
+.age {
+	width: 180px;
+}
+
 .select {
 	border-radius: 8px;
 	border: 3px solid rgb(249, 196, 94);
 	background-color: rgb(249, 196, 94);
 }
-#babyImg {width:50px; height: 50px;margin-right: 10px;}
+
+#babyImg {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+}
 </style>
 <script src="../resources/json.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		
-	
-		childList();//아이 전체 조회
-		prevInsert();//예방접종 일지 등록
+		if('${user.mbr_id}' != '') {
+			childList();//아이 전체 조회	
+		} 
+		
+			prevInsert();//예방접종 일지 등록
+		
 		prevSelectList();//아이별 예방접종 전체 조회 결과
 		$("#child").trigger("change");
 		getchildDate() ;//아이 태어난날 구하기
@@ -207,6 +245,10 @@ th {
 	//예방접종 일지 등록
 	function prevInsert(){
 		$('#btnInsert').on('click',function() {
+			if('${user.mbr_id}'==null ||'${user.mbr_id}'== '' ){
+				alert("로그인이 필요한 서비스입니다");
+				location.href="${pageContext.request.contextPath}/member/loginForm";
+			}else {
 			$.ajax({
 				url :"../prevInsert",
 				type : 'POST',
@@ -228,6 +270,7 @@ th {
 			    } 
 				
 			}); //ajax 끝
+			}
 		});
 	}
 	
@@ -352,6 +395,9 @@ th {
 	
 </script>
 <script>
+console.log("=======");
+console.log("${user.mbr_id}");
+
 $('#exampleModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) 
 	  var recipient = button.data('whatever') 
@@ -397,8 +443,8 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 		aria-labelledby="exampleModalLabel">
 
 		<div class="modal-dialog" role="document">
-		
-		<!-- 모달시작 -->
+
+			<!-- 모달시작 -->
 			<div class="modal-content">
 				<!-- form 시작 -->
 				<form id="frm" method="post">
@@ -410,19 +456,20 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						</button>
 					</div>
 
-					<input type="hidden" class="chi_nm" name="chi_name" value="" /> 
-					<input type="hidden" class="chi_num" name="chi_no" value="" />
+					<input type="hidden" class="chi_nm" name="chi_name" value="" /> <input
+						type="hidden" class="chi_num" name="chi_no" value="" />
 
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="recipient-name" class="control-label">접종명</label> 
-							<input id="inTitle" type="text" name="prv_name" class="form-control"
+							<label for="recipient-name" class="control-label">접종명</label> <input
+								id="inTitle" type="text" name="prv_name" class="form-control"
 								id="recipient-title" value="">
 						</div>
 						<div class="form-group">
-						
-							<label for="recipient-name" class="control-label">접종일</label> 
-							<input type="date" class="form-control" id="recipient-name" name="prv_date">
+
+							<label for="recipient-name" class="control-label">접종일</label> <input
+								type="date" class="form-control" id="recipient-name"
+								name="prv_date">
 						</div>
 						<div class="form-group">
 							<label for="message-text" class="control-label">예방일지</label>
@@ -432,21 +479,23 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 
 
 					<div class="modal-footer" align="center">
-						<button type="button" id="btnCancle"class="btn btn-default" data-dismiss="modal">취소</button>
+						<button type="button" id="btnCancle" class="btn btn-default"
+							data-dismiss="modal">취소</button>
 						<button type="button" id="btnInsert" class="btn btn-primary">등록하기</button>
 						<button type="button" id="btnUpdate" class="btn btn-primary">수정하기</button>
-						
+
 					</div>
 				</form>
-		<!-- 모달끝 -->
+				<!-- 모달끝 -->
 			</div>
 		</div>
 	</div>
 
 	<div class="Bigtitle">예방접종</div>
-	<input class="chi_num"  id ="chiNum" name="chi_no" type="hidden" value="">
+	<input class="chi_num" id="chiNum" name="chi_no" type="hidden" value="">
 	<select class="select" id='child'></select>
-	<img id="babyImg" alt="사진이 존재하지않습니다." src="${pageContext.request.contextPath}/images/actCom/birth.png">
+	<img id="babyImg" alt="사진이 존재하지않습니다."
+		src="${pageContext.request.contextPath}/images/actCom/birth.png">
 	<p class="age"></p>
 	<div class="ex">
 		<div class="ex_div prev"></div>
@@ -498,8 +547,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td class="vacc_title">B형간염</td>
 					<td class="vacc_title">Hepβ(유전자재조합)</td>
 					<td class="vacc_prev" id="Hepβ_1차" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">1차
-						</td>
+						data-target="#exampleModal" data-whatever="@mdo">1차</td>
 					<td class="vacc_prev" id="Hepβ_2차" data-toggle="modal"
 						data-target="#exampleModal" data-whatever="@mdo">2차</td>
 					<td></td>
@@ -574,8 +622,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td></td>
 					<td></td>
 					<td class="vacc_prev" id="IPV_추가4차" colspan="2" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">추 4차
-						</td>
+						data-target="#exampleModal" data-whatever="@mdo">추 4차</td>
 					<td></td>
 					<td></td>
 				</tr>
@@ -591,8 +638,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td class="vacc_prev" id="Hib_3차" data-toggle="modal"
 						data-target="#exampleModal" data-whatever="@mdo">3차</td>
 					<td class="vacc_prev" id="Hib_추가4차" colspan="2" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">추 4차
-						</td>
+						data-target="#exampleModal" data-whatever="@mdo">추 4차</td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -613,8 +659,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td class="vacc_prev" id="PCV_3차" data-toggle="modal"
 						data-target="#exampleModal" data-whatever="@mdo">3차</td>
 					<td class="vacc_prev" id="PCV_추가4차" colspan="2" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">추 4차
-						</td>
+						data-target="#exampleModal" data-whatever="@mdo">추 4차</td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -706,12 +751,10 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						12개월 후</td>
 					<td></td>
 					<td class="vacc_prev" id="IJEV_추가4차" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">추
-						4차</td>
+						data-target="#exampleModal" data-whatever="@mdo">추 4차</td>
 					<td></td>
 					<td class="vacc_prev" id="IJEV_추가5차" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">추
-						5차</td>
+						data-target="#exampleModal" data-whatever="@mdo">추 5차</td>
 				</tr>
 				<tr>
 					<td class="vacc_title">LJEV(햄스터 신장세포 유래 약독화 생백신)</td>
@@ -747,8 +790,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td></td>
 					<td></td>
 					<td class="vacc_prev" id="HPV_1_2차" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@mdo">1~2차
-						</td>
+						data-target="#exampleModal" data-whatever="@mdo">1~2차</td>
 				</tr>
 				<tr>
 					<td class="vacc_title">인플루엔자</td>

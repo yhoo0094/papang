@@ -36,6 +36,9 @@ p.loginpage {
 	color: #666666;
 	margin: 0px;
 }
+.container{max-width: 1685px;}
+.ml-auto {margin-left: 23%!important;}
+.nav-item{margin: 0 30px 0 0;}
 
 </style>
 <script type="text/javascript">

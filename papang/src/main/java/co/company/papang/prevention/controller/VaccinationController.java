@@ -24,8 +24,8 @@ public class VaccinationController {
 	VaccinationService service; // 서비스
 
 	@RequestMapping("vaccination/vaccinationList")
-	public ModelAndView vaccinationList(HttpServletResponse response,ChildVO childVO) throws IOException {
-		return  new ModelAndView("vaccination/vaccinationList");
+	public ModelAndView vaccinationList(HttpServletResponse response, ChildVO childVO) throws IOException {
+		return new ModelAndView("vaccination/vaccinationList");
 	}
 
 	@RequestMapping("vaccination/vaccNotice")
@@ -37,7 +37,7 @@ public class VaccinationController {
 	public ModelAndView test(HttpServletResponse response) throws IOException {
 		return new ModelAndView("vaccination/test");
 	}
-	
+
 	@RequestMapping("vaccination/test2")
 	public ModelAndView test2(HttpServletResponse response) throws IOException {
 		return new ModelAndView("vaccination/test2");
@@ -57,38 +57,34 @@ public class VaccinationController {
 		return service.insertPrevent(preventionVO);
 	}
 
+	@ResponseBody // 아이별 예방접종 전체 조회
+	@RequestMapping(value = "/prevSelectList", method = RequestMethod.GET)
+	public List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
+		return service.getPreventList(preventionVO);
+	}
 
-  @ResponseBody //아이별 예방접종 전체 조회
-  @RequestMapping(value = "/prevSelectList", method = RequestMethod.GET) 
-  public List<PreventionVO> getPreventList(Model model, PreventionVO preventionVO) {
-  return service.getPreventList(preventionVO);
-  }
-  
-  @ResponseBody //아이별 예방접종 단건 조회
-  @RequestMapping(value = "/prevSelect", method = RequestMethod.GET) 
-  public PreventionVO getPrevent(Model model, PreventionVO preventionVO) {
-  return service.getPrevent(preventionVO);
-  }
-  
-  @ResponseBody //아이별 예방접종 업데이트
-  @RequestMapping(value = "/prevUpdate", method = RequestMethod.POST) 
-  public int updatePrevent(Model model, PreventionVO preventionVO) {
-	  return  service.updatePrevent(preventionVO);
-  }
-  
-  @ResponseBody //아이별 예방접종 업데이트
-  @RequestMapping(value = "/getChild", method = RequestMethod.GET) 
-  public ChildVO getChild(Model model, ChildVO childVO) {
-	  return  service.getChild(childVO);
-  }
-  
-  @ResponseBody //날짜구하기
-  @RequestMapping(value = "/getDate", method = RequestMethod.GET) 
-  public ChildVO getDate(Model model, ChildVO childVO) {
-	  return  service.getDate(childVO);
-  }
-  
+	@ResponseBody // 아이별 예방접종 단건 조회
+	@RequestMapping(value = "/prevSelect", method = RequestMethod.GET)
+	public PreventionVO getPrevent(Model model, PreventionVO preventionVO) {
+		return service.getPrevent(preventionVO);
+	}
 
-	 
+	@ResponseBody // 아이별 예방접종 업데이트
+	@RequestMapping(value = "/prevUpdate", method = RequestMethod.POST)
+	public int updatePrevent(Model model, PreventionVO preventionVO) {
+		return service.updatePrevent(preventionVO);
+	}
+
+	@ResponseBody // 아이별 예방접종 업데이트
+	@RequestMapping(value = "/getChild", method = RequestMethod.GET)
+	public ChildVO getChild(Model model, ChildVO childVO) {
+		return service.getChild(childVO);
+	}
+
+	@ResponseBody // 날짜구하기
+	@RequestMapping(value = "/getDate", method = RequestMethod.GET)
+	public ChildVO getDate(Model model, ChildVO childVO) {
+		return service.getDate(childVO);
+	}
 
 }
