@@ -46,7 +46,7 @@ p {
     margin-bottom: 1rem;
 }
 .content_div{width: 90%;
-    margin: 0px 0px 0px 200px;}
+    margin: 0px 0px 0px 100px;}
     .w3-large {
     margin: 0 0 60px 230px;
 }
@@ -63,11 +63,11 @@ table tbody tr td {
     margin-bottom: 10px;
 }
 #fim2{
-    margin: 0 0 0 193px;
+    margin: 0 0 0 100px;
 }
 
 #aa{
-        width: 1287px;
+        width: 1197px;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: 'Jua', sans-serif;
@@ -199,12 +199,12 @@ $(function() {
 				<c:forEach var="co5" items="${cos5}">
 					<tr>
 						 
-						<td align="center"><input value="${co5.chi_no}" type="checkbox" name="user_CheckBox" ></td>
-						<td align="center"><img class= "img1" id = "chi_pic" name="chi_pic" 
+						<td align="center" style="vertical-align: middle;"><input value="${co5.chi_no}" type="checkbox" name="user_CheckBox" ></td>
+						<td align="center" style="vertical-align: middle;"><img class= "img1" id = "chi_pic" name="chi_pic" 
 						src="${pageContext.request.contextPath}/resources/images/baby/${co5.chi_pic}"></td>
-						<td align="center">${co5.chi_name}</td>
-						<td align="center">${co5.chi_gender}</td>
-						<td align="center">${co5.chi_birth}</td>
+						<td align="center" style="vertical-align: middle;">${co5.chi_name}</td>
+						<td align="center" style="vertical-align: middle;">${co5.chi_gender}</td>
+						<td align="center" style="vertical-align: middle;">${co5.chi_birth}</td>
 					</tr>
 				</c:forEach>	
 					
@@ -236,8 +236,9 @@ $(function() {
 	</form>
 	
 	  <form id="fim2" name="fim2" action="babyinfoinsert" method="post" enctype="multipart/form-data">
+	  		<div align="right" style="width: 1197px;">
 			  <button type="submit" class="btnRed bSmall">추가</button>
-				    
+			</div>   
 			<div id="aa" style="background:rgb(249, 196, 94)">    					    
 			<label class="label">아이 이름</label>
 			<input class="input_small" type="text" id="chi_name" name="chi_name"></br>

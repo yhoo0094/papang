@@ -65,6 +65,9 @@ p {
 table tbody tr td {
    font-size: 16px;
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jua', sans-serif;
+    }
 
 </style>
 <title>마이페이지</title>
@@ -78,8 +81,7 @@ table tbody tr td {
 </script>
 </head>
 <body>
-   <div>
-      <div>
+      <div style="width: 1000px;">
          <div class="w3-large" align="center">
             <h3 class="big_title">구매내역</h3>
          </div>

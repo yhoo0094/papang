@@ -11,9 +11,8 @@
     margin: 176px 15% 9px 23%;
     width: 65%;
 }
-  .yra:link{color:blue; text-decoration:underline}  
-      .yra:visited{color:blue;text-decoration:none}   
-      .yra:hover {color:#ff00ff; text-decoration:underline} 
+.yra:link{color:black; text-decoration:none;}  
+      .yra:visited{color:black;text-decoration:none} 
 </style>
 <body> 
 		<h3>답변게시판</h3>
@@ -32,11 +31,11 @@
 			<table class="table" id="dataTable">
 				<thead>
 					<tr class="tableTrTh">
-						<th width="15%" class="tableTh">게시글번호</th>
-						<th width="20%" class="tableTh">답글내용</th>
-						<th width="15%" class="tableTh">작성자</th>
-						<th width="15%" class="tableTh">작성일</th>
-						<th width="15%" class="tableTh">분류</th>
+						<th width="5%" class="tableTh">번호</th>
+						<th width="55%" class="tableTh">답글내용</th>
+						<th width="10%" class="tableTh">작성자</th>
+						<th width="20%" class="tableTh">작성일</th>
+						<th width="10%" class="tableTh">분류</th>
 					</tr>
 				</thead>
 				<tbody>

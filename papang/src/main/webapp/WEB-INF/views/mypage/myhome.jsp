@@ -27,7 +27,7 @@ p {
     margin-bottom: 1rem;
 }
 .content_div{width: 90%;
-    margin: 0px 0px 0px 200px;}
+    margin: 0px 0px 0px 110px;}
     .w3-large {
     margin: 0 0 60px 230px;
 }
