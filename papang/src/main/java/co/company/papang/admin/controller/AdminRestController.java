@@ -29,6 +29,7 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_monthVO;
 import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 
@@ -397,10 +398,44 @@ public class AdminRestController {
 		return service.gendercount();
 	}
 
-	// 일별 매출 현황
+	// 월급줄사람 조회
 	@RequestMapping(value = "/monthpay", method = RequestMethod.GET)
-	public List<Map<String, Object>> monthpay(Model model,Sitter_revVO3 vo) {
+	public List<Map<String, Object>> monthpay(Model model, Sitter_revVO3 vo) {
+
 		return service.monthpay(vo);
+	}
+
+	// 월급 단건조회
+	@RequestMapping(value = "/monthpayone/{sit_mbr_id}", method = RequestMethod.GET)
+	public List<Map<String, Object>> monthpayone(@PathVariable String sit_mbr_id, Sitter_revVO3 vo, Model model) {
+		vo.setSit_mbr_id(sit_mbr_id);
+
+		System.out.println("----------------------------------------");
+		System.out.println(vo);
+		return service.monthpayone(vo);
+	}
+
+	// 등록
+	@RequestMapping(value = "/monthinsert", method = RequestMethod.POST)
+	public Sitter_monthVO monthinsert(@RequestBody Sitter_monthVO vo, Model model) {
+		service.monthinsert(vo);
+		service.insertmonthAlarm(vo);
+		System.out.println(vo);
+		return vo;
+	}
+
+	// 월급줄사람 조회
+	@RequestMapping(value = "/resultmonthpayone", method = RequestMethod.GET)
+	public List<Map<String, Object>> resultmonthpayoneselect(Model model, Sitter_revVO3 vo) {
+
+		return service.resultmonthpayone(vo);
+	}
+
+	// 월급줄사람 조회
+	@RequestMapping(value = "/allsum", method = RequestMethod.GET)
+	public String allsum(Model model, Sitter_revVO3 vo) {
+
+		return service.allsum();
 	}
 
 }

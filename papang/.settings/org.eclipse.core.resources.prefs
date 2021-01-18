@@ -2,4 +2,6 @@ eclipse.preferences.version=1
 encoding//src/main/java/co/company/papang/admin/controller/AdminRestController.java=UTF-8
 encoding//src/main/java/co/company/papang/admin/service/AdminService.java=UTF-8
 encoding//src/main/java/co/company/papang/impl/JyMapper.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/calculater.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/sitterSchedule.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/normal/calender.jsp=UTF-8

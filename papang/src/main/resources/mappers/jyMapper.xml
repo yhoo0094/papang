@@ -294,18 +294,23 @@
 	<!-- 알림 갯수 -->
 	<select id="getacount" parameterType="AlarmVO"
 		resultType="AlarmVO">
-		select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date ,arm_content,
-		(select count(*) from alarm where mbr_id=#{mbr_id} and arm_status = 'N') as arm_count from
+		select mbr_id, arm_no ,TRUNC(SYSDATE-arm_date) as arm_date
+		,arm_content,
+		(select count(*) from alarm where mbr_id=#{mbr_id} and
+		arm_status = 'N') as arm_count from
 		ALARM
 		where mbr_id= #{mbr_id}
-		and arm_status = 'N'
+		and
+		arm_status = 'N'
 		GROUP BY mbr_id, arm_no ,arm_date ,arm_content
-		order by arm_no DESC
+		order by
+		arm_no DESC
 	</select>
 
 	<!-- 읽음처리 -->
 	<update id="updateAstatus" parameterType="AlarmVO">
-		UPDATE ALARM set ARM_STATUS='Y' where mbr_id = #{mbr_id}
+		UPDATE ALARM set
+		ARM_STATUS='Y' where mbr_id = #{mbr_id}
 	</update>
 
 	<!-- 신고 등록 -->
@@ -323,12 +328,16 @@
 
 	<select id='reportinfoselect'
 		parameterType="co.company.papang.vo.Report_info" resultType="map">
-		SELECT R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD')
-		AS RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS
+		SELECT
+		R.REPO_NO,M.MBR_AUTHOR,R.MBR_ID,TO_CHAR(R.RINFO_START,'YYYY-MM-DD')
+		AS
+		RINFO_START,TO_CHAR(R.RINFO_START+R.RINFO_CNT,'YYYY-MM-DD')AS
 		RINFO_CNT,SUBSTR(R.RINFO_REASON,0,10)||'...' AS RINFO_REASON
-		FROM MEMBER M , REPORT_INFO R
+		FROM
+		MEMBER M , REPORT_INFO R
 		WHERE M.MBR_ID = R.MBR_ID
-		ORDER BY R.REPO_NO DESC
+		ORDER BY R.REPO_NO
+		DESC
 	</select>
 
 	<select id='reportselectone' resultType="map">
@@ -362,13 +371,15 @@
 	<!-- 정지 처리 -->
 	<update id="updatestatus"
 		parameterType="co.company.papang.vo.Report_info">
-		update MEMBER set MBR_STATUS='활동정지' where mbr_id = #{mbr_id}
+		update MEMBER set MBR_STATUS='활동정지' where mbr_id =
+		#{mbr_id}
 	</update>
 
 	<!-- 읽음처리 -->
 	<update id="updaterepoans"
 		parameterType="co.company.papang.vo.Report_info">
-		update REPORT set REPO_ANS = #{rinfo_reason} ,REPO_STATUS='처리' where REPO_NO
+		update REPORT set REPO_ANS = #{rinfo_reason}
+		,REPO_STATUS='처리' where REPO_NO
 		= #{repo_no}
 	</update>
 
@@ -384,18 +395,22 @@
 	<!-- 월별 매출 현황 -->
 	<select id='orderinfoselect' parameterType="Order_infoVO"
 		resultType="Order_infoVO">
-		select to_char(order_date,'yy/mm') as order_date , sum(order_sum) as
+		select to_char(order_date,'yy/mm') as order_date ,
+		sum(order_sum) as
 		order_sum from order_info
-		group by to_char(order_date,'yy/mm')
+		group by
+		to_char(order_date,'yy/mm')
 		order by order_date
 	</select>
 
 	<!-- 일별 매출 현황 -->
 	<select id='orderinfoselect2' parameterType="Order_infoVO"
 		resultType="Order_infoVO">
-		select to_char(order_date,'yy/mm/dd') as order_date,sum(order_sum) as
+		select to_char(order_date,'yy/mm/dd') as
+		order_date,sum(order_sum) as
 		order_sum from order_info
-		group by to_char(order_date,'yy/mm/dd')
+		group by
+		to_char(order_date,'yy/mm/dd')
 		order by order_date
 	</select>
 
@@ -407,25 +422,105 @@
 		group by sit_mbr_id
 		order by sum(srv_pay)
 	</select>
-	
-	<select id='sitterinfoselect2' parameterType="Sitter_revVO3" resultType="Sitter_revVO3">
-	select sit_mbr_id,to_char(srv_date,'yyyy-mm-dd') as srv_date,srv_pay from sitter_rev
-	order by SRV_DATE DESC
+
+	<select id='sitterinfoselect2' parameterType="Sitter_revVO3"
+		resultType="Sitter_revVO3">
+		select sit_mbr_id,to_char(srv_date,'yyyy-mm-dd') as
+		srv_date,srv_pay from
+		sitter_rev
+		order by SRV_DATE DESC
 	</select>
-	
-	<select id='gendercount'  resultType="map">
-	select mbr_gender ,ROUND(count(*)/(select count(*) from member)*100)AS mbr_count  from member 
-    group by mbr_gender
-    </select>
-    
-    <select id='monthpay' parameterType="Sitter_revVO3" resultType="map">
-    SELECT S.SIT_MBR_ID, SUM(S.SRV_PAY) AS SRV_PAY,M.MBR_ACCOUNT FROM SITTER_REV S,MEMBER M
-    WHERE S.MBR_ID = M.MBR_ID
-    AND TO_CHAR(SRV_DATE,'YY/MM')= #{monthsitter}
-    AND S.SRV_STATUS='결제완료'
-    GROUP BY S.SIT_MBR_ID,M.MBR_ACCOUNT
-    </select>
-    
-    
-    
+
+	<select id='gendercount' resultType="map">
+		select mbr_gender
+		,ROUND(count(*)/(select count(*) from member)*100)AS
+		mbr_count from
+		member
+		group by mbr_gender
+	</select>
+
+	<select id='monthpay' parameterType="Sitter_revVO3"
+		resultType="map">
+		SELECT S.SIT_MBR_ID,TO_CHAR(S.SRV_DATE,'YY/MM') AS
+		"SRV_DATE",M.MBR_ACCOUNT,M.MBR_BANK,
+		SUM(S.SRV_PAY)*0.9 AS
+		"SRV_PAY",SUM(S.SRV_PAY)*0.1 AS
+		"COMPANY",(SELECT SUM(SRV_PAY) FROM
+		SITTER_REV
+		WHERE TO_CHAR(SRV_DATE,'YY/MM')= #{monthsitter})+(SELECT
+		SUM(SRV_PAY) FROM
+		SITTER_REV
+		WHERE TO_CHAR(SRV_DATE,'YY/MM')=
+		#{monthsitter})-NVL((SELECT SUM(SRV_PAY) FROM
+		SITTER_MONTH
+		WHERE
+		SRV_DATE= #{monthsitter}),0)AS ALLSUM
+		FROM SITTER_REV
+		S,MEMBER M
+		WHERE
+		S.SIT_MBR_ID=M.MBR_ID
+		AND TO_CHAR(SRV_DATE,'YY/MM')=
+		#{monthsitter}
+		AND
+		S.SRV_STATUS='결제완료'
+		GROUP BY
+		S.SIT_MBR_ID,TO_CHAR(S.SRV_DATE,'YY/MM'),M.MBR_ACCOUNT,M.MBR_BANK
+	</select>
+	<select id='monthpayone' parameterType="Sitter_revVO3"
+		resultType="map">
+		SELECT S.SIT_MBR_ID,TO_CHAR(S.SRV_DATE,'YY/MM') AS
+		"SRV_DATE",M.MBR_ACCOUNT,M.MBR_BANK,
+		SUM(S.SRV_PAY)*0.9 AS
+		"SRV_PAY",SUM(S.SRV_PAY)*0.1 AS
+		"COMPANY"
+		FROM SITTER_REV
+		S,MEMBER M
+		WHERE
+		S.SIT_MBR_ID=M.MBR_ID
+		AND
+		TO_CHAR(SRV_DATE,'YY/MM')=
+		TO_CHAR(sysdate,'YY/MM')
+		AND
+		S.SRV_STATUS='결제완료'
+		AND S.SIT_MBR_ID =
+		#{sit_mbr_id}
+		GROUP BY
+		S.SIT_MBR_ID,TO_CHAR(S.SRV_DATE,'YY/MM'),M.MBR_ACCOUNT,M.MBR_BANK
+	</select>
+
+
+
+	<insert id='monthinsert' parameterType="Sitter_monthVO">
+		insert into sitter_month
+		values(#{sit_mbr_id},TO_CHAR(sysdate,'YY/MM'),#{srv_pay},sysdate)
+	</insert>
+
+	<insert id="insertmonthAlarm" parameterType="Sitter_monthVO">
+
+		INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+		VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{sit_mbr_id} ,'이번달 월급'||TO_CHAR(
+		#{srv_pay} , '999,999,999,999,999')||'원 입금 되었습니다.',sysdate)
+
+	</insert>
+
+	<select id='resultmonthpayone' resultType="map"
+		parameterType="Sitter_revVO3">
+		SELECT
+		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,(SELECT
+		SUM(SRV_PAY)*0.1 FROM
+		SITTER_REV)"COMPANY",to_char(S.MONTH_DATE,'yyy-mm-dd') as MONTH_DATE
+		FROM
+		SITTER_MONTH S ,MEMBER M
+		WHERE S.SIT_MBR_ID=M.MBR_ID
+		AND
+		S.SRV_DATE=#{monthsitter}
+	</select>
+
+	<select id='allsum' resultType="string">
+	SELECT (SELECT SUM(SRV_PAY) FROM SITTER_REV
+	WHERE SRV_STATUS='결제완료')+(SELECT SUM(ORDER_SUM) FROM ORDER_INFO)-NVL((SELECT
+	SUM(SRV_PAY) FROM SITTER_MONTH),0) AS ALLSUM
+	FROM DUAL
+	</select>
+
 </mapper>

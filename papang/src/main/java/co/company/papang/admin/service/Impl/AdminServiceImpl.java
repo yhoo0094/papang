@@ -17,6 +17,7 @@ import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_monthVO;
 import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 @Service
@@ -257,6 +258,37 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return jyMapper.monthpay(vo);
 	}
+
+	@Override
+	public List<Map<String, Object>> monthpayone(Sitter_revVO3 vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.monthpayone(vo);
+	}
+
+	@Override
+	public int monthinsert(Sitter_monthVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.monthinsert(vo);
+	}
+
+	@Override
+	public int insertmonthAlarm(Sitter_monthVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertmonthAlarm(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> resultmonthpayone(Sitter_revVO3 vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.resultmonthpayone(vo);
+	}
+
+	@Override
+	public String allsum() {
+		// TODO Auto-generated method stub
+		return jyMapper.allsum();
+	}
+
 
 	
 

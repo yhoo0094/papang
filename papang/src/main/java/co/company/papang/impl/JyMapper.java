@@ -12,6 +12,7 @@ import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_monthVO;
 import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 
@@ -132,4 +133,17 @@ public interface JyMapper {
 	
 	//월급 조회
  	public  List<Map<String,Object>> monthpay(Sitter_revVO3 vo);
+ 	
+ 	//월급 단건
+ 	public  List<Map<String,Object>> monthpayone(Sitter_revVO3 vo);
+ 	
+ 	//월급 주는거
+ 	public int monthinsert(Sitter_monthVO vo);
+ 	
+ 	//월금 알림
+ 	public int insertmonthAlarm(Sitter_monthVO vo);
+ 	
+ 	public  List<Map<String,Object>> resultmonthpayone(Sitter_revVO3 vo);
+ 	
+ 	public String allsum();
 }

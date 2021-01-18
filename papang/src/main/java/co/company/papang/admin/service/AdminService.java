@@ -12,6 +12,7 @@ import co.company.papang.vo.ProductVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.Sitter_monthVO;
 import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
 
@@ -117,19 +118,31 @@ public interface AdminService {
 
 	// 상품 거래내역 금액 차트
 	public List<Order_infoVO> orderinfoselect(Order_infoVO vo);
-	
-	//일별 매출 현황
+
+	// 일별 매출 현황
 	public List<Order_infoVO> orderinfoselect2(Order_infoVO vo);
-	
-	//시터 월별 매출 현황
-	public List<Map<String,Object>> sitterinfoselect(Sitter_revVO3 vo);
-	
-	//시터 일별 매출 현황
+
+	// 시터 월별 매출 현황
+	public List<Map<String, Object>> sitterinfoselect(Sitter_revVO3 vo);
+
+	// 시터 일별 매출 현황
 	public List<Sitter_revVO3> sitterinfoselect2(Sitter_revVO3 vo);
+
+	// 성비 차트
+	public List<Map<String, Object>> gendercount();
+
+	// 월급 조회
+	public List<Map<String, Object>> monthpay(Sitter_revVO3 vo);
+
+	public List<Map<String, Object>> monthpayone(Sitter_revVO3 vo);
+
+	// 월급 주는거
+	public int monthinsert(Sitter_monthVO vo);
+
+	// 월금 알림
+	public int insertmonthAlarm(Sitter_monthVO vo);
 	
-	//성비 차트 
-	public List<Map<String,Object>> gendercount();
-	
-	//월급 조회
- 	public  List<Map<String,Object>> monthpay(Sitter_revVO3 vo);
+	public  List<Map<String,Object>> resultmonthpayone(Sitter_revVO3 vo);
+
+	public String allsum();
 }
