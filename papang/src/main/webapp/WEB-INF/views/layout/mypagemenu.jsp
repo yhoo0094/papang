@@ -9,16 +9,16 @@ li {list-style: none;}
 a {}
 #lnb {  /*마이페이지적힌 노랜 빠*/
 	position: fixed;
-	width: 450px;
+	width: 300px;
 	display: inline-block;
 	float: left;
-	margin-top: 20px;
+	margin-top: 20px; 
 }
 
 #lnb h1 {  /*마이페이지 */
 	height: 70px;
 	text-align: center;
-	font-size: 40px;
+	font-size: 30px;
 	line-height: 1.7;
 	letter-spacing: -2px;
 	background-color: rgb(249, 196, 94);
@@ -33,7 +33,7 @@ a {}
 	padding: 14px 35px 14px 15px;
 	color: inherit;
 	/*부제*/
-	font-size: 30px;
+	font-size: 20px;
 	background: #f5f2ec
 		url(https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225) no-repeat
 		95% 15px;
@@ -45,7 +45,7 @@ a {}
 }
 
 #lnb>ul>li.on>a {
-	color: #d91c1b;
+	color: #d91c1b; 
 	background: #f5f2ec
 		url('https://t1.daumcdn.net/cfile/tistory/257B794F570C5C0D1A')
 		no-repeat 95% 14px;
@@ -59,7 +59,7 @@ a {}
 	display: block;
 	padding: 0 25px 14px 14px;
 	color: #inherit;
-	font-size: 25px;
+	font-size: 18px;
 	background: #f5f2ec
 		url('https://t1.daumcdn.net/cfile/tistory/2417E04D570C5C0225')
 		no-repeat 95% 1px;
