@@ -106,6 +106,9 @@ a {}
 	width: 100%;
 	margin-left: 490px;
 }
+p1,p2,p3,p4,p5,p6{
+	font-family: 'Jua', sans-serif;
+}
 </style>
 
 </head>
@@ -172,7 +175,7 @@ a {}
 	})	
 </script>
 	<div id="lnb">
-		<h1>마이페이지</h1>
+		<h1 style="font-family: 'Jua', sans-serif;">마이페이지</h1>
 		<ul>
 			<li><a href="#none">내정보관리</a>
 				<ul>
