@@ -56,7 +56,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<MemberVO> getListMember(MemberVO vo) {
+	public List<Map<String,Object>> getListMember(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return jyMapper.getListMember(vo);
 	}
@@ -287,6 +287,30 @@ public class AdminServiceImpl implements AdminService{
 	public String allsum() {
 		// TODO Auto-generated method stub
 		return jyMapper.allsum();
+	}
+
+	@Override
+	public String rownum() {
+		// TODO Auto-generated method stub
+		return jyMapper.rownum();
+	}
+
+	@Override
+	public int uppayday(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.uppayday(vo);
+	}
+
+	@Override
+	public int insertpayAlarm(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.insertpayAlarm(vo);
+	}
+
+	@Override
+	public List<SitterVO> sit_mbr(SitterVO vo) {
+		// TODO Auto-generated method stub
+		return jyMapper.sit_mbr(vo);
 	}
 
 

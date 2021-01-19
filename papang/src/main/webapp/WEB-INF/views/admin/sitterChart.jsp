@@ -125,7 +125,7 @@ function sitterinfoselect2Result(data) {
 		$('<tr>')
 		.append($('<td>').html(item.sit_mbr_id))
 		.append($('<td>').html(item.srv_date))
-		.append($('<td>').html(item.srv_pay))
+		.append($('<td>').html(comma(item.srv_pay)))
 				.appendTo('#dataTable tbody');
 	});
 

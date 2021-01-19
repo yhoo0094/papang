@@ -195,18 +195,17 @@
 				.each(
 						data,
 						function(idx, item) {
-							if (item.mbr_author == '시터') {
+							if (item.MBR_AUTHOR == '시터') {
 								$('<tr>')
-										.append($('<td>').html(item.mbr_id))
-										.append($('<td>').html(item.mbr_name))
-										.append($('<td>').html(item.mbr_nick))
+										.append($('<td>').html(item.MBR_ID))
+										.append($('<td>').html(item.MBR_NAME))
 										.append(
 												$('<td>')
 														.html(
-																"<select class='author' id='author"+item.mbr_id+"'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
-										.append($('<td>').html(item.mbr_phone))
-										.append($('<td>').html(item.mbr_status))
-										.append($('<td>').html(item.rcnt))
+																"<select class='author' id='author"+item.MBR_ID+"'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
+										.append($('<td>').html(item.MBR_PHONE))
+										.append($('<td>').html(item.MBR_STATUS))
+										.append($('<td>').html(item.RCNT)) 
 										.append(
 												$("<td>")
 														.html(
@@ -214,23 +213,22 @@
 										.appendTo('#dataTable tbody');
 							} else {
 								$('<tr>')
-										.append($('<td>').html(item.mbr_id))
-										.append($('<td>').html(item.mbr_name))
-										.append($('<td>').html(item.mbr_nick))
+										.append($('<td>').html(item.MBR_ID))
+										.append($('<td>').html(item.MBR_NAME))
 										.append(
 												$('<td>')
 														.html(
-																"<select class='author' id='author"+item.mbr_id+"'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
-										.append($('<td>').html(item.mbr_phone))
-										.append($('<td>').html(item.mbr_status))
-										.append($('<td>').html(item.rcnt))
+																"<select class='author' id='author"+item.MBR_ID+"'><option value='시터'>시터</option><option  value='회원'>회원</option></select>"))
+										.append($('<td>').html(item.MBR_PHONE))
+										.append($('<td>').html(item.MBR_STATUS))
+										.append($('<td>').html(item.RCNT))
 										.append(
 												$("<td>")
 														.html(
 																'<button id=\'btnDelete\' class=\'buttonclass\' >탈퇴</button>'))
 										.appendTo('#dataTable tbody');
 							}
-							$("#author" + item.mbr_id).val(item.mbr_author)
+							$("#author" + item.MBR_ID).val(item.MBR_AUTHOR)
 									.prop("selected", true);
 						});
 
@@ -382,7 +380,7 @@
 					</tr>
 					<tr>
 						<td align="center">월&nbsp;급&nbsp;일</td>
-						<td align="left"><input type='text' name='sit_payday'
+						<td align="left"><input type='text' name='sit_payday' readonly="readonly"
 							id='sit_payday' width="100%"></td>
 					</tr>
 
@@ -466,7 +464,6 @@
 			<tr>
 				<th>아이디</th>
 				<th>이름</th>
-				<th>닉네임</th>
 				<th>권한</th>
 				<th>휴대폰</th>
 				<th>활동상태</th>

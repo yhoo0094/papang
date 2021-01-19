@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.company.papang.admin.service.AdminService;
+import co.company.papang.sitter.service.SitterService;
 import co.company.papang.vo.AlarmVO;
 import co.company.papang.vo.BannerVO;
 import co.company.papang.vo.MemberVO;
@@ -29,6 +30,7 @@ import co.company.papang.vo.Order_infoVO;
 import co.company.papang.vo.ReportVO;
 import co.company.papang.vo.Report_info;
 import co.company.papang.vo.SitterVO;
+import co.company.papang.vo.SitterVOChk;
 import co.company.papang.vo.Sitter_monthVO;
 import co.company.papang.vo.Sitter_revVO3;
 import co.company.papang.vo.WarehousingVO;
@@ -37,7 +39,9 @@ import co.company.papang.vo.WarehousingVO;
 public class AdminRestController {
 	@Autowired
 	AdminService service;
-
+	
+	@Autowired
+	SitterService service2;
 	// 공지사항 전체조회
 	@RequestMapping(value = "/nq", method = RequestMethod.GET)
 	public List<NqVO> getNqList(Model model, NqVO vo) {
@@ -127,7 +131,7 @@ public class AdminRestController {
 
 	// 멤버리스트 조회
 	@RequestMapping(value = "/member", method = RequestMethod.GET)
-	public List<MemberVO> getListMember(Model model, MemberVO vo) {
+	public List<Map<String,Object>> getListMember(Model model, MemberVO vo) {
 		return service.getListMember(vo);
 	}
 
@@ -431,11 +435,42 @@ public class AdminRestController {
 		return service.resultmonthpayone(vo);
 	}
 
-	// 월급줄사람 조회
+	// 회사자산 총액 조회
 	@RequestMapping(value = "/allsum", method = RequestMethod.GET)
 	public String allsum(Model model, Sitter_revVO3 vo) {
 
 		return service.allsum();
+	}
+
+	// 월급날 조회
+	@RequestMapping(value = "/rownum", method = RequestMethod.GET)
+
+	public String rownum(Model model) {
+
+		return service.rownum();
+	}
+
+	// 월급날 수정
+	@RequestMapping(value = "/uppayday", method = RequestMethod.PUT
+	// ,produces="application/json" //응답헤더
+			, consumes = "application/json" // 요청헤더
+	// ,headers = {"Content-type=application/json" }
+	)
+	public boolean uppayday(@RequestBody SitterVO vo, Model model) {
+		service.uppayday(vo);
+		
+		List<SitterVO>list=service.sit_mbr(vo);
+		for(SitterVO vo4:list) {
+			System.out.println(vo4);
+		}
+		
+		for(SitterVO vo3:list) {
+			System.out.println("------------------------------------------------------------------");
+			System.out.println(vo3.getSit_payday());
+			service.insertpayAlarm(vo3);
+		}
+		
+		return true;
 	}
 
 }

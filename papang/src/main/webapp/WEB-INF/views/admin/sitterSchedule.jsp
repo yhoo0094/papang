@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
     <script>
     $(function() {
     var now = new Date();
@@ -7,9 +8,11 @@
 	var month = now.getMonth() + 1;
 	$('#year').val(year);
 	$('#month').val(month);
-	
+	init();
 	monthSelect();
+	uppayday();
 	ajax3();
+	ajax4();
  	$('#pwbtn').on('click',function(){
  		if($('#pw').val() !='' && $('#pw').val() !=null){
  		if($('#pw_hidden').val()==$('#pw').val()){
@@ -160,7 +163,6 @@ function sitterinfoselect(data){
 	$.each(data,function(idx, item) {
 						$('<tr>')
 					    .append($('<td>').html(item.SIT_MBR_ID))
-						.append($('<td>').html(item.SRV_DATE))
 						.append($('<td>').html(item.MBR_BANK))
 						.append($('<td>').html(item.MBR_ACCOUNT))
 						.append($('<td>').html(comma(item.SRV_PAY)))
@@ -201,7 +203,6 @@ function resultmonthpayoneselect(data){
 	$.each(data,function(idx, item) {
 						$('<tr>')
 					    .append($('<td>').html(item.SIT_MBR_ID))
-						.append($('<td>').html(item.SRV_DATE))
 						.append($('<td>').html(item.MBR_BANK))
 						.append($('<td>').html(item.MBR_ACCOUNT))
 						.append($('<td>').html(comma(item.SRV_PAY)))
@@ -278,6 +279,7 @@ function monthSelect() {
 				    	if(response.sit_mbr_id != null) {
 				    		alert("입금 되었습니다.");
 				    		ajax3();
+				    		ajax4();
 				    		if($('#month2').val()*1<10){
 				    			var date7 = $('#year2').val().substring(2,4)+'/0'+$('#month2').val();
 				    			ajax2(date7);
@@ -323,6 +325,61 @@ function monthSelect() {
 			}
 		});
 	}
+	
+	
+function ajax4(){
+		
+		$.ajax({
+			url : '../rownum',
+			type : 'GET',
+			//contentType:'application/json;charset=utf-8',
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : function(data){
+				$('#sit_payday').val(data).prop("selected", true);
+			}
+		});
+	}
+function uppayday() {
+	//수정 버튼 클릭
+	console.log('수정');
+	var payday;
+	$("body").on('change', '#sit_payday', function() {
+		payday = $('#sit_payday').val();
+		$.ajax({
+			url : "../uppayday",
+			type : 'PUT',
+			dataType : 'json',
+			data : JSON.stringify({
+				sit_payday : payday
+			}),
+			contentType : 'application/json',
+			success : function(data) {
+				alert("월급날이 매달 " + payday + "일로 변경 되었습니다");
+			},
+			error : function(xhr, status, message) {
+				alert(" status: " + status + " er:" + message);
+			}
+		});
+		console.log($(this).val());
+
+	});
+
+}//userUpdate
+	//초기화
+	function init() {
+		//초기화 버튼 클릭
+		$('#btnInit').on('click', function() {
+			$('#form1').each(function() {
+				this.reset();
+				alert("초기화되었습니다");
+				ajax3();
+				ajax4();
+			});
+		});
+	}//init
 </script>
 
   <h1 class="mt-4">시터 월급 관리</h1>
@@ -335,7 +392,41 @@ function monthSelect() {
 			<tbody>
 				<tr>
 					<td align="center" rowspan="2">출금계좌번호</td>
-					<td>국민 638102-04-223891</td>
+					<td>국민 638102-04-223891 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 월급일  
+				<select id='sit_payday' name='sit_payday' style="height: 100%;width: 50px">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+				
+				</select></td>
 					
 				</tr>
 				<tr>
@@ -383,7 +474,7 @@ function monthSelect() {
 		<br>
 		
 		<div class="row">
-	<div class="col-xl-6">
+	<div class="col-xl-6" style="width: 100%">
 		<div class="card mb-4">
 			<div class="card-header">
 				<i class="fas fa-table mr-1"></i>급여 내역
@@ -397,15 +488,14 @@ function monthSelect() {
 					<button type='button' id='next' class='buttonclass'>></button>
 				</div>
 			<div class="card-body" style="height: 400px">
-				<table class="table table-bordered" id="dataTable" cellspacing="0">
+				<table class="table table-bordered" id="dataTable" cellspacing="0" class='dt'>
 					<thead>
 						<tr>
-							<th>시터 ID</th>
-							<th>급여 달</th>
+							<th>ID</th>
 							<th>은행</th>
 							<th>계좌번호</th>
 							<th>월급</th>
-							<th>기업 이윤</th>
+							<th>이윤</th>
 							<th>관리</th>
 						</tr>
 					</thead>
@@ -428,15 +518,14 @@ function monthSelect() {
 					<button type='button' id='next2' class='buttonclass'>></button>
 				</div>
 			<div class="card-body" style="height: 400px">
-				<table class="table table-bordered" id="dataTable2" cellspacing="0">
+				<table class="table table-bordered" id="dataTable2" cellspacing="0" class='dt' >
 					<thead>
 						<tr>
-							<th>시터 ID</th>
-							<th>급여 달</th>
+							<th>ID</th>
 							<th>은행</th>
-							<th>계좌 번호</th>
+							<th>계좌번호</th>
 							<th>월급</th>
-							<th>기업 이윤</th>
+							<th>이윤</th>
 							<th>지급일</th>
 						</tr>
 					</thead>

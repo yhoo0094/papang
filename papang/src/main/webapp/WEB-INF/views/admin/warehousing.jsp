@@ -39,7 +39,6 @@
 							.append($('<td>').html(item.WARE_CATEGORY))
 							.append($('<td>').html(item.WARE_CNT))
 							.append($('<td>').html(item.PRO_NO))
-							.append($('<td>').html(item.PRO_CATEGORY))
 							.append($('<td>').html(item.PRO_NAME))
 							.append($('<td>').html(item.PRO_CNT))
 							.append($('<td>').html(item.PRO_CN))
@@ -151,7 +150,6 @@
 						<th>분류</th>
 						<th>입·출고 수량</th>
 						<th>상품번호</th>
-						<th>상품 카테고리</th>
 						<th>상품명</th>
 						<th>상품 수량</th>
 						<th>기업명</th>

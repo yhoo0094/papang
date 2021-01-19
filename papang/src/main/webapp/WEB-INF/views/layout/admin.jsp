@@ -68,6 +68,8 @@ margin: 0 0 0 5%;
 			
 		</form>
 		<!-- Navbar-->
+		
+		
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="userDropdown" href="#"
@@ -157,8 +159,8 @@ margin: 0 0 0 5%;
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					<div class="small">대구광역시 중구 국채보상로 537 5층  |   대표번호 : (053)421-2460 |  사업자번호 : 573-33-00097  | </div>
+					
 				</div>
 			</nav>
 		</div>

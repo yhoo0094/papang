@@ -1,9 +1,11 @@
 package co.company.papang.admin.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.velocity.runtime.directive.Parse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,7 @@ public class AdminController {
 	@RequestMapping("/admin") // url 예전 .do
 	public String test(HttpServletResponse response, Model model) throws IOException {
 		SitterVOChk vo = new SitterVOChk();
+		
 		model.addAttribute("sitterVOChkList", service2.getSitterList(vo));
 		return "admin/admin"; // jsp주소
 	}

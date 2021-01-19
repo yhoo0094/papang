@@ -70,14 +70,15 @@
 
 	<!-- 회원 전체조회 -->
 	<select id="getListMember"
-		resultType="co.company.papang.vo.MemberVO">
-		SELECT mbr_id, mbr_author, mbr_phone, mbr_status, mbr_name,
-		NVL((select count(*) from report_info group by mbr_id),0) as rcnt
-		from
-		member
+		resultType="map">
+		SELECT DISTINCT M.MBR_ID, M.MBR_AUTHOR, M.MBR_PHONE, M.MBR_STATUS,
+		M.MBR_NAME,NVL(V.RCNT,0)AS RCNT
+		FROM MEMBER M
+		LEFT OUTER JOIN V2 V
+		ON M.MBR_ID = V.MBR_ID
 		<where>
 			<if test="mbr_author != null and mbr_author !=''">
-				mbr_author = #{mbr_author}
+				MBR_AUTHOR = #{mbr_author}
 			</if>
 		</where>
 		ORDER BY mbr_id
@@ -497,9 +498,10 @@
 
 	<insert id="insertmonthAlarm" parameterType="Sitter_monthVO">
 
-		INSERT INTO ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+		INSERT INTO
+		ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
 		VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{sit_mbr_id} ,'이번달 월급'||TO_CHAR(
-		#{srv_pay} , '999,999,999,999,999')||'원 입금 되었습니다.',sysdate)
+		#{srv_pay},'999,999,999,999,999')||'원 입금 되었습니다.',sysdate)
 
 	</insert>
 
@@ -508,7 +510,7 @@
 		SELECT
 		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,(SELECT
 		SUM(SRV_PAY)*0.1 FROM
-		SITTER_REV)"COMPANY",to_char(S.MONTH_DATE,'yyy-mm-dd') as MONTH_DATE
+		SITTER_REV)"COMPANY",to_char(S.MONTH_DATE,'yy-mm-dd') as MONTH_DATE
 		FROM
 		SITTER_MONTH S ,MEMBER M
 		WHERE S.SIT_MBR_ID=M.MBR_ID
@@ -517,10 +519,35 @@
 	</select>
 
 	<select id='allsum' resultType="string">
-	SELECT (SELECT SUM(SRV_PAY) FROM SITTER_REV
-	WHERE SRV_STATUS='결제완료')+(SELECT SUM(ORDER_SUM) FROM ORDER_INFO)-NVL((SELECT
-	SUM(SRV_PAY) FROM SITTER_MONTH),0) AS ALLSUM
-	FROM DUAL
+		SELECT (SELECT SUM(SRV_PAY) FROM SITTER_REV
+		WHERE SRV_STATUS='결제완료')+(SELECT SUM(ORDER_SUM) FROM
+		ORDER_INFO)-NVL((SELECT
+		SUM(SRV_PAY) FROM SITTER_MONTH),0) AS ALLSUM
+		FROM DUAL
 	</select>
+
+	<select id='rownum' resultType="string">
+		select sit_payday from sitter where rownum =1
+	</select>
+
+	<update id='uppayday' parameterType='SitterVO'>
+		update sitter set sit_payday=#{sit_payday}
+	</update>
+
+
+	<insert id="insertpayAlarm" parameterType="SitterVO">
+
+		INSERT INTO
+		ALARM(ARM_NO,MBR_ID,ARM_CONTENT,ARM_DATE)
+		VALUES(SEQ_ALARM_ARM_NO.NEXTVAL, #{sit_mbr_id} ,'월급날이
+		'||#{sit_payday}||'일로 변경 되었습니다.',sysdate)
+
+	</insert>
+
+
+	<select id='sit_mbr' resultType="SitterVO">
+		select sit_mbr_id,sit_payday from sitter
+	</select>
+
 
 </mapper>

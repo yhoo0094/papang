@@ -33,7 +33,7 @@ public interface AdminService {
 	public int deleteNq(NqVO vo);
 
 	// �쉶�썝 �쟾泥� 議고쉶
-	public List<MemberVO> getListMember(MemberVO vo);
+	public List<Map<String,Object>> getListMember(MemberVO vo);
 
 	// �쉶�썝 沅뚰븳 �닔�젙
 	public int updateMember(MemberVO vo);
@@ -141,8 +141,19 @@ public interface AdminService {
 
 	// 월금 알림
 	public int insertmonthAlarm(Sitter_monthVO vo);
-	
-	public  List<Map<String,Object>> resultmonthpayone(Sitter_revVO3 vo);
+
+	public List<Map<String, Object>> resultmonthpayone(Sitter_revVO3 vo);
 
 	public String allsum();
+
+	// 월급날 조회
+	public String rownum();
+
+	// 월급날 수정
+	public int uppayday(SitterVO vo);
+
+	// 월급날 알림 등록
+	public int insertpayAlarm(SitterVO vo);
+	
+	public List<SitterVO> sit_mbr(SitterVO vo);
 }

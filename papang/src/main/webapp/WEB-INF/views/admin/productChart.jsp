@@ -112,11 +112,15 @@
 		$("#dataTable tbody").empty();
 		$.each(data, function(idx, item) {
 			$('<tr>').append($('<td>').html(item.order_date)).append(
-					$('<td>').html(item.order_sum))
+					$('<td>').html(comma(item.order_sum)))
 					.appendTo('#dataTable tbody');
 		});
 
 		$('#dataTable').DataTable();
+	}
+	function comma(str) {
+	    str = String(str);
+	    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 	}
 </script>
 <h1 class="mt-4">장터 매출 현황</h1>
