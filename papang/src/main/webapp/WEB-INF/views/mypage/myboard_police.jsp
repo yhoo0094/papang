@@ -52,7 +52,7 @@ textarea.form-control {
 						<td align="center">${co.repo_no}</td> 
 						<td align="center">${co.repo_title}</td>   
 						<td align="center">${co.repo_content}</td>  
-						<td align="center" class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="text-overflow: ellipsis; overflow: hidden; cursor: pointer; color:red;">답변보기</td>
+						<td align="center" class="qwe" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="text-overflow: ellipsis; overflow: hidden; cursor: pointer; color:blue;">답변보기</td>
 						<td align="center">${co.repo_status}</td>
 						<td align="center">${co.repo_category}</td>
 						<td class="tableTh" style="display: none; color:red;">${co.repo_ans}</td> 

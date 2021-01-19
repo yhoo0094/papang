@@ -11,6 +11,7 @@
     margin: 176px 15% 9px 23%;
     width: 65%;
 }
+
 </style>
 <body>
 		<h3>월급 확인</h3>
@@ -44,7 +45,7 @@
 						<td align="center">${co.srv_status}</td>
 						<td align="center" class="qwe" data-num="${co.srv_no}"
                            data-target="#exampleModal1" data-toggle="modal" align="center"
-                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button>상세보기</button></td>
+                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button class="btnYellow bSamll">상세보기</button></td>
 						 
 					</tr>
 				</c:forEach>	
@@ -53,6 +54,7 @@
 				</tbody>
 			</table>  
 			
+			<div>
 			<select  class="input_small" name="year" id="year" style="font-size:20px;">
 		 							<option value="2021">2021년</option>
 		 							<option value="2020">2020년</option>
@@ -76,9 +78,9 @@
 									<option value="12">12</option>
 			</select>
 			 
-			<button class="qwe2" 
+			<button class="qwe2 btnYellow bSamll" 
                            data-target="#exampleModal2" data-toggle="modal">월급보기</button>
-		
+			</div>
 			<br>
 			
 		
