@@ -168,9 +168,9 @@
 	    SIT_PAY=#{sit_pay},
 	    SIT_LOC=#{sit_loc},
 	    SIT_AGE=#{sit_age},
-	    SIT_OFF=#{sit_off},
+	    SIT_OFF=#{sit_off}
 	    <if test = "sit_pic !=null">
-	    SIT_PIC=#{sit_pic}
+	    ,SIT_PIC=#{sit_pic}
 	    </if>
 	   
 	
