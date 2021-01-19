@@ -41,7 +41,7 @@
 				<tbody>
 				<c:forEach var="co2" items="${cos2}">
 					<tr> 
-						<td align="center">${co2.cc_no}</td>
+						<td align="center">${co2.cc_no}</td>                                                                     
 						<td align="left"> <a class="yra" href="${pageContext.request.contextPath}/community/form?com_no=${co2.com_no}" class="boardTagA">${co2.cc_content}</td>
 						<td align="center">${co2.mbr_id}</td>
 						<td align="center">${co2.cc_date}</td>

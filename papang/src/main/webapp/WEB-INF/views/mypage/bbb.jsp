@@ -13,11 +13,11 @@
       	      <table class="table" id="dataTable"> 
 				<thead>
 					<tr class="tableTrTh"> 
-						<th width="15%" class="tableTh">고객 아이디</th>
-						<th width="20%" class="tableTh">아이 이름</th>
-						<th width="20%" class="tableTh">아이 성별</th>
+						<th width="15%" class="tableTh">고객 ID</th>
+						<th width="20%" class="tableTh">아기 이름</th>
+						<th width="20%" class="tableTh">아기 성별</th>
 						<th width="20%" class="tableTh">일한 날짜</th>
-						<th width="15%" class="tableTh">하루 일당</th>
+						<th width="15%" class="tableTh">일당</th>
 					
 					</tr>
 				</thead>  

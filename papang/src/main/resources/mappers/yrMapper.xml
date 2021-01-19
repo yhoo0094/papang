@@ -274,7 +274,7 @@ GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS
 <select id="selectact_com" parameterType="act_comVO" resultType="act_comVO">
 	 
 	SELECT 
-	AC_NO,AC_PIC,AC_CONTENT,AC_RATE,AC_CATEGORY 
+	AC_NO,AC_PIC,AC_CONTENT,AC_RATE,AC_CATEGORY,PC_NO 
 	FROM ACT_COM 
 	WHERE MBR_ID=#{mbr_id}
 </select>	

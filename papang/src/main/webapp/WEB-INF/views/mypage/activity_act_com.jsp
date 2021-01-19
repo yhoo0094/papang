@@ -29,7 +29,7 @@
 				method="get">
 				
 			</form>
-		</div>
+		</div> 
 		<br>
 			<div id="actComTable">
 				<table class="table" id="dataTable">
@@ -41,13 +41,13 @@
 							<th width="15%" class="tableTh">평점</th>
 			 				<th width="15%" class="tableTh">분류</th>
 						</tr>
-					</thead>  
+					</thead>                                                                 
 					<tbody> 
-					<c:forEach var="co" items="${cos6}">   
+					<c:forEach var="co" items="${cos6}">    
 						<tr> 
-							<td align="center" style="vertical-align: middle;">${co.ac_no}</td>
-							<td align="center" style="vertical-align: middle;"><img class= "img1" id = "ac_pic" name="ac_pic" 
-							src="${pageContext.request.contextPath}/images/actCom/${co.ac_pic}">
+							<td align="center" style="vertical-align: middle;">${co.ac_no}</td> 
+							<td align="center" style="vertical-align: middle;"><a href="${pageContext.request.contextPath}/activity/actComList?ac_category=${co.ac_category}&pc_no=${co.pc_no}"><img class= "img1" id = "ac_pic" name="ac_pic" 
+    src="${pageContext.request.contextPath}/images/actCom/${co.ac_pic}"/></a></td> 
 							<td align="center" style="vertical-align: middle;">${co.ac_content}</td> 
 							<td align="center" style="vertical-align: middle;">${co.ac_rate}</td> 
 							<td align="center" style="vertical-align: middle;">${co.ac_category}</td>
