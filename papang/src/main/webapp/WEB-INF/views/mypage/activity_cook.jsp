@@ -12,9 +12,8 @@
     width: 65%;
 }
    
-.yra:link{color:blue; text-decoration:underline}  
-      .yra:visited{color:blue;text-decoration:none}   
-      .yra:hover {color:#ff00ff; text-decoration:underline}              
+.yra:link{color:black; text-decoration:none;}  
+.yra:visited{color:black;text-decoration:none}             
 </style>
 <body>
 		<h3>요리</h3>
@@ -40,7 +39,7 @@
 				<c:forEach var="co" items="${cos6}"> 
 					<tr>
 						<td align="center">${co.cook_no}</td>
-						<td align="center"><a class="yra" href="${pageContext.request.contextPath}/activity/cookView?cook_no=${co.cook_no}&ac_category=요리" class="boardTagA">${co.cook_title}</a></td>
+						<td align="left"><a class="yra" href="${pageContext.request.contextPath}/activity/cookView?cook_no=${co.cook_no}&ac_category=요리" class="boardTagA">${co.cook_title}</a></td>
 						<td align="center">${co.mbr_id}</td>
 						<td align="center">${co.cook_category}</td>
 						<td align="center">${co.cook_hit}</td>

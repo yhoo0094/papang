@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <style>
+.img1 {
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+}
 .center_div {
     min-height: 750px;
     display: block;
@@ -26,29 +31,31 @@
 			</form>
 		</div>
 		<br>
-			<table class="table" id="dataTable">
-				<thead>
-					<tr class="tableTrTh">
-						<th width="15%" class="tableTh">게시글번호</th>
-						<th width="20%" class="tableTh">사진</th>			
-						<th width="15%" class="tableTh">후기내용</th>
-						<th width="15%" class="tableTh">평점</th>
-		 				<th width="15%" class="tableTh">분류</th>
-					</tr>
-				</thead>  
-				<tbody> 
-				<c:forEach var="co" items="${cos6}">   
-					<tr> 
-						<td align="center">${co.ac_no}</td>
-						<td align="center"><img class= "img1" id = "ac_pic" name="ac_pic" 
-						src="${pageContext.request.contextPath}/images/actCom/${co5.ac_pic}">
-						<td align="center">${co.ac_content}</td> 
-						<td align="center">${co.ac_rate}</td> 
-						<td align="center">${co.ac_category}</td>
-					</tr>
-				</c:forEach>	
-				</tbody>
-			</table>
+			<div id="actComTable">
+				<table class="table" id="dataTable">
+					<thead>
+						<tr class="tableTrTh">
+							<th width="15%" class="tableTh">게시글번호</th>
+							<th width="20%" class="tableTh">사진</th>			
+							<th width="15%" class="tableTh">후기내용</th>
+							<th width="15%" class="tableTh">평점</th>
+			 				<th width="15%" class="tableTh">분류</th>
+						</tr>
+					</thead>  
+					<tbody> 
+					<c:forEach var="co" items="${cos6}">   
+						<tr> 
+							<td align="center" style="vertical-align: middle;">${co.ac_no}</td>
+							<td align="center" style="vertical-align: middle;"><img class= "img1" id = "ac_pic" name="ac_pic" 
+							src="${pageContext.request.contextPath}/images/actCom/${co.ac_pic}">
+							<td align="center" style="vertical-align: middle;">${co.ac_content}</td> 
+							<td align="center" style="vertical-align: middle;">${co.ac_rate}</td> 
+							<td align="center" style="vertical-align: middle;">${co.ac_category}</td>
+						</tr>
+					</c:forEach>	
+					</tbody>
+				</table>
+			</div>
 			<br>	
 		<div align="right">
 			

@@ -188,7 +188,7 @@ $(function() {
 	 
 	
 	<tr  width="400" align="center" height="70">
-		<td align="center"><input type="file" id="uploadFile"  name="uploadFile"/></td>
+		<td align="center"><input type="file" id="uploadFile"  name="uploadFile"></td>
 							 
 		<td>희망연령대 </td>
 		<td colspan="2"><select id="sit_age" name="sit_age" class="input_middle">
