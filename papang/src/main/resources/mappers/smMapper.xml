@@ -135,11 +135,11 @@
 				]]>
 			</if>
 			<if test="minRate != null and minRate != ''">
-				AND (RATE >= #{minRate} or RATE = 0)
+				AND RATE >= #{minRate}
 			</if>
 			<if test="maxRate != null and maxRate != ''">
 				<![CDATA[
-				AND (RATE <= #{maxRate} or RATE = 0)
+				AND RATE <= #{maxRate}
 				]]>
 			</if>
 			<if test="report != null and report != ''">
