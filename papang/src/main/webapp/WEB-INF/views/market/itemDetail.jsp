@@ -53,11 +53,13 @@ h1 {
 }
 .buyDiv,.btnClass{display: inline-block;}
 .buyDiv{    height: 90px;width: 120%;}
-#addCartBtn{margin: 0 30px 0 40px;}
-.numBox{height: 60px; border: none;}
+.numBox{height: 60px; border: none;width: 80px;text-align: center;}
 .tableBor{border:1px solid #CCCCCC;}
 hr{width: 760px;}
-.bMedium {width: 170px;}
+.bMedium {width: 170px; font-size:20px;margin-left: 30px;}
+/* table,td,th {border:1px solid black;} */
+.tableBor{ width: 10px;}
+.allCount{width: 160px;text-align: center;font-size: 20px;font-weight: bold;}
 </style>
 <script>
 $(()=>{
@@ -84,6 +86,44 @@ $(()=>{
 							if (result == 1) {
 								alert("카드에 담겼습니다");
 								$(".numBox").val("1");
+							}
+						}, error : function() {
+							alert("실패");
+						}
+					})
+				}
+			},
+			error : function() {
+				alert("장바구니 담기 실패");
+			}
+		})
+		
+	})
+	
+	
+		// 바로구매 버튼 클릭
+	$("#directBtn").click(function() {
+		var pro_no = $("#pro_no").val();
+		var bag_cnt = $(".numBox").val();
+		var data = {pro_no : pro_no,
+					bag_cnt : bag_cnt};
+		var chk = {pro_no : pro_no}
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
+			type : 'get',
+			success : function(rs) {
+				if (rs != 0) { // 중복있음
+					alert("장바구니에 이미 담긴 상품입니다");
+				} else {
+					// 카드에 담기는거..
+					$.ajax({
+						url : "${pageContext.request.contextPath}/market/cartInsert",
+						type : "post",
+						data : data,
+						success : function(result) {
+							if (result == 1) {
+								$(".numBox").val("1");
+								location.href="${pageContext.request.contextPath}/marketList/cart"
 							}
 						}, error : function() {
 							alert("실패");
@@ -190,20 +230,23 @@ $(()=>{
 				<hr/>
 				<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
 				<div>
-					<table style="width: 730px;">
+					<table style="width: 1140px;">
 						<tr>
-							<th scope="row" rowspan="2" style="width: 280px;">
+							<th scope="row" rowspan="2" style="width: 200px;">
 							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
 								<span>구입수량</span>
 							</th>
-							<td class="tableBor" rowspan="2" style="width: 170px;"> 
-								<input type="text" class="numBox" min="1" value="1" readonly="true">
+							<td class="tableBor" rowspan="2"> 
+								<input type="text" class="numBox" min="1" value="1" readonly>
 							</td>
 							<td rowspan="1" class="tableBor">
-								<button type="button" id="plusBtn">+</button>
+								<button  type="button" id="plusBtn">+</button>
+							</td>
+							<td rowspan="2" class="allCount">
+								 <button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button> 
 							</td>
 							<td rowspan="2">
-								<button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button>
+								<button type="submit" class="btnRed bMedium" id="directBtn">바로구매</button> 
 							</td>
 						</tr>
 						<tr>
