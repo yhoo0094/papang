@@ -228,7 +228,7 @@
   
 	<!-- 예약정보  합계 월급-->
 <select id="getSitter_revVO5" parameterType="sitter_revVO" resultType="sitter_revVO">
-SELECT SUM(SRV_PAY) AS "sum" 
+SELECT 0.9*SUM(SRV_PAY) AS "sum" 
 FROM SITTER_REV
 WHERE SIT_MBR_ID=#{sit_mbr_id} AND 
 SRV_STATUS=#{srv_status} AND 
