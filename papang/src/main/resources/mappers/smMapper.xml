@@ -76,7 +76,7 @@
 				and C.COM_NO = #{com_no}
 				and C.CC_CATEGORY = '커뮤니티'
 		</where>
-		ORDER BY C.CC_NO DESC
+		ORDER BY C.CC_NO ASC
 	</select>
 	
 	<!-- 커뮤니티 댓글 등록 -->
