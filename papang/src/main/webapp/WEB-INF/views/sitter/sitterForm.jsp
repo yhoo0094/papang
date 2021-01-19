@@ -637,11 +637,11 @@ function calendarMaker(target, date) {
 					</button>
 					<span id="reservationNumTd" style="display: none;"></span>
 				</div>
-				<div class="modal-body" align="center">
+				<div class="modal-body" align="left">
 					<table class="reportTd">
 						<c:forEach items="${sitter_revChkVOList}" var="v">
 							<tr>
-								<td align="left">${v.sc_rate}</td>
+								<td align="left" style="color: #ff971d;">${v.sc_rate}</td>
 								<td id="reservationSitterIdTd">${v.sc_content}</td>
 							</tr>	
 						</c:forEach>

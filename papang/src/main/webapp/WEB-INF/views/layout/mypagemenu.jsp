@@ -106,6 +106,9 @@ a {}
 	width: 100%;
 	margin-left: 490px;
 }
+p1,p2,p3,p4,p5,p6{
+	font-family: 'Jua', sans-serif;
+}
 </style>
 
 </head>
@@ -172,7 +175,7 @@ a {}
 	})	
 </script>
 	<div id="lnb">
-		<h1>마이페이지</h1>
+		<h1 style="font-family: 'Jua', sans-serif;">마이페이지</h1>
 		<ul>
 			<li><a href="#none">내정보관리</a>
 				<ul>
@@ -208,7 +211,6 @@ a {}
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/mypage/sitter_money">월급확인</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/sitter_info">시터정보조회</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/exam">연습장</a></li>
 				</ul></li>
 		</ul>
 	</div>

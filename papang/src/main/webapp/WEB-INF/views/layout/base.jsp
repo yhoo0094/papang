@@ -307,7 +307,6 @@ max-height: 340px;
     text-align: center;
     padding-bottom: 13px;
     color: white;
-    display: none;
 }
 .footerDiv{color:white;}
 .fontTitle,.my-4 {font-size: 30px;}
@@ -366,11 +365,6 @@ max-height: 340px;
 
 	//알람 목록 결과
 	function alarmlistResult(data) {
-		if($(data).length > 0){//알람이 있으면 숫자 표시
-			$('#alarmcount').css('display','inline-block')
-		} else {//알람이 없으면 숫자 숨기기
-			$('#alarmcount').css('display','none')
-		}
 		
 	$.each(data, function(idx, item) {
 		$('<tr>').append($('<td>').html(item.arm_content)).append(

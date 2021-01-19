@@ -35,6 +35,15 @@
 	border: solid gray 1px;
 	border-collapse: collapse;
 }
+.titleFont{
+	display: inline;
+	color: rgb(249, 196, 94);
+	font-size: 35px;
+    font-weight: bold;
+}
+#titleFont{
+	cursor: pointer;
+}
 
 .note-resizebar {
 	display: none;
@@ -42,6 +51,12 @@
 </style>
 <script type="text/javascript">
 	$(()=>{
+		$('#titleFont').on({
+			"click" : function() {
+				location.href = "${pageContext.request.contextPath}/community/board";
+			}
+		});
+		
 		$("#gobackBtn").on({
 			"click" : function() {
 				location.href="${pageContext.request.contextPath}/community/board";
@@ -51,10 +66,8 @@
 </script>
 </head>
 <body>
-	<div align="center" class="communityFormTitle strongYellow">
-		<h3>공지사항</h3>
-	</div>
-	<br>
+	<h3 class="titleFont" id="titleFont">커뮤니티 게시판</h3><h3 class="titleFont"> > 공지사항</h3>
+	<br><br>
 	<div align="center" class="communityFormDiv">
 		<table class="communityFormTable" border="1">
 			<tr>

@@ -168,9 +168,9 @@
 	    SIT_PAY=#{sit_pay},
 	    SIT_LOC=#{sit_loc},
 	    SIT_AGE=#{sit_age},
-	    SIT_OFF=#{sit_off},
+	    SIT_OFF=#{sit_off}
 	    <if test = "sit_pic !=null">
-	    SIT_PIC=#{sit_pic}
+	    ,SIT_PIC=#{sit_pic}
 	    </if>
 	   
 	
@@ -228,7 +228,7 @@
   
 	<!-- 예약정보  합계 월급-->
 <select id="getSitter_revVO5" parameterType="sitter_revVO" resultType="sitter_revVO">
-SELECT SUM(SRV_PAY) AS "sum" 
+SELECT 0.9*SUM(SRV_PAY) AS "sum" 
 FROM SITTER_REV
 WHERE SIT_MBR_ID=#{sit_mbr_id} AND 
 SRV_STATUS=#{srv_status} AND 
@@ -274,7 +274,7 @@ GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS
 <select id="selectact_com" parameterType="act_comVO" resultType="act_comVO">
 	 
 	SELECT 
-	AC_NO,AC_PIC,AC_CONTENT,AC_RATE,AC_CATEGORY 
+	AC_NO,AC_PIC,AC_CONTENT,AC_RATE,AC_CATEGORY,PC_NO 
 	FROM ACT_COM 
 	WHERE MBR_ID=#{mbr_id}
 </select>	

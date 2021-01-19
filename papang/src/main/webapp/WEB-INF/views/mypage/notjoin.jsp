@@ -38,6 +38,9 @@ p {
 table tbody tr td {
   font-size: 24px;
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jua', sans-serif;
+    }
 </style>
 <title>마이페이지</title>
 </head>
@@ -47,40 +50,41 @@ table tbody tr td {
 			<div class="w3-large" align="center">
 				<h3 class="big_title">회원 탈퇴</h3>
 			</div>
-			<div class="content_div">
+			<div class="content_div" align="center">
 				</br>
 			    <h3>회원탈퇴 주의사항</h3></br>
+			    <div align="left" style="margin-left: 350px;">
 			   <h4> 1. 회원 탈퇴는 즉시 처리되며, 개인정보가 모두 삭제됩니다.<h4>
 			   <h4 style="color:red">2. 단, 게시판 등에 공유하신 게시물은 탈퇴 후에도 삭제되지 않습니다.</h4>
+			   </div>
 			   	</br>
 			   
 			   
 			   	<form id="myForm" action="notjoin2" method="post" onsubmit="return submitCheck();"> 
-			   	<label style="font-size:20px;margin:50px">아이디　　　</label><input class="input_small" type="text" id="id"
+			   	<label style="font-size:20px;margin:20px">아이디　　　</label><input class="input_small" type="text" id="id"
 
 							name="id" readonly value="${ memberVO.mbr_id }">
 			    </br>
-				<label style="font-size:20px;margin:50px">이름　　　　</label><input class="input_small" type="text" id="id"
+				<label style="font-size:20px;margin:20px">이름　　　　</label><input class="input_small" type="text" id="id"
 							name="id" readonly value="${ memberVO.mbr_name}">
 				</br> 
-				<label style="font-size:20px;margin:50px;color: red">비밀 번호　　
+				<label style="font-size:20px;margin:20px;color: red">비밀 번호　　
 				</label> 
 				<input class="input_small pw" type="password" id="mbr_pw"
 							name="mbr_pw">
 				</br>			
-				<label style="font-size:20px;margin:50px;color: red">비밀 번호 확인</label>  
+				<label style="font-size:20px;margin:20px;color: red">비밀 번호 확인</label>  
 				
 				<input class="input_small pw" type="password" id="mbr_pw2"
 							name="mbr_pw2">
 							<span id="alert-success" style="display: none; color: #84FF33; font-weight: bold;">비밀번호가 일치합니다.</span>
     						<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
 				
-				<input type="hidden" name="hintpw" id="hintpw" value="${ memberVO.mbr_pw }">				 
+				<input type="hidden" name="hintpw" id="hintpw" value="${ memberVO.mbr_pw }">
+						<br><br>				 
 						<p class="w3-center">
 						<button type="submit a" id="joinBtn" 
 							class="btnYellow bMedium">탈퇴</button>
-						<button type="reset" id="joinBtn2"
-							class="btnGray bMedium">취소</button>
 					</p>	
 			    </form>
 			

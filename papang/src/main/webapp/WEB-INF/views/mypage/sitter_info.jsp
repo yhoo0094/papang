@@ -40,12 +40,35 @@ p {
 .content_div{width: 90%;
     margin: 0px 0px 0px 200px;}
     .w3-large {
-    margin: 0 0 60px 230px;
+    margin: 0 0 20px 230px;
 }
 table tbody tr td {
   font-size: 24px;
 }
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jua', sans-serif;
+    }
+#sit_pic{
+	width: 310px;
+    height: 280px;
+}
+
+.tableInput{
+	width: 110px;
+	text-align: center;
+}
+.center_div {
+	padding-right: 240px;
+}
+#sit_note{
+	vertical-align: middle;
+    width: 450px;
+    padding: 20px;
+}
+.tableTds{
+	padding-left: 70px;
+}
 </style>
 <title>월급확인</title>
 <script>
@@ -122,12 +145,10 @@ $(function() {
 							//str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
 
 							$('#sit_pic').attr('src', e.target.result);
-							$('#sit_pic').attr('style',"width:300px; height: 400px");
 						}
 						reader.readAsDataURL(f);
 					} else {
 						$('#sit_pic').attr('src', e.target.result);
-						$('#sit_pic').attr('style',"width:300px; height: 400px");
 					}
 				});//arr.forEach
 	}
@@ -145,15 +166,15 @@ $(function() {
 </div> 
  
  <form id="fim" name="fim" action="sitterupdate" method="post"  enctype="multipart/form-data"> 
-<div class="content_div">
-<table >
+<div class="content_div" align="center">
+<table>
 	<tr  width="400" align="center">
-		<td class="theader" rowspan="2" height="140"  >
+		<td class="theader" rowspan="4" height="140"  >
 			<img id = "sit_pic" name="sit_pic" src="${pageContext.request.contextPath}/resources/images/sitterProfile/${ sitterVO.sit_pic}">
 		</td> 
-		<td width="400" align="center" height="70">지역</td>
-		<td width="400" align="center" height="70">
-		    <select  name="sit_loc" id ="sit_loc" class="input_middle">
+		<td width="150" align="center" height="70">지역</td>
+		<td width="300" align="left" height="70" class="tableTds">
+		    <select  name="sit_loc" id ="sit_loc" class="input_middle tableInput" style="padding-left: 25px;">
                         <option value="${ sitterVO.sit_loc}">${ sitterVO.sit_loc}</option>
 							<option value="서울">서울</option>
 							<option value="경기">경기</option>
@@ -177,46 +198,35 @@ $(function() {
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
-		<td align="center" >희망시급</td>
-		<td> <input type="text" id = "sit_pay" name="sit_pay" style = "text-align:center;" value="${sitterVO.sit_pay}"/>원</td>	
+		<td align="center" >희망일급</td>
+		<td align="left" class="tableTds"> <input class="tableInput" type="number" step="1000" id = "sit_pay" name="sit_pay" style = "text-align:center; padding-left: 15px;" value="${sitterVO.sit_pay}"/>원</td>	
             
 	</tr>
 	
 	 
 	
 	<tr  width="400" align="center" height="70">
-		<td align="center"><input type="file" id="uploadFile"  name="uploadFile"/></td>
-							 
 		<td>희망연령대 </td>
-		<td colspan="2"><select id="sit_age" name="sit_age" class="input_middle">
-                        <option value="${ sitterVO.sit_age}">${ sitterVO.sit_age}</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							                    
-        </select>개월</td>	
-            
+		<td colspan="2" align="left" class="tableTds"><input style="padding-left:20px;" type="number" min="1" id="sit_age" name="sit_age" class="input_middle tableInput" value="${ sitterVO.sit_age}">개월</td>
 	</tr>
 	
 	  
 	
-	<tr  width="400" align="center" height="70">
-		<td>
+	<tr  width="400" height="70">
+		<td align="center">
 			급여지급일
 		</td>
 		
-		<td class="theader" colspan="2">
-			${sitterVO.sit_payday}
+		<td class="theader tableTds" colspan="2" align="left" >
+			매월 ${sitterVO.sit_payday}일
 		</td>
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
+		<td align="center"><input type="file" id="uploadFile"  name="uploadFile" style="width:290px; margin-left:20px;"></td>
 		<td>
 			휴무일
 		</td>
-		
-
-	
 
 	<td class="theader" colspan="2">
        <input type = "checkbox" name = "array" value = "월" > <label>월</label></input>
@@ -234,7 +244,10 @@ $(function() {
 		</td>
 		
 		<td class="theader" colspan="2">
-		<input type="text" id="sit_note" name="sit_note" style = "text-align:center;" value="${ sitterVO.sit_note}"/>
+		<textarea rows="4" cols="30" id="sit_note" name="sit_note">${ sitterVO.sit_note}</textarea>
+			
+		
+		<%-- <input type="text" id="sit_note" name="sit_note" style = "text-align:center;" value="${ sitterVO.sit_note}"/> --%>
 		</td>
 	
 	</tr>
@@ -250,11 +263,13 @@ $(function() {
 	
 	</tr>
 </table>
+<br>
 	
 	
 	<p class="w3-center">
 						<button type="submit" id="joinBtn"
 							class="btnYellow bMedium">변경</button>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button type="reset"
 							class="btnGray bMedium">취소</button>
 					</p>
@@ -269,7 +284,6 @@ $(function() {
 sitoff=sitoff.split(' ');
 console.log(sitoff[0]); 
 $('[name="array"]').val(sitoff);
-
 
 
 /* $("input[name=current_proudct]:checked").each(function() { 
