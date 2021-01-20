@@ -23,36 +23,44 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>	
+<!-- font  -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 
 <style>
 body{
 width : 90%;
 margin: 0 0 0 5%;
 }
+*{font-family: 'Noto Sans KR', sans-serif;}
 
 .buttonclass {
 	box-shadow: 0px 0px 0px 2px #9fb4f2;
-	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-	background-color:#7892c2;
+	background:linear-gradient(to bottom, #172e57 5%, #476e9e 100%);
+	background-color:#172e57;
 	border-radius:10px;
 	border:1px solid #4e6096;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:15px;
-	padding:7px 17px;
+	font-size:12px;
+	padding:7px 8px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #283966;
 }
 .buttonclass:hover {
-	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background:linear-gradient(to bottom, #476e9e 5%, #172e57 100%);
 	background-color:#476e9e;
 }
 .buttonclass:active {
 	position:relative;
 	top:1px;
 }
+
+
+
+
 </style>
 </head>
 <body class="sb-nav-fixed">

@@ -256,7 +256,7 @@
 				<tr>
 					<td align="center" style="width: 10%">첨부파일</td>
 					<td><input type="file" name="uploadFile" id="uf"/>
-						<div  style="display: inline-block; position:relative; width: 300px; left:-210px; background: white;"><label id="la">선택한 파일 없음</label></div>
+						<div  style="display: inline-block; position:relative; width: 300px; left:-241px; background: white;"><label id="la">선택한 파일 없음</label></div>
 						<input type="hidden" id="nq_no" name="nq_no">
 					</td>
 				</tr>

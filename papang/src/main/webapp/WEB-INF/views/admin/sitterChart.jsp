@@ -132,6 +132,11 @@ function sitterinfoselect2Result(data) {
 	$('#dataTable').DataTable();
 }
 
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
 </script>   
   <h1 class="mt-4">시터 월별 매출 현황</h1>
   <div class='calenderMenu' align = 'center'>

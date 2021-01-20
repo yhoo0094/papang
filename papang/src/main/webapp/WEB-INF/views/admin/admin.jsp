@@ -53,7 +53,7 @@ thead, #dataTable_filter, #dataTable_length {
 	width: 260px;
 }
 </style>
-</style>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript"
@@ -329,21 +329,23 @@ thead, #dataTable_filter, #dataTable_length {
 
 
 <h1 class="mt-4">Papang</h1>
-<ol class="breadcrumb mb-4">
-	<li class="breadcrumb-item active">우수 베이비 시터</li>
-</ol>
-<div id="divForEntryNum">
-	<table class="table" id="dataTable">
+
+	<div class="card-header" style="width: 100%">
+				우수 베이비 시터
+			</div>
+
+<div id="divForEntryNum" style="border :1px solid rgba(0, 0, 0, 0.125)">
+	<table class="table" id="dataTable"  >
 		<thead>
 			<tr>
 				<th>가</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody align="center" style="border-color: white">
 			<c:forEach items="${sitterVOChkList}" var="v" varStatus="i">
 				<c:if test='${i.index < 5}'>
-					<tr class="dataTableTr">
-						<td>
+					<tr class="dataTableTr" align="center">
+						<td align="center">
 							<div class="sitterDiv strongYellow">
 								<input class="sitterIdInput" type="hidden"
 									value="${v.sit_mbr_id}"> <img class="sitterProfileImg"
@@ -361,7 +363,7 @@ thead, #dataTable_filter, #dataTable_length {
 									<tr>
 										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 										<td><c:if test="${v.rate == '　'}">평가없음</c:if> <c:if
-												test="${v.rate != null}">${v.rate}</c:if></td>
+												test="${v.rate != null}"><font color=yellow>${v.rate}</c:if></td>
 									</tr>
 									<tr>
 										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>

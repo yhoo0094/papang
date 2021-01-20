@@ -361,7 +361,7 @@
 					<tr align="center">
 						<td><input type="file" name="uploadFile2" id="uf" />
 							<div
-								style="display: inline-block; position: relative; width: 200px; left:40px; top:-24px; background: white;">
+								style="display: inline-block; position: relative; width: 200px; left:20px; top:-24px; background: white;">
 								<label id="la">선택한 파일 없음</label>
 							</div></td>
 							</tr>
