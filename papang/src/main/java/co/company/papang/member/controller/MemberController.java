@@ -3,6 +3,9 @@ package co.company.papang.member.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -134,7 +137,8 @@ public class MemberController {
 	// 로그인처리
 	@PostMapping("/member/login") // post 요청은 로그인 처리
 	public void login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ParseException {
+		System.out.println(member.getMbr_id());
 		// 비밀번호 암호화(Sha256)
 		String encryPw = Sha256.encrypt(member.getMbr_pw());
 		member.setMbr_pw(encryPw);
@@ -162,16 +166,43 @@ public class MemberController {
 					}
 				} else if (member.getMbr_status().equals("활동정지")) {
 					Report_info rinfo = dao.stChk(member);
+					long day = System.currentTimeMillis();
+					System.out.println(day);
+					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
+					
+					String d = simpl2.format(day);
 					String stDate = rinfo.getRinfo_start();
+					
 					String stReason = rinfo.getRinfo_reason();
-					try {
-						PrintWriter out = response.getWriter();
-						out.println("<script>alert('"+stDate+"까지 활동정지입니다');</script>");
-						out.println("<script>alert('정지사유 : "+stReason+"');</script>");
-						out.println("<script>location.href='/papang/';</script>");
-					} catch (IOException e) {
-						e.printStackTrace();
+					
+					Date day1= simpl2.parse(d);
+					Date day2= simpl2.parse(stDate);
+					System.out.println(day1);
+					System.out.println(day2);
+					if(day2.after(day1)) {
+						dao.updatestatus(member);
+						member = dao.login(member);
+						session.setAttribute("user", member);
+						try {
+							PrintWriter out = response.getWriter();
+							out.println("<script>alert('"+stDate+"이후로 활동정지가 풀렸습니다.');</script>");
+							out.println("<script>alert('로그인되었습니다');</script>");
+							out.println("<script>location.href='/papang/';</script>");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						
+					}else {
+						try {
+							PrintWriter out = response.getWriter();
+							out.println("<script>alert('"+stDate+"까지 활동정지입니다');</script>");
+							out.println("<script>alert('정지사유 : "+stReason+"');</script>");
+							out.println("<script>location.href='/papang/';</script>");
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
+					
 				}
 			} else {
 				try {

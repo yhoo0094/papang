@@ -32,7 +32,7 @@ public interface EsMapper {
 	public MemberVO kLogin(MemberVO member); // 카카오로그인
 	public int kakaoCheck(String kid); // 카톡아이디 체크
 	public Report_info stChk(MemberVO member); // 활동 정지일
-	
+	public int updatestatus(MemberVO member);
 	public String findId(MemberVO member); // 아이디찾기
 	public String findPw(String mbr_id, String mbr_email, String key); // 비번찾기(임시비번 발급)
 	

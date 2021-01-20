@@ -103,7 +103,7 @@
 <!-- 활동정지 체크 -->
 	<!-- 일반회원 -->
 	<select id="stChk" resultType="Report_info">
-		SELECT RINFO_START+RINFO_CNT as rinfo_start,  rinfo_reason
+		SELECT TO_CHAR(RINFO_START+RINFO_CNT,'yyyy-mm-dd') as rinfo_start,  rinfo_reason
 		FROM REPORT_INFO
 		WHERE mbr_id = #{mbr_id}
 	</select>
@@ -429,4 +429,10 @@
 		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
 	</delete>
+	
+	
+	<update id="updatestatus" parameterType="MemberVO">
+		update member set mbr_status = '활동중' where mbr_id=#{mbr_id}
+					
+	</update>
 </mapper>

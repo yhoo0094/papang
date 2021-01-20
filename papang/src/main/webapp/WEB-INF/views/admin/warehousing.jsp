@@ -91,7 +91,7 @@
 	}//init
 	
 </script>
-  <h1 class="mt-4">입고 관리</h1>
+  <h1 class="mt-4">재고관리</h1>
 
    <div class="sizeDiv">
       <br>

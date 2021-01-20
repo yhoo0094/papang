@@ -134,7 +134,7 @@ margin: 0 0 0 5%;
 							href="${pageContext.request.contextPath}/admin/warehousing">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> 입고 관리
+							</div> 재고 관리
 						</a> <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/report">
 							<div class="sb-nav-link-icon">
