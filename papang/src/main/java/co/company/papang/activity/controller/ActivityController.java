@@ -239,7 +239,7 @@ public class ActivityController {
 	public String updatePaly(HttpServletResponse response, Model model, HttpSession session, PlayVO playVO,
 			MemberVO memberVO, Act_comVO act_comVO) {
 		service.updatePlay(playVO);
-		System.out.println("service.updatePlay(playVO)");
+		model.addAttribute("playlist", service.getPlayList(playVO));
 		return "activity/playList";
 	}
 

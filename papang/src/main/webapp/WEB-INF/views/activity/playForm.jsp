@@ -29,7 +29,7 @@ console.log(play_category);
 $(()=>{
 	
 	$('#updateBtn').on('click',function(){
-		alert('test');
+		alert('글 수정 완ㄹ');
 		$('#frm').attr('action','updateSuccess');
 		$('#frm').submit();
 	});
