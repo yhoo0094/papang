@@ -419,6 +419,14 @@ public class MypageController {
 		mav.addObject("cos6",dao.selectact_com(act_comVO));
 						
 		mav.setViewName("mypage/activity_act_com");
+		
+		
+		List<Act_comVO> a = dao.selectact_com(act_comVO);
+		for(Act_comVO i : a) {
+			System.out.println(i);
+		}
+		
+		
 		return mav;
 	}
 	

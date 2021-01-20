@@ -36,6 +36,6 @@
 				</tbody>
 			</table>
 			
-			 　　　　　　　　　　　 　월급<input id="result" type="text" name="result" style = "text-align:right" value="${sitter_revVO.sum}" >원
+		     <b>수수료10%</b>	　　 　             월급<input id="result" type="text" name="result" style = "text-align:right" value="${sitter_revVO.sum}" >원
 </body>
 </html>

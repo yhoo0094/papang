@@ -77,8 +77,7 @@ table tbody tr td {
 				
 				<input class="input_small pw" type="password" id="mbr_pw2"
 							name="mbr_pw2">
-							<span id="alert-success" style="display: none; color: #84FF33; font-weight: bold;">비밀번호가 일치합니다.</span>
-    						<span id="alert-danger" style="display: none; color: #d92742; font-weight: bold; ">비밀번호가 일치하지 않습니다.</span>
+							
 				
 				<input type="hidden" name="hintpw" id="hintpw" value="${ memberVO.mbr_pw }">
 						<br><br>				 
