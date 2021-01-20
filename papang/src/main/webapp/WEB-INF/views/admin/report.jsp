@@ -136,7 +136,25 @@ function reportinfoList() {
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
 			var formData = $("#form1").serialize();
-			$("#form1")
+			var flag=true;
+			if($('#rinfo_start').val() =='' || $('#rinfo_start').val()== null){
+	   			alert('정지 시작일을 입력 하세요');
+	   			flag=false;
+	   			$('#rinfo_start').focus();
+	   		}
+			
+			if($('#rinfo_cnt').val() =='' || $('#rinfo_cnt').val()== null){
+	   			alert('정지 기간을 입력 하세요');
+	   			flag=false;
+	   			$('#rinfo_cnt').focus();
+	   		}
+			
+			if($('#rinfo_reason').val() =='' || $('#rinfo_reason').val()== null){
+	   			alert('정지 사유를 입력 하세요');
+	   			flag=false;
+	   			$('#rinfo_reason').focus();
+	   		}
+			if(flag){
 			$.ajax({ 
 			    url: "${pageContext.request.contextPath}/reportinfoInsert",  
 			    type: 'POST',  
@@ -156,7 +174,8 @@ function reportinfoList() {
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
 			    } 
-			 });  
+			 }); 
+			}
 		});//등록 버튼 클릭
 	}
 	
@@ -213,28 +232,28 @@ function reportinfoList() {
             <tbody>
                <tr>
                   <td align="center" width="20%">회원 유형</td>
-                  <td><input type='text' id='author' style="width: 100%"><input type='hidden' name='repo_no' id='repo_no' style="width: 100%">
+                  <td><input type='text' id='author' style="width: 100%" readonly="readonly"><input type='hidden' name='repo_no' id='repo_no' style="width: 100%">
                   <input type='hidden' name='repo_mbr_id' id='re_mbr_id' style="width: 100%">
                   </td>
                </tr>
                <tr>
                   <td align="center">ID</td>
-                  <td><input type="text" style="width: 100%" id='id' name='mbr_id' style="width: 100%"></td>
+                  <td><input type="text" style="width: 100%" id='id' name='mbr_id' style="width: 100%" readonly="readonly"></td>
                </tr>
                <tr>
-               <td align="center">활동 상태</td><td><input type='text' id='status' style="width: 100%"></td>
+               <td align="center">활동 상태</td><td><input type='text' id='status' style="width: 100%" readonly="readonly"></td>
                </tr>
                <tr>
-               <td align="center">신고 사유</td><td><input type='text' id='repo_content' style="width: 100%"></td>
+               <td align="center">신고 사유</td><td><input type='text' id='repo_content' style="width: 100%" readonly="readonly"></td>
                </tr>
                <tr>
-               <td align="center">정지 시작일</td><td><input type='date' name='rinfo_start' style="width: 100%"></td>
+               <td align="center">정지 시작일</td><td><input type='date' name='rinfo_start' style="width: 100%" id='rinfo_start'></td>
                </tr>
                <tr>
                <td align="center">정지 기간</td><td><input type='text' id='rinfo_cnt' name='rinfo_cnt' style="width: 100%"></td>
                </tr>
                <tr>
-               <td align="center"><br><br>제재 사유</td><td colspan="2"><textarea name = 'rinfo_reason' rows="10" cols="210" style="width: 100%; height: 130px"></textarea></td>
+               <td align="center"><br><br>제재 사유</td><td colspan="2"><textarea id='rinfo_reason' name = 'rinfo_reason' rows="10" cols="210" style="width: 100%; height: 130px"></textarea></td>
                </tr>
             </tbody>
          </table>

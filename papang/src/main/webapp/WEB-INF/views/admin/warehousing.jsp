@@ -55,6 +55,15 @@
 		//등록 버튼 클릭
 		$('#btnInsert').on('click',function(){
 			$("#form1")
+			var flag=true;
+			
+			if($('#ware_cnt').val() =='' || $('#ware_cnt').val()== null){
+	   			alert('수량을 입력 하세요');
+	   			flag=false;
+	   			$('#ware_cnt').focus();
+	   		}
+			
+			if(flag){
 			$.ajax({ 
 			    url: "../warehousing",  
 			    type: 'POST',  
@@ -75,7 +84,8 @@
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
 			    } 
-			 });  
+			 });
+			}
 		});//등록 버튼 클릭
 	}//userInsert
 	
@@ -113,7 +123,7 @@
                </tr>
                <tr>
                   <td align="center">수량</td>
-                  <td><input type="text" style="width: 100%" name ='ware_cnt'></td>
+                  <td><input type="text" style="width: 100%" name ='ware_cnt' id='ware_cnt'></td>
                </tr>
                <tr>
                <td align="center"><br><br><br><br><br>특이사항</td><td colspan="2"><textarea name = 'ware_note' rows="10" cols="210" style="width: 100%"></textarea></td>

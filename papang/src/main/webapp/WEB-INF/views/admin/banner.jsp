@@ -152,6 +152,21 @@
 		$('#btnInsert').on('click', function() {
 			var form = $('#form1')[0];
 			var formData = new FormData(form);
+			var flag=true;
+			if($('#ban_pic_name').val() =='' || $('#ban_pic_name').val()== null){
+	   			alert('배너 제목을 입력 하세요');
+	   			flag=false;
+	   			$('#ban_pic_name').focus();
+	   		}
+	   		
+			if($('#nf').val() =='' || $('#nf').val()== null){
+	   			alert('파일을 첨부 하세요');
+	   			flag=false;
+	   			$('#nf').focus();
+	   		}
+			
+			
+			if(flag){
 			$.ajax({
 				url : "../banner",
 				type : 'POST',
@@ -175,6 +190,7 @@
 					alert("status: " + status + " er:" + message);
 				}
 			});
+			}
 		});//등록 버튼 클릭
 	}//userInsert
 
