@@ -241,7 +241,7 @@ $(function() {
 	</div>
 	</form>
 	
-	  <form id="fim2" name="fim2" action="babyinfoinsert" method="post" enctype="multipart/form-data">
+	  <form id="fim2" name="fim2" action="babyinfoinsert" method="post" enctype="multipart/form-data" onsubmit="return submitCheck();">
 	  		<div align="right" style="width: 1197px;">
 			  <button type="submit" class="btnRed bSmall">추가</button>
 			</div>   
@@ -329,6 +329,41 @@ $("#selectBtn").click(function(){
 	
 		
 });
+
+function submitCheck() {
+	var chi_name = $("#chi_name").val();
+    var chi_gender = $("#chi_gender").val();
+    var chi_birth = $("#chi_birth").val();
+    var uploadFile = $("#uploadFile").val();
+	    
+     if(chi_name ==''){
+		   alert("아기 이름을 입력해주세요");
+		   return false
+	   }   
+     
+    
+     if(chi_gender ==''){
+		   alert("아기 성을 입력해주세요");
+		   return false
+	   }
+     
+     if(chi_birth ==''){
+		   alert("아기 생일을 입력해주세요");
+		   return false
+	   } 
+     if(chi_birth ==''){
+		   alert("아기 생일을 입력해주세요");
+		   return false
+	   } 
+     if(uploadFile ==''){
+		   alert("아기 사진을 등록해주세요");
+		   return false
+	   } 
+     if(chi_name !='' && chi_gender !='' && chi_birth !='' &&uploadFile !=''){ 
+		   alert("아기정보가 등록되었습니다.");
+		   return true
+	   } 
+	}
 </script>
 
 </html>
