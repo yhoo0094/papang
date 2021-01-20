@@ -248,7 +248,7 @@ $(()=>{
 	
 	/* 수정,삭제 버튼이벤트 */
 	$('#btnDelete').click(function() {
-		alert('확인용');
+		alert('글이 삭제되었습니다.');
 		location.href="${pageContext.request.contextPath}/activity/deleteCook?cook_no="+cook_no+"&pc_no="+cook_no;
 	});
 	

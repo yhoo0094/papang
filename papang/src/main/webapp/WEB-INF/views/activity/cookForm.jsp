@@ -29,6 +29,35 @@ $(()=>{
 		$('#frm').attr('action','updateSuccessCook');
 		$('#frm').submit();
 	});
+	
+	$('#insertBtn').on('click',function(){
+		var cook_title = $('#frm').find('#cook_title').val();
+		var cook_category = $("#cook_category option:selected").val();
+		var summernote = $('#frm').find('#summernote').val();
+		
+		if(cook_title==""|| cook_title==null) {
+			alert("제목을 입력하세요.");
+			$('#cook_title').focus();
+			return false;
+		} 
+		
+	 	if(cook_category==""|| cook_category==null||cook_category=="-- 카테고리 선택 --") {
+			alert("카테고리를 선택하세요.");
+			$('#cook_category').focus();
+			return false;
+		}  
+		
+		if(summernote==""|| summernote==null) {
+			alert("내용을 작성하세요.");
+			$('#summernote').focus();
+			return false;
+		} 
+		
+		return true;
+	});
+	
+	
+	
 });
 
 </script>
@@ -39,12 +68,12 @@ $(()=>{
 		<div class="cook_content">
 		<form action="${pageContext.request.contextPath}/activity/insertCook" method="post" id="frm">
 			<div class="cView_title">
-				<input class="in_title" name="cook_title" placeholder="제목을 입력하세요" <c:if test="${not empty param.cook_no}">value='${cookVO.cook_title}'</c:if>>
+				<input class="in_title" id="cook_title" name="cook_title" placeholder="제목을 입력하세요" <c:if test="${not empty param.cook_no}">value='${cookVO.cook_title}'</c:if>>
 				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
 				<input type="hidden" name="cook_no"  value="${cookVO.cook_no}">
 			</div>
 				<div class="cView_category">
-				<select class="in_category" name="cook_category">
+				<select class="in_category" name="cook_category" id="cook_category">
 					<option selected>-- 카테고리 선택 --</option>
 					<option value="이유식" <c:if test="${cookVO.cook_category == '이유식'}">selected</c:if>>이유식</option>
 					<option value="아이와함께" <c:if test="${cookVO.cook_category == '아이와함께'}">selected</c:if>>아이와함께</option>
@@ -59,7 +88,7 @@ $(()=>{
 			</div>
 			<div class="btn_div" align="center">
 				<c:if test="${empty param.cook_no}">	
-					<button type="submit" class="btnRed bMedium">등록하기</button>
+					<button type="submit" class="btnRed bMedium" id="insertBtn">등록하기</button>
 				</c:if>
 				<c:if test="${not empty param.cook_no}">
 					<button class="btnRed bMedium" id="updateBtn" type="button">수정하기</button>

@@ -245,9 +245,20 @@ th {
 	//예방접종 일지 등록
 	function prevInsert(){
 		$('#btnInsert').on('click',function() {
+			var title = $('#recipient-name').val();
+			var category = $('#message-text').val();
+			
 			if('${user.mbr_id}'==null ||'${user.mbr_id}'== '' ){
 				alert("로그인이 필요한 서비스입니다");
 				location.href="${pageContext.request.contextPath}/member/loginForm";
+			}else if(title==""|| title==null) {
+						alert("날짜를 입력하세요.");
+						$('#recipient').focus();
+						return false;
+	        }else if(category==""|| category==null) {
+						alert("일지 내용을 입력하세요.");
+						$('#message-text').focus();
+						return false;
 			}else {
 			$.ajax({
 				url :"../prevInsert",
@@ -256,13 +267,14 @@ th {
 				data : $("#frm").serialize(),
 			 /* 	contentType: 'application/json', */
 				success : function(response) {
+					
 					alert('일지등록 완료');
 					/* $('#inTitle').val(""); */
 					$('#recipient-name').val("");
 					$('#message-text').val("");
 				    $('#btnCancle').click();
 				    prevSelectList();
-				    
+				    return true;
 				},
 				error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
