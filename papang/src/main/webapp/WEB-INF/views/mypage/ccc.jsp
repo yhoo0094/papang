@@ -7,6 +7,10 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<style>
+.susu{color:red;}
+.momoney{float: right;}
+</style>
 </head> 
 <body>
  
@@ -35,7 +39,7 @@
 					
 				</tbody>
 			</table>
-			
-		     <b>수수료10%</b>	　　 　             월급<input id="result" type="text" name="result" style = "text-align:right" value="${sitter_revVO.sum}" >원
+			<hr/>
+		     <b class="susu">수수료10%</b> <span class="momoney">월급<input id="result" type="text" name="result" style = "text-align:right" value="${sitter_revVO.sum}" >원</span>
 </body>
 </html>

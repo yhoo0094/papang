@@ -479,8 +479,7 @@ public class MypageController {
 			  
 			  PrintWriter out = response.getWriter();
 			   
-			  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
-			   
+			  out.println("<script>alert('시터가 아닙니다.'); location.href='../community/noticeForm?nq_no=221';</script>");
 			  out.flush();
 
 

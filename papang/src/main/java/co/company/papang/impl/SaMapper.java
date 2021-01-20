@@ -56,9 +56,9 @@ public interface SaMapper {
 	public int insertCookActComm(Act_comVO act_comVO);//요리 후기글 등록
 	
 	
-	//후기 업데이트
+	//후기 
 	public int updateActcom(Act_comVO act_comVO);//요리/놀이 후기 업데이트
-	
+	public int deleteActcom(Act_comVO act_comVO);//요리,놀이 후기 삭제
 	//4.날짜구하기
 	public ChildVO getDate(ChildVO childVO);//날짜구하기
 	

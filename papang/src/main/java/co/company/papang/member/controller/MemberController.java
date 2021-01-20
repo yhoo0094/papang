@@ -243,7 +243,10 @@ public class MemberController {
 	public void adminLogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
 			HttpServletResponse response) {
 		String chkAdPw = "";
-		chkAdPw = log_service.adminLoginCheck(admin);
+		AdminVO ad = new AdminVO();
+		ad = log_service.adminLoginCheck(admin);
+		chkAdPw = ad.getAd_pw();
+		System.out.println("뭐가 또" + chkAdPw);
 		response.setContentType("text/html; charset=UTF-8");
 		if (chkAdPw.equals(admin.getAd_pw())) {
 			admin = dao.adminLogin(admin);

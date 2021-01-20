@@ -281,6 +281,16 @@ public class ActivityController {
 		
 	} 
 	
+	//후기 삭제
+	@PostMapping("/actDelete")
+	@ResponseBody
+	public String actDelete(HttpServletResponse response, Act_comVO act_comVO) {
+		service.deleteActcom(act_comVO);
+		return "200";
+		
+	}
+	
+	
 	@RequestMapping("activity/playtest")
 	public ModelAndView playtest(HttpServletResponse response) throws IOException {
 		return new ModelAndView("activity/test");

@@ -63,11 +63,12 @@ th {
 	font-weight: bold;
 }
 .updateBtn:hover{color:red;}
+.deleteBtn:hover{color:red;}
 </style>
 <script>
 $(()=>{
 
-	
+	//후기 업데이트
 	 $('.updateBtn').on('click',function() {
 		
 		var ac_category = $(this).closest('table').prevAll('#ac_category').val();
@@ -93,14 +94,40 @@ $(()=>{
 			}//error
 		});//ajax
 	}); //btnevent
+	
+	//후기 삭제
+	 $('.deleteBtn').on('click',function() {
+			
+			var ac_category = $(this).closest('table').prevAll('#ac_category').val();
+			var ac_no = $(this).closest('table').prevAll('#ac_no').val();
+			var pc_no = $(this).closest('table').prevAll('#pc_no').val();
+			var mbr_id = $(this).closest('table').find('#mbr_id').text();
+			var ac_content = $(this).closest('table').find('#ac_content').text();
+			
+			$.ajax({
+				url : "../actDelete",
+				type : 'POST',
+				dataType : 'text',
+				data : {
+					   'mbr_id' : mbr_id,
+					   'ac_category' : ac_category,
+					   'ac_no' : ac_no,
+					   'pc_no' : pc_no},
+				success:function(result) {
+					alert('삭제 되었습니다');
+					location.reload();
+				},//success
+				error : function(xhr, status, message) {
+					alert("status: " + status + " er:" + message);
+				}//error
+			});//ajax
+		}); //btnevent
 
 });
 </script>
 </head>
 <body>
 	<div class="Bigtitle">후기 리스트</div>
-
-	<div><p id="my">내 글 보기</p></div>
 
 	<c:forEach items="${actList}" var="actlist">
 		<div class="acListDiv">

@@ -86,8 +86,8 @@
 		WHERE mbr_id = #{mbr_id}
 	</select>
 	<!-- 관리자 -->
-	<select id="adminLoginCheck" resultType="string">
-		SELECT ad_pw
+	<select id="adminLoginCheck" resultType="AdminVO">
+		SELECT ad_id, ad_pw
 		FROM ADMIN
 		WHERE ad_id = #{ad_id}
 	</select>

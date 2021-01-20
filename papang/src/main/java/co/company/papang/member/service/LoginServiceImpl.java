@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService{
 //	}
 
 	@Override
-	public String adminLoginCheck(AdminVO admin) {
+	public AdminVO adminLoginCheck(AdminVO admin) {
 		return dao.adminLoginCheck(admin);
 	}
 

@@ -36,6 +36,11 @@ function formCheck() {
 		f.pro_cc.focus();
 		return false;
 	}
+	if (f.pro_detail.value == "") {
+		alert("상세정보를 등록하세요");
+		f.pro_detail.focus();
+		return false;
+	}
 	return true;
 }
 </script>

@@ -130,4 +130,9 @@ public class ActivityServiceImpl implements ActivityService {
 		return dao.updateActcom(act_comVO);
 	}
 
+	@Override //후기 삭제
+	public int deleteActcom(Act_comVO act_comVO) {
+		return dao.deleteActcom(act_comVO);
+	}
+
 }

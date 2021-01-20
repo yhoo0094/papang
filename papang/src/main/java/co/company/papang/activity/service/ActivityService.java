@@ -45,4 +45,5 @@ public interface ActivityService {
 	//5.후기 리스트 페이지
 	public List<Act_comVO> getActList(Act_comVO act_comVO);//놀이후기 리스트 페이지용 전체조회
 	public int updateActcom(Act_comVO act_comVO);//요리/놀이 후기 업데이트
+	public int deleteActcom(Act_comVO act_comVO);//요리,놀이 후기 삭제
 }

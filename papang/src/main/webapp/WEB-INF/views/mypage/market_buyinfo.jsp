@@ -68,6 +68,11 @@ table tbody tr td {
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: 'Jua', sans-serif;
     }
+    
+.tableone {
+  width: 130%;
+}
+#dataTable_filter{display: none;}
 
 </style>
 <title>마이페이지</title>
@@ -92,7 +97,7 @@ table tbody tr td {
     
          <div class="content_div">
 
-            <table class="table" id="dataTable">
+            <table class="table tableone" id="dataTable">
                <thead>
                   <tr class="tableTrTh">
                      <th width="14%" class="tableTh">주문번호</th>
@@ -113,12 +118,16 @@ table tbody tr td {
                         <td align="center">${co6.order_date}</td>
                         <td align="center">${co6.order_status}</td>
                         <td align="center">${co6.order_sum}원</td>
-                        <td align="center" class="qwe" data-num="${co6.order_no}"
-                           data-target="#exampleModal1" data-toggle="modal" align="center"
-                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><button
-                              type="submit">상세보기</button></td>
-                        <td align="center"><button class="qwe2" data-toggle="modal" data-target="#exampleModal2" data-num="${co6.order_no}"  target="_blank">배송조회</button>     
-                        <td align="center"><button id="cancleItemBtn"  type="button" data-num="${co6.order_no}">주문취소</button></td>   
+                        <td align="center" class="qwe" data-num="${co6.order_no}" data-target="#exampleModal1" data-toggle="modal" align="center"
+                           style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                           <button class="btnYellow" type="submit">상세보기</button>
+                        </td>
+                        <td align="center">
+                        	<button class="qwe2 btnYellow" data-toggle="modal" data-target="#exampleModal2" data-num="${co6.order_no}"  target="_blank">배송조회</button>
+                        </td>     
+                        <td align="center">
+                        	<button class="btnGray" id="cancleItemBtn"  type="button" data-num="${co6.order_no}">주문취소</button>
+                        </td>   
                      </tr>
                   </c:forEach>
                </tbody>
