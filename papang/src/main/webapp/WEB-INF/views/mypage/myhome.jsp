@@ -249,8 +249,7 @@ $(function() {
 					<p class="w3-center">
 						<button type="submit" id="myhomechange"
 							class="btnYellow bMedium aa">변경</button>
-						<button type="reset"
-							class="btnGray bMedium">취소</button>
+						
 					</p>
 					
 				</form>

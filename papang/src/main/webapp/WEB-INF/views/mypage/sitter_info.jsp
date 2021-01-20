@@ -270,8 +270,7 @@ $(function() {
 						<button type="submit" id="joinBtn"
 							class="btnYellow bMedium">변경</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="reset"
-							class="btnGray bMedium">취소</button>
+						
 					</p>
 </div>
 </form>
