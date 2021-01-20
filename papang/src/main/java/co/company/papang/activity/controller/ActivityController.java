@@ -263,6 +263,7 @@ public class ActivityController {
 		return vo;
 	}
 
+	//후기 리스트
 	@RequestMapping("activity/actComList")
 	public ModelAndView actttest(HttpServletResponse response,Act_comVO act_comVO) throws IOException {
 		ModelAndView mav = new ModelAndView();
@@ -271,6 +272,14 @@ public class ActivityController {
 		return mav;
 	}
 
+	//후기 업데이트
+	@PostMapping("/actUpdate")
+	@ResponseBody
+	public String actUpdate(HttpServletResponse response, Act_comVO act_comVO) {
+		service.updateActcom(act_comVO);
+		return "200";
+		
+	} 
 	
 	@RequestMapping("activity/playtest")
 	public ModelAndView playtest(HttpServletResponse response) throws IOException {
