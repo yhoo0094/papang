@@ -17,8 +17,8 @@ td {
 
 .titleTd {
 	height: 50px;
-	width: 80%;
-	border-bottom: 20px solid rgb(249, 196, 94);
+	width: 1050px;
+	padding: 0 10px 0 20px;
 }
 
 .imgDiv {
@@ -30,13 +30,13 @@ td {
 	height: 300px;
 	padding: 20px;
 	border-radius: 8px;
-	width: 90%;
+	width: 100%;
 	background-color: rgb(249, 196, 94);
 	margin: 0 0 40px 0;
 }
 
 table {
-	background-color: white;
+
 	margin: 0 0 50px 0;
 }
 
@@ -50,32 +50,82 @@ th {
 	width: 10px;
 	height: 10px;
 }
+.btnDiv{float: right; display: inline-block;}
+.ttarea{width: 98%;
+    height: 200px;
+    border: none;
+   margin-left: 20px;
+    font-size: 18px;
+    padding-left: 10px;}
+.bMedium {
+	width: 70px;
+	height: 40px;
+	font-weight: bold;
+}
+.updateBtn:hover{color:red;}
 </style>
+<script>
+$(()=>{
 
+	
+	 $('.updateBtn').on('click',function() {
+		
+		var ac_category = $(this).closest('table').prevAll('#ac_category').val();
+		var ac_no = $(this).closest('table').prevAll('#ac_no').val();
+		var pc_no = $(this).closest('table').prevAll('#pc_no').val();
+		var mbr_id = $(this).closest('table').find('#mbr_id').text();
+		var ac_content = $(this).closest('table').find('#ac_content').text();
+		
+		$.ajax({
+			url : "../actUpdate",
+			type : 'POST',
+			dataType : 'text',
+			data : {'ac_content' : ac_content,
+				   'mbr_id' : mbr_id,
+				   'ac_category' : ac_category,
+				   'ac_no' : ac_no,
+				   'pc_no' : pc_no},
+			success:function(result) {
+				alert('수정이 완료되었습니다');
+			},//success
+			error : function(xhr, status, message) {
+				alert("status: " + status + " er:" + message);
+			}//error
+		});//ajax
+	}); //btnevent
+
+});
+</script>
 </head>
 <body>
 	<div class="Bigtitle">후기 리스트</div>
 
-
+	<div><p id="my">내 글 보기</p></div>
 
 	<c:forEach items="${actList}" var="actlist">
 		<div class="acListDiv">
+		<input id="ac_category" type="hidden" name="ac_category" value="${actlist.ac_category}">
+		<input id="ac_no" type="hidden" name="ac_no" value="${actlist.ac_no}">
+		<input id="pc_no" type="hidden" name="pc_no" value="${actlist.pc_no}">		
 			<table>
 				<tr>
-					<td rowspan="2"><img class="imgDiv"
-						src="${pageContext.request.contextPath}/images/actCom/${actlist.ac_pic}">
+					<td rowspan="2">
+						<img class="imgDiv" src="${pageContext.request.contextPath}/images/actCom/${actlist.ac_pic}">
 					</td>
-					<th class="titleTd">${actlist.mbr_id}
-						<p id="starP"></p>
-
+					<th class="titleTd"><span id="mbr_id">${actlist.mbr_id}</span>
+					<c:if test="${actlist.mbr_id eq user.mbr_id}">
+						<div class="btnDiv">
+							<span class="updateBtn">수정</span> | 
+							<span class="deleteBtn">삭제</span>
+						</div>
+					</c:if>
 					</th>
 				</tr>
 				<tr>
-					<td>${actlist.ac_content}</td>
+					<td class="contentTd"><textarea class="ttarea" id="ac_content" name="ac_content">${actlist.ac_content}</textarea></td>
 				</tr>
 			</table>
 		</div>
-
 	</c:forEach>
 
 </body>

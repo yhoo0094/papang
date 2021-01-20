@@ -171,6 +171,13 @@ INSERT INTO ACT_COM
 
 </insert>
 
+<!-- 후기 : 후기 업데이트 -->
+<update id="updateActcom" parameterType="act_comVO">
+	UPDATE ACT_COM 
+	SET AC_CONTENT=#{ac_content} 
+	WHERE MBR_ID=#{mbr_id} AND AC_CATEGORY=#{ac_category} AND AC_NO=#{ac_no} AND PC_NO=#{pc_no}
+</update>
+
 <!-- #################################################################2.예방접종 #################################################################-->
 <!-- 예방접종 아이 전체조회 -->
 <select id="selectChild" resultType="ChildVO">
