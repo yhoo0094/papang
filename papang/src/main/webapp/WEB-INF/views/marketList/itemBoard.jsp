@@ -73,9 +73,9 @@ margin: 20px 0 0 38px;
 				onclick="location.href='/papang/market/itemInsertForm'">관리자 상품등록</button>
 		</c:if>
 	</div>
-	 <a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPrice">가격 낮은순	|</a>
+	 <!-- a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPrice">가격 낮은순	|</a>
 	<a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoardPriceDesc">가격 높은순	|</a>
-	<a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoard">최신 등록순</a> 
+	<a class="searchBtn" style="margin-right: 10px;" href="${pageContext.request.contextPath}/marketList/itemBoard">최신 등록순</a -->
 	<div id="marketListBoard">
 		<table class="table" id="dataTable">
 			<thead>
