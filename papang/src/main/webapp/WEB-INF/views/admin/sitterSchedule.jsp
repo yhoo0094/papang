@@ -206,7 +206,6 @@ function resultmonthpayoneselect(data){
 						.append($('<td>').html(item.MBR_BANK))
 						.append($('<td>').html(item.MBR_ACCOUNT))
 						.append($('<td>').html(comma(item.SRV_PAY)))
-						.append($('<td>').html(comma(item.COMPANY)))
 						.append($('<td>').html(comma(item.MONTH_DATE)))
 				        .appendTo('#dataTable2 tbody');
 					});
@@ -387,11 +386,10 @@ function uppayday() {
 
 <form id="form1" class="form-horizontal">
 	<div align="center">
-
-		<table class="table">
+		<table class="table" style="width: 60%">
 			<tbody>
 				<tr>
-					<td align="center" rowspan="2">출금계좌번호</td>
+					<td align="center" rowspan="2" width="40%"><br>출금계좌번호</td>
 					<td>국민 638102-04-223891 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 월급일  
 				<select id='sit_payday' name='sit_payday' style="height: 100%;width: 50px">
 				<option value="1">1</option>
@@ -525,7 +523,6 @@ function uppayday() {
 							<th>은행</th>
 							<th>계좌번호</th>
 							<th>월급</th>
-							<th>이윤</th>
 							<th>지급일</th>
 						</tr>
 					</thead>
@@ -541,20 +538,7 @@ function uppayday() {
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<p class="modal-title" id="exampleModalLabel">계산기</p>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<span id="reservationNumTd" style="display: none;"></span>
-				</div>
-				<div class="modal-body" align="center">
-					<jsp:include page="calculater.jsp"></jsp:include>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
-				</div>
+				<jsp:include page="calculater.jsp"></jsp:include>
 			</div>
 		</div>
 	</div>

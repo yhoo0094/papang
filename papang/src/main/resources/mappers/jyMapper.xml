@@ -508,9 +508,7 @@
 	<select id='resultmonthpayone' resultType="map"
 		parameterType="Sitter_revVO3">
 		SELECT
-		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,(SELECT
-		SUM(SRV_PAY)*0.1 FROM
-		SITTER_REV)"COMPANY",to_char(S.MONTH_DATE,'yy-mm-dd') as MONTH_DATE
+		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,to_char(S.MONTH_DATE,'yy-mm-dd') as MONTH_DATE
 		FROM
 		SITTER_MONTH S ,MEMBER M
 		WHERE S.SIT_MBR_ID=M.MBR_ID

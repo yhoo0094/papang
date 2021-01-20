@@ -95,15 +95,16 @@
 
    <div class="sizeDiv">
       <br>
-      <h3>입 고</h3>
+      
      	
        <div align="center">
        <form id="form1" class="form-horizontal">
-         <table class="table">
+         <table class="table" style="width: 60%">
+         <h3>입 고</h3>
             <tbody>
                <tr>
-                  <td align="center" id='pro_no_title' width="10%">상품 번호</td>
-                  <td><select name ='pro_no'>
+                  <td align="center" id='pro_no_title' width="15%">상품 번호</td>
+                  <td><select name ='pro_no' style="width: 100%">
                   	<c:forEach items="${product}" var="pro">
                   	<option value='${pro.pro_no}'>${pro.pro_no} : ${pro.pro_name}</option>
                   	</c:forEach>

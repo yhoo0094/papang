@@ -164,7 +164,8 @@ function reportinfoList() {
 	
 </script>		
 <h1 class="mt-4">신고 관리</h1>
-
+<br>
+<br>
       <div class="card mb-4">
 	<div class="card-header">
 		<i class="fas fa-table mr-1"></i> 신고 내역
@@ -233,7 +234,7 @@ function reportinfoList() {
                <td align="center">정지 기간</td><td><input type='text' id='rinfo_cnt' name='rinfo_cnt' style="width: 100%"></td>
                </tr>
                <tr>
-               <td align="center"><br><br><br><br>제재 사유</td><td colspan="2"><textarea name = 'rinfo_reason' rows="10" cols="210" style="width: 100%"></textarea></td>
+               <td align="center"><br><br>제재 사유</td><td colspan="2"><textarea name = 'rinfo_reason' rows="10" cols="210" style="width: 100%; height: 130px"></textarea></td>
                </tr>
             </tbody>
          </table>

@@ -101,14 +101,14 @@ margin: 0 0 0 5%;
 						<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
+								<i class="fas fa-house-user"></i>
 							</div> Home
 						</a>
 						<div class="sb-sidenav-menu-heading">Interface</div>
 						<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/nqInsert">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
+								<i class="fas fa-exclamation"></i>
 							</div> 공지사항 관리
 						</a>
 						
@@ -116,7 +116,7 @@ margin: 0 0 0 5%;
 							data-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-columns"></i>
+								<i class="far fa-address-card"></i>
 							</div> 시터/회원 관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
@@ -136,17 +136,17 @@ margin: 0 0 0 5%;
 						 <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/banner">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
+								<i class="fab fa-accusoft"></i>
 							</div> 배너 관리
 						</a> <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/warehousing">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
+								<i class="fas fa-boxes"></i>
 							</div> 재고 관리
 						</a> <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/report">
 							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
+								<i class="fas fa-flag"></i>
 							</div> 신고 관리
 						</a>
 
