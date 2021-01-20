@@ -141,7 +141,8 @@
 <if test="mbr_addr2 != null and mbr_addr2 != ''">mbr_addr2,</if>
 <if test="mbr_addr3 != null and mbr_addr3 != ''">mbr_addr3,</if>
 <if test="mbr_pic != null and mbr_pic != ''">mbr_pic,</if>
-								mbr_gender )
+								mbr_gender,
+								authkey )
 	 	            VALUES( #{mbr_id},
 	 	               		#{mbr_name},
 	 	               		#{mbr_birth},
@@ -152,7 +153,8 @@
 <if test="mbr_addr2 != null and mbr_addr2 != ''">#{mbr_addr2},</if>
 <if test="mbr_addr3 != null and mbr_addr3 != ''">#{mbr_addr3},</if>
 <if test="mbr_pic != null and mbr_pic != ''">#{mbr_pic},</if>
-	 	               		#{mbr_gender} )
+	 	               		#{mbr_gender},
+	 	               		'Y' )
 	</insert>
 	<!-- 카카오 로그인 -->
 	<select id="kLogin" resultType="MemberVO">

@@ -65,10 +65,14 @@ p.loginpage {
 					"mbr_email" : mbr_email
 				},
 				error:function(xhr,status,msg){
-					alert("존재하지 않는 회원입니다");
+					alert("실패");
 				}, success : function (result){
 					var id = result;
-					alert("아이디는 " + result + " 입니다");
+					if(id == ""){
+						alert("다시 확인해주세요");
+					} else {
+						alert("아이디는 " + result + " 입니다");
+					}
 				}
 			});
 			return false;

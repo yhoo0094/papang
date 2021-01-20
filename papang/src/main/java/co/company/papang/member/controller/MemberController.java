@@ -323,8 +323,17 @@ public class MemberController {
 	// 아이디찾기
 	@ResponseBody
 	@RequestMapping("/ajax/findId") // url 예전 .do
-	public String test5( MemberVO member) throws IOException {
+	public String test5( MemberVO member, HttpServletResponse response) throws IOException {
 		String id = dao.findId(member);
+//		if (id.equals("") ) {
+//			try {
+//				PrintWriter out = response.getWriter();
+//				out.println("<script>alert('다시한번 확인해주세요');</script>");
+//				
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		} 
 		return id;
 	}
 
