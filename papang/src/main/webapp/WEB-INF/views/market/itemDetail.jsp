@@ -159,10 +159,10 @@ $(()=>{
 				<table id="idTable">
 					<tbody>
 					<tr>
-					<c:if test="${!empty admin.ad_id}">
-								<td><button type="button" class="btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button></td>
-								<td><button type="button" class="btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
-							</c:if>
+						<c:if test="${!empty admin.ad_id}">
+								<td colspan="2" align="right"><button type="button" class="bMedium btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button>
+								<button type="button" class="bMedium btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
+						</c:if>
 					</tr>
 						<tr>
 							<th scope="row"><span>상품명</span></th>
@@ -251,7 +251,6 @@ $(()=>{
 						</tr>
 						<tr>
 							<td class="tableBor" rowspan="1"><button type="button" id="minusBtn">-</button></td>
-	
 						</tr>
 					</table>
 				</div>

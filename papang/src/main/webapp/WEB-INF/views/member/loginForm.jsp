@@ -234,8 +234,8 @@ p.loginpage {
 								<td><input type="email" class="form-control" id="email" name="mbr_email" placeholder="이메일"></td>
 							</tr>
 						</table>
-						<button type="submit" name="fid" id="fid" class="btnRed" onclick="return findIdCheck()">아이디찾기</button>
-						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
+						<button type="submit" name="fid" id="fid" class="btnRed" onclick="return findIdCheck()" style="width: 90px">아이디찾기</button>
+						<button type="button" class="btnGray" data-dismiss="modal" style="margin-left: 10px; width: 90px">취소</button>
 					</form>
 				</div>
 			</div>
@@ -266,8 +266,8 @@ p.loginpage {
 								<td><input type="email" class="form-control" id="email2" name="mbr_email" placeholder="이메일"></td>
 							</tr>
 						</table>
-						<button type="submit" name="fpw" id="fpw" class="btnRed" onclick="return findPwCheck()">비밀번호찾기</button>
-						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
+						<button type="submit" name="fpw" id="fpw" class="btnRed" onclick="return findPwCheck()" style="width: 90px">비밀번호찾기</button>
+						<button type="button" class="btnGray" data-dismiss="modal" style="margin-left: 10px; width: 90px">취소</button>
 					</form>
 				</div>
 				<!--  input type="text" id ="showPw" style="text-align: center;" readonly-->

@@ -39,7 +39,7 @@ p.loginpage {
 
 </style>
 <head>
-<title>로그인</title>
+<title>관리자 로그인</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -72,7 +72,6 @@ p.loginpage {
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/login.css">
 <!--===============================================================================================-->
-
 </head>
 <body style="background-color: #fff5d2;">
 
@@ -110,4 +109,29 @@ p.loginpage {
 			</div>
 		</div>
 	</div>
+		<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/bootstrap/js/popper.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/daterangepicker/moment.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script
+		src="${pageContext.request.contextPath}/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
+	
 </body>

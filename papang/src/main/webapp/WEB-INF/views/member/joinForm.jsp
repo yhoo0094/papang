@@ -189,7 +189,8 @@ p {
 																"inline-block");
 														$("#alert-fail").css(
 																"display", "none");
-														$("#joinBtn").attr("disabled", true);
+														$("#joinBtn").attr("disabled",
+																false);
 													} else {
 														//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
 														$("#alert-success").css(
@@ -197,7 +198,8 @@ p {
 														$("#alert-fail").css(
 																"display",
 																"inline-block");
-														$("#joinBtn").attr("disabled", false);
+														$("#joinBtn").attr("disabled",
+																true);
 													}
 												}
 // 											}
