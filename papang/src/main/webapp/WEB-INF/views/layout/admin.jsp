@@ -109,7 +109,7 @@ margin: 0 0 0 5%;
 							href="${pageContext.request.contextPath}/admin/nqInsert">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-exclamation"></i>
-							</div> 공지사항 관리
+							</div>  공지사항 관리
 						</a>
 						
 						 <a class="nav-link collapsed" href="" data-toggle="collapse"

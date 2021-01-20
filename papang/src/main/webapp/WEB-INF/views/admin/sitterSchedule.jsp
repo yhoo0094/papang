@@ -428,31 +428,31 @@ function uppayday() {
 					
 				</tr>
 				<tr>
-				<td>출금 가능액 <input type=text name='allsum' id='allsum' style="border: none;color: red" readonly="readonly"></td>
+				<td>출금 가능액 <input type='text' name='allsum' id='allsum' style="border: none;color: red" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td align="center">시터 ID</td>
-					<td><input type=text name='sit_mbr_id' id='sit_mbr_id'></td>
+					<td><input type='text' name='sit_mbr_id' id='sit_mbr_id'></td>
 				</tr>
 				
 				<tr>
 					<td align="center">입금은행</td>
-					<td><input type=text name='mbr_bank' id='mbr_bank'></td>
+					<td><input type='text' name='mbr_bank' id='mbr_bank'></td>
 				</tr>
 				
 				<tr>
 					<td align="center">입금계좌</td>
-					<td><input type=text name='mbr_account' id='mbr_account'></td>
+					<td><input type='text' name='mbr_account' id='mbr_account'></td>
 				</tr>
 
 				<tr>
 					<td align="center">이체금액</td>
-					<td align="left"><input type=text name='srv_pay2' id='srv_pay2'><input type=hidden name='srv_pay' id='srv_pay'> 
+					<td align="left"><input type='text' name='srv_pay2' id='srv_pay2'><input type=hidden name='srv_pay' id='srv_pay'> 
 					<button type="button" data-toggle="modal" data-target="#exampleModal1" >계산기</button></td>
 				</tr>
 				<tr>
 					<td align="center">계좌 비밀번호</td>
-					<td align="left"><input type=text name='pw' id='pw'>
+					<td align="left"><input type="password" name='pw' id='pw'>
 					<input type="button" value="비밀번호 검사"
 					id="pwbtn" />
 					<input type=hidden name='pw_hidden' id='pw_hidden' value='1234'></td>

@@ -146,9 +146,30 @@
 		//등록 버튼 클릭
 		
 
-		$('#btnInsert').on('click', function() {
+		$('#btnInsert').on('click', function(event) {
 			var form = $('#form1')[0];
 	   		var formData = new FormData(form);
+	   		var flag=true;
+	   		
+	   		if($('#nq_title').val() =='' || $('#nq_title').val()== null){
+	   			alert('제목을 입력 하세요');
+	   			flag=false;
+	   			$('#nq_title').focus();
+	   		}
+	   		
+			if($('#nf').val() =='' || $('#nf').val()== null){
+	   			alert('파일을 첨부 하세요');
+	   			flag=false;
+	   			$('#nf').focus();
+	   		}
+			
+			if($('#summernote').val() =='' || $('#summernote').val()== null){
+	   			alert('내용을 입력 하세요');
+	   			flag=false;
+	   			$('#summernote').focus();
+	   		}
+			
+	   		if(flag){
 			$.ajax({
 				url : "../nq",
 				type : 'POST',
@@ -172,7 +193,9 @@
 					alert("status: " + status + " er:" + message);
 				}
 			});
+	   		}
 		});//등록 버튼 클릭
+		
 	}//userInsert
 
 	//사용자 목록 조회 요청
@@ -251,7 +274,7 @@
 				</tr>
 				<tr>
 					<td align="center" style="width: 10%">제목</td>
-					<td><input name="nq_title" type="text" style="width: 100%"></td>
+					<td><input id='nq_title' name="nq_title" type="text" style="width: 100%"></td>
 				</tr>
 				<tr>
 					<td align="center" style="width: 10%">첨부파일</td>
