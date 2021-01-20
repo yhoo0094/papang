@@ -23,8 +23,6 @@
  	.note-editable{font-size: 23px;} 
 </style>
 <script>
-var play_category = $('#mbr_id').val();
-console.log(play_category);
 
 $(()=>{
 	
@@ -33,6 +31,36 @@ $(()=>{
 		$('#frm').attr('action','updateSuccess');
 		$('#frm').submit();
 	});
+	
+
+	$('#insertBtn').on('click',function(){
+		var play_title = $('#frm').find('#play_title').val();
+		var play_category = $('#frm').find('.catecontent').val();
+		var summernote = $('#frm').find('#summernote').val();
+		
+		if(play_title==""|| play_title==null) {
+			alert("제목을 입력하세요.");
+			$('#play_title').focus();
+			return false;
+		} 
+		
+		if(play_category==""|| play_category==null) {
+			alert("카테고리를 선택하세요.");
+			//f.play_category.focus();
+			return false;
+		} 
+		
+		if(summernote==""|| summernote==null) {
+			alert("내용을 작성하세요.");
+			$('#summernote').focus();
+			return false;
+		} 
+		
+		return true;
+	});
+	
+	
+	
 });
 
 
@@ -45,18 +73,18 @@ $(()=>{
 		<div class="cook_content">
 		<form id="frm" action="${pageContext.request.contextPath}/activity/insertPlay" method="post">
 			<div class="cView_title">
-				<input type="hidden" name="play_no" value="${playVO.play_no}">
-				<input class="in_title" name="play_title" placeholder="제목을 입력하세요" 
+				<input type="hidden" name="play_no"  value="${playVO.play_no}">
+				<input class="in_title" id="play_title" name="play_title" placeholder="제목을 입력하세요" 
 				<c:if test="${not empty param.play_no}">value=${playVO.play_title}</c:if>>
 				<input type="hidden" name="mbr_id"  value="${user.mbr_id}">
 			</div>
 			<div class="cView_category">
-				<select class="in_category" name="play_category">
+				<select class="in_category" name="play_category" id="play_category">
 					<option> -- 카테고리 선택 --</option>
-					<option value="예비아빠" <c:if test="${playVO.play_category == '예비아빠'}">selected</c:if>>예비아빠</option>
-					<option value="만0~1세" <c:if test="${playVO.play_category == '만0~1세'}">selected</c:if>>만0~1세</option>
-					<option value="만2세" <c:if test="${playVO.play_category == '만2세'}">selected</c:if>>만2세</option>
-					<option value="만3~6세" <c:if test="${playVO.play_category == '만3~6세'}">selected</c:if>>만3~6세</option>
+					<option class="catecontent" value="예비아빠" <c:if test="${playVO.play_category == '예비아빠'}">selected</c:if>>예비아빠</option>
+					<option class="catecontent" value="만0~1세" <c:if test="${playVO.play_category == '만0~1세'}">selected</c:if>>만0~1세</option>
+					<option class="catecontent" value="만2세" <c:if test="${playVO.play_category == '만2세'}">selected</c:if>>만2세</option>
+					<option class="catecontent"  value="만3~6세" <c:if test="${playVO.play_category == '만3~6세'}">selected</c:if>>만3~6세</option>
 				</select>
 			</div>
 			<div align="center">
@@ -65,7 +93,7 @@ $(()=>{
 			</div>
 			<div class="btn_div" align="center">
 				<c:if test="${empty param.play_no}">
-					<button class="btnRed bMedium" type="submit">등록하기</button>
+					<button class="btnRed bMedium" type="submit" id="insertBtn">등록하기</button>
 				</c:if>
 				<c:if test="${not empty param.play_no}">
 					<button class="btnRed bMedium" id="updateBtn" type="button">수정하기</button>
