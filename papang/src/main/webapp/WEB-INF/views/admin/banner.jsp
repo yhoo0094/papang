@@ -180,6 +180,7 @@
 						$('#form1').each(function() {
 							this.reset();
 							bannerlist();
+							location.reload();
 							$('#img').attr('src', '');
 							$('#la').html("선택한 파일 없음");
 							alert("등록되었습니다");
@@ -253,6 +254,7 @@
 						this.reset();
 						$('#la').html("선택한 파일 없음");
 						alert("수정되었습니다");
+						location.reload();
 						$('#img').attr('src', '');
 					});
 				},
@@ -284,6 +286,7 @@
 						$('#form1').each(function() {
 							alert("삭제되었습니다");
 							this.reset();
+							location.reload();
 							$('#la').html("선택한 파일 없음");
 						});
 					}

@@ -71,7 +71,7 @@
 		$('.note-editable').html("");
 		$('#la').html("선택한 파일 없음");
 		nqList();
-		//location.reload();
+		location.reload();
 	});
 	}
 	});      }//if
@@ -130,6 +130,7 @@
 	$('#form1').each(function() {
 		this.reset();
 		$('.note-editable').html("");
+		location.reload();
 		$('#la').html("선택한 파일 없음");
 		alert("수정되었습니다");
 	});
@@ -186,6 +187,7 @@
 							$('.note-editable').html("");
 							$('#la').html("선택한 파일 없음");
 							alert("등록되었습니다");
+							location.reload();
 						});
 					}
 				},
