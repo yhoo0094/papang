@@ -53,7 +53,7 @@ function reportInsert(){
 						  <option value="커뮤니티" <c:if test='${reportVO.repo_category eq "커뮤니티"}'> selected="selected" </c:if>>커뮤니티</option>
 						  <option value="커뮤니티댓글" <c:if test='${reportVO.repo_category eq "커뮤니티댓글"}'> selected="selected" </c:if>>커뮤니티댓글</option>
                   	  </select>
-                  	  <input type="text" placeholder='글제목' style="width:79%">
+                  	 
                   	  <input type="hidden" value='${user.mbr_id}' name = 'mbr_id'>
                   	  <input type="hidden" value='${reportVO.repo_category_no}' name ='repo_category_no'>
                   </td>
