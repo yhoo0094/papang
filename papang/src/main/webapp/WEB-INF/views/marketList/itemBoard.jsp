@@ -86,6 +86,28 @@ margin: 20px 0 0 38px;
 			</thead>
 			<tbody>
 				<c:forEach var="pro" items="${ pro }">
+				<c:if test="${ empty pro.pro_cnt }">
+					<tr class="marketTableTr">
+					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
+						<td><p style="display: none">${pro.pro_no}</p>
+							<div class="portfolio-item">
+								<div class="card h-100 strongYellow">
+									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img
+										class="card-img-top"
+										src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"></a>
+									<div class="card-body">
+										<h4 class="card-title">
+											<a class="proTitle" href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
+										</h4>
+										<p class="card-text"><font style="color: red;">입고필요 </font> </p> 
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</c:if>
+				</c:forEach>
+				<c:forEach var="pro" items="${ pro }">
 				<c:if test="${ !empty pro.pro_cnt }">
 					<tr class="marketTableTr">
 					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
