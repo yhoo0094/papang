@@ -64,6 +64,9 @@ th {
 }
 .updateBtn:hover{color:red;}
 .deleteBtn:hover{color:red;}
+.Bigtitle {
+    margin: 20px 0 0 0;
+}
 </style>
 <script>
 $(()=>{
