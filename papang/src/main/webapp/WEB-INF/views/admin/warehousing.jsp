@@ -76,6 +76,7 @@
 			    	if(response.pro_no != null) {
 			    		alert("입고 되었습니다");
 			    		WareList();
+			    		location.reload();
 			    		$('#form1').each(function() {
 							this.reset();
 						});
