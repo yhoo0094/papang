@@ -46,7 +46,7 @@ function reportInsert(){
                <tr>
                   <td align="center">신고글</td>
                   <td width="100%">
-                  	  <select id='repo_category' name= 'repo_category' style="width:20%">
+                  	  <select id='repo_category' name= 'repo_category' style="width:100%">
 	                  	  <option value="중고장터" <c:if test='${reportVO.repo_category eq "중고장터"}'> selected="selected" </c:if>>중고장터</option>
 	                  	  <option value="중고장터 댓글" <c:if test='${reportVO.repo_category eq "중고장터 댓글"}'> selected="selected" </c:if>>중고장터 댓글</option>
 						  <option value="활동" <c:if test='${reportVO.repo_category eq "활동"}'> selected="selected" </c:if>>활동</option>
@@ -59,7 +59,7 @@ function reportInsert(){
                   </td>
                </tr>
                <tr>
-               <td align="center">신고대상ID </td><td><input type='text' name='re_mbr_id' value='${reportVO.re_mbr_id}' readonly="readonly"></td>
+               <td align="center">신고대상ID </td><td><input type='text' name='re_mbr_id' style='width:100%' value='${reportVO.re_mbr_id}' readonly="readonly"></td>
                </tr>
                <tr>
                <td align="center"><br><br><br><br><br>신고 내용</td><td colspan="2"><textarea name = 'repo_content' rows="10" cols="210" style="width: 100%"></textarea></td>
