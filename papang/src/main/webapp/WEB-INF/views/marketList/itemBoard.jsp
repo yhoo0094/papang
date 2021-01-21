@@ -86,7 +86,7 @@ margin: 20px 0 0 38px;
 			</thead>
 			<tbody>
 				<c:forEach var="pro" items="${ pro }">
-				<c:if test="${ empty pro.pro_cnt }">
+				<c:if test="${ empty pro.pro_cnt && !empty admin.ad_id}">
 					<tr class="marketTableTr">
 					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
 						<td><p style="display: none">${pro.pro_no}</p>

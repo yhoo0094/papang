@@ -41,10 +41,35 @@ td {
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
-$(function(){
-	var IMP = window.IMP; // 생략가능
-    IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
-})
+	$(function() {
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
+	})
+	
+	function formCheck() {
+		var f = document.orderForm;
+		if (f.addressee.value == "") {
+			alert("수신인을 입력하세요");
+			f.addressee.focus();
+			return false;
+		}
+		if (f.post.value == "") {
+			alert("우편번호를 입력하세요");
+			f.post.focus();
+			return false;
+		}
+		if (f.addr1.value == "") {
+			alert("주소를 입력하세요");
+			f.addr1.focus();
+			return false;
+		}
+		if (f.addr2.value == "") {
+			alert("상세주소를 입력하세요");
+			f.addr2.focus();
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
@@ -121,6 +146,7 @@ $(function(){
 					value="${sum}" />원</strong></h3>
 		</div>
 		<div align="right">
+		<c:if test="${sum != 0}">
 		<button type="button" class="infoBtn">주문정보 입력</button>
 		<script type="text/javascript">
 			$(".infoBtn").click(function(){
@@ -128,6 +154,7 @@ $(function(){
 				$(".infoBtn").slideUp();
 			});
 		</script>
+		</c:if>
 		</div>
 	</div>
 	<br>
@@ -167,7 +194,7 @@ $(function(){
 			</div>
 			<div  align="right">
 				<input type="hidden" name="order_sum" id="amount" value="${sum}">
-				<button type="button" id="OrderBtn" class="btnRed bBig">전체상품 구매</button>
+				<button type="button" id="OrderBtn" class="btnRed bBig" onclick="return formCheck()">전체상품 구매</button>
 				<button type="button" id="cancelBtn" class="btnGrey bBig">입력취소</button>
 				<script type="text/javascript">
 				$("#cancelBtn").click(function(){

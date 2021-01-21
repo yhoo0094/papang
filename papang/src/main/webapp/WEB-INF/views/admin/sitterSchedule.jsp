@@ -16,7 +16,7 @@
  	$('#pwbtn').on('click',function(){
  		if($('#pw').val() !='' && $('#pw').val() !=null){
  		if($('#pw_hidden').val()==$('#pw').val()){
- 			alert('비밀번호 확인 됬습니다.');
+ 			alert('비밀번호 확인 됐습니다.');
  		}else{
  			alert('비밀번호 틀렸습니다.');
  			$('#pw').focus();
@@ -266,7 +266,7 @@ function monthSelect() {
 		var pay =$("#srv_pay").val();
 		if($('#pw').val() !='' && $('#pw').val() !=null){
 	 		if($('#pw_hidden').val()==$('#pw').val()){
-	 			alert('비밀번호 확인 됬습니다.');
+	 			alert('비밀번호 확인 됐습니다.');
 	 			$.ajax({ 
 				    url: "../monthinsert",  
 				    type: 'POST',  
