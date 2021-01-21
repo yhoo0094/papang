@@ -118,13 +118,13 @@ margin: 20px 0 0 38px;
 										class="card-img-top"
 										src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"></a>
 									<div class="card-body">
-									<c:if test="${pro.pro_cnt == 0}">
-									<font style="color: red;">품절</font>
-									</c:if>
 										<h4 class="card-title">
 											<a class="proTitle" href="../market/itemDetail?pro_no=${pro.pro_no}">${pro.pro_name}</a>
 										</h4>
-										<p class="card-text">&#8361;${pro.pro_price}</p>
+										<p class="card-text" style="display: inline-block;">&#8361;${pro.pro_price}</p>
+										<c:if test="${pro.pro_cnt == 0}">
+											<font style="color: red; float: right;">품절</font>
+										</c:if>
 									</div>
 								</div>
 							</div>
