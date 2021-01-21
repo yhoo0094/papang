@@ -144,8 +144,7 @@ $(()=>{
 	<h1 class="mt-4 mb-3 font-sy" >${pro.pro_name}</h1>
 	<div class="row">
 			<img class="img-fluid rounded mb-4"
-				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"
-				alt="${pro.pro_name}">
+				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}" alt="${pro.pro_name}">
 		<div class="col-lg-6 proInfo">
 			<p />
 
@@ -156,7 +155,7 @@ $(()=>{
 					<tr>
 						<c:if test="${!empty admin.ad_id}">
 								<td colspan="2" align="right"><button type="button" class="bMedium btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button>
-								<button type="button" class="bMedium btnGray" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button>
+								<button type="button" class="bMedium btnGray" id="itemDelete">삭제</button>
 								<button type="button" class="bMedium btnRed" onclick="location.href='/papang/admin/warehousing?pro_no=${pro.pro_no}&pro_name=${pro.pro_name}'">입고하기</button></td>
 						</c:if>
 					</tr>
@@ -171,12 +170,14 @@ $(()=>{
 						</tr>
 						<tr>
 							<th scope="row"><span>상품번호</span></th>
-							<td><span><strong>${pro.pro_no}</strong></span></td>
+							<td><span><strong>${pro.pro_no}</strong></span>
+							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>상품재고</span></th>
 							<td><c:if test="${pro.pro_cnt != 0}"><span><strong>${pro.pro_cnt}</strong></span></c:if>
-							<c:if test="${pro.pro_cnt == 0}"><span class="worh"><strong>재고가 없습니다</strong></span></c:if></td>
+							<c:if test="${pro.pro_cnt == 0}"><span class="worh"><strong>재고가 없습니다</strong></span></c:if>
+							<input type="hidden" value="${pro.pro_cnt}" id="pro_cnt"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>기업코드</span></th>
@@ -229,7 +230,6 @@ $(()=>{
 					<table style="width: 740px;">
 						<tr>
 							<th scope="row" rowspan="2" style="width: 120px;">
-							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
 								<span>구입수량</span>
 							</th>
 							<td class="tableBor" rowspan="2"> 
@@ -274,9 +274,10 @@ $(()=>{
 	<script>
 	// 수량 설정
 	 $("#plusBtn").click(function() { 
+		var pro_cnt = $("#pro_cnt").val();
 		var num = $(".numBox").val();
 		var plusNum = Number(num) + 1;
-		if(plusNum > ${pro.pro_cnt}){
+		if(plusNum > pro_cnt){
 			$(".numBox").val(num);
 		} else{
 			$(".numBox").val(plusNum);
@@ -291,7 +292,13 @@ $(()=>{
 			$(".numBox").val(minusNum);
 		}
 	});
-
+	// 삭제
+	$("#itemDelete").click(function() { 
+		var pro_no = $("#pro_no").val();
+		if(confirm("상품을 삭제하시겠습니까?")){
+			location.href='/papang/market/itemDelete?pro_no='+pro_no;
+		}
+	})
 	</script>
 	
 	<!-- 상세보기 -->

@@ -40,19 +40,13 @@ td {
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript">
-	$(function() {
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
-	})
-</script>
 </head>
 <body>
 	<br>
 	<h3 style="display: inline;">장바구니</h3>
 	<div align="right">
 		<!-- button id="updateBtn" class="btnYellow" onclick="location.href='/papang/market/cartUpdate'">수량 수정</button -->
-		<button id="deleteBtn" class="btnGray">선택 삭제</button>
+		<button id="deleteBtn" class="btnGray" style="width: 100px">선택 삭제</button>
 	</div>
 	<hr />
 	<br>
@@ -317,9 +311,8 @@ $("#OrderBtn").on("click",function(){
 		f.addr2.focus();
 		return false;
 	}
-	return true;
-	
-	if(confirm("전체상품을 주문하시겠습니까?")){
+	if (f.addressee.value != "" && f.post.value != "" && f.addr1.value != "" && f.addr2.value != "") {
+		if(confirm("전체상품을 주문하시겠습니까?")){
 	     // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 	        var amount = $("#amount").val();
 	     	var addressee = $("#addressee").val();
@@ -340,7 +333,7 @@ $("#OrderBtn").on("click",function(){
 			
 			
 			var IMP = window.IMP; // 생략가능
-   			 IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
+   			IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
 	     	IMP.request_pay({
 	     	    pg : 'inicis',
 	     	    pay_method : 'card',
@@ -397,7 +390,8 @@ $("#OrderBtn").on("click",function(){
 	     	    }
 	     	});
 		}
-	})
+	}
+})
 
 $("#deleteBtn").click(function(){
 	var confirm_val = confirm("선택 상품을 삭제하시겠습니까?");
