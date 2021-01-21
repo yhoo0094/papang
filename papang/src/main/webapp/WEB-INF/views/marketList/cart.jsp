@@ -45,31 +45,6 @@ td {
 		var IMP = window.IMP; // 생략가능
 		IMP.init('imp35581825'); // "가맹점 식별코드"를 사용
 	})
-	
-	function formCheck() {
-		var f = document.orderForm;
-		if (f.addressee.value == "") {
-			alert("수신인을 입력하세요");
-			f.addressee.focus();
-			return false;
-		}
-		if (f.post.value == "") {
-			alert("우편번호를 입력하세요");
-			f.post.focus();
-			return false;
-		}
-		if (f.addr1.value == "") {
-			alert("주소를 입력하세요");
-			f.addr1.focus();
-			return false;
-		}
-		if (f.addr2.value == "") {
-			alert("상세주소를 입력하세요");
-			f.addr2.focus();
-			return false;
-		}
-		return true;
-	}
 </script>
 </head>
 <body>
@@ -147,7 +122,7 @@ td {
 		</div>
 		<div align="right">
 		<c:if test="${sum != 0}">
-		<button type="button" class="infoBtn">주문정보 입력</button>
+		<button type="button" class="infoBtn btnYellow bMedium">주문정보 입력</button>
 		<script type="text/javascript">
 			$(".infoBtn").click(function(){
 				$(".orderAll").slideDown();
@@ -158,9 +133,9 @@ td {
 		</div>
 	</div>
 	<br>
-	<div class="orderAll">
-		<form id="orderForm" method="post" autocomplete="off">
-			<div style="background-color: white; width: 50%" align="left">
+	<div class="orderAll" style="margin-top: 3%;">
+		<form id="orderForm" name="frm" method="post" autocomplete="off">
+			<div style="width: 50%; display: inline-block; margin-left: 10%;" align="left">
 				<h3>주문정보</h3>
 				<table class="table">
 					<tr>
@@ -170,7 +145,7 @@ td {
 					</tr>
 					<tr>
 						<td class="txt">우편번호</td>
-						<td><input type="text" id="post" name="post" style="width: 80%;"
+						<td><input type="text" id="post" name="post" style="width: 60%;"
 							class="form-control" value="${user.mbr_post}" readonly>
 						<input type="button" id="postSearch" class="btnYellow"
 							value="우편번호 검색" onclick="sample2_execDaumPostcode()" style="padding: 5px; width: 100px;"></td>
@@ -192,10 +167,10 @@ td {
 					</tr>
 				</table>
 			</div>
-			<div  align="right">
+			<div style="float: right; margin-top: 15%">
 				<input type="hidden" name="order_sum" id="amount" value="${sum}">
-				<button type="button" id="OrderBtn" class="btnRed bBig" onclick="return formCheck()">전체상품 구매</button>
-				<button type="button" id="cancelBtn" class="btnGrey bBig">입력취소</button>
+				<button type="button" id="OrderBtn" class="btnRed bBig">전체상품 구매</button>
+				<button type="button" id="cancelBtn" class="btnGray bBig">입력취소</button>
 				<script type="text/javascript">
 				$("#cancelBtn").click(function(){
 					$(".orderAll").slideUp();
@@ -320,6 +295,29 @@ $(".chBox").click(function(){
 });
 // 전체상품 주문 -> 결제
 $("#OrderBtn").on("click",function(){
+	
+	var f = document.frm;
+	if (f.addressee.value == "") {
+		alert("수신인을 입력하세요");
+		f.addressee.focus();
+		return false;
+	}
+	if (f.post.value == "") {
+		alert("우편번호를 입력하세요");
+		f.post.focus();
+		return false;
+	}
+	if (f.addr1.value == "") {
+		alert("주소를 입력하세요");
+		f.addr1.focus();
+		return false;
+	}
+	if (f.addr2.value == "") {
+		alert("상세주소를 입력하세요");
+		f.addr2.focus();
+		return false;
+	}
+	return true;
 	
 	if(confirm("전체상품을 주문하시겠습니까?")){
 	     // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드

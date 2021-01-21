@@ -179,6 +179,9 @@
 .btnUpdate{margin-left: 10px;}
 body {background-color: #fff5d2;}
 .inin{display: inline-block;}
+.Bigtitle {
+    margin: 20px 0 0 168px;
+}
 </style>
 <script>
 $(()=>{
