@@ -161,7 +161,8 @@ $(()=>{
 					<tr>
 						<c:if test="${!empty admin.ad_id}">
 								<td colspan="2" align="right"><button type="button" class="bMedium btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button>
-								<button type="button" class="bMedium btnRed" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button></td>
+								<button type="button" class="bMedium btnGray" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button>
+								<button type="button" class="bMedium btnRed" onclick="location.href='/papang/admin/warehousing?pro_no=${pro.pro_no}&pro_name=${pro.pro_name}'">입고하기</button></td>
 						</c:if>
 					</tr>
 						<tr>
