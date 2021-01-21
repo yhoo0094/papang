@@ -36,9 +36,9 @@ p.loginpage {
 	color: #666666;
 	margin: 0px;
 }
-.container{max-width: 1685px;}
 .ml-auto {margin-left: 23%!important;}
 .nav-item{margin: 0 30px 0 0;}
+
 
 </style>
 <script type="text/javascript">
@@ -145,6 +145,26 @@ p.loginpage {
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/login.css">
 <!--===============================================================================================-->
+<style>
+.containerDiv {
+	max-width: 1685px;
+}
+
+
+.nav-item {
+	margin: 0 30px 0 0;
+}
+.ml-auto {
+    margin-left: 17% !important;
+}
+.container {
+    max-width: 1685px;
+}
+.navbar-dark .navbar-nav .nav-link {
+ color: #fff5d2;
+}
+
+</style>
 </head>
 <body style="background-color: #fff5d2;">
 

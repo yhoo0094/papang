@@ -135,6 +135,23 @@ thead, #dataTable_filter, #dataTable_length {
 .linebb{display: inline-block;}
 .nonediv{display: none;}
 .count{width: 100%;}
+
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
+
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
@@ -253,7 +270,7 @@ thead, #dataTable_filter, #dataTable_length {
 			</thead>
 			<tbody>
 			<c:forEach items="${cookList}" var="cook">
-				<tr class="dataTableTr">
+				<tr class="dataTableTr fadein">
 					<td class="cookno_hidden">${cook.COOK_NO}</td>
 					<td class="c_box">
 						<ol class="lst_recipe cool_recipes">

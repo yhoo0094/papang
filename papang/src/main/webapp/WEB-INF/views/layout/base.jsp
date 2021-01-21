@@ -407,12 +407,12 @@ figure.snip1200 {
 	max-width: 1685px;
 }
 
-.ml-auto {
-	margin-left: 23% !important;
-}
 
 .nav-item {
 	margin: 0 30px 0 0;
+}
+.ml-auto {
+    margin-left: 17% !important;
 }
 </style>
 <script type="text/javascript">
@@ -494,11 +494,10 @@ figure.snip1200 {
 					align="center">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/community/board">공지사항/커뮤니티</a>
+							href="${pageContext.request.contextPath}/community/board">공지/커뮤니티</a>
 						</li>
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/marketList/itemBoard">파팡
-								Shop</a></li>
+							href="${pageContext.request.contextPath}/marketList/itemBoard">Shop팡</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="${pageContext.request.contextPath}/activity/playList">Play팡</a>
 						</li>
@@ -509,7 +508,7 @@ figure.snip1200 {
 							href="${pageContext.request.contextPath}/vaccination/vaccinationList">예방접종
 								일지</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="${pageContext.request.contextPath}/sitter/board">시터예약</a></li>
+							href="${pageContext.request.contextPath}/sitter/board">BABY시터예약</a></li>
 					</ul>
 				</div>
 				<div class="util right" align="right" style="margin-bottom: 70px">
