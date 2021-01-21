@@ -87,42 +87,7 @@ $(()=>{
 								alert("카드에 담겼습니다");
 								$(".numBox").val("1");
 							}
-						}, error : function() {
-							alert("실패");
-						}
-					})
-				}
-			},
-			error : function() {
-				alert("장바구니 담기 실패");
-			}
-		})
-		
-	})
-	
-	
-		// 바로구매 버튼 클릭
-	$("#directBtn").click(function() {
-		var pro_no = $("#pro_no").val();
-		var bag_cnt = $(".numBox").val();
-		var data = {pro_no : pro_no,
-					bag_cnt : bag_cnt};
-		var chk = {pro_no : pro_no}
-		$.ajax({
-			url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
-			type : 'get',
-			success : function(rs) {
-				if (rs != 0) { // 중복있음
-					alert("장바구니에 이미 담긴 상품입니다");
-				} else {
-					// 카드에 담기는거..
-					$.ajax({
-						url : "${pageContext.request.contextPath}/market/cartInsert",
-						type : "post",
-						data : data,
-						success : function(result) {
-							if (result == 1) {
-								$(".numBox").val("1");
+							if(confirm("장바구니로 이동하시겠습니까?")){
 								location.href="${pageContext.request.contextPath}/marketList/cart"
 							}
 						}, error : function() {
@@ -135,13 +100,43 @@ $(()=>{
 				alert("장바구니 담기 실패");
 			}
 		})
-		
 	})
 	
-
-	
-	
-	
+// 	// 바로구매 버튼 클릭
+// 	$("#directBtn").click(function() {
+// 		var pro_no = $("#pro_no").val();
+// 		var bag_cnt = $(".numBox").val();
+// 		var data = {pro_no : pro_no,
+// 					bag_cnt : bag_cnt};
+// 		var chk = {pro_no : pro_no}
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
+// 			type : 'get',
+// 			success : function(rs) {
+// 				if (rs != 0) { // 중복있음
+// 					alert("장바구니에 이미 담긴 상품입니다");
+// 				} else {
+// 					// 카드에 담기는거..
+// 					$.ajax({
+// 						url : "${pageContext.request.contextPath}/market/cartInsert",
+// 						type : "post",
+// 						data : data,
+// 						success : function(result) {
+// 							if (result == 1) {
+// 								$(".numBox").val("1");
+// 								location.href="${pageContext.request.contextPath}/marketList/cart"
+// 							}
+// 						}, error : function() {
+// 							alert("실패");
+// 						}
+// 					})
+// 				}
+// 			},
+// 			error : function() {
+// 				alert("장바구니 담기 실패");
+// 			}
+// 		})
+// 	})
 });
 </script>
 
@@ -246,9 +241,9 @@ $(()=>{
 							<td rowspan="2" class="allCount">
 								 <button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button> 
 							</td>
-							<td rowspan="2">
+							<!-- td rowspan="2">
 								<button type="submit" class="btnRed bMedium" id="directBtn">바로구매</button> 
-							</td>
+							</td -->
 						</tr>
 						<tr>
 							<td class="tableBor" rowspan="1"><button type="button" id="minusBtn">-</button></td>

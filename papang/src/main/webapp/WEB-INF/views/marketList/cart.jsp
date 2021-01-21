@@ -167,10 +167,10 @@ td {
 					</tr>
 				</table>
 			</div>
-			<div style="float: right; margin-top: 15%">
+			<div style="float: right; margin-top: 100px;">
 				<input type="hidden" name="order_sum" id="amount" value="${sum}">
-				<button type="button" id="OrderBtn" class="btnRed bBig">전체상품 구매</button>
-				<button type="button" id="cancelBtn" class="btnGray bBig">입력취소</button>
+				<button type="button" id="OrderBtn" class="btnRed bMedium">전체상품 구매</button>
+				<button type="button" id="cancelBtn" class="btnGray bMedium">입력취소</button>
 				<script type="text/javascript">
 				$("#cancelBtn").click(function(){
 					$(".orderAll").slideUp();
