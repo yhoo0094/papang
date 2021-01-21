@@ -52,6 +52,9 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 
 }
 .famImage{width: 420px;height: 350px;}
+.Bigtitle {
+    margin: 20px 0 0 38px;
+}
 </style>
 <script>
 

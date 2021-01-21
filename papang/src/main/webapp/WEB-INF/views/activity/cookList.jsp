@@ -151,7 +151,9 @@ thead, #dataTable_filter, #dataTable_length {
 
 }
 .famImage{width: 420px;height: 350px;}
-
+.Bigtitle {
+    margin: 20px 0 0 38px;
+}
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
