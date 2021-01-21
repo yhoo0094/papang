@@ -69,13 +69,13 @@
 	</delete>
 
 	<!-- 회원 전체조회 -->
-	<select id="getListMember"
-		resultType="map">
+	<select id="getListMember" resultType="map">
 		SELECT DISTINCT M.MBR_ID, M.MBR_AUTHOR, M.MBR_PHONE, M.MBR_STATUS,
 		M.MBR_NAME,NVL(V.RCNT,0)AS RCNT
 		FROM MEMBER M
 		LEFT OUTER JOIN V2 V
-		ON M.MBR_ID = V.MBR_ID
+		ON
+		M.MBR_ID = V.MBR_ID
 		<where>
 			<if test="mbr_author != null and mbr_author !=''">
 				MBR_AUTHOR = #{mbr_author}
@@ -113,10 +113,20 @@
 	<update id="deleteMember"
 		parameterType="co.company.papang.vo.MemberVO">
 		update member set
-		mbr_status =
-		'탈퇴'
-		where mbr_id =
-		#{mbr_id}
+		mbr_status = '탈퇴',
+		mbr_pw = null,
+		mbr_name = null,
+		mbr_birth = null,
+		mbr_post = null,
+		mbr_addr1 = null,
+		mbr_addr2 = null,
+		mbr_bank = null,
+		mbr_account = null,
+		mbr_gender = null,
+		mbr_email = null,
+		mbr_pic = null,
+		mbr_addr3 = null
+		where mbr_id = #{mbr_id}
 	</update>
 
 
@@ -508,7 +518,8 @@
 	<select id='resultmonthpayone' resultType="map"
 		parameterType="Sitter_revVO3">
 		SELECT
-		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,to_char(S.MONTH_DATE,'yy-mm-dd') as MONTH_DATE
+		S.SIT_MBR_ID,S.SRV_DATE,S.SRV_PAY,M.MBR_BANK,M.MBR_ACCOUNT,to_char(S.MONTH_DATE,'yy-mm-dd')
+		as MONTH_DATE
 		FROM
 		SITTER_MONTH S ,MEMBER M
 		WHERE S.SIT_MBR_ID=M.MBR_ID
@@ -517,7 +528,8 @@
 	</select>
 
 	<select id='allsum' resultType="string">
-		SELECT (SELECT SUM(SRV_PAY) FROM SITTER_REV
+		SELECT (SELECT SUM(SRV_PAY) FROM
+		SITTER_REV
 		WHERE SRV_STATUS='결제완료')+(SELECT SUM(ORDER_SUM) FROM
 		ORDER_INFO)-NVL((SELECT
 		SUM(SRV_PAY) FROM SITTER_MONTH),0) AS ALLSUM
@@ -525,11 +537,13 @@
 	</select>
 
 	<select id='rownum' resultType="string">
-		select sit_payday from sitter where rownum =1
+		select sit_payday from sitter
+		where rownum =1
 	</select>
 
 	<update id='uppayday' parameterType='SitterVO'>
-		update sitter set sit_payday=#{sit_payday}
+		update sitter set
+		sit_payday=#{sit_payday}
 	</update>
 
 
@@ -544,7 +558,8 @@
 
 
 	<select id='sit_mbr' resultType="SitterVO">
-		select sit_mbr_id,sit_payday from sitter
+		select sit_mbr_id,sit_payday
+		from sitter
 	</select>
 
 
