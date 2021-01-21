@@ -158,6 +158,7 @@
 					contentType : 'application/json',
 					success : function(data) {
 						alert('탈퇴 되었습니다');
+						location.reload();
 						memberList();
 					},
 					error : function(xhr, status, message) {

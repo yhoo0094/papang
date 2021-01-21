@@ -363,7 +363,7 @@ thead, #dataTable_filter, #dataTable_length {
 									<tr>
 										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 										<td><c:if test="${v.rate == '　'}">평가없음</c:if> <c:if
-												test="${v.rate != null}"><font color=yellow>${v.rate}</c:if></td>
+												test="${v.rate != null}"><font color='#ff971d'>${v.rate}</c:if></td>
 									</tr>
 									<tr>
 										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>

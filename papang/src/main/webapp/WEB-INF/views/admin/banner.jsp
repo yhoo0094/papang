@@ -159,7 +159,7 @@
 	   			$('#ban_pic_name').focus();
 	   		}
 	   		
-			if($('#nf').val() =='' || $('#nf').val()== null){
+			if($('#la').html() =='선택한 파일 없음'){
 	   			alert('파일을 첨부 하세요');
 	   			flag=false;
 	   			$('#nf').focus();
