@@ -125,7 +125,7 @@ $(() => {
 		    <br/>
 		    손길이 함게합니다.
             <br/>
-             	파파존스는 언제 어디서나
+             	파팡 언제 어디서나
             <br/>
              	 우리아이들과
              <br/>	
@@ -182,7 +182,7 @@ $(() => {
 
 <hr/>
     <!-- Portfolio Section -->
-    <h2 class="fontTitle">파파존스 SHOP</h2><p class="moreClass" id="moreBtn">더보기 ></p>
+    <h2 class="fontTitle">Papang SHOP</h2><p class="moreClass" id="moreBtn">더보기 ></p>
     <div class="row">
     <c:forEach items="${products}" var="product">
       <div class="col-lg-4 col-sm-6 portfolio-item mainBox">
