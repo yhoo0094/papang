@@ -61,6 +61,21 @@ thead, #dataTable_filter, #dataTable_length {
 	font-size: 35px;
     font-weight: bold;
 }
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
 </style>
 <script type="text/javascript">
  	$(()=>{
@@ -176,7 +191,7 @@ thead, #dataTable_filter, #dataTable_length {
 					<th>가</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="fadein">
 				<c:forEach items="${sitterVOChkList}" var="v">
 					<tr class="dataTableTr">
 						<td>
