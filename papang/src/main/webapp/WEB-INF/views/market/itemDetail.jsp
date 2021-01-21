@@ -58,7 +58,7 @@ h1 {
 hr{width: 760px;}
 .bMedium {width: 170px; font-size:20px;margin-left: 30px;}
 /* table,td,th {border:1px solid black;} */
-.tableBor{ width: 10px;}
+.tableBor{ width: 10px;text-align: center;}
 .allCount{width: 160px;text-align: center;font-size: 20px;font-weight: bold;}
 </style>
 <script>
@@ -226,9 +226,9 @@ $(()=>{
 				<hr/>
 				<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
 				<div>
-					<table style="width: 1140px;">
+					<table style="width: 740px;">
 						<tr>
-							<th scope="row" rowspan="2" style="width: 200px;">
+							<th scope="row" rowspan="2" style="width: 120px;">
 							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
 								<span>구입수량</span>
 							</th>
