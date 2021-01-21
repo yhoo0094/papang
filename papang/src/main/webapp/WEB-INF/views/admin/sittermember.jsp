@@ -103,7 +103,7 @@
 		//조회 버튼 클릭
 		$('body').on('click', '#btnSelect', function() {
 			var id = $(this).parent().parent().children().eq(0).html();
-			;
+			
 			console.log(id);
 			//특정 사용자 조회
 			$.ajax({
