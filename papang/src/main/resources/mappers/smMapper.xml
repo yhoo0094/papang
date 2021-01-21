@@ -134,10 +134,10 @@
 				AND SIT_PAY <= #{maxPay}
 				]]>
 			</if>
-			<if test="minRate != null and minRate != ''">
+			<if test="minRate != null and minRate != '' and minRate != '1'">
 				AND RATE >= #{minRate}
 			</if>
-			<if test="maxRate != null and maxRate != ''">
+			<if test="maxRate != null and maxRate != '' and maxRate != '5'">
 				<![CDATA[
 				AND RATE <= #{maxRate}
 				]]>
