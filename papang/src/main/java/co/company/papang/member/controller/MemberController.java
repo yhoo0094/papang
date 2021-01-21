@@ -138,17 +138,17 @@ public class MemberController {
 	@PostMapping("/member/login") // post 요청은 로그인 처리
 	public void login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
 			HttpServletResponse response) throws ParseException {
-		System.out.println(member.getMbr_id());
+		response.setContentType("text/html; charset=UTF-8"); // 한국어
+		
 		// 비밀번호 암호화(Sha256)
 		String encryPw = Sha256.encrypt(member.getMbr_pw());
 		member.setMbr_pw(encryPw);
-		String chkPw = log_service.loginCheck(member);
-		response.setContentType("text/html; charset=UTF-8");
-		if (chkPw.equals(member.getMbr_pw())) {
-			member = dao.login(member);
-			if (member.getAuthkey().equals("Y")) {
-				if (member.getMbr_status().equals("활동중")) {
-					session.setAttribute("user", member); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
+		MemberVO mbr = new MemberVO();
+		mbr = dao.login(member);
+		if (mbr != null) {
+			if (mbr.getAuthkey().equals("Y")) {
+				if (mbr.getMbr_status().equals("활동중")) {
+					session.setAttribute("user", mbr); // 회원의 정보들은 user 라는 이름으로 세션에 담는다
 					try {
 						PrintWriter out = response.getWriter();
 						out.println("<script>alert('로그인되었습니다');</script>");
@@ -156,7 +156,7 @@ public class MemberController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-				} else if (member.getMbr_status().equals("탈퇴")) {
+				} else if (mbr.getMbr_status().equals("탈퇴")) {
 					try {
 						PrintWriter out = response.getWriter();
 						out.println("<script>alert('탈퇴한 회원입니다');</script>");
@@ -164,8 +164,8 @@ public class MemberController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-				} else if (member.getMbr_status().equals("활동정지")) {
-					Report_info rinfo = dao.stChk(member);
+				} else if (mbr.getMbr_status().equals("활동정지")) {
+					Report_info rinfo = dao.stChk(mbr);
 					long day = System.currentTimeMillis();
 					System.out.println(day);
 					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
@@ -180,9 +180,9 @@ public class MemberController {
 					System.out.println(day1);
 					System.out.println(day2);
 					if(day2.after(day1)) {
-						dao.updatestatus(member);
-						member = dao.login(member);
-						session.setAttribute("user", member);
+						dao.updatestatus(mbr);
+						//member = dao.login(member);
+						session.setAttribute("user", mbr);
 						try {
 							PrintWriter out = response.getWriter();
 							out.println("<script>alert('"+stDate+"이후로 활동정지가 풀렸습니다.');</script>");
@@ -213,18 +213,18 @@ public class MemberController {
 					e.printStackTrace();
 				}
 			}
-		} else if (chkPw == null || chkPw.equals("")) {
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('없는 아이디 입니다');</script>");
-				out.println("<script>location.href='/papang/member/loginForm';</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+//		} else if (chkPw == null || chkPw.equals("")) {
+//			try {
+//				PrintWriter out = response.getWriter();
+//				out.println("<script>alert('없는 아이디 입니다');</script>");
+//				out.println("<script>location.href='/papang/member/loginForm';</script>");
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인 실패');</script>");
+				out.println("<script>alert('아이디 혹은 비밀번호를 확인해주세요');</script>");
 				out.println("<script>location.href='/papang/member/loginForm';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -242,13 +242,10 @@ public class MemberController {
 	@PostMapping("/member/adminLogin") // url 예전 .do
 	public void adminLogin(@ModelAttribute("admin") AdminVO admin, HttpSession session, Model model,
 			HttpServletResponse response) {
-		String chkAdPw = "";
 		AdminVO ad = new AdminVO();
-		ad = log_service.adminLoginCheck(admin);
-		chkAdPw = ad.getAd_pw();
-		System.out.println("뭐가 또" + chkAdPw);
+		ad = log_service.adminLogin(admin);
 		response.setContentType("text/html; charset=UTF-8");
-		if (chkAdPw.equals(admin.getAd_pw())) {
+		if (ad != null) {
 			admin = dao.adminLogin(admin);
 			session.setAttribute("admin", admin); // 관리자의 정보들은 admin 라는 이름으로 세션에 담는다
 			try {
@@ -258,19 +255,10 @@ public class MemberController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-// 체크해서 나온 비번이 null 일때 (근까 없는 아이디일때) 로그인실패가 아니라 500 에러(null)로 넘어가는데..
-		}  else if (chkAdPw == null || chkAdPw.equals("")) {
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('없는 아이디 입니다');</script>");
-				out.println("<script>location.href='/papang/member/adminLoginForm';</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인 실패');</script>");
+				out.println("<script>alert('아이디 혹은 비밀번호를 확인해주세요');</script>");
 				out.println("<script>location.href='/papang/member/adminLoginForm';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();

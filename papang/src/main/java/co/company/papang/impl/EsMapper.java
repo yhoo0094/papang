@@ -25,10 +25,7 @@ public interface EsMapper {
 	
 	// 로그인
 	public MemberVO login(MemberVO member); // 로그인
-	public String loginCheck(MemberVO member); // 로그인 체크
-	//public int loginChk(MemberVO member); // 유효아이디 체크
 	public AdminVO adminLogin(AdminVO admin); // 관리자로그인
-	public AdminVO adminLoginCheck(AdminVO admin); // 관리자로그인 체크
 	public MemberVO kLogin(MemberVO member); // 카카오로그인
 	public int kakaoCheck(String kid); // 카톡아이디 체크
 	public Report_info stChk(MemberVO member); // 활동 정지일
