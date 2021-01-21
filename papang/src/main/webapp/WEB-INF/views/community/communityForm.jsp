@@ -54,6 +54,7 @@
 }
 </style>
 <script type="text/javascript">
+
 	var $tr;
 	$(()=>{
 		$('#reportCommentSpan').on({ //댓글 신고하기
@@ -137,37 +138,26 @@
 		//댓글쓰기 버튼 클릭
 		$('#commentInsertBtn').on('click',function(){
 			if('${sessionScope.user.mbr_id}' != ''){
-				$.ajax({ 
-				    url: "${pageContext.request.contextPath}/community/commentInsert",  
-				    type: 'POST',  
-				    dataType: 'json', 
-				    data : $("#commentForm").serialize(),
-				    success: function(community_comVO) {
-				    	location.reload();
-				    }, 
-				    error:function(xhr, status, message) { 
-				        alert(" status: "+status+" er:"+message);
-				    } 
-				 });  
+				if($('#commentArea').val() != '' && $('#commentArea').val() != null){
+					 $.ajax({ 
+					    url: "${pageContext.request.contextPath}/community/commentInsert",  
+					    type: 'POST',  
+					    dataType: 'json', 
+					    data : $("#commentForm").serialize(),
+					    success: function(community_comVO) {
+					    	location.reload();
+					    }, 
+					    error:function(xhr, status, message) { 
+					        alert(" status: "+status+" er:"+message);
+					    } 
+					 });  	 
+				} else {
+					alert("댓글 내용을 입력하세요.");
+				}
 			} else {
-				alert("로그인이 필요합니다.")
+				alert("로그인이 필요합니다.");
 			}
 		});//댓글쓰기 버튼 클릭
-		
-		//업데이트 버튼 클릭
-		$('#updateBtn').on({
-			"click" : function() {
-				$('#communityFormMainForm').attr("action","${pageContext.request.contextPath}/community/update?com_no="+${param.com_no});
-				$('#communityFormMainForm').submit();
-			}
-		});
-		
-		//삭제 버튼 클릭
-		$('#deleteBtn').on({
-			"click" : function() {
-				location.href = "${pageContext.request.contextPath}/community/delete?com_no="+${param.com_no}
-			}
-		});
 		
 		$('#titleFont').on({
 			"click" : function() {
@@ -175,10 +165,52 @@
 			}
 		});
 		
-		if(${update}){
+		if('${update}' == 'true'){
 			alert("수정이 완료되었습니다.")
 		};
+		
+		//삭제 버튼 클릭
+		$('#deleteBtn').on({
+			"click" : function() {
+				if(confirm("정말 삭제하시겠습니까?")){
+					if('${param.com_no}' != ''){
+						var com_no = '${param.com_no}';
+						location.href = "${pageContext.request.contextPath}/community/delete?com_no="+com_no
+					}	
+				}
+			}
+		});
+		
+		//업데이트 버튼 클릭
+		$('#updateBtn').on({
+			"click" : function() {
+				if('${param.com_no}' != ''){
+					var com_no = '${param.com_no}';
+					$('#communityFormMainForm').attr("action","${pageContext.request.contextPath}/community/update?com_no="+com_no);	
+					$('#communityFormMainForm').submit();	
+				}
+				
+			}
+		});
+		
+		//제출하기 버튼 클릭
+		$('#submitBtn').on('click', function(){
+			if($('#com_titleInput').val() == '' || $('#com_titleInput').val() == null){
+				alert("제목을 입력하세요");
+				return false;
+			}
+			if($('#com_categorySelect').val() == '' || $('#com_categorySelect').val() == null){
+				alert("분류를 선택하세요");
+				return false;
+			}
+			if($('#summernote').val() == '' || $('#summernote').val() == null){
+				alert("내용을 입력하세요");
+				return false;
+			}
+			$('#communityFormMainForm').submit();
+		})
 	})
+	
 </script>
 </head>
 <body>
@@ -194,16 +226,16 @@
 					<td class="whiteBackground" width="80%"><c:if
 							test="${not empty param.com_no and communityVO.mbr_id ne sessionScope.user.mbr_id}">
 							<form:input path="com_title" type="text"
-								class="communityFormType" readonly="true" />
+								class="communityFormType" readonly="true"/>
 						</c:if> <c:if
 							test="${empty communityVO.com_no or communityVO.mbr_id eq sessionScope.user.mbr_id}">
-							<form:input path="com_title" type="text"
+							<form:input path="com_title" type="text" id="com_titleInput"
 								class="communityFormType" />
 						</c:if></td>
 				</tr>
 				<tr>
 					<td align="center" class="strongYellow">분류</td>
-					<td class="whiteBackground"><select name="com_category"
+					<td class="whiteBackground"><select name="com_category" id="com_categorySelect"
 						class="communityFormType"
 						<c:if test="${not empty communityVO.com_no and communityVO.mbr_id != sessionScope.user.mbr_id}">
 							disabled
@@ -248,7 +280,7 @@
 					<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 				</c:if>
 				<c:if test="${empty communityVO.com_no}">
-					<button type="submit" id="submitBtn" class="btnYellow bMedium">제출하기</button>
+					<button type="button" id="submitBtn" class="btnYellow bMedium">제출하기</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" id="gobackBtn" class="btnGray bMedium">취소</button>
 				</c:if>
@@ -277,7 +309,7 @@
 				id="commentForm" method="post">
 				<table style="width: 100%">
 					<tr>
-						<td width="90%"><textarea name="cc_content" rows="5"
+						<td width="90%"><textarea name="cc_content" rows="5" id="commentArea"
 								cols="102" name="comm" style="width: 100%"></textarea> <input
 							type="hidden" value="${communityVO.com_no}" name="com_no">
 							<input type="hidden" value="${communityVO.com_category}"

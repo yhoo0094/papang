@@ -13,22 +13,18 @@ public class LoginServiceImpl implements LoginService{
 	@Autowired EsMapper dao;
 
 	@Override
-	public String loginCheck(MemberVO member) {
-		return dao.loginCheck(member);
-	}
-//	@Override
-//	public int loginChk(MemberVO member) {
-//		return dao.loginChk(member);
-//	}
-
-	@Override
-	public AdminVO adminLoginCheck(AdminVO admin) {
-		return dao.adminLoginCheck(admin);
-	}
-
-	@Override
 	public int kakaoCheck(String kid) {
 		return dao.kakaoCheck(kid);
+	}
+
+	@Override
+	public MemberVO login(MemberVO member) {
+		return dao.login(member);
+	}
+
+	@Override
+	public AdminVO adminLogin(AdminVO admin) {
+		return dao.adminLogin(admin);
 	}
 
 

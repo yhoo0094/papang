@@ -77,20 +77,6 @@
 		WHERE ad_id = #{ad_id}
 		  AND ad_pw = #{ad_pw}
 	</select>
-<!-- =========================================================== -->	
-<!-- 로그인 비번체크 -->
-	<!-- 일반회원 -->
-	<select id="loginCheck" resultType="string">
-		SELECT mbr_pw
-		FROM MEMBER
-		WHERE mbr_id = #{mbr_id}
-	</select>
-	<!-- 관리자 -->
-	<select id="adminLoginCheck" resultType="AdminVO">
-		SELECT ad_id, ad_pw
-		FROM ADMIN
-		WHERE ad_id = #{ad_id}
-	</select>
 <!-- =========================================================== -->
 <!-- 로그인시 유효아이디체크..  -->
 	<!-- 일반회원 -->

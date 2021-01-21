@@ -35,7 +35,7 @@ $(()=>{
 
 	$('#insertBtn').on('click',function(){
 		var play_title = $('#frm').find('#play_title').val();
-		var play_category = $('#frm').find('.catecontent').val();
+		var play_category = $("#play_category option:selected").val();
 		var summernote = $('#frm').find('#summernote').val();
 		
 		if(play_title==""|| play_title==null) {
@@ -44,11 +44,11 @@ $(()=>{
 			return false;
 		} 
 		
-		if(play_category==""|| play_category==null) {
+	 	if(play_category==""|| play_category==null||play_category=="-- 카테고리 선택 --") {
 			alert("카테고리를 선택하세요.");
-			//f.play_category.focus();
+			$('#play_category').focus();
 			return false;
-		} 
+		}  
 		
 		if(summernote==""|| summernote==null) {
 			alert("내용을 작성하세요.");
@@ -80,11 +80,11 @@ $(()=>{
 			</div>
 			<div class="cView_category">
 				<select class="in_category" name="play_category" id="play_category">
-					<option> -- 카테고리 선택 --</option>
-					<option class="catecontent" value="예비아빠" <c:if test="${playVO.play_category == '예비아빠'}">selected</c:if>>예비아빠</option>
-					<option class="catecontent" value="만0~1세" <c:if test="${playVO.play_category == '만0~1세'}">selected</c:if>>만0~1세</option>
-					<option class="catecontent" value="만2세" <c:if test="${playVO.play_category == '만2세'}">selected</c:if>>만2세</option>
-					<option class="catecontent"  value="만3~6세" <c:if test="${playVO.play_category == '만3~6세'}">selected</c:if>>만3~6세</option>
+					<option>-- 카테고리 선택 --</option>
+					<option value="예비아빠" <c:if test="${playVO.play_category == '예비아빠'}">selected</c:if>>예비아빠</option>
+					<option value="만0~1세" <c:if test="${playVO.play_category == '만0~1세'}">selected</c:if>>만0~1세</option>
+					<option value="만2세" <c:if test="${playVO.play_category == '만2세'}">selected</c:if>>만2세</option>
+					<option value="만3~6세" <c:if test="${playVO.play_category == '만3~6세'}">selected</c:if>>만3~6세</option>
 				</select>
 			</div>
 			<div align="center">

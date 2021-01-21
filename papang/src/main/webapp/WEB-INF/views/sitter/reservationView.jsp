@@ -142,9 +142,8 @@ $(()=>{
 		}
 	})
 	
-	//모달 숨기기
-	$('#sitterRevReviewBtn').on({//후기 쓰기 버튼
-		'click': function() {
+	$('#sitterRevReviewBtn').on({//후기 쓰기 버튼 모달 숨기기
+		'click': function hideModal() {
 			$('#reservationModal').modal("hide");
 			$('#reviewRate').find('option').eq(0).attr({'selected':'selected'});
 	    	$('#reviewComment').text('');
@@ -178,7 +177,16 @@ $(()=>{
 			$('#reviewForm').attr('action','${pageContext.request.contextPath}/sitter/deleteReview')
 		}
 	})
-})
+	
+	$('.btnSubmitForm').on('click', function() {//책갈피
+		if($('#reviewComment').val() == '' || $('#reviewComment').val() == null){
+			alert("후기 내용을 입력하세요");
+			return false;
+		}
+		$('#reviewForm').submit();
+	})
+	
+})//end of function
 
 function getReservatedDayList(){
 	var calenderY = $('.calenderY').text();
@@ -223,7 +231,13 @@ function getReservatedDayList(){
     					    success: function(sitterVOChk) {
     					    	//모달에 시터 정보 뿌리기
     	    					$('#sitterImgTag').attr('src','${pageContext.request.contextPath}/resources/images/sitterProfile/'+sitterVOChk.sit_pic);
-    	    					$('#reservationRateTd').text(sitterVOChk.rate);
+    	    					if(sitterVOChk.rate == '평점 정보가 없습니다.'){
+    	    						console.log(sitterVOChk.rate);
+    	    						$('#reservationRateTd').css('color','black');
+    	    					} else {
+    	    						$('#reservationRateTd').css('color','#ff971d');
+    	    					}
+    					    	$('#reservationRateTd').text(sitterVOChk.rate);
     	    					$('#reservationReportTd').text(sitterVOChk.report);
     					    },
     					    error:function(xhr, status, message) { 
@@ -419,29 +433,29 @@ $(function(){
 					<span id="reservationNumTd" style="display: none;"></span>
 				</div>
 				<div class="modal-body" align="center">
-						<img alt="시터 사진" src="" id="sitterImgTag" style="width: 120px; margin:-115px 0 0 40px;">
-						<table class="reportTd" style="display: inline-block; width: 300px; margin-top: 10px;">
-							<tr>
-								<td align="center" width="55%">시터</td>
-								<td id="reservationSitterIdTd"></td>
-							</tr>
-							<tr>
-								<td align="center">평점</td>
-								<td><span id="reservationRateTd"></span></td>
-							</tr>
-							<tr>
-								<td align="center">제재횟수</td>
-								<td><span id="reservationReportTd"></span>회</td>
-							</tr>
-							<tr>
-								<td width="50%" align="center">예약일</td>
-								<td width="50%" id="reservationDayTd"></td>
-							</tr>
-							<tr>
-								<td align="center">돌봄 비용</td>
-								<td><span id="reservationPriceTd"></span>원</td>
-							</tr>
-						</table>
+					<img alt="시터 사진" src="" id="sitterImgTag" style="width: 120px; margin:-115px 0 0 40px;">
+					<table class="reportTd" style="display: inline-block; width: 300px; margin-top: 10px;">
+						<tr>
+							<td align="center" width="55%">시터</td>
+							<td id="reservationSitterIdTd"></td>
+						</tr>
+						<tr>
+							<td align="center">평점</td>
+							<td><span id="reservationRateTd" style="color: #ff971d"></span></td>
+						</tr>
+						<tr>
+							<td align="center">제재횟수</td>
+							<td><span id="reservationReportTd"></span>회</td>
+						</tr>
+						<tr>
+							<td width="50%" align="center">예약일</td>
+							<td width="50%" id="reservationDayTd"></td>
+						</tr>
+						<tr>
+							<td align="center">돌봄 비용</td>
+							<td><span id="reservationPriceTd"></span>원</td>
+						</tr>
+					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" id="sitterRevPayBtn" class="btn btn-primary">결제하기</button>
@@ -465,12 +479,12 @@ $(function(){
 					<div class="modal-body" align="center">
 						<div align="left" style="display: inline-block; width: 50%;">후기</div>
 						<div align="right" style="float: right; display: inline-block; width: 50%;">
-							<select name="sc_rate" id="reviewRate">
+							<select name="sc_rate" id="reviewRate" style="color: #ff971d">
 									<option value="5">★★★★★
 									<option value="4">★★★★
 									<option value="3">★★★
 									<option value="2">★★
-									<option value="1" >★
+									<option value="1">★
 							</select>
 						</div>
 						<br><br>			
@@ -479,8 +493,8 @@ $(function(){
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" id="reviewInsertBtn" class="btn btn-primary" >후기쓰기</button>
-						<button type="submit" id="reviewUpdateBtn"  class="btn btn-primary" >수정하기</button>
+						<button type="button" id="reviewInsertBtn" class="btn btn-primary btnSubmitForm" >후기쓰기</button>
+						<button type="button" id="reviewUpdateBtn"  class="btn btn-primary btnSubmitForm" >수정하기</button>
 						<button type="submit" id="reviewDeleteBtn"  class="btn btn-primary" >삭제하기</button>
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소하기</button>
 					</div>
