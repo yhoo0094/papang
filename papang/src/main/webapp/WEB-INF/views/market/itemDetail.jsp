@@ -58,7 +58,7 @@ h1 {
 hr{width: 760px;}
 .bMedium {width: 170px; font-size:20px;margin-left: 30px;}
 /* table,td,th {border:1px solid black;} */
-.tableBor{ width: 10px;}
+.tableBor{ width: 10px;text-align: center;}
 .allCount{width: 160px;text-align: center;font-size: 20px;font-weight: bold;}
 </style>
 <script>
@@ -87,42 +87,7 @@ $(()=>{
 								alert("카드에 담겼습니다");
 								$(".numBox").val("1");
 							}
-						}, error : function() {
-							alert("실패");
-						}
-					})
-				}
-			},
-			error : function() {
-				alert("장바구니 담기 실패");
-			}
-		})
-		
-	})
-	
-	
-		// 바로구매 버튼 클릭
-	$("#directBtn").click(function() {
-		var pro_no = $("#pro_no").val();
-		var bag_cnt = $(".numBox").val();
-		var data = {pro_no : pro_no,
-					bag_cnt : bag_cnt};
-		var chk = {pro_no : pro_no}
-		$.ajax({
-			url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
-			type : 'get',
-			success : function(rs) {
-				if (rs != 0) { // 중복있음
-					alert("장바구니에 이미 담긴 상품입니다");
-				} else {
-					// 카드에 담기는거..
-					$.ajax({
-						url : "${pageContext.request.contextPath}/market/cartInsert",
-						type : "post",
-						data : data,
-						success : function(result) {
-							if (result == 1) {
-								$(".numBox").val("1");
+							if(confirm("장바구니로 이동하시겠습니까?")){
 								location.href="${pageContext.request.contextPath}/marketList/cart"
 							}
 						}, error : function() {
@@ -135,13 +100,43 @@ $(()=>{
 				alert("장바구니 담기 실패");
 			}
 		})
-		
 	})
 	
-
-	
-	
-	
+// 	// 바로구매 버튼 클릭
+// 	$("#directBtn").click(function() {
+// 		var pro_no = $("#pro_no").val();
+// 		var bag_cnt = $(".numBox").val();
+// 		var data = {pro_no : pro_no,
+// 					bag_cnt : bag_cnt};
+// 		var chk = {pro_no : pro_no}
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/ajax/cartCnt?pro_no="+pro_no,
+// 			type : 'get',
+// 			success : function(rs) {
+// 				if (rs != 0) { // 중복있음
+// 					alert("장바구니에 이미 담긴 상품입니다");
+// 				} else {
+// 					// 카드에 담기는거..
+// 					$.ajax({
+// 						url : "${pageContext.request.contextPath}/market/cartInsert",
+// 						type : "post",
+// 						data : data,
+// 						success : function(result) {
+// 							if (result == 1) {
+// 								$(".numBox").val("1");
+// 								location.href="${pageContext.request.contextPath}/marketList/cart"
+// 							}
+// 						}, error : function() {
+// 							alert("실패");
+// 						}
+// 					})
+// 				}
+// 			},
+// 			error : function() {
+// 				alert("장바구니 담기 실패");
+// 			}
+// 		})
+// 	})
 });
 </script>
 
@@ -149,8 +144,7 @@ $(()=>{
 	<h1 class="mt-4 mb-3 font-sy" >${pro.pro_name}</h1>
 	<div class="row">
 			<img class="img-fluid rounded mb-4"
-				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}"
-				alt="${pro.pro_name}">
+				src="${pageContext.request.contextPath}/resources/images/market/${pro.pro_pic}" alt="${pro.pro_name}">
 		<div class="col-lg-6 proInfo">
 			<p />
 
@@ -161,7 +155,7 @@ $(()=>{
 					<tr>
 						<c:if test="${!empty admin.ad_id}">
 								<td colspan="2" align="right"><button type="button" class="bMedium btnYellow" id="itemUpdate" onclick="location.href='/papang/market/itemUpdateForm?pro_no=${pro.pro_no}'">수정</button>
-								<button type="button" class="bMedium btnGray" id="itemDelete" onclick="location.href='/papang/market/itemDelete?pro_no=${pro.pro_no}'">삭제</button>
+								<button type="button" class="bMedium btnGray" id="itemDelete">삭제</button>
 								<button type="button" class="bMedium btnRed" onclick="location.href='/papang/admin/warehousing?pro_no=${pro.pro_no}&pro_name=${pro.pro_name}'">입고하기</button></td>
 						</c:if>
 					</tr>
@@ -176,12 +170,14 @@ $(()=>{
 						</tr>
 						<tr>
 							<th scope="row"><span>상품번호</span></th>
-							<td><span><strong>${pro.pro_no}</strong></span></td>
+							<td><span><strong>${pro.pro_no}</strong></span>
+							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>상품재고</span></th>
 							<td><c:if test="${pro.pro_cnt != 0}"><span><strong>${pro.pro_cnt}</strong></span></c:if>
-							<c:if test="${pro.pro_cnt == 0}"><span class="worh"><strong>재고가 없습니다</strong></span></c:if></td>
+							<c:if test="${pro.pro_cnt == 0}"><span class="worh"><strong>재고가 없습니다</strong></span></c:if>
+							<input type="hidden" value="${pro.pro_cnt}" id="pro_cnt"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span>기업코드</span></th>
@@ -231,10 +227,9 @@ $(()=>{
 				<hr/>
 				<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
 				<div>
-					<table style="width: 1140px;">
+					<table style="width: 740px;">
 						<tr>
-							<th scope="row" rowspan="2" style="width: 200px;">
-							<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
+							<th scope="row" rowspan="2" style="width: 120px;">
 								<span>구입수량</span>
 							</th>
 							<td class="tableBor" rowspan="2"> 
@@ -246,9 +241,9 @@ $(()=>{
 							<td rowspan="2" class="allCount">
 								 <button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button> 
 							</td>
-							<td rowspan="2">
+							<!-- td rowspan="2">
 								<button type="submit" class="btnRed bMedium" id="directBtn">바로구매</button> 
-							</td>
+							</td -->
 						</tr>
 						<tr>
 							<td class="tableBor" rowspan="1"><button type="button" id="minusBtn">-</button></td>
@@ -279,9 +274,10 @@ $(()=>{
 	<script>
 	// 수량 설정
 	 $("#plusBtn").click(function() { 
+		var pro_cnt = $("#pro_cnt").val();
 		var num = $(".numBox").val();
 		var plusNum = Number(num) + 1;
-		if(plusNum > ${pro.pro_cnt}){
+		if(plusNum > pro_cnt){
 			$(".numBox").val(num);
 		} else{
 			$(".numBox").val(plusNum);
@@ -296,7 +292,13 @@ $(()=>{
 			$(".numBox").val(minusNum);
 		}
 	});
-
+	// 삭제
+	$("#itemDelete").click(function() { 
+		var pro_no = $("#pro_no").val();
+		if(confirm("상품을 삭제하시겠습니까?")){
+			location.href='/papang/market/itemDelete?pro_no='+pro_no;
+		}
+	})
 	</script>
 	
 	<!-- 상세보기 -->

@@ -107,9 +107,9 @@
 </script>
 <div class="container center_div">
 	<div>
-		<h2>[${used.used_category}] : ${used.used_title}</h2>
+		<h2 style="display: inline-block;">[${used.used_category}] : ${used.used_title}</h2>
 		<c:if test="${user.mbr_id != uc.mbr_id}">
-			<span class="commentMenu" id="reportSpan"> <img class="sirenImg" alt="사이렌사진"
+			<span class="commentMenu" id="reportSpan" style="float: right"> <img class="sirenImg" alt="사이렌사진"
 				src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">신고하기
 			</span>
 			<form action="${pageContext.request.contextPath}/used/report" id="reprotForm">
@@ -144,8 +144,8 @@
 			<tfoot>
 				<tr>
 					<c:if test="${used.mbr_id == user.mbr_id}">
-						<td><button type="button" class="btnYellow" id="usedUpdate" onclick="location.href='/papang/market/usedUpdateForm?used_no=${used.used_no}'">수정</button></td>
-						<td><button type="button" class="btnRed" id="usedDelete" onclick="location.href='/papang/market/usedDelete?used_no=${used.used_no}'">삭제</button></td>
+						<td colspan="3" align="right"><button type="button" class="btnYellow bMedium" id="usedUpdate" onclick="location.href='/papang/market/usedUpdateForm?used_no=${used.used_no}'">수정</button>
+						<button type="button" class="btnRed bMedium" id="usedDelete" onclick="location.href='/papang/market/usedDelete?used_no=${used.used_no}'">삭제</button></td>
 					</c:if>
 				</tr>
 			</tfoot>

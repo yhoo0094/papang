@@ -156,14 +156,14 @@ $(function() {
 			<div class="content_div">
 			 
 				 <form id="fim" name="fim" action="update" method="post" enctype="multipart/form-data" onsubmit="return submitCheck();" > 
-					<p>
+					<span>
 						<label>이름</label> <input class="w3-input" type="text" id="mbr_name"
 							name="mbr_name" readonly value="${ memberVO.mbr_name}">
-					</p>
-					<p>
+					</span>
+					<span>
 						<label>프로필 사진</label> <img class= "img1" id = "mbr_pic" name="mbr_pic" 
 						src="${pageContext.request.contextPath}/images/memberimage/${ memberVO.mbr_pic}"><input type="file" id="uploadFile"  name="uploadFile" value="${ memberVO.mbr_pic}"/>		
-					</p>
+					</span>
 					
 					<p>
 						<label>아이디</label> <input class="w3-input" type="text" id="mbr_id"

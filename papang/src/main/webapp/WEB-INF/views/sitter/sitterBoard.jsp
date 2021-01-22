@@ -61,6 +61,21 @@ thead, #dataTable_filter, #dataTable_length {
 	font-size: 35px;
     font-weight: bold;
 }
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
 </style>
 <script type="text/javascript">
  	$(()=>{
@@ -115,13 +130,15 @@ thead, #dataTable_filter, #dataTable_length {
 					<tr>
 						<td align="center" height="40px">별점</td>
 						<td align="left"><select class="sitterBoardInputSize" name="minRate">
+								<option value="" <c:if test="${sitterVOChk.minRate == null and sitterVOChk.minRate == ''}">selected="selected"</c:if>>선택하세요
 								<option value="5" <c:if test="${sitterVOChk.minRate == 5}">selected="selected"</c:if>>★★★★★
 								<option value="4" <c:if test="${sitterVOChk.minRate == 4}">selected="selected"</c:if>>★★★★
 								<option value="3" <c:if test="${sitterVOChk.minRate == 3}">selected="selected"</c:if>>★★★
 								<option value="2" <c:if test="${sitterVOChk.minRate == 2}">selected="selected"</c:if>>★★
-								<option value="1" <c:if test="${sitterVOChk.minRate == null}">selected="selected"</c:if>>★
+								<option value="1" <c:if test="${sitterVOChk.minRate == 1}">selected="selected"</c:if>>★
 						</select> ~ <select class="sitterBoardInputSize" name="maxRate">
-								<option value="5" <c:if test="${sitterVOChk.maxRate == null}">selected="selected"</c:if>>★★★★★
+								<option value="" <c:if test="${sitterVOChk.minRate == null and sitterVOChk.minRate == ''}">selected="selected"</c:if>>선택하세요
+								<option value="5" <c:if test="${sitterVOChk.minRate == 5}">selected="selected"</c:if>>★★★★★
 								<option value="4" <c:if test="${sitterVOChk.maxRate == 4}">selected="selected"</c:if>>★★★★
 								<option value="3" <c:if test="${sitterVOChk.maxRate == 3}">selected="selected"</c:if>>★★★
 								<option value="2" <c:if test="${sitterVOChk.maxRate == 2}">selected="selected"</c:if>>★★
@@ -174,7 +191,7 @@ thead, #dataTable_filter, #dataTable_length {
 					<th>가</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="fadein">
 				<c:forEach items="${sitterVOChkList}" var="v">
 					<tr class="dataTableTr">
 						<td>

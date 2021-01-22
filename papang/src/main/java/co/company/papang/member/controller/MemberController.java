@@ -35,6 +35,7 @@ import co.company.papang.member.service.UserMailSendService;
 import co.company.papang.vo.AdminVO;
 import co.company.papang.vo.MemberVO;
 import co.company.papang.vo.Report_info;
+import co.company.papang.vo.Report_info2;
 
 @Controller
 public class MemberController {
@@ -165,21 +166,21 @@ public class MemberController {
 						e.printStackTrace();
 					}
 				} else if (mbr.getMbr_status().equals("활동정지")) {
-					Report_info rinfo = dao.stChk(mbr);
+					Report_info2 rinfo = dao.stChk(mbr);
 					long day = System.currentTimeMillis();
 					System.out.println(day);
 					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
 					
-					String d = simpl2.format(day);
-					String stDate = rinfo.getRinfo_start();
+					String d = simpl2.format(day); // 오늘
+					String stDate = rinfo.getRepo_end(); // 제재끝나는날
 					
 					String stReason = rinfo.getRinfo_reason();
 					
-					Date day1= simpl2.parse(d);
+					Date day1= simpl2.parse(d); // 오늘
 					Date day2= simpl2.parse(stDate);
 					System.out.println(day1);
 					System.out.println(day2);
-					if(day2.after(day1)) {
+					if(day1.after(day2)) { // 오늘이 제재 끝나는날보다 뒤면
 						dao.updatestatus(mbr);
 						//member = dao.login(member);
 						session.setAttribute("user", mbr);

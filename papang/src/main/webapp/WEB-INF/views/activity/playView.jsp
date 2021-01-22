@@ -182,6 +182,19 @@ body {background-color: #fff5d2;}
 .Bigtitle {
     margin: 20px 0 0 168px;
 }
+.container {
+    width: 1685px;}
+    .ml-auto {
+    margin-left: 17% !important;
+}
+.containerDiv {
+    max-width: 1685px;
+}
+.fixed-top {
+    height: 110px;
+    background-color: rgb(249, 196, 94);
+}
+
 </style>
 <script>
 $(()=>{

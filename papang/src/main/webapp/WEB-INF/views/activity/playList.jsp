@@ -36,6 +36,25 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .linebb{display: inline-block;}
 .nonediv{display: none;}
 .count{width: 100%;}
+
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
+.Bigtitle {
+    margin: 20px 0 0 38px;
+}
 </style>
 <script>
 
@@ -170,7 +189,7 @@ window.onload = function() {
 			
 		
 			
-				<tr class="dataTableTr" > 
+				<tr class="dataTableTr fadein" > 
 					<td class="playno_hidden">${play.PLAY_NO}</td>
 					<td class="box">
 							<ol class="lst_recipe cool_recipes" >

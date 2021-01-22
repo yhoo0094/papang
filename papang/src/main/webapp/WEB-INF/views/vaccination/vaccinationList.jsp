@@ -157,6 +157,22 @@ th {
 	height: 50px;
 	margin-right: 10px;
 }
+
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
 </style>
 <script src="../resources/json.min.js"></script>
 <script type="text/javascript">
@@ -515,7 +531,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 		<div class="ex_div reg"></div>
 		작성 완료
 	</div>
-	<div class="content">
+	<div class="content fadein">
 		<table class="vacc_table">
 			<tbody>
 				<tr>

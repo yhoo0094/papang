@@ -62,7 +62,21 @@ margin: 20px 0 0 38px;
 .dataTables_filter{width: 480px;}
 .searchBtn{color:#58391c;margin: 0 5px 0 20px;font-size: 18px;}
 .searchBtn:hover{color:#fa91a2;text-decoration: none;}
+.fadein {animation: fadein 2s;}
+@keyframes fadein {
+    from {opacity:0;}
+    to {opacity:1;}
+}
 
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+.hideme{opacity:0;}
+
+}
+.famImage{width: 420px;height: 350px;}
 </style>
 
 <div class="container center_div">
@@ -84,7 +98,7 @@ margin: 20px 0 0 38px;
 					<th>r</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="fadein">
 				<c:forEach var="pro" items="${ pro }">
 				<c:if test="${ empty pro.pro_cnt && !empty admin.ad_id}">
 					<tr class="marketTableTr">
