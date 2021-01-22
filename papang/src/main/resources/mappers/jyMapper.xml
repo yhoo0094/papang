@@ -122,7 +122,6 @@
 		mbr_addr2 = null,
 		mbr_bank = null,
 		mbr_account = null,
-		mbr_gender = null,
 		mbr_email = null,
 		mbr_pic = null,
 		mbr_addr3 = null
