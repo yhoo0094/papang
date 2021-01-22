@@ -184,45 +184,6 @@ $(()=>{
 							<td><span><strong>${pro.pro_cc}</strong></span></td>
 						</tr>
 					</tbody>
-				<%-- 	<tfoot>
-						<tr>
-							
-							<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
-								<td colspan="2"> --%>
-									
-					<!-- 				<button type="button" id="plusBtn">+</button> 
-									<button type="button" id="minusBtn">-</button> -->
-									<!-- 이때 max 값을 상품수량.. 입출고를 통해 결정된 총수량.. 글구 input type hidden 으로해서도 한개 정하고 -->
-									 <!-- 상품재고보다 적은수만 되게 하는 스크립트 script src="/js/stockBtn.js".. -->
-								
-									<!-- 이때 장바구니에 이미 들어가있으면 +1 되게하기 button onclick="" --> 
-								<!-- 	<script type="text/javascript">
-										// 수량 설정
-										$("#plusBtn").click(function() {
-											var num = $(".numBox").val();
-											var plusNum = Number(num) + 1;
-											if(plusNum > ${pro.pro_cnt}){
-												$(".numBox").val(num);
-											} else{
-												$(".numBox").val(plusNum);
-											}
-										});
-										$("#minusBtn").click(function() {
-											var num = $(".numBox").val();
-											var minusNum = Number(num) - 1;
-											if (minusNum <= 0) {
-												$(".numBox").val(num);
-											} else {
-												$(".numBox").val(minusNum);
-											}
-										});
-									
-									</script> -->
-							<%-- 		</td>
-							</c:if>
-						</tr>
-							
-					</tfoot> --%>
 				</table>
 				<hr/>
 				<c:if test="${!empty user.mbr_id and pro.pro_cnt != 0}">
@@ -241,31 +202,12 @@ $(()=>{
 							<td rowspan="2" class="allCount">
 								 <button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button> 
 							</td>
-							<!-- td rowspan="2">
-								<button type="submit" class="btnRed bMedium" id="directBtn">바로구매</button> 
-							</td -->
 						</tr>
 						<tr>
 							<td class="tableBor" rowspan="1"><button type="button" id="minusBtn">-</button></td>
 						</tr>
 					</table>
 				</div>
-				
-			<%-- 	<input type="hidden" name="pro_no" id="pro_no" value="${pro.pro_no}">
-				<div class="buyDiv">
-				구입수량 <input type="text" class="numBox" min="1" value="1" readonly>
-				<div>
-					<div class="btnClass1">
-						<button type="button" id="plusBtn">+</button> 
-					</div>
-					<div class="btnClass1">
-						<button type="button" id="minusBtn">-</button>
-					</div>
-				</div>
-					<div class="btnClass">	
-						<button type="submit" class="btnRed bMedium" id="addCartBtn">장바구니</button>
-					</div>
-					</div> --%>
 				</c:if>
 			</div>
 		</div>

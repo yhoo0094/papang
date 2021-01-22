@@ -140,7 +140,6 @@ public class MemberController {
 	public void login(@ModelAttribute("member") MemberVO member, HttpSession session, Model model,
 			HttpServletResponse response) throws ParseException {
 		response.setContentType("text/html; charset=UTF-8"); // 한국어
-		
 		// 비밀번호 암호화(Sha256)
 		String encryPw = Sha256.encrypt(member.getMbr_pw());
 		member.setMbr_pw(encryPw);
@@ -168,21 +167,16 @@ public class MemberController {
 				} else if (mbr.getMbr_status().equals("활동정지")) {
 					Report_info2 rinfo = dao.stChk(mbr);
 					long day = System.currentTimeMillis();
-//					System.out.println(day);
 					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
 					
 					String d = simpl2.format(day); // 오늘
 					String stDate = rinfo.getRepo_end(); // 제재끝나는날
-					
 					String stReason = rinfo.getRinfo_reason();
 					
 					Date day1= simpl2.parse(d); // 오늘
 					Date day2= simpl2.parse(stDate);
-//					System.out.println(day1);
-//					System.out.println(day2);
 					if(day1.after(day2)) { // 오늘이 제재 끝나는날보다 뒤면
 						dao.updatestatus(mbr);
-						//member = dao.login(member);
 						session.setAttribute("user", mbr);
 						try {
 							PrintWriter out = response.getWriter();
@@ -192,7 +186,6 @@ public class MemberController {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						
 					}else {
 						try {
 							PrintWriter out = response.getWriter();
