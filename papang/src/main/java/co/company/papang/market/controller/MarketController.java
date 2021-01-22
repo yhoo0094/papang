@@ -162,24 +162,14 @@ public class MarketController {
 	@RequestMapping("market/usedDetail") // url 예전 .do
 	public String getUsed(UsedVO used, Used_comVO used_com, @CookieValue(required = false) String usedCookie, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws ClassNotFoundException, IOException {
-//		MemberVO memberVo = (MemberVO) session.getAttribute("user");
-//		String mbr_id = memberVo.getMbr_id();
-//		// 조회수 올리기
-//		if(!(cookie.contains(String.valueOf(mbr_id)))) {
-//			cookie += mbr_id + "/";
-//			used_service.hitPlus(used);
-//		}
-//		response.addCookie(new Cookie("usedCookie", cookie));
-//		
 		String usCookieVal = usedCookie==null?"":usedCookie;
 		if(usedCookie == null || usedCookie.indexOf(used.getUsed_no() + "A") == -1) { // 쿠키 자체가 없거나, 쿠키 안에 값이 없을 때
 			usCookieVal = usCookieVal + used.getUsed_no() + "A";
-			used_service.hitPlus(used); ///////////
+			used_service.hitPlus(used);
 			Cookie cookie = new Cookie("usedCookie", usCookieVal);
 			cookie.setMaxAge(60 * 60 * 24);
 			response.addCookie(cookie);
 		}
-		
 		model.addAttribute("used", used_service.getUsed(used)); // 지역선택에 따른 변화(셀렉트)
 		model.addAttribute("used_comList", used_service.getUsedCommList(used_com)); // 댓글조회
 		return "market/usedDetail"; // jsp주소
@@ -322,14 +312,9 @@ public class MarketController {
 	public int test18(HttpSession session, BagVO bag, HttpServletRequest request) throws IOException {
 		int result = 0;
 
-//		MemberVO memberVo = (MemberVO) session.getAttribute("user");
-//		String mbr_id = memberVo.getMbr_id();
 		String bag_cnt = request.getParameter("bag_cnt");
-//		String pro_no = request.getParameter("pro_no");
 		int bag_no = Integer.parseInt(request.getParameter("bag_no"));
-//		bag.setMbr_id(mbr_id);
 		bag.setBag_cnt(bag_cnt);
-//		bag.setPro_no(pro_no);
 		bag.setBag_no(bag_no);
 		
 		mk_service.updateCart(bag);
@@ -361,19 +346,16 @@ public class MarketController {
 	// 상품재고 update, 재고내역 insert
 	@RequestMapping(value = "/market/changeWare", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean test18(HttpSession session, @RequestParam(value = "proArr[]") List<String> proArr, @RequestParam(value = "bagArr[]") List<String> bagArr, BagVO bag, HttpServletRequest request) throws IOException {
+	public boolean test18(HttpSession session, @RequestParam(value = "proArr[]") List<String> proArr,
+			@RequestParam(value = "bagArr[]") List<String> bagArr, BagVO bag, HttpServletRequest request) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
-		// 여기 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!String pro_no;
 		for(int i=0;i<proArr.size();i++) {
 			bag.setPro_no(proArr.get(i));
 			bag.setBag_cnt(bagArr.get(i));
 			mk_service.updateProCnt(bag);
 		}
 		mk_service.minusWareCnt(mbr_id); // 출고내역
-//		order.setMbr_id(mbr_id);
-//		order.setOrder_sum(order_sum);
-//		mk_service.orderInsert(order, detail, mbr_id);// 주문완료시 3개 작동
 		return true;
 	}
 

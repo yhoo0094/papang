@@ -60,10 +60,6 @@ p {
 									alert("실패");
 								}
 							})
-// 						 } else {
-// 							 $("#idchk").text("글자수가 부족합니다");
-// 							 $("#idchk").css("color", "red");
-// 							 $("#joinBtn").attr("disabled", true);
 						 }
 					}
 				})

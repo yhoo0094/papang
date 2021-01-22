@@ -79,12 +79,9 @@ public class UserMailSendService {
 
 	// 인증 확인 메서드 (Y 값으로 바꿔주는 메서드)
 	public int alter_userKey_service(String mbr_id, String key) {
-
 		int resultCnt = 0;
-
 		dao = sqlSession.getMapper(EsMapper.class);
 		resultCnt = dao.alter_authkey(mbr_id, key);
-
 		return resultCnt;
 	}
 	
@@ -112,6 +109,6 @@ public class UserMailSendService {
 			key = Sha256.encrypt(key);
 			// 데이터 베이스 값은 암호한 값으로 저장시킨다.
 			dao.findPw(mbr_id, mbr_email, key);
-			System.out.println("바뀐비번>>"+key);
+//			System.out.println("바뀐비번>>"+key);
 		}
 }

@@ -168,7 +168,7 @@ public class MemberController {
 				} else if (mbr.getMbr_status().equals("활동정지")) {
 					Report_info2 rinfo = dao.stChk(mbr);
 					long day = System.currentTimeMillis();
-					System.out.println(day);
+//					System.out.println(day);
 					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
 					
 					String d = simpl2.format(day); // 오늘
@@ -178,8 +178,8 @@ public class MemberController {
 					
 					Date day1= simpl2.parse(d); // 오늘
 					Date day2= simpl2.parse(stDate);
-					System.out.println(day1);
-					System.out.println(day2);
+//					System.out.println(day1);
+//					System.out.println(day2);
 					if(day1.after(day2)) { // 오늘이 제재 끝나는날보다 뒤면
 						dao.updatestatus(mbr);
 						//member = dao.login(member);
@@ -214,14 +214,6 @@ public class MemberController {
 					e.printStackTrace();
 				}
 			}
-//		} else if (chkPw == null || chkPw.equals("")) {
-//			try {
-//				PrintWriter out = response.getWriter();
-//				out.println("<script>alert('없는 아이디 입니다');</script>");
-//				out.println("<script>location.href='/papang/member/loginForm';</script>");
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
@@ -316,13 +308,11 @@ public class MemberController {
 			try {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인되었습니다');</script>");
-				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			mav.setViewName("main/main");
 		}
-		
 		return mav;
 	}
 

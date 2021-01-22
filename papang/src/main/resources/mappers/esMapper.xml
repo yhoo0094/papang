@@ -86,8 +86,8 @@
 		WHERE mbr_id = #{mbr_id}
 	</select>
 <!-- =========================================================== -->
-<!-- 활동정지 체크 -->
-	<!-- 일반회원 -->
+<!-- 활동정지 -->
+	<!-- 정지기간 확인 -->
 	<select id="stChk" resultType="Report_info2">
 		SELECT TO_CHAR(rinfo_start+rinfo_cnt,'yyyy-mm-dd') AS repo_end,  rinfo_reason
 		FROM report_info
@@ -96,6 +96,10 @@
     	ORDER BY rinfo_start
     	FETCH FIRST 1 ROW ONLY
 	</select>
+	<!-- 정지 풀기 -->
+	<update id="updatestatus" parameterType="MemberVO">
+		UPDATE member SET mbr_status = '활동중' WHERE mbr_id = #{mbr_id}
+	</update>
 <!-- =========================================================== -->
 <!-- 아이디 비번 찾기 -->
 	<!-- 아이디 -->
@@ -240,7 +244,6 @@
 			</if>
 		</where>
 		and used_category = '판매중'
-		
 		ORDER BY used_no 
 	</select>
 
@@ -351,7 +354,6 @@
 		SELECT count(*) FROM BAG
 		WHERE pro_no = #{param1}
 		AND mbr_id = #{param2}
-		 
 	</select>
 	<!--  장바구니 추가    -->
 	<insert id="insertCart" parameterType="BagVO">
@@ -418,10 +420,4 @@
 		DELETE BAG
 		WHERE mbr_id = #{mbr_id}
 	</delete>
-	
-	
-	<update id="updatestatus" parameterType="MemberVO">
-		update member set mbr_status = '활동중' where mbr_id=#{mbr_id}
-					
-	</update>
 </mapper>

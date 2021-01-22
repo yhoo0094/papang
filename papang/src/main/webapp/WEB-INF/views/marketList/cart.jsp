@@ -96,7 +96,6 @@ td {
  				type: "POST",
  				data : {
  					bag_cnt : bag_cnt,
-//  					pro_no : pro_no,
  					bag_no : bag_no},
  				success : function(){
  					location.reload();

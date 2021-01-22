@@ -33,8 +33,8 @@
 				success : function(usedCom) {
 					location.reload();
 				},
-				error : function(xhr, status, message) {
-					alert(" status: " + status);
+				error : function() {
+					alert("댓글작성 실패");
 				}
 			});
 		});
@@ -50,8 +50,8 @@
 				    		console.log(result.uc_content);
 				    		$tr.find('#tempt').text(result.uc_content);
 				    }, 
-				    error:function(xhr, status, message) { 
-				        alert(" status: "+status+" er:"+message);
+				    error:function() { 
+				        alert("댓글수정 실패");
 				    } 
 				 });
 			}
@@ -83,8 +83,8 @@
 					    	"uc_no":uc_no
 					    }, success: function(number) {
 					    	tr.remove();
-					    }, error:function(xhr, status, message) { 
-					        alert(" status: "+status+" er:"+message);
+					    }, error:function() { 
+					        alert("댓글삭제 실패");
 					    } 
 					 });
 				}
