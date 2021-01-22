@@ -88,10 +88,13 @@
 <!-- =========================================================== -->
 <!-- 활동정지 체크 -->
 	<!-- 일반회원 -->
-	<select id="stChk" resultType="Report_info">
-		SELECT TO_CHAR(RINFO_START+RINFO_CNT,'yyyy-mm-dd') as rinfo_start,  rinfo_reason
-		FROM REPORT_INFO
+	<select id="stChk" resultType="Report_info2">
+		SELECT TO_CHAR(rinfo_start+rinfo_cnt,'yyyy-mm-dd') AS repo_end,  rinfo_reason
+		FROM report_info
 		WHERE mbr_id = #{mbr_id}
+		AND sysdate BETWEEN rinfo_start AND rinfo_start+rinfo_cnt
+    	ORDER BY rinfo_start
+    	FETCH FIRST 1 ROW ONLY
 	</select>
 <!-- =========================================================== -->
 <!-- 아이디 비번 찾기 -->
