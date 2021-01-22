@@ -65,8 +65,18 @@
 		
 		SET
 		
-	    MBR_STATUS= #{mbr_status}
-	    
+	    MBR_STATUS= #{mbr_status},
+	    MBR_PW = NULL,
+   	   	MBR_NAME = NULL, 
+        MBR_BIRTH = NULL,
+        MBR_POST = NULL,
+        MBR_ADDR1 = NULL,
+        MBR_ADDR2 = NULL,
+        MBR_BANK = NULL,
+        MBR_ACCOUNT = NULL,
+        MBR_EMAIL = NULL,
+        MBR_PIC = NULL,
+        MBR_ADDR3 = NULL
 	    
 		WHERE MBR_ID = #{mbr_id}
 	</select>
@@ -111,7 +121,20 @@
 		FROM ORDER_INFO  
 		WHERE ORDER_NO = #{order_no}
 </select>
+   <!-- 주문후 상품재고 변경 -->
+   <update id="updateProCnt" parameterType="BagVO">
+      UPDATE PRODUCT
+      SET pro_cnt = pro_cnt+#{bag_cnt} 
+      WHERE pro_no = #{pro_no}
+   </update>
 
+ <!-- 주문후 상품재고 변경, 삭제 -->
+   <update id="orderdelete" parameterType="order_infoVO">
+      DELETE  
+      FROM 
+      ORDER_INFO 
+      WHERE ORDER_NO = #{order_no}
+   </update>
 
  <!-- waybill 단건조회 -->
 <select id="selectwaybill" parameterType="order_infoVO" resultType="order_infoVO">
@@ -236,20 +259,7 @@ SRV_STATUS=#{srv_status} AND
 GROUP BY TO_CHAR(SRV_DATE,'YYYY-MM'),SRV_STATUS 
 </select>		
 
-   <!-- 주문후 상품재고 변경 -->
-   <update id="updateProCnt" parameterType="BagVO">
-      UPDATE PRODUCT
-      SET pro_cnt = pro_cnt+#{bag_cnt} 
-      WHERE pro_no = #{pro_no}
-   </update>
 
- <!-- 주문후 상품재고 변경, 삭제 -->
-   <update id="orderdelete" parameterType="order_infoVO">
-      DELETE  
-      FROM 
-      ORDER_INFO 
-      WHERE ORDER_NO = #{order_no}
-   </update>
 
 
 	<!-- play 리스트-->
