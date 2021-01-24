@@ -165,18 +165,11 @@ $(()=>{
 	
 	$('#btnReserve').on('click', function() {
 		if('${sessionScope.user.mbr_id}' != ''){//로그인을 체크
-			var childChkBoxList = $.find('.childChkBox:checked').length;
-			if(childChkBoxList > 0){//아이를 체크 했는지
-				if($('.reservationDays').val() != ''){
-					$('#frmReserve').submit();	
-				} else {
-					alert("날짜를 선택하세요.");	
-				}
-					
+			if($('.reservationDays').val() != ''){
+				$('#frmReserve').submit();	
 			} else {
-				alert("아이를 선택하세요.");	
+				alert("날짜를 선택하세요.");	
 			}
-			
 		} else {
 			alert("로그인이 필요합니다.");
 		}
@@ -555,9 +548,12 @@ function calendarMaker(target, date) {
 			<input type="hidden" name="sit_mbr_id" value="${sitterVOChk.sit_mbr_id}">
 			<input type="hidden" class="reservationDays" name="reservationDays">
 			<input type="hidden" class="srv_payInput" name="srv_pay" value="">
-			<c:forEach items="${childVOList}" var="v">
-				<input type="checkbox" value="${v.chi_no}" name="chi_no" class="childChkBox">${v.chi_name}
-			</c:forEach>
+			<select name="chi_no" class="childChkBox custom-select" style="color: black; width: 100px;">
+				<c:forEach items="${childVOList}" var="v">
+					<option value="${v.chi_no}">${v.chi_name}
+				</c:forEach>
+			</select>
+			
 			<button class="btnReserve btnYellow" type="button" id="btnReserve">예약하기</button>
 			<br>
 			<br>

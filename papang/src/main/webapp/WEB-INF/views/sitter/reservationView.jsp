@@ -409,8 +409,8 @@ $(function(){
 <body>
 	<h3 class="titleFont" id="titleFont"> 시터 리스트</h3><h3 class="titleFont"> > 예약내역 보기</h3>
 	<form class="category" action="#" method="get">
-		<select id="selectChildNum" name="chi_no"
-			style="width: 100%; font-size: 20px;">
+		<select id="selectChildNum" name="chi_no" class="custom-select"
+			style="width: 100%; font-size: 20px; padding: 0 0 0 10px; color: black;">
 			<c:forEach items="${childVOList}" var="v">
 				<option value="${v.chi_no}">${v.chi_name}
 			</c:forEach>

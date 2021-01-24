@@ -70,7 +70,7 @@
 			<tbody>
 				<c:forEach items="${NqVOList}" var="v">
 					<tr class="noticeTitleTd">
-						<td align="center"><span style="display: none;">99999999${v.nq_no}</span></td>
+						<td align="center"><span style="display: none;">10000000${v.nq_no}</span></td>
 						<td><span style="display: none;">A</span><a
 							href="${pageContext.request.contextPath}/community/noticeForm?nq_no=${v.nq_no}">${v.nq_title}</a></td>
 						<td align="center"><span style="display: none;">A</span>${v.ad_id}</td>

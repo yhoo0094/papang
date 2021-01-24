@@ -201,22 +201,22 @@ thead, #dataTable_filter, #dataTable_length {
 									src="${pageContext.request.contextPath}/resources/images/sitterProfile/${v.sit_pic}">
 								<table class="TableInTheDataTable" align="center">
 									<tr align="center">
-										<td>돌봄요일</td>
+										<td>휴&nbsp;무&nbsp;일</td>
 										<td align="left">${v.sit_off}</td>
 									</tr>
 									<tr>
-										<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급</td>
+										<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;급</td>
 										<td>${v.sit_pay}</td>
 									</tr>
 									<tr>
-										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;점</td>
+										<td align="center">별&nbsp;&nbsp;&nbsp;&nbsp;점</td>
 										<td>
 											<c:if test="${v.rate == '　'}">평가없음</c:if>
 											<c:if test="${v.rate != null}">${v.rate}</c:if>
 										</td>
 									</tr>
 									<tr>
-										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</td>
+										<td align="center">지&nbsp;&nbsp;&nbsp;&nbsp;역</td>
 										<td>${v.sit_loc}</td>
 									</tr>
 									<tr>
