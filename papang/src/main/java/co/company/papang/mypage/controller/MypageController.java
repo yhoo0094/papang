@@ -676,7 +676,7 @@ public class MypageController {
 			  
 			  PrintWriter out = response.getWriter();
 			     
-			  out.println("<script>alert('해당 월급이 없습니다.');</script>");
+			 
 			   
 			  out.flush();
 
