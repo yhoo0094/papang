@@ -31,7 +31,7 @@
 						<th width="15%" class="tableTh">시작 일</th>
 						<th width="15%" class="tableTh">종료 일</th>
 						<th width="15%" class="tableTh">결제 상태</th>
-						<th width="15%" class="tableTh">결제 상태</th>
+						<th width="15%" class="tableTh"></th>
 					 
 					</tr>
 				</thead>
