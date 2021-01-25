@@ -189,13 +189,13 @@
 								pro_price, 
 								pro_pic,
 								pro_detail,
-								pro_cc )
+								pro_cn )
 	 	            VALUES( 
 	 	               		#{pro_name},
 	 	               		#{pro_price},
 	 	               		#{pro_pic},
 	 	               		#{pro_detail},
-	 	               		#{pro_cc} )
+	 	               		#{pro_cn} )
 	</insert>
 	<!--  글수정    -->
 	<update id="updateItem" parameterType="ProductVO">
@@ -203,7 +203,7 @@
 							pro_price = #{pro_price},
 							pro_detail = #{pro_detail},
 							<if test="pro_pic != null and pro_pic != ''">pro_pic = #{pro_pic},</if>
-							pro_cc = #{pro_cc}
+							pro_cn = #{pro_cn}
 		WHERE pro_no = #{pro_no}
 					
 	</update>

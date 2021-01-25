@@ -595,7 +595,7 @@ public class MypageController {
 		  
 		  PrintWriter out = response.getWriter();
 		   
-		  out.println("<script>alert('시터가 아닙니다.'); location.href='myhome';</script>");
+		  out.println("<script>alert('시터가 아닙니다.'); location.href='../community/noticeForm?nq_no=221';</script>");
 		   
 		  out.flush();
 
@@ -628,7 +628,7 @@ public class MypageController {
 	
 	
 	@RequestMapping("/mypage/sitter_money3") //예약정보보기 디테일
-	public ModelAndView test422(HttpServletRequest request,HttpSession session,SitChiVO sitChiVO,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
+	public ModelAndView test422(HttpServletRequest request,HttpServletResponse response,HttpSession session,SitChiVO sitChiVO,Sitter_revVO sitter_revVO,MemberVO memberVO) throws IOException{
 		ModelAndView mav=new ModelAndView();
 		MemberVO vo = (MemberVO) session.getAttribute("user");
 		String mbr_id = vo.getMbr_id();
@@ -653,7 +653,8 @@ public class MypageController {
 	
 		mav.setViewName("no/mypage/ccc");
 		
-	    
+		
+		
 		return mav;
 	}
 	

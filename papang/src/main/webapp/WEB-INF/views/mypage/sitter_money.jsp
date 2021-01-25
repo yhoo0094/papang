@@ -65,17 +65,17 @@
 			 
 			<select  class="input_small" name="month" id="month" style="font-size:20px;">
 		 							<option value="01">1월</option>
-									<option value="02">2</option>
-									<option value="03">3</option>
-									<option value="04">4</option>
-									<option value="05">5</option>
-									<option value="06">6</option>
-									<option value="07">7</option>
-									<option value="08">8</option>
-									<option value="09">9</option> 
-									<option value="10">10</option>
-									<option value="11">11</option>
-									<option value="12">12</option>
+									<option value="02">2월</option>
+									<option value="03">3월</option>
+									<option value="04">4월</option>
+									<option value="05">5월</option>
+									<option value="06">6월</option>
+									<option value="07">7월</option>
+									<option value="08">8월</option>
+									<option value="09">9월</option> 
+									<option value="10">10월</option>
+									<option value="11">11월</option>
+									<option value="12">12월</option>
 			</select>
 			 
 			<button class="qwe2 btnYellow bSamll" 
