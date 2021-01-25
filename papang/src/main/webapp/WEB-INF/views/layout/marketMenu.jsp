@@ -14,6 +14,7 @@ a {}
 	display: inline-block;
 	float: left;
 	margin-top: 20px;
+	margin-left: 50px;
 }
 
 /* #lnb h1 {  /*대분류 */

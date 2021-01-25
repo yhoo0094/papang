@@ -315,7 +315,7 @@
     							uc_content,
     							used_no
 							)
-		VALUES(	seq_used_com_uc_no.nextval,
+		VALUES(	seq_used_com_uc_no.NEXTVAL,
 				#{mbr_id},
 				#{uc_content},
 				#{used_no}

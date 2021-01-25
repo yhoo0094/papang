@@ -237,7 +237,7 @@ public class MemberController {
 			try {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('관리자 접속');</script>");
-				out.println("<script>location.href='/papang/';</script>");
+				out.println("<script>location.href='/papang/admin';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

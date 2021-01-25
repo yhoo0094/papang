@@ -4,10 +4,6 @@
 
 
 <style>
-#lnb {
-	margin-left: 50px;
-	width: 20%;
-}
 .noDepth>a {
 	align 
 }

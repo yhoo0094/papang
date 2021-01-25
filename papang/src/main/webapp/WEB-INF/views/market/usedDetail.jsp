@@ -108,7 +108,7 @@
 <div class="container center_div">
 	<div>
 		<h2 style="display: inline-block;">[${used.used_category}] : ${used.used_title}</h2>
-		<c:if test="${user.mbr_id != uc.mbr_id}">
+		<c:if test="${user.mbr_id != used.mbr_id}">
 			<span class="commentMenu" id="reportSpan" style="float: right"> <img class="sirenImg" alt="사이렌사진"
 				src="${pageContext.request.contextPath}/resources/images/siren.png" width="1%" height="1%">신고하기
 			</span>
@@ -145,12 +145,20 @@
 				<tr>
 					<c:if test="${used.mbr_id == user.mbr_id}">
 						<td colspan="3" align="right"><button type="button" class="btnYellow bMedium" id="usedUpdate" onclick="location.href='/papang/market/usedUpdateForm?used_no=${used.used_no}'">수정</button>
-						<button type="button" class="btnRed bMedium" id="usedDelete" onclick="location.href='/papang/market/usedDelete?used_no=${used.used_no}'">삭제</button></td>
+						<button type="button" class="btnRed bMedium" id="usedDelete">삭제</button></td>
 					</c:if>
 				</tr>
 			</tfoot>
 		</table>
 	</div>
+	<script>
+	$("#usedDelete").click(function() { 
+		var used_no = $("#used_no").val();
+		if(confirm("게시글을 삭제하시겠습니까?")){
+			location.href='/papang/market/usedDelete?used_no='+used_no;
+		}
+	})
+	</script>
 	<div>
 	
 	</div>

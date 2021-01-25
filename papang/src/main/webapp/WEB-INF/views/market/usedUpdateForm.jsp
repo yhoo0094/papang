@@ -80,7 +80,7 @@ function formCheck() {
    href="${pageContext.request.contextPath}/resources/summernote/css/summernote/summernote-lite.css">
 
 <div align="center" class="FormTitle strongYellow">
-	<h3>중고장터 글 등록</h3>
+	<h3>중고장터 글 수정</h3>
 </div>
 <form id="frm" class="form-horizontal" name="frm" method="post" action="${pageContext.request.contextPath}/market/usedUpdate" encType="multipart/form-data">
    <div align="center">
