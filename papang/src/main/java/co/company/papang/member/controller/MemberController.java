@@ -166,37 +166,29 @@ public class MemberController {
 					}
 				} else if (mbr.getMbr_status().equals("활동정지")) {
 					Report_info2 rinfo = dao.stChk(mbr);
-					long day = System.currentTimeMillis();
-					SimpleDateFormat simpl2 = new SimpleDateFormat("yyyy-MM-dd");
-					
-					String d = simpl2.format(day); // 오늘
-					String stDate = rinfo.getRepo_end(); // 제재끝나는날
-					String stReason = rinfo.getRinfo_reason();
-					
-					Date day1= simpl2.parse(d); // 오늘
-					Date day2= simpl2.parse(stDate);
-					if(day1.after(day2)) { // 오늘이 제재 끝나는날보다 뒤면
-						dao.updatestatus(mbr);
+
+					if (rinfo == null) { // 제재내역이 없으면
+						dao.updatestatus(mbr); // 제재 풀기
 						session.setAttribute("user", mbr);
 						try {
 							PrintWriter out = response.getWriter();
-							out.println("<script>alert('"+stDate+"이후로 활동정지가 풀렸습니다.');</script>");
 							out.println("<script>alert('로그인되었습니다');</script>");
 							out.println("<script>location.href='/papang/';</script>");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-					}else {
+					} else {
+						String stDate = rinfo.getRepo_end(); // 제재끝나는날
+						String stReason = rinfo.getRinfo_reason();
 						try {
 							PrintWriter out = response.getWriter();
-							out.println("<script>alert('"+stDate+"까지 활동정지입니다');</script>");
-							out.println("<script>alert('정지사유 : "+stReason+"');</script>");
+							out.println("<script>alert('" + stDate + "까지 활동정지입니다');</script>");
+							out.println("<script>alert('정지사유 : " + stReason + "');</script>");
 							out.println("<script>location.href='/papang/';</script>");
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
 					}
-					
 				}
 			} else {
 				try {
