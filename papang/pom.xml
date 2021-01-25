@@ -285,7 +285,7 @@
 				<version>2.0.2</version>
 				<configuration>
 					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<target>10</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
