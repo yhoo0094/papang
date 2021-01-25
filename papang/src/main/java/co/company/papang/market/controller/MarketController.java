@@ -57,23 +57,23 @@ public class MarketController {
 		return mav; // jsp주소
 	}
 
-	// 가격높은순
-	@RequestMapping("marketList/itemBoardPriceDesc") // url 예전 .do
-	public ModelAndView test17(ProductVO product) throws IOException {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("pro", dao.getItemListPriceDesc(product));
-		mav.setViewName("marketList/itemBoard");
-		return mav; // jsp주소
-	}
-	
-	// 가격낮은순
-	@RequestMapping("marketList/itemBoardPrice") // url 예전 .do
-	public ModelAndView test19(ProductVO product) throws IOException {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("pro", dao.getItemListPrice(product));
-		mav.setViewName("marketList/itemBoard");
-		return mav; // jsp주소
-	}
+//	// 가격높은순
+//	@RequestMapping("marketList/itemBoardPriceDesc") // url 예전 .do
+//	public ModelAndView test17(ProductVO product) throws IOException {
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("pro", dao.getItemListPriceDesc(product));
+//		mav.setViewName("marketList/itemBoard");
+//		return mav; // jsp주소
+//	}
+//	
+//	// 가격낮은순
+//	@RequestMapping("marketList/itemBoardPrice") // url 예전 .do
+//	public ModelAndView test19(ProductVO product) throws IOException {
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("pro", dao.getItemListPrice(product));
+//		mav.setViewName("marketList/itemBoard");
+//		return mav; // jsp주소
+//	}
 	
 	// 판매상품 상세
 	@RequestMapping("market/itemDetail") // url 예전 .do
@@ -400,24 +400,4 @@ public class MarketController {
 		mk_service.orderInsert(order, detail, mbr_id);// 주문완료시 3개 작동
 		return true;
 	}
-	// 선택 주문하기
-//	@RequestMapping(value="/market/order", method=RequestMethod.POST)
-//	public String test17(HttpSession session, Order_infoVO tran, @RequestParam(value="chBox[]") List<String> chArr) throws IOException{
-//		MemberVO memberVo = (MemberVO)session.getAttribute("user");
-//		String mbr_id = memberVo.getMbr_id();
-//		return "";
-//	}
-
-	/*
-	 * @RequestMapping(value="/market/order", method=RequestMethod.POST) //url 예전
-	 * .do
-	 * 
-	 * @ResponseBody public int test16(HttpSession
-	 * session, @RequestParam(value="chBox[]") List<String> chArr, Tran_infoVO tran)
-	 * throws IOException{ MemberVO memberVo =
-	 * (MemberVO)session.getAttribute("user"); String mbr_id = memberVo.getMbr_id();
-	 * int result = 0; int bag_no = 0; if(mbr_id != null) { for(String i : chArr) {
-	 * bag_no = i; tran.setBag_no(bag_no); mk_service.orderInfo(tran); } result = 1;
-	 * } return result; //jsp주소 }
-	 */
 }
