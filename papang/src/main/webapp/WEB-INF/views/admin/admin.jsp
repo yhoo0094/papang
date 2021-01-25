@@ -18,7 +18,7 @@ style type ="text /css ">.communityFormTitle {
 	border-radius: 10px;
 }
 
-thead, #dataTable_filter, #dataTable_length {
+#dataTable thead, #dataTable_filter, #dataTable_length {
 	display: none;
 }
 
@@ -182,7 +182,7 @@ thead, #dataTable_filter, #dataTable_length {
 	}//userList
 	function reportselectResult(data) {
 
-		$("#dataTable2 tbody").empty();
+		$("#tb").empty();
 		$.each(data, function(idx, item) {
 			$('<tr>').append($('<td>').html(item.mbr_id)).append(
 					$('<td>').html(item.repo_category)).append(
@@ -191,7 +191,7 @@ thead, #dataTable_filter, #dataTable_length {
 					$('<td>').html(item.repo_title)).append(
 					$('<td>').html(item.repo_content)).append(
 					$('<input type=\'hidden\' id=\'hidden_repo_no\'>').val(
-							item.repo_no)).appendTo('#dataTable2 tbody');
+							item.repo_no)).appendTo('#tb');
 		});
 
 		$('#dataTable2').DataTable();
@@ -424,7 +424,7 @@ thead, #dataTable_filter, #dataTable_length {
 				<i class="fas fa-table mr-1"></i> 신고 내역
 			</div>
 			<div class="card-body" style="height: 400px">
-				<table class="table table-bordered" id="dataTable2" cellspacing="0">
+				<table class="table table-bordered" id="dataTable2" >
 					<thead>
 						<tr>
 							<th>신고자 ID</th>
@@ -435,7 +435,7 @@ thead, #dataTable_filter, #dataTable_length {
 							<th>신고 내용</th>
 						</tr>
 					</thead>
-					<tbody></tbody>
+					<tbody id='tb'></tbody>
 				</table>
 			</div>
 		</div>

@@ -372,17 +372,17 @@
 					<tr align="center">
 						<td align="center">아&nbsp;이&nbsp;디:</td>
 						<td align="left"><input type='text' name='sit_mbr_id'
-							id='sit_mbr_id' readonly width="100%"></td>
+							id='sit_mbr_id' readonly width="100%" style="border: none"></td>
 					</tr>
 					<tr align="center">
 						<td align="center">나&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이:</td>
 						<td align="left"><input type='text'
-							id='sit_age' readonly width="100%"></td>
+							id='sit_age' readonly width="100%" style="border: none"></td>
 					</tr>
 					<tr>
 						<td align="center">월&nbsp;급&nbsp;일</td>
 						<td align="left"><input type='text' name='sit_payday' readonly="readonly"
-							id='sit_payday' width="100%"></td>
+							id='sit_payday' width="100%" style="border: none"></td>
 					</tr>
 
 					<tr>
@@ -397,7 +397,7 @@
 					</tr>
 					<tr>
 						<td align="center">일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;급:</td>
-						<td align="left"><input type='text' name='sit_pay'
+						<td align="left"><input type='text' name='sit_pay' style="border: none"
 							id='sit_pay'>원</td>
 					</tr>
 
@@ -426,7 +426,7 @@
 					<tr>
 						<td>특이사항</td>
 						<td><textarea id='sit_note' name='sit_note' rows="20"
-								cols="20" style="width: 100%; height: 50px"></textarea></td>
+								cols="20" style="width: 100%; height: 50px;border: none" ></textarea></td>
 					</tr>
 					
 				</table></td>
