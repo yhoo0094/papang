@@ -26,14 +26,9 @@ function formCheck() {
 		f.pro_price.focus();
 		return false;
 	}
-	if (f.pro_cc.value == "") {
-		alert("기업코드를 입력하세요");
-		f.pro_cc.focus();
-		return false;
-	}
-	if (isNaN(f.pro_cc.value)) {
-		alert("기업코드는 숫자만 입력가능합니다");
-		f.pro_cc.focus();
+	if (f.pro_cn.value == "") {
+		alert("기업명을 입력하세요");
+		f.pro_cn.focus();
 		return false;
 	}
 	if (f.pro_detail.value == "") {
@@ -61,8 +56,8 @@ function formCheck() {
                <td><input class="form-control" name="pro_price" type="text" style="width: 100%" value="${pro.pro_price}"></td>
             </tr>
             <tr>
-               <td align="center" style="width: 10%">기업코드</td>
-               <td><input class="form-control" name="pro_cc" type="text" style="width: 100%" value="${pro.pro_cc}"></td>
+               <td align="center" style="width: 10%">기업명</td>
+               <td><input class="form-control" name="pro_cn" type="text" style="width: 100%" value="${pro.pro_cn}"></td>
             </tr>
             <tr>
                <td align="center" style="width: 10%">대표사진</td>

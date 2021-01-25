@@ -180,8 +180,8 @@ $(()=>{
 							<input type="hidden" value="${pro.pro_cnt}" id="pro_cnt"></td>
 						</tr>
 						<tr>
-							<th scope="row"><span>기업코드</span></th>
-							<td><span><strong>${pro.pro_cc}</strong></span></td>
+							<th scope="row"><span>기업명</span></th>
+							<td><span><strong>${pro.pro_cn}</strong></span></td>
 						</tr>
 					</tbody>
 				</table>
