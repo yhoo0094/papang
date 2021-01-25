@@ -188,6 +188,7 @@
 
 	}(jQuery));
 </script>
+<script src="${pageContext.request.contextPath}/js/sangmin.js"></script>
 </body>
   <!-- Footer -->
  <footer class="py-5">

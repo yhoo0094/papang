@@ -147,13 +147,13 @@
 	<select id="myboard_questionCommunityVO" parameterType="communityVO" resultType="communityVO">
 		SELECT COM_NO,MBR_ID,COM_CATEGORY,COM_TITLE,COM_DATE,COM_HIT,COM_CONTENT
 		  FROM COMMUNITY
-		  WHERE MBR_ID = #{mbr_id}
+		  WHERE MBR_ID = #{mbr_id} ORDER BY COM_DATE DESC
 	</select>
 <!-- 게시물 답변  -->	
 	<select id="myboard_answerCommunity_comVO" parameterType="community_comVO" resultType="community_comVO">
 		SELECT CC_NO,MBR_ID,CC_CONTENT,COM_NO,CC_DATE,CC_CATEGORY 
 		FROM COMMUNITY_COM 
-		WHERE MBR_ID=#{mbr_id}
+		WHERE MBR_ID=#{mbr_id} ORDER BY CC_DATE DESC
 		</select>
 <!-- 신고현황보기  -->	
 	<select id="myboard_policeReportVO" parameterType="reportVO" resultType="reportVO">

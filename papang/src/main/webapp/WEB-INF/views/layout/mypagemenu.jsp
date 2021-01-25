@@ -192,8 +192,8 @@ p1,p2,p3,p4,p5,p6{
 				</ul></li>
 			<li><a href="#none">커뮤니티</a>
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">질문</a></li>
-					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">답글</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_question">게시글</a></li>
+					<li><a href="${pageContext.request.contextPath}/mypage/myboard_answer">댓글</a></li>
 					<li><a href="${pageContext.request.contextPath}/mypage/myboard_police">신고현황</a></li>
 							
 				</ul>

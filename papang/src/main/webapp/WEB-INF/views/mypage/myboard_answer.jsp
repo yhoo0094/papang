@@ -15,7 +15,7 @@
       .yra:visited{color:black;text-decoration:none} 
 </style>
 <body> 
-		<h3>답변게시판</h3>
+		<h3>댓글</h3>
 		<hr />
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
@@ -28,6 +28,7 @@
 			</form>
 		</div>
 		<br>
+		<div id="myboardTableDiv">
 			<table class="table" id="dataTable">
 				<thead>
 					<tr class="tableTrTh">
@@ -52,6 +53,7 @@
 					
 				</tbody>
 			</table>
+			</div>
 			<br>	
 		<div align="right">
 			

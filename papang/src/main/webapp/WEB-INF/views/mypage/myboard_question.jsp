@@ -17,7 +17,7 @@
         
 </style>
 <body>
-		<h3>질문게시판</h3>
+		<h3>게시글</h3>
 		<hr />
 		<div align="right">
 			<form id="filterFrm" name="filterFrm" action="goNoticeBoardPage.do"
@@ -26,32 +26,34 @@
 			</form>
 		</div>
 		<br>
-			<table class="table" id="dataTable">
-				<thead>
-					<tr class="tableTrTh">
-						<th width="5%" class="tableTh">번호</th>
-						<th width="30%" class="tableTh">제목</th>
-						<th width="10%" class="tableTh">작성자</th>
-						<th width="15%" class="tableTh">작성일</th>
-						<th width="10%" class="tableTh">분류</th>
-		 				<th width="10%" class="tableTh">조회수</th>
-					</tr>
-				</thead>  
-				<tbody>
-				<c:forEach var="co" items="${cos}">
-					<tr>
-						<td align="center">${co.com_no}</td>
-						<td align="left"><a class="yra" href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
-						<td align="center">${co.mbr_id}</td>
-						<td align="center">${co.com_date}</td>
-						<td align="center">${co.com_category}</td>
-						<td align="center">${co.com_hit}</td>
-					</tr>
-				</c:forEach>	
-					
-					
-				</tbody>
-			</table>
+			<div id="myboardTableDiv">
+				<table class="table" id="dataTable">
+					<thead>
+						<tr class="tableTrTh">
+							<th width="5%" class="tableTh">번호</th>
+							<th width="30%" class="tableTh">제목</th>
+							<th width="10%" class="tableTh">작성자</th>
+							<th width="15%" class="tableTh">작성일</th>
+							<th width="10%" class="tableTh">분류</th>
+			 				<th width="10%" class="tableTh">조회수</th>
+						</tr>
+					</thead>  
+					<tbody>
+					<c:forEach var="co" items="${cos}">
+						<tr>
+							<td align="center">${co.com_no}</td>
+							<td align="left"><a class="yra" href="${pageContext.request.contextPath}/community/form?com_no=${co.com_no}" class="boardTagA">${co.com_title}</a></td>
+							<td align="center">${co.mbr_id}</td>
+							<td align="center">${co.com_date}</td>
+							<td align="center">${co.com_category}</td>
+							<td align="center">${co.com_hit}</td>
+						</tr>
+					</c:forEach>	
+						
+						
+					</tbody>
+				</table>
+			</div>
 			<br>	
 		<div align="right">
 			
