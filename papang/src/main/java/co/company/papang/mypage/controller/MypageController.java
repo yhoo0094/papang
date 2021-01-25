@@ -672,13 +672,7 @@ public class MypageController {
 			  System.out.println("해당 월급이 없습니다.");
 			  
 			  mav.setViewName("no/mypage/ccc");
-			  response.setContentType("text/html; charset=UTF-8");
-			  
-			  PrintWriter out = response.getWriter();
-			     
-			 
 			   
-			  out.flush();
 
 
 			  return mav;
