@@ -295,5 +295,7 @@ public class ActivityController {
 	public ModelAndView playtest(HttpServletResponse response) throws IOException {
 		return new ModelAndView("activity/test");
 	}
+	
+
 
 }
