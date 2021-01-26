@@ -233,7 +233,12 @@
 									.prop("selected", true);
 						});
 
-		$('#dataTable').DataTable();
+		var table = $('#dataTable').DataTable();
+		table
+	    .column( '4:visible' )
+	    .order( 'desc' )
+	    .draw();
+		
 	}//userListResult
 
 	function memberUpdate() {
