@@ -294,7 +294,7 @@ style type ="text /css ">.communityFormTitle {
 	function drawChart() {
 		var data = google.visualization.arrayToDataTable(arr);
 		var options = {
-			title : "Employee Ratings"
+			title : ""
 		};
 		var chart = new google.visualization.PieChart(document
 				.getElementById("employee_piechart"));
@@ -443,7 +443,7 @@ style type ="text /css ">.communityFormTitle {
 	<div class="col-xl-6">
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-chart-bar mr-1"></i> 남녀 성비 차트
+				<i class="fas fa-chart-bar mr-1"></i> 남여 성비 차트
 			</div>
 			<div align="center" id="employee_piechart"
 				style="width: 600px; height: 400px"></div>
