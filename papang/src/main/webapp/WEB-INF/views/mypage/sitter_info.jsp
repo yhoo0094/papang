@@ -28,7 +28,7 @@ font-size:30px;
 .small_title {text-align: right;
 font-size:20px;
 }
-table,td {border : 1px solid black;}
+table1,td {border : 1px solid black;}
 .div{margin-left: 361px;}
 .btn {width: 310px; height: 51px; background-color: red;}
 .theader {height: 30px; width: 30px;border:1px solid black;}
@@ -167,13 +167,13 @@ $(function() {
  
  <form id="fim" name="fim" action="sitterupdate" method="post"  enctype="multipart/form-data"> 
 <div class="content_div" align="center">
-<table>
+<table class="table1">
 	<tr  width="400" align="center">
-		<td class="theader" rowspan="4" height="140"  >
+		<td class="theader tdclass" rowspan="4" height="140"  >
 			<img id = "sit_pic" name="sit_pic" src="${pageContext.request.contextPath}/resources/images/sitterProfile/${ sitterVO.sit_pic}">
 		</td> 
-		<td width="150" align="center" height="70">지역</td>
-		<td width="300" align="left" height="70" class="tableTds">
+		<td class="tdclass" width="150" align="center" height="70">지역</td>
+		<td class="tdclass" width="300" align="left" height="70" class="tableTds">
 		    <select  name="sit_loc" id ="sit_loc" class="input_middle tableInput" style="padding-left: 25px;">
                         <option value="${ sitterVO.sit_loc}">${ sitterVO.sit_loc}</option>
 							<option value="서울">서울</option>
@@ -198,37 +198,37 @@ $(function() {
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
-		<td align="center" >희망일급</td>
-		<td align="left" class="tableTds"> <input class="tableInput" type="number" step="1000" id = "sit_pay" name="sit_pay" style = "text-align:center; padding-left: 15px;" value="${sitterVO.sit_pay}"/>원</td>	
+		<td class="tdclass" align="center" >희망일급</td>
+		<td class="tdclass" align="left" class="tableTds"> <input class="tableInput" type="number" step="1000" id = "sit_pay" name="sit_pay" style = "text-align:center; padding-left: 15px;" value="${sitterVO.sit_pay}"/>원</td>	
             
 	</tr>
 	
 	 
 	
-	<tr  width="400" align="center" height="70">
-		<td>희망연령대 </td>
-		<td colspan="2" align="left" class="tableTds"><input style="padding-left:20px;" type="number" min="1" id="sit_age" name="sit_age" class="input_middle tableInput" value="${ sitterVO.sit_age}">개월</td>
+	<tr width="400" align="center" height="70">
+		<td class="tdclass">희망연령대 </td>
+		<td colspan="2" align="left" class="tableTds tdclass"><input style="padding-left:20px;" type="number" min="1" id="sit_age" name="sit_age" class="input_middle tableInput" value="${ sitterVO.sit_age}">개월</td>
 	</tr>
 	
 	  
 	
 	<tr  width="400" height="70">
-		<td align="center">
+		<td align="center" class="tdclass">
 			급여지급일
 		</td>
 		
-		<td class="theader tableTds" colspan="2" align="left" >
+		<td class="theader tableTds tdclass" colspan="2" align="left" >
 			매월 ${sitterVO.sit_payday}일
 		</td>
 	
 	</tr>
 	<tr  width="400" align="center" height="70">
-		<td align="center"><input type="file" id="uploadFile"  name="uploadFile" style="width:290px; margin-left:20px;"></td>
-		<td>
+		<td align="center" class="tdclass"><input type="file" id="uploadFile"  name="uploadFile" style="width:290px; margin-left:20px;"></td>
+		<td class="tdclass">
 			휴무일
 		</td>
 
-	<td class="theader" colspan="2">
+	<td class="theader tdclass" colspan="2">
        <input type = "checkbox" name = "array" value = "월" > <label>월</label></input>
        <input type = "checkbox" name = "array" value = "화" > <label>화</label></input>
        <input type = "checkbox" name = "array" value = "수" > <label>수</label></input>
@@ -239,11 +239,11 @@ $(function() {
 	</tr>	
 	
 	<tr  width="400" align="center" height="70">
-		<td>
+		<td class="tdclass">
 			특이사항
 		</td>
 		
-		<td class="theader" colspan="2">
+		<td class="theader tdclass" colspan="2">
 		<textarea rows="4" cols="30" id="sit_note" name="sit_note">${ sitterVO.sit_note}</textarea>
 			
 		
@@ -253,12 +253,12 @@ $(function() {
 	</tr>
 	
 		<tr  width="400" align="center" height="70">
-		<td>
+		<td class="tdclass">
 			계좌번호
 		</td>
 		
 		
-		<td class="theader" colspan="2">${memberVO.mbr_bank}　${ memberVO.mbr_account}
+		<td class="theader tdclass" colspan="2">${memberVO.mbr_bank}　${ memberVO.mbr_account}
 		</td>
 	
 	</tr>
