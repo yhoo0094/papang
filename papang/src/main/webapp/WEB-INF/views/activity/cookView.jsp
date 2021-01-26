@@ -426,7 +426,7 @@ function cacInsert() {
 				<input type="hidden" value="${cookVO.cook_no}" name="ac_no">
 				 <input type="hidden" value="${cookVO.cook_category}" name="ac_category">
 				<textarea class="commtext" name="ac_content"></textarea>
-				<input class="comm_img" type="file" name="uploadFile" id="uf">
+				<input class="comm_img" type="file" name="uploadFile" id="uf" class="form-control" >
 				<div class="container" id="starDiv">
 					<div
 						class="starrating risingstar d-flex justify-content-center flex-row-reverse">

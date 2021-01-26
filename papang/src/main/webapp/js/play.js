@@ -1,3 +1,5 @@
+	
+	
 	//play-box 클릭
 	$('.box').on('click',function boxclick() {
 			var play_no= $(this).find('.play_no').text();
