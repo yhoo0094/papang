@@ -143,7 +143,14 @@ margin: 0 0 0 5%;
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-boxes"></i>
 							</div> 재고 관리
-						</a> <a class="nav-link"
+						</a>
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/market/itemInsertForm">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-boxes"></i>
+							</div> 상품 등록
+						</a>
+						 <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/report">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-flag"></i>
