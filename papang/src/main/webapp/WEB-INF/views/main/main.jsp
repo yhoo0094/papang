@@ -82,8 +82,7 @@ $(() => {
         <div class="carousel-item active"  style="background-image: url('${pageContext.request.contextPath}/resources/images/Banner/상단배너1.jpg')">
        
           <div class="carousel-caption d-none d-md-block">
-            <h3>First Slide</h3>
-            <p>This is a description for the first slide.</p>
+   
           </div>
         </div>
     	<c:forEach  var="banner" items="${bannerlist}">
