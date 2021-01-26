@@ -339,7 +339,7 @@ $("#OrderBtn").on("click",function(){
 	     	    pay_method : 'card',
 	     	    merchant_uid : 'merchant' + new Date().getTime(),
 	     	    name : '주문명:결제테스트',
-	     	    amount : 100,
+	     	    amount : amount,
 	     	    buyer_email : '${user.mbr_email}',
 	     	    buyer_name : addressee,
 	     	    buyer_tel : '${user.mbr_phone}',
