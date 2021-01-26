@@ -16,8 +16,8 @@
     margin: 1.75rem auto;
 }
 .modal-wd {
-    width: 1000px;
-    margin: 230px 0 0 110px;
+    width: 1180px;
+   margin: 230px 0 0 -40px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -59,7 +59,7 @@ p {
 }
 
 .w3-large {
-   margin: 0 0 60px 230px;
+    margin: 0 0 60px 450px;
 }
 
 table tbody tr td {
@@ -73,7 +73,7 @@ table tbody tr td {
   width: 130%;
 }
 #dataTable_filter{display: none;}
-
+#dataTable_paginate{margin: 50px 0 0 220px;}
 </style>
 <title>마이페이지</title>
 <script type="text/javascript">

@@ -636,26 +636,48 @@ public class MypageController {
 		String month = request.getParameter("month");
 		String year_month=year+"-"+month;
 		
-		sitter_revVO.setSit_mbr_id(mbr_id); 
-		sitter_revVO.setSrv_status("결제완료"); 
+		sitter_revVO.setSit_mbr_id(mbr_id);
+		sitter_revVO.setSrv_status("결제완료");
 		sitter_revVO.setSrv_date(year_month);
-		
-		mav.addObject("cos7",dao.getSitter_revVO4(sitter_revVO));
-		mav.addObject(dao.getSitter_revVO5(sitter_revVO)); 
-		System.out.println(dao.getSitter_revVO5(sitter_revVO));
-		List<Sitter_revVO> a = dao.getSitter_revVO4(sitter_revVO);
-		for(Sitter_revVO i : a) {
-			System.out.println(i);
+		int b = dao.getcount2(sitter_revVO); 
+		System.out.println(b);
+		if (b>=1) { 
+			sitter_revVO.setSit_mbr_id(mbr_id); 
+			sitter_revVO.setSrv_status("결제완료"); 
+			sitter_revVO.setSrv_date(year_month);
+			
+		  
+		    mav.addObject("cos7",dao.getSitter_revVO4(sitter_revVO));
+			mav.addObject(dao.getSitter_revVO5(sitter_revVO)); 
+				
+		     
+			/*
+			 * System.out.println(dao.getSitter_revVO5(sitter_revVO)); List<Sitter_revVO> a
+			 * = dao.getSitter_revVO4(sitter_revVO); for(Sitter_revVO i : a) {
+			 * System.out.println(i); }
+			 */
+			
+			System.out.println(year);
+			System.out.println(month);
+		    
+			
+			
+			mav.setViewName("no/mypage/ccc");
+			
+			
+			
+			return mav;
 		}
-		
-		System.out.println(year);
-		System.out.println(month);
-	
-		mav.setViewName("no/mypage/ccc");
-		
-		
-		
-		return mav;
+		else { 
+			  System.out.println("해당 월급이 없습니다.");
+			  
+			  mav.setViewName("no/mypage/ccc");
+			   
+
+
+			  return mav;
+			  
+			  }
 	}
 	
 	

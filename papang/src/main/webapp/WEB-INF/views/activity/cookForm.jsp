@@ -25,7 +25,7 @@
 $(()=>{
 	
 	$('#updateBtn').on('click',function(){
-		alert('test');
+		alert('수정이 완료 되었습니다.');
 		$('#frm').attr('action','updateSuccessCook');
 		$('#frm').submit();
 	});

@@ -29,6 +29,7 @@
 
 td {
 	font-size: 15px;
+	vertical-align: center;
 }
 .orderAll {
 	display: none;
