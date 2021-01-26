@@ -64,7 +64,8 @@
 }
 
 .sitterProfileImg {
-	width: 30%;
+	width: 245px;
+    height: 284px;
 	display: inline;
 	border-radius: 10px;
 	float: left;
