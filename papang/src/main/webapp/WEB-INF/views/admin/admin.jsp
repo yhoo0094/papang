@@ -52,6 +52,19 @@ style type ="text /css ">.communityFormTitle {
 .dataTableTr>td {
 	width: 260px;
 }
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
+div.dataTables_wrapper div.dataTables_info {
+    display: none;
+}
+#employee_piechart>div>div {
+left:100px;}
 </style>
 
 <script
@@ -345,7 +358,7 @@ style type ="text /css ">.communityFormTitle {
 			<c:forEach items="${sitterVOChkList}" var="v" varStatus="i">
 				<c:if test='${i.index < 5}'>
 					<tr class="dataTableTr" align="center">
-						<td align="center">
+						<td align="center" class="sample_image">
 							<div class="sitterDiv strongYellow">
 								<input class="sitterIdInput" type="hidden"
 									value="${v.sit_mbr_id}"> <img class="sitterProfileImg"
@@ -445,7 +458,7 @@ style type ="text /css ">.communityFormTitle {
 			<div class="card-header">
 				<i class="fas fa-chart-bar mr-1"></i> 남여 성비 차트
 			</div>
-			<div align="center" id="employee_piechart"
+			<div id="employee_piechart"
 				style="width: 600px; height: 400px"></div>
 		</div>
 	</div>
