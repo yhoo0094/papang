@@ -226,7 +226,7 @@ $(() => {
         <p>믿고 맏길 수 있는 베이비시터 서비스 제공. 100% 순면 무형광 제작된 파파존스 핸드메이드 상품 판매.초보 육아대디를 위한 유용한 정보 제공.육아 예방접종 일지 등록 제공.</p>
       </div>
       <div class="col-lg-6">
-       <%--  <img class="img-fluid rounded famImage" src="${pageContext.request.contextPath}/resources/images/new_logo2.png"> --%>
+         <img class="img-fluid rounded famImage" src="${pageContext.request.contextPath}/resources/images/파팡네.png"> 
       </div>
     </div>
     <!-- /.row -->
