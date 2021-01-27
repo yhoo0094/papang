@@ -10,7 +10,8 @@
 }
 
 .sitterBoardInputSize {
-	width: 40%;
+	width: 42%;
+    height: 10%;
 }
 
 .sitterProfileImg {
@@ -49,6 +50,7 @@ thead, #dataTable_filter, #dataTable_length {
 	width: 100%;
 	border-radius: 20px;
 	background-color: #ff971d;
+	font-size: 20px;
 }
 
 .dataTableTr>td {
@@ -60,6 +62,9 @@ thead, #dataTable_filter, #dataTable_length {
 	color: rgb(249, 196, 94);
 	font-size: 35px;
     font-weight: bold;
+}
+.menuBar {
+    font-size: 23px;
 }
 .fadein {animation: fadein 2s;}
 @keyframes fadein {
@@ -76,6 +81,14 @@ thead, #dataTable_filter, #dataTable_length {
 
 }
 .famImage{width: 420px;height: 350px;}
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
 </style>
 <script type="text/javascript">
  	$(()=>{
@@ -107,7 +120,6 @@ thead, #dataTable_filter, #dataTable_length {
 <body>
 	<h3 class="titleFont">시터 리스트</h3>
 	<hr>
-	<br>
 	<div align="center">
 		<div align="center" class="communityFormTitle communityFormFilter">
 			<form action="${pageContext.request.contextPath}/sitter/board" method="post">
@@ -129,14 +141,14 @@ thead, #dataTable_filter, #dataTable_length {
 					</tr>
 					<tr>
 						<td align="center" height="40px">별점</td>
-						<td align="left"><select class="sitterBoardInputSize" name="minRate">
+						<td align="left"><select class="sitterBoardInputSize form-control" name="minRate">
 								<option value="" <c:if test="${sitterVOChk.minRate == null and sitterVOChk.minRate == ''}">selected="selected"</c:if>>선택하세요
 								<option value="5" <c:if test="${sitterVOChk.minRate == 5}">selected="selected"</c:if>>★★★★★
 								<option value="4" <c:if test="${sitterVOChk.minRate == 4}">selected="selected"</c:if>>★★★★
 								<option value="3" <c:if test="${sitterVOChk.minRate == 3}">selected="selected"</c:if>>★★★
 								<option value="2" <c:if test="${sitterVOChk.minRate == 2}">selected="selected"</c:if>>★★
 								<option value="1" <c:if test="${sitterVOChk.minRate == 1}">selected="selected"</c:if>>★
-						</select> ~ <select class="sitterBoardInputSize" name="maxRate">
+						</select> ~ <select class="sitterBoardInputSize form-control" name="maxRate">
 								<option value="" <c:if test="${sitterVOChk.minRate == null and sitterVOChk.minRate == ''}">selected="selected"</c:if>>선택하세요
 								<option value="5" <c:if test="${sitterVOChk.minRate == 5}">selected="selected"</c:if>>★★★★★
 								<option value="4" <c:if test="${sitterVOChk.maxRate == 4}">selected="selected"</c:if>>★★★★
@@ -151,7 +163,7 @@ thead, #dataTable_filter, #dataTable_length {
 					<tr>
 						<td align="center" height="40px">지역</td>
 						<td align="left"><select name="sit_loc"
-							class="loactionInput sitterBoardInputSize">
+							class="loactionInput sitterBoardInputSize form-control">
 								<option>선택하세요</option>
 								<option value="서울">서울</option>
 								<option value="경기">경기</option>
@@ -194,7 +206,7 @@ thead, #dataTable_filter, #dataTable_length {
 			<tbody class="fadein">
 				<c:forEach items="${sitterVOChkList}" var="v">
 					<tr class="dataTableTr">
-						<td>
+						<td class="sample_image">
 							<div class="sitterDiv strongYellow">
 								<input class="sitterIdInput" type="hidden" value="${v.sit_mbr_id}"> 
 								<img class="sitterProfileImg" alt="시터이미지"

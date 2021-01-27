@@ -154,6 +154,14 @@ thead, #dataTable_filter, #dataTable_length {
 .Bigtitle {
     margin: 20px 0 0 38px;
 }
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
 </style>
 <script>
 	var TxtType = function(el, toRotate, period) {
@@ -274,7 +282,7 @@ thead, #dataTable_filter, #dataTable_length {
 			<c:forEach items="${cookList}" var="cook">
 				<tr class="dataTableTr fadein">
 					<td class="cookno_hidden">${cook.COOK_NO}</td>
-					<td class="c_box">
+					<td class="c_box sample_image">
 						<ol class="lst_recipe cool_recipes">
 							<li>
 							

@@ -22,7 +22,14 @@
 
 }
 .famImage{width: 420px;height: 350px;}
-
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
 </style>
   <script>
 $(() => {
@@ -184,7 +191,7 @@ $(() => {
     <h2 class="fontTitle">Papang SHOP</h2><p class="moreClass" id="moreBtn">더보기 ></p>
     <div class="row">
     <c:forEach items="${products}" var="product">
-      <div class="col-lg-4 col-sm-6 portfolio-item mainBox">
+      <div class="col-lg-4 col-sm-6 portfolio-item mainBox sample_image">
         <div class="card h-100"> 
         <p class="pro_no">${product.pro_no}</p>
           <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/resources/images/market/${product.pro_pic}" alt="상품 사진이없습니다"></a>

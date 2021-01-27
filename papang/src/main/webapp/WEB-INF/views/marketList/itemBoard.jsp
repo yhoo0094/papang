@@ -73,6 +73,14 @@ margin: 20px 0 0 38px;
 
 }
 .famImage{width: 420px;height: 350px;}
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
 </style>
 
 <div class="container center_div">
@@ -121,7 +129,7 @@ margin: 20px 0 0 38px;
 				<c:if test="${ !empty pro.pro_cnt }">
 					<tr class="marketTableTr">
 					<td style="display: none; width: 0px"><p>${pro.pro_no}</p></td>
-						<td><p style="display: none">${pro.pro_no}</p>
+						<td class="sample_image"><p style="display: none">${pro.pro_no}</p>
 							<div class="portfolio-item">
 								<div class="card h-100 strongYellow">
 									<a href="../market/itemDetail?pro_no=${pro.pro_no}"><img

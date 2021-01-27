@@ -55,6 +55,14 @@ thead, #dataTable_filter, #dataTable_length {display: none;}
 .Bigtitle {
     margin: 20px 0 0 38px;
 }
+.sample_image:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.05);
+    transition-duration: 0.5s;
+}
 </style>
 <script>
 
@@ -191,7 +199,7 @@ window.onload = function() {
 			
 				<tr class="dataTableTr fadein" > 
 					<td class="playno_hidden">${play.PLAY_NO}</td>
-					<td class="box">
+					<td class="box sample_image">
 							<ol class="lst_recipe cool_recipes" >
 			<li>
 			<a class="call_recipe thmb" href="#"> 

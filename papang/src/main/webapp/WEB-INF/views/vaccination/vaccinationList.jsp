@@ -12,9 +12,9 @@
 td {
 	width: 90px;
 	height: 70px;
-	border: 1px solid black;
+	border: 1px solid #3a3838bf;
 	text-align: center;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 .vacc_table {
@@ -27,8 +27,8 @@ td {
 
 th {
 	background-color: rgb(249, 196, 94);
-	border: 1px solid black;
-	font-size: 12px;
+	border: 1px solid #3a3838bf;
+	font-size: 15px;
 }
 
 .vacc_title {
@@ -62,10 +62,12 @@ th {
 
 .control-label {
 	width: 70px;
+	font-size: 20px;
 }
 
 .form-control {
-	width: 470px;
+	width: 530px;
+	font-size: 20px;
 }
 
 #message-text {
@@ -75,6 +77,14 @@ th {
 .modal-footer {
 	display: block;
 }
+
+.modal-content {
+    height: 570px;
+}
+
+.modal-dialog {
+    max-width: 570px;
+    }
 
 .btn-primary {
 	background-color: rgb(249, 196, 94);
@@ -113,7 +123,7 @@ th {
 
 .modal-title {
 	display: inline;
-	margin: 0 0 0 150px;
+	margin: 0px 0 0 180px;
 }
 
 .modal-header .close {
@@ -132,6 +142,7 @@ th {
 .ex {
 	display: block;
 	margin-top: 20px;
+	font-size: 20px;
 }
 
 .select, .age {
@@ -139,11 +150,11 @@ th {
 	height: 40px;
 	width: 130px;
 	margin: 0 20px 0 0;
-	font-size: 16px;
+	font-size: 23px;
 }
 
 .age {
-	width: 180px;
+	width: 210px;
 }
 
 .select {
@@ -393,7 +404,7 @@ th {
 			data : {'chi_no' : chiNum },
 			success : function(result) {
 				console.log(result);
-				$('.age').text("태어난지 "+"" +result.chi_days+ "일 ("+ result.chi_month + ")개월");
+				$('.age').text("태어난지 "+"" +result.chi_days+ "일 ("+ result.chi_month + "개월)");
 				
 			},error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
@@ -519,7 +530,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 		</div>
 	</div>
 
-	<div class="Bigtitle">예방접종</div>
+	<div class="Bigtitle">예방접종 일지</div>
 	<input class="chi_num" id="chiNum" name="chi_no" type="hidden" value="">
 	<select class="select" id='child'></select>
 	<img id="babyImg" alt="사진이 존재하지않습니다."
@@ -593,7 +604,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td></td>
 				</tr>
 				<tr>
-					<td class="vacc_title" rowspan="2">디프테리아ㆍ파상풍ㆍ백일해</td>
+					<td class="vacc_title" rowspan="2">디프테리아<br>ㆍ파상풍<br>ㆍ백일해</td>
 					<td class="vacc_title">DTaP</td>
 					<td></td>
 					<td></td>
@@ -655,7 +666,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td></td>
 				</tr>
 				<tr>
-					<td class="vacc_title">b형헤모필루스 인플루엔자</td>
+					<td class="vacc_title">b형<br>헤모필루스<br>인플루엔자</td>
 					<td class="vacc_title">Hib</td>
 					<td></td>
 					<td></td>
@@ -711,7 +722,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 						data-whatever="@mdo">고위험군에 한하여 접종</td>
 				</tr>
 				<tr>
-					<td class="vacc_title">홍역ㆍ유행성이하선염ㆍ풍진</td>
+					<td class="vacc_title">홍역<br>ㆍ유행성<br>이하선염<br>ㆍ풍진</td>
 					<td class="vacc_title">MMR</td>
 					<td></td>
 					<td></td>
@@ -802,7 +813,7 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 					<td></td>
 				</tr>
 				<tr>
-					<td class="vacc_title">사람유두종바이러스 감염증</td>
+					<td class="vacc_title">사람유두종<br>바이러스<br>감염증</td>
 					<td class="vacc_title">HPV</td>
 					<td></td>
 					<td></td>
