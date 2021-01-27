@@ -22,14 +22,7 @@
 
 }
 .famImage{width: 420px;height: 350px;}
-.sample_image:hover {
-    -webkit-transform:scale(1.2);
-    -moz-transform:scale(1.2);
-    -ms-transform:scale(1.2);   
-    -o-transform:scale(1.2);
-    transform:scale(1.05);
-    transition-duration: 0.5s;
-}
+
 </style>
   <script>
 $(() => {
