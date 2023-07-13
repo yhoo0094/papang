@@ -1,5 +1,6 @@
+
 # Papang
-> 육아 상품 및 베이비 시터 고용 사이트<br>
+> 육아 상품 및 베이비 시터 고용 사이트 Father's <br>
 > 개발기간 : 2020.12 ~ 2021.01
 
 ##  개발팀 소개 Team Description
@@ -22,7 +23,15 @@ A website that sells parenting-related products and hires babysitters
 Through this project, it was intended to resolve the absence of community sites for childrearing daddies and to increase male participation in parenting.
 
 ###  환경 Environment
-> JAVA<br>
-Spring Framework
+> JAVA, Spring Framework, BootStrap4, HTML5, CSS, Javascript, Mybatis<br>
+데이터베이스 : Oracle Database<br>
+서버 : TOMCAT 8.5<br>
+빌드 배포 : Maven<br>
+테스트 툴 : Junit<br>
+###  API
+> 아임포트 결제 API : https://www.iamport.kr<br>
+Google Chart (https://developers.google.com/chart/?hl=ko)<br>
+카카오로그인 API<br>
+다음 주소 API : https://postcode.map.daum.net/guide
 
 
