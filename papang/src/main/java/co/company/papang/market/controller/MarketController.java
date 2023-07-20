@@ -122,7 +122,7 @@ public class MarketController {
 			product.setPro_pic(multipartFile.getOriginalFilename());
 		}
 		mk_service.updateItem(product);
-		return "redirect:/market/itemDetail?pro_no=" + product.getPro_no(); // jsp주소
+		return "redirect:/market/itemDetail?pro_no=" + product.getPro_no();
 	}
 
 	// 판매상품 수정 폼
@@ -303,7 +303,7 @@ public class MarketController {
 	public int cartCnt(@RequestParam("pro_no") String pro_no, HttpSession session) throws IOException {
 		MemberVO memberVo = (MemberVO) session.getAttribute("user");
 		String mbr_id = memberVo.getMbr_id();
-		return mk_service.countCart(pro_no, mbr_id); // jsp주소
+		return mk_service.countCart(pro_no, mbr_id);
 	}
 
 	// 장바구니 수정
@@ -339,7 +339,7 @@ public class MarketController {
 			}
 			result = 1;
 		}
-		return result; // jsp주소
+		return result;
 	}
 
 // 주문
